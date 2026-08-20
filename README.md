@@ -1,14 +1,21 @@
-# Home Assistant 新居入住指南（從零到能用）
+# Home Assistant 資源總站（教學 · 銷售 · 提示詞 · Skill）
 
-22 章＋3 附錄的繁體中文 Home Assistant 教學靜態網站，從「剛裝好的空白 HA」一路帶到通訊協定、能源監控、語音助理與案場級網路架構。
+Home Assistant 的四本手冊集中地，繁體中文靜態網站：
 
-**線上閱讀：<https://woowtech.github.io/Woow_ha_tutorial_site/>**
+| 分類 | 頁面 | 給誰 | 下載 |
+|---|---|---|---|
+| **入住教學** | [`tutorial.html`](https://woowtech.github.io/Woow_ha_tutorial_site/tutorial.html) ＋ 22 章＋3 附錄 | 用戶 | 整站 zip（GitHub archive） |
+| **銷售手冊** | [`sales.html`](https://woowtech.github.io/Woow_ha_tutorial_site/sales.html) | 客戶與經銷商 | 自包含單檔 HTML |
+| **AI 提示詞庫** | [`prompts.html`](https://woowtech.github.io/Woow_ha_tutorial_site/prompts.html) | 進階用戶（43+ 條可複製） | 自包含單檔 HTML |
+| **Skill 手冊** | [`skills.html`](https://woowtech.github.io/Woow_ha_tutorial_site/skills.html) | 進階用戶（型錄＋速查） | 自包含單檔 HTML |
+
+四類共用一個對外入口 [`index.html`（資源總覽）](https://woowtech.github.io/Woow_ha_tutorial_site/)，hub 上提供各分冊的線上閱讀與下載載點。
 
 - 純靜態站，沒有框架、沒有打包工具，push 到 `main` 由 GitHub Pages 直接提供
 - 所有截圖都是 Playwright 從真實 HA 介面自動抓取並疊上紅框／箭頭／編號
 - 內容以 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh-hant) 授權釋出
 
-## 內容
+## 入住教學 — 22 章 + 3 附錄
 
 ### 基礎：從零到能用
 
@@ -60,23 +67,33 @@
 | B | `appendix_scenes_helpers_groups.html` | 場景、10 種 Helper、群組 |
 | C | `appendix_hardware_install.html` | 裝機前傳：安裝方式比較、硬體選擇、HAOS 燒錄與首次開機 |
 
-## 檔案結構
+## 站內結構（hub 模式）
 
 ```
-index.html               目錄頁             ← 卡片由 build_nav.js 產生
+index.html               資源總覽 hub       ← 人手維護，build_nav 不碰
+tutorial.html            教學目錄            ← build_nav 產生（chapters.json 的 hub.catalog）
+ch*.html / appendix_*    教學內容頁         ← head/側欄/pager/footer 由 build_nav 產生
+sales.html               銷售手冊            ← 自包含單檔（自帶樣式與圖示，可直接下載）
+prompts.html             AI 提示詞庫         ← 自包含單檔，同上
+skills.html              Skill 手冊          ← 自包含單檔，同上
 404.html                 找不到頁面
-ch*.html / appendix_*    內容頁             ← head/側欄/pager/footer 由 build_nav.js 產生
-chapters.json            章節單一來源        ← 章節順序、編號、分篇、卡片文案、SEO 描述
+chapters.json            單一來源            ← 章節順序/文案/SEO + hub 設定（catalog、pages）
 sitemap.xml              產生物，勿手改
 robots.txt
 assets/css/style.css     全站樣式
 assets/js/toc.js         章內錨點 scroll-spy＋手機版側欄收合
-assets/screenshots/      46 張標注過的截圖（第 1～12 章）
-scripts/build_nav.js     導覽產生器
+assets/screenshots/      標注過的教學截圖
+scripts/build_nav.js     導覽產生器（hub 模式）
 scripts/check_links.js   站內連結／錨點健檢
 scripts/capture.js       截圖產生器
 scripts/annotations.json 截圖與標注定義
 ```
+
+規則：
+
+- 教學章節照舊由 `chapters.json` ＋ `<section data-nav>` 驅動，改完跑 `node scripts/build_nav.js`；目錄卡片輸出到 `tutorial.html`，側欄自帶「◂ 資源總覽」回 hub。
+- `sales.html` / `prompts.html` / `skills.html` 是**自包含單檔**（樣式、圖示全部內嵌，離線可開），列在 `chapters.json` 的 `hub.pages`，會納入 sitemap 與 `check_links` 白名單，但不吃內容頁房規（kicker/FAQ/data-icon 對 style.css 的檢查）。
+- 新增第五本手冊：寫好自包含 HTML → `hub.pages` 加一筆 → `index.html` 加卡片 → 重跑 build_nav。
 
 ## 本地檢視
 
