@@ -67,7 +67,7 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why should we remember</a>
+      <a href="#why">Why this matters</a>
       <a href="#helper_types">Five recording elements</a>
       <a href="#first_helper">Be the first one</a>
       <a href="#case_habit">Living habits record</a>
@@ -77,9 +77,9 @@
       <a href="#charts">Let the records grow into charts</a>
       <a href="#derived">Process the numbers</a>
       <a href="#dashboard">Customized dashboard</a>
-      <a href="#community_cards">social card</a>
+      <a href="#community_cards">Community cards</a>
       <a href="#export">Export and save</a>
-      <a href="#troubleshoot">Common problems</a>
+      <a href="#troubleshoot">Troubleshooting</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="toc-in-chapter">
@@ -97,21 +97,21 @@
  <p class="lead">Use helpers to record habits, household spending, meter readings, maintenance, and family notes that sensors cannot capture automatically. Then turn those records into useful charts and a dashboard you will actually use.</p>
  </div>
 
- <section id="why" data-nav="Why should we remember">
+ <section id="why" data-nav="Why this matters">
  <h2 data-icon="why">Why do you need to make your own records?</h2>
 
- <p>After installing a smart home, you will find one thing: temperature and humidity, battery level, and whether the door is opened or not, all have sensors to help you remember them. But the things we really want to track in life don’t have sensors.</p>
+ <p>After installing a smart home, you will find one thing: temperature and humidity, battery level, and whether the door is opened or not, all have sensors to help you remember them. But the things we really want to track in life do not have sensors.</p>
 
  <ul>
  <li>The air purifier filter on the balcony was last replaced in March or April? Can't remember.</li>
  <li>How much does the total cost of water, electricity and gas cost this month? We didn't know until the bill came, it was too late.</li>
- <li>How often should the water in a fish tank be changed? I rely on my head to remember, but I always wait until the water becomes turbid to think of it.</li>
+ <li>How long has it been since the aquarium water was changed? Relying on memory means you may notice only after the water becomes cloudy.</li>
  <li>Mom's message "Don't run the dishwasher today" was written on a note on the refrigerator, and you didn't even enter the kitchen.</li>
  </ul>
 
- <p>What these things have in common is: <strong>The data is in your head, not in the system</strong>. As long as you plug it into Home Assistant, it will automatically leave a timeline for you, draw charts, and proactively poke you when it is due.</p>
+ <p>What these things have in common is: <strong>The information exists only in memory, not in a system</strong>. As long as you plug it into Home Assistant, it can retain a timeline, draw charts, and send a reminder when it is due.</p>
 
- <p>After reading this chapter you will have these additional abilities:</p>
+ <p>After this chapter you will have these additional abilities:</p>
 
  <ol class="steps">
  <li>
@@ -135,7 +135,7 @@
  <div class="callout"><strong>Concept:</strong> The basic creation method of helpers (Helper) is <a href="appendix_scenes_helpers_groups.html">Appendix B</a> As mentioned before, the editing, tab, and views types of the dashboard are <a href="ch6_dashboard.html">Chapter 6</a>. This chapter does not focus on the operating interface, but goes directly to "using them to create four types of real recording systems".</div>
  </section>
 
- <section id="helper_types" data-nav="Five recording elements">
+ <section id="helper_types" data-nav="Recording helpers">
  <h2 data-icon="concept">Five helpers, what should be remembered for each?</h2>
 
  <p>The position of creating the helper is fixed at: <strong>Settings → Devices &amp; Services → Helpers</strong> (Settings → Devices &amp; services → Helpers), lower right corner <kbd>Create helper</kbd>. The following five are the most commonly used for record keeping.</p>
@@ -164,17 +164,17 @@
 
  <table class="data-table">
  <thead>
- <tr><th></th><th>numbers <code>input_number</code></th><th>counter <code>counter</code></th></tr>
+ <tr><th></th><th>Numbers <code>input_number</code></th><th>Counter <code>counter</code></th></tr>
  </thead>
  <tbody>
- <tr><td>How to enter</td><td>Pull the slider or type directly (<code>mode</code> optional slider or box)</td><td>Only add, subtract, return to zero, direct setting</td></tr>
+ <tr><td>Input method</td><td>Pull the slider or type directly (<code>mode</code> optional slider or box)</td><td>Only add, subtract, reset, direct setting</td></tr>
  <tr><td>Can there be decimals?</td><td>OK,<code>step</code> Minimum 0.001</td><td>Mainly integer, step defaults to 1</td></tr>
- <tr><td>Is there an action called "return to zero"?</td><td>No, you have to set it back to 0 yourself</td><td>Yes,<code>counter.reset</code> Return directly to the starting value</td></tr>
- <tr><td>most suitable</td><td>Weight 62.4, electricity bill 1284, such "valuable" things</td><td>Drink 1 glass of water and exercise 1 time, this kind of "click to add one" thing</td></tr>
+ <tr><td>Is there an action called "reset"?</td><td>No, you have to set it back to 0 yourself</td><td>Yes,<code>counter.reset</code> Return directly to the starting value</td></tr>
+ <tr><td>Best for</td><td>Specific values, such as a weight of 62.4 or a meter reading of 1284</td><td>Counts that change one step at a time, such as 1 glass of water or 1 exercise session</td></tr>
  </tbody>
  </table>
 
- <div class="callout tip"><strong>Tip:</strong> The judgment method is simple: do you want to <strong>fill in a number</strong>, still want <strong>Click to add one</strong>? Use "Number" to fill in numbers and "Counter" to click.</div>
+ <div class="callout tip"><strong>Tip:</strong> Ask whether you need to <strong>enter a specific number</strong> or <strong>increment a count</strong>. Use Number for a value and Counter for repeated increments.</div>
 
  <h3>Action name that will be used</h3>
 
@@ -182,7 +182,7 @@
 
  <table class="data-table">
  <thead>
- <tr><th>action</th><th>what to do</th><th>Information to bring</th></tr>
+ <tr><th>Action</th><th>What to do</th><th>Information to bring</th></tr>
  </thead>
  <tbody>
  <tr><td><code>input_number.set_value</code></td><td>Set value directly</td><td><code>value</code></td></tr>
@@ -197,13 +197,13 @@
  </tbody>
  </table>
 
- <div class="callout warn"><strong>Warning:</strong> The maximum length of text helpers is preset to 100 characters, which can be increased by yourself. However, the physical state of Home Assistant has a hard upper limit of 255 characters. Adjusting to 255 is the ceiling. If you want to save a long message (such as an entire shopping list), don’t cram it in <code>input_text</code>, there is a more suitable method in the section "Remembering Things as You Go" later.</div>
+ <div class="callout warn"><strong>Warning:</strong> The maximum length of text helpers is preset to 100 characters, which can be increased yourself. However, the physical state of Home Assistant has a hard upper limit of 255 characters. Adjusting to 255 is the ceiling. If you want to save a long message (such as an entire shopping list), do not cram it in <code>input_text</code>, there is a more suitable method in the section "Remembering Things as You Go" later.</div>
  </section>
 
- <section id="first_helper" data-nav="Be the first one">
+ <section id="first_helper" data-nav="First helper">
  <h2 data-icon="steps">Do it yourself: Make "How many glasses of water did you drink today" in five minutes?</h2>
 
- <p>Do the simplest one first and you will catch the rhythm. Goal: A button on the dashboard, drink a drink and press it, and it will automatically return to zero in the middle of the night.</p>
+ <p>Start with a simple example: add a dashboard button that records each glass of water and resets the count at midnight.</p>
 
  <ol class="steps">
  <li>
@@ -212,11 +212,11 @@
  </li>
  <li>
  <h3>Confirm its entity ID</h3>
- <p>After it is built, click in and look at the entity ID. The Chinese name is usually converted into a string of pinyin or garbled characters. It is recommended to change it in the entity settings to <code>counter.water_cups_today</code> This kind of understandable English. Naming rules and notes on changing IDs are in <a href="ch4_naming_labels.html">Chapter 4</a>.</p>
+ <p>Open the new helper and check its entity ID. A localized display name may produce an unclear generated ID, so change it to a readable value such as <code>counter.water_cups_today</code>. <a href="ch4_naming_labels.html">Chapter 4</a> explains naming rules and the effects of changing IDs.</p>
  </li>
  <li>
  <h3>Put it on the dashboard and call out the plus and minus buttons</h3>
- <p>Go back to your dashboard, top right corner <kbd>Edit</kbd>, press <kbd>Add card</kbd>, search for "Number of glasses of water consumed today" and select <strong>Tile</strong> cards. Here’s where everyone gets stuck most often: <strong>By default, the tile card will only display a number and will not have add or subtract buttons.</strong>. Scroll down on the card editing screen and find <strong>Features</strong>, press Add, select <strong>Counter actions</strong>, check which numbers to display (increment, decrement, reset to zero). The button will not appear on the card until it is saved.</p>
+ <p>Go back to your dashboard, top right corner <kbd>Edit</kbd>, press <kbd>Add card</kbd>, search for "Water consumed today" and select <strong>Tile</strong> cards. Here’s where everyone gets stuck most often: <strong>By default, the tile card will only display a number and will not have add or subtract buttons.</strong>. Scroll down on the card editing screen and find <strong>Features</strong>, press Add, select <strong>Counter actions</strong>, check which numbers to display (increment, decrement, reset to zero). The button will not appear on the card until it is saved.</p>
  </li>
  <li>
  <h3>Make an automation that automatically returns to zero in the middle of the night</h3>
@@ -251,12 +251,12 @@ features:
       - decrement
       - reset</code></pre>
 
- <div class="callout tip"><strong>Tip:</strong> Digital helpers also have corresponding functions that can be added: function selection of tile cards <strong>Numeric input</strong> (<code>type: numeric-input</code>), <code>style</code> Can choose <code>slider</code>(slider) or <code>buttons</code>(plus and minus buttons). For things like weight and amount that need to be typed, using this method is much faster than clicking into the physical window every time.</div>
+ <div class="callout tip"><strong>Tip:</strong> Digital helpers also have corresponding functions that can be added: function selection of tile cards <strong>Numeric input</strong> (<code>type: numeric-input</code>), <code>style</code> Can choose <code>slider</code>(slider) or <code>buttons</code>(plus and minus buttons). For things like weight and value that need to be typed, using this method is much faster than clicking into the dialog every time.</div>
 
  <div class="callout tip"><strong>Tip:</strong> If you want to "save yesterday's numbers before returning to zero", in <code>counter.reset</code> Add one in front <code>input_number.set_value</code>, just write yesterday's value into another digital helper called "Number of glasses of water drank yesterday".</div>
  </section>
 
- <section id="case_habit" data-nav="Living habits record">
+ <section id="case_habit" data-nav="Habit tracking">
  <h2 data-icon="records">Example 1: Record of living habits</h2>
 
  <div class="callout warn"><strong>Warning:</strong> This section only teaches you how to <strong>Record numbers and draw charts</strong>. These charts are just a line of numbers you input and do not represent any health judgment. For physical problems, please see a medical professional, not the dashboard.</div>
@@ -265,7 +265,7 @@ features:
 
  <table class="data-table">
  <thead>
- <tr><th>things to remember</th><th>Which component to use</th><th>set priorities</th></tr>
+ <tr><th>Things to remember</th><th>Which component to use</th><th>Set priorities</th></tr>
  </thead>
  <tbody>
  <tr><td>Number of drinking glasses</td><td>counter</td><td>Minimum 0, step 1, reset to zero every day at midnight</td></tr>
@@ -274,7 +274,7 @@ features:
  </tbody>
  </table>
 
- <p>It is particularly recommended to set the mode to an input box instead of a slider. It's painful to drag the slider to 62.4, it's much faster to just type. When creating, select the "Display Mode" column <strong>Input box</strong> That’s it.</p>
+ <p>It is particularly recommended to set the mode to an input box instead of a slider. It's painful to drag the slider to 62.4, it's much faster to just type. When creating, select the "Display Mode" column <strong>Input box</strong> That is it.</p>
 
  <h3>Automatically reset exercise times every Monday</h3>
 
@@ -294,7 +294,7 @@ mode: single</code></pre>
 
  <h3>What does it look like on the dashboard?</h3>
 
- <p>It is recommended to put three things into one block: two tile cards (drinking water, exercise) and a gauge (Gauge) card to see the progress of drinking water today. The setting of the instrument card is very intuitive;<code>min</code> Default 0,<code>max</code> The default is 100, remember to adjust it according to the actual situation.</p>
+ <p>It is recommended to put three things into one block: two tile cards (drinking water, exercise) and a gauge (Gauge) card to see the progress of drinking water today. The setting of the gauge card is very intuitive;<code>min</code> Default 0,<code>max</code> The default is 100, remember to adjust it according to the actual situation.</p>
 
  <pre class="code-block"><code>type: gauge
 entity: counter.water_cups_today
@@ -317,28 +317,28 @@ segments:
 
  <h3>Want to see long-term trends? See the next step first</h3>
 
- <p>Now you may be thinking, "Then I want to see the chart of changes in weight over the past three months." Here is a pitfall that many people get stuck in: <strong>The helper component itself does not produce long-term statistics</strong>, so take <code>input_number.weight</code> When trying to put the statistics-graph card, it will show that the statistics cannot be found. The solution is in the section "Processing Numbers" at the end, so remember to read on.</p>
+ <p>Now you may be thinking, "Then I want to see the chart of changes in weight over the past three months." Here is a pitfall that many people get stuck in: <strong>The helper does not produce long-term statistics</strong>, so take <code>input_number.weight</code> When trying to put the statistics-graph card, it will show that the statistics cannot be found. The solution is in the section "Processing Numbers" at the end, so remember to read on.</p>
  </section>
 
- <section id="case_money" data-nav="Income and expenditure and water and electricity">
+ <section id="case_money" data-nav="Manual meters">
  <h2 data-icon="cost">Example 2: Household income and expenditure and utility bill records</h2>
 
  <h3>A. Write down an expense at random</h3>
 
- <p>The method is "two numbers + a script": put one number in what you want to remember <strong>Single amount</strong>, put a number <strong>Total this month</strong>, use a script in the middle to add the single amount to the total.</p>
+ <p>Use two Number helpers and one script: one helper stores the <strong>new entry</strong>, the other stores the <strong>monthly total</strong>, and the script adds the entry to the total.</p>
 
  <ol class="steps">
  <li>
  <h3>Create three digital helpers</h3>
- <p><code>input_number.expense_entry</code>(Single amount, minimum 0, maximum 100000, step 1, mode selection input box),<code>input_number.expense_month_total</code>(Cumulative this month, same range, fill in the unit <code>local currency</code>), plus one more <code>input_number.expense_last_month</code>(The setting for last month’s expenditure is the same as the accumulated one). The third one is not used now. It is used for monthly settlement below. Build it together to save the need to come back later.</p>
+ <p><code>input_number.expense_entry</code>(Single value, minimum 0, maximum 100000, step 1, mode selection input box),<code>input_number.expense_month_total</code>(Cumulative this month, same range, fill in the unit <code>local currency</code>), plus one more <code>input_number.expense_last_month</code>(The setting for last month’s expenditure is the same as the accumulated one). The third one is not used now. It is used for monthly settlement below. Build it together to save the need to come back later.</p>
  </li>
  <li>
- <h3>Create a script to add the amount</h3>
+ <h3>Create a script to add the value</h3>
  <p>Go to <strong>Settings → Automations & Scenes &amp; Scenes → Scripts</strong>, create a new script, cut the YAML pattern and paste the following content. Details of the script (fields, execution mode) are in <a href="ch10_scripts.html">Chapter 10</a>.</p>
  </li>
  <li>
- <h3>Make the script into a button card</h3>
- <p>Put one on the dashboard <strong>Entities</strong> Card, put both numbers and this script into the same card. Enter the amount → press execute → the accumulated amount will be added automatically → the single amount will return to zero by itself.</p>
+ <h3>Add the script to a card</h3>
+ <p>Add an <strong>Entities</strong> card to the dashboard and place both Number helpers and the script on it. Enter a value, run the script, confirm that the total increases, and check that the entry resets.</p>
  </li>
  <li>
  <h3>Automatic settlement on the first of every month</h3>
@@ -399,12 +399,12 @@ mode: single</code></pre>
  </tbody>
  </table>
 
- <div class="callout warn"><strong>Warning:</strong> Cumulative degree <strong>Can only be added upwards</strong>, don’t fill in “How many times did you use this issue” in each issue? Only by filling in the cumulative value can Home Assistant help you automatically settle the installments; this is also the prerequisite for the Utility Meter to work later.</div>
+ <div class="callout warn"><strong>Warning:</strong> Cumulative degree <strong>Can only be added upwards</strong>, do not fill in “How many times did you use this issue” in each issue? Only by filling in the cumulative value can Home Assistant help you automatically settle the installments; this is also the prerequisite for the Utility Meter to work later.</div>
 
  <p>If your home already has a smart meter, power sensor, or smart socket with power reading function, it will be easier to skip the manual copy and feed the sensor directly to Utility Meter.</p>
  </section>
 
- <section id="case_maintain" data-nav="Device maintenance records">
+ <section id="case_maintain" data-nav="Maintenance records">
  <h2 data-icon="hardware">Example 3: Device maintenance records and automatic reminders</h2>
 
  <p>These requirements all have the same shape: <strong>Remember the last date → Calculate how many days have passed → Remind if the cycle is exceeded</strong>. Once you learn one, you can use it for filtering, changing water, cleaning air conditioners, and replacing toothbrush heads.</p>
@@ -412,15 +412,15 @@ mode: single</code></pre>
  <ol class="steps">
  <li>
  <h3>Create a date helper component</h3>
- <p><strong>Settings → Devices &amp; Services → Helpers → Create helper → Date/Time</strong>, name "Filter last changed", only check <strong>Date</strong> Leave the time unchecked and the entity ID is recommended to be <code>input_datetime.filter_last_change</code>.</p>
+ <p>Go to <strong>Settings → Devices &amp; Services → Helpers → Create helper → Date/Time</strong>. Name it “Filter last changed,” select only <strong>Date</strong>, and leave Time clear. The suggested entity ID is <code>input_datetime.filter_last_change</code>.</p>
  </li>
  <li>
  <h3>Build a template sensor that counts days</h3>
- <p>Go to <strong>Settings → Devices &amp; Services → Helpers</strong>, press <kbd>Create helper</kbd>, choose <strong>Template</strong>, select again <strong>Sensor</strong>. Type "Number of days the filter has been used" in the name, paste the following paragraph in the status template, and fill in the measurement unit. <code>days</code>. After building it, change the entity ID to <code>sensor.filter_days_since</code>, the later automation is suitable.</p>
+ <p>Go to <strong>Settings → Devices &amp; Services → Helpers</strong>, select <kbd>Create helper</kbd>, choose <strong>Template</strong>, then <strong>Sensor</strong>. Name it “Days since filter change,” paste the template below into the state template, and set the unit of measurement to <code>days</code>. After creating it, change the entity ID to <code>sensor.filter_days_since</code> for the later automation.</p>
  </li>
  <li>
- <h3>Make a button that says "I changed it today"</h3>
- <p>Create a script that sets the date to today. In this way, you only need to click once to change the filter, and you don’t have to manually select the calendar.</p>
+ <h3>Create a “Changed today” button</h3>
+ <p>Create a script that sets the date to today. In this way, you only need to click once to change the filter, and you do not have to manually select the calendar.</p>
  </li>
  <li>
  <h3>Automate reminders</h3>
@@ -432,7 +432,7 @@ mode: single</code></pre>
      - as_timestamp(states('input_datetime.filter_last_change'), 0))
      / 86400) | int(0) }}</code></pre>
 
- <div class="callout"><strong>Concept:</strong><code>| int(0)</code> It is unconditionally discarded, and the "complete days" are counted: if the filter is changed in the morning, the entire day will be counted as 0 days. If instead you use <code>round(0)</code>(Rounding up), it will trigger to 1 day after noon, which will look weird. in brackets after <code>0</code> It is the default value. When the date has not been set or the entity cannot be read temporarily, it will return to 0, so that the entire template will not explode into <code>unknown</code>.</div>
+ <div class="callout"><strong>Concept:</strong> <code>| int(0)</code> discards the fractional part and counts complete days. A filter changed this morning therefore remains at 0 days until a full day has passed. Using <code>round(0)</code> could show 1 day after only half a day. The <code>0</code> in parentheses is the fallback when no date is set or the entity is temporarily unavailable, preventing an <code>unknown</code> result.</div>
 
  <pre class="code-block"><code>alias: The filter has been replaced
 sequence:
@@ -459,7 +459,7 @@ actions:
         The filter has been in use for {{ states('sensor.filter_days_since') }} days. It is time to replace it.
 mode: single</code></pre>
 
- <div class="callout tip"><strong>Tip:</strong> If you want to manage several devices at the same time, don't duplicate four copies of automation. Use a drop-down helper to list all devices with a drop-down card to switch, or create a "date + day sensor" for each device, and then use multiple <code>numeric_state</code> conditions. The second one is more cumbersome but easier to understand. It is recommended to use the second one at first.</div>
+ <div class="callout tip"><strong>Tip:</strong> If you want to manage several devices at the same time, don't duplicate four copies of automation. Use a drop-down helper to list all devices with a drop-down card to switch, or create a "date + day sensor" for each device, and then use multiple <code>numeric_state</code> conditions. The second approach is more work but easier to understand. It is recommended to use the second one at first.</div>
 
  <p>If you want to see all the maintenance status at a glance on the dashboard, it is easiest to use Markdown cards. <code>content</code> You can write templates directly in the field:</p>
 
@@ -473,12 +473,12 @@ content: |-
   | AC cleaning | {{ states('sensor.ac_days_since') }} days | 180 days |</code></pre>
  </section>
 
- <section id="case_notes" data-nav="Notes and message boards">
+ <section id="case_notes" data-nav="Notes and lists">
  <h2 data-icon="todo">Example 4: Random notes and family message board</h2>
 
  <h3>Text helpers for short messages</h3>
 
- <p>A text helper is enough for a one-sentence message like "Don't run the dishwasher today." created <strong>maximum length</strong> The default is 100. If it is not enough, you can increase it, but the maximum is <strong>255</strong>—That is the hard upper limit of the Home Assistant entity state itself. No more can be saved. Once done, put it on the dashboard for use <strong>Entities</strong> card, you can type and change the content directly on the card.</p>
+ <p>A Text helper is enough for a short message such as “Do not run the dishwasher today.” Its <strong>maximum length</strong> defaults to 100 and can be increased to <strong>255</strong>, the hard limit for a Home Assistant entity state. Add the helper to an <strong>Entities</strong> card so you can edit it directly from the dashboard.</p>
 
  <p>Add a date and time helper to record "who left it when", and the automation is like this:</p>
 
@@ -502,7 +502,7 @@ mode: single</code></pre>
  <ol class="steps">
  <li>
  <h3>Join the integration</h3>
- <p><strong>Settings → Devices &amp; Services → Add integration</strong>, search <strong>Local to-do</strong>, follow the on-screen instructions to create a list, such as "Purchase List".</p>
+ <p><strong>Settings → Devices &amp; Services → Add integration</strong>, search <strong>Local to-do</strong>, follow the on-screen instructions to create a list, such as "Shopping list".</p>
  </li>
  <li>
  <h3>Build a few more copies</h3>
@@ -530,23 +530,23 @@ mode: single</code></pre>
  <div class="callout tip"><strong>Tip:</strong> For a rotation of "Who takes out the trash today?" use a drop-down helper to list the names of family members, and then make an automatic daily <code>input_select.select_next</code> With automation, it becomes an automatic shift schedule.</div>
  </section>
 
- <section id="charts" data-nav="Let the records grow into charts">
+ <section id="charts" data-nav="Charts">
  <h2 data-icon="history">Let the record grow into a chart</h2>
 
- <p>Four cards can cover 90% of the needs. The key is to know which data each card accepts.</p>
+ <p>Four card types cover most recording needs. The key is to know which data each card accepts.</p>
 
  <figure class="shot">
  <img src="../assets/screenshots/ch22/02_history_chart.png" alt="Time series graph of history page" />
- <figcaption><strong>Figure 22-2</strong> The "History" page in the sidebar can directly draw the selected entities into a time series diagram. This style can also be used. <code>history-graph</code> Cards are embedded directly into the dashboard.</figcaption>
+ <figcaption><strong>Figure 22-2</strong> The History page plots selected entities as a time series. A <code>history-graph</code> card can place the same type of graph on a dashboard.</figcaption>
  </figure>
 
  <table class="data-table">
  <thead>
- <tr><th>card</th><th>What to see</th><th>Source</th><th>Common parameters</th></tr>
+ <tr><th>Card</th><th>What to see</th><th>Source</th><th>Common parameters</th></tr>
  </thead>
  <tbody>
- <tr><td>historical chart <code>history-graph</code></td><td>Changes in the last few hours to days</td><td>The original state of the Recorder</td><td><code>hours_to_show</code>(Default 24)</td></tr>
- <tr><td>Statistical chart <code>statistics-graph</code></td><td>Long-term trends over weeks to years</td><td>Long-term statistics</td><td><code>days_to_show</code>(Default 30),<code>stat_types</code>, <code>chart_type</code>, <code>period</code></td></tr>
+ <tr><td>history graph <code>history-graph</code></td><td>Changes in the last few hours to days</td><td>The original state of the Recorder</td><td><code>hours_to_show</code>(Default 24)</td></tr>
+ <tr><td>Statistics graph <code>statistics-graph</code></td><td>Long-term trends over weeks to years</td><td>Long-term statistics</td><td><code>days_to_show</code>(Default 30),<code>stat_types</code>, <code>chart_type</code>, <code>period</code></td></tr>
  <tr><td>instrument <code>gauge</code></td><td>A number at the moment + a sense of progress</td><td>The current state of the entity</td><td><code>min</code> (0), <code>max</code> (100), <code>needle</code>, <code>segments</code></td></tr>
  <tr><td>Markdown <code>markdown</code></td><td>Your own layout text summary</td><td>Template, you can catch whatever you want.</td><td><code>content</code>, <code>title</code>, <code>text_only</code></td></tr>
  </tbody>
@@ -565,11 +565,11 @@ entities:
 
  <h3>Statistical charts: look at the long term, but there are prerequisites</h3>
 
- <p>This is the most important concept in the entire chapter, and it is also the place where most people get stuck and give up:</p>
+ <p>This distinction determines whether an entity can appear in a long-term statistics graph.</p>
 
- <div class="callout warn"><strong>Warning:</strong> Statistical chart cards only have <strong>long term statistics</strong> entity. Long-term statistics will only be generated for sensors with state class (State class), that is <code>measurement</code>, <code>total</code>, <code>total_increasing</code> One of these three. <strong>Helper (<code>input_number</code>, <code>counter</code> etc.) does not have a status category, so putting it in directly will show "statistics not found".</strong></div>
+ <div class="callout warn"><strong>Warning:</strong> Statistics graph cards only have <strong>long term statistics</strong> entity. Long-term statistics will only be generated for sensors with state class (State class), that is <code>measurement</code>, <code>total</code>, <code>total_increasing</code> One of these three. <strong>Helper (<code>input_number</code>, <code>counter</code> etc.) does not have a state class, so putting it in directly will show "statistics unavailable".</strong></div>
 
- <p>The solution is to use a template sensor to "wrap" the helper and attach the status category. Although template sensors can also be created using the UI from the Helpers page, Home Assistant documentation states that the UI version provides "a relatively streamlined subset of options", and advanced fields such as status categories may not be set for you. <strong>Therefore, all examples here are written in <code>configuration.yaml</code> inside</strong>, cross-version is the least likely to cause trouble:</p>
+ <p>Use a template sensor to expose the helper’s value with a state class. Although you can create template sensors from the Helpers page, Home Assistant documentation says that the UI offers “a relatively streamlined subset of options” and may not expose every advanced field. <strong>The examples here therefore use <code>configuration.yaml</code></strong> for more consistent access to those fields:</p>
 
  <pre class="code-block"><code>template:
   - sensor:
@@ -581,7 +581,7 @@ entities:
         state: "{{ states('input_number.weight') | float(0) }}"
         availability: "{{ is_number(states('input_number.weight')) }}"</code></pre>
 
- <p>Archived to the sidebar <strong>Tools → YAML</strong> Paginate, click "Template Entity" to reload, and then it will appear <code>sensor.weight_record</code>. <strong>Starting from version 2026.8, this menu has been officially renamed from "Developer tools" to "Tools"</strong>, older versions are still called Developer Tools, and the location is the same. Put the new sensor into the statistics chart card:</p>
+ <p>Archived to the sidebar <strong>Tools → YAML</strong> tab, click "Template Entity" to reload, and then it will appear <code>sensor.weight_record</code>. <strong>Starting from version 2026.8, this menu has been officially renamed from "Developer tools" to "Tools"</strong>, older versions are still called Developer Tools, and the location is the same. Put the new sensor into the statistics chart card:</p>
 
  <pre class="code-block"><code>type: statistics-graph
 title: Weight trend
@@ -594,9 +594,9 @@ entities:
   - entity: sensor.weight_record
     name: Weight</code></pre>
 
- <div class="callout"><strong>Concept:</strong> Qualified sensors will be recorded in two statistics: <strong>Short term statistics every 5 minutes</strong>, and compress it into <strong>Long-term statistics of one transaction per hour</strong> (Save min/max/average). The short-term copy will be cleared regularly like the detailed records, and the long-term official documentation clearly states that <strong>will not be cleared</strong>, will be kept forever, so it can be stored for several years without the hard disk bursting. The cost is that the resolution is coarser than the original record.<code>stat_types</code> Optional <code>min</code>, <code>max</code>, <code>mean</code>, <code>sum</code>, <code>state</code>, <code>change</code>; <code>period</code> Optional <code>5minute</code>, <code>hour</code>, <code>day</code>, <code>week</code>, <code>month</code>, <code>year</code> or <code>auto</code>.</div>
+ <div class="callout"><strong>Concept:</strong> Qualified sensors will be recorded in two statistics: <strong>Short term statistics every 5 minutes</strong>, and compress it into <strong>Long-term statistics of one aggregate per hour</strong> (Save min/max/average). The short-term copy will be cleared regularly like the detailed records, and the long-term official documentation clearly states that <strong>will not be cleared</strong>, will be kept forever, so it can be stored for several years without the storage growing without limit. The cost is that the resolution is coarser than the original record.<code>stat_types</code> Optional <code>min</code>, <code>max</code>, <code>mean</code>, <code>sum</code>, <code>state</code>, <code>change</code>; <code>period</code> Optional <code>5minute</code>, <code>hour</code>, <code>day</code>, <code>week</code>, <code>month</code>, <code>year</code> or <code>auto</code>.</div>
 
- <div class="callout tip"><strong>Tip:</strong> For the newly built template sensor, it is normal for the statistical chart to be empty. use <code>period: day</code>/<code>week</code>/<code>month</code> In this long period, it reads long-term statistics that are generated only once every hour, so the first point usually does not appear until the next hour. If you want to see something immediately, first hold it with a historical chart card, or put <code>period</code> Set to <code>5minute</code> Look at short-term statistics.</div>
+ <div class="callout tip"><strong>Tip:</strong> For the newly built template sensor, it is normal for the statistics graph to be empty. Use <code>period: day</code>/<code>week</code>/<code>month</code> In this long period, it reads long-term statistics that are generated only once every hour, so the first point usually does not appear until the next hour. If you want to see something immediately, first use a history graph card, or put <code>period</code> Set to <code>5minute</code> Look at short-term statistics.</div>
 
  <h3>Markdown: Write multiple numbers into a human sentence</h3>
 
@@ -611,7 +611,7 @@ content: |-
   - Last meter reading: {{ states('input_datetime.meter_read_date') }}</code></pre>
  </section>
 
- <section id="derived" data-nav="Process the numbers">
+ <section id="derived" data-nav="Derived values">
  <h2 data-icon="energy">Process raw numbers into meaningful metrics</h2>
 
  <p>Raw numbers (accumulated degrees, a weight value) are often difficult to read. Home Assistant has several ready-made helpers that can help you do calculations without having to write programs yourself.</p>
@@ -621,8 +621,8 @@ content: |-
  <tr><th>Helpers</th><th>What does it do for you?</th><th>Usage at home</th></tr>
  </thead>
  <tbody>
- <tr><td>Utility Meter (instalment usage meter)</td><td>Divide a sensor that has been accumulating into daily/monthly/yearly usage</td><td>How many kilowatt hours of electricity were used this month and how many tons of water were used this period?</td></tr>
- <tr><td>Statistics</td><td>Calculate the average, maximum, minimum, change amount, number of times, etc. for a certain sensor</td><td>Average weight over the past 30 days</td></tr>
+ <tr><td>Utility Meter (cycle-based utility meter)</td><td>Divide a sensor that has been accumulating into daily/monthly/yearly usage</td><td>How many kilowatt hours of electricity were used this month and how many tons of water were used this period?</td></tr>
+ <tr><td>Statistics</td><td>Calculate the average, maximum, minimum, change value, number of times, etc. for a certain sensor</td><td>Average weight over the past 30 days</td></tr>
  <tr><td>Derivative (rate of change)</td><td>Calculate "how much changes per hour/day", which is the speed of change</td><td>Electricity consumption speed, water level drop speed</td></tr>
  <tr><td>Template</td><td>Write your own formulas and you can calculate anything</td><td>How many days since the last maintenance, electricity bill estimate</td></tr>
  </tbody>
@@ -645,12 +645,12 @@ content: |-
 
  <table class="data-table">
  <thead>
- <tr><th>field</th><th>What to fill in</th></tr>
+ <tr><th>Field</th><th>What to fill in</th></tr>
  </thead>
  <tbody>
  <tr><td>input sensor</td><td>That one just now <code>sensor.meter_electricity_total</code></td></tr>
  <tr><td>Measurement cycle (Cycle)</td><td>Selectable quarter-hour, hourly, daily, weekly, monthly, bi-monthly, quarterly, yearly</td></tr>
- <tr><td>Periodically resetting</td><td><strong>The default is on</strong>. The source will return to zero by itself (some smart sockets will recalculate from 0 after a power outage) before they are left on; handwritten degrees and real water and electricity meters will not return to zero. <strong>Remember to turn it off</strong>, otherwise the dosage will be calculated incorrectly</td></tr>
+ <tr><td>Periodically resetting</td><td><strong>The default is on</strong>. The source will reset by itself (some smart sockets will recalculate from 0 after a power outage) before they are left on; handwritten degrees and real water and electricity meters will not reset. <strong>Remember to turn it off</strong>, otherwise the dosage will be calculated incorrectly</td></tr>
  <tr><td>Delta values</td><td>Open only when the source sends "how much it will increase this time" instead of the cumulative value.</td></tr>
  <tr><td>Net consumption</td><td>It will only be opened if there is a positive or negative situation where solar energy will be sold back.</td></tr>
  <tr><td>Tariffs</td><td>Fill in only when there are sharp peaks and off peaks. If filled in, an additional selection entity for switching rates will be generated.</td></tr>
@@ -659,7 +659,7 @@ content: |-
 
  <p>After it is built, you will have an additional sensor such as "Monthly Power" (the actual name is based on the display). You can put a tile to see "how many kilowatt hours have been used so far this month." It will reset to zero at the beginning of the month.</p>
 
- <p>As for the bar graph of "how many degrees are used each month", the most direct way is not to draw the monthly sensor, but to draw <strong>Source sensor that is always accumulating</strong> Throw it to the statistical chart card and let it calculate the monthly changes by itself (<code>change</code>): </p>
+ <p>As for the bar graph of "how many degrees are used each month", the most direct way is not to draw the monthly sensor, but to draw <strong>Source sensor that is always accumulating</strong> Throw it to the statistics graph card and let it calculate the monthly changes by itself (<code>change</code>): </p>
 
  <pre class="code-block"><code>type: statistics-graph
 title: Monthly energy use
@@ -680,14 +680,14 @@ entities:
  <div class="callout warn"><strong>Warning:</strong> Sampling size and maximum age <strong>At least one must be set</strong>, the sensor will not move if both are empty. If you want the "average of the past 30 days", set the maximum time limit to 30 days.</div>
  </section>
 
- <section id="dashboard" data-nav="Customized dashboard">
+ <section id="dashboard" data-nav="Dashboard layout">
  <h2 data-icon="tabs">Customizable dashboard: arrange records how you want to see them</h2>
 
  <p>Now that we have all the information, the next step is layout. The new dashboard view default is <strong>Sections</strong> Layout, this is also the best arrangement method currently.</p>
 
  <figure class="shot">
  <img src="../assets/screenshots/ch22/03_dashboard.png" alt="Sections layout dashboard" />
- <figcaption><strong>Figure 22-3</strong> Home dashboard: The Sections layout naturally divides Favorites, rooms, and summaries (updates/device exploration/lights/temperature/security) into several sections. This is the most suitable arrangement for record cards.</figcaption>
+ <figcaption><strong>Figure 22-3</strong> Home dashboard: the Sections layout divides favorites, rooms, and summaries such as updates, discovered devices, lights, temperature, and security into separate sections. This layout works well for record cards.</figcaption>
  </figure>
 
  <h3>What do you think about Sections layout?</h3>
@@ -696,13 +696,13 @@ entities:
 
  <table class="data-table">
  <thead>
- <tr><th>Settings</th><th>where</th><th>what to do</th></tr>
+ <tr><th>Settings</th><th>Where</th><th>What to do</th></tr>
  </thead>
  <tbody>
  <tr><td>Max columns</td><td>View settings</td><td>Maximum number of columns for wide screen. Suppose 3 to 4 are usually just right</td></tr>
  <tr><td>Dense section placement</td><td>View settings</td><td>Automatically fill holes, the screen will be fuller but you will lose some arrangement control</td></tr>
  <tr><td>Heading card</td><td>top of each block</td><td>Block title, optional <code>heading_style</code> for <code>title</code> or <code>subtitle</code>, and you can also hang a badge</td></tr>
- <tr><td>Badges</td><td>View top / title card</td><td>The small one shows the value of an entity, which is very suitable for putting "Drink 5 glasses of water today"</td></tr>
+ <tr><td>Badges</td><td>View top / title card</td><td>The small one shows the value of an entity, which is very well suited to displaying "Drink 5 glasses of water today"</td></tr>
  </tbody>
  </table>
 
@@ -727,7 +727,7 @@ entities:
  </li>
  <li>
  <h3>The fourth block "Trend"</h3>
- <p>Put weight on chart cards with various long-term statistics. Normally you don’t need to look at this area, put it at the bottom.</p>
+ <p>Put weight on chart cards with various long-term statistics. Normally you do not need to look at this area, put it at the bottom.</p>
  </li>
  </ol>
 
@@ -741,7 +741,7 @@ badges:
   - type: entity
     entity: counter.workout_count</code></pre>
 
- <h3>Conditional display cards: don’t take up space if you shouldn’t see it</h3>
+ <h3>Conditional display cards: do not take up space if you shouldn’t see it</h3>
 
  <p>Conditional cards can cause the entire card to disappear when the conditions are not met. The types of conditions currently supported include <code>state</code>, <code>numeric_state</code>, <code>screen</code>, <code>user</code>, <code>location</code>, <code>time</code>, and <code>and</code>, <code>or</code>, <code>not</code> Can be combined.</p>
 
@@ -786,30 +786,30 @@ card:
  <p>Still available <code>user</code> Conditions allow each family member to see their own record card. The user account is created in <a href="ch5_users.html">Chapter 5</a>.</p>
  </section>
 
- <section id="community_cards" data-nav="social card">
- <h2 data-icon="hacs">Social cards worth installing</h2>
+ <section id="community_cards" data-nav="Community cards">
+ <h2 data-icon="hacs">Community cards worth installing</h2>
 
- <p>The built-in cards are actually enough. Let’s get familiar with the built-in ones first. If you really think it’s not enough, install it from HACS and look at the installation method. <a href="appendix_hacs_addons.html">Appendix A</a>. The following are the most commonly used record dashboards in the community. Let’s make it clear first: <strong>Their maintenance rhythms are much different</strong>, some are updated almost every month, and some official versions have not released new ones for more than a year (although they have not been sealed by the author). The list only represents "common", not "guaranteed to run on your version":</p>
+ <p>The built-in cards are actually enough. Let us get familiar with the built-in ones first. If you really think it is not enough, install it from HACS and look at the installation method. <a href="appendix_hacs_addons.html">Appendix A</a>. The following are the most commonly used record dashboards in the community. Let us make it clear first: <strong>Their maintenance rhythms are much different</strong>, some are updated almost every month, and some official versions have not released new ones for more than a year (although they have not been sealed by the author). The list only represents "common", not "guaranteed to run on your version":</p>
 
  <table class="data-table">
  <thead>
- <tr><th>card</th><th>what problem to solve</th><th>Usefulness for recording dashboards</th></tr>
+ <tr><th>Card</th><th>What problem to solve</th><th>Usefulness for recording dashboards</th></tr>
  </thead>
  <tbody>
  <tr><td>Mushroom</td><td>A set of visually lighter cards</td><td>Arrange a row of counters neatly and easily, especially on phones.</td></tr>
  <tr><td>ApexCharts Card</td><td>Very complete chart card</td><td>When you want to stack multiple lines, customize the Y-axis, and make weekly comparisons, it can do things that the built-in charts cannot.</td></tr>
  <tr><td>Bubble Card</td><td>Mobile-first cards and pop-ups</td><td>Put the accounting and recording input interface into a pop-up window, and keep the main screen clean</td></tr>
- <tr><td>Mini Graph Card</td><td>Compact mini line chart</td><td>Stuff it into the corner of the block as a thumbnail, taking up no space</td></tr>
+ <tr><td>Mini Graph Card</td><td>Compact line chart</td><td>Show a small trend graph without using much dashboard space</td></tr>
  <tr><td>card-mod</td><td>Change the card style (color, font, spacing)</td><td>Pure appearance fine-tuning, no impact on data</td></tr>
  </tbody>
  </table>
 
- <div class="callout warn"><strong>Warning:</strong> Social cards are maintained by third-party authors and may break when Home Assistant is overhauled. Take thirty seconds to do this before installing: Open its GitHub page and see <strong>The date of the last commit and the latest release</strong>, and then check whether the README has written down the minimum supported Home Assistant version (for example, card-mod clearly indicates the version correspondence table). If the date stops one year ago, it means that someone may not fix it next time HA is revised. Installing too many community cards will make you nervous every time you upgrade in the future. If you can use built-in, use built-in.</div>
+ <div class="callout warn"><strong>Warning:</strong> Community cards are maintained by third-party authors and may break when Home Assistant is overhauled. Take thirty seconds to do this before installing: Open its GitHub page and see <strong>The date of the last commit and the latest release</strong>, and then check whether the README has written down the minimum supported Home Assistant version (for example, card-mod clearly indicates the version correspondence table). If the date stops one year ago, it means that someone may not fix it next time HA is revised. Installing too many community cards will make you nervous every time you upgrade in the future. If you can use built-in, use built-in.</div>
 
  <div class="callout danger"><strong>Danger:</strong> Don't go to an unknown custom repository in Calais just to load a card. The front-end card is JavaScript that is executed directly in your browser. Unknown sources are equivalent to handing over the browser to others. Only the HACS default list, star number and update history are visible.</div>
  </section>
 
- <section id="export" data-nav="Export and save">
+ <section id="export" data-nav="Export data">
  <h2 data-icon="restore">Export and save records</h2>
 
  <p>After accumulating records for a long time, you may want to take them out and calculate them yourself, or you may be afraid that one day the database will be broken. There are three levels:</p>
@@ -827,7 +827,7 @@ card:
  </li>
  <li>
  <h3>Click to download information</h3>
- <p>There is in the upper right corner <kbd>Download data</kbd>, will give you a CSV that can be dropped directly into your spreadsheet.</p>
+ <p>There is in the upper-right corner <kbd>Download data</kbd>, will give you a CSV that can be dropped directly into your spreadsheet.</p>
  </li>
  </ol>
 
@@ -850,11 +850,11 @@ card:
         {{ now().strftime('%Y-%m') }} spending:
         {{ states('input_number.expense_month_total') | int(0) }} in local currency</code></pre>
 
- <div class="callout tip"><strong>Tip:</strong> What is cleared is detailed status records and short-term statistics every 5 minutes; <strong>Hourly long-term statistics will not be cleared</strong>, will always remain. Therefore, "detailed data only lasts for 10 days" does not mean that your long-term trend chart only lasts for 10 days. Charts such as weight and monthly electricity consumption will still be there after several years. Want to stay longer <strong>original</strong> Only the data needed to adjust the recorder <code>purge_keep_days</code>, the price is that the database becomes larger, so be careful with SD cards or small-capacity hard drives.</div>
+ <div class="callout tip"><strong>Tip:</strong> What is cleared is detailed status records and short-term statistics every 5 minutes; <strong>Hourly long-term statistics will not be cleared</strong>, will always remain. Therefore, "detailed data only lasts for 10 days" does not mean that your long-term trend chart only lasts for 10 days. Charts such as weight and monthly electricity consumption will still be there after several years. To retain longer <strong>original</strong> Only the data needed to adjust the recorder <code>purge_keep_days</code>, the price is that the database becomes larger, so be careful with SD cards or small-capacity hard drives.</div>
  </section>
 
- <section id="troubleshoot" data-nav="Common problems">
- <h2 data-icon="troubleshoot">Common problems</h2>
+ <section id="troubleshoot" data-nav="Troubleshooting">
+ <h2 data-icon="troubleshoot">Troubleshooting</h2>
 
  <ol class="steps">
  <li>
@@ -862,12 +862,12 @@ card:
  <p>Under normal circumstances, numbers, text, drop-downs, date and time helpers will be restored to their values before reopening, and counters will also be restored. <code>restore</code> option and is on by default. It will be reset to zero usually because you filled it in when setting it using YAML. <code>initial</code>, this value has a higher priority than restoration, and your records will be overwritten when you start the computer. put <code>initial</code> Just take it off. Another possibility is that Home Assistant did not shut down properly (unplugged the power directly) and did not have time to write the status.</p>
  </li>
  <li>
- <h3>The statistical chart card says there is no data</h3>
- <p>Ninety percent of the time it's because you threw the helpers directly into it. Helpers have no state class (State class) and will not generate long-term statistics. Follow the section on "Growing Records into Charts" to pack a layer of template sensors and add <code>state_class: measurement</code>. Don’t worry if the display is still empty after wrapping it up: the long-term statistics will not generate the first stroke until after the hour, so wait until the next hour before looking.</p>
+ <h3>The statistics graph card says there is no data</h3>
+ <p>Ninety percent of the time it's because you threw the helpers directly into it. Helpers have no state class (State class) and will not generate long-term statistics. Follow the section on "Growing Records into Charts" to pack a layer of template sensors and add <code>state_class: measurement</code>. Do not worry if the display is still empty after wrapping it up: the long-term statistics will not generate the first stroke until after the hour, so wait until the next hour before looking.</p>
  </li>
  <li>
  <h3>The history chart is empty or has only one straight line</h3>
- <p>First make sure your recorder (Recorder) has excluded this entity. Next, if the value has not changed from beginning to end, the graph is originally a straight line, which is not broken. Third, if the time range exceeds 10 days in the history panel, the screen will automatically change to read long-term statistics; if the helper does not have long-term statistics, that section will be blank. To see the original changes to the helpers, the time frame stays within 10 days, on the card <code>hours_to_show</code> Don’t make it too big either.</p>
+ <p>First make sure Recorder has not excluded the entity. A value that never changes correctly appears as a straight line. If the History range exceeds 10 days, the panel switches to long-term statistics; a helper without long-term statistics then appears blank. To inspect the helper’s raw state changes, keep the range within 10 days and use a suitable <code>hours_to_show</code> value on the card.</p>
  </li>
  <li>
  <h3>Cards are cut off or squished on your phone</h3>
@@ -875,7 +875,7 @@ card:
  </li>
  <li>
  <h3>The template sensor is built but the entity cannot be found.</h3>
- <p>Changed <code>configuration.yaml</code> Be sure to reload. to the sidebar <strong>Tools</strong> (Before 2026.8, it was called “Developer Tools”)→ <strong>YAML</strong> Paginate and click "Template Entity" to reload. If it still doesn’t work after reloading, it’s probably because the YAML indentation is wrong. First use the “Check Settings” on the same page to check. There is also a common low-level error:<code>configuration.yaml</code> There is already one in <code>template:</code> block, and you posted a second one, YAML will only recognize the last one, and the sensors must be merged under the same block.</p>
+ <p>Changed <code>configuration.yaml</code> Be sure to reload. to the sidebar <strong>Tools</strong> (Before 2026.8, it was called “Developer Tools”)→ <strong>YAML</strong> tab and click "Template Entity" to reload. If it still does not work after reloading, it is probably because the YAML indentation is wrong. First use the “Check Settings” on the same page to check. There is also a common low-level error:<code>configuration.yaml</code> There is already one in <code>template:</code> block, and you posted a second one, YAML will only recognize the last one, and the sensors must be merged under the same block.</p>
  </li>
  <li>
  <h3>Condition cards never show up</h3>
@@ -893,7 +893,7 @@ card:
 
  <details class="faq">
  <summary>I still can't tell whether I should record using counters or numbers.</summary>
- <div class="body">It depends on what your "input action" is. Click to add one, use the counter (<code>counter</code>), it has ready-made <code>counter.increment</code> and <code>counter.reset</code>. To fill in a specific value (62.4 kg, 1284 yuan), use numbers (<code>input_number</code>), it is easier to type by setting the display mode to an input box. If you really hesitate, use a counter first, because it has one button to reset to zero, making daily records much more convenient.</div>
+ <div class="body">It depends on what your "input action" is. Click to add one, use the counter (<code>counter</code>), it has ready-made <code>counter.increment</code> and <code>counter.reset</code>. To fill in a specific value (62.4 kg, a value of 1284), use numbers (<code>input_number</code>), it is easier to type by setting the display mode to an input box. If you really hesitate, use a counter first, because it has one button to reset to zero, making daily records much more convenient.</div>
  </details>
 
  <details class="faq">
@@ -903,7 +903,7 @@ card:
 
  <details class="faq">
  <summary>I only want to look at the weight chart at one point per week, not up and down every day.</summary>
- <div class="body">Two approaches. First, the statistical chart card <code>period</code> Set to <code>week</code>, <code>stat_types</code> Set to <code>mean</code>, it will directly help you calculate the weekly average. Second, create a Statistics helper, select the mean value (mean) for the characteristic value, set the maximum age (max age) to 7 days, and obtain a "last seven-day average" sensor before drawing the graph. The first is easier.</div>
+ <div class="body">Two approaches. First, the statistics graph card <code>period</code> Set to <code>week</code>, <code>stat_types</code> Set to <code>mean</code>, it will help you calculate the weekly average. Second, create a Statistics helper, select the mean value (mean) for the characteristic value, set the maximum age (max age) to 7 days, and obtain a "last seven-day average" sensor before drawing the graph. The first is easier.</div>
  </details>
 
  <details class="faq">
@@ -928,7 +928,7 @@ card:
 
  <details class="faq">
  <summary>Do I have to install HACS community cards to create a good-looking dashboard?</summary>
- <div class="body">No need. The Sections layout plus tile cards, title cards, badges, statistical chart cards, and Markdown cards can already create a fairly complete record dashboard. The value of community cards is to fill specific needs that the built-in ones can't do (such as complex charts in ApexCharts), but every additional one you install is another feature that may break when upgrading. It is recommended to use the built-in cards to the limit first, then install them if they are really stuck, and only install the ones that are still being updated.</div>
+ <div class="body">No. The Sections layout plus tile cards, title cards, badges, statistics graph cards, and Markdown cards can already create a fairly complete record dashboard. The value of community cards is to fill specific needs that the built-in ones can't do (such as complex charts in ApexCharts), but every additional one you install is another feature that may break when upgrading. It is recommended to use the built-in cards to the limit first, then install them if they are really stuck, and only install the ones that are still being updated.</div>
  </details>
  </section>
 

@@ -69,7 +69,7 @@
       <h2>This chapter</h2>
       <a href="#addons">Official App Store</a>
       <a href="#hacs">HACS community store</a>
-      <a href="#remote">Four remote connections</a>
+      <a href="#remote">Four remote-access options</a>
       <a href="#warning">Security warning</a>
       <a href="#faq">FAQ</a>
     </div>
@@ -88,18 +88,18 @@
  <p class="lead">Understand the three main extension paths around Home Assistant: official add-ons, community content from HACS, and secure remote access. Choose only what solves a real need.</p>
  </div>
 
- <section id="addons" data-nav="Official App Store">
- <h2 data-icon="addons">Official app store</h2>
+ <section id="addons" data-nav="Add-on store">
+ <h2 data-icon="addons">Official add-on store</h2>
  <div class="callout"><strong>Version note:</strong> Starting with Home Assistant 2026.2, the UI calls add-ons "Apps," the store is the "App store," and the path is Settings → Apps. Older versions use "Add-ons" and "Add-on store" for the same feature.</div>
- <p>Apps (called add-ons in older versions) are <strong>stand-alone containerized services</strong> managed alongside Home Assistant. <em>The App store is available on Home Assistant OS and the former Supervised installation type</em>; it is not available in Home Assistant Container or Core.</p>
+ <p>Add-ons are <strong>stand-alone containerized services</strong> managed alongside Home Assistant. <em>The App store is available on Home Assistant OS and the former Supervised installation type</em>; it is not available in Home Assistant Container or Core.</p>
  <p>Path: Settings → Apps → Install app.</p>
- <p>Use an App when you need to:</p>
+ <p>Use an add-on when you need to:</p>
  <ul>
  <li>To run local services such as Zigbee2MQTT / ESPHome.</li>
  <li>SSH into the host to debug.</li>
  <li>Run Node-RED for visual automation flows.</li>
  </ul>
- <p>Some of the most commonly installed official applications:</p>
+ <p>Some of the most commonly installed official add-ons:</p>
  <ul>
  <li><strong>File editor</strong>—Edit YAML files in the browser; suitable for small changes.</li>
  <li><strong>Studio Code Server</strong>—A browser-based VS Code environment; better suited to extensive YAML or template work.</li>
@@ -110,10 +110,10 @@
  <li><strong>Zigbee2MQTT</strong>—Supports more Zigbee devices than ZHA, and the community updates quickly.</li>
  <li><strong>Mosquitto broker</strong>—An MQTT broker used by Zigbee2MQTT and many DIY devices.</li>
  </ul>
- <div class="callout tip"><strong>Recommended practices:</strong> Make sure you have clear needs before installing. Every time you install an application, there is one more service that needs to be maintained, updated, and takes up resources.</div>
+ <div class="callout tip"><strong>Tip:</strong> Make sure you have clear needs before installing. Every time you install an application, there is one more service that needs to be maintained, updated, and takes up resources.</div>
  </section>
 
- <section id="hacs" data-nav="HACS community store">
+ <section id="hacs" data-nav="HACS">
  <h2 data-icon="hacs">HACS (Home Assistant Community Store)</h2>
  <p>HACS is a <strong>community-maintained</strong> store for third-party packages. It is <em>different from the Home Assistant App store</em>:</p>
  <ul>
@@ -123,31 +123,31 @@
  <p><strong>When should you install HACS?</strong> Consider it when Home Assistant has no official integration for a device or when a built-in dashboard card cannot meet a requirement. Check official support first, then evaluate the maintenance and security implications of a community package.</p>
  <p><strong>Key points of the installation process (see official documentation for details):</strong></p>
  <ol>
- <li>Installing HACS itself requires SSH/Studio Code Server to enter HA and execute an installation script (recent versions also support one-click processing using the application "HACS Bootstrap").</li>
- <li>Then add a new integration "HACS" to HA, which will display a set of GitHub device codes and URLs; open the URL in a browser, log in to GitHub, and paste the device code for authorization (no need to manually generate a personal access token).</li>
- <li>After completion, there will be a HACS icon on the left menu, which is the community package market.</li>
+ <li>Installing HACS itself requires SSH/Studio Code Server to enter HA and execute an installation script (recent versions also support one-click processing using the add-on "HACS Bootstrap").</li>
+ <li>Then add a Add integration "HACS" to HA, which will display a set of GitHub device codes and URLs; open the URL in a browser, log in to GitHub, and paste the device code for authorization (no need to manually generate a personal access token).</li>
+ <li>After completion, there will be a HACS icon on the left menu, which is the community package store.</li>
  </ol>
  <p>Official HACS installation instructions: <a href="https://hacs.xyz" target="_blank" rel="noopener">https://hacs.xyz</a>. Follow the instructions for your Home Assistant installation type and version.</p>
- <p><strong>Directions for installing common kits:</strong></p>
+ <p><strong>Common package categories:</strong></p>
  <ul>
- <li><strong>Customize dashboard cards</strong>: <code>mushroom-cards</code>(Modern simplicity),<code>button-card</code>(Customized to the extreme),<code>mini-graph-card</code>(beautiful historical curve),<code>swipe-card</code>(Swipe left and right on your phone).</li>
- <li><strong>community integration</strong>: Xiaomi/Aqara localized, Tuya localized (avoiding the international version of the cloud), SwitchBot API, your utility bill and national weather service forecast.</li>
- <li><strong>Theme</strong>: Google Home, Graphite, Noctis and other community themes.</li>
+ <li><strong>Custom dashboard cards</strong>: <code>mushroom-cards</code>(Modern, compact design),<code>button-card</code>(Extensive customization),<code>mini-graph-card</code>(Compact history graphs),<code>swipe-card</code>(Swipe left and right on your phone).</li>
+ <li><strong>Community integrations</strong>: Device and service integrations that are not available through Home Assistant’s official integration catalog. Availability varies by vendor and region.</li>
+ <li><strong>Themes</strong>: Google Home, Graphite, Noctis and other community themes.</li>
  </ul>
- <div class="callout warn"><strong>Reminder:</strong> The HACS suite is <em>No review</em> For third-party code, select authors with a large number of stars and recent updates (within 3 months). Do not install a large number of them at once, as they may all break when updating HA.</div>
+ <div class="callout warn"><strong>Warning:</strong> HACS packages contain third-party code that Home Assistant does <em>not review</em>., select authors with a large number of stars and recent updates (within 3 months). Do not install a large number of them at once, as they may all break when updating HA.</div>
  </section>
 
- <section id="remote" data-nav="Four remote connections">
- <h2 data-icon="remote">Four remote connections</h2>
- <p>It is enough to use the local network IP to connect to HA at home, but once you go out and want to watch the camera remotely, turn off the lights, and receive notifications, you need an external network connection. There are four mainstream options:</p>
+ <section id="remote" data-nav="Remote access">
+ <h2 data-icon="remote">Four remote-access options</h2>
+ <p>It is enough to use the local network IP to connect to HA at home, but once you go out and want to watch the camera remotely, turn off the lights, and receive notifications, you need an internet connection. There are four mainstream options:</p>
  <table class="data-table">
  <thead>
  <tr>
  <th>Plan</th>
- <th>cost</th>
- <th>security</th>
- <th>difficulty</th>
- <th>suitable for</th>
+ <th>Cost</th>
+ <th>Security</th>
+ <th>Difficulty</th>
+ <th>Best for</th>
  </tr>
  </thead>
  <tbody>
@@ -156,12 +156,12 @@
  <td>USD $6.5/month</td>
  <td>high</td>
  <td>very low</td>
- <td>Most people. By the way, support HA official</td>
+ <td>Most people. Most households; subscription supports Home Assistant development</td>
  </tr>
  <tr>
  <td><strong>DuckDNS + Let's Encrypt</strong></td>
  <td>free</td>
- <td>Medium (Exposed public network)</td>
+ <td>Medium (Exposed public internet)</td>
  <td>in</td>
  <td>It needs to be free + have a public IP + be willing to set up a router</td>
  </tr>
@@ -177,92 +177,92 @@
  <td>free</td>
  <td>Middle to high</td>
  <td>in</td>
- <td>It can be externally connected without public network IP (telecom CGNAT)</td>
+ <td>Works without public internet IP (telecom CGNAT)</td>
  </tr>
  </tbody>
  </table>
 
- <p><strong>1. Nabu Casa (Home Assistant Cloud)</strong>—Official paid cloud. The most worry-free thing is to just pay the money and install the integration. Comes with additional Google Assistant/Alexa linkage and Cloud TTS (cloud speech synthesis). The first choice if you don’t want to bother, and the only one that can <em>Sponsor HA development by the way</em> plan.</p>
+ <p><strong>1. Nabu Casa (Home Assistant Cloud)</strong>—The official paid service. Enable remote access without changing router settings. The subscription also includes Google Assistant/Alexa integration and cloud text-to-speech (TTS), and its revenue supports Home Assistant development.</p>
 
- <p><strong>2. DuckDNS + Let's Encrypt</strong>—Use free dynamic DNS service to connect the floating IP at home to a URL (such as <code>myhome.duckdns.org</code>), then use Let's Encrypt to get a free SSL certificate. Need to do port forward on the router. The disadvantage is that it exposes HA to the public network, which is the solution with the largest attack surface.</p>
+ <p><strong>2. DuckDNS + Let's Encrypt</strong>—Use free dynamic DNS service to connect the floating IP at home to a URL (such as <code>myhome.duckdns.org</code>), then use Let's Encrypt to get a free SSL certificate. Need to do port forward on the router. The disadvantage is that it exposes HA to the public internet, which is the solution with the largest attack surface.</p>
 
- <p><strong>3. Tailscale / ZeroTier</strong>—This is the approach of "VPN to your home". Install the Tailscale App on your phone and the HA at home. The two form a private local network. You can use the local network IP to connect to the HA when you go out, just like at home. <strong>safest</strong> Because it is not exposed to the public network at all. Disadvantages: Family members also need to install the app, and it cannot be shared with outsiders (it cannot be passed to plumbers like a URL).</p>
+ <p><strong>3. Tailscale / ZeroTier</strong>—A VPN connects your phone to the home network. Install the VPN client on your phone and Home Assistant host, then use a private address while away. This creates very little public exposure, but every authorized user needs the client and access cannot be shared as a simple public URL.</p>
 
- <p><strong>4. Cloudflare Tunnel</strong>—Cloudflare helps you establish an encrypted tunnel between HA and its CDN. You don’t need to have a public IP or open a router port. Cloudflare will provide a URL for you to connect. It is suitable for environments where the home is a telecom operator CGNAT (no public network IP), and you can also use Cloudflare's WAF protection.</p>
+ <p><strong>4. Cloudflare Tunnel</strong>—Cloudflare establishes an encrypted tunnel between Home Assistant and its network. You do not need a public IP address or an inbound router port. This option works behind carrier-grade NAT (CGNAT), and you can apply Cloudflare access controls in front of Home Assistant.</p>
  </section>
 
  <section id="warning" data-nav="Security warning">
  <h2 data-icon="warning">Security warning</h2>
  <div class="callout danger">
- <strong>Absolutely not</strong> Directly forward HA's 8123 port to the public network without applying HTTPS credentials.
- HA does not have two-step verification enabled by default, nor does it have an IP whitelist. Crawlers on the Internet scan port 8123 every day, and as long as it is exposed, it will be attacked.
- If you really want to go the DDNS route, <em>Must</em> (1) Hang Nginx reverse proxy in front to process HTTPS, (2) Enable HA's two-step authentication (MFA), (3) Use strong passwords, (4) If possible, add Cloudflare / fail2ban to prevent brute force cracking.
+ <strong>Danger:</strong> Never forward HA's 8123 port to the public internet without applying HTTPS credentials.
+ Do not rely on default settings alone to protect an internet-facing Home Assistant instance. Crawlers on the Internet scan port 8123 every day, and as long as it is exposed, it will be attacked.
+ If you use DDNS, you must (1) place an NGINX reverse proxy in front to provide HTTPS, (2) enable Home Assistant multi-factor authentication (MFA), (3) use strong passwords, and (4) consider an additional control such as Cloudflare or fail2ban to reduce brute-force attempts.
  </div>
- <p>If you don't know what the above are, please use Nabu Casa or Tailscale directly instead of opening the port yourself. This is not the money you can save by tinkering with technology, but the risk of exposing your entire smart home + camera + door lock permissions to the Internet.</p>
+ <p>If you don't know what the above are, please use Nabu Casa or Tailscale directly instead of opening the port yourself. An incorrect configuration can expose sensitive smart-home data and controls to the internet.</p>
  </section>
 
  <section id="faq" data-nav="FAQ">
  <h2 data-icon="faq">FAQ</h2>
 
  <details class="faq">
- <summary>Will the HACS stuff slow down Home Assistant?</summary>
+ <summary>Will HACS packages slow down Home Assistant?</summary>
  <div class="body">
  <p>Yes, but it depends on which one you install - there are two completely different types of things in HACS:</p>
  <table class="data-table">
  <thead>
- <tr><th>Type</th><th>Where to run</th><th>influence</th></tr>
+ <tr><th>Type</th><th>Where it runs</th><th>Influence</th></tr>
  </thead>
  <tbody>
- <tr><td><strong>Custom integration</strong> (custom integration)</td><td>The backend of the HA host is integrated with the built-in to grab the same CPU and memory</td><td>The startup is slow, poorly written ones will block the entire startup process, and some will frequently hit external APIs.</td></tr>
+ <tr><td><strong>Custom integration</strong> (custom integration)</td><td>Home Assistant Core, sharing the host’s CPU and memory</td><td>The startup is slow, poorly written ones will block the entire startup process, and some will frequently hit external APIs.</td></tr>
  <tr><td><strong>Customized cards/themes</strong> (Lovelace card, theme)</td><td>Your browser or mobile app</td><td>Almost no impact on the host, just downloading a few more files when the dashboard is first loaded</td></tr>
  </tbody>
  </table>
- <p>So "installing 20 beautiful cards" is usually fine, but "installing 8 custom integrations, each of which is polling the cloud" will be fine. HACS itself will regularly check GitHub for updates, but that is a small amount of traffic in the background.</p>
- <p>If you suspect who is stalling for time, the cleanest way to judge is <strong>Open in safe mode</strong> (See the next question for how to do it): Safe mode does not load custom integrations, custom cards, and custom themes at all. If it runs like new in safe mode, the answer is obvious.</p>
- <div class="callout tip"><strong>hint:</strong> Before installing, ask "Is the built-in one really not good?" Many people pack multiple cards, and in the end only two or three are commonly used, and the rest become mines during updates.</div>
+ <p>So "installing 20 beautiful cards" is usually fine, but "installing 8 custom integrations, each of which is polling the cloud" can consume significant resources. HACS itself will regularly check GitHub for updates, but that is a small amount of traffic in the background.</p>
+ <p>If you suspect who is causing the slowdown, the cleanest way to judge is <strong>Open in safe mode</strong> (See the next question for how to do it): Safe mode does not load custom integrations, custom cards, and custom themes at all. If it performs normally in safe mode, the answer is obvious.</p>
+ <div class="callout tip"><strong>Tip:</strong> Before installing, ask "Is the built-in one really not good?" Many people pack multiple cards, and in the end only two or three are commonly used, and the rest become update risks during updates.</div>
  </div>
  </details>
 
  <details class="faq">
  <summary>After updating Home Assistant, something installed in the HACS is broken/cannot be turned on. What should I do?</summary>
  <div class="body">
- <p>This is the only way to play HACS, don’t be nervous, follow this order:</p>
+ <p>Compatibility failures are an accepted risk of HACS, do not be nervous, follow this order:</p>
  <ol class="steps">
  <li>
  <h3>Use safe mode to rescue HA</h3>
- <p><strong>Settings → System → "Restart Home Assistant" in the upper right corner → select "Restart in Safe Mode"</strong>. This will load the HA core, but not any custom integrations, custom cards, or custom themes, so you can at least get into the interface.</p>
+ <p><strong>Settings → System → "Restart Home Assistant" in the upper-right corner → select "Restart in Safe Mode"</strong>. This will load the HA core, but not any custom integrations, custom cards, or custom themes, so you can at least get into the interface.</p>
  </li>
  <li>
  <h3>Inspect the logs to identify the cause</h3>
- <p><strong>Settings → System → Records</strong>. Broken custom integrations often leave a whole section of errors, with the first line saying which <code>custom_components</code> Something happened.</p>
+ <p>Open <strong>Settings → System → Logs</strong>. A failed custom integration often leaves a group of errors whose first lines identify the affected <code>custom_components</code> package.</p>
  </li>
  <li>
  <h3>Go to the GitHub of that package to see the Issues</h3>
- <p>HA has a new version every month. On the day of the major revision, someone must have opened an issue in the author's repo. Usually, just wait for the author to send an updated version, and press update in HACS to solve the problem.</p>
+ <p>HA has a new version every month. On the day of the major revision, other users may already have opened an issue in the author's repo. Usually, just wait for the author to send an updated version, and press update in HACS to solve the problem.</p>
  </li>
  <li>
  <h3>If you can't wait, remove it first.</h3>
- <p>Remove the package from HACS, reboot the system to allow HA to return to normal, and then install it back again. It’s better to have one less function than to not be able to use the entire machine.</p>
+ <p>Remove the package from HACS, reboot the system to allow HA to return to normal, and then install it back again. It is better to have one less function than to not be able to use the entire machine.</p>
  </li>
  <li>
- <h3>If you really can’t save it, restore the backup.</h3>
+ <h3>If you really cannot save it, restore the backup.</h3>
  <p>return to <a href="ch9_backups.html">Chapter 9</a> backup and restore process, return to the version before the update. <strong>This is why you must have a backup before upgrading.</strong></p>
  </li>
  </ol>
- <div class="callout tip"><strong>Make it a habit:</strong> Before updating HA, first read the Breaking changes section of Home Assistant release announcement, and then confirm whether the custom integration you have has been updated recently. The package that the author has not touched for half a year will sooner or later be killed in a major revision.</div>
+ <div class="callout tip"><strong>Make it a habit:</strong> Before updating HA, first read the Breaking changes section of Home Assistant release announcement, and then confirm whether the custom integration you have has been updated recently. The package that the author has not touched for half a year will sooner or later break after a major release.</div>
  </div>
  </details>
 
  <details class="faq">
- <summary>For the same function, when should we look for applications (formerly known as add-ons) and when should we look for HACS?</summary>
+ <summary>For the same function, when should I run add-ons and when should you look for HACS?</summary>
  <div class="body">
  <p>Use "Does this thing need to run a separate program" to classify:</p>
  <table class="data-table">
  <thead>
- <tr><th>what you want</th><th>Where to find</th></tr>
+ <tr><th>What you want</th><th>Where to find</th></tr>
  </thead>
  <tbody>
- <tr><td>An independent server program: MQTT broker, Zigbee2MQTT, ESPHome, Node-RED, database, SSH</td><td>Apps (formerly called add-ons)</td></tr>
+ <tr><td>An independent server program: MQTT broker, Zigbee2MQTT, ESPHome, Node-RED, database, SSH</td><td>Add-ons</td></tr>
  <tr><td>Let HA recognize a device or service that is not officially supported</td><td>Custom integration for HACS</td></tr>
  <tr><td>The dashboard should look better, have more special cards, and change the theme</td><td>HACS Cards/Topics</td></tr>
  </tbody>
@@ -272,14 +272,14 @@
  </details>
 
  <details class="faq">
- <summary>I installed it with Docker (HA Container) and there is no app store (formerly known as the add-on store). Am I unable to play these games?</summary>
+ <summary>I run it with Docker (HA Container) and there is no app store (formerly known as the add-on store). Am I unable to use these tools?</summary>
  <div class="body">
- <p>No, you just have to take one more step. Let’s break it down into two things:</p>
+ <p>No, you just have to manage the containers yourself. Let us break it down into two things:</p>
  <ul>
  <li><strong>HACS still works.</strong> HACS supports three installation methods: OS/Supervised, Container, and Core. Container and Core use the same official download script: enter the terminal of the container (or host) and execute it <code>wget -O - https://get.hacs.xyz | bash -</code>, restart HA, go to the integration page to join HACS, and go through GitHub authorization to complete. OS/Supervised is installed directly by adding the HACS app repository. The steps will be adjusted according to the version to <a href="https://hacs.xyz" target="_blank" rel="noopener">hacs.xyz</a> The description shall prevail.</li>
- <li><strong>The functions of the application must be opened in its own container.</strong> To put it bluntly, the application is a Docker container managed by Supervisor for you. Zigbee2MQTT, ESPHome, Mosquitto, and Node-RED all have their own official Docker images. You can <code>docker compose</code> Just write one more paragraph and it will have the same function. The difference is <em>Updates, backups, and interface settings are all yours to take care of.</em>, will not appear in the HA interface, nor will it be included in the HA backup package.</li>
+ <li><strong>The functions of the application must be opened in its own container.</strong> To put it bluntly, the application is a Docker container managed by Supervisor for you. Zigbee2MQTT, ESPHome, Mosquitto, and Node-RED all have their own official Docker images. You can <code>docker compose</code> Just write one more paragraph and it will have the same function. The difference is <em>Updates, backups, and interface settings are your responsibility.</em>, will not appear in the HA interface, nor will it be included in the HA backup package.</li>
  </ul>
- <div class="callout warn"><strong>Think clearly first:</strong> If you find yourself constantly completing these manual steps, HA OS may be more suitable for you. On the other hand, if there are other services running on this machine and you are familiar with Docker, then the flexibility of Container is worth it. This is a trade-off, and there is no standard answer.</div>
+ <div class="callout warn"><strong>Think clearly first:</strong> If you find yourself constantly completing these manual steps, HA OS may be better suited to you. On the other hand, if there are other services running on this machine and you are familiar with Docker, then the flexibility of Container is worth it. This is a trade-off, and there is no standard answer.</div>
  </div>
  </details>
 
@@ -289,20 +289,20 @@
  <p>As far as safety is concerned, the ranking is as follows:</p>
  <ol class="steps">
  <li>
- <h3>Tailscale / ZeroTier - the most secure</h3>
+ <h3>Tailscale / ZeroTier - lowest public exposure</h3>
  <p>Because of your HA <strong>Never appeared on the public internet</strong>. There is no URL to scan, no port to type, and the attacker cannot even find the target. The price is that everyone who wants to use it must install the app and be authorized by you.</p>
  </li>
  <li>
- <h3>Nabu Casa – safe and worry-free</h3>
+ <h3>Nabu Casa – low-maintenance</h3>
  <p>Home Assistant cloud helps you handle credentials and connection channels, and there is no need to open a port on the router. All you have to worry about is your HA account password.</p>
  </li>
  <li>
- <h3>Cloudflare Tunnel - Above average, but it depends on how you set it up</h3>
- <p>It’s good that you don’t need to open a port, but by default the URL is <em>Anyone can even get it</em> Yes, except they will stop at the HA login page. To get to the "Secure" level, you need to use identity verification like Cloudflare Access to get in front of it.</p>
+ <h3>Cloudflare Tunnel - Low public exposure, but it depends on how you set it up</h3>
+ <p>It is good that you do not need to open a port, but by default the URL is <em>reachable by anyone who has it</em> Yes, except they will stop at the HA login page. To get to the "Secure" level, you need to use identity verification like Cloudflare Access to get in front of it.</p>
  </li>
  <li>
  <h3>DuckDNS + port forward - the most dangerous</h3>
- <p>Hang the HA directly on the public network. The security warning earlier in this article talks about this approach.</p>
+ <p>Exposes Home Assistant directly on the public internet. The security warning earlier in this article talks about this approach.</p>
  </li>
  </ol>
  <p>No matter which one you choose, <strong>Two-step verification (MFA) must be turned on</strong>—The setting method is in <a href="ch5_users.html">Chapter 5</a>. This is the only feature that must be done no matter which plan is used.</p>
@@ -310,43 +310,43 @@
  </details>
 
  <details class="faq">
- <summary>Nabu Casa costs $6.50 a month. Is it worth booking?</summary>
+ <summary>Nabu Casa costs $6.50 a month. Is it worth subscribing?</summary>
  <div class="body">
  <p>First look at what you are paying for. The current official pricing is <strong>$6.5 per month, $65 per year</strong> (Eurozone is €7.50 per month, €75 per year), and you can <strong>Free trial for one month</strong> Decide again. Content includes:</p>
  <ul>
  <li>Secure remote connection without touching the router.</li>
  <li>Google Assistant and Amazon Alexa are connected - it is really troublesome to apply for a developer account and set up OAuth to connect these two.</li>
- <li>Cloud-based speech synthesis (TTS) and speech recognition (STT) for Assist voice assistant.</li>
+ <li>Cloud-based text-to-speech (TTS) and speech-to-text (STT) for Assist voice assistant.</li>
  <li>When the camera WebRTC connection cannot be directly connected to the relay (TURN) server, there will be errors when people look at the camera outside.</li>
- <li>Your money goes directly to the development of Home Assistant. This item has no ads and doesn't sell your data. It just depends on this.</li>
+ <li>Subscription revenue supports Home Assistant development.</li>
  </ul>
  <p><strong>It is recommended to judge like this:</strong></p>
  <table class="data-table">
  <thead>
- <tr><th>your situation</th><th>Suggestions</th></tr>
+ <tr><th>Your situation</th><th>Suggestions</th></tr>
  </thead>
  <tbody>
- <tr><td>I just want remote connection, I don’t have a voice assistant at home, and I don’t mind if everyone installs the app.</td><td>Tailscale is free and that’s enough</td></tr>
- <tr><td>Want to connect to Google/Alexa, or someone at home doesn’t want to install VPN App</td><td>Nabu Casa, the time saved far exceeds the money</td></tr>
+ <tr><td>You only want remote connection, I do not have a voice assistant at home, and I do not mind if everyone installs the app.</td><td>Tailscale is free and that is enough</td></tr>
+ <tr><td>You want Google/Alexa integration, or someone at home does not want to install VPN App</td><td>Nabu Casa, the time saved far exceeds the money</td></tr>
  <tr><td>Often looking at the camera at home outside</td><td>Nabu Casa, the relay server is difficult to fix on your own</td></tr>
  <tr><td>You just want to learn these Internet technologies</td><td>Build it yourself, but follow the security warnings above</td></tr>
  </tbody>
  </table>
- <div class="callout tip"><strong>Honestly:</strong> If you even want to Google what "port forward" is, then what you pay for is not the function, but the insurance that "your home camera will not be exposed to the Internet due to incorrect settings." Use the free trial for a month first, and the answer will appear by itself.</div>
+ <div class="callout tip"><strong>Tip:</strong> If port forwarding and reverse proxies are unfamiliar, a managed option reduces the risk of exposing Home Assistant through a configuration error. Use the available trial, then evaluate whether the service meets your needs.</div>
  </div>
  </details>
 
  <details class="faq">
- <summary>Cloudflare Tunnel is free, can I use it to watch my home cameras from outside?</summary>
+ <summary>Cloudflare Tunnel is free, can I run it to watch my home cameras from outside?</summary>
  <div class="body">
- <p>Technically possible, but this is the easiest way to step on the line. Cloudflare's CDN terms have always had restrictions on "transmitting videos and large files that are not hosted on Cloudflare's own services through it" - later revisions to the terms clearly stated that video content must be placed on Cloudflare's own services (Stream, Images, R2) to be unrestricted. Your camera's live stream obviously doesn't fall into this category.</p>
- <p>It probably won't matter if you click on it occasionally to take a look, but if you hang four cameras on the dashboard and stream all day long, you are testing people's patience with long-term heavy traffic. It is not unfair to have your account restricted or closed.</p>
+ <p>Technically possible, but this is the easiest way to violate service terms. Cloudflare's CDN terms have always had restrictions on "transmitting videos and large files that are not hosted on Cloudflare's own services through it" - later revisions to the terms clearly stated that video content must be placed on Cloudflare's own services (Stream, Images, R2) to be unrestricted. Your camera's live stream obviously doesn't fall into this category.</p>
+ <p>It probably won't matter if you click on it occasionally to take a look, but if you hang four cameras on the dashboard and stream all day long, you are risking enforcement of the service terms with long-term heavy traffic. Your account could be restricted or closed.</p>
  <p><strong>If you want to watch the camera smoothly outside, a more appropriate choice is:</strong></p>
  <ul>
  <li>Nabu Casa - Camera remote streaming is one of its functions, and TURN relay helps.</li>
  <li>Tailscale/ZeroTier - It is equivalent to watching on your own private network. There are no third-party terms and conditions, but the display quality will be affected by the phone network speed when the route is far away.</li>
  </ul>
- <p>Cloudflare Tunnel is more suitable for positioning: the home is a telecommunications company and CGNAT cannot get the public network IP. The main requirement is to turn on and off the lights remotely and check the status, rather than serving as the image channel of the monitor.</p>
+ <p>Cloudflare Tunnel is better suited to a connection behind CGNAT whose main requirement is remote control and status checks, rather than continuous camera streaming.</p>
  </div>
  </details>
  </section>
