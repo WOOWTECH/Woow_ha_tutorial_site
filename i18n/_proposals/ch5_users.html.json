@@ -8,18 +8,8 @@
     },
     {
       "unit": "#companion_flow",
-      "zh": "<code>notify.mobile_app_家人使用者名</code>",
-      "en": "<code>notify.mobile_app_family username</code>"
-    },
-    {
-      "unit": "#companion_flow",
       "zh": "<code>sensor.手機_battery / sensor.手機_geocoded_location</code>",
       "en": "<code>sensor.mobile_battery / sensor.mobile_geocoded_location</code>"
-    },
-    {
-      "unit": "#companion_flow",
-      "zh": "<code>notify.mobile_app_家人使用者名</code>",
-      "en": "<code>notify.mobile_app_family username</code>"
     },
     {
       "unit": "#companion_flow",

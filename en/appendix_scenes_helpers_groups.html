@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Appendix B · Scene/Auxiliary Component/Group · Home Assistant Onboarding Guide</title>
+  <title>Appendix B · Scenes, helpers, and groups · Home Assistant Onboarding Guide</title>
   <meta name="description" content="Home Assistant advanced three-piece set: Scene, 10 kinds of Helper auxiliary components and Group usage and matching examples, making the smart home look like a small program." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/appendix_scenes_helpers_groups.html" />
@@ -12,12 +12,12 @@
   <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Appendix B · Scene/Auxiliary Component/Group · Home Assistant Onboarding Guide" />
+  <meta property="og:title" content="Appendix B · Scenes, helpers, and groups · Home Assistant Onboarding Guide" />
   <meta property="og:description" content="Home Assistant advanced three-piece set: Scene, 10 kinds of Helper auxiliary components and Group usage and matching examples, making the smart home look like a small program." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/appendix_scenes_helpers_groups.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/appx_b/01_scene_create.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Appendix B · Scene/Auxiliary Component/Group · Home Assistant Onboarding Guide" />
+  <meta name="twitter:title" content="Appendix B · Scenes, helpers, and groups · Home Assistant Onboarding Guide" />
   <meta name="twitter:description" content="Home Assistant advanced three-piece set: Scene, 10 kinds of Helper auxiliary components and Group usage and matching examples, making the smart home look like a small program." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/appx_b/01_scene_create.png" />
   <meta name="theme-color" content="#6183FC" />
@@ -33,37 +33,37 @@
 <div class="layout">
   <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From scratch to functional</div>
+    <div class="brand-sub">From zero to working</div>
     <nav class="lang-switch" aria-label="Language"><a href="../appendix_scenes_helpers_groups.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="appendix_scenes_helpers_groups.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Basics: from scratch to functional</li>
-      <li data-i18n="pending"><a href="ch1_login.html">Login to HA</a></li>
-      <li data-i18n="pending"><a href="ch2_system_settings.html">System settings</a></li>
-      <li data-i18n="pending"><a href="ch3_floors_areas.html">Floors and areas</a></li>
-      <li data-i18n="pending"><a href="ch4_naming_labels.html">Naming and labeling</a></li>
-      <li data-i18n="pending"><a href="ch5_users.html">User management</a></li>
-      <li data-i18n="pending"><a href="ch6_dashboard.html">Dashboard</a></li>
-      <li data-i18n="pending"><a href="ch7_notifications.html">Notifications</a></li>
-      <li data-i18n="pending"><a href="ch8_first_automation.html">First automation</a></li>
-      <li data-i18n="pending"><a href="ch9_backups.html">backup</a></li>
-      <li data-i18n="pending"><a href="ch10_scripts.html">Scripts</a></li>
-      <li data-i18n="pending"><a href="ch11_devices.html">Device details</a></li>
-      <li data-i18n="pending"><a href="ch12_domains.html">Domain reference</a></li>
-      <li class="part-label">Expansion: connect more devices</li>
-      <li data-i18n="pending"><a href="ch13_themes.html">Themes and appearance</a></li>
-      <li data-i18n="pending"><a href="ch14_integrations.html">Integrations</a></li>
-      <li data-i18n="pending"><a href="ch15_protocols.html">Communication protocols</a></li>
-      <li data-i18n="pending"><a href="ch16_todo_calendar.html">To-do and calendar</a></li>
-      <li class="part-label">Data, energy and AI</li>
-      <li data-i18n="pending"><a href="ch17_energy.html">Energy dashboard</a></li>
-      <li data-i18n="pending"><a href="ch18_history_data.html">History and data export</a></li>
-      <li data-i18n="pending"><a href="ch19_voice_ai.html">Voice assistants and AI</a></li>
+      <li class="part-label">Foundations: from zero to working</li>
+      <li><a href="ch1_login.html">Log in to HA</a></li>
+      <li><a href="ch2_system_settings.html">System settings</a></li>
+      <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
+      <li><a href="ch4_naming_labels.html">Naming and labels</a></li>
+      <li><a href="ch5_users.html">User management</a></li>
+      <li><a href="ch6_dashboard.html">Dashboards</a></li>
+      <li><a href="ch7_notifications.html">Notifications</a></li>
+      <li><a href="ch8_first_automation.html">First automation</a></li>
+      <li><a href="ch9_backups.html">backups</a></li>
+      <li><a href="ch10_scripts.html">Scripts</a></li>
+      <li><a href="ch11_devices.html">Device settings</a></li>
+      <li><a href="ch12_domains.html">Domain reference</a></li>
+      <li class="part-label">Extensions: connect more devices</li>
+      <li><a href="ch13_themes.html">Themes and appearance</a></li>
+      <li><a href="ch14_integrations.html">Integrations</a></li>
+      <li><a href="ch15_protocols.html">Protocols</a></li>
+      <li><a href="ch16_todo_calendar.html">To-do and calendars</a></li>
+      <li class="part-label">Data, energy, and AI</li>
+      <li><a href="ch17_energy.html">Energy dashboard</a></li>
+      <li><a href="ch18_history_data.html">History and export</a></li>
+      <li><a href="ch19_voice_ai.html">Voice and AI</a></li>
       <li class="part-label">Advanced architecture and applications</li>
-      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on and Docker</a></li>
-      <li data-i18n="pending"><a href="ch21_network_remote.html">Network and remote connections</a></li>
-      <li data-i18n="pending"><a href="ch22_life_logs.html">Life logging</a></li>
+      <li><a href="ch20_addons_docker.html">Add-ons and Docker</a></li>
+      <li><a href="ch21_network_remote.html">Networking and remote access</a></li>
+      <li><a href="ch22_life_logs.html">Life logging</a></li>
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
@@ -76,14 +76,13 @@
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · Ecosystem: HACS/Add-ons/remote</a>
-      <a href="appendix_scenes_helpers_groups.html" class="active">B · Scene/auxiliary component/group</a>
-      <a href="appendix_hardware_install.html">C · Pre-installation: Hardware and HAOS</a>
+      <a href="appendix_hacs_addons.html">A · HACS/add-ons/remote access</a>
+      <a href="appendix_scenes_helpers_groups.html" class="active">B · Scenes/helpers/groups</a>
+      <a href="appendix_hardware_install.html">C · Hardware and HAOS</a>
     </div>
   </aside>
 
   <main class="content">
-    <div class="callout i18n-pending"><strong>This chapter has not been translated yet.</strong> You are reading the original Chinese text. <a href="../appendix_scenes_helpers_groups.html" hreflang="zh-Hant">Open the Chinese version</a></div>
     <div class="chapter-header">
       <div class="kicker">Appendix B</div>
       <h1>Scene/auxiliary component/group</h1>
@@ -332,17 +331,17 @@ actions:
     <div class="pager">
       <a class="prev" href="appendix_hacs_addons.html">
         <span class="label">← Appendix A</span>
-        <span class="title">Ecosystem: HACS/Add-ons/remote</span>
+        <span class="title">Ecosystem: HACS, add-ons, and remote access</span>
       </a>
       <a class="next" href="appendix_hardware_install.html">
         <span class="label">Next appendix →</span>
-        <span class="title">C · Pre-installation: Hardware and HAOS</span>
+        <span class="title">Before installation: hardware and HAOS</span>
       </a>
     </div>
 
     <footer class="site-footer">
-      <p>Home Assistant New Home Move-In Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
-      <p class="footer-meta">Screenshot taken from Home Assistant official interface. Home Assistant is a trademark of the Open Home Foundation, and this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
+      <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
+      <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
   </main>
 </div>

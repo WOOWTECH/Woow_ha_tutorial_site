@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Home Assistant Onboarding Guide · From scratch to functional</title>
-  <meta name="description" content="22 chapters + 3 appendices of Traditional Chinese Home Assistant tutorial: from login, area naming, dashboard, notification, automation, to communication protocol, integrated serial connection, energy monitoring, historical data, voice assistant and LLM, Docker architecture and remote connection, each chapter is 10 minutes." />
+  <title>Home Assistant Onboarding Guide · From zero to working</title>
+  <meta name="description" content="A 22-chapter Home Assistant guide with 3 appendices, covering login, areas, dashboards, notifications, automations, protocols, integrations, energy monitoring, historical data, voice assistants and LLMs, Docker architecture, and remote access. Each chapter takes about 10 minutes." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/tutorial.html" />
   <meta name="robots" content="noindex, follow" />
@@ -12,13 +12,13 @@
   <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Home Assistant Onboarding Guide · From scratch to functional" />
-  <meta property="og:description" content="22 chapters + 3 appendices of Traditional Chinese Home Assistant tutorial: from login, area naming, dashboard, notification, automation, to communication protocol, integrated serial connection, energy monitoring, historical data, voice assistant and LLM, Docker architecture and remote connection, each chapter is 10 minutes." />
+  <meta property="og:title" content="Home Assistant Onboarding Guide · From zero to working" />
+  <meta property="og:description" content="A 22-chapter Home Assistant guide with 3 appendices, covering login, areas, dashboards, notifications, automations, protocols, integrations, energy monitoring, historical data, voice assistants and LLMs, Docker architecture, and remote access. Each chapter takes about 10 minutes." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/tutorial.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Home Assistant Onboarding Guide · From scratch to functional" />
-  <meta name="twitter:description" content="22 chapters + 3 appendices of Traditional Chinese Home Assistant tutorial: from login, area naming, dashboard, notification, automation, to communication protocol, integrated serial connection, energy monitoring, historical data, voice assistant and LLM, Docker architecture and remote connection, each chapter is 10 minutes." />
+  <meta name="twitter:title" content="Home Assistant Onboarding Guide · From zero to working" />
+  <meta name="twitter:description" content="A 22-chapter Home Assistant guide with 3 appendices, covering login, areas, dashboards, notifications, automations, protocols, integrations, energy monitoring, historical data, voice assistants and LLMs, Docker architecture, and remote access. Each chapter takes about 10 minutes." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -42,90 +42,90 @@
     </div>
 
     <section class="chapter-index">
-      <h2 class="index-title">Basics: from scratch to functional</h2>
+      <h2 class="index-title">Foundations: from zero to working</h2>
       <div class="chapter-grid">
-        <a class="chapter-card" href="ch1_login.html" data-i18n="pending">
+        <a class="chapter-card" href="ch1_login.html">
           <span class="num">01</span>
-          <h3>Sign in to Home Assistant</h3>
+          <h3>Log in to Home Assistant</h3>
           <p>Understand the differences between login pages, remember me, Companion App and web pages.</p>
         </a>
-        <a class="chapter-card" href="ch2_system_settings.html" data-i18n="pending">
+        <a class="chapter-card" href="ch2_system_settings.html">
           <span class="num">02</span>
           <h3>System settings</h3>
           <p>Correct the time zone, language, unit, and geographical location once, and all subsequent automation will be accurate.</p>
         </a>
-        <a class="chapter-card" href="ch3_floors_areas.html" data-i18n="pending">
+        <a class="chapter-card" href="ch3_floors_areas.html">
           <span class="num">03</span>
           <h3>Floors and areas</h3>
           <p>First draw the floors and rooms of your home, and then the controls, dashboard, and voice will be clear.</p>
         </a>
-        <a class="chapter-card" href="ch4_naming_labels.html" data-i18n="pending">
+        <a class="chapter-card" href="ch4_naming_labels.html">
           <span class="num">04</span>
-          <h3>Naming and labeling</h3>
-          <p>Turn "switch.0x00abc123" into the "living room main light" and use labels to group similar devices.</p>
+          <h3>Naming and labels</h3>
+          <p>Turn “switch.0x00abc123” into the “living room main light” and use labels to group similar devices.</p>
         </a>
-        <a class="chapter-card" href="ch5_users.html" data-i18n="pending">
+        <a class="chapter-card" href="ch5_users.html">
           <span class="num">05</span>
           <h3>User management</h3>
           <p>Create accounts for family members, tenants, and guests, and decide who can change settings and who can only turn on lights.</p>
         </a>
-        <a class="chapter-card" href="ch6_dashboard.html" data-i18n="pending">
+        <a class="chapter-card" href="ch6_dashboard.html">
           <span class="num">06</span>
-          <h3>Dashboard</h3>
+          <h3>Dashboards</h3>
           <p>Put the most commonly used lights, curtains, and air conditioners on the homepage, and your family will use them as soon as they are turned on.</p>
         </a>
-        <a class="chapter-card" href="ch7_notifications.html" data-i18n="pending">
+        <a class="chapter-card" href="ch7_notifications.html">
           <span class="num">07</span>
           <h3>Notifications</h3>
           <p>Install the Companion App, bind your phone, and send the first notification.</p>
         </a>
-        <a class="chapter-card" href="ch8_first_automation.html" data-i18n="pending">
+        <a class="chapter-card" href="ch8_first_automation.html">
           <span class="num">08</span>
-          <h3>First automation</h3>
-          <p>The three-stage trigger/condition/action avoids the device_id trap and writes "turn on the lights at sunset".</p>
+          <h3>Your first automation</h3>
+          <p>The three-stage trigger/condition/action avoids the device_id trap and writes “turn on the lights at sunset”.</p>
         </a>
-        <a class="chapter-card" href="ch9_backups.html" data-i18n="pending">
+        <a class="chapter-card" href="ch9_backups.html">
           <span class="num">09</span>
-          <h3>backup</h3>
+          <h3>backups</h3>
           <p>Set up automatic backup in 3 minutes, and then you can safely try out integrations and change settings.</p>
         </a>
-        <a class="chapter-card" href="ch10_scripts.html" data-i18n="pending">
+        <a class="chapter-card" href="ch10_scripts.html">
           <span class="num">10</span>
           <h3>Scripts</h3>
           <p>Packing repeated actions into a button is more flexible than automation and can be called with parameters.</p>
         </a>
-        <a class="chapter-card" href="ch11_devices.html" data-i18n="pending">
+        <a class="chapter-card" href="ch11_devices.html">
           <span class="num">11</span>
-          <h3>Device details</h3>
+          <h3>Device settings</h3>
           <p>How to view the device page, how to upgrade the firmware, how to deactivate the entity, and how to save the repair center.</p>
         </a>
-        <a class="chapter-card" href="ch12_domains.html" data-i18n="pending">
+        <a class="chapter-card" href="ch12_domains.html">
           <span class="num">12</span>
           <h3>Domain reference</h3>
-          <p>light / climate / cover / media_player… The common actions, UI cards, and common pitfalls of each Domain are explained in one go.</p>
+          <p>light / climate / cover / media_player… The common actions, UI cards, and common pitfalls of each Domain will be discussed in one go.</p>
         </a>
       </div>
     </section>
 
     <section class="chapter-index" style="margin-top:56px;">
-      <h2 class="index-title">Expansion: connect more devices</h2>
+      <h2 class="index-title">Extensions: connect more devices</h2>
       <div class="chapter-grid">
-        <a class="chapter-card" href="ch13_themes.html" data-i18n="pending">
+        <a class="chapter-card" href="ch13_themes.html">
           <span class="num">13</span>
-          <h3>Theme and appearance personalization</h3>
+          <h3>Themes and appearance</h3>
           <p>Dark mode, social theme, everyone has their own style, and adjust the interface to how you want to live in it.</p>
         </a>
-        <a class="chapter-card" href="ch14_integrations.html" data-i18n="pending">
+        <a class="chapter-card" href="ch14_integrations.html">
           <span class="num">14</span>
-          <h3>Integrations Integrations</h3>
+          <h3>Integrations</h3>
           <p>Weather, music, positioning, calendar - only when outside services are brought in, will the home know what is happening outside.</p>
         </a>
-        <a class="chapter-card" href="ch15_protocols.html" data-i18n="pending">
+        <a class="chapter-card" href="ch15_protocols.html">
           <span class="num">15</span>
           <h3>Communication protocols</h3>
           <p>Wi-Fi / Zigbee / Z-Wave / Matter / KNX / Modbus will be explained in one go. Read this chapter before buying the equipment.</p>
         </a>
-        <a class="chapter-card" href="ch16_todo_calendar.html" data-i18n="pending">
+        <a class="chapter-card" href="ch16_todo_calendar.html">
           <span class="num">16</span>
           <h3>To-do lists and calendars</h3>
           <p>Take out the trash, pay the bill, change the filter - let the home remember what to do and remind you at the right time.</p>
@@ -134,22 +134,22 @@
     </section>
 
     <section class="chapter-index" style="margin-top:56px;">
-      <h2 class="index-title">Data, energy and AI</h2>
+      <h2 class="index-title">Data, energy, and AI</h2>
       <div class="chapter-grid">
-        <a class="chapter-card" href="ch17_energy.html" data-i18n="pending">
+        <a class="chapter-card" href="ch17_energy.html">
           <span class="num">17</span>
-          <h3>Energy dashboard and ESG Practices</h3>
+          <h3>Energy dashboard and ESG practices</h3>
           <p>Turn electricity bills into understandable charts, find out the electricity-hungry monsters in your home, and make ESG reports.</p>
         </a>
-        <a class="chapter-card" href="ch18_history_data.html" data-i18n="pending">
+        <a class="chapter-card" href="ch18_history_data.html">
           <span class="num">18</span>
-          <h3>Historical data, Recorder and data export</h3>
+          <h3>History, Recorder, and data export</h3>
           <p>Where does the data exist, how long it can be stored, how to download it to CSV, and why your HA is running slower and slower.</p>
         </a>
-        <a class="chapter-card" href="ch19_voice_ai.html" data-i18n="pending">
+        <a class="chapter-card" href="ch19_voice_ai.html">
           <span class="num">19</span>
-          <h3>Voice assistant and LLM serial connection</h3>
-          <p>From "turning on the lights in the living room" to talking to AI to manage your home, both local and cloud approaches are available.</p>
+          <h3>Voice assistants and LLM integration</h3>
+          <p>From “turning on the lights in the living room” to talking to AI to manage your home, both local and cloud approaches are available.</p>
         </a>
       </div>
     </section>
@@ -157,19 +157,19 @@
     <section class="chapter-index" style="margin-top:56px;">
       <h2 class="index-title">Advanced architecture and applications</h2>
       <div class="chapter-grid">
-        <a class="chapter-card" href="ch20_addons_docker.html" data-i18n="pending">
+        <a class="chapter-card" href="ch20_addons_docker.html">
           <span class="num">20</span>
-          <h3>Add-on and Docker architecture</h3>
+          <h3>Add-ons and Docker architecture</h3>
           <p>Add-on is actually a Docker container. Only after understanding this layer can you understand why HA is so long.</p>
         </a>
-        <a class="chapter-card" href="ch21_network_remote.html" data-i18n="pending">
+        <a class="chapter-card" href="ch21_network_remote.html">
           <span class="num">21</span>
-          <h3>Network and remote connection practices</h3>
+          <h3>Networking and remote access</h3>
           <p>Fixed IP, reverse proxy, Cloudflare Tunnel, VPN—connect home securely even when you’re outside.</p>
         </a>
-        <a class="chapter-card" href="ch22_life_logs.html" data-i18n="pending">
+        <a class="chapter-card" href="ch22_life_logs.html">
           <span class="num">22</span>
-          <h3>Life Recording and Customized Dashboards</h3>
+          <h3>Life logging and custom dashboards</h3>
           <p>Drinking water, keeping accounts, changing filters, family message boards - turn daily chores into a system that can draw its own diagrams.</p>
         </a>
       </div>
@@ -178,27 +178,27 @@
     <section class="chapter-index" style="margin-top:56px;">
       <h2 class="index-title">Appendices</h2>
       <div class="chapter-grid">
-        <a class="chapter-card" href="appendix_hacs_addons.html" data-i18n="pending">
+        <a class="chapter-card" href="appendix_hacs_addons.html">
           <span class="num">A</span>
-          <h3>Ecosystem: HACS, Add-ons, remote connections</h3>
+          <h3>Ecosystem: HACS, add-ons, and remote access</h3>
           <p>Comparison of official add-ons, community kit store, and four external connection solutions. Come back after installing the main line.</p>
         </a>
-        <a class="chapter-card" href="appendix_scenes_helpers_groups.html" data-i18n="pending">
+        <a class="chapter-card" href="appendix_scenes_helpers_groups.html">
           <span class="num">B</span>
-          <h3>Scene/auxiliary component/group</h3>
+          <h3>Scenes, helpers, and groups</h3>
           <p>Scene, 10 types of Helper, and Group are three advanced weapons, making your home like a small program.</p>
         </a>
-        <a class="chapter-card" href="appendix_hardware_install.html" data-i18n="pending">
+        <a class="chapter-card" href="appendix_hardware_install.html">
           <span class="num">C</span>
-          <h3>Pre-installation: Hardware selection and HAOS installation</h3>
+          <h3>Before installation: hardware and HAOS</h3>
           <p>Don’t have a host yet? Read this first. How to choose hardware, how to burn HAOS, and what to set when booting for the first time.</p>
         </a>
       </div>
     </section>
 
     <footer class="site-footer">
-      <p>Home Assistant New Home Move-In Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
-      <p class="footer-meta">Screenshot taken from Home Assistant official interface. Home Assistant is a trademark of the Open Home Foundation, and this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
+      <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
+      <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
   </main>
 </body>

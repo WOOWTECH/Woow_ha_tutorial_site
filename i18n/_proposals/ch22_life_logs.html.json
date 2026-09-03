@@ -2,29 +2,9 @@
   "file": "ch22_life_logs.html",
   "entries": [
     {
-      "unit": "#helper_types",
-      "zh": "<kbd>建立輔助工具</kbd>",
-      "en": "<kbd>Create auxiliary tools</kbd>"
-    },
-    {
-      "unit": "#first_helper",
-      "zh": "<kbd>建立輔助工具</kbd>",
-      "en": "<kbd>Create auxiliary tools</kbd>"
-    },
-    {
       "unit": "#first_helper",
       "zh": "<kbd>建立</kbd>",
       "en": "<kbd>Establish</kbd>"
-    },
-    {
-      "unit": "#first_helper",
-      "zh": "<kbd>編輯</kbd>",
-      "en": "<kbd>edit</kbd>"
-    },
-    {
-      "unit": "#first_helper",
-      "zh": "<kbd>新增卡片</kbd>",
-      "en": "<kbd>Add new card</kbd>"
     },
     {
       "unit": "#first_helper",
@@ -68,11 +48,6 @@
     },
     {
       "unit": "#case_maintain",
-      "zh": "<kbd>建立輔助工具</kbd>",
-      "en": "<kbd>Create auxiliary tools</kbd>"
-    },
-    {
-      "unit": "#case_maintain",
       "zh": "<code>天</code>",
       "en": "<code>sky</code>"
     },
@@ -95,11 +70,6 @@
       "unit": "#case_notes",
       "zh": "<pre class=\"code-block\"><code>alias: 留言更新時記時間\ntriggers:\n  - trigger: state\n    entity_id: input_text.family_message\nconditions: []\nactions:\n  - action: input_datetime.set_datetime\n    target:\n      entity_id: input_datetime.family_message_time\n    data:\n      datetime: \"{{ now().strftime('%Y-%m-%d %H:%M:%S') }}\"\nmode: single</code></pre>",
       "en": "<pre class=\"code-block\"><code>alias: time when message is updated\ntriggers:\n  - trigger: state\n    entity_id: input_text.family_message\nconditions: []\nactions:\n  - action: input_datetime.set_datetime\n    target:\n      entity_id: input_datetime.family_message_time\n    data:\n      datetime: \"{{ now().strftime('%Y-%m-%d %H:%M:%S') }}\"\nmode: single</code></pre>"
-    },
-    {
-      "unit": "#case_notes",
-      "zh": "<kbd>新增卡片</kbd>",
-      "en": "<kbd>Add new card</kbd>"
     },
     {
       "unit": "#case_notes",
@@ -135,11 +105,6 @@
       "unit": "#derived",
       "zh": "<pre class=\"code-block\"><code>type: statistics-graph\ntitle: 每月用電\ndays_to_show: 365\nchart_type: bar\nperiod: month\nstat_types:\n  - change\nentities:\n  - sensor.meter_electricity_total</code></pre>",
       "en": "<pre class=\"code-block\"><code>type: statistics-graph\ntitle: Monthly electricity consumption\ndays_to_show: 365\nchart_type: bar\nperiod: month\nstat_types:\n  -change\nentities:\n  - sensor.meter_electricity_total</code></pre>"
-    },
-    {
-      "unit": "#dashboard",
-      "zh": "<kbd>編輯</kbd>",
-      "en": "<kbd>edit</kbd>"
     },
     {
       "unit": "#dashboard",
