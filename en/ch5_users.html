@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 5 · User management · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="What is the difference between Home Assistant’s Users and Persons, how to open family and guest permissions, MFA two-stage verification settings, and mobile phone positioning and Zone radius calibration." />
+  <meta name="description" content="Understand the difference between users and persons, configure household and guest access, enable MFA, and calibrate mobile location tracking and zone radii." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch5_users.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Chapter 5 · User management · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="What is the difference between Home Assistant’s Users and Persons, how to open family and guest permissions, MFA two-stage verification settings, and mobile phone positioning and Zone radius calibration." />
+  <meta property="og:description" content="Understand the difference between users and persons, configure household and guest access, enable MFA, and calibrate mobile location tracking and zone radii." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch5_users.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch5/01_users_page.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chapter 5 · User management · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="What is the difference between Home Assistant’s Users and Persons, how to open family and guest permissions, MFA two-stage verification settings, and mobile phone positioning and Zone radius calibration." />
+  <meta name="twitter:description" content="Understand the difference between users and persons, configure household and guest access, enable MFA, and calibrate mobile location tracking and zone radii." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch5/01_users_page.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -31,7 +31,7 @@
 </head>
 <body>
 <div class="layout">
-  <aside class="sidebar">
+ <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From zero to working</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch5_users.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch5_users.html" lang="en" aria-current="page">EN</a></nav>
@@ -47,7 +47,7 @@
       <li><a href="ch6_dashboard.html">Dashboards</a></li>
       <li><a href="ch7_notifications.html">Notifications</a></li>
       <li><a href="ch8_first_automation.html">First automation</a></li>
-      <li><a href="ch9_backups.html">backups</a></li>
+      <li><a href="ch9_backups.html">Backups</a></li>
       <li><a href="ch10_scripts.html">Scripts</a></li>
       <li><a href="ch11_devices.html">Device settings</a></li>
       <li><a href="ch12_domains.html">Domain reference</a></li>
@@ -73,233 +73,233 @@
       <a href="#persons">Create </a>
       <a href="#faq">FAQ</a>
       <a href="#mfa">MFA two-stage verification</a>
-      <a href="#troubleshoot">Common stuck levels</a>
-      <a href="#companion_flow">Family mobile phone end-to-end process</a>
+      <a href="#troubleshoot">Common problems</a>
+      <a href="#companion_flow">Family phone setup from start to finish</a>
       <a href="#zone_tune">Zone radius calibration</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · HACS/add-ons/remote access</a>
-      <a href="appendix_scenes_helpers_groups.html">B · Scenes/helpers/groups</a>
+      <a href="appendix_hacs_addons.html">A · HACS, add-ons, and remote access</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scenes, helpers, and groups</a>
       <a href="appendix_hardware_install.html">C · Hardware and HAOS</a>
     </div>
   </aside>
 
-  <main class="content">
-    <div class="chapter-header">
-      <div class="kicker">Chapter 5</div>
-      <h1>User management</h1>
-      <p class="lead">Create accounts for family members, tenants, and visitors. Administrators can change settings; general users can only operate. At the same time, the entity of "person" is created, and then "who is at home" can be detected.</p>
-    </div>
+ <main class="content">
+ <div class="chapter-header">
+ <div class="kicker">Chapter 5</div>
+ <h1>User management</h1>
+ <p class="lead">Create separate accounts for household members, tenants, and guests. Give each person appropriate permissions, connect the account to a person entity, and prepare reliable presence detection.</p>
+ </div>
 
-    <section id="why" data-nav="Why create multiple accounts">
-      <h2 data-icon="why">Why create multiple accounts</h2>
-      <ul>
-        <li><strong>safe</strong>: Family members share an administrator account. If one person loses his phone, the whole family will have to change their passwords.</li>
-        <li><strong>Permissions</strong>: It would be a disaster if a child accidentally deletes the automation. Give him a "normal user" who can only operate and cannot change settings.</li>
-        <li><strong>Mobile notification</strong>: Only when one account is logged in on one mobile phone can the broadcast be accurately pushed to that person.</li>
-        <li><strong>"Who's home?"</strong>: Each "person" corresponds to the positioning of a mobile phone, so that you can write "Dad automatically turns on the lights when he gets home."</li>
-      </ul>
-    </section>
+ <section id="why" data-nav="Why create multiple accounts">
+ <h2 data-icon="why">Why create multiple accounts</h2>
+ <ul>
+ <li><strong>safe</strong>: Family members share an administrator account. If one person loses his phone, the whole family will have to change their passwords.</li>
+ <li><strong>Permissions</strong>: It would be a disaster if a child accidentally deletes the automation. Give him a "normal user" who can only operate and cannot change settings.</li>
+ <li><strong>Mobile notification</strong>: Only when one account is logged in on one phone can the broadcast be accurately pushed to that person.</li>
+ <li><strong>"Who's home?"</strong>: Each "person" corresponds to the positioning of a phone, so that you can write "Dad automatically turns on the lights when he gets home."</li>
+ </ul>
+ </section>
 
-    <section id="concept" data-nav="Two nouns: Users vs. Persons">
-      <h2 data-icon="concept">Two nouns: Users vs. Persons</h2>
-      <div class="callout warn"><strong>Let’s first distinguish the three nouns</strong>: This is the most confusing group for newbies to HA.
-      <ul style="margin:8px 0 0 20px;">
-      <li><strong>User</strong>: An account that can "log in to the HA backend". Have a password and permissions (administrator or general).</li>
-      <li><strong>Person</strong>: A "human" entity. You can bind multiple device_trackers (mobile phone, Bluetooth, GPS) to detect "whether this person is at home now".</li>
-      <li><strong>Device Tracker</strong>: A source of location detection, such as Companion App’s cell phone tracker.</li>
-      </ul>
-      A User can be tied to a Person (allowing him to both log in and be tracked); or he can have only Person but no User (for example, a child does not need to log in but needs to be detected at home); and vice versa (a neighbor who helps look after the house only needs to log in and does not need to be tracked).</div>
-      <p>The two can be bound: for example, "user Alice" corresponds to "person Alice". After Alice installs the app on her phone and logs in, she can feed the location to that "person".</p>
-      <div class="callout"><strong>Simple principle:</strong>Will use HA's family → to build User + Person binding.<br>Those who only need to track their location (for example, if a child does not have a mobile app and uses a GPS tag) → only create Person.</div>
-    </section>
+ <section id="concept" data-nav="Two nouns: Users vs. Persons">
+ <h2 data-icon="concept">Two nouns: Users vs. Persons</h2>
+ <div class="callout warn"><strong>Let’s first distinguish the three nouns</strong>: This is the most confusing group for newbies to HA.
+ <ul style="margin:8px 0 0 20px;">
+ <li><strong>User</strong>: An account that can "log in to the HA backend". Have a password and permissions (administrator or general).</li>
+ <li><strong>Person</strong>: A "human" entity. You can connect multiple device_trackers (phone, Bluetooth, GPS) to detect "whether this person is at home now".</li>
+ <li><strong>Device Traces</strong>: A source of location detection, such as Companion App’s cell phone tracker.</li>
+ </ul>
+ A User can be tied to a Person (allowing him to both log in and be tracked); or he can have only Person but no User (for example, a child does not need to log in but needs to be detected at home); and vice versa (a neighbor who helps look after the house only needs to log in and does not need to be tracked).</div>
+ <p>The two can be bound: for example, "user Alice" corresponds to "person Alice". After Alice installs the app on her phone and logs in, she can feed the location to that "person".</p>
+ <div class="callout"><strong>Simple principle:</strong> Will use HA's family → to build User + Person connection.<br>Those who only need to track their location (for example, if a child does not have a mobile app and uses a GPS tag) → only create Person.</div>
+ </section>
 
-    <section id="steps" data-nav="Steps to create an account">
-      <h2 data-icon="steps">Steps to create an account</h2>
-      <ol class="steps">
-        <li>
-          <h3>Settings → People → Users tab</h3>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch5/01_users_page.png" alt="User management page" />
-            <figcaption><strong>Figure 5-1</strong>User management page — displays all log-in accounts.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>"+Add User" on the lower right</h3>
-          <p>Fill in the display name, user name (for login), and password.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch5/02_new_user_dialog.png" alt="Add user dialog box" />
-            <figcaption><strong>Figure 5-2</strong>Add a new user - pay attention to the "Administrator" switch.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>Decide whether to be an administrator</h3>
-          <p><strong>Administrator</strong>: You can change all settings, install integration, and build automation.<br><strong>general user</strong>: You can only operate things visible on the interface.</p>
-          <div class="callout warn"><strong>Suggestions:</strong>There can be at most 2 administrators in a family (you + your significant other), and others can be ordinary users.</div>
-        </li>
-        <li>
-          <h3>"Local login only"</h3>
-          <p>After opening, this account can only be logged in through the local network at home, and remote URLs cannot be accessed.<strong>It is recommended to open the guest account.</strong></p>
-        </li>
-        <li>
-          <h3>Tell the other person your new account</h3>
-          <p>Tell family members the URL + account + password and let them log in using the app (Chapter 7). They can then change the password themselves in "User Settings".</p>
-        </li>
-        <li>
-          <h3>Recommended settings for guest/child accounts</h3>
-          <p>Non-administrator role + Turn on "Local only", so that the account can only be used under home WiFi, and even if the password is leaked, it cannot access the external network. This is the guest account combination officially recommended by HA.</p>
-        </li>
-      </ol>
-      <div class="callout"><strong>Verify</strong>: After logging out, log in with a new account to confirm that you can enter the homepage; go to "Settings → Personnel → Users" to see the newly created user. If it is a guest account, try logging in using a 4G mobile phone (with WiFi turned off) and it should be blocked.</div>
-    </section>
+ <section id="steps" data-nav="Steps to create an account">
+ <h2 data-icon="steps">Steps to create an account</h2>
+ <ol class="steps">
+ <li>
+ <h3>Settings → People → Users tab</h3>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch5/01_users_page.png" alt="User management page" />
+ <figcaption><strong>Figure 5-1</strong> User management page — displays all log-in accounts.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>"+Add User" on the lower right</h3>
+ <p>Fill in the display name, user name (for login), and password.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch5/02_new_user_dialog.png" alt="Add user dialog box" />
+ <figcaption><strong>Figure 5-2</strong> Add a new user - pay attention to the "Administrator" switch.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>Decide whether to be an administrator</h3>
+ <p><strong>Administrator</strong>: You can change all settings, install integration, and build automation.<br><strong>standard user</strong>: You can only operate things visible on the interface.</p>
+ <div class="callout warn"><strong>Suggestions:</strong> There can be at most 2 administrators in a family (you + your significant other), and others can be ordinary users.</div>
+ </li>
+ <li>
+ <h3>"Local login only"</h3>
+ <p>After opening, this account can only be logged in through the local network at home, and remote URLs cannot be accessed. <strong>It is recommended to open the guest account.</strong></p>
+ </li>
+ <li>
+ <h3>Tell the other person your new account</h3>
+ <p>Tell family members the URL + account + password and let them log in using the app (Chapter 7). They can then change the password themselves in "User Settings".</p>
+ </li>
+ <li>
+ <h3>Recommended settings for guest/child accounts</h3>
+ <p>Non-administrator role + Turn on "Local only", so that the account can only be used under home WiFi, and even if the password is leaked, it cannot access the external network. This is the guest account combination officially recommended by HA.</p>
+ </li>
+ </ol>
+ <div class="callout"><strong>Verify</strong>: After logging out, log in with a new account to confirm that you can enter the homepage; go to "Settings → Personnel → Users" to see the newly created user. If it is a guest account, try logging in using a 4G phone (with WiFi turned off) and it should be blocked.</div>
+ </section>
 
-    <section id="persons" data-nav="Create "people"">
-      <h2 data-icon="persons">Create a "person" and bind it</h2>
-      <ol class="steps">
-        <li>
-          <h3>Settings → People</h3>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch5/03_persons_page.png" alt="Personnel page" />
-            <figcaption><strong>Figure 5-3</strong>Personnel management page—Each person can be bound to one user and multiple positioning devices.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>"+ Add new personnel" → fill in name and headshot</h3>
-          <p>It is recommended to use nicknames, such as "Dad" and "Sister" - the dashboard card will display this.</p>
-        </li>
-        <li>
-          <h3>Bind user account</h3>
-          <p>Select the user you just created from the drop-down menu. After binding, the location of this "person" will be determined using the app on his phone.</p>
-        </li>
-        <li>
-          <h3>Other targeting methods</h3>
-          <p>Family members (the elderly and children) who do not have an App can use: Bluetooth/GPS positioning cards (such as Mi Tag, AirTag, Tile), router online detection, and Bluetooth beacons. All are added in the "Tracking Device" at the bottom of the "People" page.</p>
-        </li>
-      </ol>
-      <div class="callout"><strong>Next step</strong>: Person has been created. Chapter 7 teaches you how to install the Companion App on his mobile phone and send push notifications.</div>
-    </section>
+ <section id="persons" data-nav="Create "people"">
+ <h2 data-icon="persons">Create a "person" and connect it</h2>
+ <ol class="steps">
+ <li>
+ <h3>Settings → People</h3>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch5/03_persons_page.png" alt="Personnel page" />
+ <figcaption><strong>Figure 5-3</strong> Personnel management page—Each person can be bound to one user and multiple positioning devices.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>"+ Add new personnel" → fill in name and headshot</h3>
+ <p>It is recommended to use nicknames, such as "Dad" and "Sister" - the dashboard card will display this.</p>
+ </li>
+ <li>
+ <h3>Connect user account</h3>
+ <p>Select the user you just created from the drop-down menu. After connection, the location of this "person" will be determined using the app on his phone.</p>
+ </li>
+ <li>
+ <h3>Other targeting methods</h3>
+ <p>Family members (the elderly and children) who do not have an App can use: Bluetooth/GPS positioning cards (such as Mi Tag, AirTag, Tile), router online detection, and Bluetooth beacons. All are added in the "Tracking Device" at the bottom of the "People" page.</p>
+ </li>
+ </ol>
+ <div class="callout"><strong>Next step</strong>: Person has been created. Chapter 7 teaches you how to install the Companion App on his phone and send push notifications.</div>
+ </section>
 
-    <section id="faq" data-nav="FAQ">
-      <h2 data-icon="faq">FAQ</h2>
-      <details class="faq">
-        <summary>Can a User be bound to multiple Persons?</summary>
-        <div class="body">No, one on one. But a Person can have multiple tracking devices (mobile phones, GPS tags tracked at the same time).</div>
-      </details>
-      <details class="faq">
-        <summary>Can regular users see all devices?</summary>
-        <div class="body">All dashboards are visible by default. You can restrict "only these users can view" in the dashboard settings to create different home screens.</div>
-      </details>
-      <details class="faq">
-        <summary>If a user is deleted, will the records of his operations still be there?</summary>
-        <div class="body">The historical record is still there, but it is displayed as <code>Deleted user</code>. If you want to keep it, don't delete it, just remove the administrator rights.</div>
-      </details>
-    </section>
+ <section id="faq" data-nav="FAQ">
+ <h2 data-icon="faq">FAQ</h2>
+ <details class="faq">
+ <summary>Can a User be bound to multiple Persons?</summary>
+ <div class="body">No, one on one. But a Person can have multiple tracking devices (phones, GPS tags tracked at the same time).</div>
+ </details>
+ <details class="faq">
+ <summary>Can regular users see all devices?</summary>
+ <div class="body">All dashboards are visible by default. You can restrict "only these users can view" in the dashboard settings to create different home screens.</div>
+ </details>
+ <details class="faq">
+ <summary>If a user is deleted, will the records of his operations still be there?</summary>
+ <div class="body">The historical record is still there, but it is displayed as <code>Deleted user</code>. If you want to keep it, don't delete it, just remove the administrator rights.</div>
+ </details>
+ </section>
 
-    <section id="mfa" data-nav="MFA two-stage verification">
-      <h2 data-icon="advanced">Recommendation: Owner turns on MFA two-step verification</h2>
-      <p>Once the password to the owner's account is guessed, the entire home automation could be compromised. HA's built-in MFA supports TOTP apps such as Google Authenticator / Authy / 1Password.</p>
-      <ol class="steps">
-        <li>
-          <h3>Personal information in the lower right corner → Advanced mode</h3>
-          <p>Turn on the advanced mode first before the MFA option will appear.</p>
-        </li>
-        <li>
-          <h3>Personal information → Security tab → Multi-factor authentication module</h3>
-          <p>Enable TOTP and scan the QR Code with the Authenticator App on your phone.</p>
-        </li>
-        <li>
-          <h3>Enter the dynamic code once to confirm</h3>
-          <p>After enabling it, there will be one more step to log in next time. Be sure to save a screenshot of the backup code - it's your only rescue if you lose your phone.</p>
-        </li>
-      </ol>
-    </section>
+ <section id="mfa" data-nav="MFA two-stage verification">
+ <h2 data-icon="advanced">Recommendation: Owner turns on MFA two-step verification</h2>
+ <p>Once the password to the owner's account is guessed, the entire home automation could be compromised. HA's built-in MFA supports TOTP apps such as Google Authenticator / Authy / 1Password.</p>
+ <ol class="steps">
+ <li>
+ <h3>Personal information in the lower right corner → Advanced mode</h3>
+ <p>Turn on the advanced mode first before the MFA option will appear.</p>
+ </li>
+ <li>
+ <h3>Personal information → Security tab → Multi-factor authentication module</h3>
+ <p>Enable TOTP and scan the QR Code with the Authenticator App on your phone.</p>
+ </li>
+ <li>
+ <h3>Enter the dynamic code once to confirm</h3>
+ <p>After enabling it, there will be one more step to log in next time. Be sure to save a screenshot of the backup code - it's your only rescue if you lose your phone.</p>
+ </li>
+ </ol>
+ </section>
 
-    <section id="troubleshoot" data-nav="Common stuck levels">
-      <h2 data-icon="tips">Common stuck levels</h2>
-      <details class="faq">
-        <summary>Accidentally downgraded the owner's permissions?</summary>
-        <div class="body">It cannot be changed. The owner is always the owner, and the UI will block you; if the UI does not block you, then you will be demoted to another "administrator", not the owner.</div>
-      </details>
-      <details class="faq">
-        <summary>Did your mobile app receive notifications from others?</summary>
-        <div class="body">Notifications action (Action, the old version was called "Service")<code>notify.mobile_app_xxx</code> It is bound to the "user who installed this phone"; please make sure you have not chosen the wrong person to send it to. Chapter 7 will teach.</div>
-      </details>
-      <details class="faq">
-        <summary>Person keeps showing "away from home" but the person is at home?</summary>
-        <div class="body">The Companion App location permission is not turned on, or the radius of the home zone is too small (default 100m). Go to "Settings → Areas, labels &amp; zones → Zones tab → home" and increase the radius to 150-200m.</div>
-      </details>
-    </section>
+ <section id="troubleshoot" data-nav="Common problems">
+ <h2 data-icon="tips">Common problems</h2>
+ <details class="faq">
+ <summary>Accidentally downgraded the owner's permissions?</summary>
+ <div class="body">It cannot be changed. The owner is always the owner, and the UI will block you; if the UI does not block you, then you will be demoted to another "administrator", not the owner.</div>
+ </details>
+ <details class="faq">
+ <summary>Did your mobile app receive notifications from others?</summary>
+ <div class="body">Notifications action (Action, the old version was called "Service")<code>notify.mobile_app_xxx</code> It is bound to the "user who installed this phone"; please make sure you have not chosen the wrong person to send it to. Chapter 7 will teach.</div>
+ </details>
+ <details class="faq">
+ <summary>Person keeps showing "away from home" but the person is at home?</summary>
+ <div class="body">The Companion App location permission is not turned on, or the radius of the home zone is too small (default 100m). Go to "Settings → Areas, labels &amp; zones → Zones tab → home" and increase the radius to 150-200m.</div>
+ </details>
+ </section>
 
-    <section id="companion_flow" data-nav="Family mobile phone end-to-end process">
-      <h2 data-icon="steps">Family mobile phone end-to-end process (Companion App)</h2>
-      <p>I have just created user + person in HA. Next, I need to complete the binding on my family’s mobile phone. This section will be completed from installation to receiving the first push.</p>
-      <div class="callout"><strong>The name has been changed:</strong>Starting from HA 2024.8, "Service" will be renamed "<strong>Action</strong>", so <code>notify.mobile_app_xxx</code> Now it's called "notification action" instead of "notification service". In addition, "Developer Tools" will be moved from the sidebar to settings starting from 2026.2, and will be referred to as "Developer Tools" from 2026.8.<strong>Tools</strong>", so the path sent by the test is<strong>Settings → Tools → Actions</strong>; If you are still in the old version, the corresponding function is "Developer Tools → Services" in the sidebar, which has the same function.</div>
-      <ol class="steps">
-        <li>
-          <h3>Family downloads the app</h3>
-          <p>iOS: Search "Home Assistant" in App Store; Android: Play Store or F-Droid (no Google dependent version). All names are called <strong>Home Assistant</strong>, the picture shows the blue house.</p>
-        </li>
-        <li>
-          <h3>Scan the QR with the app / enter the URL manually</h3>
-          <p>When you open it for the first time, you will be asked "Home Assistant Server URL". Three input methods:</p>
-          <ul>
-            <li><strong>Same WiFi</strong>: The App will usually automatically discover it, just click on it in the list</li>
-            <li><strong>Manual</strong>: Lose <code>http://192.168.x.x:8123</code>(Home IP) or Nabu Casa / public network address of self-installed reverse proxy</li>
-            <li><strong>QR</strong>: If your elders use it, you can open it directly on your mobile phone. <code>URL → QR generator</code> Scan for him</li>
-          </ul>
-        </li>
-        <li>
-          <h3>Log in with "his own account", not yours</h3>
-          <p>Log in with the user you just created for him in the steps in Chapter 5.<strong>This step determines that his phone is "his" and the notification action will be called <code>notify.mobile_app_family username</code>.</strong>Logging in with the wrong account is a common cause of "push broadcasts reaching other people's phones".</p>
-        </li>
-        <li>
-          <h3>Allow location permission "Always allow"</h3>
-          <p>Select "Always" for iOS and "Always Allow" for Android. Do not select "While using". Because the judgment of entering and exiting the house is performed in the background; only allowing the foreground is equal to invalidation.</p>
-          <div class="callout warn"><strong>Common pitfalls:</strong>After iOS 15, the default "While in use" must be entered into "Settings → App → Home Assistant → Location" and manually changed to "Always" to report the location in the background.</div>
-        </li>
-        <li>
-          <h3>Allow notification permission + battery optimization exclusion</h3>
-          <p>Especially important for Android: exclude Home Assistant from "Power Saving Mode Management", otherwise late-night notifications will be delayed by 15-60 minutes. Just turn on notifications on iOS.</p>
-        </li>
-        <li>
-          <h3>Verification: Is the location returned?</h3>
-          <p>Go back to HA "Settings → Devices and Services → Mobile App" to see that phone, click on it and there will be a bunch of <code>sensor.mobile_battery / sensor.mobile_geocoded_location</code> and other entities. The device page map should show<em>present</em>location. If blank, go back and check location permissions.</p>
-        </li>
-        <li>
-          <h3>Send the first test notification</h3>
-          <p>"Settings → Tools → Actions" → Select <code>notify.mobile_app_family username</code> → Message "Test" → Execute action. Family phones should receive it within 1-3 seconds. If you can't receive it, check the notification permission.</p>
-        </li>
-      </ol>
-      <div class="callout"><strong>Mobile App Common Entities</strong>(all appear automatically):<code>device_tracker.mobile phone</code>(at home/away from home),<code>sensor.mobile_battery_level</code>, <code>sensor.mobile_battery_state</code>(Charging/discharging),<code>sensor.mobile_geocoded_location</code>(Address in human language). If you want to turn on more sensors: App "Settings → Companion App → Manage Sensors" to turn on the ones you want (number of steps, activity type, Bluetooth device, battery temperature...).</div>
-    </section>
+ <section id="companion_flow" data-nav="Family phone setup from start to finish">
+ <h2 data-icon="steps">Family phone setup from start to finish (Companion App)</h2>
+ <p>I have just created user + person in HA. Next, I need to complete the connection on my family’s phone. This section will be completed from installation to receiving the first push.</p>
+ <div class="callout"><strong>The name has been changed:</strong> Starting from HA 2024.8, "Service" will be renamed " <strong>Action</strong> ", so <code>notify.mobile_app_xxx</code> Now it's called "notification action" instead of "notification service". In addition, "Developer Tools" will be moved from the sidebar to settings starting from 2026.2, and will be referred to as "Developer Tools" from 2026.8. <strong>Tools</strong> ", so the path sent by the test is <strong>Settings → Tools → Actions</strong>; If you are still in the old version, the corresponding function is "Developer Tools → Services" in the sidebar, which has the same function.</div>
+ <ol class="steps">
+ <li>
+ <h3>Family downloads the app</h3>
+ <p>iOS: Search "Home Assistant" in App Store; Android: Play Store or F-Droid (no Google dependent version). All names are called <strong>Home Assistant</strong>, the display shows the blue house.</p>
+ </li>
+ <li>
+ <h3>Scan the QR with the app / enter the URL manually</h3>
+ <p>When you open it for the first time, you will be asked "Home Assistant Server URL". Three input methods:</p>
+ <ul>
+ <li><strong>Same WiFi</strong>: The App will usually automatically discover it, just click on it in the list</li>
+ <li><strong>Manual</strong>: Lose <code>http://192.168.x.x:8123</code>(Home IP) or Nabu Casa / public network address of self-installed reverse proxy</li>
+ <li><strong>QR</strong>: If your elders use it, you can open it directly on your phone. <code>URL → QR generator</code> Scan for him</li>
+ </ul>
+ </li>
+ <li>
+ <h3>Log in with "his own account", not yours</h3>
+ <p>Log in with the user you just created for him in the steps in Chapter 5. <strong>This step determines that his phone is "his" and the notification action will be called <code>notify.mobile_app_family_username</code>.</strong> Logging in with the wrong account is a common cause of "push broadcasts reaching other people's phones".</p>
+ </li>
+ <li>
+ <h3>Allow location permission "Always allow"</h3>
+ <p>Select "Always" for iOS and "Always Allow" for Android. Do not select "While using". Because the judgment of entering and exiting the house is performed in the background; only allowing the foreground is equal to invalidation.</p>
+ <div class="callout warn"><strong>Common pitfalls:</strong> After iOS 15, the default "While in use" must be entered into "Settings → App → Home Assistant → Location" and manually changed to "Always" to report the location in the background.</div>
+ </li>
+ <li>
+ <h3>Allow notification permission + battery optimization exclusion</h3>
+ <p>Especially important for Android: exclude Home Assistant from "Power Saving Mode Management", otherwise late-night notifications will be delayed by 15-60 minutes. Just turn on notifications on iOS.</p>
+ </li>
+ <li>
+ <h3>Verification: Is the location returned?</h3>
+ <p>Go back to HA "Settings → Devices and Services → Mobile App" to see that phone, click on it and there will be multiple <code>sensor.mobile_battery / sensor.mobile_geocoded_location</code> and other entities. The device page map should show <em>present</em> location. If blank, go back and check location permissions.</p>
+ </li>
+ <li>
+ <h3>Send the first test notification</h3>
+ <p>"Settings → Tools → Actions" → Select <code>notify.mobile_app_family_username</code> → Message "Test" → Execute action. Family phones should receive it within 1-3 seconds. If you can't receive it, check the notification permission.</p>
+ </li>
+ </ol>
+ <div class="callout"><strong>Mobile App Common Entities</strong> (all appear automatically):<code>device_tracker.phone</code>(at home/away from home),<code>sensor.mobile_battery_level</code>, <code>sensor.mobile_battery_state</code>(Charging/discharging),<code>sensor.mobile_geocoded_location</code>(Address in human language). If you want to turn on more sensors: App "Settings → Companion App → Manage Sensors" to turn on the ones you want (number of steps, activity type, Bluetooth device, battery temperature...).</div>
+ </section>
 
-    <section id="zone_tune" data-nav="Zone radius calibration">
-      <h2 data-icon="steps">Zone radius calibration (to avoid “always misjudging leaving home”)</h2>
-      <p><code>zone.home</code> It is a circular range for judging "at home/away from home", with a default radius of 100 meters. 100m is often too small to see through thick walls or large apartments, resulting in people being home but being judged as leaving home (GPS drifting out of the circle).</p>
-      <ol class="steps">
-        <li>
-          <h3>Settings → Zones, Labels and Zone → Zones tab</h3>
-          <p><strong>Note</strong>: Zone and Area are<em>different things</em>. Area is a room at home; Zone is a circle on the map (home, company, school). The latter is what I ordered here.</p>
-        </li>
-        <li>
-          <h3>Click home → adjust radius</h3>
-          <p>Suggestions <strong>150-200 meters</strong>. Circles will be displayed on the map in real time, so you can see that your entire home is covered.</p>
-          <div class="callout warn"><strong>Don't open too much</strong>: Above 500m, the entire community will be included, and the judgment of "at home/away from home" will become blurred - you are still at home if you go to a convenience store 100 meters away.</div>
-        </li>
-        <li>
-          <h3>Add company/school zone</h3>
-          <p>"+ Add Zone (Create zone)" → Type to search the address or click on the map directly → Name "Company" and "Children's School". Later, you can write the automation of "automatically notifying the mother when the child arrives at school".</p>
-        </li>
-        <li>
-          <h3>Purpose of "passive zone"</h3>
-          <p>zone has a "passive" switch. After being turned on, the zone will not affect the person's state ("at company" will not be displayed), but can still be queried automatically. Used in scenarios where "passing landmarks" do not want to pollute the state but want to be tracked.</p>
-        </li>
-      </ol>
-      <div class="callout tip"><strong>dual positioning strategy</strong>: The three-pronged approach of mobile phone GPS + WiFi (connected to home WiFi = at home) + Bluetooth beacon (iBeacon at the entrance) provides the most accurate judgment. GPS alone will be inaccurate indoors, in basements, and in elevators. Companion App can bind the WiFi SSID to determine "Connected to home WiFi = at home" with an accuracy of over 95%.</div>
-    </section>
+ <section id="zone_tune" data-nav="Zone radius calibration">
+ <h2 data-icon="steps">Zone radius calibration (to avoid “always misjudging leaving home”)</h2>
+ <p><code>zone.home</code> It is a circular range for judging "at home/away from home", with a default radius of 100 meters. 100m is often too small to see through thick walls or large apartments, resulting in people being home but being judged as leaving home (GPS drifting out of the circle).</p>
+ <ol class="steps">
+ <li>
+ <h3>Settings → Zones, Labels and Zone → Zones tab</h3>
+ <p><strong>Note</strong>: Zone and Area are <em>different things</em>. Area is a room at home; Zone is a circle on the map (home, company, school). The latter is what I ordered here.</p>
+ </li>
+ <li>
+ <h3>Click home → adjust radius</h3>
+ <p>Suggestions <strong>150-200 meters</strong>. Circles will be displayed on the map in real time, so you can see that your entire home is covered.</p>
+ <div class="callout warn"><strong>Don't open too much</strong>: Above 500m, the entire community will be included, and the judgment of "at home/away from home" will become blurred - you are still at home if you go to a convenience store 100 meters away.</div>
+ </li>
+ <li>
+ <h3>Add company/school zone</h3>
+ <p>"+ Add Zone (Create zone)" → Type to search the address or click on the map directly → Name "Company" and "Children's School". Later, you can write the automation of "automatically notifying the mother when the child arrives at school".</p>
+ </li>
+ <li>
+ <h3>Purpose of "passive zone"</h3>
+ <p>zone has a "passive" switch. After being turned on, the zone will not affect the person's state ("at company" will not be displayed), but can still be queried automatically. Used in scenes where "passing landmarks" do not want to pollute the state but want to be tracked.</p>
+ </li>
+ </ol>
+ <div class="callout tip"><strong>dual positioning strategy</strong>: The three-pronged approach of phone GPS + WiFi (connected to home WiFi = at home) + Bluetooth beacon (iBeacon at the entrance) provides the most accurate judgment. GPS alone will be inaccurate indoors, in basements, and in elevators. Companion App can connect the WiFi SSID to determine "Connected to home WiFi = at home" with an accuracy of over 95%.</div>
+ </section>
 
-    <div class="pager">
+ <div class="pager">
       <a class="prev" href="ch4_naming_labels.html">
         <span class="label">← Previous</span>
         <span class="title">04 · Naming and labels</span>
@@ -310,11 +310,11 @@
       </a>
     </div>
 
-    <footer class="site-footer">
+ <footer class="site-footer">
       <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
       <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
-  </main>
+ </main>
 </div>
 <script id="ui-strings" type="application/json">{"tocToggle":"Contents","tocExpand":"Expand chapter navigation","tocCollapse":"Collapse chapter navigation"}</script>
 <script src="../assets/js/toc.js"></script>

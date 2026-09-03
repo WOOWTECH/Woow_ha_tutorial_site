@@ -1,18 +1,18 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HA API/MCP control prompt dictionary · 43 items can be copied · WoowTech</title>
-  <meta name="description" content="Use AI/Claude/MCP to control Home Assistant's prompt vocabulary: 43 items divided into 8 categories - lighting scenes, climate air conditioning, energy monitoring, notification push, automated writing, sensor query, daily voice, and troubleshooting. Each message can be copied directly to an HA MCP server such as ha-mcp-woow to call the corresponding service." />
-  <meta name="author" content="WoowTech" />
-  <meta name="theme-color" content="#6183FC" />
-  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/prompts.html" />
-  <meta name="robots" content="noindex, follow" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
-  <style>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>HA API/MCP control prompt dictionary · 43 items can be copied · WoowTech</title>
+ <meta name="description" content="Use AI/Claude/MCP to control Home Assistant's prompt vocabulary: 43 items divided into 8 categories - lighting scenes, climate air conditioning, energy monitoring, notification push, automated writing, sensor query, daily voice, and troubleshooting. Each message can be ready to copy to an HA MCP server such as ha-mcp-woow to call the corresponding service." />
+ <meta name="author" content="WoowTech" />
+ <meta name="theme-color" content="#6183FC" />
+ <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/prompts.html" />
+ <meta name="robots" content="noindex, follow" />
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
+ <style>
 /* HA Prompt Library — Woow_ha_tutorial_site Pattern × woowtech Brand Prompt Library v2 */
 :root {
   --ww-blue: #6183FC; --ww-blue-600: #4A6DE8; --ww-blue-700: #3A57C4;
@@ -154,338 +154,338 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
 </head>
 <body>
 <div class="layout">
-  <aside class="sidebar" id="sidebar">
-    <a class="brand" href="#top">HA Prompt Dictionary</a>
-    <div class="brand-sub">WoowTech · 43 items for AI/MCP</div>
-    <!-- i18n:switch --><nav class="lang-switch" aria-label="Language"><a href="../prompts.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="prompts.html" lang="en" aria-current="page">EN</a></nav><!-- /i18n:switch -->
-    <a class="hub-link" href="index.html">◂ HA Resource Hub</a>
-    <button class="nav-toggle" id="navToggle" type="button">Contents of this volume<span class="nav-toggle-caret"></span></button>
-    <div class="toc-in-chapter">
-      <h2>Contents of this volume</h2>
-      <a href="#why">what is this</a>
-      <a href="#howto">How to use</a>
-      <a href="#cat-light">Lights and Scenes</a>
-      <a href="#cat-climate">Climate and air conditioning</a>
-      <a href="#cat-energy">Energy and power saving</a>
-      <a href="#cat-notify">Notifications and push notifications</a>
-      <a href="#cat-auto">Write automation
+ <aside class="sidebar" id="sidebar">
+ <a class="brand" href="#top">HA Prompt Dictionary</a>
+ <div class="brand-sub">WoowTech · 43 items for AI/MCP</div>
+ <!-- i18n:switch --><nav class="lang-switch" aria-label="Language"><a href="../prompts.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="prompts.html" lang="en" aria-current="page">EN</a></nav><!-- /i18n:switch -->
+ <a class="hub-link" href="index.html">◂ HA Resource Hub</a>
+ <button class="nav-toggle" id="navToggle" type="button">Contents <span class="nav-toggle-caret"></span></button>
+ <div class="toc-in-chapter">
+ <h2>Contents</h2>
+ <a href="#why">What this handbook covers</a>
+ <a href="#howto">How to use</a>
+ <a href="#cat-light">Lights and Scenes</a>
+ <a href="#cat-climate">Climate and air conditioning</a>
+ <a href="#cat-energy">Energy and power saving</a>
+ <a href="#cat-notify">Notifications and push notifications</a>
+ <a href="#cat-auto">Write automation
 ​​</a>
-      <a href="#cat-sensor">Sensors and Devices</a>
-      <a href="#cat-voice">Daily voice conversations</a>
-      <a href="#cat-ops">Troubleshooting and maintenance</a>
-      <a href="#tips">Writing Cheat Sheet</a>
-      <a href="#faq">FAQ</a>
-      <a href="#download">Download</a>
-    </div>
-  </aside>
+ <a href="#cat-sensor">Sensors and Devices</a>
+ <a href="#cat-voice">Daily voice conversations</a>
+ <a href="#cat-ops">Troubleshooting and maintenance</a>
+ <a href="#tips">Writing Cheat Sheet</a>
+ <a href="#faq">FAQ</a>
+ <a href="#download">Download</a>
+ </div>
+ </aside>
 
-  <main class="content" id="top">
-    <div class="chapter-header">
-      <span class="kicker-script">just tell your AI</span>
-      <div class="kicker">WoowTech Prompt Database</div>
-      <h1>43 HA instructions for AI, just copy them and use them</h1>
-      <p class="lead">Connect Home Assistant to Claude/ChatGPT/Gemini + <code>ha-mcp-woow</code> With a HA MCP server like this, you can control your home with natural-language conversations. This book contains 43 prompts for real home scenes, divided into 8 categories, and each one is written for the LLM agent - you copy and paste it into the dialog box, and replace the "living room" with the actual area of ​​your home to send it out.</p>
-    </div>
+ <main class="content" id="top">
+ <div class="chapter-header">
+ <span class="kicker-script">just tell your AI</span>
+ <div class="kicker">WoowTech Prompt Database</div>
+ <h1>43 Home Assistant prompts for AI</h1>
+ <p class="lead">Connect Home Assistant to Claude, ChatGPT, or Gemini through an HA MCP server such as <code>ha-mcp-woow</code>. These 43 English prompts cover eight practical categories; copy one, then replace example areas and entity IDs with those in your home.</p>
+ </div>
 
-    <section id="why" data-nav="what is this">
-      <h2 data-icon="why">what is this</h2>
-      <p>Home Assistant’s REST API, WebSocket API and new version <a href="https://developers.home-assistant.io/docs/api/rest/" rel="noopener">MCP server</a> Let the LLM agent call any service, read any entity status, and run any template. match <code>ha-mcp-woow</code> or official <a href="https://www.home-assistant.io/integrations/mcp_server/" rel="noopener">MCP Server integration</a>, your AI will be able to:</p>
-      <ul>
-        <li><strong>control</strong>: call <code>light.turn_on</code>, <code>climate.set_temperature</code>, <code>cover.open_cover</code> Wait for all services</li>
-        <li><strong>Query</strong>: Read entity status, attributes, and historical data, and answer "What's the current temperature in the living room?" "How much electricity was used last week?"</li>
-        <li><strong>Edit</strong>: Add/modify/delete automation, scripts, scenes, dashboards</li>
-        <li><strong>management</strong>: Install/remove add-ons, HACS packages, integration, run backups and upgrades</li>
-      </ul>
-      <p>Every item included in this book is<strong>Written for AI agent to read</strong>Natural language prompts - not short commands for Voice Assistant, but complete demand descriptions that allow AI to actively translate into one or more service calls, confirm back and forth with you, and leave operation records.</p>
-    </section>
+ <section id="why" data-nav="What this handbook covers">
+ <h2 data-icon="why">What this handbook covers</h2>
+ <p>Home Assistant’s REST API, WebSocket API and new version <a href="https://developers.home-assistant.io/docs/api/rest/" rel="noopener">MCP server</a> Let the LLM agent call any service, read any entity status, and run any template. match <code>ha-mcp-woow</code> or official <a href="https://www.home-assistant.io/integrations/mcp_server/" rel="noopener">MCP Server integration</a>, your AI can:</p>
+ <ul>
+ <li><strong>control</strong>: call <code>light.turn_on</code>, <code>climate.set_temperature</code>, <code>cover.open_cover</code> Wait for all services</li>
+ <li><strong>Query</strong>: Read entity status, attributes, and historical data, and answer "What's the current temperature in the living room?" "How much electricity was used last week?"</li>
+ <li><strong>Edit</strong>: Add/modify/delete automation, scripts, scenes, dashboards</li>
+ <li><strong>management</strong>: Install/remove add-ons, HACS packages, integration, run backups and upgrades</li>
+ </ul>
+ <p>Every item included in this handbook is <strong>Written for AI agent to read</strong> Natural language prompts - not short commands for Voice Assistant, but complete demand descriptions that allow AI to actively translate into one or more action calls, confirm back and forth with you, and leave operation records.</p>
+ </section>
 
-    <section id="howto" data-nav="How to use">
-      <h2 data-icon="steps">How to start using it</h2>
-      <ol class="steps">
-        <li>
-          <h3>Connect HA to MCP server</h3>
-          <p>Option 1: Official <a href="https://www.home-assistant.io/integrations/mcp_server/" rel="noopener">MCP Server integration</a>(HA 2025.7+) → Direct connection to clients such as Claude Desktop/VS Code Copilot. Option two:<code>ha-mcp-woow</code>(Enhanced version from WoowTech, including more complete config/HACS/backup tools, see <a href="ch19_voice_ai.html">Chapter 19</a> with <a href="ch20_addons_docker.html">Chapter 20</a>).</p>
-        </li>
-        <li>
-          <h3>Expose entities to LLM</h3>
-          <p>Settings → Voice Assistants → Expose: Check the areas and entities you want the AI to move.<strong>Security advice</strong>: Expose only the "harmless" ones (lights, sensors) first, verify that the behavior is correct, and then release the safe ones (door locks, alarms).</p>
-        </li>
-        <li>
-          <h3>Copy the prompt words corresponding to the scene in this book</h3>
-          <p>Replace bracket-like words like "living room", "master bedroom" and "26 degrees" with the actual areas/devices/parameters of your home, and paste them into the dialog box of Claude/ChatGPT/Gemini.</p>
-        </li>
-        <li>
-          <h3>Develop the habit of “reporting first and then taking action”</h3>
-          <p>For all prompts that will change the settings, keep the words "give me a summary first, and I will confirm and then apply" - important changes should be reviewed before being approved, which is the cheapest insurance.</p>
-        </li>
-      </ol>
-      <div class="callout tip"><strong>Tip:</strong>Didn't answer the MCP and just want to talk via voice? Use built-in instead <a href="ch19_voice_ai.html">Assist conversational agent</a>(Settings → Voice Assistants), the effect is not as good but it can still be used. The prompt words in this book are probably too long under Assist and will be truncated.</div>
-    </section>
+ <section id="howto" data-nav="How to use">
+ <h2 data-icon="steps">How to start using it</h2>
+ <ol class="steps">
+ <li>
+ <h3>Connect HA to MCP server</h3>
+ <p>Option 1: Official <a href="https://www.home-assistant.io/integrations/mcp_server/" rel="noopener">MCP Server integration</a> (HA 2025.7+) → Direct connection to clients such as Claude Desktop/VS Code Copilot. Option two:<code>ha-mcp-woow</code>(Enhanced version from WoowTech, including more complete config/HACS/backup tools, see <a href="ch19_voice_ai.html">Chapter 19</a> with <a href="ch20_addons_docker.html">Chapter 20</a>).</p>
+ </li>
+ <li>
+ <h3>Expose entities to LLM</h3>
+ <p>Settings → Voice Assistants → Expose: Check the areas and entities you want the AI to move. <strong>Security advice</strong>: Expose only the "harmless" ones (lights, sensors) first, verify that the behavior is correct, and then release the safe ones (door locks, alarms).</p>
+ </li>
+ <li>
+ <h3>Copy the prompts corresponding to the scenario in this handbook</h3>
+ <p>Replace bracket-like words like "living room", "master bedroom" and "26 degrees" with the actual areas/devices/parameters of your home, and paste them into the dialog box of Claude/ChatGPT/Gemini.</p>
+ </li>
+ <li>
+ <h3>Develop the habit of “reporting first and then taking action”</h3>
+ <p>For all prompts that will change the settings, keep the words "give me a summary first, and I will confirm and then apply" - important changes should be reviewed before being approved, which is the cheapest insurance.</p>
+ </li>
+ </ol>
+ <div class="callout tip"><strong>Tip:</strong> Didn't answer the MCP and just want to talk via voice? Use built-in instead <a href="ch19_voice_ai.html">Assist conversational agent</a> (Settings → Voice Assistants), the effect is not as good but it can still be used. The prompts in this handbook are probably too long under Assist and will be truncated.</div>
+ </section>
 
-    <section id="cat-light" data-nav="Lights and Scenes">
-      <h2 data-icon="light">Lighting and Scene Control</h2>
-      <p>The most basic and most commonly called category. Will all go <code>light.turn_on</code>/<code>light.turn_off</code>/<code>scene.turn_on</code>/<code>light.toggle</code>.</p>
+ <section id="cat-light" data-nav="Lights and Scenes">
+ <h2 data-icon="light">Lighting and Scene Control</h2>
+ <p>The most basic and most commonly called category. Will all go <code>light.turn_on</code>/<code>light.turn_off</code>/<code>scene.turn_on</code>/<code>light.toggle</code>.</p>
 
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Turn on all the lights in the living room to 60% brightness and adjust the color temperature to 3000K warm white. Respond in English.</p>
-        <p class="pnote">go <code>light.turn_on</code> bring <code>brightness_pct</code>＋<code>kelvin</code>; If the light does not support color temperature, it will automatically fallback.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">List all the lights that are currently on and tell me which area each one is in. Respond in English.</p>
-        <p class="pnote">go <code>light</code> domain state query +<code>area_registry</code> Cross comparison.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Trigger the "movie mode" scene: the main light in the living room is turned off, the atmosphere light is dimmed to red, and the TV backlight is turned on. If you don’t have this scene, help me create it first, using <code>scene.create</code> Dynamic scenes. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Set the master bedroom light to a sunrise simulation effect: slowly increase it from 5% to 100%, and pull the color temperature from 2200K to 5000K for 20 minutes. Use script transition instead of a bunch of turn_on. Respond in English.</p>
-        <p class="pnote">It is recommended to go <code>light.turn_on</code> bring <code>transition</code>, or call an existing <code>script.wake_up</code>.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Turn off all the lights in the house except the night light (entity_id starts with <code>light.nightlight_</code> are retained). Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Help me change the lighting color of the entrance to a welcoming effect: purple → blue → white, cycle three times, and then stop at normal white light. Just use a light that supports RGB, skip the color temperature light. Respond in English.</p>
-      </div>
-    </section>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Turn on every living-room light at 60% brightness and set the color temperature to a warm white at 3000 K. Respond in English.</p>
+ <p class="pnote">go <code>light.turn_on</code> bring <code>brightness_pct</code>＋<code>kelvin</code>; If the light does not support color temperature, it will automatically fallback.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">List every light that is currently on and identify the area containing each one. Respond in English.</p>
+ <p class="pnote">go <code>light</code> domain state query +<code>area_registry</code> Cross comparison.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Turn on the “Movie mode” scene: switch off the main living-room light, dim the accent light to red, and turn on the TV backlight. If the scene does not exist, first help me create a dynamic scene with <code>scene.create</code>. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Create a sunrise effect for the main bedroom light: over 20 minutes, raise brightness gradually from 5% to 100% and color temperature from 2200 K to 5000 K. Use script transitions rather than multiple turn_on actions. Respond in English.</p>
+ <p class="pnote">It is recommended to go <code>light.turn_on</code> bring <code>transition</code>, or call an existing <code>script.wake_up</code>.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Turn off every light in the home except night-lights whose entity IDs begin with <code>light.nightlight_</code>. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Create a welcome effect for the entryway lights: cycle from purple to blue to white three times, then finish at normal white. Use only RGB-capable lights and skip color-temperature-only lights. Respond in English.</p>
+ </div>
+ </section>
 
-    <section id="cat-climate" data-nav="Climate and air conditioning">
-      <h2 data-icon="climate">Climate and air conditioning control</h2>
-      <p>go <code>climate.set_temperature</code>/<code>climate.set_hvac_mode</code>/<code>climate.set_fan_mode</code>. Answers often require cross-checking <code>sensor.*_temperature</code> with <code>weather.*</code>.</p>
+ <section id="cat-climate" data-nav="Climate and air conditioning">
+ <h2 data-icon="climate">Climate and air conditioning control</h2>
+ <p>go <code>climate.set_temperature</code>/<code>climate.set_hvac_mode</code>/<code>climate.set_fan_mode</code>. Answers often require cross-checking <code>sensor.*_temperature</code> with <code>weather.*</code>.</p>
 
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">What is the temperature and humidity in each area of the home now? If it's colder inside than outside, turn off the air conditioner in that area and tell me. Respond in English.</p>
-        <p class="pnote">state query +<code>weather.*</code> Control + conditional call <code>climate.turn_off</code>.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Change all air conditioners to sleep mode: 25 degrees/low fan speed in the master bedroom, 26 degrees/automatic fan in other rooms. Before doing it, list which entities you want to change, and I will confirm before executing. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">If it rains outside (<code>weather.forecast_home</code> If it rains) and the humidity in your home exceeds 70%, turn on the whole house dehumidifier and set it to 55%. Half an hour later, I looked back at the humidity and notified me if it hadn't dropped yet. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Based on the current weather forecast and the temperature forecast at 8 o'clock tomorrow morning, it is judged whether the air conditioner in the master bedroom should be set to "sleep 26 degrees" or "power saving mode" tonight, which is more comfortable. Make suggestions and I agree to make changes. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">List the current hvac_mode, target_temperature, and current_temperature of all climate entities, arranged in a table. By the way, the abnormal item "the difference between the set temperature and the current temperature exceeds 3 degrees" is marked. Respond in English.</p>
-      </div>
-    </section>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Report the current temperature and humidity in every area. If an area is cooler indoors than outside, turn off its air conditioner and tell me what you changed. Respond in English.</p>
+ <p class="pnote">state query +<code>weather.*</code> Control + conditional call <code>climate.turn_off</code>.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Prepare to put every air conditioner into sleep mode: 25 degrees with low fan speed in the main bedroom, and 26 degrees with automatic fan speed elsewhere. List the entities you intend to change and wait for my confirmation before acting. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">If <code>weather.forecast_home</code> reports rain and indoor humidity exceeds 70%, turn on all dehumidifiers and set their target to 55%. Check humidity again after 30 minutes and notify me if it has not fallen. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Using the current forecast and tomorrow’s 08:00 temperature forecast, recommend either “sleep at 26 degrees” or “energy-saving mode” for the main-bedroom air conditioner tonight. Explain which is likely to be more comfortable and wait for my approval before changing anything. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">List hvac_mode, target_temperature, and current_temperature for every climate entity in a table. Flag any entity whose target and current temperatures differ by more than 3 degrees. Respond in English.</p>
+ </div>
+ </section>
 
-    <section id="cat-energy" data-nav="Energy and power saving">
-      <h2 data-icon="energy">Energy monitoring and power saving analysis</h2>
-      <p>go <code>history</code>/<code>recorder</code> Query +<code>sensor.*_energy</code> Analysis. For large-scale analysis, it is recommended to use a model with strong inference (Claude Opus/GPT-5).</p>
+ <section id="cat-energy" data-nav="Energy and power saving">
+ <h2 data-icon="energy">Energy monitoring and power saving analysis</h2>
+ <p>go <code>history</code>/<code>recorder</code> Query +<code>sensor.*_energy</code> Analysis. For large-scale analysis, it is recommended to use a model with strong inference (Claude Opus/GPT-5).</p>
 
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">use <code>ha_get_history</code> Catch everything from the past 7 days <code>sensor.*_energy</code>, calculate the average daily power consumption today, yesterday, and the past 7 days. Make a list of the top 5 power-eating monsters and guess what device they are. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Look at the power consumption curve of the living room air conditioner in the past 30 days, and do a correlation analysis with the outside temperature: What is the difference in power consumption if 25 degrees vs 26 degrees? I will give you power saving suggestions based on the usage period of my home. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">What is the instantaneous total power now? (<code>sensor.total_power</code>) If the power exceeds 5000W for 3 minutes, pause the deferrable high-power consumption equipment (dehumidifier, dishwasher, dryer) for 30 minutes to avoid the contract power limit. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Use my utility’s time-of-use tariff. Find out the devices that used the most electricity during peak hours (Monday to Friday 16:00–22:00) in the past week, and estimate how much you can save by moving them all off-peak for a month. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Generate this week's energy weekly report: compare last week's total electricity consumption, changes in the Top 5 power-consuming equipment, average indoor temperature, solar power generation (if any <code>sensor.solar_*</code>). use <code>notify.mobile_app_*</code> Pushed to my phone. Respond in English.</p>
-      </div>
-    </section>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Use <code>ha_get_history</code> to retrieve the past 7 days for every <code>sensor.*_energy</code> entity. Calculate energy use for today and yesterday and the 7-day daily average. Rank the five highest-consuming devices and identify what each sensor probably measures. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Analyze the living-room air conditioner’s energy-use curve over the past 30 days and correlate it with outdoor temperature. Compare energy use at setpoints of 25 and 26 degrees, then recommend savings based on this household’s usage periods. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Report the current instantaneous total power from <code>sensor.total_power</code>. If it remains above 5000 W for 3 minutes, pause deferrable high-power devices such as the dehumidifier, dishwasher, and dryer for 30 minutes to avoid exceeding the contracted power limit. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Using my utility’s time-of-use tariff, identify the devices that consumed the most energy during peak hours (Monday–Friday, 16:00–22:00) over the past week. Estimate one month of savings if those loads moved to off-peak hours. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Create this week’s energy report: compare total use with last week, show changes among the five highest-consuming devices, report average indoor temperature, and include solar generation when <code>sensor.solar_*</code> entities exist. Send it to my phone with <code>notify.mobile_app_*</code>. Respond in English.</p>
+ </div>
+ </section>
 
-    <section id="cat-notify" data-nav="Notifications and push notifications">
-      <h2 data-icon="notify">Notifications and push notifications</h2>
-      <p>go <code>notify.mobile_app_*</code>/<code>notify.persistent_notification</code>/<code>notify.notify</code>. actionable notification to bring <code>data.actions</code>.</p>
+ <section id="cat-notify" data-nav="Notifications and push notifications">
+ <h2 data-icon="notify">Notifications and push notifications</h2>
+ <p>go <code>notify.mobile_app_*</code>/<code>notify.persistent_notification</code>/<code>notify.notify</code>. actionable notification to bring <code>data.actions</code>.</p>
 
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">use <code>notify.mobile_app_myphone</code> Push a test notification with the title "HA Notifications Test" and the message with the current timestamp. By the way, check if there are other mobile_app services that can also be sent, please list them for me. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">washing machine (<code>switch.washer</code>) changes from on to off and the power has not been activated for more than 3 minutes → push actionable notification to me, with two buttons "Collected" and "Delay 30 minutes". After pressing, the corresponding automation state will be changed. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Organize all devices with batteries below 20% into one notification: list them all at once, along with the region, entity name, and current battery level. use <code>label.battery</code> Quickly filter the label. If you can’t find the label, just use <code>*_battery</code> Name it. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">When the water leakage sensor (<code>binary_sensor.*_leak</code>) Any one triggers → Immediately push the highest priority notification, the message contains "which one" + "the water valve entity_id of the area", and automatically calls <code>switch.turn_off</code> Close that valve. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Tonight at 22:00, check all door and window sensors. If any are closed, notify me on your mobile phone and tell me where they are and how long they have been closed. If everything is closed, no notification is required. Respond in English.</p>
-      </div>
-    </section>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Use <code>notify.mobile_app_myphone</code> to send a test notification titled “HA notification test” with the current timestamp as its message. Also list any other mobile_app notification actions available. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Create an automation for when washing machine <code>switch.washer</code> changes from on to off and remains inactive for more than 3 minutes. Send an actionable notification with “Collected” and “Delay 30 minutes” buttons, and update the automation state according to the chosen action. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Put every device below 20% battery into one notification, including its area, entity name, and current battery level. Filter with <code>label.battery</code> when available; otherwise find entities named <code>*_battery</code>. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">When any <code>binary_sensor.*_leak</code> sensor triggers, immediately send a highest-priority notification naming the sensor and the water-valve entity ID for its area, then call <code>switch.turn_off</code> for that valve. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">At 22:00 tonight, check every door and window sensor. If any opening is not closed, notify my phone with its location and how long it has been open. Send nothing if everything is closed. Respond in English.</p>
+ </div>
+ </section>
 
-    <section id="cat-auto" data-nav="Write automation
+ <section id="cat-auto" data-nav="Write automation
 ​​">
-      <h2 data-icon="auto">Write/modify automation and scripts</h2>
-      <p>go <code>ha_config_set_automation</code>/<code>ha_config_set_script</code>/<code>ha_config_set_scene</code>. This category most requires AI to have the discipline of "plan first and then act" - each item states "give summary first".</p>
+ <h2 data-icon="auto">Write/modify automation and scripts</h2>
+ <p>go <code>ha_config_set_automation</code>/<code>ha_config_set_script</code>/<code>ha_config_set_scene</code>. This category most requires AI to have the discipline of "plan first and then act" - each item states "give summary first".</p>
 
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Help me write a "home mode" automation: all family members' mobile phone device_tracker changes from not_home to home, and any trigger will turn on the entrance light (<code>light.entrance</code>), set the air conditioner to 26 degrees, and play my favorite music playlist. Please give me the YAML summary first, and I will confirm and enable it. Respond in English.</p>
-        <p class="pnote">Important: Don’t hardcode AI with device_id, always use entity_id (see <a href="ch8_first_automation.html">Chapter 8</a>).</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Change the "good night mode": add one - if there is a message before 8 o'clock the next morning <code>calendar.family</code> event to start the morning situation 30 minutes earlier. Read the YAML of the existing automation for me first, and then tell me how you want to add it. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Split the automation "living room air conditioner automatic switch" into two: one is responsible for "turning on when it exceeds 28 degrees", and the other is responsible for "turning off when it is below 25 degrees". use <code>mode: restart</code>, avoid action fights. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">write a script <code>script.movie_night</code>: Turn off the main lights in the whole house, turn on the red 30% brightness of the living room atmosphere light, turn on the TV, and switch to Netflix. Once you're done, you can put a button on the dashboard to run it. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">List all my current automations, find out the three possible ways of writing packages, "use device_id", "use wait_for_trigger but no timeout", "trigger only has one time but no conditions", list them one by one and suggest how to change them. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">use <code>blueprint</code> Import this one:<code>https://community.home-assistant.io/t/motion-activated-light/262970</code>, and then use the motion sensor in the master bedroom (<code>binary_sensor.master_motion</code>) and the master bedroom lamp (<code>light.master_bedroom</code>) produces an automation instance. Respond in English.</p>
-      </div>
-    </section>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Help me write an arrival automation. When any household member’s phone device_tracker changes from not_home to home, turn on <code>light.entrance</code>, set the air conditioner to 26 degrees, and play my favorite playlist. Show me a YAML summary and wait for confirmation before enabling it. Respond in English.</p>
+ <p class="pnote">Important: Don’t hardcode AI with device_id, always use entity_id (see <a href="ch8_first_automation.html">Chapter 8</a>).</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Modify the “Good night” automation so that, when <code>calendar.family</code> contains an event before 08:00 the next morning, the morning scene starts 30 minutes earlier. Read the existing automation YAML first, explain the proposed change, and wait for approval. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Split the “Living-room AC automatic control” automation into two automations: turn on above 28 degrees and turn off below 25 degrees. Use <code>mode: restart</code> to prevent competing actions. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Write <code>script.movie_night</code> to turn off the main lights, set the living-room accent light to red at 30% brightness, turn on the TV, and select Netflix. Then add a dashboard button that runs the script. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">List my current automations and flag three risky patterns: device_id references, wait_for_trigger without a timeout, and time-only triggers with no conditions. Explain each finding and recommend a change. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Import this <code>blueprint</code>: <code>https://community.home-assistant.io/t/motion-activated-light/262970</code>. Create an automation instance using <code>binary_sensor.master_motion</code> and <code>light.master_bedroom</code>. Respond in English.</p>
+ </div>
+ </section>
 
-    <section id="cat-sensor" data-nav="Sensors and Devices">
-      <h2 data-icon="sensor">Sensor and device query</h2>
-      <p>go <code>ha_get_state</code>/<code>ha_get_history</code>/<code>ha_search</code>/<code>ha_get_device</code>/<code>ha_list_floors_areas</code>.</p>
+ <section id="cat-sensor" data-nav="Sensors and Devices">
+ <h2 data-icon="sensor">Sensor and device query</h2>
+ <p>go <code>ha_get_state</code>/<code>ha_get_history</code>/<code>ha_search</code>/<code>ha_get_device</code>/<code>ha_list_floors_areas</code>.</p>
 
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">List all the areas in your home (Floor→Area) and what devices are under each area. The table layout makes it easier for me to see if there are any entities that have not yet been returned to their positions. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">What are the temperature, humidity, CO2, and PM2.5 in the living room now? How different is it from outside? If the CO2 exceeds 1000ppm, it is recommended that I turn on the fresh air system or open the windows. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">use <code>ha_get_history</code> Get past 24 hours <code>binary_sensor.front_door</code> For all changes, count "how many times it has been opened, how long it has been open on average, and how long it has been open for the longest time" to determine whether there are any abnormalities. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Find all entities that have "no report status for 7 days" (perhaps the sensor is out of power or disconnected) and list them all at once - this is the most easily overlooked hidden danger. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">I want the "living room sensor" (entity_id <code>sensor.living_temp</code>) was renamed to <code>sensor.living_room_temperature</code>.<strong>First list all automation, script, scene, and dashboard that reference it.</strong>, you can change it together after I confirm it, don’t miss anything. Respond in English.</p>
-        <p class="pnote">HA has <code>ha_get_entity</code> Remember to use references.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">List all current <code>device_class: motion</code> Entities, see which ones have never triggered in the past 24 hours - most likely broken or blocked by location. Respond in English.</p>
-      </div>
-    </section>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">List every floor and area in the home and the devices assigned to each area. Use a table and identify any entities that have not been assigned to an area. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Report current living-room temperature, humidity, CO2, and PM2.5 and compare them with outdoor conditions. If CO2 exceeds 1000 ppm, recommend either starting the ventilation system or opening windows. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Use <code>ha_get_history</code> to retrieve every state change for <code>binary_sensor.front_door</code> over the past 24 hours. Report how many times it opened, the average open duration, and the longest open duration, then identify any anomaly. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Find every entity that has not reported a state for 7 days, which may indicate a depleted battery or disconnected sensor, and list the results. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Rename the living-room sensor from <code>sensor.living_temp</code> to <code>sensor.living_room_temperature</code>. <strong>First list every automation, script, scene, and dashboard that references it.</strong> Wait for my confirmation, then update all references together. Respond in English.</p>
+ <p class="pnote">HA has <code>ha_get_entity</code> Remember to use references.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">List every entity with <code>device_class: motion</code> and identify those that have not triggered during the past 24 hours; they may be faulty or poorly positioned. Respond in English.</p>
+ </div>
+ </section>
 
-    <section id="cat-voice" data-nav="Daily voice conversations">
-      <h2 data-icon="voice">Daily voice conversations (short version)</h2>
-      <p>The following are suitable<strong>Voice assistant and chat dual use</strong>—Short, spoken, and able to trigger the correct service. match <a href="ch19_voice_ai.html">Chapter 19</a> Assist is the most straightforward to use.</p>
+ <section id="cat-voice" data-nav="Daily voice conversations">
+ <h2 data-icon="voice">Daily voice conversations (short version)</h2>
+ <p>The following are suitable <strong>Voice assistant and chat dual use</strong>—Short, spoken, and able to trigger the correct service. match <a href="ch19_voice_ai.html">Chapter 19</a> Assist is the most straightforward to use.</p>
 
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Turn on the living room lights. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">I want to go out, turn off all the lights, lock the door, and switch the air conditioner to leaving mode. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Air conditioning 26 degrees, sleeping fan speed. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Remind me to take out the trash tomorrow at 7 o'clock. use <code>todo.family</code> Add an item and set due date. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">How many times are you at home now? How cold is it outside? Will it rain in the afternoon? Respond in English.</p>
-      </div>
-    </section>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Turn on the living-room lights. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">I am leaving. Turn off all lights, lock the door, and put the air conditioner into away mode. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Set the air conditioner to 26 degrees with sleep fan mode. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Remind me to take out the trash tomorrow at 19:00. Add an item to <code>todo.family</code> and set its due date. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">How many people are home now? What is the outdoor temperature, and will it rain this afternoon? Respond in English.</p>
+ </div>
+ </section>
 
-    <section id="cat-ops" data-nav="Troubleshooting and maintenance">
-      <h2 data-icon="ops">Troubleshooting and maintenance</h2>
-      <p>go <code>ha_get_logs</code>/<code>ha_get_automation_traces</code>/<code>ha_get_system_health</code>/<code>ha_manage_backup</code>. These are the most valuable batches when something goes wrong with HA.</p>
+ <section id="cat-ops" data-nav="Troubleshooting and maintenance">
+ <h2 data-icon="ops">Troubleshooting and maintenance</h2>
+ <p>go <code>ha_get_logs</code>/<code>ha_get_automation_traces</code>/<code>ha_get_system_health</code>/<code>ha_manage_backup</code>. These are the most valuable batches when something goes wrong with HA.</p>
 
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">The automation "Turn on the lights at sunset" was not triggered this morning. Use <code>ha_get_automation_traces</code> Get the last 5 execution records to find out the reason for the failure. If you have a fix, give me a summary first, and I'll confirm it before making changes. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">use <code>ha_get_logs</code> Capture the records with log_level=ERROR and above in the past 24 hours, and sort them into groups: Which integration/which entity has the most errors? Give me 3 top tips that need to be addressed. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">run once <code>ha_get_system_health</code>, check whether the three major components of recorder, supervisor, and network are unhealthy. If so, follow the recommended repair steps in HA official documents. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">List the automatic backup records of the past 7 days, confirm that they are run every day, and each file is &gt; 100MB (too small may cause problems). If there is no new backup for more than 24 hours,<strong>Run a full backup for me first</strong>Give back again. Respond in English.</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">Copy</button>
-        <p class="ptext">Repairs Center (<code>ha_report_issue</code> How many open issues are there currently in the corresponding block)? List them one by one, sort them by severity, and tell me which ones can be ignored and which ones must be dealt with. Respond in English.</p>
-      </div>
-    </section>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">The “Turn on the lights at sunset” automation did not trigger this morning. Use <code>ha_get_automation_traces</code> to retrieve its five most recent traces and identify the cause. If a fix is available, summarize it and wait for my confirmation before applying it. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Use <code>ha_get_logs</code> to retrieve entries at log_level=ERROR or higher from the past 24 hours. Group them by integration and entity, identify the groups with the most errors, and recommend the three highest-priority fixes. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Run <code>ha_get_system_health</code> once and check Recorder, Supervisor, and networking for unhealthy states. If you find a problem, follow the repair steps in the official Home Assistant documentation. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">List automatic backups from the past 7 days. Confirm that one ran each day and that every file is &gt; 100MB, because a much smaller file may be incomplete. If the newest backup is more than 24 hours old, <strong>run a full backup first</strong> and then report the result. Respond in English.</p>
+ </div>
+ <div class="prompt-card"><button class="copy" type="button">Copy</button>
+ <p class="ptext">Use <code>ha_report_issue</code> to report the current open issues from Repairs. List each issue by severity and explain which can be deferred and which require action. Respond in English.</p>
+ </div>
+ </section>
 
-    <section id="tips" data-nav="Writing Cheat Sheet">
-      <h2 data-icon="ai">Cheat sheet for writing prompt words for AI</h2>
-      <p>After reading 43 items, the routine actually only has five moves. Writing instructions to an AI agent is different from writing instructions to a human being:</p>
-      <table class="data-table">
-        <thead>
-          <tr><th>Put it this way</th><th>Don't say that</th><th>why</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Use entity_id to say: "Open <code>light.living</code>” or use the friendly name “Turn on the main light in the living room”</td>
-            <td>"Turn on that light" "Turn on that light"</td>
-            <td>The AI agent requires a specific entity_id or an explicit name to call the service.</td>
-          </tr>
-          <tr>
-            <td>Specify which service to use: "Use <code>climate.set_temperature</code> Assume 26"</td>
-            <td>"Turn it to 26 degrees" (let the AI guess randomly)</td>
-            <td>Complex control explanation tool, AI will not use the wrong service. Simple instructions can be spoken.</td>
-          </tr>
-          <tr>
-            <td>Read first, then write: "Read the existing automation YAML for me first, and then tell me how you want to change it."</td>
-            <td>"Help me change xxx automation"</td>
-            <td>If you change it without reading the original text, it will most likely be bad. This is the iron rule to preserve the existing settings.</td>
-          </tr>
-          <tr>
-            <td>Summary first and then apply: "Give me the YAML summary and I will confirm and then enable it"</td>
-            <td>"Help me add an automation"</td>
-            <td>Anyone who knows how to use config should add this sentence, the cheapest insurance.</td>
-          </tr>
-          <tr>
-            <td>Use entity_id instead of device_id: "Trigger <code>binary_sensor.front_door</code>”</td>
-            <td>Use device_id UUID</td>
-            <td>If device_id changes the device, the connection will be broken, but entity_id is stable; this is also <a href="ch8_first_automation.html">Chapter 8</a>iron law.</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="callout warn"><strong>Safety reminder:</strong>Connect HA to LLM = give AI the ability to change your home's settings and trigger entities.<strong>When Exposing entities, only the "harmless" ones (lights, sensors) will be placed first, and after a few weeks of verification, the security categories (door locks, alarms, main power switches) will be opened.</strong>Actionable prompts retain the phrase "summary first and then apply".</div>
-    </section>
+ <section id="tips" data-nav="Writing Cheat Sheet">
+ <h2 data-icon="ai">Cheat sheet for writing prompts for AI</h2>
+ <p>After reading 43 items, the routine actually only has five moves. Writing instructions to an AI agent is different from writing instructions to a human being:</p>
+ <table class="data-table">
+ <thead>
+ <tr><th>Put it this way</th><th>Don't say that</th><th>why</th></tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>Use entity_id to say: "Open <code>light.living</code>” or use the friendly name “Turn on the main light in the living room”</td>
+ <td>"Turn on that light" "Turn on that light"</td>
+ <td>The AI agent requires a specific entity_id or an explicit name to call the service.</td>
+ </tr>
+ <tr>
+ <td>Specify which service to use: "Use <code>climate.set_temperature</code> Assume 26"</td>
+ <td>"Turn it to 26 degrees" (let the AI guess randomly)</td>
+ <td>Complex control explanation tool, AI will not use the wrong service. Simple instructions can be spoken.</td>
+ </tr>
+ <tr>
+ <td>Read first, then write: "Read the existing automation YAML for me first, and then tell me how you want to change it."</td>
+ <td>"Help me change xxx automation"</td>
+ <td>If you change it without reading the original text, it will most likely be bad. This is the iron rule to preserve the existing settings.</td>
+ </tr>
+ <tr>
+ <td>Summary first and then apply: "Give me the YAML summary and I will confirm and then enable it"</td>
+ <td>"Help me add an automation"</td>
+ <td>Anyone who knows how to use config should add this sentence, the cheapest insurance.</td>
+ </tr>
+ <tr>
+ <td>Use entity_id instead of device_id: "Trigger <code>binary_sensor.front_door</code>”</td>
+ <td>Use device_id UUID</td>
+ <td>If device_id changes the device, the connection will be broken, but entity_id is stable; this is also <a href="ch8_first_automation.html">Chapter 8</a> iron law.</td>
+ </tr>
+ </tbody>
+ </table>
+ <div class="callout warn"><strong>Safety reminder:</strong> Connect HA to LLM = give AI the ability to change your home's settings and trigger entities. <strong>When Exposing entities, only the "harmless" ones (lights, sensors) will be placed first, and after a few weeks of verification, the security categories (door locks, alarms, main power switches) will be opened.</strong> Actionable prompts retain the phrase "summary first and then apply".</div>
+ </section>
 
-    <section id="faq" data-nav="FAQ">
-      <h2 data-icon="faq">FAQ</h2>
-      <details class="faq">
-        <summary>What is the difference between MCP server and REST API and Voice Assistant?</summary>
-        <div class="body">Voice Assistant (Assist) uses intent, short commands, and is pre-defined; REST API is an HTTP call service, suitable for writing programs; MCP server is a "tool directory" for LLM agent - AI can dynamically discover which services can be called, which states can be read, and which settings can be modified, without the need to hard-code intentions in advance. The prompt words in this book are all for MCP/API, and the length and complexity are beyond the capabilities of Assist.</div>
-      </details>
-      <details class="faq">
-        <summary>Should I use ha-mcp-woow or official MCP Server integration?</summary>
-        <div class="body">The official integration (HA 2025.7+) is enough, covering state query + service call;<code>ha-mcp-woow</code> It is an enhanced version of WoowTech, with additional config editing, HACS management, backup tools, log/trace query, etc. (many prompt words used in this book <code>ha_config_set_*</code>, <code>ha_get_automation_traces</code>, <code>ha_manage_backup</code> That’s what it comes from). If you want a complete experience, choose <code>ha-mcp-woow</code>, I just want to try it safely and choose the official one.</div>
-      </details>
-      <details class="faq">
-        <summary>What should I do if AI often calls the wrong service or gives the wrong entity_id?</summary>
-        <div class="body">Three common reasons: (1) The entity is not exposed to LLM (Settings → Voice Assistants → Expose), (2) The naming is too vague and AI cannot guess it (<code>sensor.abc123</code> Than <code>sensor.living_temperature</code> Difficult to use), (3) The LLM context is too stuffed, and important entities are truncated. Correction: Name first (<a href="ch4_naming_labels.html">Chapter 4</a>), then expose, and finally only expose relevant areas.</div>
-      </details>
-      <details class="faq">
-        <summary>Will it cost a lot of tokens/expensive?</summary>
-        <div class="body">Daily control (turning on lights, checking temperature, single automation) costs almost no money; energy analysis, log capture of the entire domain for 7 days, and large-scale reconstruction of automation will cost tokens. Save money: only expose relevant entities, use cheap models (Claude Haiku, GPT-4o mini) for large analysis, and switch to strong models for complex planning.</div>
-      </details>
-      <details class="faq">
-        <summary>Can it be triggered automatically instead of manually posting prompt words every time?</summary>
-        <div class="body">Yes. Wrap the prompt words in this book into skills (see <a href="skills.html">Skill Manual</a>), or made into HA <code>script</code> bring <code>service: conversation.process</code> To LLM. Advanced approach: Use HA automation to trigger LLM analysis and perform corresponding actions on specific events (water leakage, low battery) - but pay special attention to safety at this time, and do not allow the AI ​​to do unrecoverable operations.</div>
-      </details>
-      <details class="faq">
-        <summary>Can prompt words be used directly with family members?</summary>
-        <div class="body">Yes. Download this page as a single HTML file and send it to the family group. Everyone can choose their own scene and copy and paste it directly. With the "Daily Voice Conversation" section, even non-technical family members can get started.</div>
-      </details>
-    </section>
+ <section id="faq" data-nav="FAQ">
+ <h2 data-icon="faq">FAQ</h2>
+ <details class="faq">
+ <summary>What is the difference between MCP server and REST API and Voice Assistant?</summary>
+ <div class="body">Voice Assistant (Assist) uses intent, short commands, and is pre-defined; REST API is an HTTP call service, suitable for writing programs; MCP server is a "tool directory" for LLM agent - AI can dynamically discover which services can be called, which states can be read, and which settings can be modified, without the need to hard-code intentions in advance. The prompts in this handbook are all for MCP/API, and the length and complexity are beyond the capabilities of Assist.</div>
+ </details>
+ <details class="faq">
+ <summary>Should I use ha-mcp-woow or official MCP Server integration?</summary>
+ <div class="body">Home Assistant integration (HA 2025.7+) is enough, covering state query + action call;<code>ha-mcp-woow</code> It is an enhanced version of WoowTech, with additional config editing, HACS management, backup tools, log/trace query, etc. (many prompts used in this handbook <code>ha_config_set_*</code>, <code>ha_get_automation_traces</code>, <code>ha_manage_backup</code> That’s what it comes from). If you want a complete experience, choose <code>ha-mcp-woow</code>, I just want to try it safely and choose Home Assistant one.</div>
+ </details>
+ <details class="faq">
+ <summary>What should I do if AI often calls the wrong service or gives the wrong entity_id?</summary>
+ <div class="body">Three common reasons: (1) The entity is not exposed to LLM (Settings → Voice Assistants → Expose), (2) The naming is too vague and AI cannot guess it (<code>sensor.abc123</code> Than <code>sensor.living_temperature</code> Difficult to use), (3) The LLM context is too stuffed, and important entities are truncated. Correction: Name first (<a href="ch4_naming_labels.html">Chapter 4</a>), then expose, and finally only expose relevant areas.</div>
+ </details>
+ <details class="faq">
+ <summary>Will it cost a lot of tokens/expensive?</summary>
+ <div class="body">Daily control (turning on lights, checking temperature, single automation) costs almost no money; energy analysis, log capture of the entire domain for 7 days, and large-scale reconstruction of automation will cost tokens. Save money: only expose relevant entities, use cheap models (Claude Haiku, GPT-4o mini) for large analysis, and switch to strong models for complex planning.</div>
+ </details>
+ <details class="faq">
+ <summary>Can it be triggered automatically instead of manually posting prompts every time?</summary>
+ <div class="body">Yes. Wrap the prompts in this handbook into skills (see <a href="skills.html">Skill Manual</a>), or made into HA <code>script</code> bring <code>service: conversation.process</code> To LLM. Advanced approach: Use HA automation to trigger LLM analysis and perform corresponding actions on specific events (water leakage, low battery) - but pay special attention to safety at this time, and do not allow the AI ​​to do unrecoverable operations.</div>
+ </details>
+ <details class="faq">
+ <summary>Can prompts be used directly with family members?</summary>
+ <div class="body">Yes. Download this page as a single HTML file and send it to the family group. Everyone can choose their own scene and copy and paste it directly. With the "Daily Voice Conversation" section, even non-technical family members can get started.</div>
+ </details>
+ </section>
 
-    <section id="download" data-nav="Download">
-      <h2 data-icon="download">take this book away</h2>
-      <p>The entire book is a self-contained single-file HTML, with all icons embedded. After downloading, it can be opened offline and forwarded directly to family members and colleagues.</p>
-      <p>
-        <a class="btn-pill" href="prompts.html" download="ha-prompt-library.html">Download this booklet HTML</a>
-        <a class="btn-ghost" href="index.html">Return to Resource Hub</a>
-      </p>
-    </section>
+ <section id="download" data-nav="Download">
+ <h2 data-icon="download">Download this handbook</h2>
+ <p>The entire book is a self-contained single-file HTML, with all icons embedded. After downloading, it can be opened offline and forwarded directly to family members and colleagues.</p>
+ <p>
+ <a class="btn-pill" href="prompts.html" download="ha-prompt-library.html">Download this handbooklet HTML</a>
+ <a class="btn-ghost" href="index.html">Return to Resource Hub</a>
+ </p>
+ </section>
 
-    <footer class="site-footer">
-      <p>"HA API/MCP Control Prompt Dictionary" by <strong>WoowTech Wowu Technology</strong> make, to <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> Authorized release.</p>
-      <p class="footer-meta">The Smart Space Solution · <a href="index.html">HA Resource Hub</a> · MCP tool name starts with <code>ha-mcp-woow</code> v2026-08 is valid, the official MCP integration name may be slightly different.</p>
-    </footer>
-  </main>
+ <footer class="site-footer">
+ <p>"HA API/MCP Control Prompt Dictionary" by <strong>WoowTech Wowu Technology</strong> make, to <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> Authorized release.</p>
+ <p class="footer-meta">The Smart Space Solution · <a href="index.html">HA Resource Hub</a> · MCP tool name starts with <code>ha-mcp-woow</code> v2026-08 is valid, Home Assistant MCP integration name may be slightly different.</p>
+ </footer>
+ </main>
 </div>
 
 <script>

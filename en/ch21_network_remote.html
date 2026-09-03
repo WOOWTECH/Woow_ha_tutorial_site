@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 21 · Networking and remote access · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Home Assistant remote connection practice: DHCP fixed address, implementation of four routes of Nabu Casa and Cloudflare Tunnel, VPN and DDNS reverse proxy, trusted_proxies settings and information security hard rules." />
+  <meta name="description" content="Configure a DHCP reservation and compare Nabu Casa, Cloudflare Tunnel, VPN, and DDNS with a reverse proxy, including trusted proxies and security rules." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch21_network_remote.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Chapter 21 · Networking and remote access · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Home Assistant remote connection practice: DHCP fixed address, implementation of four routes of Nabu Casa and Cloudflare Tunnel, VPN and DDNS reverse proxy, trusted_proxies settings and information security hard rules." />
+  <meta property="og:description" content="Configure a DHCP reservation and compare Nabu Casa, Cloudflare Tunnel, VPN, and DDNS with a reverse proxy, including trusted proxies and security rules." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch21_network_remote.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chapter 21 · Networking and remote access · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Home Assistant remote connection practice: DHCP fixed address, implementation of four routes of Nabu Casa and Cloudflare Tunnel, VPN and DDNS reverse proxy, trusted_proxies settings and information security hard rules." />
+  <meta name="twitter:description" content="Configure a DHCP reservation and compare Nabu Casa, Cloudflare Tunnel, VPN, and DDNS with a reverse proxy, including trusted proxies and security rules." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -31,7 +31,7 @@
 </head>
 <body>
 <div class="layout">
-  <aside class="sidebar">
+ <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From zero to working</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch21_network_remote.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch21_network_remote.html" lang="en" aria-current="page">EN</a></nav>
@@ -47,7 +47,7 @@
       <li><a href="ch6_dashboard.html">Dashboards</a></li>
       <li><a href="ch7_notifications.html">Notifications</a></li>
       <li><a href="ch8_first_automation.html">First automation</a></li>
-      <li><a href="ch9_backups.html">backups</a></li>
+      <li><a href="ch9_backups.html">Backups</a></li>
       <li><a href="ch10_scripts.html">Scripts</a></li>
       <li><a href="ch11_devices.html">Device settings</a></li>
       <li><a href="ch12_domains.html">Domain reference</a></li>
@@ -68,7 +68,7 @@
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
       <a href="#why">Why should we learn</a>
-      <a href="#lan_basics">District network basics</a>
+      <a href="#lan_basics">Local network basics</a>
       <a href="#steps">Hands-on fixed IP</a>
       <a href="#mdns_port">Local URL and port</a>
       <a href="#decision">Which one suits you</a>
@@ -77,811 +77,811 @@
       <a href="#vpn">VPN plan</a>
       <a href="#ddns_proxy">DDNS and proxy</a>
       <a href="#proxy_config">Trust proxy settings</a>
-      <a href="#hardening">Hard rules for information security</a>
+      <a href="#hardening">Hard rules for security</a>
       <a href="#site_grade">Case-level network</a>
-      <a href="#troubleshoot">Common stuck levels</a>
+      <a href="#troubleshoot">Common problems</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · HACS/add-ons/remote access</a>
-      <a href="appendix_scenes_helpers_groups.html">B · Scenes/helpers/groups</a>
+      <a href="appendix_hacs_addons.html">A · HACS, add-ons, and remote access</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scenes, helpers, and groups</a>
       <a href="appendix_hardware_install.html">C · Hardware and HAOS</a>
     </div>
   </aside>
 
-  <main class="content">
-    <div class="chapter-header">
-      <div class="kicker">Chapter 21</div>
-      <h1>Network and remote connection practices</h1>
-      <p class="lead">You can connect at home, but not when you go out; the app will spin in circles as soon as you leave the Wi-Fi; your friend tells you to "just open a port" but you feel vaguely weird. This chapter starts with the fixed IP of the router, shows you the implementation of the four external connection routes one by one, and nails down the things that "absolutely cannot be done".</p>
-    </div>
-
-    <section id="why" data-nav="Why should we learn">
-      <h2 data-icon="why">Why is remote connection the easiest thing to do wrong?</h2>
-
-      <p><a href="appendix_hacs_addons.html#remote">Appendix A</a> Having compared the four remote routes side by side, that article is “Which one to choose?” This chapter is "After making a choice, how to actually do it and what will happen if you do it wrong."</p>
-
-      <p>Let me first explain what is special about this level: if you did something wrong in the first twenty chapters, the worst thing is that the lights will not turn on, the automation will not run, and you will feel sad behind closed doors.<strong>What went wrong in this chapter is that the door to your home is open for the whole world to see on the Internet.</strong></p>
-
-      <p>What’s inside Home Assistant? Is there anyone in each room of your house, door and window switches, camera images, electronic locks, what time do you go out and what time do you come home. If these things are obtained by others, it is no different than the keys being copied. So the order of this chapter is deliberate:<strong>First stabilize the district network, and then talk about external affairs</strong>. Many people skip the first step and think directly about "how to connect from the outside." As a result, even the home is in trouble.</p>
-
-      <p>After reading this chapter you will have these abilities:</p>
-
-      <ul>
-        <li>Pin the IP of the Home Assistant host on the router so it never runs away</li>
-        <li>Understand <code>homeassistant.local</code> Why sometimes it works and sometimes it doesn't, and you know what to do when it doesn't work.</li>
-        <li>Choose one of the four external routes and follow the steps to complete it</li>
-        <li>Do you know why you can’t log in if you don’t set the two lines after the reverse proxy?</li>
-        <li>know what things<strong>never do</strong>, including the "Open 8123 port forward" tutorial that you will definitely see on the Internet.</li>
-      </ul>
-
-      <div class="callout warn"><strong>Warning:</strong>Home Assistant 2026.8 version changes network-related settings<strong>Move the entire UI into</strong> , originally written in <code>configuration.yaml</code> of <code>http:</code> The block has entered the elimination period. This chapter will focus on the new UI location and the old YAML writing method as a supplement. If your version is older than 2026.8, the screen you see will be different. This is noted in each paragraph below.</div>
-    </section>
-
-    <section id="lan_basics" data-nav="District network basics">
-      <h2 data-icon="network">Basics of district network: IP, DHCP, and why they must be fixed</h2>
-
-      <p>It’s fastest to think of it in terms of “building door number”.</p>
-
-      <p>Your router is the building administrator. For every device connected to your home's Wi-Fi or network cable—your phone, your laptop, your TV, your Home Assistant console—the administrator will issue it a house number that looks like <code>192.168.1.37</code>. This is the house number <strong>IP Address</strong>.</p>
-
-      <p>There is a name for issuing house numbers. <strong>DHCP</strong>. It's automatic, you don't have to do anything, just plug it in and it goes. Convenient, but has a fatal feature:<strong>House numbers are for renting, not buying.</strong></p>
-
-      <p>The lease will expire. Your Home Assistant console is today <code>192.168.1.37</code>, restart after a power trip, the administrator may send it <code>192.168.1.52</code>, while <code>.37</code> You were given a new sweeping robot.</p>
-
-      <h3>What will be damaged if the house number is lost?</h3>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>Something that will break</th><th>Symptoms</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>URLs that you have bookmarked in your browser</td><td>When you open it, it will spin in circles, and finally it will say "Unable to connect".</td></tr>
-          <tr><td>Internal URL set by the mobile app</td><td>I can't connect at home, but when I go out, I can use the cloud normally. It's super counter-intuitive.</td></tr>
-          <tr><td>port forward rules on the router</td><td>The rules also point to the old house number, which is equivalent to pointing to someone else's house.</td></tr>
-          <tr><td>Reverse proxy settings</td><td>The proxy cannot find the backend, and the web page directly responds with 502</td></tr>
-          <tr><td>Device integration using IP binding</td><td>The entire row of printers, NAS, and cameras became "unusable"</td></tr>
-          <tr><td>The URL in the automation you wrote yourself</td><td>Fail silently without showing you errors</td></tr>
-        </tbody>
-      </table>
-
-      <p>So the rules are simple:<strong>The IP of the Home Assistant host must be fixed.</strong>This is not an advanced technique, this is step zero that must be done.</p>
-
-      <h3>There are two ways to fix IP, choose the right one</h3>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>practice</th><th>Where is the setting</th><th>Evaluation</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>DHCP fixed address reservation</strong><br> (DHCP Reservation)</td><td>router</td><td><strong>Recommended.</strong>The administrator remembers "this machine will always have this house number". The machine itself does not need to change anything. It will still be there even if the SD card is replaced or the machine is refilled.</td></tr>
-          <tr><td><strong>Device side static IP</strong><br> (Static IP)</td><td>Home Assistant host</td><td>It works, but you have to fill in the gateway, mask, and DNS yourself. If you fill in one wrong box, the machine will disappear from the Internet. You need to use the on-screen keyboard to save it. Moreover, the router does not know that you have occupied this number and may send it to others, causing conflicts.</td></tr>
-        </tbody>
-      </table>
-
-      <div class="callout tip"><strong>Tip:</strong>You can do both, but make sure you fill in the same IP, and that IP must fall within the DHCP distribution range of the router.<strong>outside</strong>(Or make it a reservation). Otherwise, sooner or later there will be a collision. As a novice, just keep the settings on the router side.</div>
-
-      <h3>Learn MAC address easily</h3>
-
-      <p>To make a reservation on the router, you must first let the router recognize "which one is Home Assistant." The way to recognize it is <strong>MAC Address</strong> —A set of numbers that are engraved into each network card at the factory. They look like <code>DC:A6:32:1B:4E:F0</code>.</p>
-
-      <p>The house number will change, but the MAC will not. So the reservation rule on the router actually says: "Whenever the guy who sees this MAC string comes and asks for the house number, give it to him. <code>192.168.1.37</code>.”</p>
-    </section>
-
-    <section id="steps" data-nav="Hands-on fixed IP">
-      <h2 data-icon="steps">Do it yourself: Pin the host IP and confirm the network page</h2>
-
-      <ol class="steps">
-        <li>
-          <h3>Find out the host’s IP and MAC in Home Assistant</h3>
-          <p>go <strong>Settings → System → Network</strong>. This page will list your host's network interface (wired, wireless) and the IP address it currently has. Copy the IP.</p>
-          <p>The MAC address may not be displayed on this page.<strong>The best place to look is in the router's list of connected devices.</strong> —Open the router management page and look for the name containing <code>homeassistant</code>, or the one whose IP is the same as the one you just copied down, the MAC will be listed next to it. This also has another advantage: if you want to make a reservation later, you have to do it on the router, and you are already there.</p>
-        </li>
-        <li>
-          <h3>Log in to the router management page</h3>
-          <p>The router's management URL is usually <code>192.168.1.1</code> or <code>192.168.0.1</code>, is also often printed on a sticker under the machine. The password is also on the sticker - if you have never changed the default password,<strong>Change it now</strong>, which is the foundation for all subsequent information security measures.</p>
-        </li>
-        <li>
-          <h3>Find the DHCP reserved settings page</h3>
-          <p>Every router has a different name, and this is the trickiest step. Common names include:<strong>DHCP reserved address</strong>, <strong>DHCP Reservation</strong>, <strong>Address Reservation</strong>, <strong>Static DHCP</strong>, <strong>Static Lease</strong>, <strong>fixed allocation</strong>. The location is usually under "Local Area Network/LAN" or "Advanced Settings → DHCP Server".</p>
-          <p>If you can't find it, use your router model to search for "Model + DHCP Reserved". This feature is available even on the cheapest home computers, but it’s just hidden deep inside.</p>
-        </li>
-        <li>
-          <h3>Add a new reservation</h3>
-          <p>Fill in the MAC address copied in step 1 and specify the IP you want to give. It is recommended to choose a number that is easy to remember and difficult to bump into, for example <code>192.168.1.10</code>. Write "Home Assistant" in the remarks column, and you will thank you now three months later.</p>
-          <p>Archive. Some routers need to be restarted to take effect.</p>
-        </li>
-        <li>
-          <h3>Let the host get the number again</h3>
-          <p>After the reservation is set, the host will not be changed immediately until the old lease expires. The fastest way is to restart the Home Assistant host (<strong>Settings → System</strong> Power menu in the upper right corner → Restart system), or unplug the network cable.</p>
-        </li>
-        <li>
-          <h3>Acceptance</h3>
-          <p>After reopening, return to <strong>Settings → System → Network</strong>, confirm that the IP displayed is the one you specified. Then use the new IP to open the webpage, and you can log in normally and it will be successful. Bookmark this URL instead of your original one.</p>
-        </li>
-        <li>
-          <h3>Fill in the internal URL</h3>
-          <p>Also in <strong>Settings → System → Network</strong> This page has two spaces: "Internal URL" and "External URL". Fill in the internal URL with the one you just pinned, for example <code>http://192.168.1.10:8123</code>.</p>
-          <p>These two grids<strong>Just fill in the connection port and don’t add the path later.</strong>. fill in <code>http://192.168.1.10:8123/lovelace</code> This way of writing will cause the subsequent link generation function to receive a strange URL, which is a common cause of trouble.</p>
-        </li>
-      </ol>
-
-      <div class="callout"><strong>Concept:</strong>Why are these two boxes important? Because Home Assistant uses these two boxes when it generates notification links, pushes camera images to the phone, or tells the app "where you should go." If you fill it in incorrectly, the symptoms will be very strange: all the functions are there, but you can’t access the notification when you click on it.</div>
-    </section>
-
-    <section id="mdns_port" data-nav="Local URL and port">
-      <h2 data-icon="url">What is homeassistant.local and the number 8123?</h2>
-
-      <h3>The magic behind .local URLs is called mDNS</h3>
-
-      <p>When you first installed Home Assistant, the tutorial asked you to <code>homeassistant.local:8123</code>, and then it works. This thing is actually a bit magical - you don't have a DNS server at home, who tells you where this string of characters on your computer is going?</p>
-
-      <p>The answer is <strong>mDNS (Multicast DNS, multicast DNS)</strong>. In plain English, the way it works is<strong>shouting in the classroom</strong>: </p>
-
-      <ol class="steps">
-        <li>
-          <h3>Your computer broadcasts to the entire district network</h3>
-          <p>"Is there anyone called HomeAssistant?" This sentence is sent out in a multicast manner, and every machine in the same network segment can hear it.</p>
-        </li>
-        <li>
-          <h3>Home Assistant host raises hand</h3>
-          <p>"I am, I'm at 192.168.1.10."</p>
-        </li>
-        <li>
-          <h3>Write it down on your computer and connect directly.</h3>
-          <p>The whole process does not require any server, it all relies on shouting. The Apple side calls this Bonjour, and the Linux implementation is called Avahi, which is actually the same thing.</p>
-        </li>
-      </ol>
-
-      <h3>why it often fails</h3>
-
-      <p>Because "shouting" can be blocked in many ways:</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>Failure reason</th><th>How to judge</th><th>Solution</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>You and the host are not on the same network segment (VLAN or guest network)</td><td>The mobile phone can be connected to the main Wi-Fi, but not the guest Wi-Fi.</td><td>Use IP direct connection, or enable mDNS forwarding on the router</td></tr>
-          <tr><td>A router or switch is blocking multicast traffic</td><td>The whole family cannot connect to .local, but the direct IP connection is normal</td><td>Find the settings for IGMP Snooping, Multicast, and mDNS in the router, or directly switch to IP</td></tr>
-          <tr><td>The device's Wi-Fi has "Client Isolation" turned on</td><td>The mobile phone can connect to the external network, but cannot connect to any machine at home.</td><td>Turn off the router’s AP Isolation / Client Isolation</td></tr>
-          <tr><td>The operating system or browser does not support it</td><td>Some Android versions, some enterprise network environments</td><td>Use IP</td></tr>
-          <tr><td>You are outside</td><td>It will definitely be inaccessible if you leave home</td><td>mDNS <strong>Originally only valid in the district network</strong>, this is not broken</td></tr>
-          <tr><td>There are two devices on the Internet called homeassistant.</td><td>Even in the past it was another machine</td><td>Rename one of them</td></tr>
-        </tbody>
-      </table>
-
-      <div class="callout warn"><strong>Warning:</strong>The most important sentence— <code>homeassistant.local</code> <strong>It will never work on the external network</strong>. It is not your public URL and cannot be used to set up port forward. I saw someone asking "I can't connect to homeassistant.local when I call it outside." The answer is this.</div>
-
-      <h3>The number 8123, changes after 2026.8</h3>
-
-      <p>If the IP is a house number,<strong>The port is the extension number behind the house number.</strong>. The same machine can run many services at the same time, and the extension number is used to distinguish who is who. The number that Home Assistant historically uses is <strong>8123</strong>, so the URL must be written as <code>http://192.168.1.10:8123</code>.</p>
-
-      <p>But this matter has changed in version 2026.8, and the changes are worth knowing:</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>your situation</th><th>Default port</th><th>How long is the URL?</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>After 2026.8<strong>fresh install</strong>Home Assistant OS</td><td><code>80</code></td><td><code>http://homeassistant.local</code>(No need to add the number later)</td></tr>
-          <tr><td>The system that was running before 2026.8 was upgraded.</td><td>maintain <code>8123</code></td><td><code>http://homeassistant.local:8123</code></td></tr>
-          <tr><td>Container/Docker installation</td><td><code>8123</code></td><td><code>http://192.168.1.10:8123</code></td></tr>
-        </tbody>
-      </table>
-
-      <p>The official statement on the revision is very clear:<strong>Nothing will change on systems that are already running and you don’t need to do anything. This only affects fresh installations of Home Assistant OS.</strong>In other words, most teachings on the Internet <code>:8123</code> It's probably right for you.</p>
-
-      <p>Why change? because <code>80</code> It is the default number of the web page, and the browser will automatically fill it in, so the URL can be shortened - purely to reduce the threshold for novices.</p>
-
-      <div class="callout tip"><strong>Tip:</strong>After 2026.8 you can <strong>Settings → System → Network</strong> Change the connection port. The official has put a very considerate insurance policy here:<strong>After making the changes, the system will wait for you to confirm "Is it still connected?" If you don't confirm within five minutes, it will treat it as something wrong and automatically put back the old settings and restart.</strong>So even if you change for the worse, you won't lock yourself out.</div>
-    </section>
-
-    <section id="decision" data-nav="Which one suits you">
-      <h2 data-icon="compare">Four roads, which one is suitable for you?</h2>
-
-      <p><a href="appendix_hacs_addons.html#remote">Appendix A</a> I have already introduced what each of these four paths is, so I won’t repeat them here. I will directly give you a comparison table for decision-making. After reading, pick one, and then jump to the corresponding section to start.</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>Compare items</th><th>Nabu Casa</th><th>Cloudflare Tunnel</th><th>VPN<br>(Tailscale / WireGuard)</th><th>DDNS + reverse proxy</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>cost</strong></td><td>US$6.50/month or US$65/year; EU €7.50/month, €75/year; UK £6.50/month, £65/year; Canada CAD 8.70/month, CAD 87/year; other regions US$6.50/month. Get a one-month free trial when you sign up</td><td>Basic usage is free, but you need to bring your own domain (the domain costs about several hundred yuan per year)</td><td>The free quota of Tailscale’s personal plan is enough for home use; self-installed WireGuard is free</td><td>DDNS has a free plan, the certificate is free, and the cost is your time</td></tr>
-          <tr><td><strong>difficulty</strong></td><td>lowest, turn on a switch</td><td>, you need to be able to set up the Cloudflare backend</td><td>Tailscale low; self-installed WireGuard medium high</td><td><strong>highest</strong>, four things need to be done: router, DNS, certificate, and proxy.</td></tr>
-          <tr><td><strong>Information security</strong></td><td>OK. Official maintenance, no ports are opened</td><td>OK. No ports are opened, and Cloudflare’s access control can be stacked</td><td><strong>best</strong>. The interface is not open to the public network at all, only your device can access it.</td><td>It depends on your setting skills. Doing it right is good, but doing it wrong is the most dangerous thing in the whole chapter.</td></tr>
-          <tr><td><strong>Are you afraid of CGNAT?</strong></td><td>Not afraid</td><td>Not afraid</td><td>Tailscale is not afraid;<strong>Self-installed WireGuard will die</strong></td><td><strong>Will die</strong>, DDNS is completely invalid under CGNAT</td></tr>
-          <tr><td><strong>Voice assistant serial connection</strong><br>(Alexa / Google)</td><td><strong>direct support</strong>, included in subscription</td><td>Technically possible, but you have to connect to the cloud service yourself, which is troublesome</td><td><strong>No</strong>. Voice Cloud is not inside your VPN</td><td>It's feasible, but you have to connect to the cloud service yourself, which is troublesome</td></tr>
-          <tr><td><strong>share with family</strong></td><td>Just add an account to the website</td><td>Just add an account to the website</td><td>If the other party needs to install a VPN and join your network, the elder will be stuck.</td><td>Just add an account to the website</td></tr>
-          <tr><td><strong>Maintenance cost</strong></td><td>almost zero</td><td>low</td><td>low</td><td>high. Credentials will expire, IPs will change, and proxies will break.</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Choose in thirty seconds</h3>
-
-      <ul>
-        <li><strong>Don’t want to bother, want to use Alexa or Google Voice, and want to support official development</strong> → Nabu Casa. This is also the option that the official document itself labels as "the simplest and safest for most people."</li>
-        <li><strong>Only for yourself and your partner, no need for voice assistant, want to save money and be safe</strong> → Tailscale. This is the most secure one.</li>
-        <li><strong>Already have a domain, want a beautiful customized website, and want to use it for family members</strong> → Cloudflare Tunnel.</li>
-        <li><strong>You want to learn networking, have a fixed or quasi-fixed external IP, and are willing to spend a weekend</strong> → DDNS + reverse proxy.</li>
-      </ul>
-
-      <div class="callout"><strong>Concept:</strong>These four are not mutually exclusive. A very common combination is "Nabu Casa for daily use by the family + Tailscale for self-maintenance". There is no problem if both are turned on at the same time.</div>
-    </section>
-
-    <section id="nabu_casa" data-nav="Nabu Casa">
-      <h2 data-icon="remote">Route 1: Home Assistant Cloud (Nabu Casa)</h2>
-
-      <p>This is an official subscription service operated by itself. The subscription fee goes directly back to support the development of projects such as Home Assistant, ESPHome, and Z-Wave JS. Therefore, it is at the same time “the easiest solution” and “the most direct way to sponsor”.</p>
-
-      <h3>what did it do for you</h3>
-
-      <p>Your host actively establishes a connection with Nabu Casa's server, and all subsequent requests from the outside come in through this existing connection.<strong>There is no need to make any holes in your router</strong> —This is why it is not afraid of CGNAT or your IP changing every day.</p>
-
-      <h3>Implementation steps</h3>
-
-      <ol class="steps">
-        <li>
-          <h3>Find cloud settings</h3>
-          <p>go <strong>Settings → System → Network</strong>, under "Home Assistant URL"<strong>Internet</strong>In that column, turn on "Use Home Assistant Cloud". Another entrance is <strong>Settings → Home Assistant Cloud</strong>, both sides can go to the same place, whichever is on your screen.</p>
-        </li>
-        <li>
-          <h3>Register or log in to an account</h3>
-          <p>Register a Nabu Casa account using email.<strong>This is different from the account you use to log into Home Assistant.</strong>, don’t get confused. When registering, you can choose "Start a one-month free trial" without paying upfront.</p>
-        </li>
-        <li>
-          <h3>Turn on the remote connection switch</h3>
-          <p>After logging in, turn on the remote control switch. The system will allocate a fixed set of URLs to you. The format is a long string of codes plus <code>.ui.nabu.casa</code>, for example <code>https://abcd1234-ef56-7890-abcd-ef1234567890.ui.nabu.casa</code>.</p>
-          <p>It's ugly, but it's HTTPS, it's unique, and it won't change.</p>
-        </li>
-        <li>
-          <h3>Save the URL into the mobile app</h3>
-          <p>Open the Companion App (<a href="ch7_notifications.html">Chapter 7</a>The one that has been installed), go to the App settings and fill this URL into the "External URL". The internal URL maintains your IP on the local network. The app will decide which one to use now.</p>
-        </li>
-        <li>
-          <h3>test</h3>
-          <p>Turn off your phone's Wi-Fi, use only the mobile network, and open the app. If you can get in, you will be successful.</p>
-        </li>
-      </ol>
-
-      <div class="callout warn"><strong>Warning:</strong>The official document has an easy-to-follow explanation:<strong>For connections coming through Home Assistant Cloud, all IP addresses from the system’s perspective are <code>127.0.0.1</code>.</strong>This means that the "IP Blocking" function to be discussed later has little ability to identify cloud connections - blocking one is equivalent to blocking all cloud users. This is why people who use Nabu Casa<strong>Rely on MFA more than IP blocking</strong>.</div>
-
-      <div class="callout tip"><strong>Tip:</strong>If you have your own domain, official support is to change the default URL to <code>home.yourdomain.com</code> This kind of custom URL. This function requires Home Assistant 2023.9.0 or above. The setting method is to add it in the Nabu Casa backend and add a corresponding record to your DNS service provider.</div>
-    </section>
-
-    <section id="cloudflare" data-nav="CF Tunnel">
-      <h2 data-icon="addons">Route 2: Cloudflare Tunnel</h2>
-
-      <p>The concept is exactly the same as Nabu Casa— <strong>Your host actively connects to the outside without opening any ports.</strong> —The difference is that it is operated by Cloudflare and uses your own domain, so the URL can be very beautiful.</p>
-
-      <h3>What do you need to prepare</h3>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>Prepare project</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Cloudflare account</td><td>Free plan is enough</td></tr>
-          <tr><td><strong>a domain you own</strong></td><td>The hard threshold of this road. And the DNS of the domain must be managed by Cloudflare</td></tr>
-          <tr><td>Home Assistant OS or Supervised</td><td>Because you need to install apps (add-ons). The person who installed Container has to run another cloudflared container by himself.</td></tr>
-        </tbody>
-      </table>
-
-      <div class="callout warn"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. Cloudflared’s official description specifically mentions,<strong>Free domains like Freenom are no longer available</strong>. To take this route, you have to go to a regular domain provider and buy one, which usually costs a modest annual fee.</div>
-
-      <h3>Implementation steps</h3>
-
-      <ol class="steps">
-        <li>
-          <h3>Give the domain to Cloudflare first</h3>
-          <p>Add your domain in the Cloudflare backend and it will give you two sets of name servers. Go back to where you bought the domain and change the name servers to the two groups provided by Cloudflare. You have to wait for this step to take effect, sometimes a few minutes and sometimes a few hours.</p>
-        </li>
-        <li>
-          <h3>Join third-party app warehouse</h3>
-          <p>Cloudflared is not an official built-in app, so you need to add a warehouse yourself. go <strong>Settings → Apps</strong>(The old version was called "add-on") → <strong>Install app</strong> → Three-dot menu in the upper right corner → <strong>Repositories</strong>, paste <code>https://github.com/homeassistant-apps/repository</code>, press Add.</p>
-          <p>You will see in the old teaching <code>brenner-tobias/addon-cloudflared</code> this URL. The current description page of that old warehouse says "It has been moved to the homeassistant-apps organization" and asks you to switch to the new one above, so don't post the old one again. The complete process of adding a third-party warehouse is here<a href="ch20_addons_docker.html">Chapter 20</a>Spoken.</p>
-        </li>
-        <li>
-          <h3>Install and set up Cloudflared</h3>
-          <p>After the warehouse is added, a new card will appear in the list. Find Cloudflared in it and install it. Go to its settings page and fill in the external URL you want to use, for example <code>ha.yourdomain.com</code>.</p>
-        </li>
-        <li>
-          <h3>Start and complete authorization</h3>
-          <p>Launch the app and then<strong>Go to its log file page</strong>. It will print out an authorization URL, which you need to open with a browser, log in to Cloudflare, and authorize this channel to connect to your domain. This step is most likely to be missed by novices - they don't know what to do without looking at the log file.</p>
-        </li>
-        <li>
-          <h3>Set up trusted proxy</h3>
-          <p>The traffic on this path is transferred from the App container to Home Assistant, which is equivalent to an extra layer of proxy in the middle.<strong>Without setting a trust proxy, the request will be directly blocked by Home Assistant.</strong>(Typical symptoms are that the web page can be opened but cannot be logged in, or the entire page <code>400 Bad Request</code>), please refer to the section "Reverse proxy must be set up" below for the setting method.</p>
-        </li>
-        <li>
-          <h3>test</h3>
-          <p>Turn off your phone's Wi-Fi and turn it on using your mobile network <code>https://ha.yourdomain.com</code>.</p>
-        </li>
-      </ol>
-
-      <div class="callout tip"><strong>Tip:</strong>The Cloudflare backend can add another layer of access control, requiring verification before accessing the Home Assistant login page. For people who say "I don't want my login page to be scanned by the whole world", this is the biggest plus point of this path.</div>
-    </section>
-
-    <section id="vpn" data-nav="VPN plan">
-      <h2 data-icon="security">Route 3: VPN (Tailscale or WireGuard)</h2>
-
-      <p>The first two paths are to "put Home Assistant securely on the Internet." VPN is a completely different idea:<strong>Connect your phone to your home network</strong>.</p>
-
-      <p>The metaphor of a key is the most vivid: the first two are to install a very strict guard at the door, but the VPN has no door at all, and only the person who gets the key knows that the house exists. Because Home Assistant has never been open to the public network from beginning to end,<strong>This is the strongest information security path among the four.</strong>.</p>
-
-      <h3>Tailscale: Newbies should choose this directly</h3>
-
-      <p>Tailscale helps you automate all the hardest parts of VPN (key exchange, hole drilling, and path finding). It can even pass through CGNAT, which is important for users behind carrier-grade NAT in any region.</p>
-
-      <ol class="steps">
-        <li>
-          <h3>Register for a Tailscale account</h3>
-          <p>Just log in with a Google or GitHub account, and the free quota for personal use is more than enough for family scenarios.</p>
-        </li>
-        <li>
-          <h3>Join the community app repository</h3>
-          <p>go <strong>Settings → Apps</strong> → <strong>Install App</strong> → Three-dot menu in the upper right corner → <strong>warehouse</strong>, join <code>https://github.com/hassio-addons/repository</code>. This is the repository for Home Assistant Community Add-ons (now called Community Apps), which includes Tailscale and WireGuard.</p>
-        </li>
-        <li>
-          <h3>Install and start Tailscale</h3>
-          <p>Start after installation, and then<strong>View log file pagination</strong>, there will be an authorization URL inside. Open it with a browser and add the machine to your Tailscale network.</p>
-        </li>
-        <li>
-          <h3>Tailscale is also installed on mobile phones</h3>
-          <p>Install the Tailscale App from the App Store or Play Store and log in with the same account.</p>
-        </li>
-        <li>
-          <h3>Connect with Tailscale URL</h3>
-          <p>After connecting to the VPN, you can use Home Assistant to connect to an address on the Tailscale network. If MagicDNS is turned on, the URL will look like <code>homeassistant.tail1234.ts.net</code> This format (<code>tail1234</code> It is assigned to you by the system).</p>
-        </li>
-      </ol>
-
-      <div class="callout"><strong>Concept:</strong>Tailscale App has one called <code>advertise_routes</code> The default setting is to share your home's local network segment. The advantage of turning it on is: after connecting to the VPN, you can not only connect to Home Assistant, but also the NAS, printer, and router management pages at home, which means that the entire network line is connected to your mobile phone. Very useful during maintenance.</div>
-
-      <div class="callout warn"><strong>Warning:</strong>If you use Tailscale's Serve or Funnel function to share externally, the traffic will pass through a layer of local proxy.<strong>Also set up a trusted proxy</strong>, and the trusted address is <code>127.0.0.1</code>. If you don't set it, you will keep being asked to log in but unable to log in. Simply using VPN direct connection (without turning on Serve/Funnel) does not require this step.</div>
-
-      <h3>WireGuard: The choice of self-installation school</h3>
-
-      <p>WireGuard is the same technology used at the bottom of Tailscale. The difference is that you build it yourself and manage the keys yourself. Social App Warehouse (the one above <code>hassio-addons/repository</code>), WireGuard can be installed.</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th></th><th>Tailscale</th><th>Self-built WireGuard</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Who cares about the key</td><td>Tailscale's coordination server</td><td>Yourself, manual pairing per device</td></tr>
-          <tr><td>Do you want to open the port?</td><td>No need</td><td><strong>want</strong>, you have to open UDP port forward on the router</td></tr>
-          <tr><td>CGNAT bottom</td><td>Can be used</td><td><strong>Cannot be used</strong></td></tr>
-          <tr><td>Reliance on third parties</td><td>Yes</td><td>No, completely autonomous</td></tr>
-          <tr><td>Add a new device</td><td>Just log in to your account</td><td>To generate a key, change settings, and restart</td></tr>
-        </tbody>
-      </table>
-
-      <p>There is usually only one reason to choose WireGuard:<strong>You don’t want to rely on any third-party services</strong>. If you don't insist on this, the time saved by Tailscale is considerable.</p>
-
-      <div class="callout warn"><strong>Warning:</strong>The VPN path has inherent limitations— <strong>Cloud voice assistants such as Alexa and Google Assistant cannot be used</strong>. Because their servers are on the Internet, not in your VPN, they will never be able to connect to your Home Assistant. If you want the voice, you have to match Nabu Casa, or use the local voice (<a href="ch19_voice_ai.html">Chapter 19</a>).</div>
-    </section>
-
-    <section id="ddns_proxy" data-nav="DDNS and proxy">
-      <h2 data-icon="docker">Route 4: DDNS + reverse proxy + Let's Encrypt</h2>
-
-      <p>This is the most traditional, hard-core, and easiest to do bad thing. Let’s first make it clear that it consists of three independent parts, each solving a problem:</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>Parts</th><th>what problem to solve</th><th>vernacular metaphor</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>DDNS</strong><br>Dynamic domain name</td><td>Your external IP will change. If you can’t remember it, you won’t be able to give it to others.</td><td>When you move, the post office will be notified to change your address. DDNS will automatically notify you.</td></tr>
-          <tr><td><strong>reverse proxy</strong><br>Reverse Proxy</td><td>Help you collect HTTPS encrypted traffic, decrypt it and forward it to Home Assistant</td><td>The mailing and receiving counter on the first floor of the building. Packages are collected here and then sent upstairs.</td></tr>
-          <tr><td><strong>Let's Encrypt</strong></td><td>Issuing HTTPS certificates for free so browsers don’t issue warnings</td><td>The notary office stamps it to prove that this website is really yours.</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Three official apps</h3>
-
-      <p>The good news is that these three things are already available in the official App repository, so there is no need to add a third-party repository:</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>App name</th><th>what to do</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>Duck DNS</strong></td><td>Synchronize your home’s floating IP to one <code>xxx.duckdns.org</code> URL,<strong>And built-in Let's Encrypt certificate application</strong>, solve two things at once</td></tr>
-          <tr><td><strong>Let's Encrypt</strong></td><td>Simply issue and renew certificates. You need to install it separately when using other DDNS or your own domain.</td></tr>
-          <tr><td><strong>NGINX Home Assistant SSL proxy</strong></td><td>Reverse proxy. The official one-sentence introduction is "Use NGINX to set up an SSL proxy and direct port 80 traffic to 443." Pay attention to it <strong>80 port is turned off by default</strong>(The official document states that it is to leave 80 for other apps to use). If necessary, you have to open it in the settings tab.</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Implementation steps (taking the shortest path of Duck DNS as an example)</h3>
-
-      <ol class="steps">
-        <li>
-          <h3>First make sure you are not under CGNAT</h3>
-          <p><strong>Do this step first, otherwise all the rest will be wasted.</strong>Method: Log in to the router, find the WAN status page, and see the external IP it displays. Then use your mobile phone or computer to search for "My IP" to see the IP seen by the outside world.</p>
-          <p><strong>Both are the same → No problem. The two are different → You are under CGNAT and this road will not work.</strong>, please change to any of the first three items.</p>
-          <p>Another way to judge: If the router WAN IP falls <code>100.64.x.x</code> Arrive <code>100.127.x.x</code> This range is a section specifically used by telecom operators for CGNAT and can be determined directly.</p>
-        </li>
-        <li>
-          <h3>Register Duck DNS</h3>
-          <p>Go to the Duck DNS website to log in with a social account, apply for a subdomain, and change the string at the top of the page <strong>token</strong> Copy it.</p>
-        </li>
-        <li>
-          <h3>Install and set up Duck DNS App</h3>
-          <p>Install Duck DNS from the official App Store. Fill in the settings page <code>token</code> and <code>domains</code>(the domain you applied for), and then change the <code>accept_terms</code> Change to <code>true</code> —The official document writes very clearly: "Change the value to true to use the Let's Encrypt service."</p>
-          <p>The default certificate file name is <code>fullchain.pem</code> and <code>privkey.pem</code>, don’t change it without any special reason.</p>
-          <p>This app takes the voucher <strong>DNS-01 Verification</strong> — In plain words, "Let's Encrypt will not connect to your home, it will check the DNS record of your domain to confirm that the domain is yours." So<strong>Just to get the credentials, you don’t need to make any holes in the router</strong>. The official document also reminds that if you connect the Duck DNS domain to your own domain, remember to add a CNAME to the name used for verification, otherwise DNS-01 cannot be found and it will fail.</p>
-        </li>
-        <li>
-          <h3>Install NGINX SSL proxy</h3>
-          <p>Install the official NGINX Home Assistant SSL proxy. Set page filling <code>domain</code>(your Duck DNS URL),<code>certfile</code> and <code>keyfile</code>(These are the two file names above, they will be placed in <code>/ssl</code> folder).</p>
-        </li>
-        <li>
-          <h3>Set up trusted proxy</h3>
-          <p><strong>If you don’t do this step, you will definitely fail in the next step.</strong>See next section.</p>
-        </li>
-        <li>
-          <h3>port forward 443 on the router</h3>
-          <p>This step is where you really need to make the hole:<strong>Only forward 443</strong>(HTTPS) to your host, with the destination IP being the one you nailed in the first section of this chapter.</p>
-          <p><strong>Do not open any one except 443.</strong> —especially <strong>8123 Never transfer</strong>(That is equivalent to hanging the unencrypted login page directly on the Internet. See the next section for the reason). There is no need to transfer port 80. NGINX App's port 80 is turned off by default, and your credentials are obtained through DNS verification, not port 80.</p>
-        </li>
-        <li>
-          <h3>Fill in the external URL and test</h3>
-          <p>Arrive <strong>Settings → System → Network</strong>, fill in the external URL <code>https://yourdomain.duckdns.org</code>. Then turn off the phone Wi-Fi test.</p>
-        </li>
-      </ol>
-
-      <div class="callout danger"><strong>Danger:</strong>The only part of this road that requires a hole in the router is 443. After opening it, your login page is on the Internet, and scanning robots around the world will find it in minutes. So those who take this path,<strong>The section on "Information Security Hard Rules" that follows is required reading, not optional reading.</strong>.</div>
-    </section>
-
-    <section id="proxy_config" data-nav="Trust proxy settings">
-      <h2 data-icon="warning">Behind the reverse proxy, you will not be able to log in if you do not set these two settings.</h2>
-
-      <p>This section is the most frequently asked help question in the entire chapter. As long as you use Cloudflare Tunnel, NGINX, Tailscale Serve/Funnel, or any form of reverse proxy,<strong>Will encounter</strong>.</p>
-
-      <h3>Why it breaks: Home Assistant sees the agent, not you</h3>
-
-      <p>Under normal circumstances, when Home Assistant receives a request, it will look at "Which IP this request came from" to record the login, determine whether it is an intranet, and perform IP blocking.</p>
-
-      <p>But after inserting a reverse proxy in the middle, all requests will appear in the eyes of Home Assistant.<strong>They all come from the agent's machine.</strong>. You are in one city and a family member is in another, and there is a Russian scanning robot - they all look exactly the same.</p>
-
-      <p>The solution is that the agent will attach a note to the request saying <code>X-Forwarded-For</code>, it says "The real source of this request is xxx". But Home Assistant <strong>Default is not to trust this note</strong>, because anyone can forge it - if you believe it casually, an attacker can just forge a note that says "I am 127.0.0.1" and pretend to be this machine.</p>
-
-      <p>So you have to explicitly tell Home Assistant two things:<strong>(1) Please trust this note; (2) Only notes from these IPs count.</strong></p>
-
-      <div class="callout danger"><strong>Danger:</strong>Official documents describe the incident as "<strong>If these options are not set, requests from the reverse proxy will be blocked</strong>”, and this is a deliberate design behavior, not a bug. The description of NGINX App is more specific: "Requests received through this proxy <code>400 Bad Request</code>, then you probably missed it <code>trusted_proxies</code> settings. "The symptoms are usually being able to open a webpage, entering the account password but not being able to enter, or simply getting a 400."</div>
-
-      <h3>After 2026.8: Set in UI (recommended practice)</h3>
-
-      <ol class="steps">
-        <li>
-          <h3>Open the network settings page</h3>
-          <p>go <strong>Settings → System → Network</strong>, find the HTTP server area.</p>
-        </li>
-        <li>
-          <h3>Open "Trust X-Forwarded-For"</h3>
-          <p>The official field name is <strong>Trust X-Forwarded-For</strong>, turn it on.</p>
-        </li>
-        <li>
-          <h3>Fill in the trusted proxy address</h3>
-          <p>The field is called <strong>Trusted proxies</strong>, the official description is "Allow setting <code>X-Forwarded-For</code> Reverse proxy IP address or CIDR network segment. Please see the comparison table below for what to fill out.</p>
-        </li>
-        <li>
-          <h3>Archive and restart</h3>
-          <p>After saving, restart Home Assistant and test again.</p>
-        </li>
-      </ol>
-
-      <h3>Which address should be filled in?</h3>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>your agent is</th><th>Fill in Trusted proxies</th><th>Basis</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Apps (add-ons) for Home Assistant, such as NGINX SSL proxy, Cloudflared</td><td><code>172.30.33.0/24</code></td><td>The network segment directly given by the official NGINX App file. This is the internal network where the App container is located.</td></tr>
-          <tr><td>Tailscale’s Serve/Funnel</td><td><code>127.0.0.1</code></td><td>Value given by Tailscale App official document</td></tr>
-          <tr><td>Agents running on the same machine</td><td><code>127.0.0.1</code></td><td>Local loopback address</td></tr>
-          <tr><td>Another machine in the local network (such as an independent NAS or soft router)</td><td>A fixed IP for that machine, e.g. <code>192.168.1.20</code></td><td>Fill in truthfully</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Before 2026.8: written in configuration.yaml</h3>
-
-      <p>The old version does not have UI to set, it needs to be written in <code>configuration.yaml</code>. Take the app-type agent as an example:</p>
-
-      <pre class="code-block"><code>http:
+ <main class="content">
+ <div class="chapter-header">
+ <div class="kicker">Chapter 21</div>
+ <h1>Networking and remote access</h1>
+ <p class="lead">Make Home Assistant reliable on your local network before exposing it remotely. Configure a stable address, compare four secure remote-access paths, and apply the security rules that must not be skipped.</p>
+ </div>
+
+ <section id="why" data-nav="Why should we learn">
+ <h2 data-icon="why">Why is remote connection the easiest thing to do wrong?</h2>
+
+ <p><a href="appendix_hacs_addons.html#remote">Appendix A</a> Having compared the four remote routes side by side, that article is “Which one to choose?” This chapter is "After making a choice, how to actually do it and what will happen if you do it wrong."</p>
+
+ <p>Let me first explain what is special about this level: if you did something wrong in the first twenty chapters, the worst thing is that the lights will not turn on, the automation will not run, and you will feel sad behind closed doors. <strong>What went wrong in this chapter is that the door to your home is open for the whole world to see on the Internet.</strong></p>
+
+ <p>What’s inside Home Assistant? Is there anyone in each room of your house, door and window switches, camera images, electronic locks, what time do you go out and what time do you come home. If these things are obtained by others, it is no different than the keys being copied. So the order of this chapter is deliberate: <strong>First stabilize the local network, and then talk about external affairs</strong>. Many people skip the first step and think directly about "how to connect from the outside." As a result, even the home is in trouble.</p>
+
+ <p>After reading this chapter you will have these abilities:</p>
+
+ <ul>
+ <li>Pin the IP of the Home Assistant host on the router so it never runs away</li>
+ <li>Understand <code>homeassistant.local</code> Why sometimes it works and sometimes it doesn't, and you know what to do when it doesn't work.</li>
+ <li>Choose one of the four external routes and follow the steps to complete it</li>
+ <li>Do you know why you can’t log in if you don’t set the two lines after the reverse proxy?</li>
+ <li>know what things <strong>never do</strong>, including the "Open 8123 port forward" tutorial that you will definitely see on the Internet.</li>
+ </ul>
+
+ <div class="callout warn"><strong>Warning:</strong> Home Assistant 2026.8 version changes network-related settings <strong>Move the entire UI into</strong> , originally written in <code>configuration.yaml</code> of <code>http:</code> The block has entered the elimination period. This chapter will focus on the new UI location and the old YAML writing method as a supplement. If your version is older than 2026.8, the screen you see will be different. This is noted in each paragraph below.</div>
+ </section>
+
+ <section id="lan_basics" data-nav="Local network basics">
+ <h2 data-icon="network">Basics of local network: IP, DHCP, and why they must be fixed</h2>
+
+ <p>It’s fastest to think of it in terms of “building door number”.</p>
+
+ <p>Your router is the building administrator. For every device connected to your home's Wi-Fi or network cable—your phone, your laptop, your TV, your Home Assistant console—the administrator will issue it a house number that looks like <code>192.168.1.37</code>. This is the house number <strong>IP Address</strong>.</p>
+
+ <p>There is a name for issuing house numbers. <strong>DHCP</strong>. It's automatic, you don't have to do anything, just plug it in and it goes. Convenient, but has a fatal feature: <strong>House numbers are for renting, not buying.</strong></p>
+
+ <p>The lease will expire. Your Home Assistant console is today <code>192.168.1.37</code>, restart after a power trip, the administrator may send it <code>192.168.1.52</code>, while <code>.37</code> You were given a new sweeping robot.</p>
+
+ <h3>What will be damaged if the house number is lost?</h3>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>Somefeature that will break</th><th>Symptoms</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>URLs that you have bookmarked in your browser</td><td>When you open it, it will spin in circles, and finally it will say "Unable to connect".</td></tr>
+ <tr><td>Internal URL set by the mobile app</td><td>I can't connect at home, but when I go out, I can use the cloud normally. It's super counter-intuitive.</td></tr>
+ <tr><td>port forward rules on the router</td><td>The rules also point to the old house number, which is equivalent to pointing to someone else's house.</td></tr>
+ <tr><td>Reverse proxy settings</td><td>The proxy cannot find the backend, and the web page directly responds with 502</td></tr>
+ <tr><td>Device integration using IP connection</td><td>The entire row of printers, NAS, and cameras became "unusable"</td></tr>
+ <tr><td>The URL in the automation you wrote yourself</td><td>Fail silently without showing you errors</td></tr>
+ </tbody>
+ </table>
+
+ <p>So the rules are simple: <strong>The IP of the Home Assistant host must be fixed.</strong> This is not an advanced technique, this is step zero that must be done.</p>
+
+ <h3>There are two ways to fix IP, choose the right one</h3>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>practice</th><th>Where is the setting</th><th>Evaluation</th></tr>
+ </thead>
+ <tbody>
+ <tr><td><strong>DHCP fixed address reservation</strong><br> (DHCP Reservation)</td><td>router</td><td><strong>Recommended.</strong> The administrator remembers "this machine will always have this house number". The machine itself does not need to change anything. It will still be there even if the SD card is replaced or the machine is refilled.</td></tr>
+ <tr><td><strong>Device side static IP</strong><br> (Static IP)</td><td>Home Assistant host</td><td>It works, but you have to fill in the gateway, mask, and DNS yourself. If you fill in one wrong box, the machine will disappear from the Internet. You need to use the on-screen keyboard to save it. Moreover, the router does not know that you have occupied this number and may send it to others, causing conflicts.</td></tr>
+ </tbody>
+ </table>
+
+ <div class="callout tip"><strong>Tip:</strong> You can do both, but make sure you fill in the same IP, and that IP must fall within the DHCP distribution range of the router. <strong>outside</strong> (Or make it a reservation). Otherwise, sooner or later there will be a collision. As a novice, just keep the settings on the router side.</div>
+
+ <h3>Learn MAC address easily</h3>
+
+ <p>To make a reservation on the router, you must first let the router recognize "which one is Home Assistant." The way to recognize it is <strong>MAC Address</strong> —A set of numbers that are engraved into each network card at the factory. They look like <code>DC:A6:32:1B:4E:F0</code>.</p>
+
+ <p>The house number will change, but the MAC will not. So the reservation rule on the router actually says: "Whenever the guy who sees this MAC string comes and asks for the house number, give it to him. <code>192.168.1.37</code>.”</p>
+ </section>
+
+ <section id="steps" data-nav="Hands-on fixed IP">
+ <h2 data-icon="steps">Do it yourself: Pin the host IP and confirm the network page</h2>
+
+ <ol class="steps">
+ <li>
+ <h3>Find out the host’s IP and MAC in Home Assistant</h3>
+ <p>go <strong>Settings → System → Network</strong>. This page will list your host's network interface (wired, wireless) and the IP address it currently has. Copy the IP.</p>
+ <p>The MAC address may not be displayed on this page. <strong>The best place to look is in the router's list of connected devices.</strong> —Open the router management page and look for the name containing <code>homeassistant</code>, or the one whose IP is the same as the one you just copied down, the MAC will be listed next to it. This also has another advantage: if you want to make a reservation later, you have to do it on the router, and you are already there.</p>
+ </li>
+ <li>
+ <h3>Log in to the router management page</h3>
+ <p>The router's management URL is usually <code>192.168.1.1</code> or <code>192.168.0.1</code>, is also often printed on a sticker under the machine. The password is also on the sticker - if you have never changed the default password, <strong>Change it now</strong>, which is the foundation for all subsequent security measures.</p>
+ </li>
+ <li>
+ <h3>Find the DHCP reserved settings page</h3>
+ <p>Every router has a different name, and this is the trickiest step. Common names include: <strong>DHCP reserved address</strong>, <strong>DHCP Reservation</strong>, <strong>Address Reservation</strong>, <strong>Static DHCP</strong>, <strong>Static Lease</strong>, <strong>fixed allocation</strong>. The location is usually under "Local Area Network/LAN" or "Advanced Settings → DHCP Server".</p>
+ <p>If you can't find it, use your router model to search for "Model + DHCP Reserved". This feature is available even on the cheapest home computers, but it’s just hidden deep inside.</p>
+ </li>
+ <li>
+ <h3>Add a new reservation</h3>
+ <p>Fill in the MAC address copied in step 1 and specify the IP you want to give. It is recommended to choose a number that is easy to remember and difficult to bump into, for example <code>192.168.1.10</code>. Write "Home Assistant" in the remarks column, and you will thank you now three months later.</p>
+ <p>Archive. Some routers need to be restarted to take effect.</p>
+ </li>
+ <li>
+ <h3>Let the host get the number again</h3>
+ <p>After the reservation is set, the host will not be changed immediately until the old lease expires. The fastest way is to restart the Home Assistant host (<strong>Settings → System</strong> Power menu in the upper right corner → Restart system), or unplug the network cable.</p>
+ </li>
+ <li>
+ <h3>Acceptance</h3>
+ <p>After reopening, return to <strong>Settings → System → Network</strong>, confirm that the IP displayed is the one you specified. Then use the new IP to open the webpage, and you can log in normally and it will be successful. Bookmark this URL instead of your original one.</p>
+ </li>
+ <li>
+ <h3>Fill in the internal URL</h3>
+ <p>Also in <strong>Settings → System → Network</strong> This page has two spaces: "Internal URL" and "External URL". Fill in the internal URL with the one you just pinned, for example <code>http://192.168.1.10:8123</code>.</p>
+ <p>These two grids <strong>Just fill in the connection port and don’t add the path later.</strong>. fill in <code>http://192.168.1.10:8123/lovelace</code> This way of writing will cause the subsequent link generation function to receive a strange URL, which is a common cause of trouble.</p>
+ </li>
+ </ol>
+
+ <div class="callout"><strong>Concept:</strong> Why are these two boxes important? Because Home Assistant uses these two boxes when it generates notification links, pushes camera images to the phone, or tells the app "where you should go." If you fill it in incorrectly, the symptoms will be very strange: all the functions are there, but you can’t access the notification when you click on it.</div>
+ </section>
+
+ <section id="mdns_port" data-nav="Local URL and port">
+ <h2 data-icon="url">What is homeassistant.local and the number 8123?</h2>
+
+ <h3>The magic behind .local URLs is called mDNS</h3>
+
+ <p>When you first installed Home Assistant, the tutorial asked you to <code>homeassistant.local:8123</code>, and then it works. This thing is actually a bit magical - you don't have a DNS server at home, who tells you where this string of characters on your computer is going?</p>
+
+ <p>The answer is <strong>mDNS (Multicast DNS, multicast DNS)</strong>. In plain English, the way it works is <strong>shouting in the classroom</strong>: </p>
+
+ <ol class="steps">
+ <li>
+ <h3>Your computer broadcasts to the entire local network</h3>
+ <p>"Is there anyone called HomeAssistant?" This sentence is sent out in a multicast manner, and every machine in the same network segment can hear it.</p>
+ </li>
+ <li>
+ <h3>Home Assistant host raises hand</h3>
+ <p>"I am, I'm at 192.168.1.10."</p>
+ </li>
+ <li>
+ <h3>Write it down on your computer and connect directly.</h3>
+ <p>The whole process does not require any server, it all relies on shouting. The Apple side calls this Bonjour, and the Linux implementation is called Avahi, which is actually the same thing.</p>
+ </li>
+ </ol>
+
+ <h3>Why it often fails</h3>
+
+ <p>Because "shouting" can be blocked in many ways:</p>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>Failure reason</th><th>How to judge</th><th>Solution</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>You and the host are not on the same network segment (VLAN or guest network)</td><td>The phone can be connected to the main Wi-Fi, but not the guest Wi-Fi.</td><td>Use IP direct connection, or enable mDNS forwarding on the router</td></tr>
+ <tr><td>A router or switch is blocking multicast traffic</td><td>The whole family cannot connect to .local, but the direct IP connection is normal</td><td>Find the settings for IGMP Snooping, Multicast, and mDNS in the router, or directly switch to IP</td></tr>
+ <tr><td>The device's Wi-Fi has "Client Isolation" turned on</td><td>The phone can connect to the external network, but cannot connect to any machine at home.</td><td>Turn off the router’s AP Isolation / Client Isolation</td></tr>
+ <tr><td>The operating system or browser does not support it</td><td>Some Android versions, some enterprise network environments</td><td>Use IP</td></tr>
+ <tr><td>You are outside</td><td>It will definitely be inaccessible if you leave home</td><td>mDNS <strong>Originally only valid in the local network</strong>, this is not broken</td></tr>
+ <tr><td>There are two devices on the Internet called homeassistant.</td><td>Even in the past it was another machine</td><td>Rename one of them</td></tr>
+ </tbody>
+ </table>
+
+ <div class="callout warn"><strong>Warning:</strong> The most important sentence— <code>homeassistant.local</code> <strong>It will never work on the external network</strong>. It is not your public URL and cannot be used to set up port forward. I saw someone asking "I can't connect to homeassistant.local when I call it outside." The answer is this.</div>
+
+ <h3>The number 8123, changes after 2026.8</h3>
+
+ <p>If the IP is a house number, <strong>The port is the extension number behind the house number.</strong>. The same machine can run many services at the same time, and the extension number is used to distinguish who is who. The number that Home Assistant historically uses is <strong>8123</strong>, so the URL must be written as <code>http://192.168.1.10:8123</code>.</p>
+
+ <p>But this matter has changed in version 2026.8, and the changes are worth knowing:</p>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>your situation</th><th>Default port</th><th>How long is the URL?</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>After 2026.8 <strong>fresh install</strong> Home Assistant OS</td><td><code>80</code></td><td><code>http://homeassistant.local</code>(No need to add the number later)</td></tr>
+ <tr><td>The system that was running before 2026.8 was upgraded.</td><td>maintain <code>8123</code></td><td><code>http://homeassistant.local:8123</code></td></tr>
+ <tr><td>Container/Docker installation</td><td><code>8123</code></td><td><code>http://192.168.1.10:8123</code></td></tr>
+ </tbody>
+ </table>
+
+ <p>Home Assistant statement on the revision is very clear: <strong>Nothing will change on systems that are already running and you don’t need to do anything. This only affects fresh installations of Home Assistant OS.</strong> In other words, most teachings on the Internet <code>:8123</code> It's probably right for you.</p>
+
+ <p>Why change? because <code>80</code> It is the default number of the web page, and the browser will automatically fill it in, so the URL can be shortened - purely to reduce the threshold for novices.</p>
+
+ <div class="callout tip"><strong>Tip:</strong> After 2026.8 you can <strong>Settings → System → Network</strong> Change the connection port. Home Assistant has put a very considerate insurance policy here: <strong>After making the changes, the system will wait for you to confirm "Is it still connected?" If you don't confirm within five minutes, it will treat it as something wrong and automatically put back the old settings and restart.</strong> So even if you change for the worse, you won't lock yourself out.</div>
+ </section>
+
+ <section id="decision" data-nav="Which one suits you">
+ <h2 data-icon="compare">Four roads, which one is suitable for you?</h2>
+
+ <p><a href="appendix_hacs_addons.html#remote">Appendix A</a> I have already introduced what each of these four paths is, so I won’t repeat them here. I will directly give you a comparison table for decision-making. After reading, pick one, and then jump to the corresponding section to start.</p>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>Compare items</th><th>Nabu Casa</th><th>Cloudflare Tunnel</th><th>VPN<br>(Tailscale / WireGuard)</th><th>DDNS + reverse proxy</th></tr>
+ </thead>
+ <tbody>
+ <tr><td><strong>cost</strong></td><td>US$6.50/month or US$65/year; EU €7.50/month, €75/year; UK £6.50/month, £65/year; Canada CAD 8.70/month, CAD 87/year; other regions US$6.50/month. Get a one-month free trial when you sign up</td><td>Basic usage is free, but you need to bring your own domain (the domain costs about several hundred yuan per year)</td><td>The free quota of Tailscale’s personal plan is enough for home use; self-installed WireGuard is free</td><td>DDNS has a free plan, the certificate is free, and the cost is your time</td></tr>
+ <tr><td><strong>difficulty</strong></td><td>lowest, turn on a switch</td><td>, you need to be able to set up the Cloudflare dashboard</td><td>Tailscale low; self-installed WireGuard medium high</td><td><strong>highest</strong>, four things need to be done: router, DNS, certificate, and proxy.</td></tr>
+ <tr><td><strong>Security</strong></td><td>OK. Official maintenance, no ports are opened</td><td>OK. No ports are opened, and Cloudflare’s access control can be stacked</td><td><strong>best</strong>. The interface is not open to the public network at all, only your device can access it.</td><td>It depends on your setting skills. Doing it right is good, but doing it wrong is the most dangerous thing in the whole chapter.</td></tr>
+ <tr><td><strong>Are you afraid of CGNAT?</strong></td><td>Not afraid</td><td>Not afraid</td><td>Tailscale is not afraid; <strong>Self-installed WireGuard will die</strong></td><td><strong>Will die</strong>, DDNS is completely invalid under CGNAT</td></tr>
+ <tr><td><strong>Voice assistant integration</strong><br>(Alexa / Google)</td><td><strong>direct support</strong>, included in subscription</td><td>Technically possible, but you have to connect to the cloud service yourself, which is troublesome</td><td><strong>No</strong>. Voice Cloud is not inside your VPN</td><td>It's feasible, but you have to connect to the cloud service yourself, which is troublesome</td></tr>
+ <tr><td><strong>share with family</strong></td><td>Just add an account to the website</td><td>Just add an account to the website</td><td>If the other party needs to install a VPN and join your network, the elder will be stuck.</td><td>Just add an account to the website</td></tr>
+ <tr><td><strong>Maintenance cost</strong></td><td>almost zero</td><td>low</td><td>low</td><td>high. Credentials will expire, IPs will change, and proxies will break.</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Choose in thirty seconds</h3>
+
+ <ul>
+ <li><strong>Don’t want to bother, want to use Alexa or Google Voice, and want to support official development</strong> → Nabu Casa. This is also the option that Home Assistant documentation itself labels as "the simplest and safest for most people."</li>
+ <li><strong>Only for yourself and your partner, no need for voice assistant, want to save money and be safe</strong> → Tailscale. This is the most secure one.</li>
+ <li><strong>Already have a domain, want a beautiful customized website, and want to use it for family members</strong> → Cloudflare Tunnel.</li>
+ <li><strong>You want to learn networking, have a fixed or quasi-fixed external IP, and are willing to spend a weekend</strong> → DDNS + reverse proxy.</li>
+ </ul>
+
+ <div class="callout"><strong>Concept:</strong> These four are not mutually exclusive. A very common combination is "Nabu Casa for daily use by the family + Tailscale for self-maintenance". There is no problem if both are turned on at the same time.</div>
+ </section>
+
+ <section id="nabu_casa" data-nav="Nabu Casa">
+ <h2 data-icon="remote">Route 1: Home Assistant Cloud (Nabu Casa)</h2>
+
+ <p>This is an official subscription service operated by itself. The subscription fee goes directly back to support the development of items such as Home Assistant, ESPHome, and Z-Wave JS. Therefore, it is at the same time “the easiest solution” and “the most direct way to sponsor”.</p>
+
+ <h3>What it provides</h3>
+
+ <p>Your host actively establishes a connection with Nabu Casa's server, and all subsequent requests from the outside come in through this existing connection. <strong>There is no need to make any holes in your router</strong> —This is why it is not afraid of CGNAT or your IP changing every day.</p>
+
+ <h3>Implementation steps</h3>
+
+ <ol class="steps">
+ <li>
+ <h3>Find cloud settings</h3>
+ <p>go <strong>Settings → System → Network</strong>, under "Home Assistant URL" <strong>Internet</strong> In that column, turn on "Use Home Assistant Cloud". Another entrance is <strong>Settings → Home Assistant Cloud</strong>, both sides can go to the same place, whichever is on your screen.</p>
+ </li>
+ <li>
+ <h3>Register or log in to an account</h3>
+ <p>Register a Nabu Casa account using email. <strong>This is different from the account you use to log into Home Assistant.</strong>, don’t get confused. When registering, you can choose "Start a one-month free trial" without paying upfront.</p>
+ </li>
+ <li>
+ <h3>Turn on the remote connection switch</h3>
+ <p>After logging in, turn on the remote control switch. The system will allocate a fixed set of URLs to you. The format is a long string of codes plus <code>.ui.nabu.casa</code>, for example <code>https://abcd1234-ef56-7890-abcd-ef1234567890.ui.nabu.casa</code>.</p>
+ <p>It's ugly, but it's HTTPS, it's unique, and it won't change.</p>
+ </li>
+ <li>
+ <h3>Save the URL into the mobile app</h3>
+ <p>Open the Companion App (<a href="ch7_notifications.html">Chapter 7</a> The one that is installed), go to the App settings and fill this URL into the "External URL". The internal URL maintains your IP on the local network. The app will decide which one to use now.</p>
+ </li>
+ <li>
+ <h3>Test</h3>
+ <p>Turn off your phone's Wi-Fi, use only the mobile network, and open the app. If you can get in, you will be successful.</p>
+ </li>
+ </ol>
+
+ <div class="callout warn"><strong>Warning:</strong> Home Assistant document has an easy-to-follow explanation: <strong>For connections coming through Home Assistant Cloud, all IP addresses from the system’s perspective are <code>127.0.0.1</code>.</strong> This means that the "IP Blocking" function to be discussed later has little ability to identify cloud connections - blocking one is equivalent to blocking all cloud users. This is why people who use Nabu Casa <strong>Rely on MFA more than IP blocking</strong>.</div>
+
+ <div class="callout tip"><strong>Tip:</strong> If you have your own domain, official support is to change the default URL to <code>home.yourdomain.com</code> This kind of custom URL. This function requires Home Assistant 2023.9.0 or above. The setting method is to add it in the Nabu Casa account and add a corresponding record to your DNS service provider.</div>
+ </section>
+
+ <section id="cloudflare" data-nav="CF Tunnel">
+ <h2 data-icon="addons">Route 2: Cloudflare Tunnel</h2>
+
+ <p>The concept is exactly the same as Nabu Casa— <strong>Your host actively connects to the outside without opening any ports.</strong> —The difference is that it is operated by Cloudflare and uses your own domain, so the URL can be very beautiful.</p>
+
+ <h3>What do you need to prepare</h3>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>Prepare item</th><th>Description</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Cloudflare account</td><td>Free plan is enough</td></tr>
+ <tr><td><strong>a domain you own</strong></td><td>The hard threshold of this road. And the DNS of the domain must be managed by Cloudflare</td></tr>
+ <tr><td>Home Assistant OS or Supervised</td><td>Because you need to install apps (add-ons). The person who installed Container has to run another cloudflared container by himself.</td></tr>
+ </tbody>
+ </table>
+
+ <div class="callout warn"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. Cloudflared’s official description specifically mentions, <strong>Free domains like Freenom are no longer available</strong>. To take this route, you have to go to a regular domain provider and buy one, which usually costs a modest annual fee.</div>
+
+ <h3>Implementation steps</h3>
+
+ <ol class="steps">
+ <li>
+ <h3>Give the domain to Cloudflare first</h3>
+ <p>Add your domain in the Cloudflare dashboard and it will give you two sets of name servers. Go back to where you bought the domain and change the name servers to the two groups provided by Cloudflare. You have to wait for this step to take effect, sometimes a few minutes and sometimes a few hours.</p>
+ </li>
+ <li>
+ <h3>Join third-party app warehouse</h3>
+ <p>Cloudflared is not an official built-in app, so you need to add a warehouse yourself. go <strong>Settings → Apps</strong> (The old version was called "add-on") → <strong>Install app</strong> → Three-dot menu in the upper right corner → <strong>Repositories</strong>, paste <code>https://github.com/homeassistant-apps/repository</code>, press Add.</p>
+ <p>You will see in the old teaching <code>brenner-tobias/addon-cloudflared</code> this URL. The current description page of that old warehouse says "It has been moved to the homeassistant-apps organization" and asks you to switch to the new one above, so don't post the old one again. The complete process of adding a third-party warehouse is here <a href="ch20_addons_docker.html">Chapter 20</a> Spoken.</p>
+ </li>
+ <li>
+ <h3>Install and set up Cloudflared</h3>
+ <p>After the warehouse is added, a new card will appear in the list. Find Cloudflared in it and install it. Go to its settings page and fill in the external URL you want to use, for example <code>ha.yourdomain.com</code>.</p>
+ </li>
+ <li>
+ <h3>Start and complete authorization</h3>
+ <p>Launch the app and then <strong>Go to its log file page</strong>. It will print out an authorization URL, which you need to open with a browser, log in to Cloudflare, and authorize this channel to connect to your domain. This step is most likely to be missed by novices - they don't know what to do without looking at the log file.</p>
+ </li>
+ <li>
+ <h3>Set up trusted proxy</h3>
+ <p>The traffic on this path is transferred from the App container to Home Assistant, which is equivalent to an extra layer of proxy in the middle. <strong>Without setting a trust proxy, the request will be directly blocked by Home Assistant.</strong> (Typical symptoms are that the web page can be opened but cannot be logged in, or the entire page <code>400 Bad Request</code>), please refer to the section "Reverse proxy must be set up" below for the setting method.</p>
+ </li>
+ <li>
+ <h3>Test</h3>
+ <p>Turn off your phone's Wi-Fi and turn it on using your mobile network <code>https://ha.yourdomain.com</code>.</p>
+ </li>
+ </ol>
+
+ <div class="callout tip"><strong>Tip:</strong> The Cloudflare dashboard can add another layer of access control, requiring verification before accessing the Home Assistant login page. For people who say "I don't want my login page to be scanned by the whole world", this is the biggest plus point of this path.</div>
+ </section>
+
+ <section id="vpn" data-nav="VPN plan">
+ <h2 data-icon="security">Route 3: VPN (Tailscale or WireGuard)</h2>
+
+ <p>The first two paths are to "put Home Assistant securely on the Internet." VPN is a completely different idea: <strong>Connect your phone to your home network</strong>.</p>
+
+ <p>The metaphor of a key is the most vivid: the first two are to install a very strict guard at the door, but the VPN has no door at all, and only the person who gets the key knows that the house exists. Because Home Assistant has never been open to the public network from beginning to end, <strong>This is the strongest security path among the four.</strong>.</p>
+
+ <h3>Tailscale: Newbies should choose this directly</h3>
+
+ <p>Tailscale helps you automate all the hardest parts of VPN (key exchange, hole drilling, and path finding). It can even pass through CGNAT, which is important for users behind carrier-grade NAT in any region.</p>
+
+ <ol class="steps">
+ <li>
+ <h3>Register for a Tailscale account</h3>
+ <p>Just log in with a Google or GitHub account, and the free quota for personal use is more than enough for family scenes.</p>
+ </li>
+ <li>
+ <h3>Join the community app repository</h3>
+ <p>go <strong>Settings → Apps</strong> → <strong>Install App</strong> → Three-dot menu in the upper right corner → <strong>warehouse</strong>, join <code>https://github.com/hassio-addons/repository</code>. This is the repository for Home Assistant Community Add-ons (now called Community Apps), which includes Tailscale and WireGuard.</p>
+ </li>
+ <li>
+ <h3>Install and start Tailscale</h3>
+ <p>Start after installation, and then <strong>View log file tab</strong>, there will be an authorization URL inside. Open it with a browser and add the machine to your Tailscale network.</p>
+ </li>
+ <li>
+ <h3>Tailscale is also installed on phones</h3>
+ <p>Install the Tailscale App from the App Store or Play Store and log in with the same account.</p>
+ </li>
+ <li>
+ <h3>Connect with Tailscale URL</h3>
+ <p>After connecting to the VPN, you can use Home Assistant to connect to an address on the Tailscale network. If MagicDNS is turned on, the URL will look like <code>homeassistant.tail1234.ts.net</code> This format (<code>tail1234</code> It is assigned to you by the system).</p>
+ </li>
+ </ol>
+
+ <div class="callout"><strong>Concept:</strong> Tailscale App has one called <code>advertise_routes</code> The default setting is to share your home's local network segment. The advantage of turning it on is: after connecting to the VPN, you can not only connect to Home Assistant, but also the NAS, printer, and router management pages at home, which means that the entire network line is connected to your phone. Very useful during maintenance.</div>
+
+ <div class="callout warn"><strong>Warning:</strong> If you use Tailscale's Serve or Funnel function to share externally, the traffic will pass through a layer of local proxy. <strong>Also set up a trusted proxy</strong>, and the trusted address is <code>127.0.0.1</code>. If you don't set it, you will keep being asked to log in but unable to log in. Simply using VPN direct connection (without turning on Serve/Funnel) does not require this step.</div>
+
+ <h3>WireGuard: The choice of self-installation school</h3>
+
+ <p>WireGuard is the same technology used at the bottom of Tailscale. The difference is that you build it yourself and manage the keys yourself. Social App Warehouse (the one above <code>hassio-addons/repository</code>), WireGuard can be installed.</p>
+
+ <table class="data-table">
+ <thead>
+ <tr><th></th><th>Tailscale</th><th>Self-built WireGuard</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Who cares about the key</td><td>Tailscale's coordination server</td><td>Yourself, manual pairing per device</td></tr>
+ <tr><td>Do you want to open the port?</td><td>No need</td><td><strong>want</strong>, you have to open UDP port forward on the router</td></tr>
+ <tr><td>CGNAT bottom</td><td>Can be used</td><td><strong>Cannot be used</strong></td></tr>
+ <tr><td>Reliance on third parties</td><td>Yes</td><td>No, completely autonomous</td></tr>
+ <tr><td>Add a new device</td><td>Just log in to your account</td><td>To generate a key, change settings, and restart</td></tr>
+ </tbody>
+ </table>
+
+ <p>There is usually only one reason to choose WireGuard: <strong>You don’t want to rely on any third-party services</strong>. If you don't insist on this, the time saved by Tailscale is considerable.</p>
+
+ <div class="callout warn"><strong>Warning:</strong> The VPN path has inherent limitations— <strong>Cloud voice assistants such as Alexa and Google Assistant cannot be used</strong>. Because their servers are on the Internet, not in your VPN, they will never be able to connect to your Home Assistant. If you want the voice, you have to match Nabu Casa, or use the local voice (<a href="ch19_voice_ai.html">Chapter 19</a>).</div>
+ </section>
+
+ <section id="ddns_proxy" data-nav="DDNS and proxy">
+ <h2 data-icon="docker">Route 4: DDNS + reverse proxy + Let's Encrypt</h2>
+
+ <p>This is the most traditional, hard-core, and easiest to do bad thing. Let’s first make it clear that it consists of three independent parts, each solving a problem:</p>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>Parts</th><th>what problem to solve</th><th>plain-language analogy</th></tr>
+ </thead>
+ <tbody>
+ <tr><td><strong>DDNS</strong><br>Dynamic domain name</td><td>Your external IP will change. If you can’t remember it, you won’t be able to give it to others.</td><td>When you move, the post office will be notified to change your address. DDNS will automatically notify you.</td></tr>
+ <tr><td><strong>reverse proxy</strong><br>Reverse Proxy</td><td>Help you collect HTTPS encrypted traffic, decrypt it and forward it to Home Assistant</td><td>The mailing and receiving counter on the first floor of the building. Packages are collected here and then sent upstairs.</td></tr>
+ <tr><td><strong>Let's Encrypt</strong></td><td>Issuing HTTPS certificates for free so browsers don’t issue warnings</td><td>The notary office stamps it to prove that this website is really yours.</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Three official apps</h3>
+
+ <p>The good news is that these three things are already available in Home Assistant App repository, so there is no need to add a third-party repository:</p>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>App name</th><th>what to do</th></tr>
+ </thead>
+ <tbody>
+ <tr><td><strong>Duck DNS</strong></td><td>Synchronize your home’s floating IP to one <code>xxx.duckdns.org</code> URL, <strong>And built-in Let's Encrypt certificate application</strong>, solve two things at once</td></tr>
+ <tr><td><strong>Let's Encrypt</strong></td><td>Simply issue and renew certificates. You need to install it separately when using other DDNS or your own domain.</td></tr>
+ <tr><td><strong>NGINX Home Assistant SSL proxy</strong></td><td>Reverse proxy. Home Assistant one-sentence introduction is "Use NGINX to set up an SSL proxy and direct port 80 traffic to 443." Pay attention to it <strong>80 port is turned off by default</strong> (Home Assistant document states that it is to leave 80 for other apps to use). If necessary, you have to open it in the settings tab.</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Implementation steps (taking the shortest path of Duck DNS as an example)</h3>
+
+ <ol class="steps">
+ <li>
+ <h3>First make sure you are not under CGNAT</h3>
+ <p><strong>Do this step first, otherwise all the rest will be wasted.</strong> Method: Log in to the router, find the WAN status page, and see the external IP it displays. Then use your phone or computer to search for "My IP" to see the IP seen by the outside world.</p>
+ <p><strong>Both are the same → No problem. The two are different → You are under CGNAT and this road will not work.</strong>, please change to any of the first three items.</p>
+ <p>Another way to judge: If the router WAN IP falls <code>100.64.x.x</code> Arrive <code>100.127.x.x</code> This range is a section specifically used by telecom operators for CGNAT and can be determined directly.</p>
+ </li>
+ <li>
+ <h3>Register Duck DNS</h3>
+ <p>Go to the Duck DNS website to log in with a social account, apply for a subdomain, and change the string at the top of the page <strong>token</strong> Copy it.</p>
+ </li>
+ <li>
+ <h3>Install and set up Duck DNS App</h3>
+ <p>Install Duck DNS from Home Assistant App Store. Fill in the settings page <code>token</code> and <code>domains</code>(the domain you applied for), and then change the <code>accept_terms</code> Change to <code>true</code> —Home Assistant document writes very clearly: "Change the value to true to use the Let's Encrypt service."</p>
+ <p>The default certificate file name is <code>fullchain.pem</code> and <code>privkey.pem</code>, don’t change it without any special reason.</p>
+ <p>This app takes the voucher <strong>DNS-01 Verification</strong> — In plain words, "Let's Encrypt will not connect to your home, it will check the DNS record of your domain to confirm that the domain is yours." So <strong>Just to get the credentials, you don’t need to make any holes in the router</strong>. Home Assistant document also reminds that if you connect the Duck DNS domain to your own domain, remember to add a CNAME to the name used for verification, otherwise DNS-01 cannot be found and it will fail.</p>
+ </li>
+ <li>
+ <h3>Install NGINX SSL proxy</h3>
+ <p>Install Home Assistant NGINX Home Assistant SSL proxy. Set page filling <code>domain</code>(your Duck DNS URL),<code>certfile</code> and <code>keyfile</code>(These are the two file names above, they will be placed in <code>/ssl</code> folder).</p>
+ </li>
+ <li>
+ <h3>Set up trusted proxy</h3>
+ <p><strong>If you don’t do this step, you will definitely fail in the next step.</strong> See next section.</p>
+ </li>
+ <li>
+ <h3>Forward port 443 on the router</h3>
+ <p>This step is where you really need to make the hole: <strong>Only forward 443</strong> (HTTPS) to your host, with the destination IP being the one you nailed in the first section of this chapter.</p>
+ <p><strong>Do not open any one except 443.</strong> —especially <strong>8123 Never transfer</strong> (That is equivalent to hanging the unencrypted login page directly on the Internet. See the next section for the reason). There is no need to transfer port 80. NGINX App's port 80 is turned off by default, and your credentials are obtained through DNS verification, not port 80.</p>
+ </li>
+ <li>
+ <h3>Fill in the external URL and test</h3>
+ <p>Go to <strong>Settings → System → Network</strong>, fill in the external URL <code>https://yourdomain.duckdns.org</code>. Then turn off the phone Wi-Fi test.</p>
+ </li>
+ </ol>
+
+ <div class="callout danger"><strong>Danger:</strong> The only part of this road that requires a hole in the router is 443. After opening it, your login page is on the Internet, and scanning robots around the world will find it in minutes. So those who take this path, <strong>The section on "Information Security Hard Rules" that follows is required reading, not optional reading.</strong>.</div>
+ </section>
+
+ <section id="proxy_config" data-nav="Trust proxy settings">
+ <h2 data-icon="warning">Behind the reverse proxy, you will not be able to log in if you do not set these two settings.</h2>
+
+ <p>This section is the most frequently asked help question in the entire chapter. As long as you use Cloudflare Tunnel, NGINX, Tailscale Serve/Funnel, or any form of reverse proxy, <strong>Will encounter</strong>.</p>
+
+ <h3>Why it breaks: Home Assistant sees the agent, not you</h3>
+
+ <p>Under normal circumstances, when Home Assistant receives a request, it will look at "Which IP this request came from" to record the login, determine whether it is an intranet, and perform IP blocking.</p>
+
+ <p>But after inserting a reverse proxy in the middle, all requests will appear in the eyes of Home Assistant. <strong>They all come from the agent's machine.</strong>. You are in one city and a family member is in another, and there is a Russian scanning robot - they all look exactly the same.</p>
+
+ <p>The solution is that the agent will attach a note to the request saying <code>X-Forwarded-For</code>, it says "The real source of this request is xxx". But Home Assistant <strong>Default is not to trust this note</strong>, because anyone can forge it - if you believe it casually, an attacker can just forge a note that says "I am 127.0.0.1" and install to be this machine.</p>
+
+ <p>So you have to explicitly tell Home Assistant two things: <strong>(1) Please trust this note; (2) Only notes from these IPs count.</strong></p>
+
+ <div class="callout danger"><strong>Danger:</strong> Official documentation describe the incident as " <strong>If these options are not set, requests from the reverse proxy will be blocked</strong>”, and this is a deliberate design behavior, not a bug. The description of NGINX App is more specific: "Requests received through this proxy <code>400 Bad Request</code>, then you probably missed it <code>trusted_proxies</code> settings. "The symptoms are usually being able to open a webpage, entering the account password but not being able to enter, or simply getting a 400."</div>
+
+ <h3>After 2026.8: Set in UI (recommended practice)</h3>
+
+ <ol class="steps">
+ <li>
+ <h3>Open the network settings page</h3>
+ <p>go <strong>Settings → System → Network</strong>, find the HTTP server area.</p>
+ </li>
+ <li>
+ <h3>Open "Trust X-Forwarded-For"</h3>
+ <p>Home Assistant field name is <strong>Trust X-Forwarded-For</strong>, turn it on.</p>
+ </li>
+ <li>
+ <h3>Fill in the trusted proxy address</h3>
+ <p>The field is called <strong>Trusted proxies</strong>, Home Assistant description is "Allow setting <code>X-Forwarded-For</code> Reverse proxy IP address or CIDR network segment. Please see the comparison table below for what to fill out.</p>
+ </li>
+ <li>
+ <h3>Archive and restart</h3>
+ <p>After saving, restart Home Assistant and test again.</p>
+ </li>
+ </ol>
+
+ <h3>Which address should be filled in?</h3>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>your agent is</th><th>Fill in Trusted proxies</th><th>Basis</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Apps (add-ons) for Home Assistant, such as NGINX SSL proxy, Cloudflared</td><td><code>172.30.33.0/24</code></td><td>The network segment directly given by Home Assistant NGINX App file. This is the internal network where the App container is located.</td></tr>
+ <tr><td>Tailscale’s Serve/Funnel</td><td><code>127.0.0.1</code></td><td>Value given by Tailscale App official document</td></tr>
+ <tr><td>Agents running on the same machine</td><td><code>127.0.0.1</code></td><td>Local loopback address</td></tr>
+ <tr><td>Another machine in the local network (such as an independent NAS or soft router)</td><td>A fixed IP for that machine, e.g. <code>192.168.1.20</code></td><td>Fill in truthfully</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Before 2026.8: written in configuration.yaml</h3>
+
+ <p>The old version does not have UI to set, it needs to be written in <code>configuration.yaml</code>. Take the app-type agent as an example:</p>
+
+ <pre class="code-block"><code>http:
   use_x_forwarded_for: true
   trusted_proxies:
     - 172.30.33.0/24</code></pre>
 
-      <p>Tailscale Serve/Funnel version:</p>
+ <p>Tailscale Serve/Funnel version:</p>
 
-      <pre class="code-block"><code>http:
+ <pre class="code-block"><code>http:
   use_x_forwarded_for: true
   trusted_proxies:
     - 127.0.0.1</code></pre>
 
-      <p>For multiple agents, add a few more lines below:</p>
+ <p>For multiple agents, add a few more lines below:</p>
 
-      <pre class="code-block"><code>http:
+ <pre class="code-block"><code>http:
   use_x_forwarded_for: true
   trusted_proxies:
     - 172.30.33.0/24
     - 127.0.0.1
     - 192.168.1.20</code></pre>
 
-      <div class="callout warn"><strong>Warning:</strong><code>http:</code> This YAML block<strong>Has entered the elimination period</strong>. warning message from <strong>2026.7.5</strong> It started to jump (not only in 2026.8), and the content was to the effect: "HTTP YAML settings have been eliminated, you <code>configuration.yaml</code> The settings in have been imported.<code>http</code> Now please go to Settings → System → Network Settings, please <code>http:</code> Block removed and restarted" with the following sentence<strong>"This will stop working in version 2027.2.0, please deal with it before upgrading"</strong>. So your original settings will be<strong>Automatically imported into UI</strong>, what you have to do is to put <code>configuration.yaml</code> inside <code>http:</code> Delete the entire section and restart. If you can’t find the newly imported settings in the UI after deleting them, try forcing a refresh of the browser first.</div>
+ <div class="callout warn"><strong>Warning:</strong><code>http:</code> This YAML block <strong>Has entered the elimination period</strong>. warning message from <strong>2026.7.5</strong> It started to trigger (not only in 2026.8), and the content was to the effect: "HTTP YAML settings have been eliminated, you <code>configuration.yaml</code> The settings in have been imported.<code>http</code> Now please go to Settings → System → Network Settings, please <code>http:</code> Block removed and restarted" with the following sentence <strong>"This will stop working in version 2027.2.0, please deal with it before upgrading"</strong>. So your original settings will be <strong>Automatically imported into UI</strong>, what you have to do is to put <code>configuration.yaml</code> inside <code>http:</code> Delete the entire section and restart. If you can’t find the newly imported settings in the UI after deleting them, try forcing a refresh of the browser first.</div>
 
-      <div class="callout danger"><strong>Danger:</strong>Never fill it out just to save trouble. <code>0.0.0.0/0</code>(Represents trust in the world). That is equivalent to declaring "I believe anyone's forged note." The attacker can directly disguise himself as any IP, bypass all your IP blocks, and the login records will all be fake. Only fill in the address that you really know is your agent.</div>
-    </section>
+ <div class="callout danger"><strong>Danger:</strong> Never fill it out just to save trouble. <code>0.0.0.0/0</code>(Represents trust in the world). That is equivalent to declaring "I believe anyone's forged note." The attacker can directly disguise himself as any IP, bypass all your IP blocks, and the login records will all be fake. Only fill in the address that you really know is your agent.</div>
+ </section>
 
-    <section id="hardening" data-nav="Hard rules for information security">
-      <h2 data-icon="login">Hard rules for information security: these things are non-negotiable</h2>
+ <section id="hardening" data-nav="Hard rules for security">
+ <h2 data-icon="login">Hard rules for security: these things are non-negotiable</h2>
 
-      <p>The official safety checklist actually only lists three core principles:<strong>"Use a strong, unique password for each account and turn on multi-factor authentication."</strong>, <strong>"Put sensitive data in secrets (remember to back up)"</strong>, <strong>"Follow monthly version updates"</strong>. Here are the actions you should take to put them into practice today.</p>
+ <p>Home Assistant safety checklist actually only lists three core principles: <strong>"Use a strong, unique password for each account and turn on multi-factor authentication."</strong>, <strong>"Put sensitive data in secrets (remember to back up)"</strong>, <strong>"Follow monthly version updates"</strong>. Here are the actions you should take to put them into practice today.</p>
 
-      <div class="callout warn"><strong>Warning:</strong>There is a point in Article 2 that many people have misunderstood, and the official specifically noted:<strong>put password in <code>secrets.yaml</code> It will not be encrypted</strong>. That's just for "centralized management so that you can share your profile without leaking it," not a safe. Therefore, the backup files should be treated as confidential, and do not throw away the public folder of the cloud drive (see the backup processing<a href="ch9_backups.html">Chapter 9</a>).</div>
+ <div class="callout warn"><strong>Warning:</strong> There is a point in Article 2 that many people have misunderstood, and Home Assistant specifically noted: <strong>put password in <code>secrets.yaml</code> It will not be encrypted</strong>. That's just for "centralized management so that you can share your profile without leaking it," not a safe. Therefore, the backup files should be treated as confidential, and do not throw away the public folder of the cloud drive (see the backup processing <a href="ch9_backups.html">Chapter 9</a>).</div>
 
-      <h3>Rule 1: Do not port forward 8123 directly to the public network</h3>
+ <h3>Rule 1: Do not port forward 8123 directly to the public network</h3>
 
-      <div class="callout danger"><strong>Danger:</strong>The most common tutorial on the Internet - "Add a rule to the router to transfer 8123, and you can connect from the outside" - <strong>is the only practice explicitly prohibited in this chapter</strong>. There are three reasons, each of which is fatal:<br>
-      (1) The default is <code>http://</code> Without encryption, your account password is<strong>The plain text of streaking</strong>, any intermediate node can be seen.<br>
-      (2) Scanning robots scan 8123 all over the world all day long. You will be found within a few minutes of driving, and then there will be non-stop brute force cracking.<br>
-      (3) Once Home Assistant is compromised, it means that all your door locks, cameras, and records of whether you are home or not are handed over.</div>
+ <div class="callout danger"><strong>Danger:</strong> The most common tutorial on the Internet - "Add a rule to the router to transfer 8123, and you can connect from the outside" - <strong>is the only practice explicitly prohibited in this chapter</strong>. There are three reasons, each of which is fatal:<br>
+ (1) The default is <code>http://</code> Without encryption, your account password is <strong>The plain text of streaking</strong>, any intermediate node can be seen.<br>
+ (2) Scanning robots scan 8123 all over the world all day long. You will be found within a few minutes of driving, and then there will be non-stop brute force cracking.<br>
+ (3) Once Home Assistant is compromised, it means that all your door locks, cameras, and records of whether you are home or not are handed over.</div>
 
-      <p>If you have already opened it,<strong>Now go to the router and delete that rule.</strong>, and then choose one of the first four paths to redo. This is no exaggeration, this is the most important sentence in this chapter.</p>
+ <p>If you have already opened it, <strong>Now go to the router and delete that rule.</strong>, and then choose one of the first four paths to redo. This is no exaggeration, this is the most important sentence in this chapter.</p>
 
-      <h3>Rule 2: Be sure to open an MFA</h3>
+ <h3>Rule 2: Be sure to open an MFA</h3>
 
-      <p>Multi-factor authentication (MFA / two-step verification) means that it’s not enough to have a password, but also to enter a six-digit number that changes every 30 seconds on your phone. If the password is leaked, the attacker still can't get in without your phone.</p>
+ <p>Multi-factor authentication (MFA / two-step verification) means that it’s not enough to have a password, but also to enter a six-digit number that changes every 30 seconds on your phone. If the password is leaked, the attacker still can't get in without your phone.</p>
 
-      <ol class="steps">
-        <li>
-          <h3>Open the secure tab of your profile page</h3>
-          <p>Click your name in the lower left corner to enter<strong>User profile</strong>, cut to <strong>Security</strong> Pagination.</p>
-        </li>
-        <li>
-          <h3>Enable multi-factor authentication module</h3>
-          <p>Find the area "Multi-factor authentication modules" and click<strong>Enable</strong>.</p>
-        </li>
-        <li>
-          <h3>Scan the QR Code using the validator app</h3>
-          <p>First install a validator app on your phone, scan the QR Code on the screen, and then fill in the six-digit number displayed by the app to confirm.</p>
-        </li>
-        <li>
-          <h3>Keep the backup code</h3>
-          <p>backup information given to you during the setup process<strong>Must be stored somewhere other than your mobile phone</strong>. If your phone is dropped and there is no backup, you will be locked out of your home.</p>
-        </li>
-        <li>
-          <h3>Do this once for every account in the family</h3>
-          <p>It’s useless if you open it yourself. Your family member’s account password is <code>123456</code> It's the same breach.<a href="ch5_users.html">Chapter 5</a>There are complete instructions for multi-user management.</p>
-        </li>
-      </ol>
+ <ol class="steps">
+ <li>
+ <h3>Open the secure tab of your profile page</h3>
+ <p>Click your name in the lower left corner to enter <strong>User profile</strong>, cut to <strong>Security</strong> Tab.</p>
+ </li>
+ <li>
+ <h3>Enable multi-factor authentication module</h3>
+ <p>Find the area "Multi-factor authentication modules" and click <strong>Enable</strong>.</p>
+ </li>
+ <li>
+ <h3>Scan the QR Code using the validator app</h3>
+ <p>First install a validator app on your phone, scan the QR Code on the screen, and then fill in the six-digit number displayed by the app to confirm.</p>
+ </li>
+ <li>
+ <h3>Keep the backup code</h3>
+ <p>backup information given to you during the setup process <strong>Must be stored somewhere other than your phone</strong>. If your phone is dropped and there is no backup, you will be locked out of your home.</p>
+ </li>
+ <li>
+ <h3>Do this once for every account in the family</h3>
+ <p>It’s useless if you open it yourself. Your family member’s account password is <code>123456</code> It's the same breach. <a href="ch5_users.html">Chapter 5</a> There are complete instructions for multi-user management.</p>
+ </li>
+ </ol>
 
-      <div class="callout tip"><strong>Tip:</strong>In addition to the authenticator app, Home Assistant also has a notification-based authentication module that will send the one-time password to the place you specify through notifications. But official documents warn of its weaknesses:<strong>This module has no way of knowing whether the notification was successfully delivered. If you don't receive the notification, you won't be able to log in.</strong>Therefore, the main force is to use the authenticator app which is more stable.</div>
+ <div class="callout tip"><strong>Tip:</strong> In addition to the authenticator app, Home Assistant also has a notification-based authentication module that will send the one-time password to the place you specify through notifications. But official documentation warn of its weaknesses: <strong>This module has no way of knowing whether the notification was successfully delivered. If you don't receive the notification, you won't be able to log in.</strong> Therefore, the main force is to use the authenticator app which is more stable.</div>
 
-      <h3>Rule 3: Turn on IP blocking</h3>
+ <h3>Rule 3: Turn on IP blocking</h3>
 
-      <p>Home Assistant has a built-in function:<strong>If the same IP fails to log in for a certain number of times, it will be blocked.</strong>. This is the most effective way to deal with brute force cracking.</p>
+ <p>Home Assistant has a built-in function: <strong>If the same IP fails to log in for a certain number of times, it will be blocked.</strong>. This is the most effective way to deal with brute force cracking.</p>
 
-      <p>Set location at <strong>Settings → System → Network</strong>, two fields:</p>
+ <p>Set location at <strong>Settings → System → Network</strong>, two fields:</p>
 
-      <table class="data-table">
-        <thead>
-          <tr><th>Official field name</th><th>function</th><th>Recommended value</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>Enable IP banning</strong><br>(IP blocking enabled)</td><td>Turn on auto-blocking</td><td>turn on</td></tr>
-          <tr><td><strong>Login attempts before ban</strong><br>(Number of login attempts before being blocked)</td><td>Official description: "The number of failed logins allowed before the IP address is blocked. Set to <code>-1</code> Automatic blocking can be deactivated. "</td><td>5 or so. If it's too low, you'll be locked out if you make a typo yourself.</td></tr>
-        </tbody>
-      </table>
+ <table class="data-table">
+ <thead>
+ <tr><th>Official field name</th><th>function</th><th>Recommended value</th></tr>
+ </thead>
+ <tbody>
+ <tr><td><strong>Enable IP banning</strong><br>(IP blocking enabled)</td><td>Turn on auto-blocking</td><td>turn on</td></tr>
+ <tr><td><strong>Login attempts before ban</strong><br>(Number of login attempts before being blocked)</td><td>Official description: "The number of failed logins allowed before the IP address is blocked. Set to <code>-1</code> Automatic blocking can be deactivated. "</td><td>5 or so. If it's too low, you'll be locked out if you make a typo yourself.</td></tr>
+ </tbody>
+ </table>
 
-      <p>The blocked IP will be written into a file called <code>ip_bans.yaml</code> file, which contains<strong>The blocked IP and the UTC time it was added to</strong>. To unblock it, just delete the corresponding lines and restart.</p>
+ <p>The blocked IP will be written into a file called <code>ip_bans.yaml</code> file, which contains <strong>The blocked IP and the UTC time it was added to</strong>. To unblock it, just delete the corresponding lines and restart.</p>
 
-      <div class="callout warn"><strong>Warning:</strong>Two common failure scenarios.<br>
-      (1)<strong>When using Home Assistant Cloud, the official stated that all cloud connections appear to be <code>127.0.0.1</code></strong>, so IP blocking is basically ineffective against them, and your line of defense depends on MFA.<br>
-      (2) If the reverse proxy does not set up a trusted proxy, all requests will appear to come from the proxy. Blocking one is equivalent to blocking all - you will also lock yourself out. This is back to the previous section. First, let’s <code>trusted_proxies</code> Let it be right.</div>
+ <div class="callout warn"><strong>Warning:</strong> Two common failure scenes.<br>
+ (1) <strong>When using Home Assistant Cloud, Home Assistant stated that all cloud connections appear to be <code>127.0.0.1</code></strong>, so IP blocking is basically ineffective against them, and your line of defense depends on MFA.<br>
+ (2) If the reverse proxy does not set up a trusted proxy, all requests will appear to come from the proxy. Blocking one is equivalent to blocking all - you will also lock yourself out. This is back to the previous section. First, let’s <code>trusted_proxies</code> Let it be right.</div>
 
-      <h3>Rule 4: Only open necessary external services</h3>
+ <h3>Rule 4: Only open necessary external services</h3>
 
-      <p>Take inventory of how many holes are drilled in your router. Many people's rules were opened several years ago just to watch the monitor, download something, or play a certain game, and they have long forgotten it.</p>
+ <p>Take inventory of how many holes are drilled in your router. Many people's rules were opened several years ago just to watch the monitor, download something, or play a certain game, and they have long forgotten it.</p>
 
-      <table class="data-table">
-        <thead>
-          <tr><th>You may have driven it</th><th>what to do</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>8123 Go to Home Assistant</td><td><strong>Delete immediately</strong></td></tr>
-          <tr><td>UPnP (let the device make its own holes)</td><td>It is recommended to close. This feature allows any local network device to punch a hole in your firewall without your knowledge.</td></tr>
-          <tr><td>Router remote management</td><td>Close. The admin page should not be accessible from the outside</td></tr>
-          <tr><td>Camera or NVR port</td><td>Close it and use Home Assistant or VPN to check it out.</td></tr>
-          <tr><td>Various service ports of NAS</td><td>Only keep the ones you really use every day and turn off the rest.</td></tr>
-          <tr><td>443 (people who go the reverse proxy route)</td><td>Keep it, this is the only thing that should be kept</td></tr>
-        </tbody>
-      </table>
+ <table class="data-table">
+ <thead>
+ <tr><th>You may have driven it</th><th>what to do</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>8123 Go to Home Assistant</td><td><strong>Delete immediately</strong></td></tr>
+ <tr><td>UPnP (let the device make its own holes)</td><td>It is recommended to close. This feature allows any local network device to punch a hole in your firewall without your knowledge.</td></tr>
+ <tr><td>Router remote management</td><td>Close. The admin page should not be accessible from the outside</td></tr>
+ <tr><td>Camera or NVR port</td><td>Close it and use Home Assistant or VPN to check it out.</td></tr>
+ <tr><td>Various service ports of NAS</td><td>Only keep the ones you really use every day and turn off the rest.</td></tr>
+ <tr><td>443 (people who go the reverse proxy route)</td><td>Keep it, this is the only feature that should be kept</td></tr>
+ </tbody>
+ </table>
 
-      <h3>Temporary external testing: It can be done, but it must be disciplined</h3>
+ <h3>Temporary external testing: It can be done, but it must be disciplined</h3>
 
-      <p>Sometimes you just need ten minutes of "temporary visibility"—to test a webhook, give someone a peek, and debug an OAuth callback. The practices and risks at this time:</p>
+ <p>Sometimes you just need ten minutes of "temporary visibility"—to test a webhook, give someone a peek, and debug an OAuth callback. The practices and risks at this time:</p>
 
-      <table class="data-table">
-        <thead>
-          <tr><th>practice</th><th>risk</th><th>discipline</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Temporarily open a port forward</td><td><strong>highest.</strong>The scanning robot works around the clock and can be found even if it is turned on for ten minutes.</td><td>Turn on MFA and IP blocking first; set an alarm to remind yourself to turn it off;<strong>It must be closed that day</strong></td></tr>
-          <tr><td>Use Cloudflare Tunnel to temporarily open one</td><td>low. There is no need to open the port, just close the app after testing and it will be gone.</td><td>Stop the channel after measuring</td></tr>
-          <tr><td>Tailscale Funnel is temporarily open to the public</td><td>Low to medium. The URL is difficult to guess, but it is indeed open to the public network.</td><td>Turn it off after use and remember to set up a trusted proxy</td></tr>
-          <tr><td>Open Nabu Casa directly to try it out</td><td>lowest</td><td>When the trial period is up, remember to decide whether to renew or not.</td></tr>
-        </tbody>
-      </table>
+ <table class="data-table">
+ <thead>
+ <tr><th>practice</th><th>risk</th><th>discipline</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Temporarily open a port forward</td><td><strong>highest.</strong> The scanning robot works around the clock and can be found even if it is turned on for ten minutes.</td><td>Turn on MFA and IP blocking first; set an alarm to remind yourself to turn it off; <strong>It must be closed that day</strong></td></tr>
+ <tr><td>Use Cloudflare Tunnel to temporarily open one</td><td>low. There is no need to open the port, just close the app after testing and it will be gone.</td><td>Stop the channel after measuring</td></tr>
+ <tr><td>Tailscale Funnel is temporarily open to the public</td><td>Low to medium. The URL is difficult to guess, but it is indeed open to the public network.</td><td>Turn it off after use and remember to set up a trusted proxy</td></tr>
+ <tr><td>Open Nabu Casa directly to try it out</td><td>lowest</td><td>When the trial period is up, remember to decide whether to renew or not.</td></tr>
+ </tbody>
+ </table>
 
-      <div class="callout danger"><strong>Danger:</strong>The biggest risk of making a temporary hole is not "getting beaten";<strong>you forgot to turn off</strong>. Human memory is unreliable, so the rule is: if you can't set a reminder right when you open the hole, then don't open it and use the three methods listed above instead.</div>
-    </section>
+ <div class="callout danger"><strong>Danger:</strong> The biggest risk of making a temporary hole is not "getting beaten"; <strong>you forgot to turn off</strong>. Human memory is unreliable, so the rule is: if you can't set a reminder right when you open the hole, then don't open it and use the three methods listed above instead.</div>
+ </section>
 
-    <section id="site_grade" data-nav="Case-level network">
-      <h2 data-icon="advanced">Site level: VLAN, guest network, multi-layer NAT</h2>
+ <section id="site_grade" data-nav="Case-level network">
+ <h2 data-icon="advanced">Site level: VLAN, guest network, multi-layer NAT</h2>
 
-      <p>What I talked about before was “one home, one router”. If you are dealing with an office, a store, or a more elegant residence, there will be three more questions.</p>
+ <p>What I talked about before was “one home, one router”. If you are dealing with an office, a store, or a more elegant residence, there will be three more questions.</p>
 
-      <h3>Put IoT devices into separate network segments</h3>
+ <h3>Put IoT devices into separate network segments</h3>
 
-      <p>The problem lies with cheap smart sockets, light bulbs, and camera bodies: their firmware quality varies, and some are never updated after using them.<strong>A compromised smart socket, if it is on the same network segment as your laptop or NAS, is a ready springboard.</strong></p>
+ <p>The problem lies with cheap smart sockets, light bulbs, and camera bodies: their firmware quality varies, and some are never updated after using them. <strong>A compromised smart socket, if it is on the same network segment as your laptop or NAS, is a ready springboard.</strong></p>
 
-      <p>The solution is <strong>VLAN (Virtual Area Network)</strong>: Cut out several mutually isolated logical networks on the same set of physical wires. A common cutting method:</p>
+ <p>The solution is <strong>VLAN (Virtual Area Network)</strong>: Cut out several mutually isolated logical networks on the same set of physical wires. A common cutting method:</p>
 
-      <table class="data-table">
-        <thead>
-          <tr><th>Network segment</th><th>What to put</th><th>Who can be reached?</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Main network segment</td><td>Computer, mobile phone, NAS, Home Assistant host</td><td>Can connect to all network segments</td></tr>
-          <tr><td>IoT network segment</td><td>Sockets, light bulbs, sensors, TVs</td><td><strong>You can only connect to the external network and cannot actively connect to the main network segment.</strong></td></tr>
-          <tr><td>Camera segment</td><td>IP Cam, NVR</td><td>most stringent, usually<strong>Even external networks are prohibited</strong>, only allows Home Assistant to capture the screen</td></tr>
-          <tr><td>Guest segment</td><td>Guest's mobile phone</td><td>I can only access the Internet and cannot see anything in your home.</td></tr>
-        </tbody>
-      </table>
+ <table class="data-table">
+ <thead>
+ <tr><th>Network segment</th><th>What to put</th><th>Who can be reached?</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Main network segment</td><td>Computer, phone, NAS, Home Assistant host</td><td>Can connect to all network segments</td></tr>
+ <tr><td>IoT network segment</td><td>Sockets, light bulbs, sensors, TVs</td><td><strong>You can only connect to the external network and cannot actively connect to the main network segment.</strong></td></tr>
+ <tr><td>Camera segment</td><td>IP Cam, NVR</td><td>most stringent, usually <strong>Even external networks are prohibited</strong>, only allows Home Assistant to capture the screen</td></tr>
+ <tr><td>Guest segment</td><td>Guest's phone</td><td>I can only access the Internet and cannot see anything in your home.</td></tr>
+ </tbody>
+ </table>
 
-      <div class="callout warn"><strong>Warning:</strong>After switching to VLAN, you will almost certainly encounter<strong>Device automatic exploration all failed</strong>. Because Home Assistant relies on mDNS "shout" to find new devices, and the shout will not cross network segments by default. You need to additionally enable mDNS forwarding on the router or firewall (different brands have different names, common ones include mDNS Repeater, Avahi Reflector, Bonjour Gateway), and open the necessary one-way rules to allow Home Assistant to actively connect to the IoT network segment.<strong>Cutting VLAN without dealing with this matter is the most common reason for overturning the case.</strong></div>
+ <div class="callout warn"><strong>Warning:</strong> After switching to VLAN, you will almost certainly encounter <strong>Device automatic exploration all failed</strong>. Because Home Assistant relies on mDNS "shout" to find new devices, and the shout will not cross network segments by default. You need to additionally enable mDNS forwarding on the router or firewall (different brands have different names, common ones include mDNS Repeater, Avahi Reflector, Bonjour Gateway), and open the necessary one-way rules to allow Home Assistant to actively connect to the IoT network segment. <strong>Cutting VLAN without dealing with this matter is the most common reason for overturning the case.</strong></div>
 
-      <div class="callout tip"><strong>Tip:</strong>If your router only has a "guest network" switch and does not have full VLAN functionality, it is a simplified version of two-segment isolation - throw the least trusted devices and guests into the guest network, and leave the main network segment for serious devices. It's rough, but much better than all mixed together, and it can be done this afternoon.</div>
+ <div class="callout tip"><strong>Tip:</strong> If your router only has a "guest network" switch and does not have full VLAN functionality, it is a simplified version of two-segment isolation - throw the least trusted devices and guests into the guest network, and leave the main network segment for serious devices. It's rough, but much better than all mixed together, and it can be done this afternoon.</div>
 
-      <h3>Multi-layer NAT: Two routers at home</h3>
+ <h3>Multi-layer NAT: Two routers at home</h3>
 
-      <p>A very common situation: the modem provided by the telecommunications provider is itself a router. You think it has poor Wi-Fi, so you connect it yourself. The result is a two-layer NAT, and your Home Assistant host is actually hiding behind two doors.</p>
+ <p>A very common situation: the modem provided by the telecommunications provider is itself a router. You think it has poor Wi-Fi, so you connect it yourself. The result is a two-layer NAT, and your Home Assistant host is actually hiding behind two doors.</p>
 
-      <p>How to judge: Log in to your own router and look at the WAN IP. if it shows <code>192.168.x.x</code> or <code>10.x.x.x</code> With this kind of private address, you're under multiple layers of NAT.</p>
+ <p>How to judge: Log in to your own router and look at the WAN IP. if it shows <code>192.168.x.x</code> or <code>10.x.x.x</code> With this kind of private address, you're under multiple layers of NAT.</p>
 
-      <table class="data-table">
-        <thead>
-          <tr><th>Solution</th><th>practice</th><th>Evaluation</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>Change the telecommunications provider's machine to bridge mode</strong></td><td>Call telecom customer service and ask them to change it, or set it yourself on the modem management page.</td><td><strong>Cleanest.</strong>From now on there is only one layer of NAT</td></tr>
-          <tr><td>Both floors are equipped with port forward</td><td>The outer layer forwards it to the inner layer router, and the inner layer forwards it to the host.</td><td>Active but fragile, if you reset any level, you will have to start over again.</td></tr>
-          <tr><td><strong>Switch to a solution that does not require port forward</strong></td><td>Nabu Casa, Cloudflare Tunnel, Tailscale</td><td><strong>The most trouble-free.</strong>Multi-layer NAT is no problem for them</td></tr>
-        </tbody>
-      </table>
+ <table class="data-table">
+ <thead>
+ <tr><th>Solution</th><th>practice</th><th>Evaluation</th></tr>
+ </thead>
+ <tbody>
+ <tr><td><strong>Change the telecommunications provider's machine to bridge mode</strong></td><td>Call telecom customer service and ask them to change it, or set it yourself on the modem management page.</td><td><strong>Cleanest.</strong> From now on there is only one layer of NAT</td></tr>
+ <tr><td>Both floors are equipped with port forward</td><td>The outer layer forwards it to the inner layer router, and the inner layer forwards it to the host.</td><td>Active but fragile, if you reset any level, you will have to start over again.</td></tr>
+ <tr><td><strong>Switch to a solution that does not require port forward</strong></td><td>Nabu Casa, Cloudflare Tunnel, Tailscale</td><td><strong>The most trouble-free.</strong> Multi-layer NAT is no problem for them</td></tr>
+ </tbody>
+ </table>
 
-      <p>See the third column? This is why this chapter pushes those three paths all the way - <strong>They bypass the three most annoying problems of CGNAT, multi-layer NAT, and floating IP at once.</strong></p>
+ <p>See the third column? This is why this chapter pushes those three paths all the way - <strong>They bypass the three most annoying problems of CGNAT, multi-layer NAT, and floating IP at once.</strong></p>
 
-      <h3>Pre-delivery checklist</h3>
+ <h3>Pre-delivery checklist</h3>
 
-      <ul>
-        <li>The host IP has been reserved on the router and recorded in the handover file</li>
-        <li>The router management password has been changed and is not the factory default.</li>
-        <li>The internal URL and external URL have been filled in and tested</li>
-        <li>MFA is turned on for all accounts and IP blocking is enabled</li>
-        <li>There is no rule on the router pointing to 8123</li>
-        <li>UPnP and router remote management are closed</li>
-        <li>The backup is scheduled and saved to a location other than the host (<a href="ch9_backups.html">Chapter 9</a>)</li>
-        <li>If there is a VLAN: mDNS forwarding has been configured and new device discovery has been tested</li>
-        <li>The expiration and renewal mechanism of the voucher has been confirmed to be automatically executed.</li>
-      </ul>
-    </section>
+ <ul>
+ <li>The host IP has been reserved on the router and recorded in the handover file</li>
+ <li>The router management password has been changed and is not the factory default.</li>
+ <li>The internal URL and external URL have been filled in and tested</li>
+ <li>MFA is turned on for all accounts and IP blocking is enabled</li>
+ <li>There is no rule on the router pointing to 8123</li>
+ <li>UPnP and router remote management are closed</li>
+ <li>The backup is scheduled and saved to a location other than the host (<a href="ch9_backups.html">Chapter 9</a>)</li>
+ <li>If there is a VLAN: mDNS forwarding has been configured and new device discovery has been tested</li>
+ <li>The expiration and renewal mechanism of the voucher has been confirmed to be automatically executed.</li>
+ </ul>
+ </section>
 
-    <section id="troubleshoot" data-nav="Common stuck levels">
-      <h2 data-icon="troubleshoot">Common stuck levels</h2>
+ <section id="troubleshoot" data-nav="Common problems">
+ <h2 data-icon="troubleshoot">Common problems</h2>
 
-      <ol class="steps">
-        <li>
-          <h3>Certificate application failed, Let's Encrypt keeps reporting errors</h3>
-          <p>Let’s figure one thing out first:<strong>Duck DNS App uses DNS-01 verification</strong>, Let's Encrypt checks the DNS records of your domain and will not connect to your home. So "I can't get the voucher"<strong>Usually it has nothing to do with port</strong>, don’t rush to dig holes in the router.</p>
-          <p>Check in this order.<strong>(1) Are the DNS settings correct?</strong>:Duck DNS has the domain over there really been built, has the token been posted incorrectly, and if you have connected your own domain, has the CNAME used for verification been added?<strong>(2) Is DNS effective?</strong>: It will take some time for the newly modified record to be visible to the entire network. If you press it too early, it will fail.<strong>(3) Have you accepted the terms?</strong>: In Duck DNS App <code>accept_terms</code> Forgot to change to <code>true</code> It's a UHF error.<strong>(4) Is the current flow restricted?</strong>: Let's Encrypt has an upper limit on the number of applications for the same domain within a short period of time. If you try again and again, you will be locked for a period of time - the only solution at this time is<strong>stop and wait</strong>, continuing to press will only make things worse.<strong>(5) View the App’s log files</strong>, the real reasons for the error are written there, don’t just read the red letters.</p>
-        </li>
-        <li>
-          <h3>You can connect at home, but you can’t connect when you go out (or vice versa)</h3>
-          <p>Almost all are problems with the internal and external network URL settings. Arrive <strong>Settings → System → Network</strong> Confirm internal and external URLs<strong>Both boxes are filled in, and both are filled in correctly.</strong>. Then open the settings of the Companion App on your mobile phone and confirm that the App also has these two URLs.</p>
-          <p>Special reminder: these two spaces<strong>Stop filling in the connection port and do not continue to follow the path.</strong>. Fill in <code>.../lovelace</code> This will cause notification links and camera push notifications to lead to strange URLs, and the symptoms are all kinds of strange and difficult to associate here.</p>
-          <p>Another situation is that "it works fine when I go out, but not when I go home." Usually the IP written in the internal URL has expired - go back to the first section of this chapter to nail the IP.</p>
-        </li>
-        <li>
-          <h3>The web page can be opened, but after entering the account password, it cannot be entered, or it will directly get 400</h3>
-          <p>This is a typical symptom of the reverse proxy not having a trusted proxy. Return to the section "Reverse proxy must be set up" and set <strong>Trust X-Forwarded-For</strong> open,<strong>Trusted proxies</strong> Fill in the correct address (App-based agents are <code>172.30.33.0/24</code>, Tailscale Serve/Funnel is <code>127.0.0.1</code>), save and restart.</p>
-          <p>If it still doesn't work if you have set it up, check whether it is set in the old <code>configuration.yaml</code> But the version has been upgraded to 2026.8 - at this time, it is time to refer to the UI value and delete the YAML block. If you can’t find the settings in the UI after deleting them, forcefully refresh the browser first.</p>
-        </li>
-        <li>
-          <h3>DDNS is set up, but still cannot be connected to the outside - CGNAT</h3>
-          <p>First make the judgment taught in this chapter: Is the IP displayed on the WAN of the router different from the "My IP" you find online? The difference is <strong>CGNAT</strong>(Telecom operators allow hundreds of households to share an external IP).</p>
-          <p>CGNAT bottom,<strong>DDNS and port forward are all invalid</strong>, this is not a setting problem, it is that you simply do not have an external door number of your own. There are three options: (1) Call the telecom provider and ask if you can apply for a real IP, which usually requires adding money or changing plans; (2)<strong>Go to Nabu Casa, Cloudflare Tunnel or Tailscale instead</strong>, these three are completely unaffected; (3) Give up the far end. Ninety percent of people should choose (2).</p>
-        </li>
-        <li>
-          <h3>homeassistant.local suddenly becomes unavailable</h3>
-          <p>Make sure you are home first. Double check that the phone is not connected to guest Wi-Fi or another network segment. If everything is correct, use IP direct connection to verify that the host is still alive - if you can use IP to get in, it means it is just an mDNS problem, not that the host is down. The long-term solution is to peg the IP and use the IP as a bookmark instead, which will be the least likely to happen.</p>
-        </li>
-        <li>
-          <h3>Can't connect after changing the port</h3>
-          <p>If you changed the UI after 2026.8,<strong>Don't be nervous, don't do anything</strong> —The official design is to wait for your confirmation after the change is completed. If there is no confirmation within five minutes, the old settings will be automatically put back and restarted. Make a cup of tea and wait for it to come back on its own.</p>
-          <p>If it is an old version or the Container installation has been manually modified, you have to change it back from the host (connect the screen keyboard, or change the Docker port corresponding).</p>
-        </li>
-        <li>
-          <h3>Blocked by own IP block</h3>
-          <p>Typing the wrong password too many times triggered the block. The solution is to edit from the host side <code>ip_bans.yaml</code>, delete your own, and then restart Home Assistant. If you can't access the file, try another network (for example, turn on a mobile network hotspot on your phone), and your IP will change.</p>
-        </li>
-        <li>
-          <h3>New device cannot be found after switching VLAN</h3>
-          <p>Within expectations. Automatic discovery relies on multicast traffic that does not cross network segments. Go to the router or firewall to enable mDNS forwarding (mDNS Repeater / Avahi Reflector / Bonjour Gateway), and confirm that there are rules that allow Home Assistant to actively connect to the IoT network segment.</p>
-        </li>
-      </ol>
-    </section>
+ <ol class="steps">
+ <li>
+ <h3>Certificate application failed, Let's Encrypt keeps reporting errors</h3>
+ <p>Let’s figure one thing out first: <strong>Duck DNS App uses DNS-01 verification</strong>, Let's Encrypt checks the DNS records of your domain and will not connect to your home. So "I can't get the voucher" <strong>Usually it has nothing to do with port</strong>, don’t rush to dig holes in the router.</p>
+ <p>Check in this order. <strong>(1) Are the DNS settings correct?</strong>:Duck DNS has the domain over there really been built, has the token been posted incorrectly, and if you have connected your own domain, has the CNAME used for verification been added? <strong>(2) Is DNS effective?</strong>: It will take some time for the newly modified record to be visible to the entire network. If you press it too early, it will fail. <strong>(3) Have you accepted the terms?</strong>: In Duck DNS App <code>accept_terms</code> Forgot to change to <code>true</code> It's a UHF error. <strong>(4) Is the current flow restricted?</strong>: Let's Encrypt has an upper limit on the number of applications for the same domain within a short period of time. If you try again and again, you will be locked for a period of time - the only solution at this time is <strong>stop and wait</strong>, continuing to press will only make things worse. <strong>(5) View the App’s log files</strong>, the real reasons for the error are written there, don’t just read the red letters.</p>
+ </li>
+ <li>
+ <h3>You can connect at home, but you can’t connect when you go out (or vice versa)</h3>
+ <p>Almost all are problems with the internal and external network URL settings. Go to <strong>Settings → System → Network</strong> Confirm internal and external URLs <strong>Both boxes are filled in, and both are filled in correctly.</strong>. Then open the settings of the Companion App on your phone and confirm that the App also has these two URLs.</p>
+ <p>Special reminder: these two spaces <strong>Stop filling in the connection port and do not continue to follow the path.</strong>. Fill in <code>.../lovelace</code> This will cause notification links and camera push notifications to lead to strange URLs, and the symptoms are all kinds of strange and difficult to associate here.</p>
+ <p>Another situation is that "it works fine when I go out, but not when I go home." Usually the IP written in the internal URL has expired - go back to the first section of this chapter to nail the IP.</p>
+ </li>
+ <li>
+ <h3>The web page can be opened, but after entering the account password, it cannot be entered, or it will directly get 400</h3>
+ <p>This is a typical symptom of the reverse proxy not having a trusted proxy. Return to the section "Reverse proxy must be set up" and set <strong>Trust X-Forwarded-For</strong> open, <strong>Trusted proxies</strong> Fill in the correct address (App-based agents are <code>172.30.33.0/24</code>, Tailscale Serve/Funnel is <code>127.0.0.1</code>), save and restart.</p>
+ <p>If it still doesn't work if you have set it up, check whether it is set in the old <code>configuration.yaml</code> But the version has been upgraded to 2026.8 - at this time, it is time to refer to the UI value and delete the YAML block. If you can’t find the settings in the UI after deleting them, forcefully refresh the browser first.</p>
+ </li>
+ <li>
+ <h3>DDNS is set up, but still cannot be connected to the outside - CGNAT</h3>
+ <p>First make the judgment taught in this chapter: Is the IP displayed on the WAN of the router different from the "My IP" you find online? The difference is <strong>CGNAT</strong> (Telecom operators allow hundreds of households to share an external IP).</p>
+ <p>CGNAT bottom, <strong>DDNS and port forward are all invalid</strong>, this is not a setting problem, it is that you simply do not have an external door number of your own. There are three options: (1) Call the telecom provider and ask if you can apply for a real IP, which usually requires adding money or changing plans; (2) <strong>Go to Nabu Casa, Cloudflare Tunnel or Tailscale instead</strong>, these three are completely unaffected; (3) Give up the far end. Ninety percent of people should choose (2).</p>
+ </li>
+ <li>
+ <h3>homeassistant.local suddenly stops working</h3>
+ <p>Make sure you are home first. Double check that the phone is not connected to guest Wi-Fi or another network segment. If everything is correct, use IP direct connection to verify that the host is still alive - if you can use IP to get in, it means it is just an mDNS problem, not that the host is down. The long-term solution is to peg the IP and use the IP as a bookmark instead, which will be the least likely to happen.</p>
+ </li>
+ <li>
+ <h3>Can't connect after changing the port</h3>
+ <p>If you changed the UI after 2026.8, <strong>Don't be nervous, don't do anything</strong> —Home Assistant design is to wait for your confirmation after the change is completed. If there is no confirmation within five minutes, the old settings will be automatically put back and restarted. Make a cup of tea and wait for it to come back on its own.</p>
+ <p>If it is an old version or the Container installation has been manually modified, you have to change it back from the host (connect the screen keyboard, or change the Docker port corresponding).</p>
+ </li>
+ <li>
+ <h3>Blocked by own IP block</h3>
+ <p>Typing the wrong password too many times triggered the block. The solution is to edit from the host side <code>ip_bans.yaml</code>, delete your own, and then restart Home Assistant. If you can't access the file, try another network (for example, turn on a mobile network hotspot on your phone), and your IP will change.</p>
+ </li>
+ <li>
+ <h3>New device cannot be found after switching VLAN</h3>
+ <p>Within expectations. Automatic discovery relies on multicast traffic that does not cross network segments. Go to the router or firewall to enable mDNS forwarding (mDNS Repeater / Avahi Reflector / Bonjour Gateway), and confirm that there are rules that allow Home Assistant to actively connect to the IoT network segment.</p>
+ </li>
+ </ol>
+ </section>
 
-    <section id="faq" data-nav="FAQ">
-      <h2 data-icon="faq">FAQ</h2>
+ <section id="faq" data-nav="FAQ">
+ <h2 data-icon="faq">FAQ</h2>
 
-      <details class="faq">
-        <summary>I just want to check whether the lights at home are on outside. Do I really need to make it so complicated?</summary>
-        <div class="body">No need. Pay to subscribe to Home Assistant Cloud, turn on a switch, and it's over in five minutes, and the official document itself lists it as "the simplest and safest option for most people." The reason why this chapter is thick is to take care of people who do not want to pay, want to learn networking, or have special circumstances (cases, multi-layer NAT).<strong>If your time is worth more than a few hundred bucks a month, just subscribe without feeling guilty</strong> —The money was directly used back to support this open source project.</div>
-      </details>
+ <details class="faq">
+ <summary>I just want to check whether the lights at home are on outside. Do I really need to make it so complicated?</summary>
+ <div class="body">No need. Pay to subscribe to Home Assistant Cloud, turn on a switch, and it's over in five minutes, and Home Assistant documentation itself lists it as "the simplest and safest option for most people." The reason why this chapter is thick is to take care of people who do not want to pay, want to learn networking, or have special circumstances (cases, multi-layer NAT). <strong>If your time is worth more than a few hundred bucks a month, just subscribe without feeling guilty</strong> —The money was directly used back to support this open-source project.</div>
+ </details>
 
-      <details class="faq">
-        <summary>The teachings I saw on the Internet all said that just opening the 8123 port forward would be sufficient. Why do you say no?</summary>
-        <div class="body">Because most of those teachings were very old, and the threat environment was different when they were written than it is now. Three specific reasons:<strong>no encryption</strong>(The default is <code>http://</code>, the account password is in clear text on the Internet),<strong>will be scanned</strong>(Scanning robots scan for 8123 all over the world all day long, and usually come to your door within a few minutes),<strong>The consequences are too serious</strong>(Home Assistant contains your door locks, cameras, and records of whether you are at home or not). All four paths described in this chapter achieve the same results and are much safer, so there is no reason to take that one.</div>
-      </details>
+ <details class="faq">
+ <summary>The teachings I saw on the Internet all said that just opening the 8123 port forward would be sufficient. Why do you say no?</summary>
+ <div class="body">Because most of those teachings were very old, and the threat environment was different when they were written than it is now. Three specific reasons: <strong>no encryption</strong> (The default is <code>http://</code>, the account password is in clear text on the Internet), <strong>will be scanned</strong> (Scanning robots scan for 8123 all over the world all day long, and usually come to your door within a few minutes), <strong>The consequences are too serious</strong> (Home Assistant contains your door locks, cameras, and records of whether you are at home or not). All four paths described in this chapter achieve the same results and are much safer, so there is no reason to take that one.</div>
+ </details>
 
-      <details class="faq">
-        <summary>My Home Assistant has been upgraded from 2026.8, do I need to add :8123 to the URL?</summary>
-        <div class="body">Want. The official revision description made it very clear:<strong>Nothing will change on the system you're already running, and you don't need to do anything. The new presets only affect newly installed Home Assistant OS.</strong>So your original <code>:8123</code> Just keep using it. If you really want to switch to a version that doesn’t require dialing a number, you can get it after 2026.8 <strong>Settings → System → Network</strong> Change it yourself, and it will automatically recover within five minutes if it is changed. The risk is not high - but after the change, remember to update all bookmarks, app settings, and reverse proxy settings.</div>
-      </details>
+ <details class="faq">
+ <summary>My Home Assistant has been upgraded from 2026.8, do I need to add :8123 to the URL?</summary>
+ <div class="body">Want. Home Assistant revision description made it very clear: <strong>Nothing will change on the system you're already running, and you don't need to do anything. The new presets only affect newly installed Home Assistant OS.</strong> So your original <code>:8123</code> Just keep using it. If you really want to switch to a version that doesn’t require dialing a number, you can get it after 2026.8 <strong>Settings → System → Network</strong> Change it yourself, and it will automatically recover within five minutes if it is changed. The risk is not high - but after the change, remember to update all bookmarks, app settings, and reverse proxy settings.</div>
+ </details>
 
-      <details class="faq">
-        <summary>mine <code>configuration.yaml</code> There is <code>http:</code> Block, do you want to delete it now?</summary>
-        <div class="body">Want. from <strong>2026.7.5</strong> When the version starts, Home Assistant will pop up a warning saying that the HTTP YAML setting has been eliminated and the setting has been imported for you. Please import it for you. <code>http:</code> Block removed and noted<strong>"This will stop working in version 2027.2.0, please deal with it before upgrading"</strong>. When upgrading, your original settings will be automatically imported into the UI. The correct method is: first come first <strong>Settings → System → Network</strong> Confirm that the settings are all in (<code>trusted_proxies</code> Pay special attention to whether they have been brought over correctly), and then take them after confirming that there is no problem <code>configuration.yaml</code> the whole inside <code>http:</code> Delete the block and restart. If you can’t find the setting on the UI after deleting it, force refresh the browser first.</div>
-      </details>
+ <details class="faq">
+ <summary>mine <code>configuration.yaml</code> There is <code>http:</code> Block, do you want to delete it now?</summary>
+ <div class="body">Want. from <strong>2026.7.5</strong> When the version starts, Home Assistant will pop up a warning saying that the HTTP YAML setting has been eliminated and the setting has been imported for you. Please import it for you. <code>http:</code> Block removed and noted <strong>"This will stop working in version 2027.2.0, please deal with it before upgrading"</strong>. When upgrading, your original settings will be automatically imported into the UI. The correct method is: first come first <strong>Settings → System → Network</strong> Confirm that the settings are all in (<code>trusted_proxies</code> Pay special attention to whether they have been brought over correctly), and then take them after confirming that there is no problem <code>configuration.yaml</code> the whole inside <code>http:</code> Delete the block and restart. If you can’t find the setting on the UI after deleting it, force refresh the browser first.</div>
+ </details>
 
-      <details class="faq">
-        <summary>Can Nabu Casa and Tailscale be opened at the same time?</summary>
-        <div class="body">Yes, and it's a very practical combination. Nabu Casa is for daily use by your family (you can use it by just posting the URL, and can also connect to voice assistants), and Tailscale is for you to maintain yourself (after connecting, you can access the entire home network, and you can open the router management page and NAS). The two do not interfere with each other. The only thing to note is that if Tailscale has Serve or Funnel enabled, remember to <code>127.0.0.1</code> Add to list of trusted agents.</div>
-      </details>
+ <details class="faq">
+ <summary>Can Nabu Casa and Tailscale be opened at the same time?</summary>
+ <div class="body">Yes, and it's a very practical combination. Nabu Casa is for daily use by your family (you can use it by just posting the URL, and can also connect to voice assistants), and Tailscale is for you to maintain yourself (after connecting, you can access the entire home network, and you can open the router management page and NAS). The two do not interfere with each other. The only thing to note is that if Tailscale has Serve or Funnel enabled, remember to <code>127.0.0.1</code> Add to list of trusted agents.</div>
+ </details>
 
-      <details class="faq">
-        <summary>Why can’t I use Alexa or Google Voice on the VPN route?</summary>
-        <div class="body">Because the logic of VPN is to "pull your device into the home network", and the servers of Alexa and Google Assistant are on the Internet, they cannot join your VPN, so they will never be able to connect to your Home Assistant. If you want a cloud voice assistant, you have to go to Nabu Casa (this connection is included in the subscription), or switch to a voice solution that runs completely locally and does not require external connections (<a href="ch19_voice_ai.html">Chapter 19</a>).</div>
-      </details>
+ <details class="faq">
+ <summary>Why can’t I use Alexa or Google Voice on the VPN route?</summary>
+ <div class="body">Because the logic of VPN is to "pull your device into the home network", and the servers of Alexa and Google Assistant are on the Internet, they cannot join your VPN, so they will never be able to connect to your Home Assistant. If you want a cloud voice assistant, you have to go to Nabu Casa (this connection is included in the subscription), or switch to a voice solution that runs completely locally and does not require external connections (<a href="ch19_voice_ai.html">Chapter 19</a>).</div>
+ </details>
 
-      <details class="faq">
-        <summary>Trusted proxies I can be lazy and fill in <code>0.0.0.0/0</code> ? Anyway, no one in my family wants to be hacked.</summary>
-        <div class="body">No, this is the most non-negotiable aspect of this chapter.<code>0.0.0.0/0</code> means "I trust the source IP claimed by anyone." The attacker only needs to forge a request <code>X-Forwarded-For</code> header, you can pretend to be any IP - your IP blocking is completely invalid, your login records are all fake, and you can't even trace it afterwards. And "no one wants to hack me" is an illusion. The scanning robot doesn't pick targets, it scans the entire Internet. The correct approach is to only fill in the proxy address that you really know: fill in the App-type proxy address <code>172.30.33.0/24</code>, fill in Tailscale Serve/Funnel <code>127.0.0.1</code>.</div>
-      </details>
+ <details class="faq">
+ <summary>Trusted proxies I can be lazy and fill in <code>0.0.0.0/0</code> ? Anyway, no one in my family wants to be hacked.</summary>
+ <div class="body">No, this is the most non-negotiable aspect of this chapter.<code>0.0.0.0/0</code> means "I trust the source IP claimed by anyone." The attacker only needs to forge a request <code>X-Forwarded-For</code> header, you can install to be any IP - your IP blocking is completely invalid, your login records are all fake, and you can't even trace it afterwards. And "no one wants to hack me" is an illusion. The scanning robot doesn't pick targets, it scans the entire Internet. The correct approach is to only fill in the proxy address that you really know: fill in the App-type proxy address <code>172.30.33.0/24</code>, fill in Tailscale Serve/Funnel <code>127.0.0.1</code>.</div>
+ </details>
 
-      <details class="faq">
-        <summary>I'm not sure if I'm under CGNAT, how can I confirm it in thirty seconds?</summary>
-        <div class="body">Just compare the two numbers.<strong>first one</strong>: Log in to the router and find the external IP displayed on the WAN status page.<strong>second</strong>: Search "My IP" on your mobile phone or computer to see the IP the website tells you.<strong>Both are the same</strong>It means you have a real external IP, DDNS is the way to go.<strong>Two different</strong>There is a layer of telecom operators between the representatives, and you are under CGNAT. Also, if the router WAN IP falls on <code>100.64.x.x</code> Arrive <code>100.127.x.x</code> This section is reserved exclusively for CGNAT by telecom operators and can be determined directly. Please use Nabu Casa, Cloudflare Tunnel or Tailscale under CGNAT, these three will not be affected at all.</div>
-      </details>
+ <details class="faq">
+ <summary>I'm not sure if I'm under CGNAT, how can I confirm it in thirty seconds?</summary>
+ <div class="body">Just compare the two numbers. <strong>first one</strong>: Log in to the router and find the external IP displayed on the WAN status page. <strong>second</strong>: Search "My IP" on your phone or computer to see the IP the website tells you. <strong>Both are the same</strong> It means you have a real external IP, DDNS is the way to go. <strong>Two different</strong> There is a layer of telecom operators between the representatives, and you are under CGNAT. Also, if the router WAN IP falls on <code>100.64.x.x</code> Arrive <code>100.127.x.x</code> This section is reserved exclusively for CGNAT by telecom operators and can be determined directly. Please use Nabu Casa, Cloudflare Tunnel or Tailscale under CGNAT, these three will not be affected at all.</div>
+ </details>
 
-      <details class="faq">
-        <summary>Why do I enable IP blocking, but all attack records show 127.0.0.1?</summary>
-        <div class="body">Two possibilities.<strong>The first type</strong>: You are using Home Assistant Cloud. The official document clearly states that “If you use Home Assistant Cloud for remote access, all cloud connections will be displayed as IP <code>127.0.0.1</code>”, this is normal and means that IP blocking has no discernible effect on cloud connections - your line of defense depends on MFA.<strong>The second type</strong>: You have a reverse proxy but haven't set up a trusted proxy, so all requests appear to come from the proxy itself. In this case, you must not press block, because blocking one is equivalent to blocking all (including yourself). Go ahead and block <code>trusted_proxies</code> Let it be right.</div>
-      </details>
+ <details class="faq">
+ <summary>Why do I enable IP blocking, but all attack records show 127.0.0.1?</summary>
+ <div class="body">Two possibilities. <strong>The first type</strong>: You are using Home Assistant Cloud. Home Assistant documentation clearly states that “If you use Home Assistant Cloud for remote access, all cloud connections will be displayed as IP <code>127.0.0.1</code>”, this is normal and means that IP blocking has no discernible effect on cloud connections - your line of defense depends on MFA. <strong>The second type</strong>: You have a reverse proxy but haven't set up a trusted proxy, so all requests appear to come from the proxy itself. In this case, you must not press block, because blocking one is equivalent to blocking all (including yourself). Go ahead and block <code>trusted_proxies</code> Let it be right.</div>
+ </details>
 
-      <details class="faq">
-        <summary>After cutting VLANs to isolate IoT devices, can Home Assistant still find them?</summary>
-        <div class="body">It requires additional settings to find it. Automatic discovery relies on mDNS's "shout within the network segment" mechanism. By default, the shout will not cross VLANs, so you will find that all new devices cannot be discovered. The solution is to enable mDNS forwarding on the router or firewall (each name is different: mDNS Repeater, Avahi Reflector, Bonjour Gateway), and additionally allow the Home Assistant host<strong>One way</strong>Connect to the IoT network segment (the IoT side still cannot connect back to the main network segment). This is the most common cause of overturning at the scene. Before proceeding, make sure your network device supports these functions.</div>
-      </details>
-    </section>
+ <details class="faq">
+ <summary>After cutting VLANs to isolate IoT devices, can Home Assistant still find them?</summary>
+ <div class="body">It requires additional settings to find it. Automatic discovery relies on mDNS's "shout within the network segment" mechanism. By default, the shout will not cross VLANs, so you will find that all new devices cannot be discovered. The solution is to enable mDNS forwarding on the router or firewall (each name is different: mDNS Repeater, Avahi Reflector, Bonjour Gateway), and additionally allow the Home Assistant host <strong>One way</strong> Connect to the IoT network segment (the IoT side still cannot connect back to the main network segment). This is the most common cause of overturning at the scene. Before proceeding, make sure your network device supports these functions.</div>
+ </details>
+ </section>
 
-    <div class="pager">
+ <div class="pager">
       <a class="prev" href="ch20_addons_docker.html">
         <span class="label">← Previous</span>
         <span class="title">20 · Add-ons and Docker</span>
@@ -892,11 +892,11 @@
       </a>
     </div>
 
-    <footer class="site-footer">
+ <footer class="site-footer">
       <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
       <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
-  </main>
+ </main>
 </div>
 <script id="ui-strings" type="application/json">{"tocToggle":"Contents","tocExpand":"Expand chapter navigation","tocCollapse":"Collapse chapter navigation"}</script>
 <script src="../assets/js/toc.js"></script>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 11 · Device settings · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Understand the Home Assistant device page: renaming devices and entities, the difference between disabling/hiding/deleting, firmware updates, diagnostic downloads and repair centers (Repairs)." />
+  <meta name="description" content="Understand the Home Assistant device page: rename devices and entities, disable or hide entities, update firmware, download diagnostics, and resolve Repairs." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch11_devices.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Chapter 11 · Device settings · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Understand the Home Assistant device page: renaming devices and entities, the difference between disabling/hiding/deleting, firmware updates, diagnostic downloads and repair centers (Repairs)." />
+  <meta property="og:description" content="Understand the Home Assistant device page: rename devices and entities, disable or hide entities, update firmware, download diagnostics, and resolve Repairs." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch11_devices.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch11/01_device_page.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chapter 11 · Device settings · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Understand the Home Assistant device page: renaming devices and entities, the difference between disabling/hiding/deleting, firmware updates, diagnostic downloads and repair centers (Repairs)." />
+  <meta name="twitter:description" content="Understand the Home Assistant device page: rename devices and entities, disable or hide entities, update firmware, download diagnostics, and resolve Repairs." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch11/01_device_page.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -31,7 +31,7 @@
 </head>
 <body>
 <div class="layout">
-  <aside class="sidebar">
+ <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From zero to working</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch11_devices.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch11_devices.html" lang="en" aria-current="page">EN</a></nav>
@@ -47,7 +47,7 @@
       <li><a href="ch6_dashboard.html">Dashboards</a></li>
       <li><a href="ch7_notifications.html">Notifications</a></li>
       <li><a href="ch8_first_automation.html">First automation</a></li>
-      <li><a href="ch9_backups.html">backups</a></li>
+      <li><a href="ch9_backups.html">Backups</a></li>
       <li><a href="ch10_scripts.html">Scripts</a></li>
       <li><a href="ch11_devices.html" class="active">Device settings</a></li>
       <li><a href="ch12_domains.html">Domain reference</a></li>
@@ -78,200 +78,200 @@
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · HACS/add-ons/remote access</a>
-      <a href="appendix_scenes_helpers_groups.html">B · Scenes/helpers/groups</a>
+      <a href="appendix_hacs_addons.html">A · HACS, add-ons, and remote access</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scenes, helpers, and groups</a>
       <a href="appendix_hardware_install.html">C · Hardware and HAOS</a>
     </div>
   </aside>
 
-  <main class="content">
-    <div class="chapter-header">
-      <div class="kicker">Chapter 11</div>
-      <h1>Device details</h1>
-      <p class="lead">The "Device Page" is the file card for each piece of physical hardware within HA. This chapter breaks down each block of it, teaches you how to rename it, deactivate unnecessary entities, update the firmware, view diagnostics, and cleanly remove it.</p>
-    </div>
+ <main class="content">
+ <div class="chapter-header">
+ <div class="kicker">Chapter 11</div>
+ <h1>Device details</h1>
+ <p class="lead">A Home Assistant device page is the record for one piece of hardware. Learn to read each section, rename devices and entities, disable unneeded entities, update firmware, download diagnostics, and remove a device cleanly.</p>
+ </div>
 
-    <section id="anatomy" data-nav="Device page anatomy">
-      <h2 data-icon="concept">Device page anatomy</h2>
-      <p>Path:<strong>Settings → Devices &amp; Services → Devices</strong>(Tab) → Click on any device card to enter the device details page.</p>
-      <p>A typical device page is divided into 6 sections:</p>
-      <figure class="shot">
-        <img src="../assets/screenshots/ch11/01_device_page.png" alt="Device details page" />
-        <figcaption><strong>Figure 11-1</strong>6 sections of the device page: Information, Entities, Automation, Scenarios, Scripts, Alerts/Diagnostics.</figcaption>
-      </figure>
-      <ol>
-        <li><strong>Device information</strong>: Name, manufacturer, model, firmware version, which integration is used, and which region it belongs to. There is a "⋮" menu in the upper right corner.</li>
-        <li><strong>control</strong>: If there is an actively controlled device (switch, light), there will be a big button.</li>
-        <li><strong>Entities</strong>: All entities spawned by this device. A Zigbee switch may have both <code>switch.*</code>(control),<code>sensor.*_battery</code>(power),<code>update.*_firmware</code>(Firmware) Three entities.</li>
-        <li><strong>Automation/Scenarios/Scripts</strong>: this device<em>where is it used</em>. If you want to change automation, it’s faster to jump here. It’s also a checklist of “what will be the impact of deleting this unit?”</li>
-        <li><strong>Related</strong>: There are often links to "View Record" and "View History" at the bottom.</li>
-        <li><strong>Diagnosis / Download diagnostic data</strong>: The original information shown to the integration author when a problem occurs, usually JSON.</li>
-      </ol>
-      <div class="callout tip"><strong>Mental method:</strong>"Device" is the physical hardware; "entity" is each readable/controllable endpoint exposed by this hardware. A socket may have only 1 entity (switch); an environmental monitor may have 5 (temperature, humidity, CO₂, power, firmware).</div>
-    </section>
+ <section id="anatomy" data-nav="Device page anatomy">
+ <h2 data-icon="concept">Device page anatomy</h2>
+ <p>Path: <strong>Settings → Devices &amp; Services → Devices</strong> (Tab) → Click on any device card to enter the device details page.</p>
+ <p>A typical device page is divided into 6 sections:</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch11/01_device_page.png" alt="Device details page" />
+ <figcaption><strong>Figure 11-1</strong> 6 sections of the device page: Information, Entities, Automation, Scenes, Scripts, Alerts/Diagnostics.</figcaption>
+ </figure>
+ <ol>
+ <li><strong>Device information</strong>: Name, manufacturer, model, firmware version, which integration is used, and which region it belongs to. There is a "⋮" menu in the upper right corner.</li>
+ <li><strong>control</strong>: If there is an actively controlled device (switch, light), there will be a big button.</li>
+ <li><strong>Entities</strong>: All entities spawned by this device. A Zigbee switch may have both <code>switch.*</code>(control),<code>sensor.*_battery</code>(power),<code>update.*_firmware</code>(Firmware) Three entities.</li>
+ <li><strong>Automation/Scenes/Scripts</strong>: this device <em>where is it used</em>. If you want to change automation, it’s faster to trigger here. It’s also a checklist of “what will be the impact of deleting this unit?”</li>
+ <li><strong>Related</strong>: There are often links to "View Record" and "View History" at the bottom.</li>
+ <li><strong>Diagnosis / Download diagnostic data</strong>: The original information shown to the integration author when a problem occurs, usually JSON.</li>
+ </ol>
+ <div class="callout tip"><strong>Mental method:</strong> "Device" is the physical hardware; "entity" is each readable/controllable endpoint exposed by this hardware. A socket may have only 1 entity (switch); an environmental monitor may have 5 (temperature, humidity, CO₂, power, firmware).</div>
+ </section>
 
-    <section id="rename" data-nav="Rename">
-      <h2 data-icon="steps">Rename devices and entities</h2>
-      <ol class="steps">
-        <li>
-          <h3>Device rename</h3>
-          <p>Device page → Pencil icon in the upper right corner → Change "Name".<strong>influence</strong>: All entities under this device<em>display name</em>The prefix will be automatically changed (if it has not been overwritten individually).</p>
-          <div class="callout warn"><strong>Things that won't change</strong>: The entity ID (entity_id) will not be changed automatically and needs to be changed separately on the entity page. This is intentional on HA: if automation is hard-coded <code>light.old_name</code>, you can change the device display name without breaking the automation. If you want to change the entity_id together, you have to do it manually.</div>
-        </li>
-        <li>
-          <h3>Entity rename (display name &amp; entity_id)</h3>
-          <p>Device page → click on an entity → gear icon. You can change the "Name" (for display) and "Entity ID" (identification code referenced by the program) respectively. When changing entity_id, HA will ask if you want to help you change the references in all dashboards/automation/scripts — <strong>Be sure to tick</strong>, otherwise it creates a broken reference.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch11/02_rename_entity.png" alt="Entity renamed" />
-            <figcaption><strong>Figure 11-2</strong>When changing entity_id, check "Update references together" - if not, automation will break.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>Change the icon (to prevent the whole family from looking the same)</h3>
-          <p>Physical gear page → "Icon" column → fill in <code>mdi:xxx</code>(Example <code>mdi:lightbulb-outline</code>, <code>mdi:ceiling-light</code>, <code>mdi:desk-lamp</code>). Illustration library:<a href="https://pictogrammers.com/library/mdi/" target="_blank" rel="noopener">pictogrammers.com/library/mdi/</a>.</p>
-        </li>
-      </ol>
-    </section>
+ <section id="rename" data-nav="Rename">
+ <h2 data-icon="steps">Rename devices and entities</h2>
+ <ol class="steps">
+ <li>
+ <h3>Device rename</h3>
+ <p>Device page → Pencil icon in the upper right corner → Change "Name". <strong>influence</strong>: All entities under this device <em>display name</em> The prefix will be automatically changed (if it has not been overwritten individually).</p>
+ <div class="callout warn"><strong>Things that won't change</strong>: The entity ID (entity_id) will not be changed automatically and needs to be changed separately on the entity page. This is intentional on HA: if automation is hard-coded <code>light.old_name</code>, you can change the device display name without breaking the automation. If you want to change the entity_id together, you have to do it manually.</div>
+ </li>
+ <li>
+ <h3>Entity rename (display name &amp; entity_id)</h3>
+ <p>Device page → click on an entity → gear icon. You can change the "Name" (for display) and "Entity ID" (identification code referenced by the program) respectively. When changing entity_id, HA will ask if you want to help you change the references in all dashboards/automation/scripts — <strong>Be sure to tick</strong>, otherwise it creates a broken reference.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch11/02_rename_entity.png" alt="Entity renamed" />
+ <figcaption><strong>Figure 11-2</strong> When changing entity_id, check "Update references together" - if not, automation will break.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>Change the icon (to prevent the whole family from looking the same)</h3>
+ <p>Entity settings page → "Icon" column → fill in <code>mdi:xxx</code>(Example <code>mdi:lightbulb-outline</code>, <code>mdi:ceiling-light</code>, <code>mdi:desk-lamp</code>). Icon library: <a href="https://pictogrammers.com/library/mdi/" target="_blank" rel="noopener">pictogrammers.com/library/mdi/</a>.</p>
+ </li>
+ </ol>
+ </section>
 
-    <section id="entities" data-nav="Entity management">
-      <h2 data-icon="steps">Entities</h2>
-      <p>A device usually has many entities, especially environmental sensors and Zigbee all-in-one switches. Organizing principles:</p>
-      <ul>
-        <li><strong>available</strong> → Name it clearly, specify the area, and add labels.</li>
-        <li><strong>Visible but not commonly used</strong>(Example: battery level) → Just leave it alone, or add a label "battery" for centralized monitoring.</li>
-        <li><strong>Totally useless</strong>(Example: Some integrations will produce a bunch of unused diagnostic entities) → Disable or hide (see next section).</li>
-      </ul>
-      <p>There are two operation paths:</p>
-      <ol>
-        <li><strong>Enter from device page</strong>: See the entity of a single device, suitable for organizing the entire device.</li>
-        <li><strong>Settings → Devices &amp; Services → Entities</strong>(Tab): A summary list of all entities in the entire site, which can be filtered by domain, tag, and status; suitable for large-scale sorting.</li>
-      </ol>
-      <figure class="shot">
-        <img src="../assets/screenshots/ch11/03_entities_filter.png" alt="Entity summary" />
-        <figcaption><strong>Figure 11-3</strong>Entity summary list - the upper filter can be filtered by domain, integration, status, and tags.</figcaption>
-      </figure>
-    </section>
+ <section id="entities" data-nav="Entity management">
+ <h2 data-icon="steps">Entities</h2>
+ <p>A device usually has many entities, especially environmental sensors and Zigbee all-in-one switches. Organizing principles:</p>
+ <ul>
+ <li><strong>available</strong> → Name it clearly, specify the area, and add labels.</li>
+ <li><strong>Visible but not commonly used</strong> (Example: battery level) → Just leave it alone, or add a label "battery" for centralized monitoring.</li>
+ <li><strong>Totally useless</strong> (Example: Some integrations will produce multiple unused diagnostic entities) → Disable or hide (see next section).</li>
+ </ul>
+ <p>There are two operation paths:</p>
+ <ol>
+ <li><strong>Enter from device page</strong>: See the entity of a single device, suitable for organizing the entire device.</li>
+ <li><strong>Settings → Devices &amp; Services → Entities</strong> (Tab): A summary list of all entities in the entire site, which can be filtered by domain, tag, and status; suitable for large-scale sorting.</li>
+ </ol>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch11/03_entities_filter.png" alt="Entity summary" />
+ <figcaption><strong>Figure 11-3</strong> Entity summary list - the upper filter can be filtered by domain, integration, status, and tags.</figcaption>
+ </figure>
+ </section>
 
-    <section id="disable" data-nav="Deactivate vs Hide vs Delete">
-      <h2 data-icon="concept">Deactivate vs Hide vs Delete - three different buttons</h2>
-      <div class="callout warn"><strong>These three are often confused</strong>: Newbies often want to "delete", but in 90% of cases it should be "hide" or "disable". Sometimes you have to reset the integration to get it back if you delete it by mistake.</div>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Operation</th>
-            <th>Effect</th>
-            <th>Historical preservation?</th>
-            <th>How to restore</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Hide Hidden</strong></td>
-            <td>The entity is still running and data is still being collected, but the UI is not displayed by default and the card cannot be selected.</td>
-            <td>Reserve</td>
-            <td>Turn off "Hide" on the entity page</td>
-          </tr>
-          <tr>
-            <td><strong>Disabled</strong></td>
-            <td>The entity no longer updates, no longer collects data, and becomes <code>unavailable</code></td>
-            <td>The history is retained and will not be added after deactivation.</td>
-            <td>Turn off "Disabled" on the entity page, and it will usually come back only after reloading the integration.</td>
-          </tr>
-          <tr>
-            <td><strong>Delete Delete</strong></td>
-            <td>Clear entities and all references</td>
-            <td>Reserved (but no source)</td>
-            <td>Usually you need to remove the device integration and re-pair it</td>
-          </tr>
-        </tbody>
-      </table>
-      <p><strong>When to use which one?</strong></p>
-      <ul>
-        <li>"I won't use this entity, but I might want to see it someday" → <strong>hide</strong></li>
-        <li>"This entity disturbs my log/occupies resources" → <strong>deactivate</strong>(Example: Z-Wave has a bunch of unused diagnostic entities)</li>
-        <li>"I dismantled this device and will never use it again." → First "Delete device" on the device page, or go to the integration page to remove the entire device. Simply "deleting the entity" will usually not succeed if the device still exists (it will be rebuilt).</li>
-      </ul>
-    </section>
+ <section id="disable" data-nav="Deactivate vs Hide vs Delete">
+ <h2 data-icon="concept">Deactivate vs Hide vs Delete - three different buttons</h2>
+ <div class="callout warn"><strong>These three are often confused</strong>: Newbies often want to "delete", but in 90% of cases it should be "hide" or "disable". Sometimes you have to reset the integration to get it back if you delete it by mistake.</div>
+ <table class="data-table">
+ <thead>
+ <tr>
+ <th>Operation</th>
+ <th>Effect</th>
+ <th>Historical preservation?</th>
+ <th>How to restore</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td><strong>Hide Hidden</strong></td>
+ <td>The entity is still running and data is still being collected, but the UI is not displayed by default and the card cannot be selected.</td>
+ <td>Reserve</td>
+ <td>Turn off "Hide" on the entity page</td>
+ </tr>
+ <tr>
+ <td><strong>Disabled</strong></td>
+ <td>The entity no longer updates, no longer collects data, and becomes <code>unavailable</code></td>
+ <td>The history is retained and will not be added after deactivation.</td>
+ <td>Turn off "Disabled" on the entity page, and it will usually come back only after reloading the integration.</td>
+ </tr>
+ <tr>
+ <td><strong>Delete Delete</strong></td>
+ <td>Clear entities and all references</td>
+ <td>Reserved (but no source)</td>
+ <td>Usually you need to remove the device integration and re-pair it</td>
+ </tr>
+ </tbody>
+ </table>
+ <p><strong>When to use which one?</strong></p>
+ <ul>
+ <li>"I won't use this entity, but I might want to see it someday" → <strong>hide</strong></li>
+ <li>"This entity disturbs my log/occupies resources" → <strong>deactivate</strong> (Example: Z-Wave has multiple unused diagnostic entities)</li>
+ <li>"I dismantled this device and will never use it again." → First "Delete device" on the device page, or go to the integration page to remove the entire device. Simply "deleting the entity" will usually not succeed if the device still exists (it will be rebuilt).</li>
+ </ul>
+ </section>
 
-    <section id="firmware" data-nav="Firmware update">
-      <h2 data-icon="steps">Firmware update (Update entity)</h2>
-      <p>In recent years, new integrations will make "firmware updates" into one <code>update.*</code> Entities, displayed on the device page like other entities.</p>
-      <ol class="steps">
-        <li>
-          <h3>Check to see if any updates are available</h3>
-          <p>The "Updates" card of the overview will be displayed together. Or go to "Settings → System → Updates" to see them all. Updates for a single device are at the bottom of the device page <code>update.*</code> entity.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch11/04_updates.png" alt="update page" />
-            <figcaption><strong>Figure 11-4</strong>Settings → System → Update — HA Core, Applications (Apps, called Add-ons in the old version), Integration, and Device Firmware are concentrated here.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>Back up before updating (Chapter 9)</h3>
-          <p>Especially Zigbee / Z-Wave firmware update failure will brick the device. A 3-minute backup costs far less than re-pairing an entire device.</p>
-        </li>
-        <li>
-          <h3>Click "Install"</h3>
-          <p>Battery-operated devices (door contacts, motion sensors) often take a few clicks to receive a message because they sleep most of the time. Some integrations will be queued for the next time it wakes up.</p>
-        </li>
-        <li>
-          <h3>Verify after update</h3>
-          <p>Go back to the device page and see if the "Firmware version" jumps. The common reasons why the status has not changed are: the update has not been pushed in the queue, or the update failed (see the log).</p>
-        </li>
-      </ol>
-      <div class="callout tip"><strong>Zigbee firmware update (OTA)</strong>: ZHA turns off OTA by default and needs to be turned on in the integration settings; Zigbee2MQTT supports most brands by default. in process<strong>Do not cut off power or turn off HA</strong>, usually takes 10-30 minutes.</div>
-    </section>
+ <section id="firmware" data-nav="Firmware update">
+ <h2 data-icon="steps">Firmware update (Update entity)</h2>
+ <p>In recent years, new integrations will make "firmware updates" into one <code>update.*</code> Entities, displayed on the device page like other entities.</p>
+ <ol class="steps">
+ <li>
+ <h3>Check to see if any updates are available</h3>
+ <p>The "Updates" card of the overview will be displayed together. Or go to "Settings → System → Updates" to see them all. Updates for a single device are at the bottom of the device page <code>update.*</code> entity.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch11/04_updates.png" alt="update page" />
+ <figcaption><strong>Figure 11-4</strong> Settings → System → Update — HA Core, Applications (Apps, called Add-ons in the old version), Integration, and Device Firmware are concentrated here.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>Back up before updating (Chapter 9)</h3>
+ <p>Especially Zigbee / Z-Wave firmware update failure will brick the device. A 3-minute backup costs far less than re-pairing an entire device.</p>
+ </li>
+ <li>
+ <h3>Click "Install"</h3>
+ <p>Battery-operated devices (door contacts, motion sensors) often take a few clicks to receive a message because they sleep most of the time. Some integrations will be queued for the next time it wakes up.</p>
+ </li>
+ <li>
+ <h3>Verify after update</h3>
+ <p>Go back to the device page and see if the "Firmware version" jumps. The common reasons why the status has not changed are: the update has not been pushed in the queue, or the update failed (see the log).</p>
+ </li>
+ </ol>
+ <div class="callout tip"><strong>Zigbee firmware update (OTA)</strong>: ZHA turns off OTA by default and needs to be turned on in the integration settings; Zigbee2MQTT supports most brands by default. in process <strong>Do not cut off power or turn off HA</strong>, usually takes 10-30 minutes.</div>
+ </section>
 
-    <section id="diagnostics" data-nav="Diagnosis &amp; Repairs">
-      <h2 data-icon="advanced">Diagnosis &amp; Repairs</h2>
-      <div class="callout"><strong>Version differences:</strong>The fixed location of the Repair Center (Repairs) is now<strong>Settings → System → Repairs</strong>, a digital badge will be used next to "Settings" in the sidebar to remind you how many items you still have to deal with. In addition, starting from 2026.2, "Add-on" will be officially renamed as "Apps", and the store path will become<strong>Settings → Applications</strong>; Where Add-on is written on the old version of the screen, application is written in the new version.</div>
-      <p>There are two tools for HA when the device is weird:</p>
-      <h3>1. Download Diagnostics</h3>
-      <p>Device page → "⋮" in the upper right corner → "Download Diagnostics" will download a JSON file containing all status, attributes, and integrated raw data of the device (sensitive information has been masked). It is helpful to attach it to GitHub issues or when asking for help in the community.</p>
-      <h3>2. Repairs (repair suggestions)</h3>
-      <p>The path is<strong>Settings → System → Repairs</strong>; There will also be a badge with pending results next to "Settings" in the sidebar. This is a problem that is proactively detected by HA (integration stopped working, application out of date, duplicate entities, database too large, etc.). There is a "Fix Now" button for each issue you click on, which can usually be solved with one click.</p>
-      <figure class="shot">
-        <img src="../assets/screenshots/ch11/05_repairs.png" alt="Repairs page" />
-        <figcaption><strong>Figure 11-5</strong>Repairs — Issues that HA proactively identifies and often resolve with one click.</figcaption>
-      </figure>
-      <div class="callout warn"><strong>Read before Ignore</strong>: Repairs has an "ignore" button, but many issues really need to be addressed. After ignoring it, the badge disappears but the problem remains. Ignore it unless you are sure the issue does not affect you.</div>
-    </section>
+ <section id="diagnostics" data-nav="Diagnosis &amp; Repairs">
+ <h2 data-icon="advanced">Diagnosis &amp; Repairs</h2>
+ <div class="callout"><strong>Version differences:</strong> The fixed location of the Repairs is now <strong>Settings → System → Repairs</strong>, a digital badge will be used next to "Settings" in the sidebar to remind you how many items you still have to deal with. In addition, starting from 2026.2, "Add-on" will be officially renamed as "Apps", and the store path will become <strong>Settings → Applications</strong>; Where Add-on is written on the old version of the screen, application is written in the new version.</div>
+ <p>There are two tools for HA when the device is weird:</p>
+ <h3>1. Download Diagnostics</h3>
+ <p>Device page → "⋮" in the upper right corner → "Download Diagnostics" will download a JSON file containing all status, attributes, and integrated raw data of the device (sensitive information has been masked). It is helpful to attach it to GitHub issues or when asking for help in the community.</p>
+ <h3>2. Repairs (repair suggestions)</h3>
+ <p>The path is <strong>Settings → System → Repairs</strong>; There will also be a badge with pending results next to "Settings" in the sidebar. This is a problem that is proactively detected by HA (integration stopped working, application out of date, duplicate entities, database too large, etc.). There is a "Fix Now" button for each issue you click on, which can usually be solved with one click.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch11/05_repairs.png" alt="Repairs page" />
+ <figcaption><strong>Figure 11-5</strong> Repairs — Issues that HA proactively identifies and often resolve with one click.</figcaption>
+ </figure>
+ <div class="callout warn"><strong>Read before Ignore</strong>: Repairs has an "ignore" button, but many issues really need to be addressed. After ignoring it, the badge disappears but the problem remains. Ignore it unless you are sure the issue does not affect you.</div>
+ </section>
 
-    <section id="reconfigure" data-nav="Reset &amp; Remove">
-      <h2 data-icon="steps">Reset &amp; remove device</h2>
-      <h3>Reconfigure</h3>
-      <p>If integrated support is available, go to "⋮" → "Reset" on the device page to change the connection method (change IP, change key, change API token) without deleting and re-adding. ZHA/Zigbee2MQTT devices can also be "re-identified" (interviewed) from here and repair the remaining damaged entities.</p>
-      <h3>Remove a single device</h3>
-      <p>Device page → "⋮" → "Delete". This only deletes the record in HA; if it is Zigbee, it will notify the coordinator to kick it off the network; if it is cloud integration (Xiaomi, Tuya), it may be pulled back the next time the account is synchronized.</p>
-      <div class="callout warn"><strong>No "Delete" option?</strong>This means that this integration does not support deleting devices individually (for example, HomeKit Bridge can be used as a whole package). In this case, you need to go to "Settings → Devices and Services → Integration" to remove the entire integration or change the settings.</div>
-      <h3>Remove entire integration</h3>
-      <p>Settings → Devices and Services → Find the integration → Three dots → "Delete". It will warn "All devices and entities integrated with this will be deleted." Back up first!</p>
-    </section>
+ <section id="reconfigure" data-nav="Reset &amp; Remove">
+ <h2 data-icon="steps">Reset &amp; remove device</h2>
+ <h3>Reconfigure</h3>
+ <p>If integrated support is available, go to "⋮" → "Reset" on the device page to change the connection method (change IP, change key, change API token) without deleting and re-adding. ZHA/Zigbee2MQTT devices can also be "re-identified" (interviewed) from here and repair the remaining damaged entities.</p>
+ <h3>Remove a single device</h3>
+ <p>Device page → "⋮" → "Delete". This only deletes the record in HA; if it is Zigbee, it will notify the coordinator to kick it off the network; if it is cloud integration (Xiaomi, Tuya), it may be pulled back the next time the account is synchronized.</p>
+ <div class="callout warn"><strong>No "Delete" option?</strong> This means that this integration does not support deleting devices individually (for example, HomeKit Bridge can be used as a whole package). In this case, you need to go to "Settings → Devices and Services → Integration" to remove the entire integration or change the settings.</div>
+ <h3>Remove entire integration</h3>
+ <p>Settings → Devices and Services → Find the integration → Three dots → "Delete". It will warn "All devices and entities integrated with this will be deleted." Back up first!</p>
+ </section>
 
-    <section id="faq" data-nav="FAQ">
-      <h2 data-icon="faq">FAQ</h2>
-      <details class="faq">
-        <summary>The device is always displayed when offline <code>unavailable</code>, how to distinguish whether it is disconnected or really broken?</summary>
-        <div class="body">look <strong>Logbook</strong>(Log) - When this device was last online. If it was still moving yesterday, start this morning <code>unavailable</code>, it's mostly a WiFi or Zigbee signal problem; if it hasn't been used for several days, the battery or hardware may be bad. Z-Wave/Zigbee Signal Strength (LQI) can also be viewed on the device page.</div>
-      </details>
-      <details class="faq">
-        <summary>Can the entity of a device be "belonged" to different regions?</summary>
-        <div class="body">Yes, entities can overwrite areas of a device. For example: The light strip device belongs to the "living room", but one section of the lamp entity wants to belong to the "entry". Just change the "Region" on the entity page. Disadvantages: This device becomes more difficult to manage as a whole.</div>
-      </details>
-      <details class="faq">
-        <summary>After deleting the device, will the history records still be found?</summary>
-        <div class="body">Yes, the Recorder database still retains the original data, but it cannot be seen in the UI (because the corresponding entity no longer exists). If you want to be really clean, you have to go into the database and delete it (most people don’t have to do this), or wait. <code>purge_keep_days</code> Automatically clear when due (default 10 days).</div>
-      </details>
-      <details class="faq">
-        <summary>A device seems to be recognized by two integrations at the same time (for example: Xiaomi official + HACS version), what should I do?</summary>
-        <div class="body">Two sets of entities will be generated with conflicting behaviors. Select one to keep and the other to "Settings → Devices and Services → Integration" to remove them all. In practice: the official brand integration is stable but has few functions; the HACS community version has many functions but frequent updates. It’s up to you to weigh the balance. Don’t keep both.</div>
-      </details>
-      <details class="faq">
-        <summary>Can the device page URL be shared directly?</summary>
-        <div class="body">Yes, the URL structure is <code>/config/devices/device/deviceID</code>. Just paste the URL when sharing it with your family, and you will jump to the same page after logging in.</div>
-      </details>
-    </section>
+ <section id="faq" data-nav="FAQ">
+ <h2 data-icon="faq">FAQ</h2>
+ <details class="faq">
+ <summary>The device is always displayed when offline <code>unavailable</code>, how to distinguish whether it is disconnected or really broken?</summary>
+ <div class="body">look <strong>Logbook</strong> (Log) - When this device was last online. If it was still moving yesterday, start this morning <code>unavailable</code>, it's mostly a WiFi or Zigbee signal problem; if it hasn't been used for several days, the battery or hardware may be bad. Z-Wave/Zigbee Signal Strength (LQI) can also be viewed on the device page.</div>
+ </details>
+ <details class="faq">
+ <summary>Can the entity of a device be "belonged" to different regions?</summary>
+ <div class="body">Yes, entities can overwrite areas of a device. For example: The light strip device belongs to the "living room", but one section of the lamp entity wants to belong to the "entry". Just change the "Region" on the entity page. Disadvantages: This device becomes more difficult to manage as a whole.</div>
+ </details>
+ <details class="faq">
+ <summary>After deleting the device, will the history records still be found?</summary>
+ <div class="body">Yes, the Recorder database still retains the original data, but it cannot be seen in the UI (because the corresponding entity no longer exists). If you want to be really clean, you have to go into the database and delete it (most people don’t have to do this), or wait. <code>purge_keep_days</code> Automatically clear when due (default 10 days).</div>
+ </details>
+ <details class="faq">
+ <summary>A device seems to be recognized by two integrations at the same time (for example: Xiaomi official + HACS version), what should I do?</summary>
+ <div class="body">Two sets of entities will be generated with conflicting behaviors. Select one to keep and the other to "Settings → Devices and Services → Integration" to remove them all. In practice: Home Assistant brand integration is stable but has few functions; the HACS community version has many functions but frequent updates. It’s up to you to weigh the balance. Don’t keep both.</div>
+ </details>
+ <details class="faq">
+ <summary>Can the device page URL be shared directly?</summary>
+ <div class="body">Yes, the URL structure is <code>/config/devices/device/deviceID</code>. Just paste the URL when sharing it with your family, and you will trigger to the same page after logging in.</div>
+ </details>
+ </section>
 
-    <div class="pager">
+ <div class="pager">
       <a class="prev" href="ch10_scripts.html">
         <span class="label">← Previous</span>
         <span class="title">10 · Scripts</span>
@@ -282,11 +282,11 @@
       </a>
     </div>
 
-    <footer class="site-footer">
+ <footer class="site-footer">
       <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
       <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
-  </main>
+ </main>
 </div>
 <script id="ui-strings" type="application/json">{"tocToggle":"Contents","tocExpand":"Expand chapter navigation","tocCollapse":"Collapse chapter navigation"}</script>
 <script src="../assets/js/toc.js"></script>

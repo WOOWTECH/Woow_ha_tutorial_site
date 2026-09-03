@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 1 · Log in to Home Assistant · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="How to log in to Home Assistant: three ways to find the HA URL, the difference between Owner and Administrator, how to use “Stay logged in”, and the choice between the web backend and the Companion App." />
+  <meta name="description" content="Learn three ways to find your Home Assistant URL, how Owner and Administrator accounts differ, when to use “Stay logged in,” and how the web interface compares with the Companion App." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch1_login.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Chapter 1 · Log in to Home Assistant · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="How to log in to Home Assistant: three ways to find the HA URL, the difference between Owner and Administrator, how to use “Stay logged in”, and the choice between the web backend and the Companion App." />
+  <meta property="og:description" content="Learn three ways to find your Home Assistant URL, how Owner and Administrator accounts differ, when to use “Stay logged in,” and how the web interface compares with the Companion App." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch1_login.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch1/01_login_page.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chapter 1 · Log in to Home Assistant · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="How to log in to Home Assistant: three ways to find the HA URL, the difference between Owner and Administrator, how to use “Stay logged in”, and the choice between the web backend and the Companion App." />
+  <meta name="twitter:description" content="Learn three ways to find your Home Assistant URL, how Owner and Administrator accounts differ, when to use “Stay logged in,” and how the web interface compares with the Companion App." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch1/01_login_page.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -31,7 +31,7 @@
 </head>
 <body>
 <div class="layout">
-  <aside class="sidebar">
+ <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From zero to working</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch1_login.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch1_login.html" lang="en" aria-current="page">EN</a></nav>
@@ -47,7 +47,7 @@
       <li><a href="ch6_dashboard.html">Dashboards</a></li>
       <li><a href="ch7_notifications.html">Notifications</a></li>
       <li><a href="ch8_first_automation.html">First automation</a></li>
-      <li><a href="ch9_backups.html">backups</a></li>
+      <li><a href="ch9_backups.html">Backups</a></li>
       <li><a href="ch10_scripts.html">Scripts</a></li>
       <li><a href="ch11_devices.html">Device settings</a></li>
       <li><a href="ch12_domains.html">Domain reference</a></li>
@@ -76,128 +76,128 @@
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · HACS/add-ons/remote access</a>
-      <a href="appendix_scenes_helpers_groups.html">B · Scenes/helpers/groups</a>
+      <a href="appendix_hacs_addons.html">A · HACS, add-ons, and remote access</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scenes, helpers, and groups</a>
       <a href="appendix_hardware_install.html">C · Hardware and HAOS</a>
     </div>
   </aside>
 
-  <main class="content">
-    <div class="chapter-header">
-      <div class="kicker">Chapter 1</div>
-      <h1>Sign in to Home Assistant</h1>
-      <p class="lead">First make sure you can enter the the dashboard reliably. This is the prerequisite for all subsequent chapters. This chapter teaches you to recognize the login page, remember the login status, and understand the difference between "web interface" and "Companion App".</p>
-    </div>
+ <main class="content">
+ <div class="chapter-header">
+ <div class="kicker">Chapter 1</div>
+ <h1>Log in to Home Assistant</h1>
+ <p class="lead">First, make sure you can reach the Home Assistant dashboard reliably. Everything in later chapters depends on it. You will learn to recognize the login page, stay signed in safely, and choose between the web interface and the Companion App.</p>
+ </div>
 
-    <section id="why" data-nav="Why should you learn this?">
-      <h2 data-icon="why">Why should you learn this?</h2>
-      <p>Home Assistant (hereinafter referred to as HA) is a "locally controlled" smart home hub: all device status, automation, and room data are stored on the small host in your home and will not go through the cloud.</p>
-      <p>Because it is your own server, the login method is different from ordinary Internet services:</p>
-      <ul>
-        <li>There is no "forgot password" - the password is known only to the host.</li>
-        <li>It is possible to enter through the local network IP, or through the domain name (Nabu Casa/self-hosted DDNS).</li>
-        <li>The login experience on mobile phones and computers is different - it is recommended to install Companion App on mobile phones and use a browser on computers.</li>
-      </ul>
-      <p><strong>Two roles that are often confused: Owner vs Administrator</strong>: The first account created during installation is the "Owner", which has the greatest authority and<strong>Once the password is forgotten, it cannot be retrieved</strong>(HA official document clearly states this). The administrator account you create in ch5 later has close permissions, but is not the owner. There can only be one owner.</p>
-    </section>
+ <section id="why" data-nav="Why should you learn this?">
+ <h2 data-icon="why">Why should you learn this?</h2>
+ <p>Home Assistant (hereinafter referred to as HA) is a "locally controlled" smart home hub: all device status, automation, and room data are stored on the small host in your home and will not go through the cloud.</p>
+ <p>Because it is your own server, the login method is different from ordinary Internet services:</p>
+ <ul>
+ <li>There is no "forgot password" - the password is known only to the host.</li>
+ <li>It is possible to enter through the local network IP, or through the domain name (Nabu Casa/self-hosted DDNS).</li>
+ <li>The login experience on phones and computers is different - it is recommended to install Companion App on phones and use a browser on computers.</li>
+ </ul>
+ <p><strong>Two roles that are often confused: Owner vs Administrator</strong>: The first account created during installation is the "Owner", which has the greatest authority and <strong>Once the password is forgotten, it cannot be retrieved</strong> (HA official documentation clearly states this). The administrator account you create in ch5 later has close permissions, but is not the owner. There can only be one owner.</p>
+ </section>
 
-    <section id="url" data-nav="Find your HA URL">
-      <h2 data-icon="url">Find your HA URL</h2>
-      <p>Your URL will usually be one of three:</p>
-      <ul>
-        <li><strong>LAN IP</strong>: <code>http://homeassistant.local:8123</code> or <code>http://192.168.x.x:8123</code>.</li>
-        <li><strong>Nabu Casa Remote</strong>: <code>https://xxxxx.ui.nabu.casa</code>(Paid subscription).</li>
-        <li><strong>Self-hosted domain</strong>: For example <code>https://ha.yourdomain.com</code>(For example, the author uses a self-hosted domain <code>https://woowtech-ha.woowtech.io</code>).</li>
-      </ul>
-      <div class="callout tip"><strong>Tip:</strong>Add the URL to the browser bookmarks, and "Add bookmarks to desktop" on the phone's home screen, then click to open it.</div>
-    </section>
+ <section id="url" data-nav="Find your HA URL">
+ <h2 data-icon="url">Find your HA URL</h2>
+ <p>Your URL will usually be one of three:</p>
+ <ul>
+ <li><strong>LAN IP</strong>: <code>http://homeassistant.local:8123</code> or <code>http://192.168.x.x:8123</code>.</li>
+ <li><strong>Nabu Casa Remote</strong>: <code>https://xxxxx.ui.nabu.casa</code>(Paid subscription).</li>
+ <li><strong>Self-hosted domain</strong>: For example <code>https://ha.yourdomain.com</code>(For example, the author uses a self-hosted domain <code>https://woowtech-ha.woowtech.io</code>).</li>
+ </ul>
+ <div class="callout tip"><strong>Tip:</strong> Add the URL to the browser bookmarks, and "Add bookmarks to desktop" on the phone's home screen, then click to open it.</div>
+ </section>
 
-    <section id="steps" data-nav="Login steps">
-      <h2 data-icon="steps">Login steps</h2>
-      <div class="callout"><strong>Version differences:</strong>The default dashboard you see after logging in will be called "Home" starting from 2026.2; before that, it was called "Overview". The old version of the interface will say "Overview" at the top of the sidebar. Both are in the same location and the following steps apply.</div>
-      <ol class="steps">
-        <li>
-          <h3>Open login page</h3>
-          <p>Enter the HA URL in the browser, and you will see a blue and white login card with the Home Assistant logo in the middle.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch1/01_login_page.png" alt="HA login page" />
-            <figcaption><strong>Figure 1-1</strong>Login page: three fields: account, password, and remember me.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>Enter username and password</h3>
-          <p>Use the administrator account created when you originally installed HA. If you are a family member/tenant, please ask the administrator for a dedicated account (Chapter 5 will teach you how to create one).</p>
-        </li>
-        <li>
-          <h3>Check "Stay logged in"</h3>
-          <p>Once checked, this browser will remember you so you don't have to retype your password every time you open it. The official document does not spell out the number of days, but only states that "login credentials that have not been used for more than 90 days will be automatically cleared." So as long as you keep using it, in practice, you will always keep logged in.<strong>Do not select this option on a shared computer.</strong></p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch1/02_keep_logged_in.png" alt="Check Keep me logged in" />
-            <figcaption><strong>Figure 1-2</strong>Check "Stay logged in" - recommended for personal devices.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>Enter the dashboard</h3>
-          <p>After successful login, you will jump directly to the "Home" dashboard (the old version was called "Overview"), which displays status cards for each area of your home.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch1/03_dashboard.png" alt="Main console after login" />
-            <figcaption><strong>Figure 1-3</strong>Main console: left menu, upper tab, middle card.</figcaption>
-          </figure>
-        </li>
-      </ol>
-    </section>
+ <section id="steps" data-nav="Login steps">
+ <h2 data-icon="steps">Login steps</h2>
+ <div class="callout"><strong>Version differences:</strong> The default dashboard you see after logging in will be called "Home" starting from 2026.2; before that, it was called "Overview". The old version of the interface will say "Overview" at the top of the sidebar. Both are in the same location and the following steps apply.</div>
+ <ol class="steps">
+ <li>
+ <h3>Open login page</h3>
+ <p>Enter the HA URL in the browser, and you will see a blue and white login card with the Home Assistant logo in the middle.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch1/01_login_page.png" alt="HA login page" />
+ <figcaption><strong>Figure 1-1</strong> Login page: three fields: account, password, and remember me.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>Enter username and password</h3>
+ <p>Use the administrator account created when you originally installed HA. If you are a family member/tenant, please ask the administrator for a dedicated account (Chapter 5 will teach you how to create one).</p>
+ </li>
+ <li>
+ <h3>Check "Stay logged in"</h3>
+ <p>Once checked, this browser will remember you so you don't have to retype your password every time you open it. Home Assistant document does not spell out the number of days, but only states that "login credentials that have not been used for more than 90 days will be automatically cleared." So as long as you keep using it, in practice, you will always keep logged in. <strong>Do not select this option on a shared computer.</strong></p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch1/02_keep_logged_in.png" alt="Check Keep me logged in" />
+ <figcaption><strong>Figure 1-2</strong> Check "Stay logged in" - recommended for personal devices.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>Enter the dashboard</h3>
+ <p>After successful login, you will go directly to the "Home" dashboard (the old version was called "Overview"), which displays status cards for each area of your home.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch1/03_dashboard.png" alt="Main console after login" />
+ <figcaption><strong>Figure 1-3</strong> Main console: left menu, upper tab, middle card.</figcaption>
+ </figure>
+ </li>
+ </ol>
+ </section>
 
-    <section id="companion" data-nav="Web vs. Companion App">
-      <h2 data-icon="companion">Web vs. Companion App</h2>
-      <p>The two are connected to the same backend, and the data is completely synchronized. The difference lies in the functions:</p>
-      <ul>
-        <li><strong>web page</strong>: Large screen, suitable for changing settings, writing automation, and viewing historical charts.</li>
-        <li><strong>Companion App</strong>(iOS/Android): Can receive<strong>push notification</strong>, report mobile phone<strong>Battery/Location/WiFi Name</strong>Set trigger conditions for HA and quickly log in through biometrics.</li>
-      </ul>
-      <div class="callout"><strong>Recommended practices:</strong>Use the browser on your computer to change settings, and install the app on your phone for daily control and notifications. Chapter 7 will walk you through installing the app.</div>
-      <div class="callout tip"><strong>Next step</strong>: Chapter 5 teaches you how to open a dedicated account for your family, and Chapter 7 teaches you how to receive notifications on your mobile phone.</div>
-    </section>
+ <section id="companion" data-nav="Web vs. Companion App">
+ <h2 data-icon="companion">Web vs. Companion App</h2>
+ <p>The two are connected to the same backend, and the data is completely synchronized. The difference lies in the functions:</p>
+ <ul>
+ <li><strong>web page</strong>: Large screen, suitable for changing settings, writing automation, and views historical charts.</li>
+ <li><strong>Companion App</strong> (iOS/Android): Can receive <strong>push notification</strong>, report phone <strong>Battery/Location/WiFi Name</strong> Set trigger conditions for HA and quickly log in through biometrics.</li>
+ </ul>
+ <div class="callout"><strong>Recommended practices:</strong> Use the browser on your computer to change settings, and install the app on your phone for daily control and notifications. Chapter 7 will walk you through installing the app.</div>
+ <div class="callout tip"><strong>Next step</strong>: Chapter 5 teaches you how to open a dedicated account for your family, and Chapter 7 teaches you how to receive notifications on your phone.</div>
+ </section>
 
-    <section id="faq" data-nav="FAQ">
-      <h2 data-icon="faq">FAQ</h2>
-      <details class="faq">
-        <summary>What should I do if I forget my password?</summary>
-        <div class="body">The password is stored on the host and no reset message has been sent.<strong>If you can still log in and are the owner</strong>, just go to "Settings → Personnel" and select that person to change the password.<strong>If you are locked out</strong>, HAOS needs to connect the on-screen keyboard to the host itself, and type on the directly connected console. <code>auth reset --interactive</code> Reset (the official document specifically states: You cannot use the SSH terminal in the App or add-on, you must use the screen of the host itself); Docker installation is to run into the container <code>hass --script auth --config /config change_password account new password</code> Restart the container. If you are not an administrator, the fastest way is to ask the administrator to reset it for you from "Users" in Chapter 5.</div>
-      </details>
-      <details class="faq">
-        <summary>The login page keeps spinning around and you can’t get to it?</summary>
-        <div class="body">First confirm whether the URL is correct and whether your mobile phone/computer is connected to your home WiFi (the local network IP can only be connected at home). If it is an external network address, check whether the HA host is still open and whether Nabu Casa or DDNS has failed.</div>
-      </details>
-      <details class="faq">
-        <summary>Can I use the same account to log in to multiple devices?</summary>
-        <div class="body">Yes, each device is an independent session, and logging out of one will not affect the others.</div>
-      </details>
-    </section>
+ <section id="faq" data-nav="FAQ">
+ <h2 data-icon="faq">FAQ</h2>
+ <details class="faq">
+ <summary>What should I do if I forget my password?</summary>
+ <div class="body">The password is stored on the host and no reset message has been sent. <strong>If you can still log in and are the owner</strong>, just go to "Settings → Personnel" and select that person to change the password. <strong>If you are locked out</strong>, HAOS needs to connect the on-screen keyboard to the host itself, and type on the directly connected console. <code>auth reset --interactive</code> Reset (Home Assistant documentation specifically states: You cannot use the SSH terminal in the App or add-on, you must use the screen of the host itself); Docker installation is to run into the container <code>hass --script auth --config /config change_password &lt;username&gt; &lt;new_password&gt;</code> Restart the container. If you are not an administrator, the fastest way is to ask the administrator to reset it for you from "Users" in Chapter 5.</div>
+ </details>
+ <details class="faq">
+ <summary>The login page keeps spinning around and you can’t get to it?</summary>
+ <div class="body">First confirm whether the URL is correct and whether your phone/computer is connected to your home WiFi (the local network IP can only be connected at home). If it is an external network address, check whether the HA host is still open and whether Nabu Casa or DDNS has failed.</div>
+ </details>
+ <details class="faq">
+ <summary>Can I use the same account to log in to multiple devices?</summary>
+ <div class="body">Yes, each device is an independent session, and logging out of one will not affect the others.</div>
+ </details>
+ </section>
 
-    <section id="troubleshoot" data-nav="Troubleshooting failed login">
-      <h2 data-icon="advanced">Troubleshooting failed login</h2>
-      <p>Try the following list one by one:</p>
-      <ol class="steps">
-        <li>
-          <h3>Is the URL correct?</h3>
-          <p>First open it with a browser under the same WiFi <code>http://homeassistant.local:8123</code>. This is the HAOS default mDNS URL.</p>
-        </li>
-        <li>
-          <h3>SSL certificate warning?</h3>
-          <p>If you see an "unsafe" warning when using a local network IP, it is normal (no certificate), just click "Advanced → Continue".</p>
-        </li>
-        <li>
-          <h3>Forgot owner password</h3>
-          <p>The official statement states that "the owner password cannot be retrieved from within Home Assistant." The correct solution to HAOS is to connect the on-screen keyboard to the host and execute it directly on the console <code>auth reset --interactive</code>(SSH terminal cannot be used); Docker is used to enter the container <code>hass --script auth</code> Change. If both methods fail, the only option left is to rerun the initial settings or restore from backup (will be taught in ch9). This is why<strong>Create a backup as soon as possible</strong>.</p>
-        </li>
-        <li>
-          <h3>Companion App keeps failing to log in</h3>
-          <p>The login of the App version uses the external network address; if there is no external setting at home, it will fail. ch7 will install the App, and the appendix talks about the remote connection solution.</p>
-        </li>
-      </ol>
-    </section>
+ <section id="troubleshoot" data-nav="Troubleshooting failed login">
+ <h2 data-icon="advanced">Troubleshooting failed login</h2>
+ <p>Try the following list one by one:</p>
+ <ol class="steps">
+ <li>
+ <h3>Is the URL correct?</h3>
+ <p>First open it with a browser under the same WiFi <code>http://homeassistant.local:8123</code>. This is the HAOS default mDNS URL.</p>
+ </li>
+ <li>
+ <h3>SSL certificate warning?</h3>
+ <p>If you see an "unsafe" warning when using a local network IP, it is normal (no certificate), just click "Advanced → Continue".</p>
+ </li>
+ <li>
+ <h3>Forgot owner password</h3>
+ <p>Home Assistant documentation states that "the owner password cannot be retrieved from within Home Assistant." The correct solution to HAOS is to connect the on-screen keyboard to the host and execute it directly on the console <code>auth reset --interactive</code>(SSH terminal cannot be used); Docker is used to enter the container <code>hass --script auth</code> Change. If both methods fail, the only option left is to rerun the initial settings or restore from backup (will be taught in ch9). This is why <strong>Create a backup as soon as possible</strong>.</p>
+ </li>
+ <li>
+ <h3>Companion App keeps failing to log in</h3>
+ <p>The login of the App version uses the external network address; if there is no external setting at home, it will fail. ch7 will install the App, and the appendix talks about the remote connection solution.</p>
+ </li>
+ </ol>
+ </section>
 
-    <div class="pager">
+ <div class="pager">
       <a class="prev disabled" href="tutorial.html">
         <span class="label">← Previous</span>
         <span class="title">Contents</span>
@@ -208,11 +208,11 @@
       </a>
     </div>
 
-    <footer class="site-footer">
+ <footer class="site-footer">
       <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
       <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
-  </main>
+ </main>
 </div>
 <script id="ui-strings" type="application/json">{"tocToggle":"Contents","tocExpand":"Expand chapter navigation","tocCollapse":"Collapse chapter navigation"}</script>
 <script src="../assets/js/toc.js"></script>

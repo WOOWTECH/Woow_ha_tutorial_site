@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Appendix B · Scenes, helpers, and groups · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Home Assistant advanced three-piece set: Scene, 10 kinds of Helper auxiliary components and Group usage and matching examples, making the smart home look like a small program." />
+  <meta name="description" content="Learn how scenes, ten types of helper, and groups work together to build understandable, maintainable smart-home logic." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/appendix_scenes_helpers_groups.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Appendix B · Scenes, helpers, and groups · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Home Assistant advanced three-piece set: Scene, 10 kinds of Helper auxiliary components and Group usage and matching examples, making the smart home look like a small program." />
+  <meta property="og:description" content="Learn how scenes, ten types of helper, and groups work together to build understandable, maintainable smart-home logic." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/appendix_scenes_helpers_groups.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/appx_b/01_scene_create.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Appendix B · Scenes, helpers, and groups · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Home Assistant advanced three-piece set: Scene, 10 kinds of Helper auxiliary components and Group usage and matching examples, making the smart home look like a small program." />
+  <meta name="twitter:description" content="Learn how scenes, ten types of helper, and groups work together to build understandable, maintainable smart-home logic." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/appx_b/01_scene_create.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -31,7 +31,7 @@
 </head>
 <body>
 <div class="layout">
-  <aside class="sidebar">
+ <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From zero to working</div>
     <nav class="lang-switch" aria-label="Language"><a href="../appendix_scenes_helpers_groups.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="appendix_scenes_helpers_groups.html" lang="en" aria-current="page">EN</a></nav>
@@ -47,7 +47,7 @@
       <li><a href="ch6_dashboard.html">Dashboards</a></li>
       <li><a href="ch7_notifications.html">Notifications</a></li>
       <li><a href="ch8_first_automation.html">First automation</a></li>
-      <li><a href="ch9_backups.html">backups</a></li>
+      <li><a href="ch9_backups.html">Backups</a></li>
       <li><a href="ch10_scripts.html">Scripts</a></li>
       <li><a href="ch11_devices.html">Device settings</a></li>
       <li><a href="ch12_domains.html">Domain reference</a></li>
@@ -76,204 +76,204 @@
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · HACS/add-ons/remote access</a>
-      <a href="appendix_scenes_helpers_groups.html" class="active">B · Scenes/helpers/groups</a>
+      <a href="appendix_hacs_addons.html">A · HACS, add-ons, and remote access</a>
+      <a href="appendix_scenes_helpers_groups.html" class="active">B · Scenes, helpers, and groups</a>
       <a href="appendix_hardware_install.html">C · Hardware and HAOS</a>
     </div>
   </aside>
 
-  <main class="content">
-    <div class="chapter-header">
-      <div class="kicker">Appendix B</div>
-      <h1>Scene/auxiliary component/group</h1>
-      <p class="lead">These three are "built-in raw materials" of HA and can be used without installing any integration. After you learn it, you can write half of the automation - a lot of logic can be done with helpers instead of writing programs.</p>
-    </div>
+ <main class="content">
+ <div class="chapter-header">
+ <div class="kicker">Appendix B</div>
+ <h1>Scenes, helpers, and groups</h1>
+ <p class="lead">Scenes, helpers, and groups are built-in Home Assistant building blocks. Combine them to express useful automation logic without unnecessary templates or custom code.</p>
+ </div>
 
-    <!-- ============= SCENES ============= -->
-    <section id="scenes" data-nav="Scenes">
-      <h2 data-icon="concept">Scenes — return to a certain state with one click</h2>
-      <p>Scene = a "state snapshot" of a set of entities. When called, all entities instantly return to the state you set.</p>
-      <div class="callout"><strong>Noun update:</strong>Starting from HA 2024.8, "Service" will be officially renamed "<strong>Action</strong>", in YAML <code>service:</code> Then change it to <code>action:</code>, <code>service_data:</code> Change to <code>data:</code>; Starting from 2024.10, the three stages of automation will be changed to plural numbers. <code>triggers:</code> / <code>conditions:</code> / <code>actions:</code>, in each trigger <code>platform:</code> rewritten as <code>trigger:</code>. In addition, "Developer Tools" will be imported into settings starting from 2026.2, and will be simplified to "<strong>Tools</strong>", the path is<strong>Settings → Tools</strong>. The examples on this page all use the new writing method. The old key names are still understandable in the current version, so there is no need to rush to change all the automation in your home at once.</div>
-      <h3>Creation method 1: Record from the current state</h3>
-      <ol class="steps">
-        <li>
-          <h3>First manually adjust your home to how you want it</h3>
-          <p>For example: main light 40%, atmosphere light purple, air conditioner 26°C, curtains 30%, and Bluetooth on the speaker.</p>
-        </li>
-        <li>
-          <h3>Settings → Automation and Scenes → Scenes tab → + Add new scene</h3>
-          <p>Select "Create from current state" → select which entities to include → save. HA treats the current value as a scene snapshot.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/appx_b/01_scene_create.png" alt="Create a scene" />
-            <figcaption><strong>Figure B-1</strong>Build scenes from the present state—the fastest and most intuitive.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>Name, for example: "Movie Mode" → Save</h3>
-          <p>Entity ID will be <code>scene.movie_mode</code>.</p>
-        </li>
-      </ol>
-      <h3>Creation method two: Manually fill in the target value of each entity</h3>
-      <p>Suitable for you who want a "holiday scene" but it's not convenient to really adjust it now (you can't disturb the neighbors in the middle of the night). Start from a blank scene, add entities one by one + fill in the target state.</p>
-      <h3>call scene</h3>
-      <ul>
-        <li>UI: Put a Button card on the dashboard → Action <code>scene.turn_on</code> → Target selection <code>scene.movie_mode</code></li>
-        <li>Automation: Action Segment <code>scene.turn_on</code></li>
-        <li>Voice Assistant: Say "movie mode" after exposing the scene</li>
-      </ul>
-      <h3>Advanced: transition on call</h3>
-      <p>The scene itself is an "instant switch", but you can add <code>transition: 5</code> Let the light entity fade over for 5 seconds:</p>
+ <!-- ============= SCENES ============= -->
+ <section id="scenes" data-nav="Scenes">
+ <h2 data-icon="concept">Scenes — return to a certain state with one click</h2>
+ <p>Scene = a "state snapshot" of a set of entities. When called, all entities instantly return to the state you set.</p>
+ <div class="callout"><strong>Noun update:</strong> Starting from HA 2024.8, "Service" will be officially renamed " <strong>Action</strong> ", in YAML <code>service:</code> Then change it to <code>action:</code>, <code>service_data:</code> Change to <code>data:</code>; Starting from 2024.10, the three stages of automation will be changed to plural numbers. <code>triggers:</code> / <code>conditions:</code> / <code>actions:</code>, in each trigger <code>platform:</code> rewritten as <code>trigger:</code>. In addition, "Developer Tools" will be imported into settings starting from 2026.2, and will be simplified to " <strong>Tools</strong> ", the path is <strong>Settings → Tools</strong>. The examples on this page all use the new writing method. The old key names are still understandable in the current version, so there is no need to rush to change all the automation in your home at once.</div>
+ <h3>Creation method 1: Record from the current state</h3>
+ <ol class="steps">
+ <li>
+ <h3>First manually adjust your home to how you want it</h3>
+ <p>For example: main light 40%, atmosphere light purple, air conditioner 26°C, curtains 30%, and Bluetooth on the speaker.</p>
+ </li>
+ <li>
+ <h3>Settings → Automations & Scenes and Scenes → Scenes tab → + Add new scene</h3>
+ <p>Select "Create from current state" → select which entities to include → save. HA treats the current value as a scene snapshot.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/appx_b/01_scene_create.png" alt="Create a scene" />
+ <figcaption><strong>Figure B-1</strong> Build scenes from the present state—the fastest and most intuitive.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>Name, for example: "Movie Mode" → Save</h3>
+ <p>Entity ID will be <code>scene.movie_mode</code>.</p>
+ </li>
+ </ol>
+ <h3>Creation method two: Manually fill in the target value of each entity</h3>
+ <p>Suitable for you who want a "holiday scene" but it's not convenient to really adjust it now (you can't disturb the neighbors in the middle of the night). Start from a blank scene, add entities one by one + fill in the target state.</p>
+ <h3>Call a scene</h3>
+ <ul>
+ <li>UI: Put a Button card on the dashboard → Action <code>scene.turn_on</code> → Target selection <code>scene.movie_mode</code></li>
+ <li>Automation: Action Segment <code>scene.turn_on</code></li>
+ <li>Voice Assistant: Say "movie mode" after exposing the scene</li>
+ </ul>
+ <h3>Advanced: transition on call</h3>
+ <p>The scene itself is an "instant switch", but you can add <code>transition: 5</code> Let the light entity fade over for 5 seconds:</p>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>action: scene.turn_on
 target:
   entity_id: scene.movie_mode
 data:
   transition: 5</code></pre>
-      <h3>Scenario vs script again</h3>
-      <div class="callout"><strong>scene</strong>: Only "final state of all entities" can be set, all at once, no sorting, no delay, no conditions.<br><strong>script</strong>: You can have sequences, delays, conditions, and loops, but each action must be written step by step (Action, the old version is called Service).<br><strong>Common combinations</strong>: Call scene in the script - "Movie Mode Script" = call "Movie Light Scene" + wait 2 seconds + close the curtains + turn on the TV.</div>
-    </section>
+ <h3>Scene vs script again</h3>
+ <div class="callout"><strong>scene</strong>: Only "final state of all entities" can be set, all at once, no sorting, no delay, no conditions.<br><strong>script</strong>: You can have sequences, delays, conditions, and loops, but each action must be written step by step (Action, the old version is called Service).<br><strong>Common combinations</strong>: Call scene in the script - "Movie Mode Script" = call "Movie Light Scene" + wait 2 seconds + close the curtains + turn on the TV.</div>
+ </section>
 
-    <!-- ============= HELPERS ============= -->
-    <section id="helpers" data-nav="Helpers">
-      <h2 data-icon="concept">Helpers — give logic a memory</h2>
-      <p>Helper is a "fake entity" built into HA - it has no physical hardware, but behaves like an entity, has state, can be displayed by the dashboard, and can be used as a trigger/condition.</p>
-      <p><strong>Why is it needed?</strong>Automation itself is "memoryless": each trigger is independent. If you want to share state across automations (e.g. "Is guest mode on?"), you need helpers as shared variables.</p>
-      <p>Path:<strong>Settings → Devices &amp; Services → Accessibility</strong>Tab → "+ Create auxiliary tools".</p>
-      <figure class="shot">
-        <img src="../assets/screenshots/appx_b/02_helpers_page.png" alt="Accessibility page" />
-        <figcaption><strong>Figure B-2</strong>Auxiliary tool page - just select the type and fill in the name to create it, super fast.</figcaption>
-      </figure>
-    </section>
+ <!-- ============= HELPERS ============= -->
+ <section id="helpers" data-nav="Helpers">
+ <h2 data-icon="concept">Helpers — give logic a memory</h2>
+ <p>Helper is a "fake entity" built into HA - it has no physical hardware, but behaves like an entity, has state, can be displayed by the dashboard, and can be used as a trigger/condition.</p>
+ <p><strong>Why is it needed?</strong> Automation itself is "memoryless": each trigger is independent. If you want to share state across automations (e.g. "Is guest mode on?"), you need helpers as shared variables.</p>
+ <p>Path: <strong>Settings → Devices &amp; Services → Helpers</strong> Tab → "+ Create helpers".</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/appx_b/02_helpers_page.png" alt="Helpers page" />
+ <figcaption><strong>Figure B-2</strong> Helper page - just select the type and fill in the name to create it, super fast.</figcaption>
+ </figure>
+ </section>
 
-    <!-- ============= HELPER TYPES ============= -->
-    <section id="helper_types" data-nav="Helper type quick check">
-      <h2 data-icon="steps">Helper type quick check</h2>
+ <!-- ============= HELPER TYPES ============= -->
+ <section id="helper_types" data-nav="Helper type quick check">
+ <h2 data-icon="steps">Helper type quick check</h2>
 
-      <h3>1. <code>input_boolean</code> — on/off</h3>
-      <p>Most commonly used.<strong>classic scene</strong>: "Guest Mode", "Vacation Mode", "Sleep Mode".</p>
-      <ul>
-        <li>Create: Type "Toggle" → Name "Guest Mode" → Entity ID: <code>input_boolean.guest_mode</code></li>
-        <li>When condition: Automate "Turn on the lights at sunset" plus condition <code>input_boolean.vacation_mode == off</code>(Don’t turn on the lights when on vacation)</li>
-        <li>When triggered:<code>input_boolean.guest_mode</code> Change on → Notify the owner of "Visitor Check-in"</li>
-        <li>Dashboard: Put the Entity card or Tile card directly, and family members can cut it by themselves</li>
-      </ul>
+ <h3>1. <code>input_boolean</code> — on/off</h3>
+ <p>Most commonly used. <strong>classic scene</strong>: "Guest Mode", "Vacation Mode", "Sleep Mode".</p>
+ <ul>
+ <li>Create: Type "Toggle" → Name "Guest Mode" → Entity ID: <code>input_boolean.guest_mode</code></li>
+ <li>When condition: Automate "Turn on the lights at sunset" plus condition <code>input_boolean.vacation_mode == off</code>(Don’t turn on the lights when on vacation)</li>
+ <li>When triggered:<code>input_boolean.guest_mode</code> Change on → Notify the owner of "Visitor Check-in"</li>
+ <li>Dashboard: Put the Entity card or Tile card directly, and family members can cut it by themselves</li>
+ </ul>
 
-      <h3>2. <code>input_number</code> — Adjustable numbers (slider or box)</h3>
-      <p>Take the “magic numbers” out of automation and let your family fine-tune them without opening YAML.</p>
-      <ul>
-        <li>Example:<code>input_number.motion_light_brightness</code> = The brightness of the light when the action is triggered. If you want it to be darker at night, slide the slider to change it.</li>
-        <li>Quoted in automation:<code>brightness_pct: "{{ states('input_number.motion_light_brightness') | int }}"</code></li>
-      </ul>
+ <h3>2. <code>input_number</code> — Adjustable numbers (slider or box)</h3>
+ <p>Take the “magic numbers” out of automation and let your family fine-tune them without opening YAML.</p>
+ <ul>
+ <li>Example:<code>input_number.motion_light_brightness</code> = The brightness of the light when the action is triggered. If you want it to be darker at night, slide the slider to change it.</li>
+ <li>Quoted in automation:<code>brightness_pct: "{{ states('input_number.motion_light_brightness') | int }}"</code></li>
+ </ul>
 
-      <h3>3. <code>input_select</code> — Drop-down menu (select one from multiple)</h3>
-      <p><strong>Classic usage: family state machine</strong>. build <code>input_select.home_mode</code> Options = [At Home, Away from Home, Sleeping, Visitor, Vacation], all automation is based on this condition.</p>
-      <p><strong>Benefits</strong>: Centralized management of status, one mode can be cut cleanly at one time; unlike using 5 booleans to fight with each other.</p>
+ <h3>3. <code>input_select</code> — Drop-down menu (select one from multiple)</h3>
+ <p><strong>Classic usage: family state machine</strong>. build <code>input_select.home_mode</code> Options = [At Home, Away from Home, Sleeping, Visitor, Vacation], all automation is based on this condition.</p>
+ <p><strong>Benefits</strong>: Centralized management of status, one mode can be cut cleanly at one time; unlike using 5 booleans to fight with each other.</p>
 
-      <h3>4. <code>input_text</code> — plain string</h3>
-      <p>Common scenarios: notes, tags, dynamic string references. Example:<code>input_text.tv_url</code> Remember a certain live broadcast URL and use it as play_media for the media button.</p>
+ <h3>4. <code>input_text</code> — plain string</h3>
+ <p>Common scenes: notes, tags, dynamic string references. Example:<code>input_text.tv_url</code> Remember a certain live broadcast URL and use it as play_media for the media button.</p>
 
-      <h3>5. <code>input_datetime</code> — date / time / both</h3>
-      <p>Let family members set their own "get-up time" and "water heater start-up time." For automation <code>time</code> The trigger selects this entity and runs when the time is up.</p>
+ <h3>5. <code>input_datetime</code> — date / time / both</h3>
+ <p>Let family members set their own "get-up time" and "water heater start-up time." For automation <code>time</code> The trigger selects this entity and runs when the time is up.</p>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>triggers:
   - trigger: time
     at: input_datetime.wake_up_time</code></pre>
 
-      <h3>6. <code>timer</code> — countdown timer</h3>
-      <p>More flexible than "delay": it can be queried for the remaining time, can be canceled, and triggers events when it ends.</p>
-      <ul>
-        <li>Create: Type "Timer", you can set the default length <code>duration: "00:05:00"</code></li>
-        <li>Start:<code>timer.start</code>(can be transferred <code>duration</code> overwrite)</li>
-        <li>Cancellation:<code>timer.cancel</code></li>
-        <li>End trigger: for automation <code>event_type: timer.finished</code> event trigger</li>
-        <li><strong>classic</strong>: The motion sensor lights up for 5 minutes - "action → turn on the light + start the timer; when the timer reaches → turn off the light", and then move again in the middle <code>timer.start</code>(Will restart).</li>
-      </ul>
+ <h3>6. <code>timer</code> — countdown timer</h3>
+ <p>More flexible than "delay": it can be queried for the remaining time, can be canceled, and triggers events when it ends.</p>
+ <ul>
+ <li>Create: Type "Timer", you can set the default length <code>duration: "00:05:00"</code></li>
+ <li>Start:<code>timer.start</code>(can be transferred <code>duration</code> overwrite)</li>
+ <li>Cancellation:<code>timer.cancel</code></li>
+ <li>End trigger: for automation <code>event_type: timer.finished</code> event trigger</li>
+ <li><strong>classic</strong>: The motion sensor lights up for 5 minutes - "action → turn on the light + start the timer; when the timer reaches → turn off the light", and then move again in the middle <code>timer.start</code>(Will restart).</li>
+ </ul>
 
-      <h3>7. <code>counter</code> — integer counter</h3>
-      <p>Can be added, subtracted, and reset. Track "how many times were the doors opened today" and "how many times were watered this week" and use the dashboard to see trends.</p>
+ <h3>7. <code>counter</code> — integer counter</h3>
+ <p>Can be added, subtracted, and reset. Track "how many times were the doors opened today" and "how many times were watered this week" and use the dashboard to see trends.</p>
 
-      <h3>8. <code>input_button</code> — disposable button</h3>
-      <p>Similar to <code>input_boolean</code>, but the open state will not be left when pressed, and only a "pressed" event will be sent. Dashboard buttons suitable for "execute once", such as "Refresh Data" and "Send Test Notifications".</p>
+ <h3>8. <code>input_button</code> — disposable button</h3>
+ <p>Similar to <code>input_boolean</code>, but the open state will not be left when pressed, and only a "pressed" event will be sent. Dashboard buttons suitable for "execute once", such as "Refresh Data" and "Send Test Notifications".</p>
 
-      <h3>9. <code>schedule</code> — Weekly schedule</h3>
-      <p>Draw a grid-style weekly schedule. Example: "Working Hours" = Monday to Friday 09:00-18:00. The entity state automatically changes based on the current time <code>on</code> / <code>off</code>.</p>
-      <p>When the conditions are much more elegant than handwritten time conditions, family members can also drag time periods on the dashboard themselves.</p>
+ <h3>9. <code>schedule</code> — Weekly schedule</h3>
+ <p>Draw a grid-style weekly schedule. Example: "Working Hours" = Monday to Friday 09:00-18:00. The entity state automatically changes based on the current time <code>on</code> / <code>off</code>.</p>
+ <p>When the conditions are much more elegant than handwritten time conditions, family members can also drag time periods on the dashboard themselves.</p>
 
-      <h3>10. Template / Threshold / Derivative / Statistics, etc.</h3>
-      <p>Advanced helpers such as "template sensor", "threshold binary_sensor", "derivative sensor", and "statistics sensor" are also on this page, built with UI. For example:</p>
-      <ul>
-        <li><strong>Threshold</strong>: put <code>sensor.pm25</code>(number) converted to <code>binary_sensor.air_bad</code>(over 35 = on), writing automation is more intuitive</li>
-        <li><strong>Statistics</strong>: Calculate "average temperature in the past 24 hours" and "accumulation of the meter on the day"</li>
-        <li><strong>Derivative</strong>: Calculate "power consumption change rate" and "temperature rise rate"</li>
-      </ul>
-      <div class="callout tip"><strong>Use helper first, do not write template</strong>: Newbies often rush to write the Jinja template sensor as soon as they encounter "conversion". 80% of the scene helper can handle it directly, stably and quickly, and family members can also understand it. There is really no corresponding helper to write the template.</div>
-    </section>
+ <h3>10. Template / Threshold / Derivative / Statistics, etc.</h3>
+ <p>Advanced helpers such as "template sensor", "threshold binary_sensor", "derivative sensor", and "statistics sensor" are also on this page, built with UI. For example:</p>
+ <ul>
+ <li><strong>Threshold</strong>: put <code>sensor.pm25</code>(number) converted to <code>binary_sensor.air_bad</code>(over 35 = on), writing automation is more intuitive</li>
+ <li><strong>Statistics</strong>: Calculate "average temperature in the past 24 hours" and "accumulation of the meter on the day"</li>
+ <li><strong>Derivative</strong>: Calculate "power consumption change rate" and "temperature rise rate"</li>
+ </ul>
+ <div class="callout tip"><strong>Use helper first, do not write template</strong>: Newbies often rush to write the Jinja template sensor as soon as they encounter "conversion". 80% of the scene helper can handle it directly, stably and quickly, and family members can also understand it. There is really no corresponding helper to write the template.</div>
+ </section>
 
-    <!-- ============= GROUPS ============= -->
-    <section id="groups" data-nav="Groups">
-      <h2 data-icon="concept">Groups — tie multiple entities into one</h2>
-      <p>Group is to bind multiple entities of the same domain into<em>a new entity</em>. The state of this new entity is the "aggregation of all members".</p>
-      <h3>Common uses</h3>
-      <ul>
-        <li><strong>lights group</strong>: <code>light.livingroom_all</code> = main light + atmosphere light + floor lamp, turn on all with one click</li>
-        <li><strong>switch group</strong>: <code>switch.holiday_lights</code> = 5 Christmas light sockets</li>
-        <li><strong>sensor group</strong>: <code>binary_sensor.any_window_open</code> = 5 window magnets, any one can be turned on (suitable for "checking when leaving home")</li>
-        <li><strong>People group</strong>: <code>group.family</code> = 4 persons, "Is anyone at home" = home</li>
-      </ul>
-      <h3>How to build</h3>
-      <p>Settings → Devices and Services → Accessibility → "+ Create Accessibility Tools" → Select "Group" → Select the type (Light / Switch / Cover / Binary sensor / Media player / Fan / Lock / Sensor) → Select members.</p>
-      <figure class="shot">
-        <img src="../assets/screenshots/appx_b/03_group_create.png" alt="Create group" />
-        <figcaption><strong>Figure B-3</strong>Create a group—select multiple members after selecting the type, which is faster than YAML.</figcaption>
-      </figure>
-      <h3>aggregation behavior</h3>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Type</th>
-            <th>Default state logic</th>
-            <th>Adjustable</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Light / Switch</td><td>any on → group on</td><td>Can be changed to "on only when all are on"</td></tr>
-          <tr><td>Binary sensor</td><td>Default all (on only when all are on)</td><td>Can be changed to any (any on)</td></tr>
-          <tr><td>Sensor</td><td>Numeric aggregation (min/max/mean/median/sum/last/range)</td><td>Select when creating</td></tr>
-        </tbody>
-      </table>
-      <h3>Group operates on groups</h3>
-      <p><code>light.turn_on target: light.livingroom_all</code> Will expand to turn_on for all members. This is cleaner than writing "target and select 5 entities" yourself, and adding new lights only requires entering the member list.</p>
-      <div class="callout warn"><strong>Group vs Area vs Label</strong>: All three can "control multiple at once". Difference:
-      <ul style="margin:8px 0 0 20px;">
-        <li><strong>Group</strong>: A clear list of members, aggregated into a new entity, which can have logical states</li>
-        <li><strong>Area</strong>: Geographical belonging, dynamic; suitable for the space concept of "all the living rooms are closed"</li>
-        <li><strong>Label</strong>: Cross-region and cross-domain tags, suitable for concept groups such as "all main lights" and "outdoor equipment"</li>
-      </ul>
-      In practice: Group is used for long-term fixed "a group of lights acts as a group"; Area is used for geographical use; and Label is used for cross-regional concept groups.</div>
-    </section>
+ <!-- ============= GROUPS ============= -->
+ <section id="groups" data-nav="Groups">
+ <h2 data-icon="concept">Groups — tie multiple entities into one</h2>
+ <p>Group is to connect multiple entities of the same domain into <em>a new entity</em>. The state of this new entity is the "aggregation of all members".</p>
+ <h3>Common uses</h3>
+ <ul>
+ <li><strong>lights group</strong>: <code>light.livingroom_all</code> = main light + atmosphere light + floor lamp, turn on all with one click</li>
+ <li><strong>switch group</strong>: <code>switch.holiday_lights</code> = 5 Christmas light sockets</li>
+ <li><strong>sensor group</strong>: <code>binary_sensor.any_window_open</code> = 5 window magnets, any one can be turned on (suitable for "checking when leaving home")</li>
+ <li><strong>People group</strong>: <code>group.family</code> = 4 persons, "Is anyone at home" = home</li>
+ </ul>
+ <h3>How to build</h3>
+ <p>Settings → Devices &amp; Services → Helpers → "+ Create helper" → Select "Group" → Select the type (Light / Switch / Cover / Binary sensor / Media player / Fan / Lock / Sensor) → Select members.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/appx_b/03_group_create.png" alt="Create group" />
+ <figcaption><strong>Figure B-3</strong> Create a group—select multiple members after selecting the type, which is faster than YAML.</figcaption>
+ </figure>
+ <h3>Aggregation behavior</h3>
+ <table class="data-table">
+ <thead>
+ <tr>
+ <th>Type</th>
+ <th>Default state logic</th>
+ <th>Adjustable</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr><td>Light / Switch</td><td>any on → group on</td><td>Can be changed to "on only when all are on"</td></tr>
+ <tr><td>Binary sensor</td><td>Default all (on only when all are on)</td><td>Can be changed to any (any on)</td></tr>
+ <tr><td>Sensor</td><td>Numeric aggregation (min/max/mean/median/sum/last/range)</td><td>Select when creating</td></tr>
+ </tbody>
+ </table>
+ <h3>Group operates on groups</h3>
+ <p><code>light.turn_on target: light.livingroom_all</code> Will expand to turn_on for all members. This is cleaner than writing "target and select 5 entities" yourself, and adding new lights only requires entering the member list.</p>
+ <div class="callout warn"><strong>Group vs Area vs Label</strong>: All three can "control multiple at once". Difference:
+ <ul style="margin:8px 0 0 20px;">
+ <li><strong>Group</strong>: A clear list of members, aggregated into a new entity, which can have logical states</li>
+ <li><strong>Area</strong>: Geographical belonging, dynamic; suitable for the space concept of "all the living rooms are closed"</li>
+ <li><strong>Label</strong>: Cross-region and cross-domain tags, suitable for concept groups such as "all main lights" and "outdoor devices"</li>
+ </ul>
+ In practice: Group is used for long-term fixed "a group of lights acts as a group"; Area is used for geographical use; and Label is used for cross-regional concept groups.</div>
+ </section>
 
-    <!-- ============= COMBINED ============= -->
-    <section id="combined" data-nav="Examples of collocation of the three">
-      <h2 data-icon="tips">Example of combination of the three: Intelligent night light system</h2>
-      <p>Put the scene + helper + group together to create a complete system of "bathroom action-triggered night light". Requirements:</p>
-      <ul>
-        <li>Someone enters the bathroom late at night → Only turn on the soft and small light (do not turn on the main light to dazzle the eyes)</li>
-        <li>Stay with no action for more than 5 minutes → fade out and turn off the lights</li>
-        <li>No action during the day (judge by sunlight or time of day)</li>
-        <li>The brightness can be adjusted by family members themselves</li>
-      </ul>
-      <h3>dismantle</h3>
-      <ol>
-        <li><strong>Create a group</strong> <code>light.bathroom_all</code> = main light + mirror headlight + night light</li>
-        <li><strong>Build scene</strong> <code>scene.bathroom_night_soft</code> = only night light on, brightness <code>input_number.bathroom_night_brightness</code></li>
-        <li><strong>Build helpers</strong>:
-          <ul>
-            <li><code>input_number.bathroom_night_brightness</code>(1-100, default 20)</li>
-            <li><code>timer.bathroom_light</code>(default 5 minutes)</li>
-            <li><code>schedule.night_time</code> (22:00-06:00)</li>
-          </ul>
-        </li>
-        <li><strong>Write automation
+ <!-- ============= COMBINED ============= -->
+ <section id="combined" data-nav="Examples of collocation of the three">
+ <h2 data-icon="tips">Example of combination of the three: Intelligent night light system</h2>
+ <p>Put the scene + helper + group together to create a complete system of "bathroom action-triggered night light". Requirements:</p>
+ <ul>
+ <li>Someone enters the bathroom late at night → Only turn on the soft and small light (do not turn on the main light to dazzle the eyes)</li>
+ <li>Stay with no action for more than 5 minutes → fade out and turn off the lights</li>
+ <li>No action during the day (judge by sunlight or time of day)</li>
+ <li>The brightness can be adjusted by family members themselves</li>
+ </ul>
+ <h3>Build it</h3>
+ <ol>
+ <li><strong>Create a group</strong> <code>light.bathroom_all</code> = main light + mirror headlight + night light</li>
+ <li><strong>Build scene</strong> <code>scene.bathroom_night_soft</code> = only night light on, brightness <code>input_number.bathroom_night_brightness</code></li>
+ <li><strong>Build helpers</strong>:
+ <ul>
+ <li><code>input_number.bathroom_night_brightness</code>(1-100, default 20)</li>
+ <li><code>timer.bathroom_light</code>(default 5 minutes)</li>
+ <li><code>schedule.night_time</code> (22:00-06:00)</li>
+ </ul>
+ </li>
+ <li><strong>Write automation
 ​​</strong>:
-<pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>alias: bathroom night action light
+<pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>alias: Bathroom night-light motion
 triggers:
   - trigger: state
     entity_id: binary_sensor.bathroom_motion
@@ -287,9 +287,9 @@ actions:
     target: { entity_id: scene.bathroom_night_soft }
   - action: timer.start
     target: { entity_id: timer.bathroom_light }</code></pre>
-        </li>
-        <li><strong>Write another one "timer completed → turn off the light"</strong>:
-<pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>alias: Bathroom action light goes out
+ </li>
+ <li><strong>Write another one "timer completed → turn off the light"</strong>:
+<pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>alias: Turn off bathroom motion light
 triggers:
   - trigger: event
     event_type: timer.finished
@@ -298,52 +298,52 @@ actions:
   - action: light.turn_off
     target: { entity_id: light.bathroom_all }
     data: { transition: 3 }</code></pre>
-        </li>
-        <li><strong>Put a "Brightness" slider on the dashboard</strong> (Entity card of <code>input_number.bathroom_night_brightness</code>), the family adjusts it themselves.</li>
-      </ol>
-      <div class="callout tip"><strong>View this design</strong>: 4 helpers + 1 group + 1 scene + 2 automations. All the logic is vernacular and can be understood by family members. If you want to change "extend to 10 minutes", you can directly change the timer default without touching automation. This is the value of "replacing templates with helpers".</div>
-    </section>
+ </li>
+ <li><strong>Put a "Brightness" slider on the dashboard</strong> (Entity card of <code>input_number.bathroom_night_brightness</code>), the family adjusts it themselves.</li>
+ </ol>
+ <div class="callout tip"><strong>View this design</strong>: 4 helpers + 1 group + 1 scene + 2 automations. All the logic is expressed in plain language and can be understood by family members. If you want to change "extend to 10 minutes", you can directly change the timer default without touching automation. This is the value of "replacing templates with helpers".</div>
+ </section>
 
-    <section id="faq" data-nav="FAQ">
-      <h2 data-icon="faq">FAQ</h2>
-      <details class="faq">
-        <summary>Can the scene change dynamically (for example, changing the brightness according to the time of day)?</summary>
-        <div class="body">The scene itself is a fixed value. Use "script + input_number" to achieve dynamic requirements, or create several different scenes (breakfast, lunch, evening) and use automatic selection.</div>
-      </details>
-      <details class="faq">
-        <summary>Will Helper data be backed up?</summary>
-        <div class="body">Yes, the helper is part of the HA config, in the full backup in Chapter 9. Restore and come back.</div>
-      </details>
-      <details class="faq">
-        <summary>Will making a member of the Group unavailable affect the group status?</summary>
-        <div class="body">Yes. Defaulting unavailable members will change the overall status of the group <code>unavailable</code>. You can check "Ignore unavailable members" when creating a group.</div>
-      </details>
-      <details class="faq">
-        <summary>Will deleting the helper affect the automation that uses it?</summary>
-        <div class="body">Yes, the reference will become an error (the entity does not exist). Before deleting, search "Settings → Tools → Status" (the old version was "Developer Tools → Status" in the sidebar) to see who is citing it, or directly change it automatically to replace the reference.</div>
-      </details>
-      <details class="faq">
-        <summary>Is the Timer accurate enough? Can I do a 30 second cook timer?</summary>
-        <div class="body">HA's built-in timer has a precision of seconds, which is generally sufficient. But if HA happens to be restarting, the timer will pause or reset (according to the "retention state" setting). If you want to be more precise, you can use the system <code>timer</code> add <code>restore: true</code>, retaining the remaining time across reboots.</div>
-      </details>
-    </section>
+ <section id="faq" data-nav="FAQ">
+ <h2 data-icon="faq">FAQ</h2>
+ <details class="faq">
+ <summary>Can the scene change dynamically (for example, changing the brightness according to the time of day)?</summary>
+ <div class="body">The scene itself is a fixed value. Use "script + input_number" to achieve dynamic requirements, or create several different scenes (breakfast, lunch, evening) and use automatic selection.</div>
+ </details>
+ <details class="faq">
+ <summary>Will Helper data be backed up?</summary>
+ <div class="body">Yes, the helper is part of the HA config, in the full backup in Chapter 9. Restore and come back.</div>
+ </details>
+ <details class="faq">
+ <summary>Will making a member of the Group unavailable affect the group status?</summary>
+ <div class="body">Yes. Defaulting unavailable members will change the overall status of the group <code>unavailable</code>. You can check "Ignore unavailable members" when creating a group.</div>
+ </details>
+ <details class="faq">
+ <summary>Will deleting the helper affect the automation that uses it?</summary>
+ <div class="body">Yes, the reference will become an error (the entity does not exist). Before deleting, search "Settings → Tools → States" (the old version was "Developer Tools → Status" in the sidebar) to see who is citing it, or directly change it automatically to replace the reference.</div>
+ </details>
+ <details class="faq">
+ <summary>Is the Timer accurate enough? Can I do a 30 second cook timer?</summary>
+ <div class="body">HA's built-in timer has a precision of seconds, which is generally sufficient. But if HA happens to be restarting, the timer will pause or reset (according to the "retention state" setting). If you want to be more precise, you can use the system <code>timer</code> add <code>restore: true</code>, retaining the remaining time across reboots.</div>
+ </details>
+ </section>
 
-    <div class="pager">
+ <div class="pager">
       <a class="prev" href="appendix_hacs_addons.html">
         <span class="label">← Appendix A</span>
-        <span class="title">Ecosystem: HACS, add-ons, and remote access</span>
+        <span class="title">A · HACS, add-ons, and remote access</span>
       </a>
       <a class="next" href="appendix_hardware_install.html">
         <span class="label">Next appendix →</span>
-        <span class="title">Before installation: hardware and HAOS</span>
+        <span class="title">C · Hardware and HAOS</span>
       </a>
     </div>
 
-    <footer class="site-footer">
+ <footer class="site-footer">
       <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
       <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
-  </main>
+ </main>
 </div>
 <script id="ui-strings" type="application/json">{"tocToggle":"Contents","tocExpand":"Expand chapter navigation","tocCollapse":"Collapse chapter navigation"}</script>
 <script src="../assets/js/toc.js"></script>

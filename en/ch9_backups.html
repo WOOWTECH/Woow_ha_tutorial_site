@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chapter 9 · backups · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Home Assistant backup tutorial: manually create a backup, enable automatic backup schedule, where to store the backup, and the steps for two restore scenarios." />
+  <title>Chapter 9 · Backups · Home Assistant Onboarding Guide</title>
+  <meta name="description" content="Create manual and scheduled Home Assistant backups, choose safe storage, and restore either a running installation or a replacement system." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch9_backups.html" />
   <meta name="robots" content="noindex, follow" />
@@ -12,13 +12,13 @@
   <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Chapter 9 · backups · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Home Assistant backup tutorial: manually create a backup, enable automatic backup schedule, where to store the backup, and the steps for two restore scenarios." />
+  <meta property="og:title" content="Chapter 9 · Backups · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Create manual and scheduled Home Assistant backups, choose safe storage, and restore either a running installation or a replacement system." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch9_backups.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch9/01_step.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chapter 9 · backups · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Home Assistant backup tutorial: manually create a backup, enable automatic backup schedule, where to store the backup, and the steps for two restore scenarios." />
+  <meta name="twitter:title" content="Chapter 9 · Backups · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Create manual and scheduled Home Assistant backups, choose safe storage, and restore either a running installation or a replacement system." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch9/01_step.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -31,7 +31,7 @@
 </head>
 <body>
 <div class="layout">
-  <aside class="sidebar">
+ <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From zero to working</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch9_backups.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch9_backups.html" lang="en" aria-current="page">EN</a></nav>
@@ -47,7 +47,7 @@
       <li><a href="ch6_dashboard.html">Dashboards</a></li>
       <li><a href="ch7_notifications.html">Notifications</a></li>
       <li><a href="ch8_first_automation.html">First automation</a></li>
-      <li><a href="ch9_backups.html" class="active">backups</a></li>
+      <li><a href="ch9_backups.html" class="active">Backups</a></li>
       <li><a href="ch10_scripts.html">Scripts</a></li>
       <li><a href="ch11_devices.html">Device settings</a></li>
       <li><a href="ch12_domains.html">Domain reference</a></li>
@@ -72,173 +72,173 @@
       <a href="#steps">Create a backup manually</a>
       <a href="#auto">Automatic backup schedule</a>
       <a href="#restore">Restore backup</a>
-      <a href="#location">Where to save backup</a>
-      <a href="#troubleshoot">FAQ troubleshooting</a>
+      <a href="#location">Where to store backups</a>
+      <a href="#troubleshoot">Troubleshooting</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · HACS/add-ons/remote access</a>
-      <a href="appendix_scenes_helpers_groups.html">B · Scenes/helpers/groups</a>
+      <a href="appendix_hacs_addons.html">A · HACS, add-ons, and remote access</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scenes, helpers, and groups</a>
       <a href="appendix_hardware_install.html">C · Hardware and HAOS</a>
     </div>
   </aside>
 
-  <main class="content">
-    <div class="chapter-header">
-      <div class="kicker">Chapter 9</div>
-      <h1>backup</h1>
-      <p class="lead">SD card damage, update failure, accidental deletion and integration may all cause it to reset to zero at once. This chapter teaches you how to set up automatic backup in 3 minutes, so that you can try it with confidence later.</p>
-    </div>
+ <main class="content">
+ <div class="chapter-header">
+ <div class="kicker">Chapter 9</div>
+ <h1>Backups</h1>
+ <p class="lead">A failed storage device, problematic update, accidental deletion, or broken integration can undo hours of work. Configure automatic backups in three minutes so you can experiment with confidence.</p>
+ </div>
 
-    <section id="why" data-nav="Why should you learn this?">
-      <h2 data-icon="why">Why should you learn this?</h2>
-      <p>"No device copy" is recognized by the HA community<strong>The first blood and tears lesson for newbies</strong>. Almost every week, people on Reddit's r/homeassistant post crying complaints: the SD card is broken, can't get up after updating, accidentally deletes the Zigbee integration results and the entire Zigbee network needs to be re-paired.</p>
-      <p>All these pains can be solved in one sentence:<strong>As long as you have the backup from the previous day, just restore it</strong>.</p>
-      <p>Several must-read community articles list "not backing up" as the number one novice mistake:</p>
-      <ul>
-        <li><a href="https://www.howtogeek.com/mistakes-you-should-avoid-when-setting-up-home-assistant/" target="_blank" rel="noopener">How-To Geek: Mistakes to avoid when setting up HA</a></li>
-        <li><a href="https://www.everythingsmarthome.co.uk/home-assistant-rookie-mistakes/" target="_blank" rel="noopener">Everything Smart Home: Common mistakes made by HA newbies</a></li>
-      </ul>
-      <p>It is recommended to read it first<a href="ch2_system_settings.html">System Settings for Chapter 2</a>—It will be cleaner to make sure the basic settings are correct before backing up, and it will be less likely to bring back a bunch of strange old values when restoring.</p>
-    </section>
+ <section id="why" data-nav="Why should you learn this?">
+ <h2 data-icon="why">Why should you learn this?</h2>
+ <p>"No device copy" is recognized by the HA community <strong>The first blood and tears lesson for newbies</strong>. Almost every week, people on Reddit's r/homeassistant post crying complaints: the SD card is broken, can't get up after updating, accidentally deletes the Zigbee integration results and the entire Zigbee network needs to be re-paired.</p>
+ <p>All these pains can be solved in one sentence: <strong>As long as you have the backup from the previous day, just restore it</strong>.</p>
+ <p>Several must-read community articles list "not backing up" as the number one novice mistake:</p>
+ <ul>
+ <li><a href="https://www.howtogeek.com/mistakes-you-should-avoid-when-setting-up-home-assistant/" target="_blank" rel="noopener">How-To Geek: Mistakes to avoid when setting up HA</a></li>
+ <li><a href="https://www.everythingsmarthome.co.uk/home-assistant-rookie-mistakes/" target="_blank" rel="noopener">Everything Smart Home: Common mistakes made by HA newbies</a></li>
+ </ul>
+ <p>It is recommended to read it first <a href="ch2_system_settings.html">System Settings for Chapter 2</a>—It will be cleaner to make sure the basic settings are correct before backing up, and it will be less likely to bring back multiple strange old values when restoring.</p>
+ </section>
 
-    <section id="what" data-nav="What does a backup contain?">
-      <h2 data-icon="what">What does a backup contain?</h2>
-      <div class="callout"><strong>Name changed:</strong>Starting from version 2026.2, HA has officially renamed "Add-on" to "Apps", and the installation entrance has also changed from the old version of "Settings → Add-ons" to "Settings → Applications". The Add-on you see in the old version is the same thing as the new version of Apps, and will use the new name after this chapter. The backup page itself has not been moved, the old and new versions are both in "Settings → System → backup".</div>
-      <p>A full backup of HA is a <code>.tar</code> The compressed file has two main parts after expansion:</p>
-      <ul>
-        <li><strong>Home Assistant core settings</strong>
-          <ul>
-            <li><code>.storage/</code>: All UI building stuff (automation, scripts, dashboards, users, integrated login tokens).</li>
-            <li><code>configuration.yaml</code> and related YAML files.</li>
-            <li>Floor, area, label, entity naming.</li>
-            <li>Lovelace dashboard configuration.</li>
-          </ul>
-        </li>
-        <li><strong>Applications (Apps, called add-ons in the old version) data</strong>
-          <ul>
-            <li>Pairing list for Zigbee2MQTT.</li>
-            <li>Node-RED’s process.</li>
-            <li>Mosquitto broker settings.</li>
-          </ul>
-        </li>
-      </ul>
-      <div class="callout warn"><strong>Does not include:</strong>media library (<code>media/</code>, such as camera recordings, TTS voice files) defaults are excluded because they are usually large. Historical data (Recorder DB) default<em>Will</em>backup, but can be unchecked during creation to shrink the file.</div>
-    </section>
+ <section id="what" data-nav="What does a backup contain?">
+ <h2 data-icon="what">What does a backup contain?</h2>
+ <div class="callout"><strong>Name changed:</strong> Starting from version 2026.2, HA has officially renamed "Add-on" to "Apps", and the installation entrance has also changed from the old version of "Settings → Add-ons" to "Settings → Applications". The Add-on you see in the old version is the same thing as the new version of Apps, and will use the new name after this chapter. The backup page itself has not been moved, the old and new versions are both in "Settings → System → backup".</div>
+ <p>A full backup of HA is a <code>.tar</code> The compressed file has two main parts after expansion:</p>
+ <ul>
+ <li><strong>Home Assistant core settings</strong>
+ <ul>
+ <li><code>.storage/</code>: All UI building stuff (automation, scripts, dashboards, users, integrated login tokens).</li>
+ <li><code>configuration.yaml</code> and related YAML files.</li>
+ <li>Floor, area, label, entity naming.</li>
+ <li>Lovelace dashboard configuration.</li>
+ </ul>
+ </li>
+ <li><strong>Applications (Apps, called add-ons in the old version) data</strong>
+ <ul>
+ <li>Pairing list for Zigbee2MQTT.</li>
+ <li>Node-RED’s process.</li>
+ <li>Mosquitto broker settings.</li>
+ </ul>
+ </li>
+ </ul>
+ <div class="callout warn"><strong>Does not include:</strong> media library (<code>media/</code>, such as camera recordings, TTS voice files) defaults are excluded because they are usually large. Historical data (Recorder DB) default <em>Will</em> backup, but can be unchecked during creation to shrink the file.</div>
+ </section>
 
-    <section id="steps" data-nav="Create a backup manually">
-      <h2 data-icon="steps">Create the first backup manually</h2>
-      <ol class="steps">
-        <li>
-          <h3>Open backup page</h3>
-          <p>Go to "Settings → System → backup". The list will be empty the first time you enter.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch9/01_step.png" alt="backup page" />
-            <figcaption><strong>Figure 9-1</strong>On the main backup page, there is a "backup now" button in the lower right corner.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>Click "Create backup"</h3>
-          <p>Select the backup type: "Full backup" (includes all content, recommended for the first time) or "Customized backup" (check which ones you want).</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch9/02_step.png" alt="Select backup type" />
-            <figcaption><strong>Figure 9-2</strong>Always choose a full backup for the first time to make sure the full restore can be successful.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>Naming and Encryption</h3>
-          <p>It is recommended to use "date + purpose" as the backup name, for example <code>2026-08-01-baseline</code>.<strong>It is strongly recommended to check "Encryption" and set a password</strong>, because the backup contains all your integrated login tokens. Please remember the password in the password manager (1Password/Bitwarden). If you forget it, you cannot restore it.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch9/03_step.png" alt="Naming and Encryption" />
-            <figcaption><strong>Figure 9-3</strong>Naming + Encryption. Passwords must be saved to a password manager.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>After creation, download to computer</h3>
-          <p>backup usually takes 30 seconds to 3 minutes to complete. There will be one more item in the list, click on it and click "Download" to pull it to your computer. This step is<strong>Off-site backup</strong>—If the HA host is completely broken, the backup in the hard disk will also be lost. The off-machine copy is life-saving.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch9/04_step.png" alt="Download backup" />
-            <figcaption><strong>Figure 9-4</strong>Download to your computer and send another copy to the cloud (Google Drive/Dropbox).</figcaption>
-          </figure>
-        </li>
-      </ol>
-      <div class="callout tip"><strong>Verify:</strong>After the backup is completed, there will be one more entry in the "Settings → System → backup" list, with the timestamp being now. Click to download to your computer once as an off-machine backup.</div>
-    </section>
+ <section id="steps" data-nav="Create a backup manually">
+ <h2 data-icon="steps">Create your first backup manually</h2>
+ <ol class="steps">
+ <li>
+ <h3>Open backup page</h3>
+ <p>Go to "Settings → System → backup". The list will be empty the first time you enter.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch9/01_step.png" alt="backup page" />
+ <figcaption><strong>Figure 9-1</strong> On the main backup page, there is a "backup now" button in the lower right corner.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>Click "Create backup"</h3>
+ <p>Select the backup type: "Full backup" (includes all content, recommended for the first time) or "Customized backup" (check which ones you want).</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch9/02_step.png" alt="Select backup type" />
+ <figcaption><strong>Figure 9-2</strong> Always choose a full backup for the first time to make sure the full restore can be successful.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>Naming and Encryption</h3>
+ <p>It is recommended to use "date + purpose" as the backup name, for example <code>2026-08-01-baseline</code>. <strong>It is strongly recommended to check "Encryption" and set a password</strong>, because the backup contains all your integrated login tokens. Please remember the password in the password manager (1Password/Bitwarden). If you forget it, you cannot restore it.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch9/03_step.png" alt="Naming and Encryption" />
+ <figcaption><strong>Figure 9-3</strong> Naming + Encryption. Passwords must be saved to a password manager.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>After creation, download to computer</h3>
+ <p>backup usually takes 30 seconds to 3 minutes to complete. There will be one more item in the list, click on it and click "Download" to pull it to your computer. This step is <strong>Off-site backup</strong>—If the HA host is completely broken, the backup in the hard disk will also be lost. The off-machine copy is life-saving.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch9/04_step.png" alt="Download backup" />
+ <figcaption><strong>Figure 9-4</strong> Download to your computer and send another copy to the cloud (Google Drive/Dropbox).</figcaption>
+ </figure>
+ </li>
+ </ol>
+ <div class="callout tip"><strong>Verify:</strong> After the backup is completed, there will be one more entry in the "Settings → System → backup" list, with the timestamp being now. Click to download to your computer once as an off-machine backup.</div>
+ </section>
 
-    <section id="auto" data-nav="Automatic backup schedule">
-      <h2 data-icon="auto">Enable automatic backup schedule</h2>
-      <p>HA OS 2024.10 and later has a complete automatic backup scheduling function built-in, and there is no need to install additional automatic backup apps.</p>
-      <p>Go to "Settings → System → backup → Automatic backup (upper right corner)" and you can set:</p>
-      <ul>
-        <li><strong>Frequency</strong>: Daily, weekly, monthly, and execution time (3-5am recommended).</li>
-        <li><strong>Keep copies</strong>: For example, "Keep the latest 7 daily backups + 4 weekly backups", and the excess will be automatically deleted.</li>
-        <li><strong>backup location</strong>: Can upload to multiple locations at the same time:
-          <ul>
-            <li><strong>Home Assistant Cloud (Nabu Casa)</strong>—The simplest, just check it directly after subscribing.</li>
-            <li><strong>Google Drive</strong>—Binded through official integration.</li>
-            <li><strong>Samba / NFS Netfang</strong>—Save to your home NAS.</li>
-            <li><strong>Nextcloud App</strong>—Self-installed in the cloud.</li>
-          </ul>
-        </li>
-        <li><strong>Encryption</strong>: Always turn on and set the same password.</li>
-      </ul>
-      <div class="callout"><strong>Recommended combination:</strong>Back up to NAS every morning + weekly backup to Google Drive. The former saves daily misoperation, and the latter saves the entire host from damage.</div>
-    </section>
+ <section id="auto" data-nav="Automatic backup schedule">
+ <h2 data-icon="auto">Enable automatic backup schedule</h2>
+ <p>HA OS 2024.10 and later has a complete automatic backup scheduling function built-in, and there is no need to install additional automatic backup apps.</p>
+ <p>Go to "Settings → System → backup → Automatic backup (upper right corner)" and you can set:</p>
+ <ul>
+ <li><strong>Frequency</strong>: Daily, weekly, monthly, and execution time (3-5am recommended).</li>
+ <li><strong>Keep copies</strong>: For example, "Keep the latest 7 daily backups + 4 weekly backups", and the excess will be automatically deleted.</li>
+ <li><strong>backup location</strong>: Can upload to multiple locations at the same time:
+ <ul>
+ <li><strong>Home Assistant Cloud (Nabu Casa)</strong>—The simplest, just check it directly after subscribing.</li>
+ <li><strong>Google Drive</strong>—Connected through official integration.</li>
+ <li><strong>Samba / NFS Netfang</strong>—Save to your home NAS.</li>
+ <li><strong>Nextcloud App</strong>—Self-installed in the cloud.</li>
+ </ul>
+ </li>
+ <li><strong>Encryption</strong>: Always turn on and set the same password.</li>
+ </ul>
+ <div class="callout"><strong>Recommended combination:</strong> Back up to NAS every morning + weekly backup to Google Drive. The former saves daily misoperation, and the latter saves the entire host from damage.</div>
+ </section>
 
-    <section id="restore" data-nav="Restore backup">
-      <h2 data-icon="restore">Two scenarios for restoring backups</h2>
-      <p><strong>Scenario 1: Selective restore of an item on the same HA</strong></p>
-      <p>An automation was accidentally deleted, or an integration was broken. Go to "Settings → System → backup → Select a backup → Restore", you can check<em>Only restore this part</em>(For example, only restore the Zigbee2MQTT configuration and leave the others unchanged). This is the most common firefighting scenario.</p>
-      <p><strong>Scenario 2: Restoring from backup on fresh installation</strong></p>
-      <p>Replace the SD card with a new one, get a new host, or the original system is too damaged to start. After refreshing and installing HA OS, when you go to the first page of "Start Settings", there will be an option to "Restore from backup". upload <code>.tar</code> file (or connect to Google Drive), enter the encryption password, and wait 5 to 15 minutes to completely return to the previous state.</p>
-      <div class="callout warn"><strong>Reminder:</strong>After restoration,<a href="ch5_users.html">Chapter 5</a>The set user password may become invalid (depending on the HA version). Please prepare the administrator's password or SSH to reset it. When logging into the restored system for the first time, it is recommended that each family member test login first.</div>
-    </section>
+ <section id="restore" data-nav="Restore backup">
+ <h2 data-icon="restore">Two scenes for restoring backups</h2>
+ <p><strong>Scenario 1: Selective restore of an item on the same HA</strong></p>
+ <p>An automation was accidentally deleted, or an integration was broken. Go to "Settings → System → backup → Select a backup → Restore", you can check <em>Only restore this part</em> (For example, only restore the Zigbee2MQTT configuration and leave the others unchanged). This is the most common firefighting scenario.</p>
+ <p><strong>Scenario 2: Restoring from backup on fresh installation</strong></p>
+ <p>Replace the SD card with a new one, get a new host, or the original system is too damaged to start. After refreshing and installing HA OS, when you go to the first page of "Start Settings", there will be an option to "Restore from backup". upload <code>.tar</code> file (or connect to Google Drive), enter the encryption password, and wait 5 to 15 minutes to completely return to the previous state.</p>
+ <div class="callout warn"><strong>Reminder:</strong> After restoration, <a href="ch5_users.html">Chapter 5</a> The set user password may become invalid (depending on the HA version). Please prepare the administrator's password or SSH to reset it. When logging into the restored system for the first time, it is recommended that each family member test login first.</div>
+ </section>
 
-    <section id="location" data-nav="Where to save backup">
-      <h2 data-icon="location">Where to save backup (important)</h2>
-      <p>HA OS stores backups on the host by default. <code>/backup</code> Directory. This directory is the same as your HA ontology<strong>On the same SD card/same hard drive</strong>.</p>
-      <div class="callout danger"><strong>Fatal misunderstanding:</strong>Only backup to local machine <code>/backup</code>, which means there is no backup. Once the SD card is damaged or the hard drive is disconnected, the backup is gone along with the main unit.</div>
-      <p>Correct approach (choose at least one, it is recommended to do both):</p>
-      <ul>
-        <li><strong>Cloud</strong>: Nabu Casa or Google Drive integration, set to upload automatically.</li>
-        <li><strong>NAS/wangfang</strong>: If you have Synology / QNAP / TrueNAS at home, write to it through Samba backup App or native integration.</li>
-        <li><strong>Offline hard drive</strong>: Manually download to the flash drive once a month and keep it.</li>
-      </ul>
-      <p>3-2-1 backup Rules:<em>3 backups, 2 media, 1 offsite</em>. When used in HA, it is "local + NAS + cloud".</p>
-    </section>
+ <section id="location" data-nav="Where to store backups">
+ <h2 data-icon="location">Where to store backups (important)</h2>
+ <p>HA OS stores backups on the host by default. <code>/backup</code> Directory. This directory is the same as your HA ontology <strong>On the same SD card/same hard drive</strong>.</p>
+ <div class="callout danger"><strong>Fatal misunderstanding:</strong> Only backup to local machine <code>/backup</code>, which means there is no backup. Once the SD card is damaged or the hard drive is disconnected, the backup is gone along with the main unit.</div>
+ <p>Correct approach (choose at least one, it is recommended to do both):</p>
+ <ul>
+ <li><strong>Cloud</strong>: Nabu Casa or Google Drive integration, set to upload automatically.</li>
+ <li><strong>NAS/wangfang</strong>: If you have Synology / QNAP / TrueNAS at home, write to it through Samba backup App or native integration.</li>
+ <li><strong>Offline hard drive</strong>: Manually download to the flash drive once a month and keep it.</li>
+ </ul>
+ <p>3-2-1 backup Rules: <em>3 backups, 2 media, 1 offsite</em>. When used in HA, it is "local + NAS + cloud".</p>
+ </section>
 
-    <section id="troubleshoot" data-nav="FAQ troubleshooting">
-      <h2 data-icon="troubleshoot">FAQ troubleshooting</h2>
-      <p><strong>Problem 1: The backup file is too large.</strong></p>
-      <p>Check "Settings → Tools → Statistics" (the old version was called "Developer Tools", it is an item in the sidebar) to see how big the Recorder database is. Retention days can be shortened (<code>recorder.purge_keep_days</code>, preset for 10 days) or exclude high-frequency sensors (such as power meter, CPU temperature). Confirm that the media library has not been checked in.</p>
-      <p><strong>Issue 2: Some integrated passwords/tokens become invalid after restoration.</strong></p>
-      <p>Most integrated tokens exist <code>.storage/</code> will be restored together. However, cloud services (Google, Alexa, Nest) often require re-authorization because the token has a validity period or is tied to an IP. This is expected behavior, just bind it again.</p>
-      <p><strong>Problem 3: The SD card is damaged and cannot be read, and the backup and restore path is broken.</strong></p>
-      <p>This is why you need to have off-site backups. If there is no last available backup, you can only rebuild from scratch. This is why it is strongly recommended to use <strong>SSD + USB adapter</strong>Replacing the SD card to run HA OS has much worse usability.</p>
-    </section>
+ <section id="troubleshoot" data-nav="Troubleshooting">
+ <h2 data-icon="troubleshoot">Troubleshooting</h2>
+ <p><strong>Problem 1: The backup file is too large.</strong></p>
+ <p>Check "Settings → Tools → Statistics" (the old version was called "Developer Tools", it is an item in the sidebar) to see how big the Recorder database is. Retention days can be shortened (<code>recorder.purge_keep_days</code>, preset for 10 days) or exclude high-frequency sensors (such as power meter, CPU temperature). Confirm that the media library has not been checked in.</p>
+ <p><strong>Issue 2: Some integrated passwords/tokens become invalid after restoration.</strong></p>
+ <p>Most integrated tokens exist <code>.storage/</code> will be restored together. However, cloud services (Google, Alexa, Nest) often require re-authorization because the token has a validity period or is tied to an IP. This is expected behavior, just connect it again.</p>
+ <p><strong>Problem 3: The SD card is damaged and cannot be read, and the backup and restore path is broken.</strong></p>
+ <p>This is why you need to have off-site backups. If there is no last available backup, you can only rebuild from scratch. This is why it is strongly recommended to use <strong>SSD + USB adapter</strong> Replacing the SD card to run HA OS has much worse usability.</p>
+ </section>
 
-    <section id="faq" data-nav="FAQ">
-      <h2 data-icon="faq">FAQ</h2>
-      <details class="faq">
-        <summary>What should I do if I forget my backup password?</summary>
-        <div class="body">There is no way to restore it, this is a necessity of encryption. Passwords must be stored in a password manager (1Password / Bitwarden) rather than "I should remember".</div>
-      </details>
-      <details class="faq">
-        <summary>Can I restore a backup from an old HA version to a new version?</summary>
-        <div class="body">Yes, restoring up is the officially supported path, and HA will automatically run the necessary database migration. The other way around (restore the new version backup to the old version HA) will not work, it will break.</div>
-      </details>
-      <details class="faq">
-        <summary>Will the backup take up a lot of space?</summary>
-        <div class="body">Typical home use (10~50 devices) is approximately 100 MB ~ 500 MB. If you have a camera or a lot of historical data, you may want to go to GB. The setting "Keep the last 7 copies" is usually limited to 5 GB.</div>
-      </details>
-      <details class="faq">
-        <summary>Will HA stop while the backup is running?</summary>
-        <div class="body">No, backups are done in the background and automation and notifications work normally. However, the CPU/IO is busy at the moment of backup, and operations with high immediacy such as Zigbee may be delayed by 1 to 2 seconds.</div>
-      </details>
-    </section>
+ <section id="faq" data-nav="FAQ">
+ <h2 data-icon="faq">FAQ</h2>
+ <details class="faq">
+ <summary>What should I do if I forget my backup password?</summary>
+ <div class="body">There is no way to restore it, this is a necessity of encryption. Passwords must be stored in a password manager (1Password / Bitwarden) rather than "I should remember".</div>
+ </details>
+ <details class="faq">
+ <summary>Can I restore a backup from an old HA version to a new version?</summary>
+ <div class="body">Yes, restoring up is Home Assistantly supported path, and HA will automatically run the necessary database migration. The other way around (restore the new version backup to the old version HA) will not work, it will break.</div>
+ </details>
+ <details class="faq">
+ <summary>Will the backup take up a lot of space?</summary>
+ <div class="body">Typical home use (10~50 devices) is approximately 100 MB ~ 500 MB. If you have a camera or a lot of historical data, you may want to go to GB. The setting "Keep the last 7 copies" is usually limited to 5 GB.</div>
+ </details>
+ <details class="faq">
+ <summary>Will HA stop while the backup is running?</summary>
+ <div class="body">No, backups are done in the background and automation and notifications work normally. However, the CPU/IO is busy at the moment of backup, and operations with high immediacy such as Zigbee may be delayed by 1 to 2 seconds.</div>
+ </details>
+ </section>
 
-    <div class="pager">
+ <div class="pager">
       <a class="prev" href="ch8_first_automation.html">
         <span class="label">← Previous</span>
         <span class="title">08 · First automation</span>
@@ -249,11 +249,11 @@
       </a>
     </div>
 
-    <footer class="site-footer">
+ <footer class="site-footer">
       <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
       <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
-  </main>
+ </main>
 </div>
 <script id="ui-strings" type="application/json">{"tocToggle":"Contents","tocExpand":"Expand chapter navigation","tocCollapse":"Collapse chapter navigation"}</script>
 <script src="../assets/js/toc.js"></script>

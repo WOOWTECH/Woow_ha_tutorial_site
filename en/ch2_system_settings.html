@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 2 · System settings · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Home Assistant system setting tutorial: adjust the time zone, language, unit system and geographical location at once, so that automatic sunrise and sunset types will not calculate the wrong time." />
+  <meta name="description" content="Configure the Home Assistant time zone, language, unit system, currency, and location so that time- and sun-based automations run correctly." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch2_system_settings.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Chapter 2 · System settings · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Home Assistant system setting tutorial: adjust the time zone, language, unit system and geographical location at once, so that automatic sunrise and sunset types will not calculate the wrong time." />
+  <meta property="og:description" content="Configure the Home Assistant time zone, language, unit system, currency, and location so that time- and sun-based automations run correctly." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch2_system_settings.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch2/01_settings_entry.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chapter 2 · System settings · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Home Assistant system setting tutorial: adjust the time zone, language, unit system and geographical location at once, so that automatic sunrise and sunset types will not calculate the wrong time." />
+  <meta name="twitter:description" content="Configure the Home Assistant time zone, language, unit system, currency, and location so that time- and sun-based automations run correctly." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch2/01_settings_entry.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -31,7 +31,7 @@
 </head>
 <body>
 <div class="layout">
-  <aside class="sidebar">
+ <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From zero to working</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch2_system_settings.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch2_system_settings.html" lang="en" aria-current="page">EN</a></nav>
@@ -47,7 +47,7 @@
       <li><a href="ch6_dashboard.html">Dashboards</a></li>
       <li><a href="ch7_notifications.html">Notifications</a></li>
       <li><a href="ch8_first_automation.html">First automation</a></li>
-      <li><a href="ch9_backups.html">backups</a></li>
+      <li><a href="ch9_backups.html">Backups</a></li>
       <li><a href="ch10_scripts.html">Scripts</a></li>
       <li><a href="ch11_devices.html">Device settings</a></li>
       <li><a href="ch12_domains.html">Domain reference</a></li>
@@ -76,125 +76,125 @@
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · HACS/add-ons/remote access</a>
-      <a href="appendix_scenes_helpers_groups.html">B · Scenes/helpers/groups</a>
+      <a href="appendix_hacs_addons.html">A · HACS, add-ons, and remote access</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scenes, helpers, and groups</a>
       <a href="appendix_hardware_install.html">C · Hardware and HAOS</a>
     </div>
   </aside>
 
-  <main class="content">
-    <div class="chapter-header">
-      <div class="kicker">Chapter 2</div>
-      <h1>System settings</h1>
-      <p class="lead">Adjust the time zone, language, unit, and geographical location at once. These are the basis for HA to judge "sunrise and sunset", "typhoon approaching" and "how many degrees to turn on the air conditioner". If you set it wrong, it will be wrong later.</p>
-    </div>
+ <main class="content">
+ <div class="chapter-header">
+ <div class="kicker">Chapter 2</div>
+ <h1>System settings</h1>
+ <p class="lead">Set the time zone, language, unit system, currency, and location correctly. Home Assistant uses these settings for sunrise and sunset, weather, temperatures, timestamps, and energy costs; a mistake here affects every later automation.</p>
+ </div>
 
-    <section id="why" data-nav="Why do you need to set this up first?">
-      <h2 data-icon="why">Why do you need to set this up first?</h2>
-      <p>Many of HA's automations rely on "geographic location" and "time zone":</p>
-      <ul>
-        <li>"Turn on the porch lights 30 minutes after sunset" - need to know your location.</li>
-        <li>(For example: If you write the automation of "automatically turning on the lights when the sun goes down" in the future, setting the wrong latitude and longitude here will cause the lights to turn on at the wrong time.)</li>
-        <li>"27°C with air conditioning on" - Celsius or Fahrenheit? If the unit is wrong, the judgment will be wrong.</li>
-      </ul>
-      <p>There isn't much to do in this chapter, but it affects every subsequent chapter.</p>
-      <div class="callout warn"><strong>The consequences of setting the wrong time zone are greater than imagined</strong>: The time on the historical chart will be distorted, the sunrise and sunset triggers will be wrong, and the energy dashboard will return to the wrong day. The geographical location itself only affects sunrise and sunset <code>zone.home</code>(HA will build a "home" zone with a radius of 100 meters according to the coordinates you marked),<strong>The time zone, unit, and currency must be manually selected separately.</strong>, will not guess automatically.</div>
-    </section>
+ <section id="why" data-nav="Why do you need to set this up first?">
+ <h2 data-icon="why">Why do you need to set this up first?</h2>
+ <p>Many of HA's automations rely on "geographic location" and "time zone":</p>
+ <ul>
+ <li>"Turn on the porch lights 30 minutes after sunset" - need to know your location.</li>
+ <li>(For example: If you write the automation of "automatically turning on the lights when the sun goes down" in the future, setting the wrong latitude and longitude here will cause the lights to turn on at the wrong time.)</li>
+ <li>"27°C with air conditioning on" - Celsius or Fahrenheit? If the unit is wrong, the judgment will be wrong.</li>
+ </ul>
+ <p>There isn't much to do in this chapter, but it affects every subsequent chapter.</p>
+ <div class="callout warn"><strong>The consequences of setting the wrong time zone are greater than imagined</strong>: The time on the historical chart will be distorted, the sunrise and sunset triggers will be wrong, and the energy dashboard will return to the wrong day. The geographical location itself only affects sunrise and sunset <code>zone.home</code>(HA will build a "home" zone with a radius of 100 meters according to the coordinates you marked), <strong>The time zone, unit, and currency must be manually selected separately.</strong>, will not guess automatically.</div>
+ </section>
 
-    <section id="enter" data-nav="Enter settings">
-      <h2 data-icon="enter">Enter settings</h2>
-      <p>Click "Settings" (gear icon) on the left menu. This is the entrance to all system settings of HA.</p>
-      <figure class="shot">
-        <img src="../assets/screenshots/ch2/01_settings_entry.png" alt="Set entrance" />
-        <figcaption><strong>Figure 2-1</strong>The "Settings" gear in the left menu.</figcaption>
-      </figure>
-    </section>
+ <section id="enter" data-nav="Enter settings">
+ <h2 data-icon="enter">Enter settings</h2>
+ <p>Click "Settings" (gear icon) on the left menu. This is the entrance to all system settings of HA.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch2/01_settings_entry.png" alt="Set entrance" />
+ <figcaption><strong>Figure 2-1</strong> The "Settings" gear in the left menu.</figcaption>
+ </figure>
+ </section>
 
-    <section id="steps" data-nav="Hands-on setup">
-      <h2 data-icon="steps">Hands-on setup</h2>
-      <div class="callout"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. The main battlefield of this chapter is now called<strong>Settings → System → Home information</strong>, official documents have been changed to this name. The same page on the old version of the screen is called "General", and the positions and fields are exactly the same. The screenshot below is of the old version of the interface.</div>
-      <ol class="steps">
-        <li>
-          <h3>Settings → System → Home Information</h3>
-          <p>Click "System" on the settings page, then click "Family Information" (called "General" in the old version). This page is the main battlefield of this chapter.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch2/02_general.png" alt="General settings page" />
-            <figcaption><strong>Figure 2-2</strong>The system's family information settings page has fields such as name, time zone, unit, and currency.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>Set the name and location of your "home"</h3>
-          <p><strong>Name</strong>: For example, "Wang Family" and "Chen Family" - this name will be displayed in the mobile phone notification title.</p>
-          <p><strong>location</strong>: Drag the pin directly on the map to your doorstep. This is the starting point of the "at home/not at home" judgment.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch2/03_location.png" alt="Geolocation settings" />
-            <figcaption><strong>Figure 2-3</strong>Drag the pin on the map.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>Time zones and currencies</h3>
-          <p><strong>Time zone</strong>: select your local IANA time zone; the zh-TW source uses <code>Asia/Taipei</code>. <strong>Currency</strong>: select your local currency; the source example is <code>TWD</code>. Both settings affect timestamps and the Energy dashboard.</p>
-        </li>
-        <li>
-          <h3>unit system</h3>
-          <p><strong>unit system</strong>: Select "Metric".<strong>temperature</strong>:Celsius.<strong>rainfall</strong>: mm.<strong>wind speed</strong>:m/s or km/h.</p>
-        </li>
-        <li>
-          <h3>save</h3>
-          <p>Click "Save" in the lower right corner. After modification, some settings will not take effect until the page is reset.</p>
-          <div class="callout tip"><strong>Tip:</strong>If you later feel that the sunrise and sunset times are weird or the notification time is wrong, it is probably because there is a missing field on this page.</div>
-        </li>
-      </ol>
-      <div class="callout tip"><strong>Verify</strong>: After saving, return to "Settings → Overview". The date and time in the lower right corner should show your local time zone; the map in "Settings → Areas, labels &amp; zones → Zones → home" should frame your home.</div>
-    </section>
+ <section id="steps" data-nav="Hands-on setup">
+ <h2 data-icon="steps">Hands-on setup</h2>
+ <div class="callout"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. The main battlefield of this chapter is now called <strong>Settings → System → Home information</strong>, official documentation has been changed to this name. The same page on the old version of the screen is called "General", and the positions and fields are exactly the same. The screenshot below is of the old version of the interface.</div>
+ <ol class="steps">
+ <li>
+ <h3>Settings → System → Home Information</h3>
+ <p>Click "System" on the settings page, then click "Family Information" (called "General" in the old version). This page is the main battlefield of this chapter.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch2/02_general.png" alt="General settings page" />
+ <figcaption><strong>Figure 2-2</strong> The system's family information settings page has fields such as name, time zone, unit, and currency.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>Set the name and location of your "home"</h3>
+ <p><strong>Name</strong>: For example, "Wang Family" and "Chen Family" - this name will be displayed in the phone notification title.</p>
+ <p><strong>location</strong>: Drag the pin directly on the map to your doorstep. This is the starting point of the "at home/not at home" judgment.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch2/03_location.png" alt="Geolocation settings" />
+ <figcaption><strong>Figure 2-3</strong> Drag the pin on the map.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>Time zones and currencies</h3>
+ <p><strong>Time zone</strong>: select your local IANA time zone; the zh-TW source uses <code>Asia/Taipei</code>. <strong>Currency</strong>: select your local currency; the source example is <code>TWD</code>. Both settings affect timestamps and the Energy dashboard.</p>
+ </li>
+ <li>
+ <h3>Unit system</h3>
+ <p><strong>unit system</strong>: Select "Metric". <strong>temperature</strong>:Celsius. <strong>rainfall</strong>: mm. <strong>wind speed</strong>:m/s or km/h.</p>
+ </li>
+ <li>
+ <h3>Save</h3>
+ <p>Click "Save" in the lower right corner. After modification, some settings will not take effect until the page is reset.</p>
+ <div class="callout tip"><strong>Tip:</strong> If you later feel that the sunrise and sunset times are weird or the notification time is wrong, it is probably because there is a missing field on this page.</div>
+ </li>
+ </ol>
+ <div class="callout tip"><strong>Verify</strong>: After saving, return to "Settings → Overview". The date and time in the lower right corner should show your local time zone; the map in "Settings → Areas, labels &amp; zones → Zones → home" should frame your home.</div>
+ </section>
 
-    <section id="profile" data-nav="personal preference">
-      <h2 data-icon="profile">Personal preferences (own avatar, language, theme)</h2>
-      <p><strong>Concept: system settings vs personal settings</strong>. Time zone, unit, currency are<strong>system level</strong>(shared by everyone); language, date format, first day of week are<strong>Personal level</strong>(Separate settings for each account). This is why family members often see different languages ​​when logging in, so don’t think it’s broken.</p>
-      <p>Just now it was the setting for "whole home", here is the setting for "yourself": click your name at the bottom of the sidebar → "User profile". The old version was called "User Settings".</p>
-      <ol class="steps">
-        <li>
-          <h3>language</h3>
-          <p>Select "Traditional Chinese" and the entire interface will be immediately Chinese-language.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch2/04_profile_language.png" alt="User language settings" />
-            <figcaption><strong>Figure 2-4</strong>The "Language" field on the user's profile page.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>Time format and initial page</h3>
-          <p><strong>time format</strong>: 24-hour or 12-hour viewing habits.<strong>Default dashboard</strong>: Which page do you want to see after logging in (the default is "Overview").</p>
-        </li>
-        <li>
-          <h3>Theme (Theme, the old version of the interface is translated as "scenery")</h3>
-          <p>The drop-down menu has several built-in themes, including "Backend-selected" (following the system's dark and light colors), "Default light/dark", etc.</p>
-        </li>
-      </ol>
-    </section>
+ <section id="profile" data-nav="personal preference">
+ <h2 data-icon="profile">Personal preferences (own avatar, language, theme)</h2>
+ <p><strong>Concept: system settings vs personal settings</strong>. Time zone, unit, currency are <strong>system level</strong> (shared by everyone); language, date format, first day of week are <strong>Personal level</strong> (Separate settings for each account). This is why family members often see different languages ​​when logging in, so don’t think it’s broken.</p>
+ <p>Just now it was the setting for "whole home", here is the setting for "yourself": click your name at the bottom of the sidebar → "User profile". The old version was called "User Settings".</p>
+ <ol class="steps">
+ <li>
+ <h3>Language</h3>
+ <p>Select English, and the interface changes immediately for your account.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch2/04_profile_language.png" alt="User language settings" />
+ <figcaption><strong>Figure 2-4</strong> The "Language" field on the user's profile page.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>Time format and initial page</h3>
+ <p><strong>time format</strong>: 24-hour or 12-hour views habits. <strong>Default dashboard</strong>: Which page do you want to see after logging in (the default is "Overview").</p>
+ </li>
+ <li>
+ <h3>Theme (Theme, the old version of the interface is translated as "scenery")</h3>
+ <p>The drop-down menu has several built-in themes, including "System-selected" (following the system's dark and light colors), "Default light/dark", etc.</p>
+ </li>
+ </ol>
+ </section>
 
-    <section id="faq" data-nav="FAQ">
-      <h2 data-icon="faq">FAQ</h2>
-      <details class="faq">
-        <summary>After changing the time zone, will the past chart time disappear?</summary>
-        <div class="body">Yes. Historical data is stored in UTC, and the time zone is applied when displayed, so the image you see after changing the time zone will shift. This is correct behavior, don't worry.</div>
-      </details>
-      <details class="faq">
-        <summary>Does the location of “home” have to be real?</summary>
-        <div class="body">It is best to use real coordinates, because sunrise and sunset, weather, and earthquake notifications all rely on it. If you care about privacy, set up at a landmark within a 1 kilometer radius.</div>
-      </details>
-      <details class="faq">
-        <summary>Can different users choose their own languages?</summary>
-        <div class="body">Yes. The language set by the system is only the "default value", and each user can choose it on the "User Profile" page.</div>
-      </details>
-    </section>
+ <section id="faq" data-nav="FAQ">
+ <h2 data-icon="faq">FAQ</h2>
+ <details class="faq">
+ <summary>After changing the time zone, will the past chart time disappear?</summary>
+ <div class="body">Yes. Historical data is stored in UTC, and the time zone is applied when displayed, so the image you see after changing the time zone will shift. This is correct behavior, don't worry.</div>
+ </details>
+ <details class="faq">
+ <summary>Does the location of “home” have to be real?</summary>
+ <div class="body">It is best to use real coordinates, because sunrise and sunset, weather, and earthquake notifications all rely on it. If you care about privacy, set up at a landmark within a 1 kilometer radius.</div>
+ </details>
+ <details class="faq">
+ <summary>Can different users choose their own languages?</summary>
+ <div class="body">Yes. The language set by the system is only the "default value", and each user can choose it on the "User Profile" page.</div>
+ </details>
+ </section>
 
-    <section id="backup_early" data-nav="Next step: Back up first">
-      <h2 data-icon="tips">Next step: Back up first</h2>
-      <p>You have completed the most critical settings of HA. Before continuing to configure rooms and equipment,<strong>It is strongly recommended to make a backup first</strong>: In this way, you can restore the clean initial state at any time when trying to integrate later.</p>
-      <p>The backup can be completed in 3 minutes, and the tutorial is here <a href="ch9_backups.html">Chapter 9</a>.</p>
-    </section>
+ <section id="backup_early" data-nav="Next step: Back up first">
+ <h2 data-icon="tips">Next step: Back up first</h2>
+ <p>You have completed the most critical settings of HA. Before continuing to configure rooms and devices, <strong>It is strongly recommended to make a backup first</strong>: In this way, you can restore the clean initial state at any time when trying to integrate later.</p>
+ <p>The backup can be completed in 3 minutes, and the tutorial is here <a href="ch9_backups.html">Chapter 9</a>.</p>
+ </section>
 
-    <div class="pager">
+ <div class="pager">
       <a class="prev" href="ch1_login.html">
         <span class="label">← Previous</span>
         <span class="title">01 · Log in to HA</span>
@@ -205,11 +205,11 @@
       </a>
     </div>
 
-    <footer class="site-footer">
+ <footer class="site-footer">
       <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
       <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
-  </main>
+ </main>
 </div>
 <script id="ui-strings" type="application/json">{"tocToggle":"Contents","tocExpand":"Expand chapter navigation","tocCollapse":"Collapse chapter navigation"}</script>
 <script src="../assets/js/toc.js"></script>

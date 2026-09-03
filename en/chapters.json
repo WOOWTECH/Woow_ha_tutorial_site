@@ -7,7 +7,7 @@
     "baseUrl": "https://woowtech.github.io/Woow_ha_tutorial_site/en",
     "repoUrl": "https://github.com/WOOWTECH/Woow_ha_tutorial_site",
     "locale": "en_US",
-    "description": "A 22-chapter Home Assistant guide with 3 appendices, covering login, areas, dashboards, notifications, automations, protocols, integrations, energy monitoring, historical data, voice assistants and LLMs, Docker architecture, and remote access. Each chapter takes about 10 minutes.",
+    "description": "A 22-chapter Home Assistant guide with 3 appendices. Learn login and system setup, floors and areas, dashboards, notifications, automations, protocols, integrations, energy monitoring, history, voice assistants and LLMs, Docker architecture, and secure remote access in practical 10-minute chapters.",
     "footerMeta": "Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it.",
     "ogImage": "assets/og/woowtech.en.png",
     "license": {
@@ -41,8 +41,8 @@
       "navLabel": "Log in to HA",
       "title": "Log in to Home Assistant",
       "pagerTitle": "01 · Log in to HA",
-      "card": "Understand the differences between login pages, remember me, Companion App and web pages.",
-      "description": "How to log in to Home Assistant: three ways to find the HA URL, the difference between Owner and Administrator, how to use “Stay logged in”, and the choice between the web backend and the Companion App.",
+      "card": "Learn the login page, “Stay logged in,” and when to use the web interface or Companion App.",
+      "description": "Learn three ways to find your Home Assistant URL, how Owner and Administrator accounts differ, when to use “Stay logged in,” and how the web interface compares with the Companion App.",
       "part": "Foundations: from zero to working"
     },
     {
@@ -51,8 +51,8 @@
       "navLabel": "System settings",
       "title": "System settings",
       "pagerTitle": "02 · System settings",
-      "card": "Correct the time zone, language, unit, and geographical location once, and all subsequent automation will be accurate.",
-      "description": "Home Assistant system setting tutorial: adjust the time zone, language, unit system and geographical location at once, so that automatic sunrise and sunset types will not calculate the wrong time.",
+      "card": "Set the correct time zone, language, units, and location so that later automations run as expected.",
+      "description": "Configure the Home Assistant time zone, language, unit system, currency, and location so that time- and sun-based automations run correctly.",
       "part": "Foundations: from zero to working"
     },
     {
@@ -61,8 +61,8 @@
       "navLabel": "Floors and areas",
       "title": "Floors and areas",
       "pagerTitle": "03 · Floors and areas",
-      "card": "First draw the floors and rooms of your home, and then the controls, dashboard, and voice will be clear.",
-      "description": "Create floors and areas in Home Assistant and put the devices in place so that dashboards, voice assistants, and automation can all be operated using “living room lights.”",
+      "card": "Map your home’s floors and rooms so dashboards, voice control, and automations understand where devices are.",
+      "description": "Create floors and areas in Home Assistant and assign devices to them, enabling natural controls such as “turn on the living-room lights.”",
       "part": "Foundations: from zero to working"
     },
     {
@@ -71,8 +71,8 @@
       "navLabel": "Naming and labels",
       "title": "Naming and labels",
       "pagerTitle": "04 · Naming and labels",
-      "card": "Turn “switch.0x00abc123” into the “living room main light” and use labels to group similar devices.",
-      "description": "The difference between Home Assistant entity naming and entity_id design, Label label and Category classification, with a set of naming examples that can be copied directly.",
+      "card": "Turn an opaque entity ID into a clear name, then use labels to group related devices and automations.",
+      "description": "Plan clear Home Assistant names and entity IDs, and understand how labels and categories classify entities, devices, automations, and scripts.",
       "part": "Foundations: from zero to working"
     },
     {
@@ -81,8 +81,8 @@
       "navLabel": "User management",
       "title": "User management",
       "pagerTitle": "05 · User management",
-      "card": "Create accounts for family members, tenants, and guests, and decide who can change settings and who can only turn on lights.",
-      "description": "What is the difference between Home Assistant’s Users and Persons, how to open family and guest permissions, MFA two-stage verification settings, and mobile phone positioning and Zone radius calibration.",
+      "card": "Create accounts for household members, tenants, and guests, with appropriate permissions for each person.",
+      "description": "Understand the difference between users and persons, configure household and guest access, enable MFA, and calibrate mobile location tracking and zone radii.",
       "part": "Foundations: from zero to working"
     },
     {
@@ -91,8 +91,8 @@
       "navLabel": "Dashboards",
       "title": "Dashboards",
       "pagerTitle": "06 · Dashboards",
-      "card": "Put the most commonly used lights, curtains, and air conditioners on the homepage, and your family will use them as soon as they are turned on.",
-      "description": "Home Assistant dashboard editing tutorial: adding cards, multi-page configuration, how to choose the four View Types, and layout tips that your family will use as soon as they open it.",
+      "card": "Put frequently used lights, covers, and climate controls where everyone can find them.",
+      "description": "Edit Home Assistant dashboards, add cards and views, choose among four view types, and build a layout that works for the whole household.",
       "part": "Foundations: from zero to working"
     },
     {
@@ -101,8 +101,8 @@
       "navLabel": "Notifications",
       "title": "Notifications",
       "pagerTitle": "07 · Notifications",
-      "card": "Install the Companion App, bind your phone, and send the first notification.",
-      "description": "Install the Home Assistant Companion App, bind the phone and send the first push notification, and then make notifications with actionable notifications as you progress.",
+      "card": "Install the Companion App, connect a phone, and send your first push notification.",
+      "description": "Install the Home Assistant Companion App, connect a phone, send a test notification, and create actionable notifications with buttons.",
       "part": "Foundations: from zero to working"
     },
     {
@@ -111,18 +111,18 @@
       "navLabel": "First automation",
       "title": "Your first automation",
       "pagerTitle": "08 · First automation",
-      "card": "The three-stage trigger/condition/action avoids the device_id trap and writes “turn on the lights at sunset”.",
-      "description": "Use the three-part trigger/condition/action to write the first Home Assistant automation “turn on the lights at sunset”, and explain why you should avoid device_id and use entity_id instead, with execution mode and Blueprint instructions.",
+      "card": "Use the trigger-condition-action model to turn on a light at sunset without falling into the device_id trap.",
+      "description": "Build a “turn on the lights at sunset” automation, learn why entity_id is usually preferable to device_id, and understand run modes and Blueprints.",
       "part": "Foundations: from zero to working"
     },
     {
       "file": "ch9_backups.html",
       "num": "09",
-      "navLabel": "backups",
-      "title": "backups",
-      "pagerTitle": "09 · backups",
-      "card": "Set up automatic backup in 3 minutes, and then you can safely try out integrations and change settings.",
-      "description": "Home Assistant backup tutorial: manually create a backup, enable automatic backup schedule, where to store the backup, and the steps for two restore scenarios.",
+      "navLabel": "Backups",
+      "title": "Backups",
+      "pagerTitle": "09 · Backups",
+      "card": "Configure automatic backups in three minutes so you can experiment and recover with confidence.",
+      "description": "Create manual and scheduled Home Assistant backups, choose safe storage, and restore either a running installation or a replacement system.",
       "part": "Foundations: from zero to working"
     },
     {
@@ -131,8 +131,8 @@
       "navLabel": "Scripts",
       "title": "Scripts",
       "pagerTitle": "10 · Scripts",
-      "card": "Packing repeated actions into a button is more flexible than automation and can be called with parameters.",
-      "description": "Home Assistant Script script tutorial: differences with automation, Fields parameterization, Single/Restart/Queued/Parallel execution modes, and four entrances to call scripts.",
+      "card": "Package repeated actions into a reusable, parameterized script that dashboards, automations, and voice control can call.",
+      "description": "Learn how scripts differ from automations, add fields, choose Single, Restart, Queued, or Parallel mode, and call scripts in four ways.",
       "part": "Foundations: from zero to working"
     },
     {
@@ -141,8 +141,8 @@
       "navLabel": "Device settings",
       "title": "Device settings",
       "pagerTitle": "11 · Device settings",
-      "card": "How to view the device page, how to upgrade the firmware, how to deactivate the entity, and how to save the repair center.",
-      "description": "Understand the Home Assistant device page: renaming devices and entities, the difference between disabling/hiding/deleting, firmware updates, diagnostic downloads and repair centers (Repairs).",
+      "card": "Read the device page, update firmware, manage entities, download diagnostics, and use Repairs.",
+      "description": "Understand the Home Assistant device page: rename devices and entities, disable or hide entities, update firmware, download diagnostics, and resolve Repairs.",
       "part": "Foundations: from zero to working"
     },
     {
@@ -151,8 +151,8 @@
       "navLabel": "Domain reference",
       "title": "Domain reference",
       "pagerTitle": "12 · Domain reference",
-      "card": "light / climate / cover / media_player… The common actions, UI cards, and common pitfalls of each Domain will be discussed in one go.",
-      "description": "Home Assistant Domain control illustration: common actions, UI cards and common pitfalls of light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, notify.",
+      "card": "A practical reference to common domains, their actions, dashboard cards, and frequent pitfalls.",
+      "description": "Reference common actions, cards, and pitfalls for light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, and notify domains.",
       "part": "Foundations: from zero to working"
     },
     {
@@ -162,8 +162,8 @@
       "navLabel": "Themes and appearance",
       "title": "Themes and appearance",
       "pagerTitle": "13 · Themes and appearance",
-      "card": "Dark mode, social theme, everyone has their own style, and adjust the interface to how you want to live in it.",
-      "description": "Home Assistant theme and appearance tutorial: dark and light mode, installing community themes through HACS, applying different themes to each user, changing the theme of the dashboard on a single page, as well as theme variables and brand customization."
+      "card": "Choose light or dark mode, install a community theme, and tailor Home Assistant’s appearance for each user.",
+      "description": "Configure light and dark modes, install community themes through HACS, apply themes per user or view, and customize theme variables and branding."
     },
     {
       "file": "ch14_integrations.html",
@@ -172,8 +172,8 @@
       "navLabel": "Integrations",
       "title": "Integrations",
       "pagerTitle": "14 · Integrations",
-      "card": "Weather, music, positioning, calendar - only when outside services are brought in, will the home know what is happening outside.",
-      "description": "Home Assistant integration (Integration) tutorial: the complete process of new integration, the connection of weather and music with cloud services such as positioning and calendar, the choice between local integration and cloud integration, as well as diagnosis and removal."
+      "card": "Connect weather, music, location, calendar, and other external services to Home Assistant.",
+      "description": "Follow the complete integration setup flow, connect cloud and local services, understand OAuth, and diagnose, reload, reauthenticate, or remove integrations."
     },
     {
       "file": "ch15_protocols.html",
@@ -182,8 +182,8 @@
       "navLabel": "Protocols",
       "title": "Communication protocols",
       "pagerTitle": "15 · Protocols",
-      "card": "Wi-Fi / Zigbee / Z-Wave / Matter / KNX / Modbus will be explained in one go. Read this chapter before buying the equipment.",
-      "description": "A complete comparison of Home Assistant communication protocols: differences between Wi-Fi, Zigbee, Z-Wave, Thread and Matter, Bluetooth, KNX, Modbus, and MQTT, purchasing recommendations, and integration methods in HA."
+      "card": "Compare Wi-Fi, Zigbee, Z-Wave, Matter, Thread, Bluetooth, KNX, Modbus, and MQTT before buying devices.",
+      "description": "Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices."
     },
     {
       "file": "ch16_todo_calendar.html",
@@ -192,8 +192,8 @@
       "navLabel": "To-do and calendars",
       "title": "To-do lists and calendars",
       "pagerTitle": "16 · To-do and calendars",
-      "card": "Take out the trash, pay the bill, change the filter - let the home remember what to do and remind you at the right time.",
-      "description": "Home Assistant to-do list and calendar tutorial: Local To-do and shopping list, local calendar and Google calendar connection, dashboard cards, and using calendar events to trigger automation."
+      "card": "Move household reminders into shared to-do lists and calendars that can trigger automations.",
+      "description": "Create local to-do lists and calendars, connect Google Calendar or CalDAV, add dashboard cards, and trigger automations from tasks and events."
     },
     {
       "file": "ch17_energy.html",
@@ -202,8 +202,8 @@
       "navLabel": "Energy dashboard",
       "title": "Energy dashboard and ESG practices",
       "pagerTitle": "17 · Energy dashboard",
-      "card": "Turn electricity bills into understandable charts, find out the electricity-hungry monsters in your home, and make ESG reports.",
-      "description": "Home Assistant energy dashboard setting tutorial: which sensor is needed, using Riemann sum and Utility Meter to convert power into electricity consumption, electricity price and cost tracking, and electricity consumption baseline and energy saving analysis."
+      "card": "Turn energy readings into useful charts, cost tracking, baselines, and defensible reports.",
+      "description": "Select suitable sensors, configure the Energy dashboard, integrate power into energy, track local tariffs and costs, and analyze efficiency improvements."
     },
     {
       "file": "ch18_history_data.html",
@@ -212,8 +212,8 @@
       "navLabel": "History and export",
       "title": "History, Recorder, and data export",
       "pagerTitle": "18 · History and export",
-      "card": "Where does the data exist, how long it can be stored, how to download it to CSV, and why your HA is running slower and slower.",
-      "description": "Home Assistant historical data tutorial: the difference between History and Logbook, Recorder retention days and exclusion settings, long-term statistics, downloading CSV, and advanced practices of MariaDB and InfluxDB Grafana."
+      "card": "Learn where Home Assistant stores history, how long it lasts, how to export it, and how to keep the database healthy.",
+      "description": "Understand History, Logbook, Recorder retention, and long-term statistics; export CSV data and evaluate MariaDB, InfluxDB, and Grafana options."
     },
     {
       "file": "ch19_voice_ai.html",
@@ -222,8 +222,8 @@
       "navLabel": "Voice and AI",
       "title": "Voice assistants and LLM integration",
       "pagerTitle": "19 · Voice and AI",
-      "card": "From “turning on the lights in the living room” to talking to AI to manage your home, both local and cloud approaches are available.",
-      "description": "Home Assistant voice assistant tutorial: Assist and conversational agents, local cloud solutions for wake words and speech-to-text, connecting to OpenAI or other LLMs as conversational agents, and privacy and cost trade-offs."
+      "card": "Build an Assist pipeline, then compare local and cloud speech and LLM options with their privacy and cost trade-offs.",
+      "description": "Configure Assist, wake words, speech-to-text and text-to-speech, connect an LLM conversation agent, and control which entities AI can access."
     },
     {
       "file": "ch20_addons_docker.html",
@@ -232,8 +232,8 @@
       "navLabel": "Add-ons and Docker",
       "title": "Add-ons and Docker architecture",
       "pagerTitle": "20 · Add-ons and Docker",
-      "card": "Add-on is actually a Docker container. Only after understanding this layer can you understand why HA is so long.",
-      "description": "Tutorial on Home Assistant Add-on and Docker architecture: the differences between the four installation methods, the role of Supervisor, a tour of must-install add-ons, automatic uploading of backups to the cloud, and a vernacular version of the core concepts of containers."
+      "card": "Understand how Supervisor-managed Docker containers power add-ons and how to troubleshoot them.",
+      "description": "Compare Home Assistant installation types, understand Supervisor and Docker concepts, install useful add-ons, read logs, and automate off-device backups."
     },
     {
       "file": "ch21_network_remote.html",
@@ -242,8 +242,8 @@
       "navLabel": "Networking and remote access",
       "title": "Networking and remote access",
       "pagerTitle": "21 · Networking and remote access",
-      "card": "Fixed IP, reverse proxy, Cloudflare Tunnel, VPN—connect home securely even when you’re outside.",
-      "description": "Home Assistant remote connection practice: DHCP fixed address, implementation of four routes of Nabu Casa and Cloudflare Tunnel, VPN and DDNS reverse proxy, trusted_proxies settings and information security hard rules."
+      "card": "Set a stable local address and compare four secure ways to reach Home Assistant away from home.",
+      "description": "Configure a DHCP reservation and compare Nabu Casa, Cloudflare Tunnel, VPN, and DDNS with a reverse proxy, including trusted proxies and security rules."
     },
     {
       "file": "ch22_life_logs.html",
@@ -252,37 +252,37 @@
       "navLabel": "Life logging",
       "title": "Life logging and custom dashboards",
       "pagerTitle": "22 · Life logging",
-      "card": "Drinking water, keeping accounts, changing filters, family message boards - turn daily chores into a system that can draw its own diagrams.",
-      "description": "Use Home Assistant auxiliary components to record your life: habit tracking, household income and expenses, equipment maintenance reminders and message boards, and use statistical charts, condition cards and Sections layout to create customized dashboards."
+      "card": "Track habits, household spending, maintenance, and notes, then turn those records into useful dashboards.",
+      "description": "Use Home Assistant helpers for habit tracking, household spending, maintenance reminders, and messages, then visualize the data with charts and Sections views."
     }
   ],
   "appendices": [
     {
       "file": "appendix_hacs_addons.html",
       "num": "A",
-      "navLabel": "A · HACS/add-ons/remote access",
+      "navLabel": "A · HACS, add-ons, and remote access",
       "title": "Ecosystem: HACS, add-ons, and remote access",
-      "pagerTitle": "Ecosystem: HACS, add-ons, and remote access",
-      "card": "Comparison of official add-ons, community kit store, and four external connection solutions. Come back after installing the main line.",
-      "description": "Home Assistant ecosystem: official Add-on store, HACS community suite store, and comparison of four remote connection solutions: Nabu Casa, DDNS, VPN, and Cloudflare Tunnel."
+      "pagerTitle": "A · HACS, add-ons, and remote access",
+      "card": "Compare official add-ons, the HACS community store, and four remote-access options.",
+      "description": "Explore the official add-on store, Home Assistant Community Store (HACS), and the trade-offs among Nabu Casa, DDNS, VPN, and Cloudflare Tunnel."
     },
     {
       "file": "appendix_scenes_helpers_groups.html",
       "num": "B",
-      "navLabel": "B · Scenes/helpers/groups",
+      "navLabel": "B · Scenes, helpers, and groups",
       "title": "Scenes, helpers, and groups",
-      "pagerTitle": "Scenes, helpers, and groups",
-      "card": "Scene, 10 types of Helper, and Group are three advanced weapons, making your home like a small program.",
-      "description": "Home Assistant advanced three-piece set: Scene, 10 kinds of Helper auxiliary components and Group usage and matching examples, making the smart home look like a small program."
+      "pagerTitle": "B · Scenes, helpers, and groups",
+      "card": "Use scenes, ten helper types, and groups as reusable building blocks for automations.",
+      "description": "Learn how scenes, ten types of helper, and groups work together to build understandable, maintainable smart-home logic."
     },
     {
       "file": "appendix_hardware_install.html",
       "num": "C",
       "navLabel": "C · Hardware and HAOS",
       "title": "Before installation: hardware and HAOS",
-      "pagerTitle": "Before installation: hardware and HAOS",
-      "card": "Don’t have a host yet? Read this first. How to choose hardware, how to burn HAOS, and what to set when booting for the first time.",
-      "description": "Home Assistant installation prequel: Comparison of four installation methods, HAOS vs. Supervised vs. Container vs. Core, hardware selection such as Raspberry Pi vs. mini computer, SD card vs. SSD, image file burning steps, and first-time boot settings."
+      "pagerTitle": "C · Hardware and HAOS",
+      "card": "No host yet? Choose hardware and storage, install HAOS, and complete first-time setup.",
+      "description": "Compare HAOS, Supervised, Container, and Core; choose a Raspberry Pi or mini PC and suitable storage; flash the image and complete first boot."
     }
   ]
 }

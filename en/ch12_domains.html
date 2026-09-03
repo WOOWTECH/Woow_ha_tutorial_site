@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 12 · Domain reference · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Home Assistant Domain control illustration: common actions, UI cards and common pitfalls of light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, notify." />
+  <meta name="description" content="Reference common actions, cards, and pitfalls for light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, and notify domains." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch12_domains.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Chapter 12 · Domain reference · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Home Assistant Domain control illustration: common actions, UI cards and common pitfalls of light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, notify." />
+  <meta property="og:description" content="Reference common actions, cards, and pitfalls for light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, and notify domains." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch12_domains.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch12/01_dev_services.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chapter 12 · Domain reference · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Home Assistant Domain control illustration: common actions, UI cards and common pitfalls of light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, notify." />
+  <meta name="twitter:description" content="Reference common actions, cards, and pitfalls for light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, and notify domains." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch12/01_dev_services.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -31,7 +31,7 @@
 </head>
 <body>
 <div class="layout">
-  <aside class="sidebar">
+ <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From zero to working</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch12_domains.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch12_domains.html" lang="en" aria-current="page">EN</a></nav>
@@ -47,7 +47,7 @@
       <li><a href="ch6_dashboard.html">Dashboards</a></li>
       <li><a href="ch7_notifications.html">Notifications</a></li>
       <li><a href="ch8_first_automation.html">First automation</a></li>
-      <li><a href="ch9_backups.html">backups</a></li>
+      <li><a href="ch9_backups.html">Backups</a></li>
       <li><a href="ch10_scripts.html">Scripts</a></li>
       <li><a href="ch11_devices.html">Device settings</a></li>
       <li><a href="ch12_domains.html" class="active">Domain reference</a></li>
@@ -79,487 +79,487 @@
       <a href="#camera">camera · camera</a>
       <a href="#sensor">sensor / binary_sensor</a>
       <a href="#notify">notify · notify</a>
-      <a href="#input">input_* · Auxiliary components</a>
+      <a href="#input">input_* · Helpers</a>
       <a href="#tools">Common Tools and Mindsets</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · HACS/add-ons/remote access</a>
-      <a href="appendix_scenes_helpers_groups.html">B · Scenes/helpers/groups</a>
+      <a href="appendix_hacs_addons.html">A · HACS, add-ons, and remote access</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scenes, helpers, and groups</a>
       <a href="appendix_hardware_install.html">C · Hardware and HAOS</a>
     </div>
   </aside>
 
-  <main class="content">
-    <div class="chapter-header">
-      <div class="kicker">Chapter 12</div>
-      <h1>Domain reference</h1>
-      <p class="lead">HA classifies everything according to "Domain": the light is <code>light</code>, air conditioning is <code>climate</code>, curtains are <code>cover</code>. All devices in the same domain<em>Accept the same set of actions (Action, the old version was called "Service")</em>, if you learn one, you will know them all. This chapter is a cheat sheet for each commonly used domain.</p>
-    </div>
+ <main class="content">
+ <div class="chapter-header">
+ <div class="kicker">Chapter 12</div>
+ <h1>Domain reference</h1>
+ <p class="lead">Home Assistant groups entities by domain: lights use <code>light</code>, climate systems use <code>climate</code>, and covers use <code>cover</code>. Entities in the same domain <em>share the same actions and behavior</em>, so learning a domain gives you a reusable control model.</p>
+ </div>
 
-    <section id="concept" data-nav="What is Domain">
-      <h2 data-icon="concept">What is Domain? why to understand it</h2>
-      <p>Each entity_id grows into <code>domain.name</code>, the first half is domain:</p>
-      <ul>
-        <li><code>light.livingroom_main</code> → domain is <code>light</code></li>
-        <li><code>climate.bedroom_ac</code> → domain is <code>climate</code></li>
-        <li><code>sensor.outdoor_temperature</code> → domain is <code>sensor</code></li>
-      </ul>
-      <p><strong>Why is it important?</strong>Because the "execution action" of HA (called "call service" in the old version) is based on domain.<code>light.turn_on</code> can be opened<em>Any brand of lamps of any agreement</em>—Philips Hue, IKEA Tradfri, Xiaomi Yeelight, Zigbee universal lights, DIY WLED light strips—all eating the same thing. This is the power of HA abstraction.</p>
-      <div class="callout tip"><strong>Mental method:</strong>Before buying a new device, check which domain it will be recognized by HA. If recognized <code>light</code>, you will know that all existing lamp automation can eat it directly without rewriting. recognize <code>switch</code> There is no brightness or color temperature adjustment.</div>
-    </section>
+ <section id="concept" data-nav="What is Domain">
+ <h2 data-icon="concept">What is Domain? why to understand it</h2>
+ <p>Each entity_id grows into <code>domain.name</code>, the first half is domain:</p>
+ <ul>
+ <li><code>light.livingroom_main</code> → domain is <code>light</code></li>
+ <li><code>climate.bedroom_ac</code> → domain is <code>climate</code></li>
+ <li><code>sensor.outdoor_temperature</code> → domain is <code>sensor</code></li>
+ </ul>
+ <p><strong>Why is it important?</strong> Because the "execution action" of HA (called "call service" in the old version) is based on domain.<code>light.turn_on</code> can be opened <em>Any brand of lamps of any agreement</em>—Philips Hue, IKEA Tradfri, Xiaomi Yeelight, Zigbee universal lights, DIY WLED light strips—all eating the same thing. This is the power of HA abstraction.</p>
+ <div class="callout tip"><strong>Mental method:</strong> Before buying a new device, check which domain it will be recognized by HA. If recognized <code>light</code>, you will know that all existing lamp automation can eat it directly without rewriting. recognize <code>switch</code> There is no brightness or color temperature adjustment.</div>
+ </section>
 
-    <!-- ================ LIGHT ================ -->
-    <section id="light" data-nav="light · lamp">
-      <h2 data-icon="steps"><code>light</code> · lamp</h2>
-      <p>Lighting equipment with adjustable brightness, color temperature and color. Switch types (only on/off) may also be classified as light, depending on the integration.</p>
-      <h3>Common actions</h3>
-      <ul>
-        <li><code>light.turn_on</code> —Supported parameters:<code>brightness_pct: 60</code>, <code>color_temp_kelvin: 3000</code>, <code>rgb_color: [255, 100, 50]</code>, <code>transition: 5</code>(fade seconds),<code>effect: "colorloop"</code></li>
-        <li><code>light.turn_off</code> — also supports <code>transition</code>(fading)</li>
-        <li><code>light.toggle</code> — switch toggle</li>
-      </ul>
-      <h3>Commonly used UI cards</h3>
-      <ul>
-        <li><strong>Light card</strong>: Built-in, slide to adjust brightness, press and hold to open color palette</li>
-        <li><strong>Tile card</strong>: Small picture tiles, suitable for arranging a whole tile</li>
-        <li><strong>Mushroom Light card</strong>(HACS): more beautiful, slider + color palette integration</li>
-      </ul>
-      <h3>Common pitfalls</h3>
-      <ul>
-        <li><strong>The light is powered off by a physical switch</strong>: Zigbee lights will go offline when the power is cut off, and the automation of turning on the lights will not work. Solution: pretend<em>Uninterrupted power supply</em>Smart switch, or tie the wall switch to turn it on.</li>
-        <li><strong>color temperature unit</strong>: For new version <code>color_temp_kelvin</code>(3000K warm white / 6500K cool white); for older versions <code>color_temp</code>(mired, the smaller the number, the colder it is). Which UI to choose depends on integration. When writing YAML, kelvin is more intuitive.</li>
-        <li><strong>Be careful with transitions</strong>: <code>transition: 30</code> Let the light fade to the target brightness from the current 30 seconds. If another turn_on comes at the same time, it will be interrupted. Use <code>restart</code> The script package of the mode is relatively stable.</li>
-      </ul>
-    </section>
+ <!-- ================ LIGHT ================ -->
+ <section id="light" data-nav="light · lamp">
+ <h2 data-icon="steps"><code>light</code> · lamp</h2>
+ <p>Lighting devices with adjustable brightness, color temperature and color. Switch types (only on/off) may also be classified as light, depending on the integration.</p>
+ <h3>Common actions</h3>
+ <ul>
+ <li><code>light.turn_on</code> —Supported parameters:<code>brightness_pct: 60</code>, <code>color_temp_kelvin: 3000</code>, <code>rgb_color: [255, 100, 50]</code>, <code>transition: 5</code>(fade seconds),<code>effect: "colorloop"</code></li>
+ <li><code>light.turn_off</code> — also supports <code>transition</code>(fading)</li>
+ <li><code>light.toggle</code> — switch toggle</li>
+ </ul>
+ <h3>Commonly used UI cards</h3>
+ <ul>
+ <li><strong>Light card</strong>: Built-in, slide to adjust brightness, press and hold to open color palette</li>
+ <li><strong>Tile card</strong>: Small tiles, suitable for arranging a whole tile</li>
+ <li><strong>Mushroom Light card</strong> (HACS): more beautiful, slider + color palette integration</li>
+ </ul>
+ <h3>Common pitfalls</h3>
+ <ul>
+ <li><strong>The light is powered off by a physical switch</strong>: Zigbee lights will go offline when the power is cut off, and the automation of turning on the lights will not work. Solution: install <em>Uninterrupted power supply</em> Smart switch, or tie the wall switch to turn it on.</li>
+ <li><strong>color temperature unit</strong>: For new version <code>color_temp_kelvin</code>(3000K warm white / 6500K cool white); for older versions <code>color_temp</code>(mired, the smaller the number, the colder it is). Which UI to choose depends on integration. When writing YAML, kelvin is more intuitive.</li>
+ <li><strong>Be careful with transitions</strong>: <code>transition: 30</code> Let the light fade to the target brightness from the current 30 seconds. If another turn_on comes at the same time, it will be interrupted. Use <code>restart</code> The script package of the mode is relatively stable.</li>
+ </ul>
+ </section>
 
-    <!-- ================ SWITCH ================ -->
-    <section id="switch" data-nav="switch · switch">
-      <h2 data-icon="steps"><code>switch</code> · Switch/Smart Socket</h2>
-      <p>Pure power on and off. Sockets, relays, and simple wall switches all fall into this category.</p>
-      <h3>Common actions</h3>
-      <ul>
-        <li><code>switch.turn_on</code> / <code>switch.turn_off</code> / <code>switch.toggle</code> — There are no other parameters, it’s just that simple.</li>
-      </ul>
-      <h3>Common uses</h3>
-      <ul>
-        <li>Control non-smart appliances: water dispenser, dehumidifier, fan (old style), Christmas lights</li>
-        <li>Control solenoid valves: water heaters, sprinkler systems, gas</li>
-        <li>Control the electric curtain motor (but it is more recommended to recognize <code>cover</code>)</li>
-      </ul>
-      <h3>Common pitfalls</h3>
-      <ul>
-        <li><strong>Power off memory</strong>: Many sockets do not have a "restore to previous state after power on" feature and are turned off after a power trip. Prioritize setting "Power on state = Last / On" in App or HA.</li>
-        <li><strong>Energy consuming entity</strong>: Many smart sockets have <code>sensor.*_power</code>, <code>sensor.*_energy</code>, can be used as an energy dashboard, or as a signal that "the washing machine is finished" (see example).</li>
-      </ul>
-      <div class="callout tip"><strong>Magic example: Detection of washing machine/dryer completed</strong>. Use smart sockets to measure power and write automated "when <code>sensor.washer_power</code> Dropped from &gt;10W to &lt;5W for 3 minutes → Push." Easier to use than the original app.</div>
-    </section>
+ <!-- ================ SWITCH ================ -->
+ <section id="switch" data-nav="switch · switch">
+ <h2 data-icon="steps"><code>switch</code> · Switch/Smart Socket</h2>
+ <p>Pure power on and off. Sockets, relays, and simple wall switches all fall into this category.</p>
+ <h3>Common actions</h3>
+ <ul>
+ <li><code>switch.turn_on</code> / <code>switch.turn_off</code> / <code>switch.toggle</code> — There are no other parameters, it’s just that simple.</li>
+ </ul>
+ <h3>Common uses</h3>
+ <ul>
+ <li>Control non-smart appliances: water dispenser, dehumidifier, fan (old style), Christmas lights</li>
+ <li>Control solenoid valves: water heaters, sprinkler systems, gas</li>
+ <li>Control the electric curtain motor (but it is more recommended to recognize <code>cover</code>)</li>
+ </ul>
+ <h3>Common pitfalls</h3>
+ <ul>
+ <li><strong>Power off memory</strong>: Many sockets do not have a "restore to previous state after power on" feature and are turned off after a power trip. Prioritize setting "Power on state = Last / On" in App or HA.</li>
+ <li><strong>Energy consuming entity</strong>: Many smart sockets have <code>sensor.*_power</code>, <code>sensor.*_energy</code>, can be used as an energy dashboard, or as a signal that "the washing machine is finished" (see example).</li>
+ </ul>
+ <div class="callout tip"><strong>Magic example: Detection of washing machine/dryer completed</strong>. Use smart sockets to measure power and write automated "when <code>sensor.washer_power</code> Dropped from &gt;10W to &lt;5W for 3 minutes → Push." Easier to use than the original app.</div>
+ </section>
 
-    <!-- ================ CLIMATE ================ -->
-    <section id="climate" data-nav="climate · heating and cooling">
-      <h2 data-icon="steps"><code>climate</code> · Heating/Cooling/Air Conditioner/Thermostat</h2>
-      <h3>Common actions</h3>
-      <ul>
-        <li><code>climate.turn_on</code> / <code>climate.turn_off</code></li>
-        <li><code>climate.set_temperature</code> — Parameters:<code>temperature: 26</code>(single target temperature), or <code>target_temp_high / target_temp_low</code>(range, thermostat)</li>
-        <li><code>climate.set_hvac_mode</code> — Parameters <code>hvac_mode: cool / heat / auto / dry / fan_only / off</code></li>
-        <li><code>climate.set_fan_mode</code> — <code>fan_mode: auto / low / medium / high / on / off</code>(Value depends on the brand)</li>
-        <li><code>climate.set_preset_mode</code> —Manufacturer preset modes (energy saving, sleep, away from home)</li>
-        <li><code>climate.set_swing_mode</code> — Sweep direction</li>
-      </ul>
-      <h3>UI card</h3>
-      <ul>
-        <li><strong>Thermostat card</strong>: Built-in circular temperature plate, the most intuitive</li>
-        <li><strong>Tile card</strong>: Compact, suitable for multiple air conditioners in parallel</li>
-        <li><strong>simple-thermostat</strong>(HACS): More control details</li>
-      </ul>
-      <h3>Common pitfalls</h3>
-      <ul>
-        <li><strong>The status of the infrared air conditioner is incorrect</strong>: Using the IR blaster's air conditioner (Broadlink, SwitchBot Hub) HA only knows "what command was sent", but does not know whether the air conditioner was actually received. It is more reliable to add a temperature sensor to compare the actual temperature changes.</li>
-        <li><strong>Preset override temperature</strong>: Switching to preset "eco" will usually force the temperature to be set, and return to <code>none</code> preset can be set freely.</li>
-        <li><strong>unit</strong>: Confirm that the unit system in Chapter 2 is set to "Celsius", otherwise <code>temperature: 26</code> Will be treated as Fahrenheit (very cold XD).</li>
-      </ul>
-    </section>
+ <!-- ================ CLIMATE ================ -->
+ <section id="climate" data-nav="climate · heating and cooling">
+ <h2 data-icon="steps"><code>climate</code> · Heating/Cooling/Air Conditioner/Thermostat</h2>
+ <h3>Common actions</h3>
+ <ul>
+ <li><code>climate.turn_on</code> / <code>climate.turn_off</code></li>
+ <li><code>climate.set_temperature</code> — Parameters:<code>temperature: 26</code>(single target temperature), or <code>target_temp_high / target_temp_low</code>(range, thermostat)</li>
+ <li><code>climate.set_hvac_mode</code> — Parameters <code>hvac_mode: cool / heat / auto / dry / fan_only / off</code></li>
+ <li><code>climate.set_fan_mode</code> — <code>fan_mode: auto / low / medium / high / on / off</code>(Value depends on the brand)</li>
+ <li><code>climate.set_preset_mode</code> —Manufacturer preset modes (energy saving, sleep, away from home)</li>
+ <li><code>climate.set_swing_mode</code> — Sweep direction</li>
+ </ul>
+ <h3>UI card</h3>
+ <ul>
+ <li><strong>Thermostat card</strong>: Built-in circular temperature plate, the most intuitive</li>
+ <li><strong>Tile card</strong>: Compact, suitable for multiple air conditioners in parallel</li>
+ <li><strong>simple-thermostat</strong> (HACS): More control details</li>
+ </ul>
+ <h3>Common pitfalls</h3>
+ <ul>
+ <li><strong>The status of the infrared air conditioner is incorrect</strong>: Using the IR blaster's air conditioner (Broadlink, SwitchBot Hub) HA only knows "what command was sent", but does not know whether the air conditioner was actually received. It is more reliable to add a temperature sensor to compare the actual temperature changes.</li>
+ <li><strong>Preset override temperature</strong>: Switching to preset "eco" will usually force the temperature to be set, and return to <code>none</code> preset can be set freely.</li>
+ <li><strong>unit</strong>: Confirm that the unit system in Chapter 2 is set to "Celsius", otherwise <code>temperature: 26</code> Will be treated as Fahrenheit (very cold XD).</li>
+ </ul>
+ </section>
 
-    <!-- ================ COVER ================ -->
-    <section id="cover" data-nav="cover · curtain/garage">
-      <h2 data-icon="steps"><code>cover</code> · Curtains / Garage Doors / Blinds</h2>
-      <h3>Common actions</h3>
-      <ul>
-        <li><code>cover.open_cover</code> / <code>cover.close_cover</code> / <code>cover.stop_cover</code> / <code>cover.toggle</code></li>
-        <li><code>cover.set_cover_position</code> — Parameters <code>position: 50</code>(0 fully closed, 100 fully open)</li>
-        <li><code>cover.set_cover_tilt_position</code> —Louvre blade angle</li>
-        <li><code>cover.open_cover_tilt</code> / <code>cover.close_cover_tilt</code></li>
-      </ul>
-      <h3>Common pitfalls</h3>
-      <ul>
-        <li><strong>The direction is reversed</strong>: Some motors “turn on” contrary to your intuition. Go to the device page "Reconfigure" or calibrate directly in the device App. Do not use it in HA. <code>position: 100 - x</code> Write backwards.</li>
-        <li><strong>No position support</strong>: Cheap curtain motors only have three stages: open/close/stop. <code>set_cover_position</code> It will fail directly. Check the device page to see supported_features.</li>
-        <li><strong>Garage door to <code>lock</code> insurance</strong>: <code>cover.open_cover</code> If you are not foolproof, you may open the garage in the middle of the night if you write the wrong automation. use <code>input_boolean</code> When switch + condition is checked.</li>
-      </ul>
-    </section>
+ <!-- ================ COVER ================ -->
+ <section id="cover" data-nav="cover · curtain/garage">
+ <h2 data-icon="steps"><code>cover</code> · Curtains / Garage Doors / Blinds</h2>
+ <h3>Common actions</h3>
+ <ul>
+ <li><code>cover.open_cover</code> / <code>cover.close_cover</code> / <code>cover.stop_cover</code> / <code>cover.toggle</code></li>
+ <li><code>cover.set_cover_position</code> — Parameters <code>position: 50</code>(0 fully closed, 100 fully open)</li>
+ <li><code>cover.set_cover_tilt_position</code> —Louvre blade angle</li>
+ <li><code>cover.open_cover_tilt</code> / <code>cover.close_cover_tilt</code></li>
+ </ul>
+ <h3>Common pitfalls</h3>
+ <ul>
+ <li><strong>The direction is reversed</strong>: Some motors “turn on” contrary to your intuition. Go to the device page "Reconfigure" or calibrate directly in the device App. Do not use it in HA. <code>position: 100 - x</code> Write backwards.</li>
+ <li><strong>No position support</strong>: Cheap curtain motors only have three stages: open/close/stop. <code>set_cover_position</code> It will fail directly. Check the device page to see supported_features.</li>
+ <li><strong>Garage door to <code>lock</code> insurance</strong>: <code>cover.open_cover</code> If you are not foolproof, you may open the garage in the middle of the night if you write the wrong automation. use <code>input_boolean</code> When switch + condition is checked.</li>
+ </ul>
+ </section>
 
-    <!-- ================ MEDIA_PLAYER ================ -->
-    <section id="media" data-nav="media_player · media">
-      <h2 data-icon="steps"><code>media_player</code> · TV / Audio / Streaming Box</h2>
-      <h3>Common actions</h3>
-      <ul>
-        <li><code>media_player.turn_on / turn_off / toggle</code></li>
-        <li><code>media_player.volume_set</code> (<code>volume_level: 0.3</code>, 0-1), <code>volume_up / volume_down / volume_mute</code></li>
-        <li><code>media_player.media_play / media_pause / media_stop / media_next_track / media_previous_track</code></li>
-        <li><code>media_player.play_media</code> — Broadcast specific content (<code>media_content_id</code> + <code>media_content_type</code>)</li>
-        <li><code>media_player.select_source</code> — Change input source (HDMI1, Netflix, Spotify)</li>
-        <li><code>media_player.select_sound_mode</code> — Sound field mode</li>
-      </ul>
-      <h3>Integration varies greatly</h3>
-      <ul>
-        <li><strong>Google Cast</strong>: Can push URL to Nest Hub / Chromecast, suitable for broadcasting TTS voice "The washing machine is finished"</li>
-        <li><strong>Apple TV / Sonos / HEOS</strong>: Rich support, including playlists and groups</li>
-        <li><strong>Samsung / LG TV</strong>: Shutdown is usually OK, startup often requires additional settings of Wake-on-LAN</li>
-        <li><strong>Spotify / Plex</strong>:Yes <code>play_media</code> Specified playlist/video</li>
-      </ul>
-      <h3>Common pitfalls</h3>
-      <ul>
-        <li>It takes 3-5 seconds for the TV to accept commands after it is turned on. Automatic writing of "power on + change source" requires adding in the middle. <code>delay</code>.</li>
-        <li>Cast group (several speakers group broadcast) is<em>Extra</em>The media_player entity is not an attribute of either speaker.</li>
-      </ul>
-    </section>
+ <!-- ================ MEDIA_PLAYER ================ -->
+ <section id="media" data-nav="media_player · media">
+ <h2 data-icon="steps"><code>media_player</code> · TV / Audio / Streaming Box</h2>
+ <h3>Common actions</h3>
+ <ul>
+ <li><code>media_player.turn_on / turn_off / toggle</code></li>
+ <li><code>media_player.volume_set</code> (<code>volume_level: 0.3</code>, 0-1), <code>volume_up / volume_down / volume_mute</code></li>
+ <li><code>media_player.media_play / media_pause / media_stop / media_next_track / media_previous_track</code></li>
+ <li><code>media_player.play_media</code> — Broadcast specific content (<code>media_content_id</code> + <code>media_content_type</code>)</li>
+ <li><code>media_player.select_source</code> — Change input source (HDMI1, Netflix, Spotify)</li>
+ <li><code>media_player.select_sound_mode</code> — Sound field mode</li>
+ </ul>
+ <h3>Integration varies greatly</h3>
+ <ul>
+ <li><strong>Google Cast</strong>: Can push URL to Nest Hub / Chromecast, suitable for broadcasting TTS voice "The washing machine is finished"</li>
+ <li><strong>Apple TV / Sonos / HEOS</strong>: Rich support, including playlists and groups</li>
+ <li><strong>Samsung / LG TV</strong>: Shutdown is usually OK, startup often requires additional settings of Wake-on-LAN</li>
+ <li><strong>Spotify / Plex</strong>:Yes <code>play_media</code> Specified playlist/video</li>
+ </ul>
+ <h3>Common pitfalls</h3>
+ <ul>
+ <li>It takes 3-5 seconds for the TV to accept commands after it is turned on. Automatic writing of "power on + change source" requires adding in the middle. <code>delay</code>.</li>
+ <li>Cast group (several speakers group broadcast) is <em>Extra</em> The media_player entity is not an attribute of either speaker.</li>
+ </ul>
+ </section>
 
-    <!-- ================ LOCK ================ -->
-    <section id="lock" data-nav="lock · smart lock">
-      <h2 data-icon="steps"><code>lock</code> · Smart door lock</h2>
-      <h3>Common actions</h3>
-      <ul>
-        <li><code>lock.lock</code> / <code>lock.unlock</code></li>
-        <li><code>lock.open</code>(If it is an electronically controllable door handle, it will actually open)</li>
-      </ul>
-      <h3>Common pitfalls</h3>
-      <ul>
-        <li><strong>Safety first</strong>:Door lock automation is a must<em>double insurance</em>. For example: "Automatically lock when leaving home" plus the condition "No one is at home + the door has not been opened in the past 5 minutes". Don't just use time as a trigger.</li>
-        <li><strong>Cloud latency</strong>: Brand cloud integrations (Yale, August, Aqara cloud) often experience 5-15 second delays. If you want low latency, use Matter over Thread or Z-Wave.</li>
-        <li><strong>Cannot lock when Unavailable</strong>: If the door lock is disconnected from the host, it cannot be operated remotely. Local protocols (Matter, Zigbee, Z-Wave) are more reliable than pure cloud.</li>
-      </ul>
-      <div class="callout warn"><strong>Reminder:</strong>If the door is automatically locked without a mobile phone or key backup, you will be locked out. Always have a backup mechanical key or PIN.</div>
-    </section>
+ <!-- ================ LOCK ================ -->
+ <section id="lock" data-nav="lock · smart lock">
+ <h2 data-icon="steps"><code>lock</code> · Smart door lock</h2>
+ <h3>Common actions</h3>
+ <ul>
+ <li><code>lock.lock</code> / <code>lock.unlock</code></li>
+ <li><code>lock.open</code>(If it is an electronically controllable door handle, it will actually open)</li>
+ </ul>
+ <h3>Common pitfalls</h3>
+ <ul>
+ <li><strong>Safety first</strong>:Door lock automation is a must <em>double insurance</em>. For example: "Automatically lock when leaving home" plus the condition "No one is at home + the door has not been opened in the past 5 minutes". Don't just use time as a trigger.</li>
+ <li><strong>Cloud latency</strong>: Brand cloud integrations (Yale, August, Aqara cloud) often experience 5-15 second delays. If you want low latency, use Matter over Thread or Z-Wave.</li>
+ <li><strong>Cannot lock when Unavailable</strong>: If the door lock is disconnected from the host, it cannot be operated remotely. Local protocols (Matter, Zigbee, Z-Wave) are more reliable than pure cloud.</li>
+ </ul>
+ <div class="callout warn"><strong>Reminder:</strong> If the door is automatically locked without a phone or key backup, you will be locked out. Always have a backup mechanical key or PIN.</div>
+ </section>
 
-    <!-- ================ VACUUM ================ -->
-    <section id="vacuum" data-nav="vacuum · sweeper">
-      <h2 data-icon="steps"><code>vacuum</code> · Sweeping robot</h2>
-      <h3>Common actions</h3>
-      <ul>
-        <li><code>vacuum.start</code> / <code>vacuum.pause</code> / <code>vacuum.stop</code></li>
-        <li><code>vacuum.return_to_base</code> — Back to the charging stand</li>
-        <li><code>vacuum.locate</code> — Ring the bell to find your location</li>
-        <li><code>vacuum.set_fan_speed</code> —Suction level</li>
-        <li><code>vacuum.send_command</code> — Send customized instructions (different brands, such as Roborock’s designated room cleaning)</li>
-      </ul>
-      <h3>Common usage</h3>
-      <ul>
-        <li>"Everyone leaves home for 30 minutes → Start cleaning" - Automation of going out</li>
-        <li>"Zigbee motion sensors are all inactive for 15 minutes + weekday afternoon" - conditional trigger</li>
-        <li>"There are visitors coming to the living room (Google Calendar event) → Clean the living room 30 minutes ago" - event driven</li>
-      </ul>
-      <h3>Common pitfalls</h3>
-      <ul>
-        <li><strong>Cloud API current limit</strong>: Some brands of cloud APIs have a limit on the number of calls per day. Don’t write automation to check the status every minute.</li>
-        <li><strong>Room ID is hidden</strong>: If you want to "scan only the living room", you must first partition the original App and then use it from HA <code>send_command</code> Pass the room ID. The ID is usually found in device properties or integration logs.</li>
-      </ul>
-    </section>
+ <!-- ================ VACUUM ================ -->
+ <section id="vacuum" data-nav="vacuum · sweeper">
+ <h2 data-icon="steps"><code>vacuum</code> · Sweeping robot</h2>
+ <h3>Common actions</h3>
+ <ul>
+ <li><code>vacuum.start</code> / <code>vacuum.pause</code> / <code>vacuum.stop</code></li>
+ <li><code>vacuum.return_to_base</code> — Back to the charging stand</li>
+ <li><code>vacuum.locate</code> — Ring the bell to find your location</li>
+ <li><code>vacuum.set_fan_speed</code> —Suction level</li>
+ <li><code>vacuum.send_command</code> — Send customized instructions (different brands, such as Roborock’s designated room cleaning)</li>
+ </ul>
+ <h3>Common usage</h3>
+ <ul>
+ <li>"Everyone leaves home for 30 minutes → Start cleaning" - Automation of going out</li>
+ <li>"Zigbee motion sensors are all inactive for 15 minutes + weekday afternoon" - conditional trigger</li>
+ <li>"There are visitors coming to the living room (Google Calendar event) → Clean the living room 30 minutes ago" - event driven</li>
+ </ul>
+ <h3>Common pitfalls</h3>
+ <ul>
+ <li><strong>Cloud API current limit</strong>: Some brands of cloud APIs have a limit on the number of calls per day. Don’t write automation to check the status every minute.</li>
+ <li><strong>Room ID is hidden</strong>: If you want to "scan only the living room", you must first partition the original App and then use it from HA <code>send_command</code> Pass the room ID. The ID is usually found in device properties or integration logs.</li>
+ </ul>
+ </section>
 
-    <!-- ================ FAN ================ -->
-    <section id="fan" data-nav="fan · fan">
-      <h2 data-icon="steps"><code>fan</code> · Electric fan/ceiling fan/air purifier</h2>
-      <h3>Common actions</h3>
-      <ul>
-        <li><code>fan.turn_on</code> / <code>fan.turn_off</code> / <code>fan.toggle</code></li>
-        <li><code>fan.set_percentage</code>(0-100 wind speed)</li>
-        <li><code>fan.set_preset_mode</code> (<code>auto / sleep / turbo</code>, depending on the device)</li>
-        <li><code>fan.oscillate</code>(shaking head left and right)</li>
-        <li><code>fan.set_direction</code>(ceiling fan clockwise)</li>
-      </ul>
-      <h3>Common pitfalls</h3>
-      <ul>
-        <li>Air purifiers are often <code>fan</code>(air volume) + <code>sensor</code> (PM2.5)+ <code>switch</code>(Negative ions) Three domain-separated entities.</li>
-        <li><code>set_percentage: 0</code> Usually it is equivalent to shutting down. Before turning it back on, remember to first <code>turn_on</code>.</li>
-      </ul>
-    </section>
+ <!-- ================ FAN ================ -->
+ <section id="fan" data-nav="fan · fan">
+ <h2 data-icon="steps"><code>fan</code> · Electric fan/ceiling fan/air purifier</h2>
+ <h3>Common actions</h3>
+ <ul>
+ <li><code>fan.turn_on</code> / <code>fan.turn_off</code> / <code>fan.toggle</code></li>
+ <li><code>fan.set_percentage</code>(0-100 wind speed)</li>
+ <li><code>fan.set_preset_mode</code> (<code>auto / sleep / turbo</code>, depending on the device)</li>
+ <li><code>fan.oscillate</code>(shaking head left and right)</li>
+ <li><code>fan.set_direction</code>(ceiling fan clockwise)</li>
+ </ul>
+ <h3>Common pitfalls</h3>
+ <ul>
+ <li>Air purifiers are often <code>fan</code>(air volume) + <code>sensor</code> (PM2.5)+ <code>switch</code>(Negative ions) Three domain-separated entities.</li>
+ <li><code>set_percentage: 0</code> Usually it is equivalent to shutting down. Before turning it back on, remember to first <code>turn_on</code>.</li>
+ </ul>
+ </section>
 
-    <!-- ================ CAMERA ================ -->
-    <section id="camera" data-nav="camera · camera">
-      <h2 data-icon="steps"><code>camera</code> · Camera</h2>
-      <h3>Common actions</h3>
-      <ul>
-        <li><code>camera.snapshot</code> — Take a picture and save it (parameters <code>filename: /media/snap_{{ now().timestamp() }}.jpg</code>)</li>
-        <li><code>camera.turn_on / turn_off</code>(supported by some cameras)</li>
-        <li><code>camera.enable_motion_detection / disable_motion_detection</code></li>
-        <li><code>camera.record</code> — Record a video</li>
-      </ul>
-      <h3>UI card</h3>
-      <ul>
-        <li><strong>Picture entity</strong>: Built-in, the simplest</li>
-        <li><strong>Picture glance</strong>: Image + small icon above to display related entities (door locks, lights)</li>
-        <li><strong>WebRTC card</strong>(HACS): Low latency streaming, perfect for doorbells</li>
-      </ul>
-      <h3>Common pitfalls</h3>
-      <ul>
-        <li><strong>Cloud camera (Ring, Wyze, TP-Link Kasa)</strong>: Picture delay of 5-30 seconds is normal. If you want to get real-time streaming, you need to use ONVIF/RTSP local streaming.</li>
-        <li><strong>Snapshot file location</strong>:Default <code>/config/www/</code> can be read by the dashboard; save <code>/media/</code> To configure additional media_source.</li>
-      </ul>
-    </section>
+ <!-- ================ CAMERA ================ -->
+ <section id="camera" data-nav="camera · camera">
+ <h2 data-icon="steps"><code>camera</code> · Camera</h2>
+ <h3>Common actions</h3>
+ <ul>
+ <li><code>camera.snapshot</code> — Take a chart and save it (parameters <code>filename: /media/snap_{{ now().timestamp() }}.jpg</code>)</li>
+ <li><code>camera.turn_on / turn_off</code>(supported by some cameras)</li>
+ <li><code>camera.enable_motion_detection / disable_motion_detection</code></li>
+ <li><code>camera.record</code> — Record a video</li>
+ </ul>
+ <h3>UI card</h3>
+ <ul>
+ <li><strong>Picture entity</strong>: Built-in, the simplest</li>
+ <li><strong>Picture glance</strong>: Image + small icon above to display related entities (door locks, lights)</li>
+ <li><strong>WebRTC card</strong> (HACS): Low latency streaming, perfect for doorbells</li>
+ </ul>
+ <h3>Common pitfalls</h3>
+ <ul>
+ <li><strong>Cloud camera (Ring, Wyze, TP-Link Kasa)</strong>: Picture delay of 5-30 seconds is normal. If you want to get real-time streaming, you need to use ONVIF/RTSP local streaming.</li>
+ <li><strong>Snapshot file location</strong>:Default <code>/config/www/</code> can be read by the dashboard; save <code>/media/</code> To configure additional media_source.</li>
+ </ul>
+ </section>
 
-    <!-- ================ SENSOR ================ -->
-    <section id="sensor" data-nav="sensor / binary_sensor">
-      <h2 data-icon="steps"><code>sensor</code> / <code>binary_sensor</code> · Sensor</h2>
-      <p><code>sensor</code> Yes<em>Has a numerical value</em>sensor (temperature 25.3, battery 87%),<code>binary_sensor</code> Yes<em>Only two states</em>of (door open/closed, someone/nobody, raining/not raining).</p>
-      <h3>They do not accept control actions</h3>
-      <p>The sensor is read-only. You cannot "turn_on" a temperature sensor. The value of the sensor is<strong>when trigger or condition</strong>: </p>
-      <ul>
-        <li>Trigger: "When <code>binary_sensor.motion_livingroom</code> "turn on → turn on the light"</li>
-        <li>Condition: "When the sun sets, if <code>binary_sensor.someone_home</code> Do things only when you are on"</li>
-        <li>Value: "When <code>sensor.pm25</code> &gt; 35 → Turn on the purifier"</li>
-      </ul>
-      <h3>Commonly used device_class (determines icons and behaviors)</h3>
-      <ul>
-        <li><code>sensor</code>: <code>temperature / humidity / pressure / illuminance / power / energy / battery / co2 / pm25</code></li>
-        <li><code>binary_sensor</code>: <code>motion / occupancy / door / window / smoke / moisture / opening / battery / connectivity</code></li>
-      </ul>
-      <div class="callout tip"><strong>Skill:</strong>If a sensor determines that the device_class is wrong (for example, opening is determined as door), the physical gear page can overwrite the device_class, and the dashboard icon will change accordingly.</div>
-      <h3>Common pitfalls</h3>
-      <ul>
-        <li><strong>Binary sensor jitter</strong>: The motion sensor is always "on → off in seconds → on", and automatically writing "on → turn on the light" and "off → turn off the light" will shake to the point of dizziness. Use the "for: 5 minutes" condition instead, and it will take action after 5 minutes of stable status.</li>
-        <li><strong>battery is sensor not binary_sensor</strong>: Want to use "Battery lower than 20% reminder" <code>sensor.*_battery</code> + numeric_state trigger.</li>
-      </ul>
-    </section>
+ <!-- ================ SENSOR ================ -->
+ <section id="sensor" data-nav="sensor / binary_sensor">
+ <h2 data-icon="steps"><code>sensor</code> / <code>binary_sensor</code> · Sensor</h2>
+ <p><code>sensor</code> Yes <em>Has a numerical value</em> sensor (temperature 25.3, battery 87%),<code>binary_sensor</code> Yes <em>Only two states</em> of (door open/closed, someone/nobody, raining/not raining).</p>
+ <h3>They do not accept control actions</h3>
+ <p>The sensor is read-only. You cannot "turn_on" a temperature sensor. The value of the sensor is <strong>when trigger or condition</strong>: </p>
+ <ul>
+ <li>Trigger: "When <code>binary_sensor.motion_livingroom</code> "turn on → turn on the light"</li>
+ <li>Condition: "When the sun sets, if <code>binary_sensor.someone_home</code> Do things only when you are on"</li>
+ <li>Value: "When <code>sensor.pm25</code> &gt; 35 → Turn on the purifier"</li>
+ </ul>
+ <h3>Commonly used device_class (determines icons and behaviors)</h3>
+ <ul>
+ <li><code>sensor</code>: <code>temperature / humidity / pressure / illuminance / power / energy / battery / co2 / pm25</code></li>
+ <li><code>binary_sensor</code>: <code>motion / occupancy / door / window / smoke / moisture / opening / battery / connectivity</code></li>
+ </ul>
+ <div class="callout tip"><strong>Skill:</strong> If a sensor determines that the device_class is wrong (for example, opening is determined as door), the entity settings page can overwrite the device_class, and the dashboard icon will change accordingly.</div>
+ <h3>Common pitfalls</h3>
+ <ul>
+ <li><strong>Binary sensor jitter</strong>: The motion sensor is always "on → off in seconds → on", and automatically writing "on → turn on the light" and "off → turn off the light" will shake to the point of dizziness. Use the "for: 5 minutes" condition instead, and it will take action after 5 minutes of stable status.</li>
+ <li><strong>battery is sensor not binary_sensor</strong>: Want to use "Battery lower than 20% reminder" <code>sensor.*_battery</code> + numeric_state trigger.</li>
+ </ul>
+ </section>
 
-    <!-- ================ NOTIFY ================ -->
-    <section id="notify" data-nav="notify · notify">
-      <h2 data-icon="steps"><code>notify</code> · notify</h2>
-      <p>As mentioned in Chapter 7, the parameter details are added here.</p>
-      <h3>Companion App pushes complete parameters</h3>
+ <!-- ================ NOTIFY ================ -->
+ <section id="notify" data-nav="notify · notify">
+ <h2 data-icon="steps"><code>notify</code> · notify</h2>
+ <p>As mentioned in Chapter 7, the parameter details are added here.</p>
+ <h3>Companion App pushes complete parameters</h3>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>action: notify.mobile_app_iphone
 data:
-  title: The washing machine has finished washing
-  message: Remember to take it out
+  title: Washing cycle complete
+  message: Remember to collect the laundry
   data:
     push:
-      sound: US-EN-Alexa-Laundry-Ready.wav # iOS sound effects
+      sound: US-EN-Alexa-Laundry-Ready.wav  # iOS sound
       badge: 1
-    actions: # Clickable actions
+    actions:                                # Tappable actions
       - action: LAUNDRY_DONE
-        title: OK, I'll get it
+        title: OK, I will get it
       - action: LAUNDRY_SNOOZE
-        title: Reminder in 10 minutes
-    image: /api/camera_proxy/camera.laundry # Directly display camera screenshots
-    tag: laundry # The same tag will overwrite the previous one
-    channel: laundry # Android notification channel
-    ttl: 0 # Android high priority</code></pre>
-      <h3>Other commonly used notify.*</h3>
-      <ul>
-        <li><code>notify.persistent_notification</code> — HA internal notification (upper right bell), do not push the phone</li>
-        <li><code>notify.notify</code> — Default notification group (sent to all configured channels)</li>
-        <li><code>tts.*</code> — Voice reading (with <code>media_player</code>), please refer to Chapter 12 Appendix Voice Chapter for details.</li>
-      </ul>
-    </section>
+        title: Remind me in 10 minutes
+    image: /api/camera_proxy/camera.laundry # Show a camera snapshot
+    tag: laundry                            # Replaces the previous notification with the same tag
+    channel: laundry                        # Android notification channel
+    ttl: 0                                  # Android high priority</code></pre>
+ <h3>Other commonly used notify.*</h3>
+ <ul>
+ <li><code>notify.persistent_notification</code> — HA internal notification (upper right bell), do not push the phone</li>
+ <li><code>notify.notify</code> — Default notification group (sent to all configured channels)</li>
+ <li><code>tts.*</code> — Voice reading (with <code>media_player</code>), please refer to Chapter 12 Appendix Voice Chapter for details.</li>
+ </ul>
+ </section>
 
-    <!-- ================ INPUT ================ -->
-    <section id="input" data-nav="input_* · Auxiliary components">
-      <h2 data-icon="steps"><code>input_*</code> · Helpers</h2>
-      <p>Helpers are HA's built-in "fake entities" that allow you to "flip" things in automation - see Appendix B for details. Here is the domain comparison:</p>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Domain</th>
-            <th>what is</th>
-            <th>Common scenarios</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><code>input_boolean</code></td><td>switch</td><td>"Guest Mode" "Vacation Mode" switch</td></tr>
-          <tr><td><code>input_number</code></td><td>Adjustable numbers</td><td>Use the slider to adjust the "illuminance threshold for automatically turning on the lights"</td></tr>
-          <tr><td><code>input_select</code></td><td>drop down menu</td><td>"Home Mode" = at home/away from home/sleeping</td></tr>
-          <tr><td><code>input_text</code></td><td>String</td><td>Record events and tags</td></tr>
-          <tr><td><code>input_datetime</code></td><td>date/time</td><td>"Wake up time" allows family members to change it on the dashboard</td></tr>
-          <tr><td><code>timer</code></td><td>countdown timer</td><td>"Light turns off automatically after 5 minutes"</td></tr>
-          <tr><td><code>counter</code></td><td>integer counter</td><td>"Number of openings today"</td></tr>
-          <tr><td><code>schedule</code></td><td>Weekly schedule</td><td>"Working hours" draws a timetable in weekly units</td></tr>
-        </tbody>
-      </table>
-      <p>Each has a corresponding action, for example:<code>input_boolean.turn_on</code>, <code>input_number.set_value</code>, <code>timer.start</code>. Appendix B has the complete tutorial.</p>
-    </section>
+ <!-- ================ INPUT ================ -->
+ <section id="input" data-nav="input_* · Helpers">
+ <h2 data-icon="steps"><code>input_*</code> · Helpers</h2>
+ <p>Helpers are HA's built-in "fake entities" that allow you to "flip" things in automation - see Appendix B for details. Here is the domain comparison:</p>
+ <table class="data-table">
+ <thead>
+ <tr>
+ <th>Domain</th>
+ <th>what is</th>
+ <th>Common scenes</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr><td><code>input_boolean</code></td><td>switch</td><td>"Guest Mode" "Vacation Mode" switch</td></tr>
+ <tr><td><code>input_number</code></td><td>Adjustable numbers</td><td>Use the slider to adjust the "illuminance threshold for automatically turning on the lights"</td></tr>
+ <tr><td><code>input_select</code></td><td>drop down menu</td><td>"Home Mode" = at home/away from home/sleeping</td></tr>
+ <tr><td><code>input_text</code></td><td>String</td><td>Record events and tags</td></tr>
+ <tr><td><code>input_datetime</code></td><td>date/time</td><td>"Wake up time" allows family members to change it on the dashboard</td></tr>
+ <tr><td><code>timer</code></td><td>countdown timer</td><td>"Light turns off automatically after 5 minutes"</td></tr>
+ <tr><td><code>counter</code></td><td>integer counter</td><td>"Number of openings today"</td></tr>
+ <tr><td><code>schedule</code></td><td>Weekly schedule</td><td>"Working hours" draws a timetable in weekly units</td></tr>
+ </tbody>
+ </table>
+ <p>Each has a corresponding action, for example:<code>input_boolean.turn_on</code>, <code>input_number.set_value</code>, <code>timer.start</code>. Appendix B has the complete tutorial.</p>
+ </section>
 
-    <!-- ================ COMMON TOOLS ================ -->
-    <section id="tools" data-nav="Common Tools and Mindsets">
-      <h2 data-icon="tips">Common Tools and Mindsets</h2>
-      <div class="callout"><strong>Concept:</strong>This tool has had its name changed twice. It used to be an independent project "Developer Tools" in the sidebar, and was included in it starting from 2026.2<strong>Settings</strong>Inside, 2026.8 simplified the name to<strong>Tools</strong>—The current path is<strong>Settings → Tools</strong>. The "Services" tab inside will also be renamed in 2024.8<strong>Actions</strong>. So where it says "Settings → Tools → Actions" in this chapter, if your HA is still an old version, please go to the sidebar "Developer Tools → Services", the things are exactly the same.</div>
-      <h3>Use "tools" to try out actions</h3>
-      <p>Side menu "Settings" → "Tools" → "Actions" tab. You can select any action, fill in the parameters, and press execute. This is the fastest way for you to learn a new domain: no need to write automation, just try it.</p>
-      <figure class="shot">
-        <img src="../assets/screenshots/ch12/01_dev_services.png" alt="Developer Tools Services" />
-        <figcaption><strong>Figure 12-1</strong>"Settings → Tools → Actions" - Learn a new domain and play here. (The screenshot shows the old version of the interface "Developer Tools → Services", the location and name have been changed as above)</figcaption>
-      </figure>
-      <h3>Use "status" to view entity properties</h3>
-      <p>Settings → Tools → "Status" tab → Paste entity ID → See what it has <code>attributes</code>. For example <code>light.livingroom</code> properties will have <code>supported_color_modes</code>, <code>min_color_temp_kelvin</code>, <code>max_color_temp_kelvin</code>, these determine what parameters you can set.</p>
-      <h3>Summary of mental methods</h3>
-      <div class="callout"><strong>Buy equipment → Check the domain first:</strong>can be recognized <code>light / switch / cover / climate</code> This kind of "named and surnamed" domain usually has the best subsequent experience; if you can only recognize it as a bunch of <code>sensor</code> + <code>switch</code>(such as some copycat Tuya electric curtains), writing automation will be a pain. You can check this by Google "Brand Home Assistant integration" before buying the device.</div>
-    </section>
+ <!-- ================ COMMON TOOLS ================ -->
+ <section id="tools" data-nav="Common Tools and Mindsets">
+ <h2 data-icon="tips">Common Tools and Mindsets</h2>
+ <div class="callout"><strong>Concept:</strong> This tool has had its name changed twice. It used to be an independent item "Developer Tools" in the sidebar, and was included in it starting from 2026.2 <strong>Settings</strong> Inside, 2026.8 simplified the name to <strong>Tools</strong>—The current path is <strong>Settings → Tools</strong>. The "Services" tab inside will also be renamed in 2024.8 <strong>Actions</strong>. So where it says "Settings → Tools → Actions" in this chapter, if your HA is still an old version, please go to the sidebar "Developer Tools → Services", the things are exactly the same.</div>
+ <h3>Use "tools" to try out actions</h3>
+ <p>Side menu "Settings" → "Tools" → "Actions" tab. You can select any action, fill in the parameters, and press execute. This is the fastest way for you to learn a new domain: no need to write automation, just try it.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch12/01_dev_services.png" alt="Developer Tools Services" />
+ <figcaption><strong>Figure 12-1</strong> "Settings → Tools → Actions" - Learn a new domain and play here. (The screenshot shows the old version of the interface "Developer Tools → Services", the location and name have been changed as above)</figcaption>
+ </figure>
+ <h3>Use "status" to view entity properties</h3>
+ <p>Settings → Tools → “States” tab → Paste entity ID → See what it has <code>attributes</code>. For example <code>light.livingroom</code> properties will have <code>supported_color_modes</code>, <code>min_color_temp_kelvin</code>, <code>max_color_temp_kelvin</code>, these determine what parameters you can set.</p>
+ <h3>Summary of mental methods</h3>
+ <div class="callout"><strong>Buy devices → Check the domain first:</strong> can be recognized <code>light / switch / cover / climate</code> This kind of "named and surnamed" domain usually has the best subsequent experience; if you can only recognize it as multiple <code>sensor</code> + <code>switch</code>(such as some copycat Tuya electric curtains), writing automation will be a pain. You can check this by Google "Brand Home Assistant integration" before buying the device.</div>
+ </section>
 
-    <!-- ================ FAQ ================ -->
-    <section id="faq" data-nav="FAQ">
-      <h2 data-icon="faq">FAQ</h2>
+ <!-- ================ FAQ ================ -->
+ <section id="faq" data-nav="FAQ">
+ <h2 data-icon="faq">FAQ</h2>
 
-      <details class="faq">
-        <summary>The lamp in my house is obviously a lamp, why does HA think it is a lamp? <code>switch</code>? can be changed to <code>light</code> ?</summary>
-        <div class="body">
-          <p>Because the ability of that device to report back to HA is only "power on/off" - commonly seen in smart sockets connected to desk lamps, relay-type wall switches, and Tuya's one-on-everything module. The integration only knows that it will turn on and off the power, and does not know whether the light or the water dispenser is connected behind it, so it is classified as <code>switch</code>.</p>
-          <p>HA has a built-in auxiliary component that can help it change its face:<strong>Settings → Devices and Services → Accessories → Create Accessories</strong>, select "Change device type of a switch" (the old name in English is Switch as X, the Chinese interface will display the corresponding words "Change device type of a switch"). pick one <code>switch</code> entity, you can turn it into <code>light</code>, <code>cover</code>, <code>fan</code>, <code>lock</code>, <code>siren</code> or <code>valve</code> One of a kind. After conversion, there will be one new entity (for example <code>light.desk_lamp</code>), the original one <code>switch</code> It will be automatically hidden to prevent two identical things from appearing on the dashboard.</p>
-          <div class="callout warn"><strong>Warning:</strong>This is just a change of classification and will not create capabilities that the hardware does not have. Convert to <code>light</code> Afterwards you can use <code>light.turn_on</code>, but still<em>Can't</em>Adjust brightness and color temperature - it doesn't have it. If you want to dim the light, you need to replace it with a truly dimmable lamp or dimming module.</div>
-        </div>
-      </details>
+ <details class="faq">
+ <summary>The lamp in my house is obviously a lamp, why does HA think it is a lamp? <code>switch</code>? can be changed to <code>light</code> ?</summary>
+ <div class="body">
+ <p>Because the ability of that device to report back to HA is only "power on/off" - commonly seen in smart sockets connected to desk lamps, relay-type wall switches, and Tuya's one-on-everything module. The integration only knows that it will turn on and off the power, and does not know whether the light or the water dispenser is connected behind it, so it is classified as <code>switch</code>.</p>
+ <p>HA has a built-in helper that can help it change its face: <strong>Settings → Devices &amp; Services → Helpers → Create helper</strong>, select "Change device type of a switch" (the old name in English is Switch as X, the Chinese interface will display the corresponding words "Change device type of a switch"). pick one <code>switch</code> entity, you can turn it into <code>light</code>, <code>cover</code>, <code>fan</code>, <code>lock</code>, <code>siren</code> or <code>valve</code> One of a kind. After conversion, there will be one new entity (for example <code>light.desk_lamp</code>), the original one <code>switch</code> It will be automatically hidden to prevent two identical things from appearing on the dashboard.</p>
+ <div class="callout warn"><strong>Warning:</strong> This is just a change of classification and will not create capabilities that the hardware does not have. Convert to <code>light</code> Afterwards you can use <code>light.turn_on</code>, but still <em>Can't</em> Adjust brightness and color temperature - it doesn't have it. If you want to dim the light, you need to replace it with a truly dimmable lamp or dimming module.</div>
+ </div>
+ </details>
 
-      <details class="faq">
-        <summary>My light only has brightness and no color temperature and color options. Is it an HA problem?</summary>
-        <div class="body">
-          <p>Eighty percent of the time, the problem is not with the HA, but with the lamp itself. Arrive<strong>Settings → Tools → Status</strong>Paste the entity ID and see <code>supported_color_modes</code> This attribute will honestly tell you which color modes this lamp supports:</p>
-          <table class="data-table">
-            <thead>
-              <tr><th>color mode</th><th>What you will see on the UI</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>onoff</code></td><td>Only on/off, not even a brightness slider</td></tr>
-              <tr><td><code>brightness</code></td><td>Brightness slider only (monotone light)</td></tr>
-              <tr><td><code>color_temp</code></td><td>Brightness + Color Temperature (warm white to cool white)</td></tr>
-              <tr><td><code>hs</code> / <code>rgb</code> / <code>rgbw</code> / <code>rgbww</code></td><td>Brightness + Color Wheel (<code>rgbww</code> This kind also has an additional white light channel)</td></tr>
-            </tbody>
-          </table>
-          <p>There is in the list <code>color_temp</code> lights will appear simultaneously in the properties <code>min_color_temp_kelvin</code> and <code>max_color_temp_kelvin</code>, that is, how warm or cold the color temperature of this lamp can be adjusted. If the hardware does not support it, no auxiliary components or HACS cards will be able to change the color temperature.</p>
-          <p>if <code>supported_color_modes</code> Obviously less than what is written in the product specifications (for example, I bought a colored light bulb but only <code>brightness</code>), that is the key to integration: first update the bulb firmware, re-pair, or go to the integrated GitHub to see if there are reports of the same model.</p>
-        </div>
-      </details>
+ <details class="faq">
+ <summary>My light only has brightness and no color temperature and color options. Is it an HA problem?</summary>
+ <div class="body">
+ <p>Eighty percent of the time, the problem is not with the HA, but with the lamp itself. Go to <strong>Settings → Tools → States</strong> Paste the entity ID and see <code>supported_color_modes</code> This attribute will honestly tell you which color modes this lamp supports:</p>
+ <table class="data-table">
+ <thead>
+ <tr><th>color mode</th><th>What you will see on the UI</th></tr>
+ </thead>
+ <tbody>
+ <tr><td><code>onoff</code></td><td>Only on/off, not even a brightness slider</td></tr>
+ <tr><td><code>brightness</code></td><td>Brightness slider only (monotone light)</td></tr>
+ <tr><td><code>color_temp</code></td><td>Brightness + Color Temperature (warm white to cool white)</td></tr>
+ <tr><td><code>hs</code> / <code>rgb</code> / <code>rgbw</code> / <code>rgbww</code></td><td>Brightness + Color Wheel (<code>rgbww</code> This kind also has an additional white light channel)</td></tr>
+ </tbody>
+ </table>
+ <p>There is in the list <code>color_temp</code> lights will appear simultaneously in the properties <code>min_color_temp_kelvin</code> and <code>max_color_temp_kelvin</code>, that is, how warm or cold the color temperature of this lamp can be adjusted. If the hardware does not support it, no helpers or HACS cards can change the color temperature.</p>
+ <p>if <code>supported_color_modes</code> Obviously less than what is written in the product specifications (for example, I bought a colored light bulb but only <code>brightness</code>), that is the key to integration: first update the bulb firmware, re-pair, or go to the integrated GitHub to see if there are reports of the same model.</p>
+ </div>
+ </details>
 
-      <details class="faq">
-        <summary>The opening and closing direction of the curtain is reversed. Press "Open" to close it. The positions 0 and 100 are also reversed. How to fix it?</summary>
-        <div class="body">
-          <p>First remember that the definition of HA is dead:<code>position: 0</code> Yes<strong>Completely closed</strong>, <code>position: 100</code> Yes<strong>Fully open</strong>. This rule doesn't change based on your motor setup.</p>
-          <p>The correct approach is<strong>Go to the installation end and adjust it</strong>, do not write in HA automation <code>100 - x</code> This kind of math problem - you'll completely forget why this line is there in half a year, and the slider on the dashboard will still be backwards. According to your method:</p>
-          <ol class="steps">
-            <li>
-              <h3>Zigbee2MQTT motor</h3>
-              <p>Go to the settings area of the device page to find <code>motor_reversal</code>(Reverse the direction of the motor) or <code>invert_cover</code>(Reverse the position value, false is open=100 / close=0). Taking common curtain modules such as Tuya TS130F as an example, these two options are among the device's configurable items.</p>
-            </li>
-            <li>
-              <h3>Motor paired with the original app</h3>
-              <p>Most electric curtains have "motor direction" or "travel calibration" in the original app. Re-setting the upper and lower limits is usually correct. After calibrating the HA, there is no need to change anything.</p>
-            </li>
-            <li>
-              <h3>Device page reset</h3>
-              <p>Some integrations provide "Reconfigure" on the device page to rerun the calibration process.</p>
-            </li>
-            <li>
-              <h3>There really is no choice, last resort</h3>
-              <p>Only then did I consider using a template cover to wrap a layer and reverse the values. This is the most difficult approach to maintain, so avoid it if you can.</p>
-            </li>
-          </ol>
-        </div>
-      </details>
+ <details class="faq">
+ <summary>The opening and closing direction of the curtain is reversed. Press "Open" to close it. The positions 0 and 100 are also reversed. How to fix it?</summary>
+ <div class="body">
+ <p>First remember that the definition of HA is dead:<code>position: 0</code> Yes <strong>Completely closed</strong>, <code>position: 100</code> Yes <strong>Fully open</strong>. This rule doesn't change based on your motor setup.</p>
+ <p>The correct approach is <strong>Go to the installation end and adjust it</strong>, do not write in HA automation <code>100 - x</code> This kind of math problem - you'll completely forget why this line is there in half a year, and the slider on the dashboard will still be backwards. According to your method:</p>
+ <ol class="steps">
+ <li>
+ <h3>Zigbee2MQTT motor</h3>
+ <p>Go to the settings area of the device page to find <code>motor_reversal</code>(Reverse the direction of the motor) or <code>invert_cover</code>(Reverse the position value, false is open=100 / close=0). Taking common curtain modules such as Tuya TS130F as an example, these two options are among the device's configurable items.</p>
+ </li>
+ <li>
+ <h3>Motor paired with the original app</h3>
+ <p>Most electric curtains have "motor direction" or "travel calibration" in the original app. Re-setting the upper and lower limits is usually correct. After calibrating the HA, there is no need to change anything.</p>
+ </li>
+ <li>
+ <h3>Device page reset</h3>
+ <p>Some integrations provide "Reconfigure" on the device page to rerun the calibration process.</p>
+ </li>
+ <li>
+ <h3>There really is no choice, last resort</h3>
+ <p>Only then did I consider using a template cover to wrap a layer and reverse the values. This is the most difficult approach to maintain, so avoid it if you can.</p>
+ </li>
+ </ol>
+ </div>
+ </details>
 
-      <details class="faq">
-        <summary>I use <code>climate.set_temperature</code> Set to 26 degrees, but the air conditioner doesn’t respond at all?</summary>
-        <div class="body">
-          <p>Checking in this order, 90% are the first two items:</p>
-          <ul>
-            <li><strong>The air conditioner is off.</strong>Assume that the target temperature is not equal to power on.<code>climate.set_temperature</code> Eat by itself <code>hvac_mode</code> This field is the safest to write in one go:<code>hvac_mode: cool</code> add <code>temperature: 26</code>.</li>
-            <li><strong>Trapped by preset.</strong>When switching to manufacturer-preset modes such as "eco" and "sleep", the target temperature is often determined by the manufacturer. first <code>climate.set_preset_mode</code> Set back <code>none</code>, and then set the temperature.</li>
-            <li><strong>Out of settable range.</strong>Each machine has its own <code>min_temp</code> / <code>max_temp</code>(default for HA side is 7 to 35 degrees), and <code>target_temp_step</code>(Some machines can only adjust a few degrees. If you send 25.5, it will be ignored). You can see these properties in Settings → Tools → Status.</li>
-            <li><strong>It is actually a zone thermostat.</strong>Use this kind <code>target_temp_high</code> / <code>target_temp_low</code>, get a single <code>temperature</code> will be eaten.</li>
-            <li><strong>Infrared air conditioner.</strong>As mentioned earlier in this article, HA only sends commands, and no one knows whether there are any hits when sent out - is the air conditioner facing the remote control? Is there any obstruction in the middle?</li>
-          </ul>
-          <p>The quickest way to determine what happened is to<strong>Settings → Tools → Actions</strong>Execute it directly and see if it reports success or skips an error message.</p>
-        </div>
-      </details>
+ <details class="faq">
+ <summary>I use <code>climate.set_temperature</code> Set to 26 degrees, but the air conditioner doesn’t respond at all?</summary>
+ <div class="body">
+ <p>Checking in this order, 90% are the first two items:</p>
+ <ul>
+ <li><strong>The air conditioner is off.</strong> Assume that the target temperature is not equal to power on.<code>climate.set_temperature</code> Eat by itself <code>hvac_mode</code> This field is the safest to write at once:<code>hvac_mode: cool</code> add <code>temperature: 26</code>.</li>
+ <li><strong>Trapped by preset.</strong> When switching to manufacturer-preset modes such as "eco" and "sleep", the target temperature is often determined by the manufacturer. first <code>climate.set_preset_mode</code> Set back <code>none</code>, and then set the temperature.</li>
+ <li><strong>Out of settable range.</strong> Each machine has its own <code>min_temp</code> / <code>max_temp</code>(default for HA side is 7 to 35 degrees), and <code>target_temp_step</code>(Some machines can only adjust a few degrees. If you send 25.5, it will be ignored). You can see these properties in Settings → Tools → States.</li>
+ <li><strong>It is actually a zone thermostat.</strong> Use this kind <code>target_temp_high</code> / <code>target_temp_low</code>, get a single <code>temperature</code> will be eaten.</li>
+ <li><strong>Infrared air conditioner.</strong> As mentioned earlier in this article, HA only sends commands, and no one knows whether there are any hits when sent out - is the air conditioner facing the remote control? Is there any obstruction in the middle?</li>
+ </ul>
+ <p>The quickest way to determine what happened is to <strong>Settings → Tools → Actions</strong> Execute it directly and see if it reports success or skips an error message.</p>
+ </div>
+ </details>
 
-      <details class="faq">
-        <summary>television <code>select_source</code> Can't find the source I want, or there is no response after selecting it?</summary>
-        <div class="body">
-          <p><code>media_player.select_source</code> Only recognize strings reported by the device itself, and<strong>The capitalization and spaces must be exactly the same.</strong>. Go to Settings → Tools → Status to check the media_player <code>source_list</code> Attributes, you can only fill in whatever is in it; fill in <code>HDMI 1</code> But the list says <code>HDMI1</code>, the action will fail.</p>
-          <p>Two common situations:</p>
-          <ul>
-            <li><strong>The list is empty or has only one or two items.</strong>Many TVs will not report the complete source list to HA until they are turned on and connected to the Internet. When automatically writing "power on → change source", please leave a few seconds in between. <code>delay</code>, otherwise the list will not be generated at all when the command is sent out.</li>
-            <li><strong>The integration does not support changing sources at all.</strong>Not every media_player has this capability (pure speakers and some streaming boxes do not). I can’t see the source drop-down menu on the device page, nor in the status. <code>source_list</code>, that is, no, use the brand's App macro or IR/HDMI-CEC bypass instead.</li>
-          </ul>
-        </div>
-      </details>
+ <details class="faq">
+ <summary>television <code>select_source</code> Can't find the source I want, or there is no response after selecting it?</summary>
+ <div class="body">
+ <p><code>media_player.select_source</code> Only recognize strings reported by the device itself, and <strong>The capitalization and spaces must be exactly the same.</strong>. Go to Settings → Tools → States to check the media_player <code>source_list</code> Attributes, you can only fill in whatever is in it; fill in <code>HDMI 1</code> But the list says <code>HDMI1</code>, the action will fail.</p>
+ <p>Two common situations:</p>
+ <ul>
+ <li><strong>The list is empty or has only one or two items.</strong> Many TVs will not report the complete source list to HA until they are turned on and connected to the Internet. When automatically writing "power on → change source", please leave a few seconds in between. <code>delay</code>, otherwise the list will not be generated at all when the command is sent out.</li>
+ <li><strong>The integration does not support changing sources at all.</strong> Not every media_player has this capability (pure speakers and some streaming boxes do not). I can’t see the source drop-down menu on the device page, nor in the status. <code>source_list</code>, that is, no, use the brand's App macro or IR/HDMI-CEC bypass instead.</li>
+ </ul>
+ </div>
+ </details>
 
-      <details class="faq">
-        <summary>The camera is slow and stuck on the dashboard, is there any way to fix it?</summary>
-        <div class="body">
-          <p>First figure out which section you are stuck in:</p>
-          <ol class="steps">
-            <li>
-              <h3>First make sure it is not an inherent delay in cloud integration</h3>
-              <p>The delay of several seconds for cameras running on brand clouds (those types mentioned earlier in this article) is structural and cannot be saved by changing the settings. The only option is to switch to ONVIF / RTSP local streaming.</p>
-            </li>
-            <li>
-              <h3>Make sure you are using WebRTC</h3>
-              <p>Home Assistant has built-in go2rtc starting from 2024.11, which provides WebRTC streaming for the camera, which is significantly more real-time than the old HLS. If you are running Home Assistant OS or the official container, it will be enabled by default after the update; cameras that do not support WebRTC will automatically fall back to the old method.</p>
-            </li>
-            <li>
-              <h3>Use substream (substream)</h3>
-              <p>Most IP cameras provide both a high-definition main stream and a low-resolution sub-stream. The small grid on the dashboard uses the sub-stream, and the main stream is used when you click to open it. The machine burden is much different.</p>
-            </li>
-            <li>
-              <h3>Don’t cram eight cameras into one page</h3>
-              <p>Every live stream consumes CPU and bandwidth. Concentrate the camera on a single tab, and don't open that page normally, so that it won't drag down the entire dashboard.</p>
-            </li>
-            <li>
-              <h3>"Preload streaming" should be considered</h3>
-              <p>There is a "Preload stream" option in the camera's physical settings. If you turn it on, it will always stay connected. When you click it, it will be faster, but it will continue to consume resources. It is not recommended to turn it all on low-end hosts (like the old Raspberry Pi).</p>
-            </li>
-          </ol>
-        </div>
-      </details>
+ <details class="faq">
+ <summary>The camera is slow and stuck on the dashboard, is there any way to fix it?</summary>
+ <div class="body">
+ <p>First figure out which section you are stuck in:</p>
+ <ol class="steps">
+ <li>
+ <h3>First make sure it is not an inherent delay in cloud integration</h3>
+ <p>The delay of several seconds for cameras running on brand clouds (those types mentioned earlier in this article) is structural and cannot be saved by changing the settings. The only option is to switch to ONVIF / RTSP local streaming.</p>
+ </li>
+ <li>
+ <h3>Make sure you are using WebRTC</h3>
+ <p>Home Assistant has built-in go2rtc starting from 2024.11, which provides WebRTC streaming for the camera, which is significantly more real-time than the old HLS. If you are running Home Assistant OS or Home Assistant container, it will be enabled by default after the update; cameras that do not support WebRTC will automatically fall back to the old method.</p>
+ </li>
+ <li>
+ <h3>Use substream (substream)</h3>
+ <p>Most IP cameras provide both a high-definition main stream and a low-resolution sub-stream. The small grid on the dashboard uses the sub-stream, and the main stream is used when you click to open it. The machine burden is much different.</p>
+ </li>
+ <li>
+ <h3>Don’t cram eight cameras into one page</h3>
+ <p>Every live stream consumes CPU and bandwidth. Concentrate the camera on a single tab, and don't open that page normally, so that it won't drag down the entire dashboard.</p>
+ </li>
+ <li>
+ <h3>"Preload streaming" should be considered</h3>
+ <p>There is a "Preload stream" option in the camera's entity settings. If you turn it on, it will always stay connected. When you click it, it will be faster, but it will continue to consume resources. It is not recommended to turn it all on low-end hosts (like the old Raspberry Pi).</p>
+ </li>
+ </ol>
+ </div>
+ </details>
 
-      <details class="faq">
-        <summary>Sensor display <code>unknown</code> and <code>unavailable</code>, what’s the difference between these two?</summary>
-        <div class="body">
-          <p>The official development documents explain the division of labor between these two states very clearly:</p>
-          <table class="data-table">
-            <thead>
-              <tr><th>Status</th><th>meaning</th><th>typical situation</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>unavailable</code></td><td>Integrate<strong>Can't find information</strong>—The connection is disconnected, the device is out of power, and the cloud service is down.</td><td>The Zigbee sensor has no battery, the Wi-Fi socket is disconnected, and the host has just been restarted and is still not connected.</td></tr>
-              <tr><td><code>unknown</code></td><td>Not even close, but<strong>This value is currently empty</strong></td><td>The computer has just been restarted and the first report has not been received. A certain field has not been returned this time. The value of the auxiliary component has not been set after it was created.</td></tr>
-            </tbody>
-          </table>
-          <p>Vernacular version:<code>unavailable</code> It's "no one is here",<code>unknown</code> It's "The person is here, but he can't answer it."</p>
-          <p>When writing automation, beware of both: Numeric triggers (numeric_state) will not trigger when encountering these two states, but if you use it to perform calculations in conditions or templates, an error will occur and the entire automation will be interrupted. It is customary to add a condition to block it, such as judging that the status is not <code>unknown</code> Neither <code>unavailable</code> Just go down.</p>
-          <div class="callout tip"><strong>Tip:</strong>If a sensor<em>often</em>change <code>unavailable</code>, that is a signal or battery problem, which cannot be solved by writing a program - go to the device page troubleshooting in Chapter 11, or add a Zigbee router (plugged-in device) relay for it.</div>
-        </div>
-      </details>
+ <details class="faq">
+ <summary>Sensor display <code>unknown</code> and <code>unavailable</code>, what’s the difference between these two?</summary>
+ <div class="body">
+ <p>Home Assistant development documents explain the division of labor between these two states very clearly:</p>
+ <table class="data-table">
+ <thead>
+ <tr><th>Status</th><th>meaning</th><th>typical situation</th></tr>
+ </thead>
+ <tbody>
+ <tr><td><code>unavailable</code></td><td>Integrate <strong>Can't find information</strong>—The connection is disconnected, the device is out of power, and the cloud service is down.</td><td>The Zigbee sensor has no battery, the Wi-Fi socket is disconnected, and the host has just been restarted and is still not connected.</td></tr>
+ <tr><td><code>unknown</code></td><td>Not even close, but <strong>This value is currently empty</strong></td><td>The computer has just been restarted and the first report has not been received. A certain field has not been returned this time. The value of the helper has not been set after it was created.</td></tr>
+ </tbody>
+ </table>
+ <p>In plain language:<code>unavailable</code> It's "no one is here",<code>unknown</code> It's "The person is here, but he can't answer it."</p>
+ <p>When writing automation, beware of both: Numeric triggers (numeric_state) will not trigger when encountering these two states, but if you use it to perform calculations in conditions or templates, an error will occur and the entire automation will be interrupted. It is customary to add a condition to block it, such as judging that the status is not <code>unknown</code> Neither <code>unavailable</code> Just go down.</p>
+ <div class="callout tip"><strong>Tip:</strong> If a sensor <em>often</em> change <code>unavailable</code>, that is a signal or battery problem, which cannot be solved by writing a program - go to the device page troubleshooting in Chapter 11, or add a Zigbee router (plugged-in device) relay for it.</div>
+ </div>
+ </details>
 
-      <details class="faq">
-        <summary>I want to control five lights in the living room at one time. Should I make a group or list them one by one in automation?</summary>
-        <div class="body">
-          <p>All four methods are feasible, and the selection criterion is "will this group of things appear together in the future?":</p>
-          <table class="data-table">
-            <thead>
-              <tr><th>practice</th><th>how to do</th><th>when to use</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><strong>designated area</strong></td><td>Select "Area" as the target of the action, and all the lights in the living room will eat together.</td><td>The most recommended default approach. In the future, if you buy an extra lamp in the living room and hang it in the area, it will be automatically included and automated.<em>No need to change a word</em></td></tr>
-              <tr><td><strong>Group helper</strong></td><td>Settings → Devices and Services → Auxiliary Components → Create Auxiliary Components → Group (Group), you can create various groups such as lights, switches, curtains, fans, sensors, etc.</td><td>This set of lights needs to be<strong>Use it as a star on the dashboard</strong>to display and operate. It is a real entity that can be placed in cards and used as conditions.</td></tr>
-              <tr><td><strong>Label</strong></td><td>Label the entity with a label such as "Night Light" and select the label for the action target.</td><td>this set of things<em>Cross-region</em>(FamilyMart’s night lights, FamilyMart’s curtains), when the area cannot be accommodated</td></tr>
-              <tr><td><strong>List entities one by one</strong></td><td>Target one point at a time</td><td>The combination is one-off, and certain items are deliberately excluded (for example, "all lights in the living room are turned off except for the fish tank lights")</td></tr>
-            </tbody>
-          </table>
-          <p>Another benefit of the group auxiliary component: the state rule of the light group is<strong>As long as one of them is open, the group is open.</strong>, so the condition "Are the lights in the living room still on?" is particularly intuitive to write. When creating a group, you can also choose to hide member entities so that the dashboard does not have a bunch of duplicate things.</p>
-          <div class="callout warn"><strong>Mistakes not to make:</strong>Don't make a bunch of groups just for "one control". The group is for<em>Need to be treated as one thing</em>It is used in various situations; it just needs to be turned on and off together. It is easier to use regions or labels, and it will not create a bunch of things in the entity list that you will not be able to understand after half a year. <code>light.group_xxx</code>.</div>
-        </div>
-      </details>
-    </section>
+ <details class="faq">
+ <summary>I want to control five lights in the living room at one time. Should I make a group or list them one by one in automation?</summary>
+ <div class="body">
+ <p>All four methods are feasible, and the selection criterion is "will this group of things appear together in the future?":</p>
+ <table class="data-table">
+ <thead>
+ <tr><th>practice</th><th>how to do</th><th>when to use</th></tr>
+ </thead>
+ <tbody>
+ <tr><td><strong>designated area</strong></td><td>Select "Area" as the target of the action, and all the lights in the living room will eat together.</td><td>The most recommended default approach. In the future, if you buy an extra lamp in the living room and hang it in the area, it will be automatically included and automated. <em>No need to change a word</em></td></tr>
+ <tr><td><strong>Group helper</strong></td><td>Settings → Devices & Services → Helpers → Create helper → Group, you can create various groups such as lights, switches, curtains, fans, sensors, etc.</td><td>This set of lights needs to be <strong>Use it as a star on the dashboard</strong> to display and operate. It is a real entity that can be placed in cards and used as conditions.</td></tr>
+ <tr><td><strong>Label</strong></td><td>Label the entity with a label such as "Night Light" and select the label for the action target.</td><td>this set of things <em>Cross-region</em> (FamilyMart’s night lights, FamilyMart’s curtains), when the area cannot be accommodated</td></tr>
+ <tr><td><strong>List entities one by one</strong></td><td>Target one point at a time</td><td>The combination is one-off, and certain items are deliberately excluded (for example, "all lights in the living room are turned off except for the fish tank lights")</td></tr>
+ </tbody>
+ </table>
+ <p>Another benefit of the group helper: the state rule of the light group is <strong>As long as one of them is open, the group is open.</strong>, so the condition "Are the lights in the living room still on?" is particularly intuitive to write. When creating a group, you can also choose to hide member entities so that the dashboard does not have multiple duplicate things.</p>
+ <div class="callout warn"><strong>Mistakes not to make:</strong> Don't make multiple groups just for "one control". The group is for <em>Need to be treated as one thing</em> It is used in various situations; it just needs to be turned on and off together. It is easier to use regions or labels, and it will not create multiple things in the entity list that you will not be able to understand after half a year. <code>light.group_xxx</code>.</div>
+ </div>
+ </details>
+ </section>
 
-    <div class="pager">
+ <div class="pager">
       <a class="prev" href="ch11_devices.html">
         <span class="label">← Previous</span>
         <span class="title">11 · Device settings</span>
@@ -570,11 +570,11 @@ data:
       </a>
     </div>
 
-    <footer class="site-footer">
+ <footer class="site-footer">
       <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
       <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
-  </main>
+ </main>
 </div>
 <script id="ui-strings" type="application/json">{"tocToggle":"Contents","tocExpand":"Expand chapter navigation","tocCollapse":"Collapse chapter navigation"}</script>
 <script src="../assets/js/toc.js"></script>

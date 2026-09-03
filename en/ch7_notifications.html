@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 7 · Notifications · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Install the Home Assistant Companion App, bind the phone and send the first push notification, and then make notifications with actionable notifications as you progress." />
+  <meta name="description" content="Install the Home Assistant Companion App, connect a phone, send a test notification, and create actionable notifications with buttons." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch7_notifications.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Chapter 7 · Notifications · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Install the Home Assistant Companion App, bind the phone and send the first push notification, and then make notifications with actionable notifications as you progress." />
+  <meta property="og:description" content="Install the Home Assistant Companion App, connect a phone, send a test notification, and create actionable notifications with buttons." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch7_notifications.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch7/01_mobile_sensors.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chapter 7 · Notifications · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Install the Home Assistant Companion App, bind the phone and send the first push notification, and then make notifications with actionable notifications as you progress." />
+  <meta name="twitter:description" content="Install the Home Assistant Companion App, connect a phone, send a test notification, and create actionable notifications with buttons." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch7/01_mobile_sensors.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -31,7 +31,7 @@
 </head>
 <body>
 <div class="layout">
-  <aside class="sidebar">
+ <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From zero to working</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch7_notifications.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch7_notifications.html" lang="en" aria-current="page">EN</a></nav>
@@ -47,7 +47,7 @@
       <li><a href="ch6_dashboard.html">Dashboards</a></li>
       <li><a href="ch7_notifications.html" class="active">Notifications</a></li>
       <li><a href="ch8_first_automation.html">First automation</a></li>
-      <li><a href="ch9_backups.html">backups</a></li>
+      <li><a href="ch9_backups.html">Backups</a></li>
       <li><a href="ch10_scripts.html">Scripts</a></li>
       <li><a href="ch11_devices.html">Device settings</a></li>
       <li><a href="ch12_domains.html">Domain reference</a></li>
@@ -67,177 +67,177 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why notify</a>
+      <a href="#why">Why notifications matter</a>
       <a href="#app">Install Companion App</a>
       <a href="#login">Log in with the account you just created</a>
-      <a href="#test">Send first notification</a>
+      <a href="#test">Send your first notification</a>
       <a href="#advanced">Advanced: With action button</a>
       <a href="#faq">FAQ</a>
-      <a href="#troubleshoot">Common stuck levels</a>
+      <a href="#troubleshoot">Common problems</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · HACS/add-ons/remote access</a>
-      <a href="appendix_scenes_helpers_groups.html">B · Scenes/helpers/groups</a>
+      <a href="appendix_hacs_addons.html">A · HACS, add-ons, and remote access</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scenes, helpers, and groups</a>
       <a href="appendix_hardware_install.html">C · Hardware and HAOS</a>
     </div>
   </aside>
 
-  <main class="content">
-    <div class="chapter-header">
-      <div class="kicker">Chapter 7</div>
-      <h1>Notifications</h1>
-      <p class="lead">Install the Companion App, bind your phone, and send the first test notification. After finishing this chapter, you have solved the last mile of "HA wants to tell you something".</p>
-    </div>
+ <main class="content">
+ <div class="chapter-header">
+ <div class="kicker">Chapter 7</div>
+ <h1>Notifications</h1>
+ <p class="lead">Install the Home Assistant Companion App, connect your phone, and send a test notification. This completes the path from “Home Assistant detected something” to “you actually know about it.”</p>
+ </div>
 
-    <section id="why" data-nav="Why notify">
-      <h2 data-icon="why">Why notify</h2>
-      <ul>
-        <li>After washing in the washing machine → the phone dinged.</li>
-        <li>If the door is not closed → it will remind you when you go out 100 meters away.</li>
-        <li>The power outage is back → You at work will know first.</li>
-        <li>Camera captures person → Notifications with thumbnail.</li>
-      </ul>
-      <p>Companion App is the carrier of these notifications, and it is also the most convenient tool for your daily HA operations.</p>
-      <p>The example notification in this chapter is<strong>trigger it</strong>(Manual test); the next chapter (ch8) teaches you how to notify<strong>Tuck in automation</strong>—For example, "Send a notification when the washing machine stops" and "Turn on the lights and notify when someone comes home."</p>
-    </section>
+ <section id="why" data-nav="Why notifications matter">
+ <h2 data-icon="why">Why notifications matter</h2>
+ <ul>
+ <li>After washing in the washing machine → the phone dinged.</li>
+ <li>If the door is not closed → it will remind you when you go out 100 meters away.</li>
+ <li>The power outage is back → You at work will know first.</li>
+ <li>Camera captures person → Notifications with thumbnail.</li>
+ </ul>
+ <p>Companion App is the carrier of these notifications, and it is also the most convenient tool for your daily HA operations.</p>
+ <p>The example notification in this chapter is <strong>trigger it</strong> (Manual test); the next chapter (ch8) teaches you how to notify <strong>Tuck in automation</strong>—For example, "Send a notification when the washing machine stops" and "Turn on the lights and notify when someone comes home."</p>
+ </section>
 
-    <section id="app" data-nav="Install Companion App">
-      <h2 data-icon="app">Install Companion App</h2>
-      <ol class="steps">
-        <li>
-          <h3>Search "Home Assistant" in the mobile phone store</h3>
-          <p><strong>iOS</strong>: App Store search <strong>Home Assistant</strong>(Developed by Home Assistant).<br><strong>Android</strong>: Play store search <strong>Home Assistant Companion</strong>.</p>
-        </li>
-        <li>
-          <h3>Open it and select "Log in to Home Assistant"</h3>
-          <p>The App will automatically scan the regional network for HA hosts. If it is scanned, just click it; if it is not scanned, just enter it manually. <code>http://homeassistant.local:8123</code> or your own URL.</p>
-        </li>
-      </ol>
-      <p><strong>What more will you get after installing the app?</strong>: In addition to push notifications, Companion App will automatically<strong>Battery level, location, WiFi name, Bluetooth sensor</strong>When the data is uploaded to HA, it becomes <code>sensor.yourname_battery_level</code>, <code>device_tracker.yourname_phone</code> etc. entity. These are the raw materials for the automation of "automatically turning on the lights when you get home" and "reminder when the battery is below 20%".</p>
-    </section>
+ <section id="app" data-nav="Install Companion App">
+ <h2 data-icon="app">Install Companion App</h2>
+ <ol class="steps">
+ <li>
+ <h3>Search "Home Assistant" in the phone store</h3>
+ <p><strong>iOS</strong>: App Store search <strong>Home Assistant</strong> (Developed by Home Assistant).<br><strong>Android</strong>: Play store search <strong>Home Assistant Companion</strong>.</p>
+ </li>
+ <li>
+ <h3>Open it and select "Log in to Home Assistant"</h3>
+ <p>The App will automatically scan the regional network for HA hosts. If it is scanned, just click it; if it is not scanned, just enter it manually. <code>http://homeassistant.local:8123</code> or your own URL.</p>
+ </li>
+ </ol>
+ <p><strong>What more will you get after installing the app?</strong>: In addition to push notifications, Companion App will automatically <strong>Battery level, location, WiFi name, Bluetooth sensor</strong> When the data is uploaded to HA, it becomes <code>sensor.yourname_battery_level</code>, <code>device_tracker.yourname_phone</code> etc. entity. These are the raw materials for the automation of "automatically turning on the lights when you get home" and "reminder when the battery is below 20%".</p>
+ </section>
 
-    <section id="login" data-nav="Log in with the account you just created">
-      <h2 data-icon="login">Log in with the account you just created</h2>
-      <ol class="steps">
-        <li>
-          <h3>Enter username and password</h3>
-          <p>use<strong>Chapter 5</strong>Create a personal account (do not use a shared administrator account) - so notifications can be sent to you by name.</p>
-        </li>
-        <li>
-          <h3>Permissions to allow app access</h3>
-          <p>Will ask if I want to open it<strong>Notifications</strong>, <strong>location</strong>, <strong>Bluetooth</strong>, <strong>camera</strong> Wait. It is recommended to open at least:</p>
-          <ul>
-            <li><strong>Notifications</strong> — This is the focus of this chapter and must be opened.</li>
-            <li><strong>location (always)</strong> — "Go home" and "leave home" the soul of automation.</li>
-          </ul>
-          <div class="callout warn"><strong>iOS reminder:</strong>The "Location: Always" of iOS needs to be changed in the system settings, and the first login can only be done "when using the app". Then go back to the settings and change it to "Forever".</div>
-        </li>
-        <li>
-          <h3>A bunch of sensors will automatically appear on the Home Assistant side.</h3>
-          <p>Go back to the HA web page → Settings → Devices and Services, and you will see a new device called your phone name (for example, "Xiao Ming's iPhone") with dozens of sensors: battery, charging, WiFi name, Focus mode, etc.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch7/01_mobile_sensors.png" alt="Sensor automatically registered by mobile phone" />
-            <figcaption><strong>Figure 7-1</strong>After the mobile app is registered, the HA sensor automatically appears.</figcaption>
-          </figure>
-        </li>
-      </ol>
-    </section>
+ <section id="login" data-nav="Log in with the account you just created">
+ <h2 data-icon="login">Log in with the account you just created</h2>
+ <ol class="steps">
+ <li>
+ <h3>Enter username and password</h3>
+ <p>use <strong>Chapter 5</strong> Create a personal account (do not use a shared administrator account) - so notifications can be sent to you by name.</p>
+ </li>
+ <li>
+ <h3>Permissions to allow app access</h3>
+ <p>Will ask if I want to open it <strong>Notifications</strong>, <strong>location</strong>, <strong>Bluetooth</strong>, <strong>camera</strong> Wait. It is recommended to open at least:</p>
+ <ul>
+ <li><strong>Notifications</strong> — This is the focus of this chapter and must be opened.</li>
+ <li><strong>location (always)</strong> — "Go home" and "leave home" the soul of automation.</li>
+ </ul>
+ <div class="callout warn"><strong>iOS reminder:</strong> The "Location: Always" of iOS needs to be changed in the system settings, and the first login can only be done "when using the app". Then go back to the settings and change it to "Forever".</div>
+ </li>
+ <li>
+ <h3>A bunch of sensors will automatically appear on the Home Assistant side.</h3>
+ <p>Go back to the HA web page → Settings → Devices and Services, and you will see a new device called your phone name (for example, "Xiao Ming's iPhone") with dozens of sensors: battery, charging, WiFi name, Focus mode, etc.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch7/01_mobile_sensors.png" alt="Sensor automatically registered by phone" />
+ <figcaption><strong>Figure 7-1</strong> After the mobile app is registered, the HA sensor automatically appears.</figcaption>
+ </figure>
+ </li>
+ </ol>
+ </section>
 
-    <section id="test" data-nav="Send first notification">
-      <h2 data-icon="test">Send first notification</h2>
-      <div class="callout"><strong>This function has been renamed:</strong>The sidebar used to have an independent "Developer Tools", which will be moved into the whole package starting from 2026.2<strong>Settings</strong>Here, in 2026.8, the name was simplified from “Developer Tools” to<strong>Tools</strong>. So the new version path is<strong>Settings → Tools → Actions</strong>, the old version is a sidebar<strong>Developer Tools → Actions</strong>, the paginated content inside is exactly the same. In addition, what was previously called "Service" will be officially renamed starting from 2024.8<strong>Action</strong>, in YAML <code>service:</code> Also changed it to <code>action:</code>.</div>
-      <ol class="steps">
-        <li>
-          <h3>Settings → Tools → Actions</h3>
-          <p>"Settings" → "Tools" → "Actions" on the left side of the HA web page.</p>
-        </li>
-        <li>
-          <h3>Action column selection <code>notify.mobile_app_XXX</code></h3>
-          <p>XXX is the name of the mobile phone you just logged in to. This action is automatically created by the app for you.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch7/02_dev_services.png" alt="Settings → Tools → Actions" />
-            <figcaption><strong>Figure 7-2</strong>Settings → Tool action execution interface (the screenshot is the old version of the developer tool).</figcaption>
-          </figure>
-          <p><strong>Notifications action naming rules</strong>: <code>notify.mobile_app_&lt;device name&gt;</code>, non-alphanumeric characters in the device name will become underscores. For example, iPhone 13 Pro Max will become <code>notify.mobile_app_iphone_13_pro_max</code>. Go to "Settings → Tools → Actions" and search <code>notify.mobile_app</code> You can see your phone.</p>
-        </li>
-        <li>
-          <h3>Fill in message and title</h3>
-          <p>Just give it a try:</p>
-          <pre class="code-block">action: notify.mobile_app_xxx
+ <section id="test" data-nav="Send your first notification">
+ <h2 data-icon="test">Send your first notification</h2>
+ <div class="callout"><strong>This function has been renamed:</strong> The sidebar used to have an independent "Developer Tools", which will be moved into the whole package starting from 2026.2 <strong>Settings</strong> Here, in 2026.8, the name was simplified from “Developer Tools” to <strong>Tools</strong>. So the new version path is <strong>Settings → Tools → Actions</strong>, the old version is a sidebar <strong>Developer Tools → Actions</strong>, the paginated content inside is exactly the same. In addition, what was previously called "Service" will be officially renamed starting from 2024.8 <strong>Action</strong>, in YAML <code>service:</code> Also changed it to <code>action:</code>.</div>
+ <ol class="steps">
+ <li>
+ <h3>Settings → Tools → Actions</h3>
+ <p>"Settings" → "Tools" → "Actions" on the left side of the HA web page.</p>
+ </li>
+ <li>
+ <h3>Select the action <code>notify.mobile_app_XXX</code></h3>
+ <p>XXX is the name of the phone you just logged in to. This action is automatically created by the app for you.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch7/02_dev_services.png" alt="Settings → Tools → Actions" />
+ <figcaption><strong>Figure 7-2</strong> Settings → Tools action execution interface (the screenshot is the old version of the developer tool).</figcaption>
+ </figure>
+ <p><strong>Notifications action naming rules</strong>: <code>notify.mobile_app_&lt;device name&gt;</code>, non-alphanumeric characters in the device name will become underscores. For example, iPhone 13 Pro Max will become <code>notify.mobile_app_iphone_13_pro_max</code>. Go to "Settings → Tools → Actions" and search <code>notify.mobile_app</code> You can see your phone.</p>
+ </li>
+ <li>
+ <h3>Fill in message and title</h3>
+ <p>Just give it a try:</p>
+ <pre class="code-block">action: notify.mobile_app_xxx
 data:
-  title: "Test Notification"
-  message: "First message sent from HA"</pre>
-        </li>
-        <li>
-          <h3>Click "Execute Action"</h3>
-          <p>The phone dings immediately! — Congratulations, your smart home now has a "mouth".</p>
-        </li>
-      </ol>
-      <div class="callout"><strong>Verify</strong>: The phone should pop up a "test notification" within 5 seconds. If not received: (1) Is the App notification permission turned on? (2) The phone is not in Do Not Disturb mode. (3) The HA host is connected normally.</div>
-    </section>
+  title: "Test notification"
+  message: "First message from HA"</pre>
+ </li>
+ <li>
+ <h3>Click "Execute Action"</h3>
+ <p>The phone dings immediately! — Congratulations, your smart home now has a "mouth".</p>
+ </li>
+ </ol>
+ <div class="callout"><strong>Verify</strong>: The phone should pop up a "test notification" within 5 seconds. If not received: (1) Is the App notification permission turned on? (2) The phone is not in Do Not Disturb mode. (3) The HA host is connected normally.</div>
+ </section>
 
-    <section id="advanced" data-nav="Advanced: With action button">
-      <h2 data-icon="advanced">Advanced: Notifications with action buttons</h2>
-      <p>Notifications are not just static text, they can also have buttons for you to click:</p>
-      <pre class="code-block">action: notify.mobile_app_xxx
+ <section id="advanced" data-nav="Advanced: With action button">
+ <h2 data-icon="advanced">Advanced: Notifications with action buttons</h2>
+ <p>Notifications are not just static text, they can also have buttons for you to click:</p>
+ <pre class="code-block">action: notify.mobile_app_xxx
 data:
-  title: "Someone rang the bell at the door"
-  message: "Click below to decide whether to open the door or not."
+  title: "Someone rang the doorbell"
+  message: "Tap an action below to choose whether to open the door."
   data:
     actions:
       - action: "OPEN_DOOR"
-        title: "Open the door"
+        title: "Open door"
       - action: "IGNORE"
-        title: "ignore"</pre>
-      <p>Then listen for events in automation <code>mobile_app_notification_action</code>, get <code>action: "OPEN_DOOR"</code> Just perform the door opening action. Then you can open the door remotely no matter where you are in the world.</p>
-      <div class="callout warn"><strong>Two pitfalls that are easy to step into:</strong>
-      <ol style="margin:8px 0 0 20px;">
-      <li><strong>Android can have up to 3 action buttons in one notification</strong>; iOS can be put to about 10 but more than that will require sliding down. The cross-platform limit is 3.</li>
-      <li><strong>action ID is unique in the entire domain</strong>. If you have two doorbells, use the same one <code>action: OPEN_DOOR</code>, clicking either will trigger the same automation. To avoid it, use <code>{{ context.id }}</code> Or prefixed with the device name, for example <code>action: OPEN_DOOR_FRONT</code>.</li>
-      </ol></div>
+        title: "Ignore"</pre>
+ <p>Then listen for events in automation <code>mobile_app_notification_action</code>, get <code>action: "OPEN_DOOR"</code> Just perform the door opening action. Then you can open the door remotely no matter where you are in the world.</p>
+ <div class="callout warn"><strong>Two pitfalls that are easy to step into:</strong>
+ <ol style="margin:8px 0 0 20px;">
+ <li><strong>Android can have up to 3 action buttons in one notification</strong>; iOS can be put to about 10 but more than that will require sliding down. The cross-platform limit is 3.</li>
+ <li><strong>action ID is unique in the entire domain</strong>. If you have two doorbells, use the same one <code>action: OPEN_DOOR</code>, clicking either will trigger the same automation. To avoid it, use <code>{{ context.id }}</code> Or prefixed with the device name, for example <code>action: OPEN_DOOR_FRONT</code>.</li>
+ </ol></div>
 
-      <h3>tag and group: manage multiple notifications</h3>
-      <ul>
-        <li><code>tag: laundry</code>: The next notification with the same tag will be<strong>replace</strong>The previous one (for example, laundry progress: washing → spin → completed).</li>
-        <li><code>group: security</code>: Notifications meeting of the same group<strong>stacked together</strong>(Doorbell + alarm are all in the same pile).</li>
-      </ul>
-      <div class="callout"><strong>Advanced application notice:</strong>Camera action → Notifications with screenshot → There are action buttons "Record video for 30 seconds" / "Call the police". These are left for the next series of teachings.</div>
-    </section>
+ <h3>Tags and groups: manage multiple notifications</h3>
+ <ul>
+ <li><code>tag: laundry</code>: The next notification with the same tag will be <strong>replace</strong> The previous one (for example, laundry progress: washing → spin → completed).</li>
+ <li><code>group: security</code>: Notifications meeting of the same group <strong>stacked together</strong> (Doorbell + alarm are all in the same pile).</li>
+ </ul>
+ <div class="callout"><strong>Advanced application notice:</strong> Camera action → Notifications with screenshot → There are action buttons "Record video for 30 seconds" / "Call the police". These are left for the next series of teachings.</div>
+ </section>
 
-    <section id="faq" data-nav="FAQ">
-      <h2 data-icon="faq">FAQ</h2>
-      <details class="faq">
-        <summary>Notifications not received?</summary>
-        <div class="body">Check in order: (1) Whether the App notification permission of the mobile phone system is turned on; (2) whether "Settings → Companion App → Notifications" in the App is turned on; (3) whether the name of the executed action is written correctly; (4) whether the phone is in Do Not Disturb mode.</div>
-      </details>
-      <details class="faq">
-        <summary>Can all family members’ cell phones be notified?</summary>
-        <div class="body">Yes. There is a special action called <code>notify.notify</code>, will be sent to<strong>all</strong>Logged-in mobile app. You can also create your own notify group and send it to only some people.</div>
-      </details>
-      <details class="faq">
-        <summary>Can I send via Email, Line, or Telegram?</summary>
-        <div class="body">Yes. SMTP, Telegram Bot, Line Notify (service has been discontinued and switched to Messaging API) are all integrated. However, it is recommended to familiarize yourself with the mobile app first, and use other channels as a backup.</div>
-      </details>
-    </section>
+ <section id="faq" data-nav="FAQ">
+ <h2 data-icon="faq">FAQ</h2>
+ <details class="faq">
+ <summary>Notifications not received?</summary>
+ <div class="body">Check in order: (1) Whether the App notification permission of the phone system is turned on; (2) whether "Settings → Companion App → Notifications" in the App is turned on; (3) whether the name of the executed action is written correctly; (4) whether the phone is in Do Not Disturb mode.</div>
+ </details>
+ <details class="faq">
+ <summary>Can all family members’ cell phones be notified?</summary>
+ <div class="body">Yes. There is a special action called <code>notify.notify</code>, will be sent to <strong>all</strong> Logged-in mobile app. You can also create your own notify group and send it to only some people.</div>
+ </details>
+ <details class="faq">
+ <summary>Can I send via Email, Line, or Telegram?</summary>
+ <div class="body">Yes. SMTP, Telegram Bot, Line Notify (service has been discontinued and switched to Messaging API) are all integrated. However, it is recommended to familiarize yourself with the mobile app first, and use other channels as a backup.</div>
+ </details>
+ </section>
 
-    <section id="troubleshoot" data-nav="Common stuck levels">
-      <h2 data-icon="tips">Common stuck levels</h2>
-      <details class="faq">
-        <summary>Not receiving notifications on mobile phone</summary>
-        <div class="body">Check in order: (1) Companion App has enabled notification permission; (2) The phone is not in Airplane/Do Not Disturb/Power Saving mode; (3) HA external network is OK (App needs to connect to Firebase/APNs); (4) Is the action name correct? Go to "Settings → Tools → Actions" to search <code>notify.mobile_app</code> Do you have your cell phone?</div>
-      </details>
-      <details class="faq">
-        <summary>iOS notification received but silent</summary>
-        <div class="body">iOS needs to set "Notifications Sounds" in the App and specify it in the notification data <code>push:</code> <code>sound:</code>. If not set, the display will be muted.</div>
-      </details>
-      <details class="faq">
-        <summary>You can’t receive it away from home (you can receive it at home)</summary>
-        <div class="body">Companion App notifications are sent through Firebase/APNs, and will be received as long as the phone can access the Internet. It has nothing to do with whether you have Nabu Casa or DDNS. But to use the App to "operate" HA (not receive notifications), you need a remote connection - see the appendix.</div>
-      </details>
-    </section>
+ <section id="troubleshoot" data-nav="Common problems">
+ <h2 data-icon="tips">Common problems</h2>
+ <details class="faq">
+ <summary>Not receiving notifications on phone</summary>
+ <div class="body">Check in order: (1) Companion App has enabled notification permission; (2) The phone is not in Airplane/Do Not Disturb/Power Saving mode; (3) HA external network is OK (App needs to connect to Firebase/APNs); (4) Is the action name correct? Go to "Settings → Tools → Actions" to search <code>notify.mobile_app</code> Do you have your cell phone?</div>
+ </details>
+ <details class="faq">
+ <summary>iOS notification received but silent</summary>
+ <div class="body">iOS needs to set "Notifications Sounds" in the App and specify it in the notification data <code>push:</code> <code>sound:</code>. If not set, the display will be muted.</div>
+ </details>
+ <details class="faq">
+ <summary>You can’t receive it away from home (you can receive it at home)</summary>
+ <div class="body">Companion App notifications are sent through Firebase/APNs, and will be received as long as the phone can access the Internet. It has nothing to do with whether you have Nabu Casa or DDNS. But to use the App to "operate" HA (not receive notifications), you need a remote connection - see the appendix.</div>
+ </details>
+ </section>
 
-    <div class="pager">
+ <div class="pager">
       <a class="prev" href="ch6_dashboard.html">
         <span class="label">← Previous</span>
         <span class="title">06 · Dashboards</span>
@@ -248,11 +248,11 @@ data:
       </a>
     </div>
 
-    <footer class="site-footer">
+ <footer class="site-footer">
       <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
       <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
-  </main>
+ </main>
 </div>
 <script id="ui-strings" type="application/json">{"tocToggle":"Contents","tocExpand":"Expand chapter navigation","tocCollapse":"Collapse chapter navigation"}</script>
 <script src="../assets/js/toc.js"></script>

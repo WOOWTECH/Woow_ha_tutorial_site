@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 20 · Add-ons and Docker architecture · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Tutorial on Home Assistant Add-on and Docker architecture: the differences between the four installation methods, the role of Supervisor, a tour of must-install add-ons, automatic uploading of backups to the cloud, and a vernacular version of the core concepts of containers." />
+  <meta name="description" content="Compare Home Assistant installation types, understand Supervisor and Docker concepts, install useful add-ons, read logs, and automate off-device backups." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch20_addons_docker.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Chapter 20 · Add-ons and Docker architecture · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Tutorial on Home Assistant Add-on and Docker architecture: the differences between the four installation methods, the role of Supervisor, a tour of must-install add-ons, automatic uploading of backups to the cloud, and a vernacular version of the core concepts of containers." />
+  <meta property="og:description" content="Compare Home Assistant installation types, understand Supervisor and Docker concepts, install useful add-ons, read logs, and automate off-device backups." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch20_addons_docker.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch20/02_supervisor_dashboard.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chapter 20 · Add-ons and Docker architecture · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Tutorial on Home Assistant Add-on and Docker architecture: the differences between the four installation methods, the role of Supervisor, a tour of must-install add-ons, automatic uploading of backups to the cloud, and a vernacular version of the core concepts of containers." />
+  <meta name="twitter:description" content="Compare Home Assistant installation types, understand Supervisor and Docker concepts, install useful add-ons, read logs, and automate off-device backups." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch20/02_supervisor_dashboard.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -31,7 +31,7 @@
 </head>
 <body>
 <div class="layout">
-  <aside class="sidebar">
+ <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From zero to working</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch20_addons_docker.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch20_addons_docker.html" lang="en" aria-current="page">EN</a></nav>
@@ -47,7 +47,7 @@
       <li><a href="ch6_dashboard.html">Dashboards</a></li>
       <li><a href="ch7_notifications.html">Notifications</a></li>
       <li><a href="ch8_first_automation.html">First automation</a></li>
-      <li><a href="ch9_backups.html">backups</a></li>
+      <li><a href="ch9_backups.html">Backups</a></li>
       <li><a href="ch10_scripts.html">Scripts</a></li>
       <li><a href="ch11_devices.html">Device settings</a></li>
       <li><a href="ch12_domains.html">Domain reference</a></li>
@@ -70,176 +70,176 @@
       <a href="#why">Why should we learn</a>
       <a href="#install_types">Four installation methods</a>
       <a href="#what_is_addon">What is Add-on</a>
-      <a href="#docker_basics">Docker vernacular version</a>
+      <a href="#docker_basics">Docker plain-language version</a>
       <a href="#steps">Install the first one</a>
-      <a href="#addon_page">Page pagination</a>
+      <a href="#addon_page">Page tabs</a>
       <a href="#read_log">Troubleshooting by looking at log files</a>
       <a href="#must_have">Must-have outfit for tour</a>
       <a href="#repositories">Add third-party warehouse</a>
       <a href="#cloud_backup">Back up to the cloud</a>
       <a href="#performance">Resources and Effectiveness</a>
-      <a href="#troubleshoot">Common stuck levels</a>
+      <a href="#troubleshoot">Common problems</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · HACS/add-ons/remote access</a>
-      <a href="appendix_scenes_helpers_groups.html">B · Scenes/helpers/groups</a>
+      <a href="appendix_hacs_addons.html">A · HACS, add-ons, and remote access</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scenes, helpers, and groups</a>
       <a href="appendix_hardware_install.html">C · Hardware and HAOS</a>
     </div>
   </aside>
 
-  <main class="content">
-    <div class="chapter-header">
-      <div class="kicker">Chapter 20</div>
-      <h1>Add-on and Docker architecture</h1>
-      <p class="lead">The Add-on you click "Install" in the store is actually a Docker container. This chapter explains the terms Supervisor, image file, data volume, and port in a convenient way, walks you through installing several necessary Add-ons, sets up backups to automatically upload to the cloud, and learns to look at the log files to troubleshoot on your own.</p>
-    </div>
+ <main class="content">
+ <div class="chapter-header">
+ <div class="kicker">Chapter 20</div>
+ <h1>Add-ons and Docker architecture</h1>
+ <p class="lead">An add-on installed from the store is a Docker container managed by Supervisor. Learn the concepts behind images, volumes, and ports; install useful add-ons; configure off-device backups; and troubleshoot from logs.</p>
+ </div>
 
-    <section id="why" data-nav="Why should we learn">
-      <h2 data-icon="why">Why do we need to understand the layer underneath Add-on?</h2>
+ <section id="why" data-nav="Why should we learn">
+ <h2 data-icon="why">Why do we need to understand the layer underneath Add-on?</h2>
 
-      <p>you are here<a href="appendix_hacs_addons.html">Appendix A</a>Already know where the Add-on store is and how to install it. That one is about "knowing how to use it", and this chapter is about "knowing why it breaks".</p>
+ <p>you are here <a href="appendix_hacs_addons.html">Appendix A</a> Already know where the Add-on store is and how to install it. That one is about "knowing how to use it", and this chapter is about "knowing why it breaks".</p>
 
-      <p>What's the difference? Here are a few situations that actually happen:</p>
+ <p>What's the difference? Here are a few situations that actually happen:</p>
 
-      <ul>
-        <li>You installed Home Assistant on your laptop, but you can’t find the Add-on store in the menu on the left - it’s not that you’re handicapped, it’s<strong>Wrong installation method</strong>.</li>
-        <li>You installed Zigbee2MQTT, but it never starts, and the page only says "stopped". You don't know where to look to see what it's complaining about.</li>
-        <li>If you install Node-RED and another web tool at the same time, the second one will not work - both are trying to grab the same house number.</li>
-        <li>You reinstalled the entire machine, only to find that the backups were all stored in the dead machine.</li>
-      </ul>
+ <ul>
+ <li>You installed Home Assistant on your laptop, but you can’t find the Add-on store in the menu on the left - it’s not that you’re handicapped, it’s <strong>Wrong installation method</strong>.</li>
+ <li>You installed Zigbee2MQTT, but it never starts, and the page only says "stopped". You don't know where to look to see what it's complaining about.</li>
+ <li>If you install Node-RED and another web tool at the same time, the second one will not work - both are trying to grab the same house number.</li>
+ <li>You reinstalled the entire machine, only to find that the backups were all stored in the dead machine.</li>
+ </ul>
 
-      <p>The solutions to these four things are all hidden in the same layer of knowledge: Add-on is a container, and the container has an image file, a data volume, a connection port, and a record file. After reading this chapter, if you encounter any of the above situations, you will know where to click as the first step.</p>
+ <p>The solutions to these four things are all hidden in the same layer of knowledge: Add-on is a container, and the container has an image file, a data volume, a connection port, and a record file. After reading this chapter, if you encounter any of the above situations, you will know where to click as the first step.</p>
 
-      <div class="callout warn"><strong>Warning:</strong>Starting from Home Assistant version 2026.2, the official name of “Add-on (add-on)” is “<strong>Apps</strong>", the menu also changes from "Settings → Add-ons" to "<strong>Settings → Apps</strong>”. Technically, it hasn't changed at all, it's just a name that's easier to understand. The two words in this chapter will be used interchangeably, referring to the same thing; whichever one appears on your screen will be based on your version.</div>
-    </section>
+ <div class="callout warn"><strong>Warning:</strong> Starting from Home Assistant version 2026.2, Home Assistant name of “Add-on (add-on)” is “<strong>Apps</strong> ", the menu also changes from "Settings → Add-ons" to " <strong>Settings → Apps</strong>”. Technically, it hasn't changed at all, it's just a name that's easier to understand. The two words in this chapter will be used interchangeably, referring to the same thing; whichever one appears on your screen will be based on your version.</div>
+ </section>
 
-    <section id="install_types" data-nav="Four installation methods">
-      <h2 data-icon="compare">Four installation methods, and their relationship with "whether there is an Add-on store"</h2>
+ <section id="install_types" data-nav="Four installation methods">
+ <h2 data-icon="compare">Four installation methods, and their relationship with "whether there is an Add-on store"</h2>
 
-      <p>This is the biggest pitfall for newbies:<strong>Not every Home Assistant has an Add-on store.</strong>Whether or not there is a store is determined the moment you decide how to install it, and you cannot open it later by setting it.</p>
+ <p>This is the biggest pitfall for newbies: <strong>Not every Home Assistant has an Add-on store.</strong> Whether or not there is a store is determined the moment you decide how to install it, and you cannot open it later by setting it.</p>
 
-      <table class="data-table">
-        <thead>
-          <tr><th>Installation method</th><th>vernacular explanation</th><th>Is there an Add-on/Apps store?</th><th>One-click update</th><th>Current support status</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Home Assistant OS</strong> (HAOS)</td>
-            <td>The entire machine only runs Home Assistant, and the operating system is officially made. Home Assistant Green, Yellow, and Raspberry Pi burning official image files are all considered this.</td>
-            <td><strong>Yes</strong></td>
-            <td>Yes</td>
-            <td>Official recommendation, complete support</td>
-          </tr>
-          <tr>
-            <td><strong>Home Assistant Container</strong></td>
-            <td>On your own Linux/NAS/Synology, use Docker to run a Home Assistant container.</td>
-            <td><strong>No</strong></td>
-            <td>No (you need to pull the new image file and rebuild the container yourself)</td>
-            <td>Official support</td>
-          </tr>
-          <tr>
-            <td><strong>Home Assistant Supervised</strong></td>
-            <td>I manually installed Supervisor on my Debian to create an environment close to HAOS.</td>
-            <td>Yes</td>
-            <td>Yes</td>
-            <td><strong>Obsolete</strong>, officially stopped supporting since 2025.12</td>
-          </tr>
-          <tr>
-            <td><strong>Home Assistant Core</strong></td>
-            <td>Run directly in the Python environment without any shell.</td>
-            <td>No</td>
-            <td>No</td>
-            <td><strong>Obsolete</strong>, officially stopped supporting since 2025.12</td>
-          </tr>
-        </tbody>
-      </table>
+ <table class="data-table">
+ <thead>
+ <tr><th>Installation method</th><th>plain-language explanation</th><th>Is there an Add-on/Apps store?</th><th>One-click update</th><th>Current support status</th></tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td><strong>Home Assistant OS</strong> (HAOS)</td>
+ <td>The entire machine only runs Home Assistant, and the operating system is officially made. Home Assistant Green, Yellow, and Raspberry Pi burning official image files are all considered this.</td>
+ <td><strong>Yes</strong></td>
+ <td>Yes</td>
+ <td>Official recommendation, complete support</td>
+ </tr>
+ <tr>
+ <td><strong>Home Assistant Container</strong></td>
+ <td>On your own Linux/NAS/Synology, use Docker to run a Home Assistant container.</td>
+ <td><strong>No</strong></td>
+ <td>No (you need to pull the new image file and rebuild the container yourself)</td>
+ <td>Official support</td>
+ </tr>
+ <tr>
+ <td><strong>Home Assistant Supervised</strong></td>
+ <td>I manually installed Supervisor on my Debian to create an environment close to HAOS.</td>
+ <td>Yes</td>
+ <td>Yes</td>
+ <td><strong>Obsolete</strong>, officially stopped supporting since 2025.12</td>
+ </tr>
+ <tr>
+ <td><strong>Home Assistant Core</strong></td>
+ <td>Run directly in the Python environment without any shell.</td>
+ <td>No</td>
+ <td>No</td>
+ <td><strong>Obsolete</strong>, officially stopped supporting since 2025.12</td>
+ </tr>
+ </tbody>
+ </table>
 
-      <div class="callout warn"><strong>Warning:</strong>The official announced in May 2025 that the two installation methods Core and Supervised will be eliminated, and support will be officially ended in version 2025.12. Also eliminated are 32-bit architectures such as i386, armhf, and armv7. The old machine technically still runs and can be updated, but there is no official support if something goes wrong.<strong>Currently, only HAOS and Container are officially supported.</strong></div>
+ <div class="callout warn"><strong>Warning:</strong> Home Assistant announced in May 2025 that the two installation methods Core and Supervised will be eliminated, and support will be officially ended in version 2025.12. Also eliminated are 32-bit architectures such as i386, armhf, and armv7. The old machine technically still runs and can be updated, but there is no official support if something goes wrong. <strong>Currently, only HAOS and Container are officially supported.</strong></div>
 
-      <p>So the conclusion is simple:</p>
+ <p>So the conclusion is simple:</p>
 
-      <ul>
-        <li><strong>You want Add-on Store → Install HAOS.</strong>Green, Yellow, or Raspberry Pi can burn the official image file, or install HAOS on an empty mini host.</li>
-        <li><strong>You use Container (e.g. Docker on Synology NAS) → There is no store, and there never will be.</strong>If you need things like MQTT broker and Node-RED, you can open a separate Docker container to run it. The function is the same, you just have to do it yourself.</li>
-      </ul>
+ <ul>
+ <li><strong>You want Add-on Store → Install HAOS.</strong> Green, Yellow, or Raspberry Pi can burn Home Assistant image file, or install HAOS on an empty mini host.</li>
+ <li><strong>You use Container (e.g. Docker on Synology NAS) → There is no store, and there never will be.</strong> If you need things like MQTT broker and Node-RED, you can open a separate Docker container to run it. The function is the same, you just have to do it yourself.</li>
+ </ul>
 
-      <div class="callout"><strong>Concept:</strong>Official documents clearly state that part of the integration of Thread and Z-Wave is supported by Add-on, so Container installation<strong>No out-of-the-box support</strong>. If you plan to play Zigbee/Z-Wave/Thread, but don’t want to bother, choosing HAOS directly will save you half the trouble.</div>
-    </section>
+ <div class="callout"><strong>Concept:</strong> Official documentation clearly states that part of the integration of Thread and Z-Wave is supported by Add-on, so Container installation <strong>No out-of-the-box support</strong>. If you plan to play Zigbee/Z-Wave/Thread, but don’t want to bother, choosing HAOS directly will save you half the trouble.</div>
+ </section>
 
-    <section id="what_is_addon" data-nav="What is Add-on">
-      <h2 data-icon="docker">The essence of Add-on: a Docker container managed by Supervisor</h2>
+ <section id="what_is_addon" data-nav="What is Add-on">
+ <h2 data-icon="docker">The essence of Add-on: a Docker container managed by Supervisor</h2>
 
-      <p>The official development document is very straightforward:<strong>The bottom layer of Apps (also known as Add-on) is the container image file published to the container registry.</strong>, sources such as GitHub Container Registry or Docker Hub.</p>
+ <p>Home Assistant development document is very straightforward: <strong>The bottom layer of Apps (also known as Add-on) is the container image file published to the container registry.</strong>, sources such as GitHub Container Registry or Docker Hub.</p>
 
-      <p>In other words, when you press "Install" in the store, what happens is:</p>
+ <p>In other words, when you press "Install" in the store, what happens is:</p>
 
-      <ol class="steps">
-        <li>
-          <h3>Supervisor goes to the Internet to grab the image file</h3>
-          <p>It looks at the Add-on configuration file and knows which URL to go to, which version to grab, and which one corresponds to your CPU architecture (arm64 or amd64). This step takes the most time and is also the most likely to fail due to network failure.</p>
-        </li>
-        <li>
-          <h3>Supervisor opens a container using that image file</h3>
-          <p>By the way, according to the settings of the Add-on, decide which ports to open, which folders to attach to it, and whether to give it a USB device.</p>
-        </li>
-        <li>
-          <h3>Supervisor helps you connect the setting interface to Home Assistant</h3>
-          <p>That's why you will see the Add-on's "Settings" tab and "Log Files" tab in the Home Assistant web page, without having to type the Docker command yourself.</p>
-        </li>
-        <li>
-          <h3>Supervisor keeps watching it</h3>
-          <p>It is responsible for starting, stopping, updating, watchdog (Watchdog) restart, and automatic startup at boot. These are the switches you see on the Add-on page.</p>
-        </li>
-      </ol>
+ <ol class="steps">
+ <li>
+ <h3>Supervisor goes to the Internet to grab the image file</h3>
+ <p>It looks at the Add-on configuration file and knows which URL to go to, which version to grab, and which one corresponds to your CPU architecture (arm64 or amd64). This step takes the most time and is also the most likely to fail due to network failure.</p>
+ </li>
+ <li>
+ <h3>Supervisor opens a container using that image file</h3>
+ <p>By the way, according to the settings of the Add-on, decide which ports to open, which folders to attach to it, and whether to give it a USB device.</p>
+ </li>
+ <li>
+ <h3>Supervisor helps you connect the setting interface to Home Assistant</h3>
+ <p>That's why you will see the Add-on's "Settings" tab and "Log Files" tab in the Home Assistant web page, without having to type the Docker command yourself.</p>
+ </li>
+ <li>
+ <h3>Supervisor keeps watching it</h3>
+ <p>It is responsible for starting, stopping, updating, watchdog (Watchdog) restart, and automatic startup at boot. These are the switches you see on the Add-on page.</p>
+ </li>
+ </ol>
 
-      <p>So <strong>Supervisor is the "housekeeper"</strong>. The Home Assistant itself is a container, and each Add-on is also a container. The Supervisor stands beside it and manages everyone's life and death. This also explains why Container installations don't have stores - <strong>it has no steward at all</strong>, only Home Assistant is running in its own container.</p>
+ <p>So <strong>Supervisor is the "housekeeper"</strong>. The Home Assistant itself is a container, and each Add-on is also a container. The Supervisor stands beside it and manages everyone's life and death. This also explains why Container installations don't have stores - <strong>it has no steward at all</strong>, only Home Assistant is running in its own container.</p>
 
-      <div class="callout"><strong>Concept:</strong>Add-on and "Integration" are two completely different things. This is the most common confusion among novices. This is also the reason why the official name is changed to Apps.<strong>Integration is to "connect" external devices and services into Home Assistant</strong>(e.g. Xiaomi, Google, Weather);<strong>Add-on/App is an independent program that runs "next to" Home Assistant.</strong>(such as an MQTT server). Some things require both sides: Zigbee2MQTT is an Add-on, and Mosquitto is also an Add-on, but in order for Home Assistant to see the light bulb, you have to install MQTT <em>Integrate</em>.</div>
-    </section>
+ <div class="callout"><strong>Concept:</strong> Add-on and "Integration" are two completely different things. This is the most common confusion among novices. This is also the reason why Home Assistant name is changed to Apps. <strong>Integration is to "connect" external devices and services into Home Assistant</strong> (e.g. Xiaomi, Google, Weather); <strong>Add-on/App is an independent program that runs "next to" Home Assistant.</strong> (such as an MQTT server). Some things require both sides: Zigbee2MQTT is an Add-on, and Mosquitto is also an Add-on, but in order for Home Assistant to see the light bulb, you have to install MQTT <em>Integrate</em>.</div>
+ </section>
 
-    <section id="docker_basics" data-nav="Docker vernacular version">
-      <h2 data-icon="concept">Docker vernacular version: a convenience store</h2>
+ <section id="docker_basics" data-nav="Docker plain-language version">
+ <h2 data-icon="concept">Docker plain-language version: a convenience store</h2>
 
-      <p>The term Docker sounds hard, but in fact each one corresponds to daily life. We think of it like a chain bento shop.</p>
+ <p>The term Docker sounds hard, but in fact each one corresponds to daily life. We think of it like a chain bento shop.</p>
 
-      <table class="data-table">
-        <thead>
-          <tr><th>Docker noun</th><th>convenience store metaphor</th><th>What actually happens in Home Assistant</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>image file<br>Image</strong></td>
-            <td>"Recipe + Preparation Kit" from the central kitchen. It's not edible on its own, but if you follow it, every branch will make exactly the same bento. The conditioning package itself is read-only and you will not change it.</td>
-            <td>The package of programs grabbed from the Internet. The same version of the Mosquitto image file installed in your home has exactly the same content as that installed in someone else's home.</td>
-          </tr>
-          <tr>
-            <td><strong>container<br>Container</strong></td>
-            <td>care package<em>The freshly made bento</em>. You can throw it away after eating, and just make another batch after throwing it away. Anyway, the cooking bag is still there.</td>
-            <td>The Add-on that is running. When you press "Restart", you throw away the lunch and make a new one.</td>
-          </tr>
-          <tr>
-            <td><strong>data volume<br>Volume</strong></td>
-            <td>Bring your own crisper. The lunch box was lost, but the contents of the crisper were still there.</td>
-            <td>Your settings, database, Zigbee pairing list. So updating the Add-on won’t take your device completely off the Internet—the data isn’t in the container, it’s in the crisper.</td>
-          </tr>
-          <tr>
-            <td><strong>port<br>Port</strong></td>
-            <td>The order pick-up window number at the entrance of the store. The same number window can only be used by one store at the same time.</td>
-            <td>Home Assistant itself is 8123, Mosquitto is 1883, and Node-RED has its own number. Two Add-ons grab the same number → the second one cannot get up.</td>
-          </tr>
-          <tr>
-            <td><strong>Restart strategy<br>Restart policy</strong></td>
-            <td>"No matter how we close, we will automatically open the store the next day."</td>
-            <td>"Start at boot" and "Watchdog" switches on the Add-on page. The official Docker command for Container installation uses <code>--restart=unless-stopped</code>, meaning "unless you turn it off yourself, you will get up by yourself if something goes wrong."</td>
-          </tr>
-        </tbody>
-      </table>
+ <table class="data-table">
+ <thead>
+ <tr><th>Docker noun</th><th>convenience store metaphor</th><th>What actually happens in Home Assistant</th></tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td><strong>image file<br>Image</strong></td>
+ <td>"Recipe + Preparation Kit" from the central kitchen. It's not edible on its own, but if you follow it, every branch will make exactly the same bento. The conditioning package itself is read-only and you will not change it.</td>
+ <td>The package of programs grabbed from the Internet. The same version of the Mosquitto image file installed in your home has exactly the same content as that installed in someone else's home.</td>
+ </tr>
+ <tr>
+ <td><strong>container<br>Container</strong></td>
+ <td>care package <em>The freshly made bento</em>. You can throw it away after eating, and just make another batch after throwing it away. Anyway, the cooking bag is still there.</td>
+ <td>The Add-on that is running. When you press "Restart", you throw away the lunch and make a new one.</td>
+ </tr>
+ <tr>
+ <td><strong>data volume<br>Volume</strong></td>
+ <td>Bring your own crisper. The lunch box was lost, but the contents of the crisper were still there.</td>
+ <td>Your settings, database, Zigbee pairing list. So updating the Add-on won’t take your device completely off the Internet—the data isn’t in the container, it’s in the crisper.</td>
+ </tr>
+ <tr>
+ <td><strong>port<br>Port</strong></td>
+ <td>The order pick-up window number at the entrance of the store. The same number window can only be used by one store at the same time.</td>
+ <td>Home Assistant itself is 8123, Mosquitto is 1883, and Node-RED has its own number. Two Add-ons grab the same number → the second one cannot get up.</td>
+ </tr>
+ <tr>
+ <td><strong>Restart strategy<br>Restart policy</strong></td>
+ <td>"No matter how we close, we will automatically open the store the next day."</td>
+ <td>"Start at boot" and "Watchdog" switches on the Add-on page. Home Assistant Docker command for Container installation uses <code>--restart=unless-stopped</code>, meaning "unless you turn it off yourself, you will get up by yourself if something goes wrong."</td>
+ </tr>
+ </tbody>
+ </table>
 
-      <p>If you are a user of Container installation, the Docker Compose example given in the official document looks like this, which just strings together all the above terms:</p>
+ <p>If you are a user of Container installation, the Docker Compose example given in Home Assistant documentation looks like this, which just strings together all the above terms:</p>
 
-      <pre class="code-block"><code>services:
+ <pre class="code-block"><code>services:
   homeassistant:
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
@@ -251,408 +251,408 @@
     privileged: true
     network_mode: host
     environment:
-      TZ: Asia/Taipei</code></pre>
+      TZ: Etc/UTC</code></pre>
 
-      <p>Compare it:<code>image</code> It’s a conditioning bag,<code>volumes</code> It’s the crisper (the left is the folder on your computer, the right is the path you see in the container),<code>restart</code> It’s the rules for opening a store,<code>TZ</code> It’s the time zone (the time zone setting in Chapter 2 must be correct here as well).<code>network_mode: host</code> It means that it directly uses the host's network, so port 8123 is opened directly on your machine.</p>
+ <p>Compare it:<code>image</code> It’s a conditioning bag,<code>volumes</code> It’s the crisper (the left is the folder on your computer, the right is the path you see in the container),<code>restart</code> It’s the rules for opening a store,<code>TZ</code> It’s the time zone (the time zone setting in Chapter 2 must be correct here as well).<code>network_mode: host</code> It means that it directly uses the host's network, so port 8123 is opened directly on your machine.</p>
 
-      <div class="callout tip"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. HAOS users do not need to enter the above commands at all, Supervisor does it for you. I put this paragraph so that you can "understand" it and won't be scared when you look up information on the Internet in the future.</div>
-    </section>
+ <div class="callout tip"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. HAOS users do not need to enter the above commands at all, Supervisor does it for you. I put this paragraph so that you can "understand" it and won't be scared when you look up information on the Internet in the future.</div>
+ </section>
 
-    <section id="steps" data-nav="Install the first one">
-      <h2 data-icon="steps">Hands-on: Install an Add-on and understand each switch</h2>
+ <section id="steps" data-nav="Install the first one">
+ <h2 data-icon="steps">Hands-on: Install an Add-on and understand each switch</h2>
 
-      <p>We'll use the File editor as an exercise because it's light, harmless, and easy to use later.</p>
+ <p>We'll use the File editor as an exercise because it's light, harmless, and easy to use later.</p>
 
-      <ol class="steps">
-        <li>
-          <h3>open store</h3>
-          <p>lower left corner<strong>Settings</strong> → find <strong>Apps</strong>(called before 2026.2 <strong>Add-ons</strong>). After entering, press<strong>Install app</strong>Click the button and you will see a whole row of things that can be loaded. The button on the old version said "ADD-ON STORE".</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch20/02_supervisor_dashboard.png" alt="Apps Home Page: Installed Add-ons" />
-            <figcaption><strong>Figure 20-1</strong>Apps homepage (Supervisor): All installed Add-ons are listed here. The "Add-on store" in the lower right corner is the entrance to the store.</figcaption>
-          </figure>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch20/01_addon_store.png" alt="Add-on store" />
-            <figcaption><strong>Figure 20-2</strong>Add-on store: divided into Local apps (self-built)/Official apps (official)/community repository.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>Find "File editor" and install it</h3>
-          <p>It's in the Official section. Click in and press<strong>Installation</strong>, and then wait. The first installation requires downloading the image file. It is normal for the Raspberry Pi to take three to five minutes. If the screen does not move, it does not mean that it has crashed.</p>
-        </li>
-        <li>
-          <h3>Don't start it in a hurry, take a look at the four switches</h3>
-          <p>After installation, several switches will appear:<strong>Start at boot</strong>(The machine will run automatically after restarting),<strong>watchdog watchdog</strong>(It will automatically pull it up when it hangs up),<strong>Automatic updates</strong>(Update as soon as there is a new version),<strong>Show in sidebar</strong>(Shortcuts appear directly in the menu on the left). File editor suggestion: enable the first three, and also enable the fourth.</p>
-        </li>
-        <li>
-          <h3>Click "Start"</h3>
-          <p>The status will change from "Stopped" to "Executing". If it changes to "Stopped" and then jumps back, it means it failed to start - then jump directly to the next section to see the log file.</p>
-        </li>
-        <li>
-          <h3>Open it from the sidebar</h3>
-          <p>There should be an additional "File editor" on the left menu. Click in and you will see <code>/config</code> Folder - that is the "fresher box" mentioned in the previous section, your <code>configuration.yaml</code> Just inside.</p>
-        </li>
-        <li>
-          <h3>Try changing one word and then change it back</h3>
-          <p>It's not asking you to change the settings, it's asking you to confirm "I can really write". After changing the archive, change it back to the original. Once you've done this step, you won't be afraid when you really need to edit a profile in the future.</p>
-        </li>
-      </ol>
+ <ol class="steps">
+ <li>
+ <h3>Open the store</h3>
+ <p>lower left corner <strong>Settings</strong> → find <strong>Apps</strong> (called before 2026.2 <strong>Add-ons</strong>). After entering, press <strong>Install app</strong> Click the button and you will see a whole row of things that can be loaded. The button on the old version said "ADD-ON STORE".</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch20/02_supervisor_dashboard.png" alt="Apps home page: Installed Add-ons" />
+ <figcaption><strong>Figure 20-1</strong> Apps homepage (Supervisor): All installed Add-ons are listed here. The "Add-on store" in the lower right corner is the entrance to the store.</figcaption>
+ </figure>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch20/01_addon_store.png" alt="Add-on store" />
+ <figcaption><strong>Figure 20-2</strong> Add-on store: divided into Local apps (self-built)/Official apps (official)/community repository.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>Find "File editor" and install it</h3>
+ <p>It's in the Official section. Click in and press <strong>Installation</strong>, and then wait. The first installation requires downloading the image file. It is normal for the Raspberry Pi to take three to five minutes. If the screen does not move, it does not mean that it has crashed.</p>
+ </li>
+ <li>
+ <h3>Don't start it in a hurry, take a look at the four switches</h3>
+ <p>After installation, several switches will appear: <strong>Start at boot</strong> (The machine will run automatically after restarting), <strong>watchdog watchdog</strong> (It will automatically pull it up when it stops), <strong>Automatic updates</strong> (Update as soon as there is a new version), <strong>Show in sidebar</strong> (Shortcuts appear directly in the menu on the left). File editor suggestion: enable the first three, and also enable the fourth.</p>
+ </li>
+ <li>
+ <h3>Click "Start"</h3>
+ <p>The status will change from "Stopped" to "Executing". If it changes to "Stopped" and then jumps back, it means it failed to start - then go directly to the next section to see the log file.</p>
+ </li>
+ <li>
+ <h3>Open it from the sidebar</h3>
+ <p>There should be an additional "File editor" on the left menu. Click in and you will see <code>/config</code> Folder - that is the "fresher box" mentioned in the previous section, your <code>configuration.yaml</code> Just inside.</p>
+ </li>
+ <li>
+ <h3>Try changing one word and then change it back</h3>
+ <p>It's not asking you to change the settings, it's asking you to confirm "I can really write". After changing the archive, change it back to the original. Once you've done this step, you won't be afraid when you really need to edit a profile in the future.</p>
+ </li>
+ </ol>
 
-      <div class="callout danger"><strong>Danger:</strong>The file editor can directly change files that will prevent Home Assistant from opening. move <code>configuration.yaml</code> Before, make sure you<a href="ch9_backups.html">Chapter 9</a>The backup taught is running. It’s not scary if it’s changed, but it’s scary if it can’t be restored.</div>
-    </section>
+ <div class="callout danger"><strong>Danger:</strong> The file editor can directly change files that will prevent Home Assistant from opening. move <code>configuration.yaml</code> Before, make sure you <a href="ch9_backups.html">Chapter 9</a> The backup taught is running. It’s not scary if it’s changed, but it’s scary if it can’t be restored.</div>
+ </section>
 
-    <section id="addon_page" data-nav="Page pagination">
-      <h2 data-icon="tabs">What are the paging on the Add-on page for?</h2>
+ <section id="addon_page" data-nav="Page tabs">
+ <h2 data-icon="tabs">What are the tab on the Add-on page for?</h2>
 
-      <p>When you click on each Add-on, there will be several pages on it. The names vary slightly depending on the version, but the functions are similar:</p>
+ <p>When you click on each Add-on, there will be several pages on it. The names vary slightly depending on the version, but the functions are similar:</p>
 
-      <table class="data-table">
-        <thead>
-          <tr><th>Pagination</th><th>what's inside</th><th>When will it be used?</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Information Info</strong></td>
-            <td>Start/stop/restart button, version number, four switches, "Open web interface" link.</td>
-            <td>daily operations. See the version number here.</td>
-          </tr>
-          <tr>
-            <td><strong>Documentation Documentation</strong></td>
-            <td>Complete explanation written by the author on what each setting option means.</td>
-            <td><strong>Be the first to come here when you don’t understand the setting options.</strong>, don’t go to Google, the author’s writing is the most accurate.</td>
-          </tr>
-          <tr>
-            <td><strong>Configuration</strong></td>
-            <td>This Add-on has its own options. Some are forms, and some require you to change YAML directly.</td>
-            <td>Set the account password, set the folder, and set the path of the Zigbee stick.</td>
-          </tr>
-          <tr>
-            <td><strong>Network Network</strong></td>
-            <td>Port mapping table. The left side is the number used in the container (fixed), and the right side is the number to be opened on your machine (can be changed).</td>
-            <td><strong>If there is a Port conflict, change it here.</strong>Leave the right side blank = not open to the public, only Home Assistant can be connected internally, the safest.</td>
-          </tr>
-          <tr>
-            <td><strong>Log file Log</strong></td>
-            <td>Every sentence spoken by this Add-on from startup to now.</td>
-            <td>It won't get up, it's weird, it won't connect to things - always look here first.</td>
-          </tr>
-        </tbody>
-      </table>
+ <table class="data-table">
+ <thead>
+ <tr><th>Tab</th><th>what's inside</th><th>When will it be used?</th></tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td><strong>Information Info</strong></td>
+ <td>Start/stop/restart button, version number, four switches, "Open web interface" link.</td>
+ <td>daily operations. See the version number here.</td>
+ </tr>
+ <tr>
+ <td><strong>Documentation Documentation</strong></td>
+ <td>Complete explanation written by the author on what each setting option means.</td>
+ <td><strong>Be the first to come here when you don’t understand the setting options.</strong>, don’t go to Google, the author’s writing is the most accurate.</td>
+ </tr>
+ <tr>
+ <td><strong>Configuration</strong></td>
+ <td>This Add-on has its own options. Some are forms, and some require you to change YAML directly.</td>
+ <td>Set the account password, set the folder, and set the path of the Zigbee stick.</td>
+ </tr>
+ <tr>
+ <td><strong>Network Network</strong></td>
+ <td>Port mapping table. The left side is the number used in the container (fixed), and the right side is the number to be opened on your machine (can be changed).</td>
+ <td><strong>If there is a Port conflict, change it here.</strong> Leave the right side blank = not open to the public, only Home Assistant can be connected internally, the safest.</td>
+ </tr>
+ <tr>
+ <td><strong>Log file Log</strong></td>
+ <td>Every sentence spoken by this Add-on from startup to now.</td>
+ <td>It won't get up, it's weird, it won't connect to things - always look here first.</td>
+ </tr>
+ </tbody>
+ </table>
 
-      <div class="callout tip"><strong>Tip:</strong>The box on the right side of the "Network" tab is the most practical knowledge in this entire chapter. Suppose Node-RED uses a certain number by default, and that number is occupied by something else. You don't need to change another program, just change the right side here to an unused number (for example <code>1881</code>, <code>8099</code> This kind), just save and restart.</div>
-    </section>
+ <div class="callout tip"><strong>Tip:</strong> The box on the right side of the "Network" tab is the most practical knowledge in this entire chapter. Suppose Node-RED uses a certain number by default, and that number is occupied by something else. You don't need to change another program, just change the right side here to an unused number (for example <code>1881</code>, <code>8099</code> This kind), just save and restart.</div>
+ </section>
 
-    <section id="read_log" data-nav="Troubleshooting by looking at log files">
-      <h2 data-icon="records">Troubleshooting by looking at log files: three keywords are enough</h2>
+ <section id="read_log" data-nav="Troubleshooting by looking at log files">
+ <h2 data-icon="records">Troubleshooting by looking at log files: three keywords are enough</h2>
 
-      <p>The log file (Log) looks like gibberish, but you don't need to understand it all. There are only three things you have to do:</p>
+ <p>The log file (Log) looks like gibberish, but you don't need to understand it all. There are only three things you have to do:</p>
 
-      <ol class="steps">
-        <li>
-          <h3>Looking up from the bottom</h3>
-          <p>The log files are arranged by time from top to bottom.<strong>The latest is at the bottom</strong>. The reason why it hangs is usually in the last five to ten lines. The hundreds of lines of boot messages above can be ignored.</p>
-        </li>
-        <li>
-          <h3>Find these words</h3>
-          <p><code>ERROR</code>, <code>FATAL</code>, <code>Traceback</code>, <code>Permission denied</code>, <code>Address already in use</code>, <code>No such file or directory</code>. See one of them, and that line before and after is the answer.<code>WARNING</code> It can usually be ignored at first.</p>
-        </li>
-        <li>
-          <h3>Search for that line of original text</h3>
-          <p>Search together with the Add-on name, such as "zigbee2mqtt Address already in use".<strong>Don't describe it in your own words</strong>, directly copy that line of English, and the chance of finding the answer is ten times higher.</p>
-        </li>
-        <li>
-          <h3>I still have no clue so I’ll watch it again.</h3>
-          <p>Stop the Add-on, refresh the log file page, click Start, and stare at it. What you see in this way is a "clean start", which is much faster than digging through thousands of lines of old messages.</p>
-        </li>
-      </ol>
+ <ol class="steps">
+ <li>
+ <h3>Looking up from the bottom</h3>
+ <p>The log files are arranged by time from top to bottom. <strong>The latest is at the bottom</strong>. The reason why it hangs is usually in the last five to ten lines. The hundreds of lines of boot messages above can be ignored.</p>
+ </li>
+ <li>
+ <h3>Find these words</h3>
+ <p><code>ERROR</code>, <code>FATAL</code>, <code>Traceback</code>, <code>Permission denied</code>, <code>Address already in use</code>, <code>No such file or directory</code>. See one of them, and that line before and after is the answer.<code>WARNING</code> It can usually be ignored at first.</p>
+ </li>
+ <li>
+ <h3>Search for that line of original text</h3>
+ <p>Search together with the Add-on name, such as "zigbee2mqtt Address already in use". <strong>Don't describe it in your own words</strong>, directly copy that line of English, and the chance of finding the answer is ten times higher.</p>
+ </li>
+ <li>
+ <h3>I still have no clue so I’ll watch it again.</h3>
+ <p>Stop the Add-on, refresh the log file page, click Start, and stare at it. What you see in this way is a "clean start", which is much faster than digging through thousands of lines of old messages.</p>
+ </li>
+ </ol>
 
-      <p>Compare the Chinese meanings of common messages:</p>
+ <p>Compare the Chinese meanings of common messages:</p>
 
-      <table class="data-table">
-        <thead>
-          <tr><th>log message</th><th>vernacular translation</th><th>how to fix</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>Address already in use</code></td><td>Someone is already using this number window</td><td>Go to the "Network" tab and change the port</td></tr>
-          <tr><td><code>Permission denied</code></td><td>It does not have permission to touch a file or device</td><td>Most likely the USB device path is set incorrectly, or the folder filled in in the settings does not exist.</td></tr>
-          <tr><td><code>Connection refused</code></td><td>The object it wants to connect to doesn't have the door open.</td><td>Another Add-on it depends on (commonly MQTT) is not started</td></tr>
-          <tr><td><code>No such file or directory</code></td><td>The file/device you specified cannot be found</td><td>Check whether there are any typos in the path entered in the settings.</td></tr>
-          <tr><td><code>No space left on device</code></td><td>hard drive full</td><td>Look at the last item of "Common Obstacles" in this chapter</td></tr>
-        </tbody>
-      </table>
+ <table class="data-table">
+ <thead>
+ <tr><th>log message</th><th>plain-language meaning</th><th>how to fix</th></tr>
+ </thead>
+ <tbody>
+ <tr><td><code>Address already in use</code></td><td>Someone is already using this number window</td><td>Go to the "Network" tab and change the port</td></tr>
+ <tr><td><code>Permission denied</code></td><td>It does not have permission to touch a file or device</td><td>Most likely the USB device path is set incorrectly, or the folder filled in in the settings does not exist.</td></tr>
+ <tr><td><code>Connection refused</code></td><td>The object it wants to connect to doesn't have the door open.</td><td>Another Add-on it depends on (commonly MQTT) is not started</td></tr>
+ <tr><td><code>No such file or directory</code></td><td>The file/device you specified cannot be found</td><td>Check whether there are any typos in the path entered in the settings.</td></tr>
+ <tr><td><code>No space left on device</code></td><td>hard drive full</td><td>Look at the last item of "Common Obstacles" in this chapter</td></tr>
+ </tbody>
+ </table>
 
-      <div class="callout"><strong>Concept:</strong>The log file of the Add-on and the log file of the Home Assistant body are<strong>separate</strong>. The Add-on is in the "Log" tab of its own page; the Home Assistant's is in the "Logs" tab of its own page;<strong>Settings → System → Log files</strong>. If you look in the wrong place, you won't see anything.</div>
-    </section>
+ <div class="callout"><strong>Concept:</strong> The log file of the Add-on and the log file of the Home Assistant body are <strong>separate</strong>. The Add-on is in the "Log" tab of its own page; the Home Assistant's is in the "Logs" tab of its own page; <strong>Settings → System → Log files</strong>. If you look in the wrong place, you won't see anything.</div>
+ </section>
 
-    <section id="must_have" data-nav="Must-have outfit for tour">
-      <h2 data-icon="addons">Must-install Add-on Tour</h2>
+ <section id="must_have" data-nav="Must-have outfit for tour">
+ <h2 data-icon="addons">Must-install Add-on Tour</h2>
 
-      <p>No need to fully dress up. It depends on what you want to do, pick it up. The meaning of the "Source" column:<strong>official</strong>=It is already available in the store;<strong>community</strong>=You need to add a third-party repository first (next tutorial).</p>
+ <p>No need to fully dress up. It depends on what you want to do, pick it up. The meaning of the "Source" column: <strong>official</strong>=It is already available in the store; <strong>community</strong>=You need to add a third-party repository first (next tutorial).</p>
 
-      <table class="data-table">
-        <thead>
-          <tr><th>Add-on</th><th>Source</th><th>what does it do for you</th><th>Who should pretend</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>File editor</strong><br>File editor</td>
-            <td>official</td>
-            <td>Open it directly in the browser <code>/config</code> Modify the file and attach a grammar check.</td>
-            <td>Almost everyone. Light, no-brainer, and easy to use in emergencies.</td>
-          </tr>
-          <tr>
-            <td><strong>Studio Code Server</strong></td>
-            <td>community<br>(hassio-addons)</td>
-            <td>Move the entire set of VS Code into the browser, and the built-in Home Assistant and YAML extension kit will automatically complete entity names.</td>
-            <td>There are many people who write YAML. Much more capable than the File Editor, but also much heavier.</td>
-          </tr>
-          <tr>
-            <td><strong>Terminal &amp; SSH</strong></td>
-            <td>official</td>
-            <td>The terminal in the browser can also be connected from another computer using SSH, and the Home Assistant CLI is built-in.</td>
-            <td>Someone who needs to give orders.<strong>You must first turn on "Advanced Mode" on your profile page to see it.</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Mosquitto broker</strong></td>
-            <td>official</td>
-            <td>An MQTT messaging server. Many devices and tools rely on it to talk to each other.</td>
-            <td>People who want to play advanced gameplay of Zigbee2MQTT, Tasmota, and ESPHome.</td>
-          </tr>
-          <tr>
-            <td><strong>Zigbee2MQTT</strong></td>
-            <td>community<br>(Official Z2M team maintenance)</td>
-            <td>Take over your Zigbee coordinator (that USB stick) and turn the Zigbee light switch into MQTT messages. Supports a wider range of device models than the built-in solution.</td>
-            <td>People who have many Zigbee devices or buy unpopular brands.<strong>You need to install Mosquitto first.</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Node-RED</strong></td>
-            <td>community<br>(hassio-addons)</td>
-            <td>Use wire-drawing methods to automate processes without writing YAML.</td>
-            <td>People with complex automation logic or visual thinking. For simple automation, the built-in one is enough.</td>
-          </tr>
-          <tr>
-            <td><strong>Samba share</strong></td>
-            <td>official</td>
-            <td>put <code>config</code>, <code>backup</code>, <code>media</code>, <code>share</code> When the folder becomes a network drive, Windows/Mac can drag and drop it directly.</td>
-            <td>People who want to change settings using the editor they are used to on their computer, or who want to pull down a backup.</td>
-          </tr>
-          <tr>
-            <td><strong>Advanced SSH &amp; Web Terminal</strong></td>
-            <td>community<br>(hassio-addons)</td>
-            <td>An enhanced version of the official Terminal &amp; SSH, you can turn off the protected mode to do more.</td>
-            <td>Advanced users who know what they are doing. Newbies should use the official version first.</td>
-          </tr>
-        </tbody>
-      </table>
+ <table class="data-table">
+ <thead>
+ <tr><th>Add-on</th><th>Source</th><th>what does it do for you</th><th>Who should install it</th></tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td><strong>File editor</strong><br>File editor</td>
+ <td>official</td>
+ <td>Open it directly in the browser <code>/config</code> Modify the file and attach a grammar check.</td>
+ <td>Almost everyone. Light, no-brainer, and easy to use in emergencies.</td>
+ </tr>
+ <tr>
+ <td><strong>Studio Code Server</strong></td>
+ <td>community<br>(hassio-addons)</td>
+ <td>Move the entire set of VS Code into the browser, and the built-in Home Assistant and YAML extension kit will automatically complete entity names.</td>
+ <td>There are many people who write YAML. Much more capable than the File Editor, but also much heavier.</td>
+ </tr>
+ <tr>
+ <td><strong>Terminal &amp; SSH</strong></td>
+ <td>official</td>
+ <td>The terminal in the browser can also be connected from another computer using SSH, and the Home Assistant CLI is built-in.</td>
+ <td>Someone who needs to give orders. <strong>You must first turn on "Advanced Mode" on your profile page to see it.</strong></td>
+ </tr>
+ <tr>
+ <td><strong>Mosquitto broker</strong></td>
+ <td>official</td>
+ <td>An MQTT messaging server. Many devices and tools rely on it to talk to each other.</td>
+ <td>People who want to play advanced gameplay of Zigbee2MQTT, Tasmota, and ESPHome.</td>
+ </tr>
+ <tr>
+ <td><strong>Zigbee2MQTT</strong></td>
+ <td>community<br>(Official Z2M team maintenance)</td>
+ <td>Take over your Zigbee coordinator (that USB stick) and turn the Zigbee light switch into MQTT messages. Supports a wider range of device models than the built-in solution.</td>
+ <td>People who have many Zigbee devices or buy unpopular brands. <strong>You need to install Mosquitto first.</strong></td>
+ </tr>
+ <tr>
+ <td><strong>Node-RED</strong></td>
+ <td>community<br>(hassio-addons)</td>
+ <td>Use wire-drawing methods to automate processes without writing YAML.</td>
+ <td>People with complex automation logic or visual thinking. For simple automation, the built-in one is enough.</td>
+ </tr>
+ <tr>
+ <td><strong>Samba share</strong></td>
+ <td>official</td>
+ <td>put <code>config</code>, <code>backup</code>, <code>media</code>, <code>share</code> When the folder becomes a network drive, Windows/Mac can drag and drop it directly.</td>
+ <td>People who want to change settings using the editor they are used to on their computer, or who want to pull down a backup.</td>
+ </tr>
+ <tr>
+ <td><strong>Advanced SSH &amp; Web Terminal</strong></td>
+ <td>community<br>(hassio-addons)</td>
+ <td>An enhanced version of Home Assistant Terminal &amp; SSH, you can turn off the protected mode to do more.</td>
+ <td>Advanced users who know what they are doing. Newbies should use Home Assistant version first.</td>
+ </tr>
+ </tbody>
+ </table>
 
-      <div class="callout warn"><strong>Warning:</strong>The way Mosquitto accounts are set up is different from many old tutorials.<strong>Don't</strong>Create a user in the settings tab of Mosquitto. The official documentation clearly states that you need to do this.<strong>Settings → People → Users</strong>Also open a Home Assistant user specifically for MQTT, and then fill in this set of accounts and passwords on Zigbee2MQTT. After launching Mosquitto, go to<strong>Settings → Devices &amp; Services</strong>, MQTT will appear in the "Explored" section at the top, click to complete the setting.</div>
+ <div class="callout warn"><strong>Warning:</strong> The way Mosquitto accounts are set up is different from many old tutorials. <strong>Don't</strong> Create a user in the settings tab of Mosquitto. Home Assistant documentation clearly states that you need to do this. <strong>Settings → People → Users</strong> Also open a Home Assistant user specifically for MQTT, and then fill in this set of accounts and passwords on Zigbee2MQTT. After launching Mosquitto, go to <strong>Settings → Devices &amp; Services</strong>, MQTT will appear in the "Explored" section at the top, click to complete the setting.</div>
 
-      <div class="callout tip"><strong>Tip:</strong>The name of the shared folder of Samba share has also been renamed: old <code>addons</code> and <code>addon_configs</code> Call now <code>local_apps</code> and <code>app_configs</code>, the old name remains compatible. Don’t panic when you see two ways of writing.</div>
-    </section>
+ <div class="callout tip"><strong>Tip:</strong> The name of the shared folder of Samba share has also been renamed: old <code>addons</code> and <code>addon_configs</code> Call now <code>local_apps</code> and <code>app_configs</code>, the old name remains compatible. Don’t panic when you see two ways of writing.</div>
+ </section>
 
-    <section id="repositories" data-nav="Add third-party warehouse">
-      <h2 data-icon="hacs">Adding a third-party repository: What to do if it’s not available in the store</h2>
+ <section id="repositories" data-nav="Add third-party warehouse">
+ <h2 data-icon="hacs">Adding a third-party repository: What to do if it’s not available in the store</h2>
 
-      <p>There are only dozens of official store presets. For example, Node-RED, Studio Code Server, Zigbee2MQTT, etc., you must first add their "Repository" before the store will have a whole row of new things.</p>
+ <p>There are only dozens of official store presets. For example, Node-RED, Studio Code Server, Zigbee2MQTT, etc., you must first add their "Repository" before the store will have a whole row of new things.</p>
 
-      <ol class="steps">
-        <li>
-          <h3>Copy repository URL</h3>
-          <p>Two commonly used ones: community Add-on large collection is <code>https://github.com/hassio-addons/repository</code>, Zigbee2MQTT official is <code>https://github.com/zigbee2mqtt/hassio-zigbee2mqtt</code>.</p>
-        </li>
-        <li>
-          <h3>Enter the Add-on store</h3>
-          <p><strong>Settings → Apps</strong>, then press<strong>Install app</strong>Go into the store.</p>
-        </li>
-        <li>
-          <h3>Open "Repositories" in the three-dot menu in the upper right corner</h3>
-          <p>The official documentation makes it clear: on the store page<strong>The three-dot menu in the upper right corner</strong>choose<strong>Repositories</strong>. The old version may show "repository" in Chinese, which is the same thing.</p>
-        </li>
-        <li>
-          <h3>Paste the URL, click Add, and then refresh</h3>
-          <p>After adding stores, there will be several more areas. If you can't find something new, press <kbd>Ctrl</kbd> + <kbd>F5</kbd> Force a refresh. If the reorganization still doesn't show up, go<strong>Settings → System → Log files</strong>, cut to the upper right corner of <strong>Supervisor</strong>, the URL will be written there, is it a typo?</p>
-        </li>
-      </ol>
+ <ol class="steps">
+ <li>
+ <h3>Copy repository URL</h3>
+ <p>Two commonly used ones: community Add-on large collection is <code>https://github.com/hassio-addons/repository</code>, Zigbee2MQTT official is <code>https://github.com/zigbee2mqtt/hassio-zigbee2mqtt</code>.</p>
+ </li>
+ <li>
+ <h3>Enter the Add-on store</h3>
+ <p><strong>Settings → Apps</strong>, then press <strong>Install app</strong> Go into the store.</p>
+ </li>
+ <li>
+ <h3>Open "Repositories" in the three-dot menu in the upper right corner</h3>
+ <p>Home Assistant documentation makes it clear: on the store page <strong>The three-dot menu in the upper right corner</strong> choose <strong>Repositories</strong>. The old version may show "repository" in Chinese, which is the same thing.</p>
+ </li>
+ <li>
+ <h3>Paste the URL, click Add, and then refresh</h3>
+ <p>After adding stores, there will be several more areas. If you can't find something new, press <kbd>Ctrl</kbd> + <kbd>F5</kbd> Force a refresh. If the reorganization still doesn't show up, go <strong>Settings → System → Log files</strong>, cut to the upper right corner of <strong>Supervisor</strong>, the URL will be written there, is it a typo?</p>
+ </li>
+ </ol>
 
-      <div class="callout danger"><strong>Danger:</strong>Adding a repository means "I trust this author and am willing to let his program run in my home." Add-on is a container with considerable permissions, and things of unknown origin can look into your configuration files.<strong>Only add repositories that you can find, are used by many people, and have been updated recently.</strong>The ones listed above are all large-scale projects recognized by the community.</div>
+ <div class="callout danger"><strong>Danger:</strong> Adding a repository means "I trust this author and am willing to let his program run in my home." Add-on is a container with considerable permissions, and things of unknown origin can look into your configuration files. <strong>Only add repositories that you can find, are used by many people, and have been updated recently.</strong> The ones listed above are all large-scale projects recognized by the community.</div>
 
-      <div class="callout"><strong>Concept:</strong>The repository (used for Add-on) and HACS (used for custom integration and dashboard cards) are two different things, so don't confuse them.<a href="appendix_hacs_addons.html">Appendix A</a>There is a contrast between the two.</div>
-    </section>
+ <div class="callout"><strong>Concept:</strong> The repository (used for Add-on) and HACS (used for custom integration and dashboard cards) are two different things, so don't confuse them. <a href="appendix_hacs_addons.html">Appendix A</a> There is a contrast between the two.</div>
+ </section>
 
-    <section id="cloud_backup" data-nav="Back up to the cloud">
-      <h2 data-icon="restore">Automatically upload backups to the cloud: Let backups leave this machine</h2>
+ <section id="cloud_backup" data-nav="Back up to the cloud">
+ <h2 data-icon="restore">Automatically upload backups to the cloud: Let backups leave this machine</h2>
 
-      <p>How to create a backup, how to set up the schedule, how many copies to keep, why not just save the local machine,<a href="ch9_backups.html">Chapter 9</a>I’ve already talked about it, so I won’t repeat it here.</p>
+ <p>How to create a backup, how to set up the schedule, how many copies to keep, why not just save the local machine, <a href="ch9_backups.html">Chapter 9</a> I’ve already talked about it, so I won’t repeat it here.</p>
 
-      <p>This section only makes up for one thing that was not covered in detail in Chapter 9 and is just relevant to this chapter:<strong>Sending backups to the cloud is now completely built-in and does not require any Add-ons.</strong>In the past, this was the domain of third-party Add-ons. Now, the "Location" on the backup page can check several places at the same time, and each backup will be automatically sent to each place. Here’s where the differences vary from destination to destination — especially the restrictions that bite:</p>
+ <p>This section only makes up for one feature that was not covered in detail in Chapter 9 and is just relevant to this chapter: <strong>Sending backups to the cloud is now completely built-in and does not require any Add-ons.</strong> In the past, this was the domain of third-party Add-ons. Now, the "Location" on the backup page can check several places at the same time, and each backup will be automatically sent to each place. Here’s where the differences vary from destination to destination — especially the restrictions that bite:</p>
 
-      <table class="data-table">
-        <thead>
-          <tr><th>backup location</th><th>How to enable</th><th>Does it cost money?</th><th>Limit</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Home Assistant Cloud</strong> (Nabu Casa)</td>
-            <td>If you have subscribed, just hook it up in the backup settings.</td>
-            <td>A Cloud subscription is required, but the backup itself<strong>No additional charge</strong></td>
-            <td><strong>Only keep the latest copy</strong>, old ones are automatically deleted; single files<strong>Cannot exceed 5GB</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Google Drive</strong></td>
-            <td>Settings → Devices &amp; Services → New integration → Google Drive</td>
-            <td>Free (use your own Drive space)</td>
-            <td>You have to go to the Google Developer Backend to apply for a set of OAuth credentials. The steps are a bit long.</td>
-          </tr>
-          <tr>
-            <td><strong>Microsoft OneDrive</strong></td>
-            <td>Settings → Devices &amp; Services → New integration → OneDrive</td>
-            <td>Free (use your own OneDrive space)</td>
-            <td>Requires a personal OneDrive account; needs to be enabled when using default credentials <code>my</code> with <code>cloud</code> Integrate</td>
-          </tr>
-          <tr>
-            <td><strong>Network Storage (NAS)</strong></td>
-            <td>Settings → System → Storage, add a network storage and mark it for backup</td>
-            <td>Free (if you already have a NAS)</td>
-            <td>The backup will fail when the NAS is not powered on; if it is under the same roof as the host, it will be destroyed by fire or flood.</td>
-          </tr>
-        </tbody>
-      </table>
+ <table class="data-table">
+ <thead>
+ <tr><th>backup location</th><th>How to enable</th><th>Does it cost money?</th><th>Limit</th></tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td><strong>Home Assistant Cloud</strong> (Nabu Casa)</td>
+ <td>If you have subscribed, just hook it up in the backup settings.</td>
+ <td>A Cloud subscription is required, but the backup itself <strong>No additional charge</strong></td>
+ <td><strong>Only keep the latest copy</strong>, old ones are automatically deleted; single files <strong>Cannot exceed 5GB</strong></td>
+ </tr>
+ <tr>
+ <td><strong>Google Drive</strong></td>
+ <td>Settings → Devices &amp; Services → New integration → Google Drive</td>
+ <td>Free (use your own Drive space)</td>
+ <td>You have to go to the Google Developer Console to apply for a set of OAuth credentials. The steps are a bit long.</td>
+ </tr>
+ <tr>
+ <td><strong>Microsoft OneDrive</strong></td>
+ <td>Settings → Devices &amp; Services → New integration → OneDrive</td>
+ <td>Free (use your own OneDrive space)</td>
+ <td>Requires a personal OneDrive account; needs to be enabled when using default credentials <code>my</code> with <code>cloud</code> Integrate</td>
+ </tr>
+ <tr>
+ <td><strong>Network Storage (NAS)</strong></td>
+ <td>Settings → System → Storage, add a network storage and mark it for backup</td>
+ <td>Free (if you already have a NAS)</td>
+ <td>The backup will fail when the NAS is not powered on; if it is under the same roof as the host, it will be destroyed by fire or flood.</td>
+ </tr>
+ </tbody>
+ </table>
 
-      <p>There are only three steps to pick up a cloud destination:</p>
+ <p>There are only three steps to pick up a cloud destination:</p>
 
-      <ol class="steps">
-        <li>
-          <h3>Bring in the destination first</h3>
-          <p>With a Nabu Casa subscription you don’t have to do anything, it’s already there. If not, go<strong>Settings → Devices &amp; Services → Add integration</strong>, install Google Drive or OneDrive, follow the screen to authorize the account. To use a home NAS, take another route:<strong>Settings → System → Storage</strong>Add a network storage and mark it for backup.</p>
-        </li>
-        <li>
-          <h3>Go back to the backup page and hook it up</h3>
-          <p><strong>Settings → System → backup</strong>, in the "Locations" of the automatic backup settings, open the destination you just connected. Schedule and retain copies of photos<a href="ch9_backups.html">Chapter 9</a>Just set it up.<strong>local machine <code>/backup</code> Remember to keep it too</strong>: When restoring, the local machine is much faster. The cloud is a life saver when the entire machine dies.</p>
-        </li>
-        <li>
-          <h3>Run it manually, and then go to the cloud to see if the file is there.</h3>
-          <p>You can't jump this step.<strong>An unverified backup means no backup</strong>. The setting is complete only when you actually go to the Google Drive or OneDrive folder and see the file. If you choose Home Assistant Cloud, you will hit the 5GB limit at this time - if you cannot upload it, go back to the backup settings.<strong>Uncheck the media folder</strong>, that is usually the fattest piece and has the best slimming effect.</p>
-        </li>
-      </ol>
+ <ol class="steps">
+ <li>
+ <h3>Bring in the destination first</h3>
+ <p>With a Nabu Casa subscription you don’t have to do anything, it’s already there. If not, go <strong>Settings → Devices &amp; Services → Add integration</strong>, install Google Drive or OneDrive, follow the screen to authorize the account. To use a home NAS, take another route: <strong>Settings → System → Storage</strong> Add a network storage and mark it for backup.</p>
+ </li>
+ <li>
+ <h3>Go back to the backup page and hook it up</h3>
+ <p><strong>Settings → System → backup</strong>, in the "Locations" of the automatic backup settings, open the destination you just connected. Schedule and retain copies of photos <a href="ch9_backups.html">Chapter 9</a> Just set it up. <strong>local machine <code>/backup</code> Remember to keep it too</strong>: When restoring, the local machine is much faster. The cloud is a life saver when the entire machine dies.</p>
+ </li>
+ <li>
+ <h3>Run it manually, and then go to the cloud to see if the file is there.</h3>
+ <p>You can't jump this step. <strong>An unverified backup means no backup</strong>. The setting is complete only when you actually go to the Google Drive or OneDrive folder and see the file. If you choose Home Assistant Cloud, you will hit the 5GB limit at this time - if you cannot upload it, go back to the backup settings. <strong>Uncheck the media folder</strong>, that is usually the largest piece and has the best space savings.</p>
+ </li>
+ </ol>
 
-      <div class="callout tip"><strong>Tip:</strong>There is also an "Automatically back up before updating" option in the backup settings, which is highly recommended. It just sets a default value, and you can still change it temporarily every time before you really want to update it. This is the quickest way back after an update fails, and the chance of an Add-on update failing is higher than you think.</div>
+ <div class="callout tip"><strong>Tip:</strong> There is also an "Automatically back up before updating" option in the backup settings, which is highly recommended. It just sets a default value, and you can still change it temporarily every time before you really want to update it. This is the quickest way back after an update fails, and the chance of an Add-on update failing is higher than you think.</div>
 
-      <div class="callout warn"><strong>Warning:</strong>Many old tutorials on the Internet will ask you to install the third-party Add-on "Home Assistant Google Drive backup". It was an artifact before built-in cloud backup came out, but now it’s great for newbies<strong>Built-in Google Drive integration is a better place to start</strong>:Officially maintained, no need to run an extra container. Third-party Add-ons still have their advantages (such as day/week/month/year generation retention policies), but if you just want "the backup doesn't die on the local machine", the built-in one is enough. In the same way, the need to dump backups to Samba network disks can now be achieved using the built-in "Network Storage" without having to install Samba backup.</div>
+ <div class="callout warn"><strong>Warning:</strong> Many old tutorials on the Internet will ask you to install the third-party Add-on "Home Assistant Google Drive backup". It was an artifact before built-in cloud backup came out, but now it’s great for newbies <strong>Built-in Google Drive integration is a better place to start</strong>:Officially maintained, no need to run an extra container. Third-party Add-ons still have their advantages (such as day/week/month/year generation retention policies), but if you just want "the backup doesn't die on the local machine", the built-in one is enough. In the same way, the need to dump backups to Samba network disks can now be achieved using the built-in "Network Storage" without having to install Samba backup.</div>
 
-      <div class="callout danger"><strong>Danger:</strong>backups are encrypted,<strong>Be sure to have the encryption key when restoring</strong>. The first time you set up automatic backup, the screen will ask you to download a copy.<strong>backup emergency kit</strong>—That's a file that contains your encryption key.<strong>Save it now outside of Home Assistant</strong>(Password manager, cloud drive, printing it out and putting it in a folder will all work). The official statement is very clear: without the key, there is no way to restore the encrypted backup. Lost the key = the backup in the cloud is just a bunch of gibberish that cannot be opened. I want to take it again later and go back to<strong>Settings → System → backup</strong>The backup settings page can re-download the current set of keys.</div>
-    </section>
+ <div class="callout danger"><strong>Danger:</strong> backups are encrypted, <strong>Be sure to have the encryption key when restoring</strong>. The first time you set up automatic backup, the screen will ask you to download a copy. <strong>backup emergency kit</strong>—That's a file that contains your encryption key. <strong>Save it now outside of Home Assistant</strong> (Password manager, cloud drive, printing it out and putting it in a folder will all work). Home Assistant statement is very clear: without the key, there is no way to restore the encrypted backup. Lost the key = the backup in the cloud is just multiple gibberish that cannot be opened. I want to take it again later and go back to <strong>Settings → System → backup</strong> The backup settings page can re-download the current set of keys.</div>
+ </section>
 
-    <section id="performance" data-nav="Resources and Effectiveness">
-      <h2 data-icon="cost">Resource usage: How to choose low-end hardware</h2>
+ <section id="performance" data-nav="Resources and Effectiveness">
+ <h2 data-icon="cost">Resource usage: How to choose low-end hardware</h2>
 
-      <p>Each Add-on is a real running program that consumes CPU, memory, and hard disk. The 2GB version of the Raspberry Pi 4, or an older mini console, will start to freeze as soon as it is installed - web pages will slow down, automation will be delayed, and updates will fail. The official has not announced how many resources each Add-on consumes. The table below is a relative grading, not an actual measured number. It is used for prioritization.</p>
+ <p>Each Add-on is a real running program that consumes CPU, memory, and hard disk. The 2GB version of the Raspberry Pi 4, or an older mini console, will start to freeze as soon as it is installed - web pages will slow down, automation will be delayed, and updates will fail. The Home Assistant project does not publish how many resources each Add-on consumes. The table below is a relative grading, not an actual measured number. It is used for prioritization.</p>
 
-      <table class="data-table">
-        <thead>
-          <tr><th>Add-on type</th><th>resource consumption</th><th>Advice on low-end hardware</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>File editor, Samba, Terminal &amp; SSH</td><td>Very low, barely noticeable</td><td>Feel free to install</td></tr>
-          <tr><td>Mosquitto broker</td><td>low</td><td>Don’t worry, it saves money</td></tr>
-          <tr><td>Zigbee2MQTT</td><td>, will continue to run</td><td>It’s worth installing, but don’t squeeze it with a bunch of heavy things.</td></tr>
-          <tr><td>Node-RED</td><td>Medium to high, memory usage is relatively heavy</td><td>Consider using memory below 2GB. For simple automation, just use the built-in one</td></tr>
-          <tr><td>Studio Code Server</td><td>High, especially obvious when the web page is open</td><td>Use File editor instead on low-end machines</td></tr>
-          <tr><td>Database (MariaDB), Grafana, InfluxDB and the like</td><td>Very high, and can write hard disks like crazy</td><td>Raspberry Pi + SD card is not recommended. SD cards being overwritten is a real thing.</td></tr>
-          <tr><td>Speech related (Whisper, Piper, etc.)</td><td>Very high, especially CPU</td><td>It requires relatively capable hardware, and the Raspberry Pi will be too slow to use.</td></tr>
-        </tbody>
-      </table>
+ <table class="data-table">
+ <thead>
+ <tr><th>Add-on type</th><th>resource consumption</th><th>Advice on low-end hardware</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>File editor, Samba, Terminal &amp; SSH</td><td>Very low, barely noticeable</td><td>Feel free to install</td></tr>
+ <tr><td>Mosquitto broker</td><td>low</td><td>Don’t worry, it saves money</td></tr>
+ <tr><td>Zigbee2MQTT</td><td>, will continue to run</td><td>It’s worth installing, but don’t squeeze it with multiple heavy things.</td></tr>
+ <tr><td>Node-RED</td><td>Medium to high, memory usage is relatively heavy</td><td>Consider using memory below 2GB. For simple automation, just use the built-in one</td></tr>
+ <tr><td>Studio Code Server</td><td>High, especially obvious when the web page is open</td><td>Use File editor instead on low-end machines</td></tr>
+ <tr><td>Database (MariaDB), Grafana, InfluxDB and the like</td><td>Very high, and can write hard disks like crazy</td><td>Raspberry Pi + SD card is not recommended. SD cards being overwritten is a real thing.</td></tr>
+ <tr><td>Speech related (Whisper, Piper, etc.)</td><td>Very high, especially CPU</td><td>It requires relatively capable hardware, and the Raspberry Pi will be too slow to use.</td></tr>
+ </tbody>
+ </table>
 
-      <p>A few practical principles:</p>
+ <p>A few practical principles:</p>
 
-      <ul>
-        <li><strong>Remove what you don't need, don't just disable it.</strong>Disabled Add-ons still take up hard drive space.</li>
-        <li><strong>Only install new items one at a time.</strong>After pretending, observe for a day or two before pretending to be the next one. Only when something goes wrong will you know who caused it.</li>
-        <li><strong>Please use SSD or USB to boot the Raspberry Pi, do not use SD card.</strong>The easiest reason why the SD card is damaged is that it is written too many times, and the Add-on of the database class is specifically designed to do this.</li>
-        <li><strong>Let’s first see if the built-in function can solve the problem.</strong>Many people install Node-RED just to do a "turn on the lights at sunset", which can be done with three lines of built-in automation (see<a href="ch8_first_automation.html">Chapter 8</a>).</li>
-      </ul>
+ <ul>
+ <li><strong>Remove what you don't need, don't just disable it.</strong> Disabled Add-ons still take up hard drive space.</li>
+ <li><strong>Only install new items one at a time.</strong> After installing it, observe for a day or two before installing the next one. Only when something goes wrong will you know who caused it.</li>
+ <li><strong>Please use SSD or USB to boot the Raspberry Pi, do not use SD card.</strong> The easiest reason why the SD card is damaged is that it is written too many times, and the Add-on of the database class is specifically designed to do this.</li>
+ <li><strong>Let’s first see if the built-in function can solve the problem.</strong> Many people install Node-RED just to do a "turn on the lights at sunset", which can be done with three lines of built-in automation (see <a href="ch8_first_automation.html">Chapter 8</a>).</li>
+ </ul>
 
-      <div class="callout tip"><strong>Tip:</strong>If you want to know how crowded it is now, go<strong>Settings → System → Storage</strong>Look at the hard disk; if you want to see system information such as version and installation method, go to<strong>Settings → System → Repair</strong>The three-dot menu in the upper right corner<strong>System information</strong>.If you find that the hard drive is used more than 80%, it’s time to clean things up.</div>
-    </section>
+ <div class="callout tip"><strong>Tip:</strong> If you want to know how crowded it is now, go <strong>Settings → System → Storage</strong> Look at the hard disk; if you want to see system information such as version and installation method, go to <strong>Settings → System → Repair</strong> The three-dot menu in the upper right corner <strong>System information</strong>.If you find that the hard drive is used more than 80%, it’s time to clean things up.</div>
+ </section>
 
-    <section id="troubleshoot" data-nav="Common stuck levels">
-      <h2 data-icon="troubleshoot">Common stuck levels</h2>
+ <section id="troubleshoot" data-nav="Common problems">
+ <h2 data-icon="troubleshoot">Common problems</h2>
 
-      <ol class="steps">
-        <li>
-          <h3>Add-on store not found</h3>
-          <p>First confirm which installation method you have:<strong>Settings → System → Repairs</strong>, click on the upper right corner<strong>Three-dot menu → System information (System information)</strong>, it will say whether your computer is an OS or a Container. If it's a Container or Core, that's<strong>There are no shops in the structure</strong>, you can’t find it no matter how you look for it. The only solution is to reinstall using HAOS (remember to back up first and then restore from the backup). If you are HAOS and can't find a specific Add-on, such as Terminal &amp; SSH, it's probably<strong>Advanced mode is not enabled</strong> —Click your name in the lower left corner to enter the profile page and turn on "Advanced Mode".</p>
-        </li>
-        <li>
-          <h3>Add-on cannot be installed, stuck during installation or fails directly.</h3>
-          <p>90% yes<strong>Failed to download image file</strong>. Check in order: (1) The network is unavailable. Can Home Assistant access the external network? (2) Is there still space on the hard drive? See<strong>Settings → System → Storage</strong>; (3) Is there a corresponding version for your CPU architecture? The unpopular Add-on often only provides amd64, which cannot be installed on the Raspberry Pi. In this case, it will directly say that the image file cannot be found. Try again first. If you fail the first time, sometimes you just get half disconnected.</p>
-        </li>
-        <li>
-          <h3>Port conflict: The second Add-on cannot be started.</h3>
-          <p>A log file will appear <code>Address already in use</code> or <code>port is already allocated</code>. Go to that Add-on<strong>Internet</strong>Paging, change the right cell to a number that no one uses (for example, the original 1880 is changed to 1881), save and restart. After the change is completed, you will also need to change its website address to the new number. If you don't need to connect it from the outside at all, just go directly to the right<strong>Leave blank</strong>, the conflict disappears instantly.</p>
-        </li>
-        <li>
-          <h3>Can’t get up after updating</h3>
-          <p>Let’s first look at the last few lines of the log file. The author often directly writes “The setting format of this version has been changed. Please change the so-and-so option to so-and-so.” If you don’t understand, the fastest way is<strong>Restore from pre-update backup</strong>(Chapter 9) - This is why the "backup before updating" switch needs to be turned on. Go elsewhere<strong>Settings → System → Repairs</strong>See, major changes often leave a note card there.</p>
-          <figure class="shot">
-            <img src="../assets/screenshots/ch20/03_system_health.png" alt="Settings → Repair page" />
-            <figcaption><strong>Figure 20-3</strong>Settings → Repairs: Integration exceptions, statistical errors, and major version changes will be listed here. If there are no problems, no repairs pending will be displayed.</figcaption>
-          </figure>
-        </li>
-        <li>
-          <h3>Not enough disk space</h3>
-          <p>Symptoms are various strange failures, and the log file contains <code>No space left on device</code>. Cleanup sequence: (1) Delete old backups, which are usually the fattest; (2) Remove (not deactivate) unused Add-ons; (3) Check <code>media</code> and <code>share</code> Are there any accumulated video files in the folder? (4) If the database is too large, adjust the Recorder retention days. If it’s still full after completing the first three items, it’s time to consider changing to a larger storage device.</p>
-        </li>
-        <li>
-          <h3>Add-on keeps restarting</h3>
-          <p>The status jumps between "Executing" and "Stopped", usually<strong>Watchdog</strong>Repeatedly pulling up a program that was already broken. first<strong>Turn off the watchdog</strong>, let it stop quietly in the failed state, so that you can see the complete error message. Open it again after repairing it.</p>
-        </li>
-        <li>
-          <h3>Zigbee2MQTT cannot find USB stick</h3>
-          <p>Log files are usually <code>No such file or directory</code>. go<strong>Settings → System → Hardware</strong>, click on the upper right corner<strong>Three-dot menu → All Hardware</strong>, the currently connected devices and their paths will be listed. Find the path of the stick and copy it back to the Zigbee2MQTT settings.<strong>Don’t copy the path of online teaching</strong>, each machine is different. In addition, official recommendations<strong>priority <code>/dev/serial/by-id/</code> The long path at the beginning</strong>, do not use <code>/dev/ttyUSB0</code> This short - the short path will change with the plug-in sequence and reboot, the long path is tied to the device itself and will not escape no matter which hole it is plugged into.</p>
-        </li>
-      </ol>
-    </section>
+ <ol class="steps">
+ <li>
+ <h3>Add-on store not found</h3>
+ <p>First confirm which installation method you have: <strong>Settings → System → Repairs</strong>, click on the upper right corner <strong>Three-dot menu → System information (System information)</strong>, it will say whether your computer is an OS or a Container. If it's a Container or Core, that's <strong>There are no shops in the structure</strong>, you can’t find it no matter how you look for it. The only solution is to reinstall using HAOS (remember to back up first and then restore from the backup). If you are HAOS and can't find a specific Add-on, such as Terminal &amp; SSH, it's probably <strong>Advanced mode is not enabled</strong> —Click your name in the lower left corner to enter the profile page and turn on "Advanced Mode".</p>
+ </li>
+ <li>
+ <h3>Add-on cannot be installed, stuck during installation or fails directly.</h3>
+ <p>90% yes <strong>Failed to download image file</strong>. Check in order: (1) The network is unavailable. Can Home Assistant access the external network? (2) Is there still space on the hard drive? See <strong>Settings → System → Storage</strong>; (3) Is there a corresponding version for your CPU architecture? The unpopular Add-on often only provides amd64, which cannot be installed on the Raspberry Pi. In this case, it will directly say that the image file cannot be found. Try again first. If you fail the first time, sometimes you just get half disconnected.</p>
+ </li>
+ <li>
+ <h3>Port conflict: The second Add-on cannot be started.</h3>
+ <p>A log file will appear <code>Address already in use</code> or <code>port is already allocated</code>. Go to that Add-on <strong>Internet</strong> tab, change the right cell to a number that no one uses (for example, the original 1880 is changed to 1881), save and restart. After the change is completed, you will also need to change its website address to the new number. If you don't need to connect it from the outside at all, just go directly to the right <strong>Leave blank</strong>, the conflict disappears instantly.</p>
+ </li>
+ <li>
+ <h3>Can’t get up after updating</h3>
+ <p>Let’s first look at the last few lines of the log file. The author often directly writes “The setting format of this version has been changed. Please change the so-and-so option to so-and-so.” If you don’t understand, the fastest way is <strong>Restore from pre-update backup</strong> (Chapter 9) - This is why the "backup before updating" switch needs to be turned on. Go elsewhere <strong>Settings → System → Repairs</strong> See, major changes often leave a note card there.</p>
+ <figure class="shot">
+ <img src="../assets/screenshots/ch20/03_system_health.png" alt="Settings → Repair page" />
+ <figcaption><strong>Figure 20-3</strong> Settings → Repairs: Integration exceptions, statistical errors, and major version changes will be listed here. If there are no problems, no repairs pending will be displayed.</figcaption>
+ </figure>
+ </li>
+ <li>
+ <h3>Not enough disk space</h3>
+ <p>Symptoms are various strange failures, and the log file contains <code>No space left on device</code>. Cleanup sequence: (1) Delete old backups, which are usually the largest; (2) Remove (not deactivate) unused Add-ons; (3) Check <code>media</code> and <code>share</code> Are there any accumulated video files in the folder? (4) If the database is too large, adjust the Recorder retention days. If it’s still full after completing the first three items, it’s time to consider changing to a larger storage device.</p>
+ </li>
+ <li>
+ <h3>Add-on keeps restarting</h3>
+ <p>The status jumps between "Executing" and "Stopped", usually <strong>Watchdog</strong> Repeatedly pulling up a program that was already broken. first <strong>Turn off the watchdog</strong>, let it stop quietly in the failed state, so that you can see the complete error message. Open it again after repairing it.</p>
+ </li>
+ <li>
+ <h3>Zigbee2MQTT cannot find USB stick</h3>
+ <p>Log files are usually <code>No such file or directory</code>. go <strong>Settings → System → Hardware</strong>, click on the upper right corner <strong>Three-dot menu → All Hardware</strong>, the currently connected devices and their paths will be listed. Find the path of the stick and copy it back to the Zigbee2MQTT settings. <strong>Don’t copy the path of online teaching</strong>, each machine is different. In addition, official recommendations <strong>priority <code>/dev/serial/by-id/</code> The long path at the beginning</strong>, do not use <code>/dev/ttyUSB0</code> This short - the short path will change with the plug-in sequence and reboot, the long path is tied to the device itself and will not escape no matter which hole it is plugged into.</p>
+ </li>
+ </ol>
+ </section>
 
-    <section id="faq" data-nav="FAQ">
-      <h2 data-icon="faq">FAQ</h2>
+ <section id="faq" data-nav="FAQ">
+ <h2 data-icon="faq">FAQ</h2>
 
-      <details class="faq">
-        <summary>Is Add-on now called Add-on or App?</summary>
-        <div class="body">Starting from version 2026.2, the official name will be <strong>Apps</strong>, the menu also changes to "Settings → Apps". The underlying technology (Docker container, Supervisor) has not changed a word, it is just a name change to prevent novices from confusing it with "Integration". Most of the teachings on the Internet still write Add-on. Just think of the two words as the same thing. If your version is older than 2026.2, Add-ons will continue to appear on the screen.</div>
-      </details>
+ <details class="faq">
+ <summary>Is Add-on now called Add-on or App?</summary>
+ <div class="body">Starting from version 2026.2, Home Assistant name will be <strong>Apps</strong>, the menu also changes to "Settings → Apps". The underlying technology (Docker container, Supervisor) has not changed a word, it is just a name change to prevent novices from confusing it with "Integration". Most of the teachings on the Internet still write Add-on. Just think of the two words as the same thing. If your version is older than 2026.2, Add-ons will continue to appear on the screen.</div>
+ </details>
 
-      <details class="faq">
-        <summary>I use Docker on Synology NAS to run Home Assistant. Can I find a way to install the Add-on store?</summary>
-        <div class="body">No, you shouldn’t try. The Add-on store requires the Supervisor, but the Container installation does not have it. In the past, there was a method called Supervised that could be forced out, but the official<strong>Support has been discontinued in version 2025.12</strong>. The correct approach is: you need Mosquitto and Node-RED, just put them on your NAS<strong>Open another Docker container</strong>Come and run, the functions are exactly the same, you just need to write the compose file yourself and update it yourself. If you really want the comfort of one-click, just open a VM or find a small host to install HAOS.</div>
-      </details>
+ <details class="faq">
+ <summary>I use Docker on Synology NAS to run Home Assistant. Can I find a way to install the Add-on store?</summary>
+ <div class="body">No, you shouldn’t try. The Add-on store requires the Supervisor, but the Container installation does not have it. In the past, there was a method called Supervised that could be forced out, but Home Assistant <strong>Support has been discontinued in version 2025.12</strong>. The correct approach is: you need Mosquitto and Node-RED, just put them on your NAS <strong>Open another Docker container</strong> Come and run, the functions are exactly the same, you just need to write the compose file yourself and update it yourself. If you really want the comfort of one-click, just open a VM or find a small host to install HAOS.</div>
+ </details>
 
-      <details class="faq">
-        <summary>Will updating the Add-on lose my settings?</summary>
-        <div class="body">Normally not. The settings and data are stored in the "Volume", and what is updated is the "image file". The two are separate - just like changing the cooking bag will not touch your crisper. but update<strong>It is possible to change the format of the setting</strong>, causing the old settings to no longer be valid and the startup to fail. So the rules are:<strong>Important Add-on Do not turn on automatic updates</strong>, confirm that the backup has been run before updating, and take a look at the log file after updating. Lightweight and harmless ones (File editor, Samba) have no problem turning on automatic updates.</div>
-      </details>
+ <details class="faq">
+ <summary>Will updating the Add-on lose my settings?</summary>
+ <div class="body">Normally not. The settings and data are stored in the "Volume", and what is updated is the "image file". The two are separate - just like changing the cooking bag will not touch your crisper. but update <strong>It is possible to change the format of the setting</strong>, causing the old settings to no longer be valid and the startup to fail. So the rules are: <strong>Important Add-on Do not turn on automatic updates</strong>, confirm that the backup has been run before updating, and take a look at the log file after updating. Lightweight and harmless ones (File editor, Samba) have no problem turning on automatic updates.</div>
+ </details>
 
-      <details class="faq">
-        <summary>The backup has been uploaded to Google Drive. Do I still want to keep the local copy?</summary>
-        <div class="body">Want. The uses of the two copies are different:<strong>The copy of this machine is for "my handicap changed the settings"</strong>, restore quickly;<strong>The cloud portion is for "the whole machine dies"</strong>. You can check multiple backup locations at the same time, and send backup to multiple locations at one time. There is no need to choose one or the other. What really should be noted is<strong>Keep copies</strong>It must be set properly, otherwise the local hard drive will be filled sooner or later.</div>
-      </details>
+ <details class="faq">
+ <summary>The backup has been uploaded to Google Drive. Do I still want to keep the local copy?</summary>
+ <div class="body">Want. The uses of the two copies are different: <strong>The copy of this machine is for "my handicap changed the settings"</strong>, restore quickly; <strong>The cloud portion is for "the whole machine dies"</strong>. You can check multiple backup locations at the same time, and send backup to multiple locations at one time. There is no need to choose one or the other. What really should be noted is <strong>Keep copies</strong> It must be set properly, otherwise the local hard drive will be filled sooner or later.</div>
+ </details>
 
-      <details class="faq">
-        <summary>Does Zigbee2MQTT have to install Mosquitto first? Can I just install Zigbee2MQTT?</summary>
-        <div class="body">The job of Zigbee2MQTT is to "translate Zigbee signals into MQTT messages". It requires an MQTT server to receive these messages, so there must be a broker. The first step in the official installation instructions is to ask you to install Mosquitto first. The order is:<strong>Mosquitto → Create a user for MQTT → Set up MQTT integration → Add Zigbee2MQTT repository → Install Zigbee2MQTT → Fill in the broker address and password</strong>. If you skip the steps, the Zigbee2MQTT record file will be full of <code>Connection refused</code>.</div>
-      </details>
+ <details class="faq">
+ <summary>Does Zigbee2MQTT have to install Mosquitto first? Can I just install Zigbee2MQTT?</summary>
+ <div class="body">The job of Zigbee2MQTT is to "translate Zigbee signals into MQTT messages". It requires an MQTT server to receive these messages, so there must be a broker. The first step in Home Assistant installation instructions is to ask you to install Mosquitto first. The order is: <strong>Mosquitto → Create a user for MQTT → Set up MQTT integration → Add Zigbee2MQTT repository → Install Zigbee2MQTT → Fill in the broker address and password</strong>. If you skip the steps, the Zigbee2MQTT record file will be full of <code>Connection refused</code>.</div>
+ </details>
 
-      <details class="faq">
-        <summary>If the port in the "Network" tab is left blank, will it cause the Add-on to become unusable?</summary>
-        <div class="body">No. Leaving it blank means "Don't open this external window on my machine." Add-on itself will still run, and Home Assistant can still connect to it internally. Taking Mosquitto as an example, if only Home Assistant and a few Add-ons will use it, leaving it blank will<strong>safer</strong> —Other devices on the home network cannot touch it. You only need to fill in the number when you need to connect directly from another computer or other program. This is the simplest and most effective information security habit.</div>
-      </details>
+ <details class="faq">
+ <summary>If the port in the "Network" tab is left blank, will it cause the Add-on to become unusable?</summary>
+ <div class="body">No. Leaving it blank means "Don't open this external window on my machine." Add-on itself will still run, and Home Assistant can still connect to it internally. Taking Mosquitto as an example, if only Home Assistant and a few Add-ons will use it, leaving it blank will <strong>safer</strong> —Other devices on the home network cannot touch it. You only need to fill in the number when you need to connect directly from another computer or other program. This is the simplest and most effective security habit.</div>
+ </details>
 
-      <details class="faq">
-        <summary>Should I install File editor or Studio Code Server?</summary>
-        <div class="body">Both of them change the configuration file in the browser.<strong>File editor</strong> It's official, light, and fast. It's enough to occasionally change a few lines, and the Raspberry Pi can also run it.<strong>Studio Code Server</strong> It is a complete VS Code for the community. It will automatically fill in entity names and catch YAML syntax errors in real time. It is much less efficient when writing a large number of settings, at the cost of significantly heavier resources and slower loading. Recommendation: Beginners install File editor first, and then switch to Studio Code Server when you find yourself opening it several times a day and starting to write longer YAML. For low-end hardware, don’t consider the latter.</div>
-      </details>
-    </section>
+ <details class="faq">
+ <summary>Should I install File editor or Studio Code Server?</summary>
+ <div class="body">Both of them change the configuration file in the browser. <strong>File editor</strong> It's official, light, and fast. It's enough to occasionally change a few lines, and the Raspberry Pi can also run it. <strong>Studio Code Server</strong> It is a complete VS Code for the community. It will automatically fill in entity names and catch YAML syntax errors in real time. It is much less efficient when writing a large number of settings, at the cost of significantly heavier resources and slower loading. Recommendation: Beginners install File editor first, and then switch to Studio Code Server when you find yourself opening it several times a day and starting to write longer YAML. For low-end hardware, don’t consider the latter.</div>
+ </details>
+ </section>
 
-    <div class="pager">
+ <div class="pager">
       <a class="prev" href="ch19_voice_ai.html">
         <span class="label">← Previous</span>
         <span class="title">19 · Voice and AI</span>
@@ -663,11 +663,11 @@
       </a>
     </div>
 
-    <footer class="site-footer">
+ <footer class="site-footer">
       <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
       <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
-  </main>
+ </main>
 </div>
 <script id="ui-strings" type="application/json">{"tocToggle":"Contents","tocExpand":"Expand chapter navigation","tocCollapse":"Collapse chapter navigation"}</script>
 <script src="../assets/js/toc.js"></script>

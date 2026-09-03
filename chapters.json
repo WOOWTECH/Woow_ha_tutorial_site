@@ -20,7 +20,11 @@
     "_readme": "index.html 是四類資源總覽(hub),由人手維護、build_nav 不碰。教學目錄頁由 build_nav 產生到 catalog 指定的檔案。pages 是 hub 底下的獨立單檔手冊(自帶 head 與樣式),納入 sitemap 與 check_links 白名單。",
     "catalog": "tutorial.html",
     "navLabel": "資源總覽",
-    "pages": ["sales.html", "prompts.html", "skills.html"]
+    "pages": [
+      "sales.html",
+      "prompts.html",
+      "skills.html"
+    ]
   },
   "chapters": [
     {
@@ -272,5 +276,8 @@
       "card": "還沒有主機？先看這篇。硬體怎麼挑、HAOS 怎麼燒、第一次開機要設什麼。",
       "description": "Home Assistant 安裝前傳：HAOS 與 Supervised 與 Container 與 Core 四種安裝方式比較、樹莓派與迷你電腦等硬體選擇、SD 卡與 SSD、映像檔燒錄步驟與首次開機設定。"
     }
-  ]
+  ],
+  "i18n": {
+    "xDefault": "en"
+  }
 }

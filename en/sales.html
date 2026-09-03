@@ -1,18 +1,18 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WoowTech Smart Home · HAOS Generation Setting × Cloud PaaS · Sales Manual</title>
-  <meta name="description" content="Want a smart home but don’t want to have to worry about yourself? There are two ways: buy HAOS hardware + WoowTech full set of generation settings, or rent WoowTech cloud PaaS monthly without self-installation. Hardware selection, installation of add-ons, automations, and commonly used integrated built-ins are all explained in one page." />
-  <meta name="author" content="WoowTech" />
-  <meta name="theme-color" content="#6183FC" />
-  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/sales.html" />
-  <meta name="robots" content="noindex, follow" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
-  <style>
+ <meta charset="utf-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>WoowTech Smart Home · Self-hosted or managed Home Assistant · Sales Handbook</title>
+ <meta name="description" content="Want a smart home but don’t want to have to worry about yourself? There are two ways: buy HAOS hardware + WoowTech full set of setup services, or rent WoowTech cloud PaaS monthly without self-installation. Hardware selection, installation of add-ons, automations, and commonly used integrated built-ins are all explained in one page." />
+ <meta name="author" content="WoowTech" />
+ <meta name="theme-color" content="#6183FC" />
+ <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/sales.html" />
+ <meta name="robots" content="noindex, follow" />
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
+ <style>
 /* HA Sales Manual — Woow_ha_tutorial_site Pattern × woowtech Brand Prompt Library v2 */
 :root {
   --ww-blue: #6183FC;
@@ -358,424 +358,424 @@ details.faq .body { padding: 16px 20px; color: var(--ink-700); font-size: 14px; 
 </head>
 <body>
 <div class="layout">
-  <aside class="sidebar" id="sidebar">
-    <a class="brand" href="#top">WoowTech smart home</a>
-    <div class="brand-sub">HAOS generation setting × Cloud PaaS</div>
-    <!-- i18n:switch --><nav class="lang-switch" aria-label="Language"><a href="../sales.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="sales.html" lang="en" aria-current="page">EN</a></nav><!-- /i18n:switch -->
-    <a class="hub-link" href="index.html">◂ HA Resource Hub</a>
-    <button class="nav-toggle" id="navToggle" type="button">Contents of this volume<span class="nav-toggle-caret"></span></button>
-    <div class="toc-in-chapter">
-      <h2>Contents of this volume</h2>
-      <a href="#why">Why WoowTech</a>
-      <a href="#paths">Two roads, understand them once</a>
-      <a href="#onprem">Option A: HAOS generation setting</a>
-      <a href="#cloud">Option B: Cloud PaaS</a>
-      <a href="#included">What does generation setting include?</a>
-      <a href="#day">One year after handover</a>
-      <a href="#compare">Compare plans</a>
-      <a href="#security">Where is the information placed?</a>
-      <a href="#faq">FAQ</a>
-      <a href="#cta">Make an appointment for consultation</a>
-    </div>
-  </aside>
+ <aside class="sidebar" id="sidebar">
+ <a class="brand" href="#top">WoowTech smart home</a>
+ <div class="brand-sub">Self-hosted HAOS × Managed Home Assistant</div>
+ <!-- i18n:switch --><nav class="lang-switch" aria-label="Language"><a href="../sales.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="sales.html" lang="en" aria-current="page">EN</a></nav><!-- /i18n:switch -->
+ <a class="hub-link" href="index.html">◂ HA Resource Hub</a>
+ <button class="nav-toggle" id="navToggle" type="button">Contents <span class="nav-toggle-caret"></span></button>
+ <div class="toc-in-chapter">
+ <h2>Contents</h2>
+ <a href="#why">Why WoowTech</a>
+ <a href="#paths">Two roads, understand them once</a>
+ <a href="#onprem">Option A: HAOS setup service</a>
+ <a href="#cloud">Option B: Cloud PaaS</a>
+ <a href="#included">What does setup service include?</a>
+ <a href="#day">One year after handover</a>
+ <a href="#compare">Compare plans</a>
+ <a href="#security">Where is the information placed?</a>
+ <a href="#faq">FAQ</a>
+ <a href="#cta">Make an appointment for consultation</a>
+ </div>
+ </aside>
 
-  <main class="content" id="top">
-    <div class="chapter-header">
-      <span class="kicker-script">smart home, done for you</span>
-      <div class="kicker">WoowTech Sales Brochure</div>
-      <h1>Want a smart home, but don’t want to become an engineer</h1>
-      <p class="lead">Home Assistant is very capable, but you have to build the hardware, burn HAOS, install add-ons, and write automations - this is where most people get stuck. WoowTech gives you two options: buy the hardware and let us help you "install it once until it is ready for use", or rent our cloud PaaS on a monthly basis "without even buying the hardware".</p>
-      <div class="kpi-frame">
-        <div class="kpi"><div class="num">2 weeks</div><div class="cap">Can be used from order placement to delivery</div></div>
-        <div class="kpi"><div class="num">0 lines of YAML</div><div class="cap">You don't need to write any configuration files</div></div>
-        <div class="kpi"><div class="num">3 years</div><div class="cap">Maintenance support &amp; remote maintenance</div></div>
-      </div>
-    </div>
+ <main class="content" id="top">
+ <div class="chapter-header">
+ <span class="kicker-script">smart home, done for you</span>
+ <div class="kicker">WoowTech Sales Handbook</div>
+ <h1>A smart home without becoming its full-time engineer</h1>
+ <p class="lead">Home Assistant is capable, but selecting hardware, installing HAOS and add-ons, and maintaining automations takes time. WoowTech presents two options: a self-hosted system set up for you, or a managed deployment. Commercial terms remain pending until WoowTech approves the international business brief.</p>
+ <div class="kpi-frame">
+ <div class="kpi"><div class="num">2 weeks</div><div class="cap">Can be used from order placement to delivery</div></div>
+ <div class="kpi"><div class="num">0 lines of YAML</div><div class="cap">You don't need to write any configuration files</div></div>
+ <div class="kpi"><div class="num">3 years</div><div class="cap">Maintenance support &amp; remote maintenance</div></div>
+ </div>
+ </div>
 
-    <section id="why" data-nav="Why WoowTech">
-      <h2 data-icon="why">Why don't you just install it yourself?</h2>
-      <p>Home Assistant is the world’s most open and socially active smart home brain. Its advantages are also just the threshold:<strong>You can accept anything, and you have to choose whatever it represents.</strong>. Choosing hardware, burning image files, tying Zigbee/Matter, writing every automation, and upgrading your home will cause problems - this is the hidden cost of "self-built".</p>
-      <ul>
-        <li><strong>time cost</strong>: Looking through files, watching YouTube, and being stuck for half a day are usually more expensive than the plan fee.</li>
-        <li><strong>Stable costs</strong>:Upgrade a breaking change. I didn’t notice that the whole family’s lights started a party by themselves in the middle of the night.</li>
-        <li><strong>security cost</strong>: Opening port 8123 to the outside world is equivalent to throwing your home keys on the Internet.</li>
-      </ul>
-      <div class="callout"><strong>Concept:</strong>What you want is a "smart home", not "being a smart home engineer." WoowTech takes over the entire installation, maintenance, and remote connection links - your role returns to "user".</div>
-    </section>
+ <section id="why" data-nav="Why WoowTech">
+ <h2 data-icon="why">Why ask WoowTech to set it up?</h2>
+ <p>Home Assistant is one of the most open and active smart-home platforms. That flexibility is also its learning curve: <strong>supporting almost anything means making many choices yourself</strong>. Hardware selection, image flashing, Zigbee or Matter commissioning, automation design, and upgrades all carry a time and maintenance cost.</p>
+ <ul>
+ <li><strong>Time</strong>: Documentation, videos, and troubleshooting can consume many hours.</li>
+ <li><strong>Reliability</strong>: An unnoticed breaking change can disrupt automations throughout the home.</li>
+ <li><strong>Security</strong>: Exposing port 8123 carelessly is like leaving a house key in public.</li>
+ </ul>
+ <div class="callout"><strong>Concept:</strong> You want to use a smart home, not become its full-time engineer. WoowTech can handle installation, maintenance, and remote access so that you can remain the user.</div>
+ </section>
 
-    <section id="paths" data-nav="Two roads, understand them once">
-      <h2 data-icon="two-paths">There are two roads, just choose one</h2>
-      <p>For those who “don’t want to fight against themselves”, WoowTech provides two complete solutions. The difference is "the host is at your home or ours", the functions and experience are the same.</p>
-      <div class="plan-grid">
+ <section id="paths" data-nav="Two roads, understand them once">
+ <h2 data-icon="two-paths">Choose one of two deployment models</h2>
+ <p>WoowTech offers two deployment models. The main difference is whether the Home Assistant host runs in your home or in infrastructure managed by WoowTech.</p>
+ <div class="plan-grid">
 
-        <div class="plan-card featured">
-          <span class="badge">Option A · Self-hosted</span>
-          <h3>Self-hosted Home Assistant setup</h3>
-          <p class="plan-lead">The host is placed at your home, and the data is always at your home. Suitable for users who have installed Zigbee/KNX/wired devices or are very concerned about privacy.</p>
-          <div class="plan-price">[ONE-TIME PRICE AND CURRENCY TO BE CONFIRMED]<small>(Depends on hardware and add-ons, contact channel to be confirmed)</small></div>
-          <ul>
-            <li>Home Assistant Green/Yellow/Raspberry Pi/Mini Computer Four hardware options to choose from</li>
-            <li>HAOS system programming, initialization, time zone and network settings</li>
-            <li>Necessary add-ons for installation (Zigbee2MQTT, ESPHome, MQTT, SSH, Studio Code Server, etc.)</li>
-            <li>Write down common automations for check-in (home mode/good night/notification/backup)</li>
-            <li>Remote connection establishment (Choose one of three Nabu Casa/Cloudflare Tunnel/WireGuard)</li>
-            <li>3 years of remote maintenance + upgrade maintenance</li>
-          </ul>
-          <a class="cta" href="#onprem">See Option A details →</a>
-        </div>
+ <div class="plan-card featured">
+ <span class="badge">Option A · Self-hosted</span>
+ <h3>Self-hosted Home Assistant setup</h3>
+ <p class="plan-lead">The host stays in your home, together with your data. This option suits Zigbee, KNX, wired devices, and users who prioritize local control and privacy.</p>
+ <div class="plan-price">[ONE-TIME PRICE AND CURRENCY TO BE CONFIRMED]<small>(Depends on hardware and add-ons, contact channel to be confirmed)</small></div>
+ <ul>
+ <li>Home Assistant Green/Yellow/Raspberry Pi/Mini Computer Four hardware options to choose from</li>
+ <li>HAOS installation, initialization, time zone, and network configuration</li>
+ <li>Necessary add-ons for installation (Zigbee2MQTT, ESPHome, MQTT, SSH, Studio Code Server, etc.)</li>
+ <li>Common onboarding automations for arrival, good night, notifications, and backups</li>
+ <li>Remote access through Nabu Casa, Cloudflare Tunnel, or WireGuard</li>
+ <li>3 years of remote maintenance + upgrade maintenance</li>
+ </ul>
+ <a class="cta" href="#onprem">See Option A details →</a>
+ </div>
 
-        <div class="plan-card">
-          <span class="badge">Option B · Managed by WoowTech</span>
-          <h3>Managed by WoowTech</h3>
-          <p class="plan-lead">You don’t even need to buy the hardware, you can use it right out of the box with the monthly rental. Suitable for renters, users who want to quickly test the water temperature, or users whose devices mainly focus on Wi-Fi/cloud integration.</p>
-          <div class="plan-price">[RECURRING PRICE AND CURRENCY TO BE CONFIRMED]<small>(Plan for each household, contact channel to be confirmed)</small></div>
-          <ul>
-            <li>Your dedicated HA instance, running in a WoowTech-managed hosting location [REGION TO BE CONFIRMED]</li>
-            <li>Frequently used integrations pre-enabled (weather/calendar/notifications/energy)</li>
-            <li>Login-ready cloud URL + Companion App direct connection</li>
-            <li>Official Blueprints and community themes have been installed</li>
-            <li>Automatic snapshot backup and version upgrade are maintained by WoowTech</li>
-            <li>You can upgrade to Option A at any time, and the data will be exported to your home hardware at once</li>
-          </ul>
-          <a class="cta ghost" href="#cloud">See Option B details →</a>
-        </div>
+ <div class="plan-card">
+ <span class="badge">Option B · Managed by WoowTech</span>
+ <h3>Managed by WoowTech</h3>
+ <p class="plan-lead">No local host purchase is required. This option suits renters, people evaluating Home Assistant, and homes that primarily use Wi-Fi or cloud integrations.</p>
+ <div class="plan-price">[RECURRING PRICE AND CURRENCY TO BE CONFIRMED]<small>(Plan for each household, contact channel to be confirmed)</small></div>
+ <ul>
+ <li>Your dedicated HA instance, running in a WoowTech-managed hosting location [REGION TO BE CONFIRMED]</li>
+ <li>Frequently used integrations pre-enabled (weather/calendar/notifications/energy)</li>
+ <li>Login-ready cloud URL + Companion App direct connection</li>
+ <li>Official Blueprints and selected community themes</li>
+ <li>Automatic snapshot backup and version upgrade are maintained by WoowTech</li>
+ <li>Migration to Option A is available, with data exported to your home hardware</li>
+ </ul>
+ <a class="cta ghost" href="#cloud">See Option B details →</a>
+ </div>
 
-      </div>
-      <div class="callout tip"><strong>Note:</strong>This international edition keeps pricing, currency, service area, hosting region, contact channel, and CTA destination as explicit placeholders until WoowTech approves the business brief. Not sure which option fits?<strong>Start with Option B</strong> After playing for three months, you will get used to it and know what equipment you are missing, and then upgrade to Option A and move the console home - this is the path we most often recommend.</div>
-    </section>
+ </div>
+ <div class="callout tip"><strong>Note:</strong> This international edition leaves pricing, currency, service area, hosting region, contact channel, and CTA destination as explicit placeholders until WoowTech approves the business brief. <strong>Option B</strong> can be used to evaluate the platform before deciding whether to move to self-hosted hardware under Option A.</div>
+ </section>
 
-    <section id="onprem" data-nav="Option A: HAOS generation setting">
-      <h2 data-icon="onprem">Option A: Buy HAOS hardware and we will help you set it up until it works</h2>
-      <p>What you receive is a ready-to-use smart home host - not a box of parts and an instruction manual that says "Please follow YouTube to install it yourself."</p>
+ <section id="onprem" data-nav="Option A: HAOS setup service">
+ <h2 data-icon="onprem">Option A: a self-hosted HAOS system, configured for you</h2>
+ <p>You receive a configured smart-home host, not a box of parts with instructions to assemble the system yourself.</p>
 
-      <h3>How to choose hardware</h3>
-      <p>We also represent Nabu Casa official hosts and mainstream mini computers on the market. We recommend the following based on the size and budget of your home:</p>
-      <table class="data-table">
-        <thead>
-          <tr><th>Model</th><th>Suitable for whom</th><th>Device upper limit (practical)</th><th>Remarks</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Home Assistant Green</th>
-            <td>Small family with two rooms, lightly used</td><td>Within 50 entities</td>
-            <td>Nabu Casa's official entry-level phone, plug it in and run, the easiest thing to do</td>
-          </tr>
-          <tr>
-            <th>Home Assistant Yellow</th>
-            <td>Toutian/has Zigbee/requires PoE</td><td>200 entities</td>
-            <td>Built-in Zigbee/Thread, pluggable CM4/CM5, best expandability</td>
-          </tr>
-          <tr>
-            <th>Raspberry Pi 5 + SSD</th>
-            <td>DIY style, want to save budget</td><td>150 entities</td>
-            <td>WoowTech ships as SSD version to avoid the pitfalls of bad SD cards.</td>
-          </tr>
-          <tr>
-            <th>Intel N100 Mini PC</th>
-            <td>Zhongda area/Multiple households/Going to LLM</td><td>500+ entities</td>
-            <td>The x86 platform has the most capable performance and is capable of energy monitoring and AI voice processing.</td>
-          </tr>
-        </tbody>
-      </table>
-      <p>Zigbee antennas, Z-Wave, Matter Thread border router, and SkyConnect are also available for purchase - we will recommend an agreement based on the list of equipment you already have/want to buy at home.</p>
+ <h3>Choosing hardware</h3>
+ <p>The appropriate host depends on the size of the installation, required protocols, expected workload, and budget:</p>
+ <table class="data-table">
+ <thead>
+ <tr><th>Model</th><th>Suitable for whom</th><th>Device upper limit (practical)</th><th>Remarks</th></tr>
+ </thead>
+ <tbody>
+ <tr>
+ <th>Home Assistant Green</th>
+ <td>Small home with light usage</td><td>Up to 50 entities</td>
+ <td>Official entry-level hardware from Nabu Casa; the simplest option</td>
+ </tr>
+ <tr>
+ <th>Home Assistant Yellow</th>
+ <td>Multi-story home, Zigbee, or PoE requirement</td><td>200 entities</td>
+ <td>Built-in Zigbee/Thread radio, replaceable CM4/CM5, and strong expansion options</td>
+ </tr>
+ <tr>
+ <th>Raspberry Pi 5 + SSD</th>
+ <td>Budget-conscious DIY users</td><td>150 entities</td>
+ <td>WoowTech ships as SSD version to avoid the pitfalls of bad SD cards.</td>
+ </tr>
+ <tr>
+ <th>Intel N100 Mini PC</th>
+ <td>Larger installations, multiple households, or local AI workloads</td><td>500+ entities</td>
+ <td>The x86 platform offers the most headroom for energy monitoring and AI voice processing</td>
+ </tr>
+ </tbody>
+ </table>
+ <p>Zigbee and Z-Wave radios, Matter controllers, and Thread border routers may also be required. The recommendation must be based on the devices you already own or plan to purchase.</p>
 
-      <h3>What WoowTech can do for you</h3>
-      <p>From the moment you nod your order to the moment we hand over the host to you, you don’t have to touch a single line of settings:</p>
-      <ol class="steps">
-        <li>
-          <h3>Consultation and demand inventory (30 minutes)</h3>
-          <p>The number of square meters of your home, floors, list of existing equipment (lights, air conditioners, curtains, surveillance, access control), family composition, and desired daily situations—WoowTech consultants will ask you all in one go.</p>
-        </li>
-        <li>
-          <h3>Solution design and hardware ordering</h3>
-          <p>We will give you a list of "hardware + protocols + add-ons + automations". After you confirm it, place the order, and the hardware will arrive at our factory within a week.</p>
-        </li>
-        <li>
-          <h3>Factory installation and internal testing</h3>
-          <p>HAOS system programming, time zone/region/unit, floor area, commonly used add-ons, initial automations, Companion App QR, remote connection and backup - all are run through our test environment for confirmation before shipment.</p>
-        </li>
-        <li>
-          <h3>Door-to-door or home delivery machine</h3>
-          <p>Installation, shipping, and remote onboarding availability depends on your country [SERVICE AREA TO BE CONFIRMED]. By the end of the teaching, you can already use your mobile phone to turn on lights and see notifications.</p>
-        </li>
-        <li>
-          <h3>3 years of remote maintenance</h3>
-          <p>Through the secure channel we built, upgrading, fixing bugs, adding new automation, and replacing equipment can all be handled remotely. You don’t need to open holes in your home network.</p>
-        </li>
-      </ol>
-    </section>
+ <h3>What WoowTech can do for you</h3>
+ <p>From the moment you nod your order to the moment we hand over the host to you, you don’t have to touch a single line of settings:</p>
+ <ol class="steps">
+ <li>
+ <h3>Consultation and requirements review (30 minutes)</h3>
+ <p>A consultant reviews the size and floors of the home, existing devices, household needs, and desired everyday automations.</p>
+ </li>
+ <li>
+ <h3>Solution design and hardware ordering</h3>
+ <p>We will give you a list of "hardware + protocols + add-ons + automations". After you confirm it, place the order, and the hardware will arrive at our factory within a week.</p>
+ </li>
+ <li>
+ <h3>Factory installation and internal testing</h3>
+ <p>HAOS system programming, time zone/region/unit, floor area, commonly used add-ons, initial automations, Companion App QR, remote connection and backup - all are run through our test environment for confirmation before shipment.</p>
+ </li>
+ <li>
+ <h3>On-site installation or delivery</h3>
+ <p>Installation, shipping, and remote onboarding availability depends on your country [SERVICE AREA TO BE CONFIRMED]. By the end of the teaching, you can already use your phone to turn on lights and see notifications.</p>
+ </li>
+ <li>
+ <h3>3 years of remote maintenance</h3>
+ <p>Through the secure channel we built, upgrading, fixing bugs, adding new automation, and replacing devices can all be handled remotely. You don’t need to open holes in your home network.</p>
+ </li>
+ </ol>
+ </section>
 
-    <section id="cloud" data-nav="Option B: Cloud PaaS">
-      <h2 data-icon="cloud">Option B: Start with Managed by WoowTech</h2>
-      <p>You don’t want to buy hardware, you don’t have room to put a host at home, and you just want to try out what a smart home is like first. This plan gives you a “Home Assistant that you can log in to right away” on a monthly basis, and you can deactivate it at any time.</p>
+ <section id="cloud" data-nav="Option B: Cloud PaaS">
+ <h2 data-icon="cloud">Option B: Home Assistant managed by WoowTech</h2>
+ <p>You don’t want to buy hardware, you don’t have room to put a host at home, and you just want to try out what a smart home is like first. This plan gives you a “Home Assistant that you can log in to right away” on a monthly basis, and you can deactivate it at any time.</p>
 
-      <h3>what will you get</h3>
-      <ul>
-        <li><strong>Dedicated instance</strong>: Your HA runs in a WoowTech-managed hosting location [REGION TO BE CONFIRMED], with one instance per household and independent data.</li>
-        <li><strong>Login-ready cloud URL</strong>: <code>your-home.woowtech.io</code>, Companion App directly enter to log in.</li>
-        <li><strong>Official + commonly used integrated pre-installation</strong>: Weather, calendar, notifications, Cloudflare Zero Trust, Assist voice assistant, energy monitoring framework.</li>
-        <li><strong>Blueprints and themes</strong>: Common automation templates (motion sensor to turn on lights, sunrise and sunset, family members coming home, absence warning) have been loaded.</li>
-        <li><strong>Automatic snapshot</strong>: Daily backups are retained for 30 days and can be downloaded to your home hard drive.</li>
-      </ul>
+ <h3>What you receive</h3>
+ <ul>
+ <li><strong>Dedicated instance</strong>: Your HA runs in a WoowTech-managed hosting location [REGION TO BE CONFIRMED], with one instance per household and independent data.</li>
+ <li><strong>Login-ready cloud URL</strong>: <code>your-home.woowtech.io</code>, Companion App directly enter to log in.</li>
+ <li><strong>Official + commonly used integrated pre-installation</strong>: Weather, calendar, notifications, Cloudflare Zero Trust, Assist voice assistant, energy monitoring framework.</li>
+ <li><strong>Blueprints and themes</strong>: Common automation templates (motion sensor to turn on lights, sunrise and sunset, family members coming home, absence warning) have been loaded.</li>
+ <li><strong>Automatic snapshot</strong>: Daily backups are retained for 30 days and can be downloaded to your home hard drive.</li>
+ </ul>
 
-      <h3>What devices can be connected and what cannot be connected?</h3>
-      <p>The biggest difference between cloud solutions is that "local devices must be able to connect to the outside to obtain HA." The following are common scenarios:</p>
-      <table class="data-table">
-        <thead>
-          <tr><th>Device type</th><th>Can I use a cloud solution?</th><th>Remarks</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Google/Apple/Alexa Cloud Speaker</td><td>can</td><td>Cloud integration direct connection</td></tr>
-          <tr><td>Mijia/Aqara/Tuya Cloud API</td><td>can</td><td>Corresponding account required</td></tr>
-          <tr><td>Wi-Fi smart sockets and light bulbs</td><td>can</td><td>Most use the manufacturer's cloud</td></tr>
-          <tr><td>Zigbee/Z-Wave/Matter Thread</td><td>Not recommended</td><td>A local hub is required. It is recommended to use option A.</td></tr>
-          <tr><td>KNX/Modbus/wired monitoring</td><td>Not recommended</td><td>Mainly local agreement, take Option A</td></tr>
-          <tr><td>HomeKit (native)</td><td>Look at the equipment</td><td>Cloud HomeKit is available, local control is recommended A</td></tr>
-        </tbody>
-      </table>
-      <div class="callout warn"><strong>Warning:</strong>If your home has a bunch of Zigbee bulbs, Aqara sensors, or wants to connect to KNX/wired monitoring, the cloud solution has no way of seeing these local protocols. In this case, just go to Option A.</div>
+ <h3>Which devices can connect?</h3>
+ <p>The biggest difference between cloud solutions is that "local devices must be able to connect to the outside to obtain HA." The following are common scenes:</p>
+ <table class="data-table">
+ <thead>
+ <tr><th>Device type</th><th>Can I use a cloud solution?</th><th>Remarks</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Google, Apple, or Alexa cloud speaker</td><td>Yes</td><td>Connects through a cloud integration</td></tr>
+ <tr><td>Mijia, Aqara, or Tuya cloud API</td><td>Yes</td><td>Requires the corresponding vendor account</td></tr>
+ <tr><td>Wi-Fi smart plugs and bulbs</td><td>Usually</td><td>Many depend on the manufacturer’s cloud</td></tr>
+ <tr><td>Zigbee/Z-Wave/Matter Thread</td><td>Not recommended</td><td>A local hub is required. It is recommended to use option A.</td></tr>
+ <tr><td>KNX, Modbus, or wired monitoring</td><td>Not recommended</td><td>Primarily local protocols; choose Option A</td></tr>
+ <tr><td>HomeKit (local)</td><td>Depends on the device</td><td>Choose Option A when local control is required</td></tr>
+ </tbody>
+ </table>
+ <div class="callout warn"><strong>Warning:</strong> If your home has multiple Zigbee bulbs, Aqara sensors, or wants to connect to KNX/wired monitoring, the cloud solution has no way of seeing these local protocols. In this case, just go to Option A.</div>
 
-      <h3>The path to cloud solutions</h3>
-      <ol class="steps">
-        <li>
-          <h3>Online ordering and plan selection</h3>
-          <p>Choose a monthly rental plan based on your family size (small family/whole family/professional) and add-ons usage, and activate it in 30 minutes.</p>
-        </li>
-        <li>
-          <h3>WoowTech helps you with basic settings</h3>
-          <p>Consultant online remote meeting for 60 minutes: regional time zone, family members, commonly used integrated account binding, Companion App installation and notification testing.</p>
-        </li>
-        <li>
-          <h3>You can use it later</h3>
-          <p>Teach you how to add equipment, open new automation, and check historical data; if you are stuck, please use the support channel [TO BE CONFIRMED] or read "<a href="tutorial.html">HA Onboarding Guide</a>》.</p>
-        </li>
-        <li>
-          <h3>You can upgrade at any time</h3>
-          <p>Found that there are too many local devices to connect to? WoowTech directly exports your cloud data to your home hardware and upgrades to Option A, so you don’t have to redo settings.</p>
-        </li>
-      </ol>
-    </section>
+ <h3>The path to cloud solutions</h3>
+ <ol class="steps">
+ <li>
+ <h3>Online ordering and plan selection</h3>
+ <p>Choose a monthly rental plan based on your family size (small family/whole family/professional) and add-ons usage, and activate it in 30 minutes.</p>
+ </li>
+ <li>
+ <h3>WoowTech helps you with basic settings</h3>
+ <p>Consultant online remote meeting for 60 minutes: regional time zone, family members, commonly used integrated account connection, Companion App installation and notification testing.</p>
+ </li>
+ <li>
+ <h3>You can use it later</h3>
+ <p>Teach you how to add devices, open new automation, and check historical data; if you are stuck, please use the support channel [TO BE CONFIRMED] or read " <a href="tutorial.html">HA Onboarding Guide</a>》.</p>
+ </li>
+ <li>
+ <h3>You can upgrade at any time</h3>
+ <p>Found that there are too many local devices to connect to? WoowTech directly exports your cloud data to your home hardware and upgrades to Option A, so you don’t have to redo settings.</p>
+ </li>
+ </ol>
+ </section>
 
-    <section id="included" data-nav="What does generation setting include?">
-      <h2 data-icon="steps">What does generation setting include?</h2>
-      <p>Regardless of whether you go A or B, the definition of "generation setting" is the same: put "<a href="tutorial.html">HA Onboarding Guide</a>"What you are asked to do by yourself in the 22 chapters will be done by WoowTech consultants in one go.</p>
+ <section id="included" data-nav="What does setup service include?">
+ <h2 data-icon="steps">What does the setup service include?</h2>
+ <p>Under either option, the setup service covers the tasks described throughout the 22 chapters of the <a href="tutorial.html">HA Onboarding Guide</a>, performed by a WoowTech consultant.</p>
 
-      <div class="feature-grid">
+ <div class="feature-grid">
 
-        <div class="feature-card">
-          <span class="tile"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#6183FC" d="M17,17H7V7H17M21,11V9H19V7C19,5.89 18.1,5 17,5H15V3H13V5H11V3H9V5H7C5.89,5 5,5.89 5,7V9H3V11H5V13H3V15H5V17A2,2 0 0,0 7,19H9V21H11V19H13V21H15V19H17A2,2 0 0,0 19,17V15H21V13H19V11M13,13H11V11H13M15,9H9V15H15V9Z"/></svg></span>
-          <h3>System and Environment</h3>
-          <ul>
-            <li>Time zone, language, unit, geographical location</li>
-            <li>Floor/Area</li>
-            <li>Entity naming, Label label, Category classification</li>
-            <li>Family/guest accounts, permissions, MFA</li>
-          </ul>
-        </div>
+ <div class="feature-card">
+ <span class="tile"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#6183FC" d="M17,17H7V7H17M21,11V9H19V7C19,5.89 18.1,5 17,5H15V3H13V5H11V3H9V5H7C5.89,5 5,5.89 5,7V9H3V11H5V13H3V15H5V17A2,2 0 0,0 7,19H9V21H11V19H13V21H15V19H17A2,2 0 0,0 19,17V15H21V13H19V11M13,13H11V11H13M15,9H9V15H15V9Z"/></svg></span>
+ <h3>System and Environment</h3>
+ <ul>
+ <li>Time zone, language, unit, geographical location</li>
+ <li>Floor/Area</li>
+ <li>Entity naming, Label label, Category classification</li>
+ <li>Family/guest accounts, permissions, MFA</li>
+ </ul>
+ </div>
 
-        <div class="feature-card">
-          <span class="tile"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#6183FC" d="M14,20A2,2 0 0,1 12,22A2,2 0 0,1 10,20H14M12,2A1,1 0 0,1 13,3V4.08C15.84,4.56 18,7.03 18,10V16L21,19H3L6,16V10C6,7.03 8.16,4.56 11,4.08V3A1,1 0 0,1 12,2Z"/></svg></span>
-          <h3>Add-ons and integrations</h3>
-          <ul>
-            <li>Zigbee2MQTT/ZHA (Scenario A)</li>
-            <li>ESPHome, Node-RED, Studio Code Server</li>
-            <li>File editor, Terminal &amp; SSH (for engineering)</li>
-            <li>MQTT broker, InfluxDB/MariaDB (for advanced use)</li>
-            <li>Weather, calendar, notifications, Companion App binding</li>
-          </ul>
-        </div>
+ <div class="feature-card">
+ <span class="tile"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#6183FC" d="M14,20A2,2 0 0,1 12,22A2,2 0 0,1 10,20H14M12,2A1,1 0 0,1 13,3V4.08C15.84,4.56 18,7.03 18,10V16L21,19H3L6,16V10C6,7.03 8.16,4.56 11,4.08V3A1,1 0 0,1 12,2Z"/></svg></span>
+ <h3>Add-ons and integrations</h3>
+ <ul>
+ <li>Zigbee2MQTT/ZHA (Scenario A)</li>
+ <li>ESPHome, Node-RED, Studio Code Server</li>
+ <li>File editor, Terminal &amp; SSH (for engineering)</li>
+ <li>MQTT broker, InfluxDB/MariaDB (for advanced use)</li>
+ <li>Weather, calendar, notifications, Companion App connection</li>
+ </ul>
+ </div>
 
-        <div class="feature-card">
-          <span class="tile"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#6183FC" d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/></svg></span>
-          <h3>Move into the first batch of Automations</h3>
-          <ul>
-            <li>Turn on the porch lights at sunset and turn off the night lights at sunrise</li>
-            <li>Go home mode (judgment when everyone returns home after leaving home)</li>
-            <li>Good night mode (turn off lights, switch to sleep mode with air conditioning, lock door)</li>
-            <li>Low battery/device offline notification</li>
-            <li>Daily automatic backup and backup success notification</li>
-          </ul>
-        </div>
+ <div class="feature-card">
+ <span class="tile"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#6183FC" d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/></svg></span>
+ <h3>Initial automations</h3>
+ <ul>
+ <li>Turn on the porch lights at sunset and turn off the night lights at sunrise</li>
+ <li>Go home mode (judgment when everyone returns home after leaving home)</li>
+ <li>Good night mode (turn off lights, switch to sleep mode with air conditioning, lock door)</li>
+ <li>Low battery/device offline notification</li>
+ <li>Daily automatic backup and backup success notification</li>
+ </ul>
+ </div>
 
-        <div class="feature-card">
-          <span class="tile"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#6183FC" d="M11,13H13V16H16V11H18L12,6L6,11H8V16H11V13M12,1L21,5V11C21,16.55 17.16,21.74 12,23C6.84,21.74 3,16.55 3,11V5L12,1Z"/></svg></span>
-          <h3>Remote connectivity and security</h3>
-          <ul>
-            <li>Choose one of Nabu Casa, Cloudflare Tunnel, and WireGuard</li>
-            <li>Trusted_proxies, reverse proxy hard rule settings</li>
-            <li>Fail2ban, Rate limit, two-stage verification</li>
-            <li>Do not expose 8123 directly to the outside world, and leave no key at the door.</li>
-          </ul>
-        </div>
+ <div class="feature-card">
+ <span class="tile"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#6183FC" d="M11,13H13V16H16V11H18L12,6L6,11H8V16H11V13M12,1L21,5V11C21,16.55 17.16,21.74 12,23C6.84,21.74 3,16.55 3,11V5L12,1Z"/></svg></span>
+ <h3>Remote connectivity and security</h3>
+ <ul>
+ <li>Choose one of Nabu Casa, Cloudflare Tunnel, and WireGuard</li>
+ <li>Trusted_proxies, reverse proxy hard rule settings</li>
+ <li>Fail2ban, Rate limit, two-stage verification</li>
+ <li>Do not expose 8123 directly to the outside world, and leave no key at the door.</li>
+ </ul>
+ </div>
 
-      </div>
-      <div class="callout tip"><strong>Tip:</strong>For your home's unique needs that are not covered in the tutorial (such as connecting Mitsubishi air conditioners, water and electricity meters, and KNX entrance panels), we have project customization quotas that can be purchased additionally.</div>
-    </section>
+ </div>
+ <div class="callout tip"><strong>Tip:</strong> For your home's unique needs that are not covered in the tutorial (such as connecting Mitsubishi air conditioners, water and electricity meters, and KNX entrance panels), we have project customization quotas that can be purchased additionally.</div>
+ </section>
 
-    <section id="day" data-nav="One year after handover">
-      <h2 data-icon="ai">What will you experience in the year after handover?</h2>
-      <p>The value of a plan is not "the day it is installed", but "the home can still run after a year." Here is a typical WoowTech customer timeline:</p>
-      <ol class="steps">
-        <li>
-          <h3>Day 0 · The day of delivery</h3>
-          <p>The first light you turn on, the first notification you receive, the first dashboard you see on your phone. Teaching is over and you have the rest of the time to show off to your family.</p>
-        </li>
-        <li>
-          <h3>Day 7 · First week</h3>
-          <p>Companion App is used every day; the good night pattern has become a family ritual; if you find the details you want to change, send a letter to the WoowTech consultant and it will be completed within 48 hours.</p>
-        </li>
-        <li>
-          <h3>Day 30 · One month</h3>
-          <p>You have purchased a new smart socket and want to add a "washing machine finished notification". WoowTech will help you connect remotely, and you don't have to learn anything.</p>
-        </li>
-        <li>
-          <h3>Day 90 · Three months</h3>
-          <p>You already know how to use the UI to open a new automation, so don’t bother us with simple rules. Look at the energy dashboard to identify the power-hungry monster in your home—usually the air conditioner or dehumidifier.</p>
-        </li>
-        <li>
-          <h3>Day 180 · half a year</h3>
-          <p>HA has released a new version, there may be breaking changes. WoowTech Unified first verifies it in the test environment, and then pushes it to your home if it is OK - you have no need to upgrade at all.</p>
-        </li>
-        <li>
-          <h3>Day 365 · one year</h3>
-          <p>Looking back: the electricity bills saved, the entanglements saved, and my family no longer yelled "Why can't I use it?" Renew your remote maintenance contract for another year and let WoowTech help you take better care of your home.</p>
-        </li>
-      </ol>
-    </section>
+ <section id="day" data-nav="One year after handover">
+ <h2 data-icon="ai">What will you experience in the year after handover?</h2>
+ <p>The value of a plan is not "the day it is installed", but "the home can still run after a year." Here is a typical WoowTech customer timeline:</p>
+ <ol class="steps">
+ <li>
+ <h3>Day 0 · The day of delivery</h3>
+ <p>The first light you turn on, the first notification you receive, the first dashboard you see on your phone. Teaching is over and you have the rest of the time to show off to your family.</p>
+ </li>
+ <li>
+ <h3>Day 7 · First week</h3>
+ <p>Companion App is used every day; the good night pattern has become a family ritual; if you find the details you want to change, send a letter to the WoowTech consultant and it will be completed within 48 hours.</p>
+ </li>
+ <li>
+ <h3>Day 30 · One month</h3>
+ <p>You have purchased a new smart socket and want to add a "washing machine finished notification". WoowTech will help you connect remotely, and you don't have to learn anything.</p>
+ </li>
+ <li>
+ <h3>Day 90 · Three months</h3>
+ <p>You already know how to use the UI to open a new automation, so don’t bother us with simple rules. Look at the energy dashboard to identify the power-hungry monster in your home—usually the air conditioner or dehumidifier.</p>
+ </li>
+ <li>
+ <h3>Day 180 · half a year</h3>
+ <p>HA has released a new version, there may be breaking changes. WoowTech Unified first verifies it in the test environment, and then pushes it to your home if it is OK - you have no need to upgrade at all.</p>
+ </li>
+ <li>
+ <h3>Day 365 · one year</h3>
+ <p>Looking back: the electricity bills saved, the entanglements saved, and my family no longer yelled "Why can't I use it?" Renew your remote maintenance contract for another year and let WoowTech help you take better care of your home.</p>
+ </li>
+ </ol>
+ </section>
 
-    <section id="compare" data-nav="Compare plans">
-      <h2 data-icon="compare">Comparison between two options and self-frame</h2>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>DIY</th>
-            <th>Option B</th>
-            <th class="pi-col">Option A</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Initial investment time</th>
-            <td>10–40 hours</td>
-            <td>1 hour (online meeting)</td>
-            <td class="pi-col">1 hour (consultation) + hands-on teaching</td>
-          </tr>
-          <tr>
-            <th>Hardware procurement</th>
-            <td>Check it yourself, buy it yourself</td>
-            <td>No need</td>
-            <td class="pi-col">WoowTech suggestions + purchasing agents</td>
-          </tr>
-          <tr>
-            <th>Zigbee/Z-Wave/KNX local device</th>
-            <td>You have to choose your own hub</td>
-            <td>Not supported</td>
-            <td class="pi-col">Complete support, installed antenna</td>
-          </tr>
-          <tr>
-            <th>Where is the data stored?</th>
-            <td>Your host</td>
-            <td>WoowTech-managed hosting [REGION TO BE CONFIRMED]</td>
-            <td class="pi-col">Your host</td>
-          </tr>
-          <tr>
-            <th>Upgrade breaking change</th>
-            <td>Stare at the file yourself</td>
-            <td>WoowTech unified processing</td>
-            <td class="pi-col">WoowTech unified processing</td>
-          </tr>
-          <tr>
-            <th>Remote connection security</th>
-            <td>Do it yourself (easy to package)</td>
-            <td>Built-in</td>
-            <td class="pi-col">Nabu Casa/Tunnel/VPN Choose one from three</td>
-          </tr>
-          <tr>
-            <th>fee model</th>
-            <td>Hardware + time</td>
-            <td>monthly rent</td>
-            <td class="pi-col">One-time construction + annual maintenance</td>
-          </tr>
-          <tr>
-            <th>Family members who are not familiar with 3C</th>
-            <td>I can only ask you</td>
-            <td>You can write directly to WoowTech</td>
-            <td class="pi-col">You can write directly to WoowTech</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+ <section id="compare" data-nav="Compare plans">
+ <h2 data-icon="compare">Compare DIY, Option A, and Option B</h2>
+ <table class="data-table">
+ <thead>
+ <tr>
+ <th></th>
+ <th>DIY</th>
+ <th>Option B</th>
+ <th class="pi-col">Option A</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <th>Initial investment time</th>
+ <td>10–40 hours</td>
+ <td>1 hour (online meeting)</td>
+ <td class="pi-col">1 hour (consultation) + hands-on teaching</td>
+ </tr>
+ <tr>
+ <th>Hardware procurement</th>
+ <td>Check it yourself, buy it yourself</td>
+ <td>No need</td>
+ <td class="pi-col">WoowTech suggestions + purchasing agents</td>
+ </tr>
+ <tr>
+ <th>Zigbee/Z-Wave/KNX local device</th>
+ <td>You have to choose your own hub</td>
+ <td>Not supported</td>
+ <td class="pi-col">Complete support, installed antenna</td>
+ </tr>
+ <tr>
+ <th>Where is the data stored?</th>
+ <td>Your host</td>
+ <td>WoowTech-managed hosting [REGION TO BE CONFIRMED]</td>
+ <td class="pi-col">Your host</td>
+ </tr>
+ <tr>
+ <th>Upgrade breaking change</th>
+ <td>Stare at the file yourself</td>
+ <td>WoowTech unified processing</td>
+ <td class="pi-col">WoowTech unified processing</td>
+ </tr>
+ <tr>
+ <th>Remote connection security</th>
+ <td>Do it yourself (easy to package)</td>
+ <td>Built-in</td>
+ <td class="pi-col">Nabu Casa/Tunnel/VPN Choose one from three</td>
+ </tr>
+ <tr>
+ <th>fee model</th>
+ <td>Hardware + time</td>
+ <td>monthly rent</td>
+ <td class="pi-col">One-time construction + annual maintenance</td>
+ </tr>
+ <tr>
+ <th>Household members who are not technically confident</th>
+ <td>I can only ask you</td>
+ <td>You can write directly to WoowTech</td>
+ <td class="pi-col">You can write directly to WoowTech</td>
+ </tr>
+ </tbody>
+ </table>
+ </section>
 
-    <section id="security" data-nav="Where is the information placed?">
-      <h2 data-icon="security">Where is the information placed and who can see it?</h2>
-      <p>This is the first question every one of our customers asks. WoowTech’s answer is:<strong>Keep data local whenever possible; where managed hosting is required, document the hosting region and access controls before purchase.</strong>.</p>
+ <section id="security" data-nav="Where is the information placed?">
+ <h2 data-icon="security">Where is the data stored, and who can access it?</h2>
+ <p>This is the first question every one of our customers asks. WoowTech’s answer is: <strong>Keep data local whenever possible; where managed hosting is required, document the hosting region and access controls before purchase.</strong>.</p>
 
-      <h3>Option A (local)</h3>
-      <ul>
-        <li>Sensors, cameras, schedules, energy, conversations—all hosted in your home.</li>
-        <li>WoowTech remote maintenance is accessed through a short-term secure channel, and all operations leave audit logs.</li>
-        <li>Even if WoowTech disappears, your host will still be there and your data will still be there.</li>
-      </ul>
+ <h3>Option A (local)</h3>
+ <ul>
+ <li>Sensors, cameras, schedules, energy, conversations—all hosted in your home.</li>
+ <li>WoowTech remote maintenance is accessed through a short-term secure channel, and all operations leave audit logs.</li>
+ <li>Even if WoowTech disappears, your host will still be there and your data will still be there.</li>
+ </ul>
 
-      <h3>Option B (Cloud)</h3>
-      <ul>
-        <li>Your HA instance runs in WoowTech-managed hosting [REGION, FACILITY, AND COMPLIANCE CLAIMS TO BE CONFIRMED].</li>
-        <li>One container + one database per household, disk encryption, and cross-household isolation.</li>
-        <li>Daily snapshots can be downloaded to your own hard drive.</li>
-        <li>WoowTech employees will not log into your instance unless you open a ticket for help.</li>
-      </ul>
+ <h3>Option B (managed)</h3>
+ <ul>
+ <li>Your HA instance runs in WoowTech-managed hosting [REGION, FACILITY, AND COMPLIANCE CLAIMS TO BE CONFIRMED].</li>
+ <li>One container + one database per household, disk encryption, and cross-household isolation.</li>
+ <li>Daily snapshots can be downloaded to your own hard drive.</li>
+ <li>WoowTech employees will not log into your instance unless you open a ticket for help.</li>
+ </ul>
 
-      <div class="callout"><strong>Concept:</strong>The most vulnerable link in a smart home is usually "opening the 8123 port to the outside world but not setting it up properly." Whether you choose A or B, this matter doesn’t bother you.</div>
-    </section>
+ <div class="callout"><strong>Concept:</strong> The most vulnerable link in a smart home is usually "opening the 8123 port to the outside world but not setting it up properly." Whether you choose A or B, this matter doesn’t bother you.</div>
+ </section>
 
-    <section id="faq" data-nav="FAQ">
-      <h2 data-icon="faq">FAQ</h2>
-      <details class="faq">
-        <summary>How much does it cost? Can you indicate a range first?</summary>
-        <div class="body">The construction fee varies greatly depending on the depth of hardware and add-ons; the monthly rent is divided into three levels based on family size. We do not put the price list on the website, because the estimate of "what your home actually needs" is meaningful - please use the contact channel once it is confirmed, and we can give you an accurate quotation after a 30-minute consultation.</div>
-      </details>
-      <details class="faq">
-        <summary>I already have HA running, can I take over?</summary>
-        <div class="body">Yes, this is a very common situation. WoowTech will make a "current health inspection report" - which settings are unsafe, which add-ons should be replaced, and whether there are any upgrade minefields - you decide whether to entrust us to take over the maintenance. After entrustment, your HA will enter our maintenance schedule and enjoy the same treatment as machines shipped directly from Option A.</div>
-      </details>
-      <details class="faq">
-        <summary>Is installation or delivery available in my country?</summary>
-        <div class="body">On-site installation, shipping, travel charges, and online onboarding vary by country [SERVICE AREA AND FEES TO BE CONFIRMED]. The machines in Option A are all set up in our factory before being shipped out. You can start using them just by plugging them in and connecting them to the Internet. The remote connection allows us to assist you as if someone is right next to you.</div>
-      </details>
-      <details class="faq">
-        <summary>What should I do if I move?</summary>
-        <div class="body">Option A: Take the host with you and restore it when the new home is plugged in. If the network environment changes and you need to reset the remote connection, WoowTech remote assistance can complete it within 30 minutes. Option B: The cloud solution has nothing to do with the physical address. You don’t have to do anything when moving, just change the Zone’s address in HA to your new home.</div>
-      </details>
-      <details class="faq">
-        <summary>Will WoowTech peek into my home information?</summary>
-        <div class="body">No, and the contract states there are penalties. Option A: We need to use the short-term authorization channel to connect, and you can revoke it at any time; Option B: By default, we cannot log in to your instance. If you need to help you handle it, you need to issue an invoice and authorize it in the customer service system - every operation will leave an audit record, which you can export at any time.</div>
-      </details>
-      <details class="faq">
-        <summary>Can I just buy the hardware and not set it up?</summary>
-        <div class="body">Yes, we are also resellers of official HA hardware. However, if you just want to save the setup fee, our experience is that most people will still come back to entrust us after 3 months - the time cost is much higher than the solution fee. Pure hardware purchases will come with the complete tutorial of "HA Onboarding Guide". If you are sure you want to learn, this path will fully support you.</div>
-      </details>
-      <details class="faq">
-        <summary>What’s the difference between Nabu Casa’s official cloud and your Option B?</summary>
-        <div class="body">Nabu Casa "helps you add cloud connection and voice to your home HA"; WoowTech Option B is "even the HA host runs directly on the cloud", and you don't even need to buy hardware. The two positions are different: if you already have HA at home and want to connect remotely with Google/Alexa voice, choose Nabu Casa; if you don’t even want to buy the hardware and want to start right away, choose Option B.</div>
-      </details>
-    </section>
+ <section id="faq" data-nav="FAQ">
+ <h2 data-icon="faq">FAQ</h2>
+ <details class="faq">
+ <summary>How much does it cost? Can you indicate a range first?</summary>
+ <div class="body">The construction fee varies greatly depending on the depth of hardware and add-ons; the monthly rent is divided into three levels based on family size. We do not put the price list on the website, because the estimate of "what your home actually needs" is meaningful - please use the contact channel once it is confirmed, and we can give you an accurate quotation after a 30-minute consultation.</div>
+ </details>
+ <details class="faq">
+ <summary>I already have HA running, can I take over?</summary>
+ <div class="body">Yes, this is a very common situation. WoowTech will make a "current health inspection report" - which settings are unsafe, which add-ons should be replaced, and whether there are any upgrade minefields - you decide whether to entrust us to take over the maintenance. After entrustment, your HA will enter our maintenance schedule and enjoy the same treatment as machines shipped directly from Option A.</div>
+ </details>
+ <details class="faq">
+ <summary>Is installation or delivery available in my country?</summary>
+ <div class="body">On-site installation, shipping, travel charges, and online onboarding vary by country [SERVICE AREA AND FEES TO BE CONFIRMED]. The machines in Option A are all set up in our factory before being shipped out. You can start using them just by plugging them in and connecting them to the Internet. The remote connection allows us to assist you as if someone is right next to you.</div>
+ </details>
+ <details class="faq">
+ <summary>What should I do if I move?</summary>
+ <div class="body">Option A: Take the host with you and restore it when the new home is plugged in. If the network environment changes and you need to reset the remote connection, WoowTech remote assistance can complete it within 30 minutes. Option B: The cloud solution has nothing to do with the physical address. You don’t have to do anything when moving, just change the Zone’s address in HA to your new home.</div>
+ </details>
+ <details class="faq">
+ <summary>Will WoowTech peek into my home information?</summary>
+ <div class="body">No, and the contract states there are penalties. Option A: We need to use the short-term authorization channel to connect, and you can revoke it at any time; Option B: By default, we cannot log in to your instance. If you need to help you handle it, you need to issue an invoice and authorize it in the customer service system - every operation will leave an audit record, which you can export at any time.</div>
+ </details>
+ <details class="faq">
+ <summary>Can I just buy the hardware and not set it up?</summary>
+ <div class="body">Yes, we are also resellers of official HA hardware. However, if you just want to save the setup fee, our experience is that most people will still come back to entrust us after 3 months - the time cost is much higher than the solution fee. Pure hardware purchases will come with the complete tutorial of "HA Onboarding Guide". If you are sure you want to learn, this path will fully support you.</div>
+ </details>
+ <details class="faq">
+ <summary>What’s the difference between Nabu Casa’s official cloud and your Option B?</summary>
+ <div class="body">Nabu Casa "helps you add cloud connection and voice to your home HA"; WoowTech Option B is "even the HA host runs directly on the cloud", and you don't even need to buy hardware. The two positions are different: if you already have HA at home and want to connect remotely with Google/Alexa voice, choose Nabu Casa; if you don’t even want to buy the hardware and want to start right away, choose Option B.</div>
+ </details>
+ </section>
 
-    <section id="cta" data-nav="Make an appointment for consultation">
-      <h2 data-icon="handshake">Next step</h2>
-      <div class="cta-band">
-        <span class="script">let's chat</span>
-        <h3>30-minute consultation and take away a customized plan</h3>
-        <p>Whether you "don't have a host yet and want to start from scratch" or "already have HA but don't want to maintain it yourself", we have prepared the corresponding path. Available online or at home.</p>
-        <a class="btn-pill" href="#">[CONTACT CHANNEL AND CTA DESTINATION TO BE CONFIRMED]</a>
-      </div>
-    </section>
+ <section id="cta" data-nav="Make an appointment for consultation">
+ <h2 data-icon="handshake">Next step</h2>
+ <div class="cta-band">
+ <span class="script">let's chat</span>
+ <h3>A 30-minute consultation and a tailored plan</h3>
+ <p>Whether you "don't have a host yet and want to start from scratch" or "already have HA but don't want to maintain it yourself", we have prepared the corresponding path. Available online or at home.</p>
+ <a class="btn-pill" href="#">[CONTACT CHANNEL AND CTA DESTINATION TO BE CONFIRMED]</a>
+ </div>
+ </section>
 
-    <footer class="site-footer">
-      <p>"WoowTech Smart Home Sales Manual" by <strong>WoowTech Wowu Technology</strong> Make. Prices and program contents are subject to the actual contract, contact channel to be confirmed.</p>
-      <p class="footer-meta">The Smart Space Solution · Smart Space Solution · © 2026 WOOW Technology Co., Ltd. · <a href="index.html">HA Resource Hub</a></p>
-    </footer>
-  </main>
+ <footer class="site-footer">
+ <p>"WoowTech Smart Home Sales Manual" by <strong>WoowTech Wowu Technology</strong> Make. Prices and program contents are subject to the actual contract, contact channel to be confirmed.</p>
+ <p class="footer-meta">The Smart Space Solution · Smart Space Solution · © 2026 WOOW Technology Co., Ltd. · <a href="index.html">HA Resource Hub</a></p>
+ </footer>
+ </main>
 </div>
 
 <script>

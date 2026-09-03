@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Appendix C · Before installation: hardware and HAOS · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Home Assistant installation prequel: Comparison of four installation methods, HAOS vs. Supervised vs. Container vs. Core, hardware selection such as Raspberry Pi vs. mini computer, SD card vs. SSD, image file burning steps, and first-time boot settings." />
+  <meta name="description" content="Compare HAOS, Supervised, Container, and Core; choose a Raspberry Pi or mini PC and suitable storage; flash the image and complete first boot." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/appendix_hardware_install.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Appendix C · Before installation: hardware and HAOS · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Home Assistant installation prequel: Comparison of four installation methods, HAOS vs. Supervised vs. Container vs. Core, hardware selection such as Raspberry Pi vs. mini computer, SD card vs. SSD, image file burning steps, and first-time boot settings." />
+  <meta property="og:description" content="Compare HAOS, Supervised, Container, and Core; choose a Raspberry Pi or mini PC and suitable storage; flash the image and complete first boot." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/appendix_hardware_install.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Appendix C · Before installation: hardware and HAOS · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Home Assistant installation prequel: Comparison of four installation methods, HAOS vs. Supervised vs. Container vs. Core, hardware selection such as Raspberry Pi vs. mini computer, SD card vs. SSD, image file burning steps, and first-time boot settings." />
+  <meta name="twitter:description" content="Compare HAOS, Supervised, Container, and Core; choose a Raspberry Pi or mini PC and suitable storage; flash the image and complete first boot." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -31,7 +31,7 @@
 </head>
 <body>
 <div class="layout">
-  <aside class="sidebar">
+ <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From zero to working</div>
     <nav class="lang-switch" aria-label="Language"><a href="../appendix_hardware_install.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="appendix_hardware_install.html" lang="en" aria-current="page">EN</a></nav>
@@ -47,7 +47,7 @@
       <li><a href="ch6_dashboard.html">Dashboards</a></li>
       <li><a href="ch7_notifications.html">Notifications</a></li>
       <li><a href="ch8_first_automation.html">First automation</a></li>
-      <li><a href="ch9_backups.html">backups</a></li>
+      <li><a href="ch9_backups.html">Backups</a></li>
       <li><a href="ch10_scripts.html">Scripts</a></li>
       <li><a href="ch11_devices.html">Device settings</a></li>
       <li><a href="ch12_domains.html">Domain reference</a></li>
@@ -77,503 +77,503 @@
       <a href="#network">How to connect to the Internet</a>
       <a href="#power">Power and cooling</a>
       <a href="#after">What to do after installing it</a>
-      <a href="#troubleshoot">Common stuck levels</a>
+      <a href="#troubleshoot">Common problems</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · HACS/add-ons/remote access</a>
-      <a href="appendix_scenes_helpers_groups.html">B · Scenes/helpers/groups</a>
+      <a href="appendix_hacs_addons.html">A · HACS, add-ons, and remote access</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scenes, helpers, and groups</a>
       <a href="appendix_hardware_install.html" class="active">C · Hardware and HAOS</a>
     </div>
   </aside>
 
-  <main class="content">
-    <div class="chapter-header">
-      <div class="kicker">Appendix C</div>
-      <h1>Pre-installation: Hardware selection and HAOS installation</h1>
-      <p class="lead">This book begins with Chapter 1, assuming that you already have a host running Home Assistant. If you don’t have that machine yet, this article is your step 0: choose the host, choose the storage media, burn the system in, plug it in and turn it on, and create your first account. After finishing this article, you can directly receive<a href="ch1_login.html">Chapter 1</a>Read on.</p>
-    </div>
-
-    <section id="why" data-nav="What is this article going to solve?">
-      <h2 data-icon="why">Why do you need your own host?</h2>
-
-      <p>You may have read the previous chapters of this site and thought "I want to play this", and then got stuck on a very real question:<strong>Where is that Home Assistant installed?</strong></p>
-
-      <p>Home Assistant is not a mobile app, nor is it a website account. it is a set that runs on<strong>On a computer at your home</strong>The software is open 24 hours a day, connected to your home router, and talks to your home lights and sensors. All the data stays at your home, which is why many people choose it, but the price is: you have to have that "computer" first.</p>
-
-      <p>This computer can be a palm-sized Raspberry Pi, an official small box, a second-hand mini computer, or even a virtual machine opened on your home NAS. This article will lay out the options, compare them, and then walk you through installing the system.</p>
-
-      <div class="callout"><strong>Concept:</strong>This host is usually called "Host" or "Instance" in the Home Assistant world. It is the brain of your home automation. If the power is cut off, the whole system will shut down - so be sure to read the following paragraphs on power supply and backup.</div>
-
-      <p>After reading this article you will have the ability to:</p>
-
-      <ul>
-        <li>Understand the differences between the four installation methods and know which one you should choose (spoiler: choose HAOS).</li>
-        <li>Depending on the size of your home and budget, choose a console you won’t regret.</li>
-        <li>Burn the system image file into the SD card or SSD yourself, plug it in and boot it up.</li>
-        <li>Complete the first-time setup (Onboarding), create an owner account, and set the home location.</li>
-        <li>Know which pitfalls are easiest to step into: the host cannot be found, the computer cannot be turned on, and it restarts randomly.</li>
-      </ul>
-    </section>
-
-    <section id="install_types" data-nav="Four installation methods">
-      <h2 data-icon="compare">Four installation methods: Novices should choose HAOS, there is no suspense</h2>
-
-      <p>Tutorials on the Internet will mention four names, which can easily be confusing. Let’s talk about the conclusion first:<strong>If this is your first time installing, choose Home Assistant Operating System (HAOS for short) and don’t think about anything else.</strong></p>
-
-      <p>The official document itself currently only recommends two types: HAOS and Container. Core and Supervised will be officially announced to be deprecated (Deprecate) in May 2025. The official announcement timetable is from the 2025.6 version to the <strong>Version 2025.12 officially ends support</strong>, and the 32-bit i386/armhf/armv7 architecture was also axed. The official relocation advice is: Those who originally used Core should move to Container, and those who originally used Supervised should move to HAOS.</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>Installation method</th><th>what is it</th><th>Can I use Apps (formerly "add-ons")?</th><th>Current status</th><th>Suitable for whom</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>HAOS</strong><br> (Home Assistant Operating System)</td>
-            <td>A complete operating system. It handles everything from booting up the machine to Home Assistant, and you don’t have to touch Linux.</td>
-            <td>Okay, all functions are there</td>
-            <td>Official recommendation, official recommendation</td>
-            <td><strong>All newbies, and more than 90% of people</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Container</strong></td>
-            <td>Run a Home Assistant container in your own Linux/Docker environment.</td>
-            <td>No</td>
-            <td>Officially still supports</td>
-            <td>People who already have a Docker host and know what they are doing</td>
-          </tr>
-          <tr>
-            <td><strong>Supervised</strong></td>
-            <td>Run your own Debian and install the official Supervisor.</td>
-            <td>Yes, but you have to maintain the bottom layer yourself</td>
-            <td>Deprecated, support will end in 2025.12</td>
-            <td>It is not recommended to create a new one. Officially, please move to HAOS.</td>
-          </tr>
-          <tr>
-            <td><strong>Core</strong></td>
-            <td>Run the Home Assistant program directly in the Python environment.</td>
-            <td>No</td>
-            <td>Deprecated, support will end in 2025.12</td>
-            <td>It is not recommended to create a new one. Officially, please move it to Container.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="callout warn"><strong>Warning:</strong>Container loses more than just "convenience". Official documents clearly state that, like <strong>Thread</strong> with <strong>Z-Wave</strong> This type of integration is supported by Apps, and there is no ready support for Container installation. If you plan to play with Zigbee/Thread/Matter wireless devices in the future, this is a fatal difference.</div>
-
-      <div class="callout tip"><strong>Tip:</strong>from <strong>2026.2</strong> version, the official name of the original "Add-ons" was officially changed <strong>Apps</strong>, the panel location has also changed from "Settings &gt; Plug-ins" to <strong>Settings &gt; Apps</strong>. The official distinction method is easy to remember:<em>Apps are independent programs that run side by side with Home Assistant. Integration is connecting Home Assistant to your devices and services.</em>.<a href="appendix_hacs_addons.html">Appendix A</a> That's what I'm talking about.</div>
-    </section>
-
-    <section id="hardware" data-nav="How to choose hardware">
-      <h2 data-icon="hardware">How to choose hardware: compare five routes</h2>
-
-      <p>Let’s first establish a psychological coordinate: Home Assistant itself does not suffer from performance. For an average household to install thirty or fifty devices, a quad-core ARM chip with 4GB of memory is more than enough. What will really bring down the host is<strong>Things you add later</strong>—Camera recording and image recognition, local voice assistant, and historical records accumulated in the database. So "it's enough now" and "it'll be enough in two years" are two different things.</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>route</th><th>feelings of efficacy</th><th>price range concept</th><th>Suitable scale</th><th>What to pay attention to</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Raspberry Pi 4</strong>(minimum 2GB RAM)</td>
-            <td>Sufficient, but slow to boot and update</td>
-            <td>Getting Started</td>
-            <td>A typical household with dozens of devices</td>
-            <td>The official minimum is 2GB RAM; it is recommended to go straight up to 4GB. Be sure to have an SSD, don’t use the SD card for a long time</td>
-          </tr>
-          <tr>
-            <td><strong>Raspberry Pi 5</strong></td>
-            <td>Noticeably faster than the Pi 4, the dashboard responds crisply</td>
-            <td>Medium entry level</td>
-            <td>Average to medium sized families</td>
-            <td>It consumes more power than Pi 4 and requires higher power supply (see the power supply section)</td>
-          </tr>
-          <tr>
-            <td><strong>Home Assistant Green</strong>(official hardware)</td>
-            <td>Same level of feel as Pi 4, but no adjustment required</td>
-            <td>in</td>
-            <td>People who just want to use it out of the box without any fuss</td>
-            <td>The 32GB eMMC is built-in and soldered, and the capacity cannot be expanded later.</td>
-          </tr>
-          <tr>
-            <td><strong>mini computer</strong>(Intel N100 type x86)</td>
-            <td>The fastest, one can run many things at the same time</td>
-            <td>medium to medium high</td>
-            <td>Large family, multiple cameras, want to run local voice/AI</td>
-            <td>You need to enter the BIOS settings yourself; the size and power consumption are larger than Pi</td>
-          </tr>
-          <tr>
-            <td><strong>Open a virtual machine on the NAS</strong></td>
-            <td>Look at the grade of the NAS itself</td>
-            <td>If the NAS already exists, the cost is zero</td>
-            <td>People who already have a NAS and leave it on 24 hours a day</td>
-            <td>NAS restarts = all home automation stops; USB wireless stick penetrates the virtual machine and often causes problems</td>
-          </tr>
-          <tr>
-            <td><strong>old laptop</strong></td>
-            <td>Usually sufficient or even excessive</td>
-            <td>Zero (I already have it at home)</td>
-            <td>I want to test the water temperature first and don’t want to spend money</td>
-            <td>Enable UEFI boot and turn off Secure Boot; battery aging is a risk</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>Official hardware status (this section is particularly easy to become outdated)</h3>
-
-      <p><strong>Home Assistant Green</strong> It is currently the official model currently on sale. Its specifications are Rockchip RK3566, quad-core ARM Cortex-A55 1.8GHz, 4GB memory, 32GB eMMC storage, and a microSD slot for rescue. The interface includes Gigabit Ethernet, two USB 2.0, and an HDMI for diagnostics. The aluminum heat sink dissipates passive cooling without a fan. The box comes with a Gigabit network cable and a 12V/1A universal power supply (including EU/US/UK plug adapters. choose the adapter that matches your local socket), plug them in and you're ready to use. The recommended selling price indicated on the official page is US$199 / €179, but the actual price of dealers in various places varies greatly.<strong>Please refer to the announcement of the channel you purchased from.</strong>.</p>
-
-      <p>Green has a specification worth knowing first: the official label indicates two USB 2.0 ports<strong>Total supply up to 5V 2A</strong>. This means that if you want to plug in a USB hard drive that does not have an independent power supply, you must first make sure it can handle it; plugging in something as small as a Zigbee wireless stick is completely fine.</p>
-
-      <p><strong>Home Assistant Yellow</strong> Already<strong>discontinued</strong>. The official page makes it clear: this product is no longer in production, but it continues to receive software updates, and new buyers are advised to buy Green instead. So if you see a second-hand Yellow on an auction website, you need to know its positioning: it uses Raspberry Pi Compute Module 4, has an M.2 M-Key slot to plug in an NVMe SSD (supported by 2230/2242/2260/2280), and has a built-in Silicon Labs MGM210P wireless module that also supports Zigbee 3.0, OpenThread and Matter. The built-in radio is its biggest selling point - but since it is discontinued, novices should not buy second-hand for it.</p>
-
-      <p>In addition there are <strong>ODROID</strong> series (the official installation file currently covers N2, N2+, C2, C4, M1, M1S), takes a similar route to the Pi but uses eMMC modules. Please pay attention to the documentation of M1<strong>Booting from NVMe is not supported</strong>, N2+ and M1S use a USB-OTG cable to directly connect the board to your computer, turn it into a "pen drive" and then burn it in. The procedure is different from the Pi. This path is not very beginner-friendly unless you happen to have it handy.</p>
-
-      <div class="callout tip"><strong>Tip:</strong>If you plan to play with Zigbee or Thread/Matter devices, the console itself usually does not have these radios built into it, and you will need to plug in a separate USB radio stick. What the official is currently selling is <strong>Home Assistant Connect ZBT-2</strong>(Silicon Labs MG24 chip, and uses an ESP32-S3 as a USB controller), which replaces the discontinued ZBT-1 (formerly known as SkyConnect). It has the shape of "an antenna and a base", and the box comes with a 1.5-meter USB cable, allowing you to place it farther away to avoid interference. pay attention to it<strong>You cannot run Zigbee and Thread at the same time</strong>, you have to choose one side - the official statement is that they do not think that "one stick running two protocols" is suitable for long-term use at home, and it is recommended to use one stick for each protocol. This is not the focus of this article, just know that it exists first.</div>
-    </section>
-
-    <section id="storage" data-nav="storage media">
-      <h2 data-icon="records">Storage media: SD cards are the most common cause of death</h2>
-
-      <p>This section is the most valuable part of the entire article.<strong>The most common "breakdown" of the Home Assistant host is not that the motherboard is burned, but that the SD card is damaged.</strong></p>
-
-      <h3>Why does the SD card fail?</h3>
-
-      <p>The flash memory in the SD card has a limited number of times that each block can be written to. Most people use SD cards to take photos, and they can write hundreds of photos a day, and it will be fine even if it lasts five years. But Home Assistant is different:</p>
-
-      <ul>
-        <li><strong>The database is constantly being written.</strong>Every change in the sensor value and every time the light is turned on and off will be written into the database by the recorder. If you have a temperature and humidity sensor at home, this is happening every minute.</li>
-        <li><strong>The system log keeps writing.</strong>Integration errors, device offline reconnection, all will be recorded.</li>
-        <li><strong>It stays on 24 hours a day.</strong>Multiply the amount you write in a day by 365.</li>
-      </ul>
-
-      <p>The result is that many people have been using it for half a year to a year, and one morning they find that the dashboard cannot be called, the host does not respond, and restarting cannot save it - the SD card has entered a read-only state or is directly damaged. Even more annoying is that it is often<strong>Slowly getting bad</strong>: First, the dashboard becomes stuck, automation occasionally fails to trigger, and updates fail halfway. You will first suspect that it is a software problem, and then you will find out that it is stuck after going around a lot.</p>
-
-      <div class="callout danger"><strong>Danger:</strong>A damaged SD card usually means<strong>No warning, irreversible</strong>of. Your only insurance is a backup, and the backup can't just stay on the same card.<a href="ch9_backups.html">Chapter 9</a>When talking about automatic backup and off-site storage, please set it up within the first week after installing the machine. Don’t delay.</div>
-
-      <h3>What should I use?</h3>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>storage media</th><th>Durability</th><th>Recommended capacity</th><th>How to use</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>microSD card</td>
-            <td>Worst case, it’s not uncommon for it to break within a year.</td>
-            <td>Official minimum requirement 32GB</td>
-            <td>Use it as a "try it first" start or for emergency rescue</td>
-          </tr>
-          <tr>
-            <td>USB external SSD</td>
-            <td>Very much better</td>
-            <td>128GB or more is enough</td>
-            <td>Pi 4/Pi 5 common practice, low cost and obvious effect</td>
-          </tr>
-          <tr>
-            <td>NVMe SSD</td>
-            <td>The best and the fastest</td>
-            <td>128～256GB</td>
-            <td>Mini PCs, machines with M.2 slots</td>
-          </tr>
-          <tr>
-            <td>eMMC (soldered on the board)</td>
-            <td>Better than SD card, but fixed capacity</td>
-            <td>Green is 32GB</td>
-            <td>You don’t have to worry about the official hardware approach, but it can’t be expanded either.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p>How to measure capacity? For the system itself and the database of an average family, 32GB can actually hold up, but as soon as you start leaving backups, installing a few apps, or saving some camera clips, it will soon become crowded.<strong>If you configure it yourself, you can go directly to 128GB or above. The price difference is not big and it saves you the trouble of moving in the future.</strong></p>
-
-      <h3>It is already installed on the SD card, is there any way to save it?</h3>
-
-      <p>Yes. HAOS has a built-in "Move data disk" function that can move data to another connected storage device. After that, the system will boot from the original media as usual, but data reading and writing will go to the new hard disk. The path is in <strong>Settings &gt; System &gt; Storage</strong>, look for "Move data disk" inside.</p>
-
-      <div class="callout warn"><strong>Warning:</strong>Before moving data disk<strong>Be sure to make a full backup first and download it to your own computer</strong>. This is an operation that moves to the underlying storage, and the cost of making a mistake is to start over.</div>
-    </section>
-
-    <section id="checklist" data-nav="Pre-unpacking checklist">
-      <h2 data-icon="todo">Pre-unpacking checklist</h2>
-
-      <p>Before you click on your cart, check this chart. One thing missing and the installation gets stuck halfway and you end up running to the convenience store late at night.</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>Things to prepare</th><th>Specification focus</th><th>Why must</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Host body</td><td>See previous section; at least 2GB RAM</td><td>Official minimum memory threshold for Raspberry Pi</td></tr>
-          <tr><td>power supply</td><td>The original factory or equivalent specifications of the corresponding model</td><td>Insufficient power supply is the number one cause of random reboots</td></tr>
-          <tr><td>storage media</td><td>SSD priority; SD card at least 32GB, preferably with A2 mark</td><td>The official installation file recommends choosing a card with the A2 mark.</td></tr>
-          <tr><td>Card reader or USB adapter</td><td>Can be connected to the computer you want to burn</td><td>Burning must be done on another computer</td></tr>
-          <tr><td>One network line</td><td>Access to a router or switch</td><td>The official installation process requires a network cable and an external network to be connected when booting.</td></tr>
-          <tr><td>computer for burning</td><td>Windows/macOS/Linux are all OK</td><td>Run Raspberry Pi Imager or balenaEtcher</td></tr>
-          <tr><td>Housing and heat dissipation</td><td>Heat sink or small fan</td><td>See the Power and Cooling section</td></tr>
-          <tr><td>(Optional) Uninterruptible power supply system UPS</td><td>It's enough to last for more than ten minutes</td><td>Prevent data from being destroyed due to power outage while writing</td></tr>
-          <tr><td>(Optional) USB wireless stick</td><td>Such as Connect ZBT-2</td><td>It will only be needed if you want to play Zigbee/Thread later.</td></tr>
-        </tbody>
-      </table>
-
-      <div class="callout tip"><strong>Tip:</strong>If you buy Home Assistant Green, the first five items in the above list are included in the box (host, 12V power supply with multi-country adapter, network cable). You only need a computer with Internet access and a router hole to get started. That's why it's suitable for people who don't want to study at all.</div>
-    </section>
-
-    <section id="flash" data-nav="Burning and booting">
-      <h2 data-icon="steps">Do it yourself: Burn in HAOS, plug it in and turn it on</h2>
-
-      <p>The following takes the most common Raspberry Pi as an example. The officially recommended tool is <strong>Raspberry Pi Imager</strong>(from <code>raspberrypi.com/software</code> Download), because it will directly help you grab the correct image file without having to find the file yourself. If you want to download the image file manually, the official website also accepts it. <strong>balenaEtcher</strong> Come and burn.</p>
-
-      <ol class="steps">
-        <li>
-          <h3>Install the burning tool on another computer</h3>
-          <p>Arrive <code>raspberrypi.com/software</code> Download Raspberry Pi Imager and install it. This step needs to be done on your regular computer, not on the Pi - which is still empty.</p>
-        </li>
-        <li>
-          <h3>Connect the SD card or SSD to the computer</h3>
-          <p>Plug it in with a card reader. The system may pop up a window such as "Do you want to format?"<strong>Press Cancel</strong>, the burning tool will handle the formatting by itself.</p>
-        </li>
-        <li>
-          <h3>Select operating system in Imager</h3>
-          <p>Open Raspberry Pi Imager, click the operating system button, and enter in sequence <strong>Other specific-purpose OS &gt; Home automation &gt; Home Assistant</strong>. There will be a list of versions corresponding to different models. Choose the one that matches the machine you have (for Raspberry Pi 4, choose RPi 4 version, for Raspberry Pi 5, choose RPi 5 version).<strong>If you choose the wrong model, you will be able to burn it successfully but you will not be able to turn it on.</strong>, this is the most common pitfall for novices.</p>
-        </li>
-        <li>
-          <h3>Select the device to write to and then write</h3>
-          <p>Select your SD card or SSD and make sure the capacity numbers match (do not select your mobile hard drive). Press "Next" and then "Write" to start burning. This step will<strong>Erase entire device</strong>, the burning process takes several minutes. When finished, click "Finish" to exit the device safely.</p>
-        </li>
-        <li>
-          <h3>Reinstall the host, plug in the network cable, and plug in the power</h3>
-          <p>Put the burned media back into the host computer,<strong>Plug in the network cable first</strong>Plug it in again. The official installation process requires that there be an external network connection when booting for the first time, because the system will grab the latest components at this time. There is no need to connect the screen and keyboard at this time - if you do, a bunch of text will run on the screen, that's normal, don't pay attention to it.</p>
-        </li>
-        <li>
-          <h3>Wait a moment and then connect using your browser</h3>
-          <p>On a computer or mobile phone on the same network, open the browser <code>homeassistant.local</code>. Official documentation says Pi 4/Pi 5 will typically show up within a minute. If there is no response, try first <code>homeassistant.local:8123</code>, if that doesn't work, use the IP address instead and add <code>:8123</code>. You will see a "Preparing Home Assistant" page, which means it is downloading the latest version. The official document only says "Depending on your hardware and network speed, preparation may take some time" for this step, without giving a clear number of minutes;<strong>In practice, it is common to wait for more than ten or twenty minutes. If you use an SD card, it will be even slower. In short, do not unplug the phone.</strong>.</p>
-        </li>
-      </ol>
-
-      <div class="callout"><strong>Concept:</strong>from <strong>2026.8</strong> Starting from version 1, newly installed HAOS defaults to a general URL without a port number (that is, a direct <code>homeassistant.local</code> That’s fine, no need to add <code>:8123</code>). Existing installations remain intact and are not affected. So you see some writing in different teachings <code>:8123</code> Some are not written, and both may be correct.<strong>The URL on your own screen shall prevail.</strong>.</div>
-
-      <h3>If you have a mini computer or an old laptop (x86-64)</h3>
-
-      <p>The process is different, the focus is on BIOS. The official document requires that the machine must be 64-bit capable and usable <strong>UEFI</strong> Power on. Enter BIOS (usually press <kbd>F2</kbd>, <kbd>Del</kbd>, <kbd>F1</kbd> or <kbd>F10</kbd>, each manufacturer is different), set the boot mode to UEFI,<strong>Turn off Secure Boot</strong>, archive and leave.</p>
-
-      <p>The image file is <code>haos_generic-x86-64-<em>Version</em>.img.xz</code>. The officially recommended method is to boot into Ubuntu with a flash drive, and then use Ubuntu's built-in "Disk" tool to restore the image to the target hard drive; another method is to use balenaEtcher on your own computer to burn to the target media, and then install the media back into the machine. After installation, the same steps are to plug in the network cable, turn on the computer, and connect <code>homeassistant.local</code>.</p>
-
-      <h3>If you want to install on a virtual machine or NAS</h3>
-
-      <p>Official disk image formats corresponding to various platforms are provided:<code>.vdi</code> (VirtualBox), <code>.qcow2</code> (KVM/Proxmox), <code>.ova</code>(VMware ESXi/vSphere), the documentation also covers Unraid. The official minimum configuration of virtual machine resources is <strong>2GB memory, 2 vCPUs</strong>, if it is not enough, add more.</p>
-
-      <div class="callout warn"><strong>Warning:</strong>The official documents of Synology and QNAP follow the Docker route, which is what is shown in the previous table. <strong>Container</strong> installation,<strong>Not HAOS</strong>, so an entire functionality of Apps will be lost. If you want to get a complete experience on the NAS, the best way is to "open a VM and run HAOS in the NAS hypervisor" instead of directly installing a Docker container. These two things are often conflated.</div>
-    </section>
-
-    <section id="onboarding" data-nav="First time setup">
-      <h2 data-icon="login">Onboarding for the first time: Creating your owner account</h2>
-
-      <p>After "Preparing Home Assistant" finishes running, the screen will change to the welcome page. This section is officially called Onboarding. Just click on it in the browser.<strong>No need to type any instructions at all</strong>.</p>
-
-      <ol class="steps">
-        <li>
-          <h3>Select "Build My Smart Home" or restore the backup</h3>
-          <p>Brand new candidates create new ones (the official copy is <em>Create my smart home</em>). If you are changing machines and have a backup file of the old machine, this is the entry point for restoration - this is why<a href="ch9_backups.html">Chapter 9</a>Worth watching early.</p>
-        </li>
-        <li>
-          <h3>Fill in your name, username, and password</h3>
-          <p>The official document states: The account created when Home Assistant is launched for the first time is<strong>Owner</strong>, it<strong>Always an administrator at the same time</strong>, has the highest authority and can manage every part of the system, including opening new accounts. Official special reminder:<strong>Username must be all lowercase and cannot contain spaces.</strong>.</p>
-          <p>Please set your password carefully, and<strong>Remember</strong>—This machine will know when your home is empty, and the official document clearly states:<strong>If the owner forgets his password, he has to go through the "I'm locked out" rescue procedure and put the system back into a re-onboarding state.</strong>, it’s not as simple as clicking “Forgot Password” and sending you a letter. Details of users and permissions are in<a href="ch5_users.html">Chapter 5</a>.</p>
-        </li>
-        <li>
-          <h3>Set home location</h3>
-          <p>Mark the location to your home on the map. This step isn't just fun - the official documentation says it will set it up for you in one go<strong>Time zones, unit systems and currencies</strong>, and establish a "home" zone with a preset radius of 100 meters, and then rely on it to determine automation such as "turn on the lights when someone comes home." Choose the IANA time zone for your location. After these settings,<a href="ch2_system_settings.html">Chapter 2</a>It can all be changed.</p>
-        </li>
-        <li>
-          <h3>Decide whether to send analysis data</h3>
-          <p>This page asks you if you want to share anonymous usage statistics. The official documents are written very honestly:<strong>Default is off</strong>, but they encourage you to turn it on, as these numbers will influence the development team's decision on which devices to prioritize support. Whether to send it or not will not affect the function, it is up to you.</p>
-        </li>
-        <li>
-          <h3>Press "Done" and see what it finds</h3>
-          <p>Pressing Finish will take you to the dashboard. Home Assistant will automatically scan the devices that are visible on your home network and pop up a bunch of "XXX found, do you want to set it up?"<strong>Don’t rush to click them all now.</strong>, let the host run stably for a day first.</p>
-        </li>
-      </ol>
-
-      <div class="callout tip"><strong>Tip:</strong>The default homepage after 2026.2 is called <strong>Home Dashboard</strong>, there is a "For You" section that lists the newly discovered devices for you to quickly join, and there is also a "Devices" section that collects devices that have not been assigned to rooms. If the screen you see in other tutorials looks different, it may be the old version of "Overview (legacy)". How to change the dashboard to what you want, see<a href="ch6_dashboard.html">Chapter 6</a>.</div>
-
-      <div class="callout"><strong>Concept:</strong><strong>After completing this step, you will officially be connected to the main line of this site.</strong>Next, please jump directly to<a href="ch1_login.html">Chapter 1: Login to HA</a>, where you will be familiar with the interface, install the mobile app, and then build it all the way to automation. The following content in this article is a supplement to the hardware level. You can come back to it later if you encounter problems.</div>
-    </section>
-
-    <section id="network" data-nav="How to connect to the Internet">
-      <h2 data-icon="network">Internet: Please lead an Internet line</h2>
-
-      <p>I can’t say this a hundred times too many times:<strong>For your Home Assistant host, please use a wired network.</strong></p>
-
-      <p>It’s not that Wi-Fi can’t work, but it will make you waste a lot of time in the wrong place. Imagine this scenario: You set up an automation to "automatically turn on the lights in the living room at 7:30 pm". As a result, it will sometimes be tens of seconds late, and sometimes it will not move at all. You go through the automation settings, devices, and logs, and everything is normal - in fact, the host's Wi-Fi dropped for a few seconds at that time. This kind of problem<strong>It doesn't look like a network problem at all</strong>, so it is particularly difficult to check.</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>Compare items</th><th>Wired</th><th>Wi-Fi</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Can it be used during installation?</td><td>OK</td><td><strong>No</strong>, the official installation process requires connecting the network cable first</td></tr>
-          <tr><td>Stability</td><td>Almost never breaks</td><td>Will be affected by microwave oven, neighbor AP, distance</td></tr>
-          <tr><td>Symptoms of disconnection</td><td>It's obvious, you can tell at a glance</td><td>Intermittent, random, extremely difficult to check</td></tr>
-          <tr><td>Interference to 2.4GHz devices</td><td>No</td><td>The host's own Wi-Fi will compete with Zigbee for the 2.4GHz frequency band</td></tr>
-        </tbody>
-      </table>
-
-      <p>Pay attention to the last column. Zigbee and Thread both run at 2.4GHz, and so does your home Wi-Fi. If the host itself uses 2.4GHz Wi-Fi, and a Zigbee radio stick is plugged in next to it, the two will interfere with each other, and your sensors will start to "occasionally lose connection." This is why many people suggest extending the Zigbee stick a little further with a USB extension cable - it's not superstitious, it really works.</p>
-
-      <div class="callout warn"><strong>Warning:</strong>After the installation is complete,<strong>Please go to your router and fix the IP address of the host.</strong>(DHCP Reserve/Static Lease, each router has a different name). Otherwise, one day the router will be restarted and the host will change its IP, and all your bookmarks saved as IP, monitor connections, and mobile app settings will have to be redone. Take five minutes to do this and save yourself a whole night in the future.</div>
-
-      <p>The network settings and host name of the host can be found in <strong>Settings &gt; System &gt; Network</strong> See and adjust. By the way,<code>homeassistant.local</code> This way of writing relies on mDNS (Multicast DNS), and some routers or company networks will block it - if you really can't connect, just use IP, the function is exactly the same.</p>
-    </section>
-
-    <section id="power" data-nav="Power and cooling">
-      <h2 data-icon="warning">Power supply, cooling, UPS: three boring things that will save your life</h2>
-
-      <h3>Power supply: Don’t just use a mobile phone charger</h3>
-
-      <p>This is the classic disaster for Raspberry Pi users. Symptoms are:<strong>The console will randomly reboot when you don't touch it at all.</strong>, or it becomes unstable after connecting the USB hard drive. You may think that the system is broken, the SD card is broken, or the memory is not enough, but it is actually a lack of power.</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>Model</th><th>Official power supply specifications</th><th>What happens if there is insufficient power supply?</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Raspberry Pi 5</td><td>Official 27W USB-C PD power supply, 5.1V / 5A</td><td>Frequency reduction, USB device power supply limited, random reboots</td></tr>
-          <tr><td>Raspberry Pi 4</td><td>Official USB-C power supply, 5.1V/3A (15W)</td><td>A lightning symbol appears on the screen and it restarts randomly.</td></tr>
-          <tr><td>Home Assistant Green</td><td>12V power supply included in the box</td><td>Just use the one attached, don't replace it yourself.</td></tr>
-          <tr><td>mini computer</td><td>Original transformer</td><td>Same as above</td></tr>
-        </tbody>
-      </table>
-
-      <p>Special attention should be paid to the Pi 5: it requires a 5A USB-C PD power supply, which is not a specification given by ordinary mobile phone chargers. If you pick up a charger that "looks like USB-C and has enough wattage", you may still not be able to feed it, and the symptoms will be very subtle.<strong>It is really recommended to buy the original power supply directly. This is the least worth saving in the entire system.</strong></p>
-
-      <div class="callout danger"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. The most terrifying thing about random restarts caused by insufficient power supply is not the "restart" itself;<strong>If the database is being written at the moment of restart, the file may be damaged.</strong>. After accumulating a few times, your database will become corrupted and all historical records will disappear. This is the real reason why many people have "the database is broken inexplicably".</div>
-
-      <h3>Heat dissipation: won’t burn, but will slow down</h3>
-
-      <p>An ARM chip won’t explode if it overheats;<strong>Downclocking</strong>Protect yourself - the reaction to you is that the dashboard becomes stuck and updates slow down. Raspberry Pi 4 and 5 will really get hot if they are run in a sealed plastic case for a long time. The method is simple: buy a metal casing with a heat sink, or add a small fan. Home Assistant Green uses aluminum heat sinks for passive cooling and does not require a fan. This is one of the trouble-free aspects of the official hardware.</p>
-
-      <p>The placement also counts for heat dissipation: don’t stuff it in the back of the TV cabinet, don’t stack it with the router, and don’t put it under a pile of wires. Find a ventilated place where you can reach out and touch it.</p>
-
-      <h3>UPS: Insurance in case of power outage</h3>
-
-      <p>Grid and construction-related outages can happen in any region. Your host is hard powered off while writing, which is the risk of database damage mentioned earlier. A cheap uninterruptible power supply system (UPS) is enough if it can last for more than ten minutes - the point is not to let it continue to run, but to give it a chance<strong>Shut down properly</strong>, or survive the brief interruption of a few seconds.</p>
-
-      <div class="callout tip"><strong>Tip:</strong>If the budget does not allow buying a UPS, the next best thing to do is:<strong>Set up automatic backup and have backups automatically uploaded to a location other than the host computer</strong>. Hardware will eventually break, and backup is your real insurance.<a href="ch9_backups.html">Chapter 9</a>The whole chapter is about this.</div>
-    </section>
-
-    <section id="after" data-nav="What to do after installing it">
-      <h2 data-icon="done">The first three things to do after installation</h2>
-
-      <p>Now that the system is running, don't rush to buy a bunch of light bulbs. Follow this order and you'll be less miserable later on.</p>
-
-      <ol class="steps">
-        <li>
-          <h3>Go to the router and fix the IP</h3>
-          <p>The DHCP reservation mentioned in the previous network section. This is the only thing to do outside of Home Assistant, so do it first.</p>
-        </li>
-        <li>
-          <h3>Set up automatic backup and let it leave this machine</h3>
-          <p>If the backup only exists on the host's own storage device, the backup will be buried with it when the card fails, which means there is no backup.<a href="ch9_backups.html">Chapter 9</a>It will take you to set up automatic backup and send it to a place other than the host computer.</p>
-        </li>
-        <li>
-          <h3>Check for updates and make a habit of backing up before updating</h3>
-          <p>Home Assistant Core is released approximately once a month (the version number looks like <code>2026.8</code>, which is the "August 2026 version"), the operating system HAOS is a completely independent version number, with a much smaller number (the examples used in the official documents and the latest releases at the time of writing are <code>18.2</code>). Don’t be surprised to see “Core 2026.8” and “Operating System 18.2” appear at the same time. They are two different things. Updates are well worth following, but<strong>Always back up before updating</strong>.</p>
-        </li>
-        <li>
-          <h3>Then go to Chapter 1</h3>
-          <p>The hardware part ends here. The next journey starts from<a href="ch1_login.html">Chapter 1</a>Get started: Get to know the interface, install the mobile app, set the time zone and region, naming rules, all the way to your First automation.</p>
-        </li>
-      </ol>
-
-      <div class="callout"><strong>Concept:</strong>You may see the "Advanced Mode" switch in old tutorials and be asked to turn it on to see certain functions.<strong>This switch has been removed in 2026.6</strong>, the functions that were originally hidden are now visible by default. In addition, in 2026.8, "Developer Tools" will be renamed directly to "Tools" because the official believes that it is a place that everyone can use. When you see a tutorial with a mismatched name, first think about whether it is a version difference.</div>
-    </section>
-
-    <section id="troubleshoot" data-nav="Common stuck levels">
-      <h2 data-icon="troubleshoot">Common stuck levels</h2>
-
-      <ol class="steps">
-        <li>
-          <h3>When the browser calls homeassistant.local, there is no response at all.</h3>
-          <p>This is almost always an mDNS problem, not a host failure. Try in order:<strong>(1)</strong> Change to type <code>homeassistant.local:8123</code>—Machines installed before 2026.8 need to have communication ports.<strong>(2)</strong> Go to the router's management page and look for the "Connected Devices" list, and look for one with a name like <code>homeassistant</code> Yes, copy its IP and type it again <code>http://thatIP:8123</code>.<strong>(3)</strong> Make sure your mobile phone or computer is connected to the host computer<strong>same network segment</strong>—The guest network (Guest Wi-Fi) or 2.4G/5G separate SSIDs of many routers will be isolated from each other. At this time, no matter how hard you try, you cannot connect.<strong>(4)</strong> Company or school networks often block mDNS, so just use IP.</p>
-        </li>
-        <li>
-          <h3>The burning was successful, but there was no movement at all after plugging it in.</h3>
-          <p>Confirm first<strong>Burning the wrong model</strong>No - a Raspberry Pi 4 image put into a Pi 5, or vice versa, will silently boot, which is why it's #1. The second reason is that the burning tool fails to write (especially when using a cheap card reader), so burn the card again. Third, connect an HDMI screen to see if there is any picture: if there is no signal at all, it is usually a problem with the media being turned on. If text is running but stops, it is another problem. For x86 machines, you need to go back and check whether the BIOS is set to UEFI and whether Secure Boot is turned off.</p>
-        </li>
-        <li>
-          <h3>After turning on the computer, it is stuck in "Preparing Home Assistant" for a long time.</h3>
-          <p>This page is normal, it is downloading the latest version. The official did not announce how long this step will take, only saying that "it may take some time";<strong>From experience, ten or twenty minutes is considered reasonable.</strong>, using an SD card is even slower. Never unplug the power supply at this time. But if it continues to transfer for more than an hour, check whether the network line is actually connected, whether the router has given it an IP, and whether the external network is normal - this step must be connected to the Internet.</p>
-        </li>
-        <li>
-          <h3>The host will reboot itself and no pattern can be found</h3>
-          <p>The first suspect is<strong>power supply</strong>, not software. Especially if the Raspberry Pi 5 does not use the original 27W/5A power supply, or the Pi 4 uses a mobile phone charger, or you plug in a hard drive that does not have an independent power supply on the USB port. Replace the original power supply and try it for a week. The second suspect is<strong>overheating</strong>, touch the case to see if it is hot, and add a heat sink or fan. The third thing is that the storage media starts to break.</p>
-        </li>
-        <li>
-          <h3>After using it for several months, the dashboard has become very stuck and updates often fail.</h3>
-          <p>This is a classic sign that the SD card is starting to go bad.<strong>Make a full backup now and download it to your own computer</strong>, and then prepare to switch to SSD. available <strong>Settings &gt; System &gt; Storage</strong> "Move data disk" in "Move data disk" to move the data to SSD, or directly take the backup and reinstall it on the new media and then restore it. Don't put it off with a lucky mentality, otherwise you won't be able to save it.</p>
-        </li>
-        <li>
-          <h3>After installing it, I found that I couldn’t find the “add-ons”.</h3>
-          <p>Because it changed its name. After 2026.2 it will be called <strong>Apps</strong>, the path is <strong>Settings &gt; Apps</strong>. Also note:<strong>Container installation really does not have this panel</strong>, the official document says in black and white “Container installation cannot use Apps”, it’s not that you can’t find it. Among the installation methods that are still available and supported, only HAOS has Apps (the old Supervised also has it, but it will cease support in 2025.12, so don’t install it just for this).</p>
-        </li>
-      </ol>
-    </section>
-
-    <section id="faq" data-nav="FAQ">
-      <h2 data-icon="faq">FAQ</h2>
-
-      <details class="faq">
-        <summary>Can I try it out with an old laptop or the Raspberry Pi at home first, and then switch to a better machine?</summary>
-        <div class="body">It's absolutely possible, and it's highly recommended. Home Assistant's backup mechanism makes "changing machines" relatively easy: Make a complete backup on the old machine and download it. After installing HAOS on the new machine, select "Restore backup" instead of "Create New" in the first step of Onboarding, and all your settings, automation, and devices will be back. This is why<a href="ch9_backups.html">Chapter 9</a>It's worth reading it before you accumulate too much.</div>
-      </details>
-
-      <details class="faq">
-        <summary>What’s the difference between Home Assistant Green and owning a Raspberry Pi?</summary>
-        <div class="body">The difference is whether you have to spend money or time. Green is official hardware. It comes with a power supply and network cable in the box. It uses a 32GB eMMC instead of an SD card. It has an aluminum heat sink for passive cooling without a fan. It plugs it in and it runs. There are no pitfalls such as selecting the wrong image file or insufficient power supply. The Raspberry Pi is highly flexible, parts are easy to buy, and you can freely upgrade to an SSD later, but you have to make your own judgment in every step.<strong>If you don't want to study hardware at all, Green; if you enjoy tossing around or happen to have a Pi on hand, Pi.</strong>Both run the same HAOS, and the software experience is exactly the same.</div>
-      </details>
-
-      <details class="faq">
-        <summary>I want to buy Home Assistant Yellow because it has Zigbee built in, is that okay?</summary>
-        <div class="body">Not recommended. The official page has clearly marked Yellow <strong>no longer produced</strong>, just continue to provide software updates and recommend new buyers to buy Green instead. The built-in radio is really convenient, but you can buy a Green (or any console) and plug it in <code>Connect ZBT-2</code> This type of USB wireless stick achieves the same effect, and if the stick is broken, it can be replaced separately, and it can also be moved farther away to avoid interference (the ZBT-2 box comes with a 1.5-meter USB cable, which is originally meant for you to use at a distance). It’s not worth it to buy a second-hand product for a discontinued product.</div>
-      </details>
-
-      <details class="faq">
-        <summary>I already have a NAS. Wouldn’t it be the cheapest to install it directly on the NAS?</summary>
-        <div class="body">It depends on how you pretend. The official documents of Synology and QNAP take the Docker route, which is <strong>Container</strong> Installation will eliminate the entire Apps ecosystem, and the official statement states that integrations such as Thread and Z-Wave, which are supported by Apps, do not have ready support on Container. For a complete experience, you need to open a VM in the NAS virtual machine management program to run HAOS (officially provided <code>.qcow2</code>, <code>.vdi</code>, <code>.ova</code> and other formats, the minimum configuration recommended is 2GB memory and 2 vCPUs). Also be mentally prepared:<strong>When the NAS is restarted or updated, your home automation will shut down entirely.</strong>, and NAS is often updated more frequently than you think. USB wireless sticks often have problems when trying to penetrate virtual machines.</div>
-      </details>
-
-      <details class="faq">
-        <summary>The official said that 32GB SD card is OK, so I can just use 32GB, right?</summary>
-        <div class="body">32GB is written in official documents<strong>Minimum requirements</strong>, not a recommended value. The system itself and the database of an average family can support 32GB, but as soon as you start to keep a few backups, install a few apps, or save some camera clips, it will start to squeeze. What's more important is the issue of media type: SD cards have a short lifespan when they are written non-stop 24 hours a day. This is what really needs to be solved.<strong>If you can buy an SSD, buy an SSD with a capacity of 128GB or more.</strong>, the price difference is not big and it saves the effort of moving in the future. If you really need to use an SD card, it is recommended to select the official installation file. <code>A2</code> marked card.</div>
-      </details>
-
-      <details class="faq">
-        <summary>The instructions on the Internet say that you need to call homeassistant.local:8123, but my machine can connect without calling the communication port. Did I install it wrong?</summary>
-        <div class="body">Yes, you are right. from <strong>2026.8</strong> Starting from the latest version, newly installed HAOS defaults to a normal URL without a communication port number; existing installations remain unchanged, so you still need to open the <code>:8123</code>. Both images are normal, the only difference is when you installed it. A large number of teachings on the Internet were written during the old version. When you see inconsistencies,<strong>Please refer to the actual address displayed on your browser's address bar.</strong>Just fine.</div>
-      </details>
-
-      <details class="faq">
-        <summary>I saw someone saying Supervised installation is more flexible, should I go that route?</summary>
-        <div class="body">Don't. Official announcement of deprecation in May 2025 <strong>Core</strong> with <strong>Supervised</strong> There are two installation methods (32-bit architectures such as i386, armhf, and armv7 have been cut at the same time), and the schedule will start from 2025.6.<strong>Version 2025.12 officially ends support</strong>, then the official will no longer build distributions for these methods, and will not accept problem reports. The official relocation advice is: Supervised should use HAOS (either physical machine or virtual machine), and Core should use Container. Most of the "Supervised Tutorials" you see now were written before that time.</div>
-      </details>
-
-      <details class="faq">
-        <summary>Will there be any privacy issues when sending the "shared analysis data" when setting it up for the first time?</summary>
-        <div class="body">The official documents make it very clear: this<strong>Default is off</strong>, it is entirely up to you to decide whether to turn it on or not, and it does not affect any functions. What is sent out is anonymous statistical data, which the official uses to determine which devices and integrations should be prioritized for support. If you want to support the project, open it. If you don't mind, keep it closed. Either way is fine. This option can also be changed later in the system settings, so it is not a one-time decision.</div>
-      </details>
-
-      <details class="faq">
-        <summary>Can the "owner" account be changed or open more accounts later?</summary>
-        <div class="body">The official documents explain these things: The owner (Owner) is<strong>Created on first startup</strong>That account,<strong>Always an administrator at the same time</strong>, has the highest authority, and<strong>The owner account cannot be deleted</strong>(You also cannot delete the account you are logged in to). As for "whether the owner's identity can be transferred to others" and "whether there can be a second owner", the official document does not clearly explain it, and there is no ready-made switch on the interface, so in practice, please<strong>Treat the first account as permanent</strong>To deal with this: remember the account number and set the password carefully. If the owner really forgets his password, the official rescue procedure is to return the system to a state where it can be onboarded again, which is costly. You can of course add other users to the system later (including administrator rights). Users, permissions, and relationships with "Person",<a href="ch5_users.html">Chapter 5</a>Very complete.</div>
-      </details>
-    </section>
-
-    <div class="pager">
+ <main class="content">
+ <div class="chapter-header">
+ <div class="kicker">Appendix C</div>
+ <h1>Before installation: hardware and HAOS</h1>
+ <p class="lead">The main guide assumes that Home Assistant is already running. If it is not, start here: choose a host and storage, flash Home Assistant OS, boot it, and create the first account. Then continue with <a href="ch1_login.html">Chapter 1</a>.</p>
+ </div>
+
+ <section id="why" data-nav="What is this article going to solve?">
+ <h2 data-icon="why">Why do you need your own host?</h2>
+
+ <p>You may have read the previous chapters of this site and thought "I want to play this", and then got stuck on a very real question: <strong>Where is that Home Assistant installed?</strong></p>
+
+ <p>Home Assistant is not a mobile app, nor is it a website account. it is a set that runs on <strong>On a computer at your home</strong> The software is open 24 hours a day, connected to your home router, and talks to your home lights and sensors. All the data stays at your home, which is why many people choose it, but the price is: you have to have that "computer" first.</p>
+
+ <p>This computer can be a palm-sized Raspberry Pi, an official small box, a second-hand mini computer, or even a virtual machine opened on your home NAS. This article will lay out the options, compare them, and then walk you through installing the system.</p>
+
+ <div class="callout"><strong>Concept:</strong> This host is usually called "Host" or "Instance" in the Home Assistant world. It is the brain of your home automation. If the power is cut off, the whole system will shut down - so be sure to read the following paragraphs on power supply and backup.</div>
+
+ <p>After reading this article you will have the ability to:</p>
+
+ <ul>
+ <li>Understand the differences between the four installation methods and know which one you should choose (spoiler: choose HAOS).</li>
+ <li>Depending on the size of your home and budget, choose a console you won’t regret.</li>
+ <li>Burn the system image file into the SD card or SSD yourself, plug it in and boot it up.</li>
+ <li>Complete the first-time setup (Onboarding), create an owner account, and set the home location.</li>
+ <li>Know which pitfalls are easiest to step into: the host cannot be found, the computer cannot be turned on, and it restarts randomly.</li>
+ </ul>
+ </section>
+
+ <section id="install_types" data-nav="Four installation methods">
+ <h2 data-icon="compare">Four installation methods: Novices should choose HAOS, there is no suspense</h2>
+
+ <p>Tutorials on the Internet will mention four names, which can easily be confusing. Let’s talk about the conclusion first: <strong>If this is your first time installing, choose Home Assistant Operating System (HAOS for short) and don’t think about anything else.</strong></p>
+
+ <p>Home Assistant document itself currently only recommends two types: HAOS and Container. Core and Supervised will be officially announced to be deprecated (Deprecate) in May 2025. Home Assistant announcement timetable is from the 2025.6 version to the <strong>Version 2025.12 officially ends support</strong>, and the 32-bit i386/armhf/armv7 architecture was also axed. Home Assistant relocation advice is: Those who originally used Core should move to Container, and those who originally used Supervised should move to HAOS.</p>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>Installation method</th><th>what is it</th><th>Can I use Apps (formerly "add-ons")?</th><th>Current status</th><th>Suitable for whom</th></tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td><strong>HAOS</strong><br> (Home Assistant Operating System)</td>
+ <td>A complete operating system. It handles everything from booting up the machine to Home Assistant, and you don’t have to touch Linux.</td>
+ <td>Okay, all functions are there</td>
+ <td>Official recommendation, official recommendation</td>
+ <td><strong>All newbies, and more than 90% of people</strong></td>
+ </tr>
+ <tr>
+ <td><strong>Container</strong></td>
+ <td>Run a Home Assistant container in your own Linux/Docker environment.</td>
+ <td>No</td>
+ <td>Officially still supports</td>
+ <td>People who already have a Docker host and know what they are doing</td>
+ </tr>
+ <tr>
+ <td><strong>Supervised</strong></td>
+ <td>Run your own Debian and install Home Assistant Supervisor.</td>
+ <td>Yes, but you have to maintain the bottom layer yourself</td>
+ <td>Deprecated, support will end in 2025.12</td>
+ <td>It is not recommended to create a new one. Officially, please move to HAOS.</td>
+ </tr>
+ <tr>
+ <td><strong>Core</strong></td>
+ <td>Run the Home Assistant program directly in the Python environment.</td>
+ <td>No</td>
+ <td>Deprecated, support will end in 2025.12</td>
+ <td>It is not recommended to create a new one. Officially, please move it to Container.</td>
+ </tr>
+ </tbody>
+ </table>
+
+ <div class="callout warn"><strong>Warning:</strong> Container loses more than just "convenience". Official documentation clearly states that, like <strong>Thread</strong> with <strong>Z-Wave</strong> This type of integration is supported by Apps, and there is no ready support for Container installation. If you plan to play with Zigbee/Thread/Matter wireless devices in the future, this is a fatal difference.</div>
+
+ <div class="callout tip"><strong>Tip:</strong> from <strong>2026.2</strong> version, Home Assistant name of the original "Add-ons" was officially changed <strong>Apps</strong>, the panel location has also changed from "Settings &gt; Plug-ins" to <strong>Settings &gt; Apps</strong>. Home Assistant distinction method is easy to remember: <em>Apps are independent programs that run side by side with Home Assistant. Integration is connecting Home Assistant to your devices and services.</em>. <a href="appendix_hacs_addons.html">Appendix A</a> That's what I'm talking about.</div>
+ </section>
+
+ <section id="hardware" data-nav="How to choose hardware">
+ <h2 data-icon="hardware">How to choose hardware: compare five routes</h2>
+
+ <p>Let’s first establish a psychological coordinate: Home Assistant itself does not suffer from performance. For an average household to install thirty or fifty devices, a quad-core ARM chip with 4GB of memory is more than enough. What will really bring down the host is <strong>Things you add later</strong>—Camera recording and image recognition, local voice assistant, and historical records accumulated in the database. So "it's enough now" and "it'll be enough in two years" are two different things.</p>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>route</th><th>feelings of efficacy</th><th>price range concept</th><th>Suitable scale</th><th>What to pay attention to</th></tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td><strong>Raspberry Pi 4</strong> (minimum 2GB RAM)</td>
+ <td>Sufficient, but slow to boot and update</td>
+ <td>Getting Started</td>
+ <td>A typical household with dozens of devices</td>
+ <td>Home Assistant minimum is 2GB RAM; it is recommended to go straight up to 4GB. Be sure to have an SSD, don’t use the SD card for a long time</td>
+ </tr>
+ <tr>
+ <td><strong>Raspberry Pi 5</strong></td>
+ <td>Noticeably faster than the Pi 4, the dashboard responds crisply</td>
+ <td>Medium entry level</td>
+ <td>Average to medium sized families</td>
+ <td>It consumes more power than Pi 4 and requires higher power supply (see the power supply section)</td>
+ </tr>
+ <tr>
+ <td><strong>Home Assistant Green</strong> (official hardware)</td>
+ <td>Same level of feel as Pi 4, but no adjustment required</td>
+ <td>in</td>
+ <td>People who just want to use it out of the box without any fuss</td>
+ <td>The 32GB eMMC is built-in and soldered, and the capacity cannot be expanded later.</td>
+ </tr>
+ <tr>
+ <td><strong>mini computer</strong> (Intel N100 type x86)</td>
+ <td>The fastest, one can run many things at the same time</td>
+ <td>medium to medium high</td>
+ <td>Large family, multiple cameras, want to run local voice/AI</td>
+ <td>You need to enter the BIOS settings yourself; the size and power consumption are larger than Pi</td>
+ </tr>
+ <tr>
+ <td><strong>Open a virtual machine on the NAS</strong></td>
+ <td>Look at the grade of the NAS itself</td>
+ <td>If the NAS already exists, the cost is zero</td>
+ <td>People who already have a NAS and leave it on 24 hours a day</td>
+ <td>NAS restarts = all home automation stops; USB wireless stick penetrates the virtual machine and often causes problems</td>
+ </tr>
+ <tr>
+ <td><strong>old laptop</strong></td>
+ <td>Usually sufficient or even excessive</td>
+ <td>Zero (I already have it at home)</td>
+ <td>I want to test the water temperature first and don’t want to spend money</td>
+ <td>Enable UEFI boot and turn off Secure Boot; battery aging is a risk</td>
+ </tr>
+ </tbody>
+ </table>
+
+ <h3>Official hardware status (this section is particularly easy to become outdated)</h3>
+
+ <p><strong>Home Assistant Green</strong> It is currently Home Assistant model currently on sale. Its specifications are Rockchip RK3566, quad-core ARM Cortex-A55 1.8GHz, 4GB memory, 32GB eMMC storage, and a microSD slot for rescue. The interface includes Gigabit Ethernet, two USB 2.0, and an HDMI for diagnostics. The aluminum heat sink dissipates passive cooling without a fan. The box comes with a Gigabit network cable and a 12V/1A universal power supply (including EU/US/UK plug adapters. choose the adapter that matches your local socket), plug them in and you're ready to use. The recommended selling price indicated on Home Assistant page is US$199 / €179, but the actual price of dealers in various places varies greatly. <strong>Please refer to the announcement of the channel you purchased from.</strong>.</p>
+
+ <p>Green has a specification worth knowing first: Home Assistant label indicates two USB 2.0 ports <strong>Total supply up to 5V 2A</strong>. This means that if you want to plug in a USB hard drive that does not have an independent power supply, you must first make sure it can handle it; plugging in something as small as a Zigbee wireless stick is completely fine.</p>
+
+ <p><strong>Home Assistant Yellow</strong> Already <strong>discontinued</strong>. Home Assistant page makes it clear: this product is no longer in production, but it continues to receive software updates, and new buyers are advised to buy Green instead. So if you see a second-hand Yellow on an auction website, you need to know its positioning: it uses Raspberry Pi Compute Module 4, has an M.2 M-Key slot to plug in an NVMe SSD (supported by 2230/2242/2260/2280), and has a built-in Silicon Labs MGM210P wireless module that also supports Zigbee 3.0, OpenThread and Matter. The built-in radio is its biggest selling point - but since it is discontinued, novices should not buy second-hand for it.</p>
+
+ <p>In addition there are <strong>ODROID</strong> series (Home Assistant installation file currently covers N2, N2+, C2, C4, M1, M1S), takes a similar route to the Pi but uses eMMC modules. Please pay attention to the documentation of M1 <strong>Booting from NVMe is not supported</strong>, N2+ and M1S use a USB-OTG cable to directly connect the board to your computer, turn it into a "pen drive" and then burn it in. The procedure is different from the Pi. This path is not very beginner-friendly unless you happen to have it handy.</p>
+
+ <div class="callout tip"><strong>Tip:</strong> If you plan to play with Zigbee or Thread/Matter devices, the console itself usually does not have these radios built into it, and you will need to plug in a separate USB radio stick. What Home Assistant is currently selling is <strong>Home Assistant Connect ZBT-2</strong> (Silicon Labs MG24 chip, and uses an ESP32-S3 as a USB controller), which replaces the discontinued ZBT-1 (formerly known as SkyConnect). It has the shape of "an antenna and a base", and the box comes with a 1.5-meter USB cable, allowing you to place it farther away to avoid interference. pay attention to it <strong>You cannot run Zigbee and Thread at the same time</strong>, you have to choose one side - Home Assistant statement is that they do not think that "one stick running two protocols" is suitable for long-term use at home, and it is recommended to use one stick for each protocol. This is not the focus of this article, just know that it exists first.</div>
+ </section>
+
+ <section id="storage" data-nav="storage media">
+ <h2 data-icon="records">Storage media: SD cards are the most common cause of death</h2>
+
+ <p>This section is the most valuable part of the entire article. <strong>The most common "breakdown" of the Home Assistant host is not that the motherboard is burned, but that the SD card is damaged.</strong></p>
+
+ <h3>Why does the SD card fail?</h3>
+
+ <p>The flash memory in the SD card has a limited number of times that each block can be written to. Most people use SD cards to take photos, and they can write hundreds of photos a day, and it will be fine even if it lasts five years. But Home Assistant is different:</p>
+
+ <ul>
+ <li><strong>The database is constantly being written.</strong> Every change in the sensor value and every time the light is turned on and off will be written into the database by the recorder. If you have a temperature and humidity sensor at home, this is happening every minute.</li>
+ <li><strong>The system log keeps writing.</strong> Integration errors, device offline reconnection, all will be recorded.</li>
+ <li><strong>It stays on 24 hours a day.</strong> Multiply the amount you write in a day by 365.</li>
+ </ul>
+
+ <p>The result is that many people have been using it for half a year to a year, and one morning they find that the dashboard cannot be called, the host does not respond, and restarting cannot save it - the SD card has entered a read-only state or is directly damaged. Even more annoying is that it is often <strong>Slowly getting bad</strong>: First, the dashboard becomes stuck, automation occasionally fails to trigger, and updates fail halfway. You will first suspect that it is a software problem, and then you will find out that it is stuck after going around a lot.</p>
+
+ <div class="callout danger"><strong>Danger:</strong> A damaged SD card usually means <strong>No warning, irreversible</strong> of. Your only insurance is a backup, and the backup can't just stay on the same card. <a href="ch9_backups.html">Chapter 9</a> When talking about automatic backup and off-site storage, please set it up within the first week after installing the machine. Don’t delay.</div>
+
+ <h3>What should I use?</h3>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>storage media</th><th>Durability</th><th>Recommended capacity</th><th>How to use</th></tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td>microSD card</td>
+ <td>Worst case, it’s not uncommon for it to break within a year.</td>
+ <td>Official minimum requirement 32GB</td>
+ <td>Use it as a "try it first" start or for emergency rescue</td>
+ </tr>
+ <tr>
+ <td>USB external SSD</td>
+ <td>Very much better</td>
+ <td>128GB or more is enough</td>
+ <td>Pi 4/Pi 5 common practice, low cost and obvious effect</td>
+ </tr>
+ <tr>
+ <td>NVMe SSD</td>
+ <td>The best and the fastest</td>
+ <td>128～256GB</td>
+ <td>Mini PCs, machines with M.2 slots</td>
+ </tr>
+ <tr>
+ <td>eMMC (soldered on the board)</td>
+ <td>Better than SD card, but fixed capacity</td>
+ <td>Green is 32GB</td>
+ <td>You don’t have to worry about Home Assistant hardware approach, but it can’t be expanded either.</td>
+ </tr>
+ </tbody>
+ </table>
+
+ <p>How to measure capacity? For the system itself and the database of an average family, 32GB can actually hold up, but as soon as you start leaving backups, installing a few apps, or saving some camera clips, it will soon become crowded. <strong>If you configure it yourself, you can go directly to 128GB or above. The price difference is not big and it saves you the trouble of moving in the future.</strong></p>
+
+ <h3>It is already installed on the SD card, is there any way to save it?</h3>
+
+ <p>Yes. HAOS has a built-in "Move data disk" function that can move data to another connected storage device. After that, the system will boot from the original media as usual, but data reading and writing will go to the new hard disk. The path is in <strong>Settings &gt; System &gt; Storage</strong>, look for "Move data disk" inside.</p>
+
+ <div class="callout warn"><strong>Warning:</strong> Before moving data disk <strong>Be sure to make a full backup first and download it to your own computer</strong>. This is an operation that moves to the underlying storage, and the cost of making a mistake is to start over.</div>
+ </section>
+
+ <section id="checklist" data-nav="Pre-unpacking checklist">
+ <h2 data-icon="todo">Pre-unpacking checklist</h2>
+
+ <p>Before you click on your cart, check this chart. One thing missing and the installation gets stuck halfway and you end up running to the convenience store late at night.</p>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>Things to prepare</th><th>Specification focus</th><th>Why must</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Host body</td><td>See previous section; at least 2GB RAM</td><td>Official minimum memory threshold for Raspberry Pi</td></tr>
+ <tr><td>power supply</td><td>The original factory or equivalent specifications of the corresponding model</td><td>Insufficient power supply is the number one cause of random reboots</td></tr>
+ <tr><td>storage media</td><td>SSD priority; SD card at least 32GB, preferably with A2 mark</td><td>Home Assistant installation file recommends choosing a card with the A2 mark.</td></tr>
+ <tr><td>Card reader or USB adapter</td><td>Can be connected to the computer you want to burn</td><td>Burning must be done on another computer</td></tr>
+ <tr><td>One network line</td><td>Access to a router or switch</td><td>Home Assistant installation process requires a network cable and an external network to be connected when booting.</td></tr>
+ <tr><td>computer for burning</td><td>Windows/macOS/Linux are all OK</td><td>Run Raspberry Pi Imager or balenaEtcher</td></tr>
+ <tr><td>Housing and heat dissipation</td><td>Heat sink or small fan</td><td>See the Power and Cooling section</td></tr>
+ <tr><td>(Optional) Uninterruptible power supply system UPS</td><td>It's enough to last for more than ten minutes</td><td>Prevent data from being destroyed due to power outage while writing</td></tr>
+ <tr><td>(Optional) USB wireless stick</td><td>Such as Connect ZBT-2</td><td>It will only be needed if you want to play Zigbee/Thread later.</td></tr>
+ </tbody>
+ </table>
+
+ <div class="callout tip"><strong>Tip:</strong> If you buy Home Assistant Green, the first five items in the above list are included in the box (host, 12V power supply with multi-country adapter, network cable). You only need a computer with Internet access and a router hole to get started. That's why it's suitable for people who don't want to study at all.</div>
+ </section>
+
+ <section id="flash" data-nav="Burning and booting">
+ <h2 data-icon="steps">Do it yourself: Burn in HAOS, plug it in and turn it on</h2>
+
+ <p>The following takes the most common Raspberry Pi as an example. Home Assistantly recommended tool is <strong>Raspberry Pi Imager</strong> (from <code>raspberrypi.com/software</code> Download), because it will directly help you grab the correct image file without having to find the file yourself. If you want to download the image file manually, the Home Assistant UI also accepts it. <strong>balenaEtcher</strong> Come and burn.</p>
+
+ <ol class="steps">
+ <li>
+ <h3>Install the burning tool on another computer</h3>
+ <p>Arrive <code>raspberrypi.com/software</code> Download Raspberry Pi Imager and install it. This step needs to be done on your regular computer, not on the Pi - which is still empty.</p>
+ </li>
+ <li>
+ <h3>Connect the SD card or SSD to the computer</h3>
+ <p>Plug it in with a card reader. The system may pop up a window such as "Do you want to format?" <strong>Press Cancel</strong>, the burning tool will handle the formatting by itself.</p>
+ </li>
+ <li>
+ <h3>Select operating system in Imager</h3>
+ <p>Open Raspberry Pi Imager, click the operating system button, and enter in sequence <strong>Other specific-purpose OS &gt; Home automation &gt; Home Assistant</strong>. There will be a list of versions corresponding to different models. Choose the one that matches the machine you have (for Raspberry Pi 4, choose RPi 4 version, for Raspberry Pi 5, choose RPi 5 version). <strong>If you choose the wrong model, you can burn it successfully but you will not be able to turn it on.</strong>, this is the most common pitfall for novices.</p>
+ </li>
+ <li>
+ <h3>Select the device to write to and then write</h3>
+ <p>Select your SD card or SSD and make sure the capacity numbers match (do not select your mobile hard drive). Press "Next" and then "Write" to start burning. This step will <strong>Erase entire device</strong>, the burning process takes several minutes. When finished, click "Finish" to exit the device safely.</p>
+ </li>
+ <li>
+ <h3>Reinstall the host, plug in the network cable, and plug in the power</h3>
+ <p>Put the burned media back into the host computer, <strong>Plug in the network cable first</strong> Plug it in again. Home Assistant installation process requires that there be an external network connection when booting for the first time, because the system will grab the latest components at this time. There is no need to connect the screen and keyboard at this time - if you do, multiple text will run on the screen, that's normal, don't pay attention to it.</p>
+ </li>
+ <li>
+ <h3>Wait a moment and then connect using your browser</h3>
+ <p>On a computer or phone on the same network, open the browser <code>homeassistant.local</code>. Official documentation says Pi 4/Pi 5 will typically show up within a minute. If there is no response, try first <code>homeassistant.local:8123</code>, if that doesn't work, use the IP address instead and add <code>:8123</code>. You will see a "Preparing Home Assistant" page, which means it is downloading the latest version. Home Assistant document only says "Depending on your hardware and network speed, preparation may take some time" for this step, without giving a clear number of minutes; <strong>In practice, it is common to wait for more than ten or twenty minutes. If you use an SD card, it will be even slower. In short, do not unplug the phone.</strong>.</p>
+ </li>
+ </ol>
+
+ <div class="callout"><strong>Concept:</strong> from <strong>2026.8</strong> Starting from version 1, newly installed HAOS defaults to a general URL without a port number (that is, a direct <code>homeassistant.local</code> That’s fine, no need to add <code>:8123</code>). Existing installations remain intact and are not affected. So you see some writing in different teachings <code>:8123</code> Some are not written, and both may be correct. <strong>The URL on your own screen shall prevail.</strong>.</div>
+
+ <h3>If you have a mini computer or an old laptop (x86-64)</h3>
+
+ <p>The process is different, the focus is on BIOS. Home Assistant document requires that the machine must be 64-bit capable and usable <strong>UEFI</strong> Power on. Enter BIOS (usually press <kbd>F2</kbd>, <kbd>Del</kbd>, <kbd>F1</kbd> or <kbd>F10</kbd>, each manufacturer is different), set the boot mode to UEFI, <strong>Turn off Secure Boot</strong>, archive and leave.</p>
+
+ <p>The image file is <code>haos_generic-x86-64-<em>Version</em>.img.xz</code>. Home Assistantly recommended method is to boot into Ubuntu with a flash drive, and then use Ubuntu's built-in "Disk" tool to restore the image to the target hard drive; another method is to use balenaEtcher on your own computer to burn to the target media, and then install the media back into the machine. After installation, the same steps are to plug in the network cable, turn on the computer, and connect <code>homeassistant.local</code>.</p>
+
+ <h3>If you want to install on a virtual machine or NAS</h3>
+
+ <p>Official disk image formats corresponding to various platforms are provided:<code>.vdi</code> (VirtualBox), <code>.qcow2</code> (KVM/Proxmox), <code>.ova</code>(VMware ESXi/vSphere), the documentation also covers Unraid. Home Assistant minimum configuration of virtual machine resources is <strong>2GB memory, 2 vCPUs</strong>, if it is not enough, add more.</p>
+
+ <div class="callout warn"><strong>Warning:</strong> Home Assistant documentation of Synology and QNAP follow the Docker route, which is what is shown in the previous table. <strong>Container</strong> installation, <strong>Not HAOS</strong>, so an entire functionality of Apps will be lost. If you want to get a complete experience on the NAS, the best way is to "open a VM and run HAOS in the NAS hypervisor" instead of directly installing a Docker container. These two things are often conflated.</div>
+ </section>
+
+ <section id="onboarding" data-nav="First time setup">
+ <h2 data-icon="login">Onboarding for the first time: Creating your owner account</h2>
+
+ <p>After "Preparing Home Assistant" finishes running, the screen will change to the welcome page. This section is officially called Onboarding. Just click on it in the browser. <strong>No need to type any instructions at all</strong>.</p>
+
+ <ol class="steps">
+ <li>
+ <h3>Select "Build My Smart Home" or restore the backup</h3>
+ <p>Brand new candidates create new ones (Home Assistant copy is <em>Create my smart home</em>). If you are changing machines and have a backup file of the old machine, this is the entry point for restoration - this is why <a href="ch9_backups.html">Chapter 9</a> Worth watching early.</p>
+ </li>
+ <li>
+ <h3>Fill in your name, username, and password</h3>
+ <p>Home Assistant document states: The account created when Home Assistant is launched for the first time is <strong>Owner</strong>, it <strong>Always an administrator at the same time</strong>, has the highest authority and can manage every part of the system, including opening new accounts. Official special reminder: <strong>Username must be all lowercase and cannot contain spaces.</strong>.</p>
+ <p>Please set your password carefully, and <strong>Remember</strong>—This machine will know when your home is empty, and Home Assistant documentation clearly states: <strong>If the owner forgets his password, he has to go through the "I'm locked out" rescue procedure and put the system back into a re-onboarding state.</strong>, it’s not as simple as clicking “Forgot Password” and sending you a letter. Details of users and permissions are in <a href="ch5_users.html">Chapter 5</a>.</p>
+ </li>
+ <li>
+ <h3>Set home location</h3>
+ <p>Mark the location to your home on the map. This step isn't just fun - Home Assistant documentation says it will set it up for you at once <strong>Time zones, unit systems and currencies</strong>, and establish a "home" zone with a preset radius of 100 meters, and then rely on it to determine automation such as "turn on the lights when someone comes home." Choose the IANA time zone for your location. After these settings, <a href="ch2_system_settings.html">Chapter 2</a> It can all be changed.</p>
+ </li>
+ <li>
+ <h3>Decide whether to send analysis data</h3>
+ <p>This page asks you if you want to share anonymous usage statistics. Home Assistant documentation is written very honestly: <strong>Default is off</strong>, but they encourage you to turn it on, as these numbers will influence the development team's decision on which devices to prioritize support. Whether to send it or not will not affect the function, it is up to you.</p>
+ </li>
+ <li>
+ <h3>Press "Done" and see what it finds</h3>
+ <p>Pressing Finish will take you to the dashboard. Home Assistant will automatically scan the devices that are visible on your home network and pop up multiple "XXX found, do you want to set it up?" <strong>Don’t rush to click them all now.</strong>, let the host run stably for a day first.</p>
+ </li>
+ </ol>
+
+ <div class="callout tip"><strong>Tip:</strong> The default homepage after 2026.2 is called <strong>Home Dashboard</strong>, there is a "For You" section that lists the newly discovered devices for you to quickly join, and there is also a "Devices" section that collects devices that have not been assigned to rooms. If the screen you see in other tutorials looks different, it may be the old version of "Overview (legacy)". How to change the dashboard to what you want, see <a href="ch6_dashboard.html">Chapter 6</a>.</div>
+
+ <div class="callout"><strong>Concept:</strong><strong>After completing this step, you will officially be connected to the main guide of this site.</strong> Next, please go directly to <a href="ch1_login.html">Chapter 1: Login to HA</a>, where you will be familiar with the interface, install the mobile app, and then build it all the way to automation. The following content in this article is a supplement to the hardware level. You can come back to it later if you encounter problems.</div>
+ </section>
+
+ <section id="network" data-nav="How to connect to the Internet">
+ <h2 data-icon="network">Internet: Please lead an Internet line</h2>
+
+ <p>I can’t say this a hundred times too many times: <strong>For your Home Assistant host, please use a wired network.</strong></p>
+
+ <p>It’s not that Wi-Fi can’t work, but it will make you waste a lot of time in the wrong place. Imagine this scenario: You set up an automation to "automatically turn on the lights in the living room at 7:30 pm". As a result, it will sometimes be tens of seconds late, and sometimes it will not move at all. You go through the automation settings, devices, and logs, and everything is normal - in fact, the host's Wi-Fi dropped for a few seconds at that time. This kind of problem <strong>It doesn't look like a network problem at all</strong>, so it is particularly difficult to check.</p>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>Compare items</th><th>Wired</th><th>Wi-Fi</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Can it be used during installation?</td><td>OK</td><td><strong>No</strong>, Home Assistant installation process requires connecting the network cable first</td></tr>
+ <tr><td>Stability</td><td>Almost never breaks</td><td>Will be affected by microwave oven, neighbor AP, distance</td></tr>
+ <tr><td>Symptoms of disconnection</td><td>It's obvious, you can tell at a glance</td><td>Intermittent, random, extremely difficult to check</td></tr>
+ <tr><td>Interference to 2.4GHz devices</td><td>No</td><td>The host's own Wi-Fi will compete with Zigbee for the 2.4GHz frequency band</td></tr>
+ </tbody>
+ </table>
+
+ <p>Pay attention to the last column. Zigbee and Thread both run at 2.4GHz, and so does your home Wi-Fi. If the host itself uses 2.4GHz Wi-Fi, and a Zigbee radio stick is plugged in next to it, the two will interfere with each other, and your sensors will start to "occasionally lose connection." This is why many people suggest extending the Zigbee stick a little further with a USB extension cable - it's not superstitious, it really works.</p>
+
+ <div class="callout warn"><strong>Warning:</strong> After the installation is complete, <strong>Please go to your router and fix the IP address of the host.</strong> (DHCP Reserve/Static Lease, each router has a different name). Otherwise, one day the router will be restarted and the host will change its IP, and all your bookmarks saved as IP, monitor connections, and mobile app settings will have to be redone. Take five minutes to do this and save yourself a whole night in the future.</div>
+
+ <p>The network settings and host name of the host can be found in <strong>Settings &gt; System &gt; Network</strong> See and adjust. By the way,<code>homeassistant.local</code> This way of writing relies on mDNS (Multicast DNS), and some routers or company networks will block it - if you really can't connect, just use IP, the function is exactly the same.</p>
+ </section>
+
+ <section id="power" data-nav="Power and cooling">
+ <h2 data-icon="warning">Power supply, cooling, UPS: three boring things that will save your life</h2>
+
+ <h3>Power supply: Don’t just use a phone charger</h3>
+
+ <p>This is the classic disaster for Raspberry Pi users. Symptoms are: <strong>The console will randomly reboot when you don't touch it at all.</strong>, or it becomes unstable after connecting the USB hard drive. You may think that the system is broken, the SD card is broken, or the memory is not enough, but it is actually a lack of power.</p>
+
+ <table class="data-table">
+ <thead>
+ <tr><th>Model</th><th>Official power supply specifications</th><th>What happens if there is insufficient power supply?</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Raspberry Pi 5</td><td>Official 27W USB-C PD power supply, 5.1V / 5A</td><td>Frequency reduction, USB device power supply limited, random reboots</td></tr>
+ <tr><td>Raspberry Pi 4</td><td>Official USB-C power supply, 5.1V/3A (15W)</td><td>A lightning symbol appears on the screen and it restarts randomly.</td></tr>
+ <tr><td>Home Assistant Green</td><td>12V power supply included in the box</td><td>Just use the one attached, don't replace it yourself.</td></tr>
+ <tr><td>mini computer</td><td>Original transformer</td><td>Same as above</td></tr>
+ </tbody>
+ </table>
+
+ <p>Special attention should be paid to the Pi 5: it requires a 5A USB-C PD power supply, which is not a specification given by ordinary phone chargers. If you pick up a charger that "looks like USB-C and has enough wattage", you may still not be able to feed it, and the symptoms will be very subtle. <strong>It is really recommended to buy the original power supply directly. This is the least worth saving in the entire system.</strong></p>
+
+ <div class="callout danger"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. The most terrifying thing about random restarts caused by insufficient power supply is not the "restart" itself; <strong>If the database is being written at the moment of restart, the file may be damaged.</strong>. After accumulating a few times, your database will become corrupted and all historical records will disappear. This is the real reason why many people have "the database is broken inexplicably".</div>
+
+ <h3>Heat dissipation: won’t burn, but will slow down</h3>
+
+ <p>An ARM chip won’t explode if it overheats; <strong>Downclocking</strong> Protect yourself - the reaction to you is that the dashboard becomes stuck and updates slow down. Raspberry Pi 4 and 5 will really get hot if they are run in a sealed plastic case for a long time. The method is simple: buy a metal casing with a heat sink, or add a small fan. Home Assistant Green uses aluminum heat sinks for passive cooling and does not require a fan. This is one of the trouble-free aspects of Home Assistant hardware.</p>
+
+ <p>The placement also counts for heat dissipation: don’t stuff it in the back of the TV cabinet, don’t stack it with the router, and don’t put it under a pile of wires. Find a ventilated place where you can reach out and touch it.</p>
+
+ <h3>UPS: Insurance in case of power outage</h3>
+
+ <p>Grid and construction-related outages can happen in any region. Your host is hard powered off while writing, which is the risk of database damage mentioned earlier. A cheap uninterruptible power supply system (UPS) is enough if it can last for more than ten minutes - the point is not to let it continue to run, but to give it a chance <strong>Shut down properly</strong>, or survive the brief interruption of a few seconds.</p>
+
+ <div class="callout tip"><strong>Tip:</strong> If the budget does not allow buying a UPS, the next best thing to do is: <strong>Set up automatic backup and have backups automatically uploaded to a location other than the host computer</strong>. Hardware will eventually break, and backup is your real insurance. <a href="ch9_backups.html">Chapter 9</a> The whole chapter is about this.</div>
+ </section>
+
+ <section id="after" data-nav="What to do after installing it">
+ <h2 data-icon="done">The first three things to do after installation</h2>
+
+ <p>Now that the system is running, don't rush to buy multiple light bulbs. Follow this order and you'll be less miserable later on.</p>
+
+ <ol class="steps">
+ <li>
+ <h3>Go to the router and fix the IP</h3>
+ <p>The DHCP reservation mentioned in the previous network section. This is the only thing to do outside of Home Assistant, so do it first.</p>
+ </li>
+ <li>
+ <h3>Set up automatic backup and let it leave this machine</h3>
+ <p>If the backup only exists on the host's own storage device, the backup will be buried with it when the card fails, which means there is no backup. <a href="ch9_backups.html">Chapter 9</a> It will take you to set up automatic backup and send it to a place other than the host computer.</p>
+ </li>
+ <li>
+ <h3>Check for updates and make a habit of backing up before updating</h3>
+ <p>Home Assistant Core is released approximately once a month (the version number looks like <code>2026.8</code>, which is the "August 2026 version"), the operating system HAOS is a completely independent version number, with a much smaller number (the examples used in Home Assistant documentation and the latest releases at the time of writing are <code>18.2</code>). Don’t be surprised to see “Core 2026.8” and “Operating System 18.2” appear at the same time. They are two different things. Updates are well worth following, but <strong>Always back up before updating</strong>.</p>
+ </li>
+ <li>
+ <h3>Then go to Chapter 1</h3>
+ <p>The hardware part ends here. The next journey starts from <a href="ch1_login.html">Chapter 1</a> Get started: Get to know the interface, install the mobile app, set the time zone and region, naming rules, all the way to your Your first automation.</p>
+ </li>
+ </ol>
+
+ <div class="callout"><strong>Concept:</strong> You may see the "Advanced Mode" switch in old tutorials and be asked to turn it on to see certain functions. <strong>This switch has been removed in 2026.6</strong>, the functions that were originally hidden are now visible by default. In addition, in 2026.8, "Developer Tools" will be renamed directly to "Tools" because Home Assistant believes that it is a place that everyone can use. When you see a tutorial with a mismatched name, first think about whether it is a version difference.</div>
+ </section>
+
+ <section id="troubleshoot" data-nav="Common problems">
+ <h2 data-icon="troubleshoot">Common problems</h2>
+
+ <ol class="steps">
+ <li>
+ <h3>When the browser calls homeassistant.local, there is no response at all.</h3>
+ <p>This is almost always an mDNS problem, not a host failure. Try in order: <strong>(1)</strong> Change to type <code>homeassistant.local:8123</code>—Machines installed before 2026.8 need to have communication ports. <strong>(2)</strong> Go to the router's management page and look for the "Connected Devices" list, and look for one with a name like <code>homeassistant</code> Yes, copy its IP and type it again <code>http://thatIP:8123</code>. <strong>(3)</strong> Make sure your phone or computer is connected to the host computer <strong>same network segment</strong>—The guest network (Guest Wi-Fi) or 2.4G/5G separate SSIDs of many routers will be isolated from each other. At this time, no matter how hard you try, you cannot connect. <strong>(4)</strong> Company or school networks often block mDNS, so just use IP.</p>
+ </li>
+ <li>
+ <h3>The burning was successful, but there was no movement at all after plugging it in.</h3>
+ <p>Confirm first <strong>Burning the wrong model</strong> No - a Raspberry Pi 4 image put into a Pi 5, or vice versa, will silently boot, which is why it's #1. The second reason is that the burning tool fails to write (especially when using a cheap card reader), so burn the card again. Third, connect an HDMI screen to see if there is any picture: if there is no signal at all, it is usually a problem with the media being turned on. If text is running but stops, it is another problem. For x86 machines, you need to go back and check whether the BIOS is set to UEFI and whether Secure Boot is turned off.</p>
+ </li>
+ <li>
+ <h3>After turning on the computer, it is stuck in "Preparing Home Assistant" for a long time.</h3>
+ <p>This page is normal, it is downloading the latest version. Home Assistant did not announce how long this step will take, only saying that "it may take some time"; <strong>From experience, ten or twenty minutes is considered reasonable.</strong>, using an SD card is even slower. Never unplug the power supply at this time. But if it continues to transfer for more than an hour, check whether the network line is actually connected, whether the router has given it an IP, and whether the external network is normal - this step must be connected to the Internet.</p>
+ </li>
+ <li>
+ <h3>The host will reboot itself and no pattern can be found</h3>
+ <p>The first suspect is <strong>power supply</strong>, not software. Especially if the Raspberry Pi 5 does not use the original 27W/5A power supply, or the Pi 4 uses a phone charger, or you plug in a hard drive that does not have an independent power supply on the USB port. Replace the original power supply and try it for a week. The second suspect is <strong>overheating</strong>, touch the case to see if it is hot, and add a heat sink or fan. The third thing is that the storage media starts to break.</p>
+ </li>
+ <li>
+ <h3>After using it for several months, the dashboard has become very stuck and updates often fail.</h3>
+ <p>This is a classic sign that the SD card is starting to go bad. <strong>Make a full backup now and download it to your own computer</strong>, and then prepare to switch to SSD. available <strong>Settings &gt; System &gt; Storage</strong> "Move data disk" in "Move data disk" to move the data to SSD, or directly take the backup and reinstall it on the new media and then restore it. Don't put it off with a lucky mentality, otherwise you won't be able to save it.</p>
+ </li>
+ <li>
+ <h3>After installing it, I found that I couldn’t find the “add-ons”.</h3>
+ <p>Because it changed its name. After 2026.2 it will be called <strong>Apps</strong>, the path is <strong>Settings &gt; Apps</strong>. Also note: <strong>Container installation really does not have this panel</strong>, Home Assistant documentation says in black and white “Container installation cannot use Apps”, it’s not that you can’t find it. Among the installation methods that are still available and supported, only HAOS has Apps (the old Supervised also has it, but it will cease support in 2025.12, so don’t install it just for this).</p>
+ </li>
+ </ol>
+ </section>
+
+ <section id="faq" data-nav="FAQ">
+ <h2 data-icon="faq">FAQ</h2>
+
+ <details class="faq">
+ <summary>Can I try it out with an old laptop or the Raspberry Pi at home first, and then switch to a better machine?</summary>
+ <div class="body">It's absolutely possible, and it's highly recommended. Home Assistant's backup mechanism makes "changing machines" relatively easy: Make a complete backup on the old machine and download it. After installing HAOS on the new machine, select "Restore backup" instead of "Create New" in the first step of Onboarding, and all your settings, automation, and devices will be back. This is why <a href="ch9_backups.html">Chapter 9</a> It's worth reading it before you accumulate too much.</div>
+ </details>
+
+ <details class="faq">
+ <summary>What’s the difference between Home Assistant Green and owning a Raspberry Pi?</summary>
+ <div class="body">The difference is whether you have to spend money or time. Green is official hardware. It comes with a power supply and network cable in the box. It uses a 32GB eMMC instead of an SD card. It has an aluminum heat sink for passive cooling without a fan. It plugs it in and it runs. There are no pitfalls such as selecting the wrong image file or insufficient power supply. The Raspberry Pi is highly flexible, parts are easy to buy, and you can freely upgrade to an SSD later, but you have to make your own judgment in every step. <strong>If you don't want to study hardware at all, Green; if you enjoy tossing around or happen to have a Pi on hand, Pi.</strong> Both run the same HAOS, and the software experience is exactly the same.</div>
+ </details>
+
+ <details class="faq">
+ <summary>I want to buy Home Assistant Yellow because it has Zigbee built in, is that okay?</summary>
+ <div class="body">Not recommended. Home Assistant page has clearly marked Yellow <strong>no longer produced</strong>, just continue to provide software updates and recommend new buyers to buy Green instead. The built-in radio is really convenient, but you can buy a Green (or any console) and plug it in <code>Connect ZBT-2</code> This type of USB wireless stick achieves the same effect, and if the stick is broken, it can be replaced separately, and it can also be moved farther away to avoid interference (the ZBT-2 box comes with a 1.5-meter USB cable, which is originally meant for you to use at a distance). It’s not worth it to buy a second-hand product for a discontinued product.</div>
+ </details>
+
+ <details class="faq">
+ <summary>I already have a NAS. Wouldn’t it be the cheapest to install it directly on the NAS?</summary>
+ <div class="body">It depends on how you install it. Home Assistant documentation of Synology and QNAP take the Docker route, which is <strong>Container</strong> Installation will eliminate the entire Apps ecosystem, and Home Assistant documentation states that integrations such as Thread and Z-Wave, which are supported by Apps, do not have ready support on Container. For a complete experience, you need to open a VM in the NAS virtual machine management program to run HAOS (officially provided <code>.qcow2</code>, <code>.vdi</code>, <code>.ova</code> and other formats, the minimum configuration recommended is 2GB memory and 2 vCPUs). Also be mentally prepared: <strong>When the NAS is restarted or updated, your home automation will shut down entirely.</strong>, and NAS is often updated more frequently than you think. USB wireless sticks often have problems when trying to penetrate virtual machines.</div>
+ </details>
+
+ <details class="faq">
+ <summary>Home Assistant said that 32GB SD card is OK, so I can just use 32GB, right?</summary>
+ <div class="body">32GB is written in official documentation <strong>Minimum requirements</strong>, not a recommended value. The system itself and the database of an average family can support 32GB, but as soon as you start to keep a few backups, install a few apps, or save some camera clips, it will start to squeeze. What's more important is the issue of media type: SD cards have a short lifespan when they are written non-stop 24 hours a day. This is what really needs to be solved. <strong>If you can buy an SSD, buy an SSD with a capacity of 128GB or more.</strong>, the price difference is not big and it saves the effort of moving in the future. If you really need to use an SD card, it is recommended to select Home Assistant installation file. <code>A2</code> marked card.</div>
+ </details>
+
+ <details class="faq">
+ <summary>The instructions on the Internet say that you need to call homeassistant.local:8123, but my machine can connect without calling the communication port. Did I install it wrong?</summary>
+ <div class="body">Yes, you are right. from <strong>2026.8</strong> Starting from the latest version, newly installed HAOS defaults to a normal URL without a communication port number; existing installations remain unchanged, so you still need to open the <code>:8123</code>. Both images are normal, the only difference is when you installed it. A large number of teachings on the Internet were written during the old version. When you see inconsistencies, <strong>Please refer to the actual address displayed on your browser's address bar.</strong> Just fine.</div>
+ </details>
+
+ <details class="faq">
+ <summary>I saw someone saying Supervised installation is more flexible, should I go that route?</summary>
+ <div class="body">Don't. Official announcement of deprecation in May 2025 <strong>Core</strong> with <strong>Supervised</strong> There are two installation methods (32-bit architectures such as i386, armhf, and armv7 have been cut at the same time), and the schedule will start from 2025.6. <strong>Version 2025.12 officially ends support</strong>, then Home Assistant will no longer build distributions for these methods, and will not accept problem reports. Home Assistant relocation advice is: Supervised should use HAOS (either physical machine or virtual machine), and Core should use Container. Most of the "Supervised Tutorials" you see now were written before that time.</div>
+ </details>
+
+ <details class="faq">
+ <summary>Will there be any privacy issues when sending the "shared analysis data" when setting it up for the first time?</summary>
+ <div class="body">Home Assistant documentation make it very clear: this <strong>Default is off</strong>, it is entirely up to you to decide whether to turn it on or not, and it does not affect any functions. What is sent out is anonymous statistical data, which Home Assistant uses to determine which devices and integrations should be prioritized for support. If you want to support the item, open it. If you don't mind, keep it closed. Either way is fine. This option can also be changed later in the system settings, so it is not a one-time decision.</div>
+ </details>
+
+ <details class="faq">
+ <summary>Can the "owner" account be changed or open more accounts later?</summary>
+ <div class="body">Home Assistant documentation explains these things: The owner (Owner) is <strong>Created on first startup</strong> That account, <strong>Always an administrator at the same time</strong>, has the highest authority, and <strong>The owner account cannot be deleted</strong> (You also cannot delete the account you are logged in to). As for "whether the owner's identity can be transferred to others" and "whether there can be a second owner", Home Assistant documentation does not clearly explain it, and there is no ready-made switch on the interface, so in practice, please <strong>Treat the first account as permanent</strong> To deal with this: remember the account number and set the password carefully. If the owner really forgets his password, Home Assistant rescue procedure is to return the system to a state where it can be onboarded again, which is costly. You can of course add other users to the system later (including administrator rights). Users, permissions, and relationships with "Person", <a href="ch5_users.html">Chapter 5</a> Very complete.</div>
+ </details>
+ </section>
+
+ <div class="pager">
       <a class="prev" href="appendix_scenes_helpers_groups.html">
         <span class="label">← Appendix B</span>
-        <span class="title">Scenes, helpers, and groups</span>
+        <span class="title">B · Scenes, helpers, and groups</span>
       </a>
       <a class="next" href="tutorial.html">
         <span class="label">Contents →</span>
@@ -581,11 +581,11 @@
       </a>
     </div>
 
-    <footer class="site-footer">
+ <footer class="site-footer">
       <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
       <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
-  </main>
+ </main>
 </div>
 <script id="ui-strings" type="application/json">{"tocToggle":"Contents","tocExpand":"Expand chapter navigation","tocCollapse":"Collapse chapter navigation"}</script>
 <script src="../assets/js/toc.js"></script>
