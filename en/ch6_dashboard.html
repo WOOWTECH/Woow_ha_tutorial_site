@@ -67,14 +67,14 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why layout yourself</a>
-      <a href="#now">Current status: Auto-generated presets</a>
-      <a href="#steps">Build a home page</a>
-      <a href="#tabs">Multiple views and pages</a>
-      <a href="#viewtypes">Four view types</a>
-      <a href="#tips">3 tips</a>
+      <a href="#why">Why customize</a>
+      <a href="#now">Default dashboard</a>
+      <a href="#steps">Build Home</a>
+      <a href="#tabs">Add views</a>
+      <a href="#viewtypes">View types</a>
+      <a href="#tips">3 layout tips</a>
       <a href="#faq">FAQ</a>
-      <a href="#troubleshoot">Common problems</a>
+      <a href="#troubleshoot">Troubleshooting</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
@@ -88,144 +88,144 @@
  <div class="chapter-header">
  <div class="kicker">Chapter 6</div>
  <h1>Dashboards</h1>
- <p class="lead">Put the lights, covers, and climate controls your household uses most where everyone can find them. A clear dashboard should work without instructions.</p>
+ <p class="lead">Put the lights, covers, and climate controls your household uses most where everyone can find them. A clear dashboard should make everyday controls obvious without instructions.</p>
  </div>
 
- <section id="why" data-nav="Why layout yourself">
- <h2 data-icon="why">Why layout yourself</h2>
- <p>The HA default will automatically generate an "overview" dashboard that includes all devices - this is good for "understanding what is in your home", but it is too explosive for "daily operations".</p>
- <p>What you want is a "open it in the morning, do everything in 3 clicks" screen. To achieve this goal, two things must be done:</p>
+ <section id="why" data-nav="Why customize">
+ <h2 data-icon="why">Why customize a dashboard?</h2>
+ <p>An automatically generated dashboard is useful for seeing everything Home Assistant knows about, but it can become crowded and inefficient for daily use.</p>
+ <p>A better Home screen lets you complete routine tasks in about 3 taps. Focus on two changes:</p>
  <ul>
- <li><strong>delete</strong> Cards that are rarely used.</li>
- <li><strong>row</strong> Commonly used ones go to the top.</li>
+ <li><strong>Remove</strong> cards you rarely use.</li>
+ <li><strong>Move</strong> frequent controls to the top.</li>
  </ul>
  </section>
 
- <section id="now" data-nav="Current status: Auto-generated presets">
+ <section id="now" data-nav="Default dashboard">
  <h2 data-icon="now">Review the default dashboard</h2>
- <div class="callout"><strong>Version differences:</strong> Starting from 2026.2, the default dashboard you see when opening a new installation has been replaced by a new one. <strong>Home Dashboard</strong>, the name on the sidebar is also "Overview". The previous automatic overview of "one card in one area and all the entities stuffed in" has become the old version of the template. You have to select it in "Settings → Dashboard → New Dashboard" <strong>Overview (legacy)</strong> Only then can it be born. The layout principles of the two are the same, so just follow them below.</div>
- <p>The first page you see after logging in is the default dashboard. It will automatically:</p>
+ <div class="callout"><strong>Version note:</strong> Since 2026.2, new installations use the Home dashboard. The earlier layout placed all entities into one automatically generated card per area. That layout remains available as <strong>Overview (legacy)</strong> when you create a dashboard under <strong>Settings → Dashboards</strong>. The same organization principles apply to both.</div>
+ <p>The default dashboard opens after you sign in. The earlier automatically generated layout:</p>
  <ul>
- <li>One card per area.</li>
- <li>All entities in the area are stuffed inside.</li>
- <li>The order is sorted internally by HA, there is no structure.</li>
+ <li>Creates one card for each area.</li>
+ <li>Includes every entity assigned to that area.</li>
+ <li>Uses Home Assistant’s internal sort order rather than your daily priorities.</li>
  </ul>
  <figure class="shot">
- <img src="../assets/screenshots/ch6/01_default_dashboard.png" alt="Default dashboard" />
- <figcaption><strong>Figure 6-1</strong> Default dashboard — all the devices are there, but arranged in a disorganized manner.</figcaption>
+ <img src="../assets/screenshots/ch6/01_default_dashboard.png" alt="Automatically generated default dashboard" />
+ <figcaption><strong>Figure 6-1</strong> The default layout includes every device but may not match how you use them.</figcaption>
  </figure>
  </section>
 
- <section id="steps" data-nav="Build a home page">
- <h2 data-icon="steps">Create your own home page</h2>
- <div class="callout tip"><strong>Suggestion: Create a new dashboard first, do not change the default "Overview"</strong>. HA official document recommends: The default Overview is automatically generated, and if changed, it will be overwritten by the next automatic scan; create a new "My Home" dashboard and change it however you like.</div>
+ <section id="steps" data-nav="Build Home">
+ <h2 data-icon="steps">Build your own Home dashboard</h2>
+ <div class="callout tip"><strong>Tip:</strong> Create a new dashboard before changing the default one. Keeping the generated dashboard intact gives you a complete reference, while a separate “My Home” dashboard is yours to arrange.</div>
  <ol class="steps">
  <li>
- <h3>Edit button (pencil icon) in the upper right corner → "Edit Dashboard"</h3>
- <p>Enter editing mode, and a brush icon will appear in the upper right corner of each card. (The old version is the three-click menu in the upper right corner → "Edit Dashboard".)</p>
+ <h3>Enter dashboard edit mode</h3>
+ <p>Select the pencil in the upper-right corner, then select Edit dashboard. An edit control appears on each card. In earlier versions, open the three-dot menu and select Edit dashboard.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch6/02_edit_mode.png" alt="edit mode" />
- <figcaption><strong>Figure 6-2</strong> Entry to edit mode.</figcaption>
+ <img src="../assets/screenshots/ch6/02_edit_mode.png" alt="Dashboard edit mode button" />
+ <figcaption><strong>Figure 6-2</strong> Use the edit control to enter dashboard edit mode.</figcaption>
  </figure>
  </li>
  <li>
- <h3>Delete unnecessary area cards</h3>
- <p>Click the card's brush → Trash → Confirm deletion.<br>The "card" was deleted, not the "device" - the device is still there, but the card is not displayed.</p>
+ <h3>Remove unneeded area cards</h3>
+ <p>Select the card’s edit control, select the trash icon, and confirm.<br>This removes the card, not the device. The device remains in Home Assistant.</p>
  </li>
  <li>
- <h3>Add the "Commonly Used Devices" card</h3>
- <p>"+ Add Card" in the lower right corner → Select the "Entity" or "Button" card → Select the entity you want (such as the main light in the living room) → Save.</p>
+ <h3>Add a frequently used devices card</h3>
+ <p>Select Add card in the lower-right corner. Choose an Entities or Button card, select an entity such as the living-room main light, and save.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch6/03_add_card.png" alt="Add new card dialog box" />
- <figcaption><strong>Figure 6-3</strong> New cards - nearly 30 built-in card types.</figcaption>
+ <img src="../assets/screenshots/ch6/03_add_card.png" alt="Add card dialog" />
+ <figcaption><strong>Figure 6-3</strong> Home Assistant includes nearly 30 built-in card types.</figcaption>
  </figure>
  </li>
  <li>
- <h3>Recommended "Home" Card Set</h3>
+ <h3>Start with a practical Home card set</h3>
  <ul>
- <li><strong>weather</strong> (Weather card) - Determine whether to bring an umbrella and turn on dehumidification today.</li>
- <li><strong>"Who's home?"</strong> (Person Card) - See who is and who is not at a glance.</li>
- <li><strong>Common scene buttons</strong> (Button card) - For example, "go home", "leave home", and "sleep".</li>
- <li><strong>All areas are fully open / fully closed</strong> (The Button card performs the action Action, which was called "Call Service" in the old version; select it in the card's action settings. <code>perform-action</code>)—Switch all lights on the first floor with one click.</li>
+ <li><strong>Weather card:</strong> Check whether you need an umbrella or dehumidifier.</li>
+ <li><strong>Person card:</strong> See who is home at a glance.</li>
+ <li><strong>Scene buttons:</strong> Add controls such as “Arrive Home,” “Leave Home,” and “Sleep.”</li>
+ <li><strong>Area on/off buttons:</strong> Configure a Button card to perform an action, called Call service in earlier versions. Select <code>perform-action</code> in the card’s action settings to control a group such as all first-floor lights.</li>
  </ul>
  </li>
  <li>
- <h3>Reorder cards</h3>
- <p>Hold down the card and drag it to the desired location. Put the most commonly used ones at the top.</p>
+ <h3>Reorder the cards</h3>
+ <p>Drag each card to the desired position. Put the controls you use most at the top.</p>
  </li>
  <li>
- <h3>Click "Done" in the upper right corner to exit editing mode.</h3>
- <p>If you don’t press Finish, the settings will not be saved!</p>
+ <h3>Finish editing</h3>
+ <p>Select Done in the upper-right corner. Do not leave the dashboard before saving your changes.</p>
  </li>
  </ol>
- <div class="callout"><strong>Verify</strong>: You can see the name of the new dashboard from the left menu; click on it to see the card you just added; rotate the browser and put it horizontally and it should be arranged neatly (the Sections view will be automatically responsive).</div>
+ <div class="callout"><strong>Verify:</strong> Confirm that the new dashboard appears in the sidebar and contains the cards you added. Rotate a phone between portrait and landscape and check both layouts. A Sections view should adapt automatically.</div>
  </section>
 
- <section id="tabs" data-nav="Multiple views and pages">
- <h2 data-icon="tabs">Multiple views and pages</h2>
- <p>A dashboard can have multiple pages (Views):</p>
+ <section id="tabs" data-nav="Add views">
+ <h2 data-icon="tabs">Organize a dashboard with views</h2>
+ <p>One dashboard can contain several views:</p>
  <ul>
- <li><strong>Home page</strong>: Commonly used operations.</li>
- <li><strong>Each floor</strong>: The first and second floors are divided into pages, each page is detailed.</li>
- <li><strong>energy</strong>: Electricity, solar energy.</li>
- <li><strong>security</strong>: Monitors, door locks, sensors.</li>
+ <li><strong>Home:</strong> Frequent controls.</li>
+ <li><strong>Floors:</strong> Detailed views for the first floor and second floor.</li>
+ <li><strong>Energy:</strong> Electricity and solar data.</li>
+ <li><strong>Security:</strong> Cameras, locks, and sensors.</li>
  </ul>
- <p>The "+" sign in the upper right corner of the editing mode adds a new page. Each tab can independently set "who can see it".</p>
+ <p>In edit mode, select the plus sign in the upper-right corner to add a view. Each view can specify which users may see it.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch6/04_multi_tabs.png" alt="Multiple tab example" />
- <figcaption><strong>Figure 6-4</strong> Multi-page dashboard.</figcaption>
+ <img src="../assets/screenshots/ch6/04_multi_tabs.png" alt="Dashboard with multiple views" />
+ <figcaption><strong>Figure 6-4</strong> A dashboard organized into multiple views.</figcaption>
  </figure>
  </section>
 
- <section id="viewtypes" data-nav="Four view types">
- <h2 data-icon="tabs">Which of the four view types should you choose?</h2>
- <p>Each tab (view) can independently select the layout:</p>
+ <section id="viewtypes" data-nav="View types">
+ <h2 data-icon="tabs">Choose among four view types</h2>
+ <p>Each view can use its own layout:</p>
  <ul>
- <li><strong>Sections (default after 2024.03)</strong>: Drag the partition and the phone/desktop computer will automatically layout. Newbies choose this directly.</li>
- <li><strong>Masonry (brick wall)</strong>: Old version default, cards are automatically stacked. You can keep the old version if you are used to it.</li>
- <li><strong>Panel (single card)</strong>: Place only one card in the entire view (e.g. map, energy overview). Exclusive dashboard suitable for large screens.</li>
- <li><strong>Sidebar</strong>: Resident card on the right + replaceable card on the left. Suitable for tablets.</li>
+ <li><strong>Sections (default after 2024.03):</strong> Arrange cards in draggable sections that adapt to phones and desktop screens. This is the best starting point for most beginners.</li>
+ <li><strong>Masonry:</strong> The earlier default stacks cards in columns. Keep it if it already suits your layout.</li>
+ <li><strong>Panel:</strong> Fills the view with one card, such as a map or energy overview. It works well for a dedicated large display.</li>
+ <li><strong>Sidebar:</strong> Keeps one card beside a larger main area. It can work well on a tablet.</li>
  </ul>
- <div class="callout"><strong>Suggestions:</strong> If you're not sure, choose Sections. It's much easier to use than the old version. The old view can be "added to the Sections version" without deleting the original one, and can be switched at any time.</div>
+ <div class="callout"><strong>Recommendation:</strong> If you are unsure, choose Sections. You can add a Sections version of an existing view without deleting the original, then compare them.</div>
  </section>
 
- <section id="tips" data-nav="3 tips">
+ <section id="tips" data-nav="3 layout tips">
  <h2 data-icon="tips">3 layout tips</h2>
- <div class="callout tip"><strong>Tip 1: Group with Sections.</strong> HA's current main recommended view type is Sections (becomes the default after 2024.03), which can separate "lighting", "air conditioning" and "curtains" into blocks, which is clearer than a long one.</div>
- <div class="callout tip"><strong>Tip 2: Arrange the mobile version separately.</strong> There is a "View → Desktop/Mobile" preview in the upper right corner of the editing mode, so you can see what the mobile version looks like. The mobile version recommends one column and 3-5 fewer cards.</div>
- <div class="callout tip"><strong>Tip 3: Make good use of "conditional display".</strong> The card has a "Display Condition (Visibility)" setting, which allows you to "display the dehumidifier card only when it rains" and "guest accounts cannot see the master bedroom light."</div>
- <div class="callout tip"><strong>Advanced: Let family members see different cards</strong>. use <strong>Conditional card</strong> Enclose the content you don’t want an account to see, select "user" in the conditions and check visible accounts. With the guest account in Chapter 5, you can achieve the effect of "visitors can see the lights but not the monitor".</div>
+ <div class="callout tip"><strong>Tip 1: Group cards with Sections.</strong> Sections became the default view type after 2024.03. Separate lighting, climate, and covers into distinct sections instead of one long list.</div>
+ <div class="callout tip"><strong>Tip 2: Preview the phone layout.</strong> In edit mode, use the desktop and mobile preview under View. For a phone, prefer one column and show only the 3-5 most important cards first.</div>
+ <div class="callout tip"><strong>Tip 3: Use Visibility conditions.</strong> A card can appear only under selected conditions, such as showing a dehumidifier when it rains or omitting a primary-bedroom light from a guest view.</div>
+ <div class="callout tip"><strong>Advanced: tailor cards by user.</strong> Place content inside a <strong>Conditional</strong> card, choose a user condition, and select the accounts that should see it. Combined with the guest account from Chapter 5, this can show guests lighting controls without placing camera cards on their view. Visibility is a dashboard presentation setting, not a substitute for account permissions or other access controls.</div>
  </section>
 
  <section id="faq" data-nav="FAQ">
  <h2 data-icon="faq">FAQ</h2>
  <details class="faq">
- <summary>Is it possible to save accidentally deleting the wrong card?</summary>
- <div class="body">If you have not left the editing mode, click "Restore" in the upper right corner; if you leave, you must rebuild. Therefore, it is recommended to copy YAML to Notepad for backup before major changes.</div>
+ <summary>Can I recover a card I deleted by mistake?</summary>
+ <div class="body">If you are still in edit mode, use Undo in the upper-right corner. After leaving edit mode, you may need to rebuild the card. Before a major change, open the raw configuration editor from the three-dot menu and copy the YAML to a text file as a backup.</div>
  </details>
  <details class="faq">
- <summary>Can I make a copy of the entire dashboard for my child to use?</summary>
- <div class="body">Yes. "Settings → Dashboard → New Dashboard" → Copy from template → Assign to a user. In this way, parents and children each have their own home page.</div>
+ <summary>Can I copy a dashboard for a child?</summary>
+ <div class="body">Yes. Go to Settings → Dashboards, create a dashboard from a template, and make it visible to the intended user. Parents and children can then use different Home dashboards.</div>
  </details>
  <details class="faq">
- <summary>Is it possible to install more beautiful cards on HACS?</summary>
- <div class="body">Yes, for example, mushroom-cards and button-cards are popular. But first use the built-in cards to walk through it, and then install it after you understand the concept, so you will be less likely to get lost.</div>
+ <summary>Can I install custom cards from HACS?</summary>
+ <div class="body">Yes. Examples include mushroom-cards and button-card. Start with built-in cards so you understand dashboard concepts before adding community-maintained components.</div>
  </details>
  </section>
 
- <section id="troubleshoot" data-nav="Common problems">
- <h2 data-icon="advanced">Common problems</h2>
+ <section id="troubleshoot" data-nav="Troubleshooting">
+ <h2 data-icon="advanced">Troubleshooting</h2>
  <details class="faq">
- <summary>Can't drag the card or click edit?</summary>
- <div class="body">Click the edit button in the upper right corner (pencil icon, the old version was a three-click menu) and select "Edit Dashboard" to enter the edit mode. If you don't see that button, it usually means you don't own the dashboard (for example, logged in with a guest account).</div>
+ <summary>Why can’t I drag cards or enter edit mode?</summary>
+ <div class="body">Select the pencil in the upper-right corner and choose Edit dashboard. In an earlier version, use the three-dot menu. If the edit control is missing, the current account may not have permission to edit that dashboard, as with a guest account.</div>
  </details>
  <details class="faq">
- <summary>How to restore the default Overview if it is changed?</summary>
- <div class="body">"Settings → Dashboard → Overview → Three dots in the upper right corner → Regenerate". If even the restore fails, choose a pre-restore backup from the backup in Chapter 9 and restore it.</div>
+ <summary>How do I restore a damaged default dashboard?</summary>
+ <div class="body">Open Settings → Dashboards → Home, use the three-dot menu, and select the option to regenerate it. Earlier versions name the dashboard Overview. If regeneration fails, restore a suitable earlier backup by following Chapter 9.</div>
  </details>
  <details class="faq">
- <summary>Is the dashboard you see when you open the Companion App on your phone different from that on your computer?</summary>
- <div class="body">Companion App can specify the "default dashboard when opening" in the App settings, which is set separately from the web browser.</div>
+ <summary>Why does the Companion App open a different dashboard?</summary>
+ <div class="body">The Companion App can specify which dashboard opens by default. That choice is stored separately from the default used by your web browser.</div>
  </details>
  </section>
 

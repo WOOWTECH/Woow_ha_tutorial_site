@@ -67,14 +67,14 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why map your home?</a>
-      <a href="#now">Review the current setup</a>
-      <a href="#plan">Plan the structure first</a>
-      <a href="#steps">Create the structure</a>
-      <a href="#assign">Assign devices to areas</a>
-      <a href="#done">Verify the result</a>
+      <a href="#why">Why map it</a>
+      <a href="#now">Review setup</a>
+      <a href="#plan">Plan structure</a>
+      <a href="#steps">Create spaces</a>
+      <a href="#assign">Assign devices</a>
+      <a href="#done">Verify setup</a>
       <a href="#faq">FAQ</a>
-      <a href="#troubleshoot">Common problems</a>
+      <a href="#troubleshoot">Troubleshooting</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
@@ -88,161 +88,161 @@
  <div class="chapter-header">
  <div class="kicker">Chapter 3</div>
  <h1>Floors and areas</h1>
- <p class="lead">Map the floors and rooms in your home before assigning devices. Once this structure is in place, dashboards, automations, and voice assistants can understand requests such as “turn on the first-floor living-room lights.”</p>
+ <p class="lead">Map the floors and rooms in your home before you assign devices. With that structure in place, dashboards, automations, and voice assistants can understand requests such as “turn on the first-floor living-room lights.”</p>
  </div>
 
- <section id="why" data-nav="Why map your home?">
+ <section id="why" data-nav="Why map it">
  <h2 data-icon="why">Why map your home?</h2>
- <p>HA uses three levels to describe the physical space of your home:</p>
+ <p>Home Assistant uses a hierarchy to represent the physical spaces in your home:</p>
  <ul>
- <li><strong>Floor</strong>: First floor, second floor, basement, top floor.</li>
- <li><strong>Area</strong>: Living room, master bedroom, kitchen, garage.</li>
- <li><strong>Device/Entity</strong>: Specific light bulbs, switches, and sensors are placed in the area.</li>
+ <li><strong>Floor:</strong> First floor, second floor, basement, or top floor.</li>
+ <li><strong>Area:</strong> Living room, primary bedroom, kitchen, or garage.</li>
+ <li><strong>Device/entity:</strong> A specific light, switch, or sensor assigned to an area.</li>
  </ul>
- <p>After drawing the floors and areas, you will immediately get these abilities:</p>
+ <p>Once you create floors and areas, Home Assistant can use that structure in several ways:</p>
  <ul>
- <li>Voice: "Hey Google, turn off all the lights on the first floor" - HA knows which lights belong to the first floor.</li>
- <li>Dashboard: Automatically generate a "paged by region" view.</li>
- <li>Automation: The conditions for "there is movement in the master bedroom" can be written out.</li>
+ <li>Voice: “Hey Google, turn off all the lights on the first floor.” Home Assistant knows which lights belong there.</li>
+ <li>Dashboard: Generate views organized by area.</li>
+ <li>Automation: Use a condition such as motion detected in the primary bedroom.</li>
  </ul>
- <p><strong>Four levels of stairs (remember this structure)</strong>: </p>
+ <p><strong>Remember these four levels:</strong></p>
  <ul>
- <li><strong>Floor</strong>: Only regions can be installed, devices cannot be installed directly. Example: 1st floor, 2nd floor.</li>
- <li><strong>Area</strong>: Room unit, belonging to one floor. Example: living room, master bedroom.</li>
- <li><strong>Device</strong>: Belongs to a region (can be overwritten). Example: Xiaomi light bulb.</li>
- <li><strong>Entity</strong>: An angle at which the device can be operated, and it only belongs to one area (default follows the device). Example:<code>light.living_room_main</code>.</li>
+ <li><strong>Floor:</strong> Contains areas, not devices directly. Examples: 1st floor and 2nd floor.</li>
+ <li><strong>Area:</strong> Represents a room or space and can belong to a floor. Examples: living room and primary bedroom.</li>
+ <li><strong>Device:</strong> Can belong to one area. Example: a Xiaomi light bulb.</li>
+ <li><strong>Entity:</strong> Represents one function or data point exposed by a device. It inherits the device area by default, but you can override it. Example: <code>light.living_room_main</code>.</li>
  </ul>
- <p>a device/entity <strong>Can only belong to one area</strong>, an area <strong>Can only belong to one floor</strong>.</p>
+ <p>A device or entity can belong to <strong>only one area</strong>, and an area can belong to <strong>only one floor</strong>.</p>
  </section>
 
- <section id="now" data-nav="Review the current setup">
- <h2 data-icon="now">Review the current setup</h2>
- <p>Go to "Settings → Areas, labels &amp; zones" to see the current status. You may see three situations:</p>
+ <section id="now" data-nav="Review setup">
+ <h2 data-icon="now">Review your current setup</h2>
+ <p>Open Settings → Areas, labels &amp; zones and check what is already there. You will probably find one of these situations:</p>
  <ol>
- <li><strong>All empty</strong> — A new installation is the easiest, just follow this chapter and start from scratch.</li>
- <li><strong>Only areas without floors</strong> — The old version of HA does not have the concept of floors. Follow this chapter to add floors.</li>
- <li><strong>There are floors but it’s confusing</strong> — I tried it before but didn’t organize it. Consider deleting it and starting over.</li>
+ <li><strong>Nothing yet:</strong> For a new installation, follow this chapter from the beginning.</li>
+ <li><strong>Areas but no floors:</strong> An older Home Assistant setup may predate floors. Add floors, then organize the existing areas.</li>
+ <li><strong>A confusing mixture:</strong> If you experimented earlier, decide whether reorganizing or deleting and rebuilding will be clearer.</li>
  </ol>
- <div class="callout"><strong>Page name:</strong> Floors and zones are set on the page "Settings → Areas, labels &amp; zones"; the old version before 2024.4 did not have floors and labels, and this page only listed the zones. To put the device into the area, go to "Settings → Devices &amp; Services → Devices". This path has not been renamed so far. In addition, the default dashboard in the sidebar is called "Home" starting from 2026.2, and the old version is called "Overview".</div>
+ <div class="callout"><strong>Version note:</strong> Manage floors and areas under Settings → Areas, labels &amp; zones. Before 2024.4, Home Assistant did not support floors and labels, so the page listed only areas. Assign devices through Settings → Devices &amp; services → Devices. Since 2026.2, the default dashboard is named Home; earlier versions call it Overview.</div>
  <figure class="shot">
- <img src="../assets/screenshots/ch3/01_areas_page.png" alt="Area and floor page" />
- <figcaption><strong>Figure 3-1</strong> "Areas, labels &amp; zones" page—the floors on the left and the regions under each floor on the right.</figcaption>
+ <img src="../assets/screenshots/ch3/01_areas_page.png" alt="Areas, labels and zones page showing floors and areas" />
+ <figcaption><strong>Figure 3-1</strong> The Areas, labels &amp; zones page shows floors on the left and their areas on the right.</figcaption>
  </figure>
  </section>
 
- <section id="plan" data-nav="Plan the structure first">
- <h2 data-icon="plan">Plan the structure first (just take 5 minutes)</h2>
- <p>It is recommended to list on paper or in your head first:</p>
+ <section id="plan" data-nav="Plan structure">
+ <h2 data-icon="plan">Plan the structure first</h2>
+ <p>Spend 5 minutes listing the spaces on paper or in your head:</p>
  <ul>
- <li>How many floors are there? Does the basement count?</li>
- <li>What “spaces would you mention using voice or automation” on each floor?</li>
- <li>Should the "balcony", "porch" and "corridor" be separate areas?</li>
+ <li>How many floors do you have? Will you include the basement?</li>
+ <li>Which spaces on each floor will you mention in voice commands or automations?</li>
+ <li>Should the balcony, entryway, and hallway each be a separate area?</li>
  </ul>
- <div class="callout"><strong>Naming suggestions:</strong> use <strong>Names you say every day</strong>. If you say "turn on the master bedroom light", call it "Master Bedroom", not "Bedroom_M". Chinese is no problem for the voice assistant.</div>
- <div class="callout warn"><strong>Named counterexample:</strong> Do not use abbreviations (<code>LR</code>), code name (<code>Zone_A</code>), plural (<code>Bedrooms</code>) — and you yourself will forget which is which later.</div>
+ <div class="callout"><strong>Naming guidance:</strong> Use <strong>the names you say every day</strong>. If you say “turn on the primary-bedroom light,” name the area “Primary Bedroom,” not “Bedroom_M.”</div>
+ <div class="callout warn"><strong>Warning:</strong> Avoid abbreviations such as <code>LR</code>, codes such as <code>Zone_A</code>, and vague plurals such as <code>Bedrooms</code>. They become hard to recognize later.</div>
  </section>
 
- <section id="steps" data-nav="Create the structure">
- <h2 data-icon="steps">Create the structure</h2>
+ <section id="steps" data-nav="Create spaces">
+ <h2 data-icon="steps">Create floors and areas</h2>
  <ol class="steps">
  <li>
- <h3>Add new floor</h3>
- <p>"+ Create Floor" in the upper right corner of the page → enter "First Floor" → click on the icon bar, the icon selector will pop up, search <code>floor</code> You can see the floor related icon → Save. Repeatedly create "second floor", "basement", etc.</p>
+ <h3>Create a floor</h3>
+ <p>Select Create floor in the upper-right corner. Enter “First Floor,” open the icon picker, and search for <code>floor</code> to find a suitable icon. Save it, then repeat for “Second Floor,” “Basement,” and any other floors.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch3/02_create_floor_dialog.png" alt="Add floor dialog box" />
- <figcaption><strong>Figure 3-2</strong> New floor dialog box - name, icon, floor number.</figcaption>
+ <img src="../assets/screenshots/ch3/02_create_floor_dialog.png" alt="Create floor dialog" />
+ <figcaption><strong>Figure 3-2</strong> The floor dialog includes a name, icon, and floor level.</figcaption>
  </figure>
  </li>
  <li>
- <h3>The purpose of floor number</h3>
- <p>Floor number used for sorting: Basement <code>-1</code>, first floor <code>1</code>, second floor <code>2</code>, top floor <code>10</code>. It will then be displayed on the dashboard and cards in this order.</p>
+ <h3>Set the floor level</h3>
+ <p>The floor level controls sorting. For example, use <code>-1</code> for the basement, <code>1</code> for the first floor, <code>2</code> for the second floor, and <code>10</code> for the top floor. Dashboards and cards can then display floors in that order.</p>
  </li>
  <li>
- <h3>Add new area</h3>
- <p>Click "+ Create Area" under a certain floor → enter "living room" → select the icon (<code>mdi:sofa</code>) → Save.</p>
+ <h3>Create an area</h3>
+ <p>Select Create area under a floor. Enter “Living Room,” choose an icon such as <code>mdi:sofa</code>, and save the area.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch3/03_create_area_dialog.png" alt="New area dialog box" />
- <figcaption><strong>Figure 3-3</strong> Added new area dialog box - name, icon, and floor to which it belongs.</figcaption>
+ <img src="../assets/screenshots/ch3/03_create_area_dialog.png" alt="Create area dialog" />
+ <figcaption><strong>Figure 3-3</strong> The area dialog includes a name, icon, and floor.</figcaption>
  </figure>
  </li>
  <li>
- <h3>List of common areas (can be ready to copy)</h3>
- <p><strong>first floor</strong>: Entrance, living room, dining room, kitchen, guest bathroom, back balcony.</p>
- <p><strong>second floor</strong>: Master bedroom, master bath, children's room, study room, corridor.</p>
- <p><strong>outdoor</strong>: Yard, garage, gate.</p>
- <div class="callout tip"><strong>Tip:</strong> You can also build an "outdoor" area without a designated floor, or you can open an "outdoor" floor yourself.</div>
+ <h3>Use this sample area list</h3>
+ <p><strong>First floor:</strong> Entryway, living room, dining room, kitchen, guest bathroom, and back balcony.</p>
+ <p><strong>Second floor:</strong> Primary bedroom, primary bathroom, child’s room, office, and hallway.</p>
+ <p><strong>Outdoors:</strong> Yard, garage, and front gate.</p>
+ <div class="callout tip"><strong>Tip:</strong> You can leave an outdoor area without a floor, or create an “Outdoors” floor to group outdoor spaces.</div>
  </li>
  </ol>
- <div class="callout tip"><strong>Verify</strong>: Go back to "Settings → Areas, labels &amp; zones", you should see the newly created floors/areas filtered on the left; click on any area, and the number of devices in this area will be listed on the right.</div>
+ <div class="callout tip"><strong>Verify:</strong> Return to Settings → Areas, labels &amp; zones. Your new floors and areas should appear in the filters on the left. Select an area and confirm that its device count appears on the right.</div>
  </section>
 
- <section id="assign" data-nav="Assign devices to areas">
+ <section id="assign" data-nav="Assign devices">
  <h2 data-icon="assign">Assign devices to areas</h2>
- <p>It’s not enough to have an empty frame, you have to put the device in it:</p>
+ <p>The structure is useful only after you place devices in it:</p>
  <ol class="steps">
  <li>
- <h3>Go to "Settings → Devices &amp; Services → Devices"</h3>
- <p>See a list of all paired devices.</p>
+ <h3>Open the device list</h3>
+ <p>Go to Settings → Devices &amp; services → Devices to see all paired devices.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch3/04_devices_list.png" alt="Device list" />
- <figcaption><strong>Figure 3-4</strong> Device list - The area to which each device belongs will be displayed to the right, and any unspecified ones will be blank.</figcaption>
+ <img src="../assets/screenshots/ch3/04_devices_list.png" alt="Device list with area assignments" />
+ <figcaption><strong>Figure 3-4</strong> The device list shows each assigned area. Unassigned devices have a blank area.</figcaption>
  </figure>
  </li>
  <li>
- <h3>Click on a device → Edit (pencil) in the upper right corner → Select area</h3>
- <p>The drop-down menu will list all the areas you just created, select one to save.</p>
+ <h3>Edit a device and choose its area</h3>
+ <p>Select a device, select the pencil in the upper-right corner, and choose an area from the list. Save the change.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch3/05_assign_area.png" alt="Specify the region to which the device belongs" />
- <figcaption><strong>Figure 3-5</strong> Assign devices to zones.</figcaption>
+ <img src="../assets/screenshots/ch3/05_assign_area.png" alt="Area selection for a device" />
+ <figcaption><strong>Figure 3-5</strong> Assign a device to an area.</figcaption>
  </figure>
  </li>
  <li>
- <h3>Batch designation (multiple devices together)</h3>
- <p>There is "Batch Selection" in the upper right corner of the device list - you can "move to area" at once after checking multiple ones. I just installed an entire room of lights and this feature is a great time saver.</p>
+ <h3>Assign several devices together</h3>
+ <p>Use Batch selection in the upper-right corner of the device list. Select several devices, then choose Move to area. This saves time after you install a roomful of lights.</p>
  </li>
  </ol>
- <div class="callout tip"><strong>Next step</strong>: After the area is assigned, Chapter 4 teaches you how to move each device from <code>switch.0x00abc123</code> Change the name to something understandable and use labels to group across regions.</div>
+ <div class="callout tip"><strong>Next step:</strong> Chapter 4 shows how to replace an ID such as <code>switch.0x00abc123</code> with a recognizable name and use labels to group items across areas.</div>
  </section>
 
- <section id="done" data-nav="Verify the result">
- <h2 data-icon="done">Verify the result</h2>
- <p>After you're done, when you return to the "Areas, labels &amp; zones" page, it should look like this:</p>
+ <section id="done" data-nav="Verify setup">
+ <h2 data-icon="done">Verify the finished setup</h2>
+ <p>Return to Settings → Areas, labels &amp; zones and compare your result with this example:</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch3/06_done.png" alt="Completed floor area layout" />
- <figcaption><strong>Figure 3-6</strong> Completed floor zone layout - "N devices" shown below each zone.</figcaption>
+ <img src="../assets/screenshots/ch3/06_done.png" alt="Completed floor and area layout" />
+ <figcaption><strong>Figure 3-6</strong> The completed layout shows “N devices” under each area.</figcaption>
  </figure>
- <p>Next, go to "Home" on the left menu (the old version was called "Overview"), switch to the "Tab by Region" view, and you will see that HA automatically generates a card for each region.</p>
+ <p>Next, open Home in the sidebar, called Overview in earlier versions. Switch to the view organized by area and confirm that Home Assistant has generated a card for each area.</p>
  </section>
 
  <section id="faq" data-nav="FAQ">
  <h2 data-icon="faq">FAQ</h2>
  <details class="faq">
- <summary>Can I change the floor/area name later?</summary>
- <div class="body">Yes. Changing the name will not affect the device connection, nor will it break the automation (automation uses the internal ID). However, the display name will be changed simultaneously throughout the site.</div>
+ <summary>Can I rename a floor or area later?</summary>
+ <div class="body">Yes. Renaming does not disconnect devices or break automations that use the internal ID. The display name changes everywhere in Home Assistant.</div>
  </details>
  <details class="faq">
- <summary>Can a device belong to two areas at the same time?</summary>
- <div class="body">No. A device can only belong to one zone. If a lamp is in both the "living room" and "dining room" open spaces, choose the most important one.</div>
+ <summary>Can a device belong to two areas at once?</summary>
+ <div class="body">No. A device can belong to only one area. For a light in an open-plan living and dining space, choose the area that best represents its location.</div>
  </details>
  <details class="faq">
- <summary>If I delete an area, will the devices in it disappear?</summary>
- <div class="body">No, the device is still there, but it has become an "unspecified area". You can specify it back at any time.</div>
+ <summary>Will deleting an area delete its devices?</summary>
+ <div class="body">No. The devices remain in Home Assistant but become unassigned. You can assign them to another area at any time.</div>
  </details>
  <details class="faq">
- <summary>Doesn’t every room need to have a zone?</summary>
- <div class="body">No. Only the rooms you will "use" are needed. There is no need to build any smart devices in the storage room. It will be added later when new devices needs to be installed.</div>
+ <summary>Does every room need an area?</summary>
+ <div class="body">No. Create areas for spaces you use in Home Assistant. A storage room with no smart devices does not need one; you can add it later if that changes.</div>
  </details>
  </section>
 
- <section id="troubleshoot" data-nav="Common problems">
- <h2 data-icon="advanced">Common problems</h2>
+ <section id="troubleshoot" data-nav="Troubleshooting">
+ <h2 data-icon="advanced">Troubleshooting</h2>
  <details class="faq">
- <summary>What should I do if I accidentally put my device in the wrong area?</summary>
- <div class="body">Go back to "Settings → Devices &amp; Services → Devices" to find the device, click on it and there is a "Region" drop-down in the upper right corner to change it. Entities can also be overwritten individually (after overwriting, they will be separated from the device).</div>
+ <summary>What if I assigned a device to the wrong area?</summary>
+ <div class="body">Return to Settings → Devices &amp; services → Devices, select the device, and change the Area field. You can also override the area on an individual entity; that entity will then stop inheriting the device’s area.</div>
  </details>
  <details class="faq">
- <summary>There is already multiple devices, is it too late to re-plan the area?</summary>
- <div class="body">In time, regional classification will not affect automation (as long as automation writes entity_id, not device_id). Ch4 will talk about naming, and ch8 will talk about why it is safe to use entity_id.</div>
+ <summary>Is it too late to reorganize a large device list?</summary>
+ <div class="body">No. Changing area assignments does not affect automations that target entity_id rather than device_id. Chapter 4 covers naming, and Chapter 8 explains why entity_id targets are safer.</div>
  </details>
  </section>
 

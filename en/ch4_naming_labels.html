@@ -68,13 +68,13 @@
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
       <a href="#why">Why names matter</a>
-      <a href="#concept">Entity vs. Device vs. Name</a>
-      <a href="#rename">Rename step</a>
-      <a href="#labels">Classify with tags</a>
-      <a href="#done">Named example set</a>
+      <a href="#concept">Three names</a>
+      <a href="#rename">Rename entities</a>
+      <a href="#labels">Use labels</a>
+      <a href="#done">Name examples</a>
       <a href="#categories">Categories</a>
       <a href="#faq">FAQ</a>
-      <a href="#troubleshoot">Common problems</a>
+      <a href="#troubleshoot">Troubleshooting</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
@@ -88,167 +88,167 @@
  <div class="chapter-header">
  <div class="kicker">Chapter 4</div>
  <h1>Naming and labels</h1>
- <p class="lead">Turn an opaque ID such as <code>switch.0x00abc123_2</code> into a clear living-room light. Good names make voice control, dashboards, and automations understandable; labels then let you manage related devices as a group.</p>
+ <p class="lead">Replace an opaque ID such as <code>switch.0x00abc123_2</code> with a clear name such as “Living Room Main Light.” Good names make voice control, dashboards, and automations easier to understand. Labels then let you manage related items as a group, which the source describes as making maintenance 10 times faster.</p>
  </div>
 
  <section id="why" data-nav="Why names matter">
  <h2 data-icon="why">Why names matter</h2>
- <p>The name of the newly paired device is the technical code given by the manufacturer, for example:</p>
+ <p>A newly paired device may use a technical name supplied by its manufacturer, for example:</p>
  <ul>
  <li><code>light.aqara_light_group_2</code></li>
  <li><code>switch.0x00158d000abcd1234</code></li>
  <li><code>sensor.motion_sensor_ambient_temperature</code></li>
  </ul>
- <p>There are two problems with these names:</p>
+ <p>Names like these cause two problems:</p>
  <ol>
- <li><strong>The voice assistant can’t read</strong> — You don’t say to Google “please open aqara_light_group_2”.</li>
- <li><strong>My family can’t understand</strong> — There is a pile of scriptures on the dashboard that no one dares to press.</li>
+ <li><strong>Voice commands become unnatural.</strong> You do not want to say, “Turn on aqara_light_group_2.”</li>
+ <li><strong>Other people cannot identify controls.</strong> A dashboard full of technical IDs is difficult to use confidently.</li>
  </ol>
- <p>Solution: Change everything to "names you'll blurt out."</p>
+ <p>Replace them with the names you naturally use at home.</p>
  </section>
 
- <section id="concept" data-nav="Entity vs. Device vs. Name">
- <h2 data-icon="concept">Distinguish the three names</h2>
- <p>HA has three levels of names, which are easy to confuse:</p>
+ <section id="concept" data-nav="Three names">
+ <h2 data-icon="concept">Understand the three names</h2>
+ <p>Home Assistant has three related names that are easy to confuse:</p>
  <ul>
- <li><strong>Device name</strong>: The name of the entire device, such as "Living Room Ceiling Lamp".</li>
- <li><strong>Entity ID</strong>: Internal ID used by the program, for example <code>light.living_room_ceiling</code>. <strong>Use this when writing automation.</strong></li>
- <li><strong>Friendly name</strong>: The name displayed in the user interface, such as "Main Light". <strong>Use this for display and voice.</strong></li>
+ <li><strong>Device name:</strong> The name of the complete device, such as “Living Room Ceiling Light.”</li>
+ <li><strong>Entity ID:</strong> The internal identifier used in configuration, such as <code>light.living_room_ceiling</code>. <strong>Use this in automations.</strong></li>
+ <li><strong>Friendly name:</strong> The label displayed in the interface, such as “Main Light.” <strong>Use this for display and voice control.</strong></li>
  </ul>
- <div class="callout"><strong>Good habits:</strong> Write the full name of the device ("Living Room Ceiling Lamp"), and write the short version of the friendly name ("Main Light") - because the friendly name already has the area in front of it, it just becomes "Living Room Main Light".</div>
+ <div class="callout"><strong>Concept:</strong> Give the device a complete name, such as “Living Room Ceiling Light,” and the entity a short friendly name, such as “Main Light.” When Home Assistant adds the area, the result reads naturally as “Living Room Main Light.”</div>
  </section>
 
- <section id="rename" data-nav="Rename step">
- <h2 data-icon="rename">Rename step</h2>
- <div class="callout"><strong>Version differences:</strong> The "Settings → Tools" that will be used below was an independent "Developer Tools" on the sidebar before 2026.2; it was included in "Settings" in 2026.2, and the name was simplified from "Developer Tools" to "Tools" in 2026.8. The page names (States, Templates...) inside have not changed. For older versions, please go to the "Developer Tools" in the sidebar to find the same thing.</div>
+ <section id="rename" data-nav="Rename entities">
+ <h2 data-icon="rename">Rename an entity</h2>
+ <div class="callout"><strong>Version note:</strong> Before 2026.2, Developer tools was a separate sidebar item. It moved under Settings in 2026.2 and was shortened to Tools in 2026.8. The internal pages, including States and Templates, remain the same.</div>
  <ol class="steps">
  <li>
- <h3>Go to "Settings → Devices &amp; Services → Entity"</h3>
- <p>When you see a long list of all entities, you can use the search box above to quickly find a device.</p>
+ <h3>Open the entity list</h3>
+ <p>Go to Settings → Devices &amp; services → Entities. Use the search field to find the entity you want.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch4/01_entities_list.png" alt="Entity list" />
- <figcaption><strong>Figure 4-1</strong> Entity list - each column is an entity, status, name, entity ID.</figcaption>
+ <img src="../assets/screenshots/ch4/01_entities_list.png" alt="Entity list with status, name, and entity ID" />
+ <figcaption><strong>Figure 4-1</strong> Each row in the entity list shows an entity’s status, name, and entity ID.</figcaption>
  </figure>
  </li>
  <li>
- <h3>Click an entity → Gear (Settings)</h3>
- <p>Open the entity details and use the gear in the upper right corner to enter the settings page.</p>
+ <h3>Open the entity settings</h3>
+ <p>Select the entity, then select the gear in the upper-right corner of its details.</p>
  </li>
  <li>
- <h3>Change the "Name" field</h3>
- <p>What is changed here is <strong>friendly name</strong>. The entity ID will not be changed because the ID is an automated key and will be broken if it is changed.</p>
+ <h3>Change the Name field</h3>
+ <p>This changes the <strong>friendly name</strong>. The entity ID remains unchanged, so references to it continue to work.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch4/02_rename_entity.png" alt="Edit entity name" />
- <figcaption><strong>Figure 4-2</strong> Edit Entity - "Name" is a friendly name, "Entity ID" will warn when it is changed.</figcaption>
+ <img src="../assets/screenshots/ch4/02_rename_entity.png" alt="Entity settings with name and entity ID fields" />
+ <figcaption><strong>Figure 4-2</strong> Name is the friendly name. Home Assistant warns you before changing Entity ID.</figcaption>
  </figure>
  </li>
  <li>
- <h3>Do you want to change the entity ID together?</h3>
- <p><strong>It is recommended to change.</strong> If this is a newly installed device and has not been referenced by any automation, just change the ID to a meaningful alphanumeric value, for example <code>light.living_room_main</code>. It will be easy to look at the code later.</p>
- <div class="callout warn"><strong>Warning:</strong> For entities that have been referenced by automation, scripts, and dashboards, before changing the ID, search in "Settings → Tools → States (States)" to see if it has been used.</div>
+ <h3>Decide whether to change the entity ID</h3>
+ <p><strong>Change it early when useful.</strong> If the device is new and no automation references it yet, choose a meaningful alphanumeric ID such as <code>light.living_room_main</code>. Your configuration will be easier to read later.</p>
+ <div class="callout warn"><strong>Warning:</strong> Before changing an ID already used by automations, scripts, or dashboards, find and review those references. You can inspect the current entity under Settings → Tools → States.</div>
  </li>
  </ol>
- <div class="callout"><strong>Verify</strong>: After the change, the new name should be found in "Settings → Tools → States"; the old entity_id should disappear from the list. <strong>warning</strong>: If this entity is used by automation, changing the entity_id will break the automation - Chapter 8 will explain why you need to think of a good name from the beginning.</div>
+ <div class="callout"><strong>Verify:</strong> Search for the new ID under Settings → Tools → States. The old entity_id should no longer appear. <strong>Warning:</strong> Changing an entity_id can break any automation that still references the old value. Chapter 8 explains why planning IDs early matters.</div>
  </section>
 
- <section id="labels" data-nav="Classify with tags">
- <h2 data-icon="labels">Organize with labels</h2>
- <p>The area answers "Where is this lamp?" and the label answers "What type of lamp is this?" For example:</p>
+ <section id="labels" data-nav="Use labels">
+ <h2 data-icon="labels">Organize items with labels</h2>
+ <p>An area answers “Where is this light?” A label answers “What kind of item is this?” For example:</p>
  <ul>
- <li>Lamps and devices are all attached <code>Lighting</code> Tag — and then “turn off all lighting” with just one click.</li>
- <li>USB powered devices are attached <code>Backup power</code> Tags — Don’t worry when the power goes out.</li>
- <li>All devices that tenants will use is posted <code>Tenant access</code> Tags — filter this when building the dashboard.</li>
+ <li>Apply a <code>Lighting</code> label to lights so you can target all lighting together.</li>
+ <li>Apply a <code>Backup power</code> label to USB-powered devices that remain powered during an outage.</li>
+ <li>Apply a <code>Tenant access</code> label to items a tenant may use, then filter for that label when building a dashboard.</li>
  </ul>
  <ol class="steps">
  <li>
- <h3>Create a label: Settings → Labels → New</h3>
+ <h3>Create a label under Settings → Areas, labels &amp; zones → Labels</h3>
  <figure class="shot">
- <img src="../assets/screenshots/ch4/03_labels_page.png" alt="tab page" />
- <figcaption><strong>Figure 4-3</strong> Tag management page - Each tag can have a color and icon.</figcaption>
+ <img src="../assets/screenshots/ch4/03_labels_page.png" alt="Labels management page" />
+ <figcaption><strong>Figure 4-3</strong> Each label can have its own color and icon.</figcaption>
  </figure>
  </li>
  <li>
- <h3>Label entities</h3>
- <p>Check multiple boxes on the left side of the entity list → "Add tags" at the top - paste them all at once.</p>
+ <h3>Apply a label to entities</h3>
+ <p>Select several entities in the entity list, then use Add label to apply one label to all of them.</p>
  </li>
  <li>
- <h3>How to use it later</h3>
- <p><strong>Labels can be attached to more things than you think</strong>: Areas, devices, entities, automation, scripts, scenes, and helpers can all be posted; one thing can have multiple Labels (unlike areas that can only belong to one). This is the most flexible classification tool in HA.</p>
- <p>Automated trigger conditions, dashboard filtering, and script references can all use "labels" to replace individual column entities. Even if the entity is changed, the label remains unchanged, making maintenance very easy.</p>
+ <h3>Use labels elsewhere</h3>
+ <p><strong>Labels work on more than entities.</strong> You can apply them to areas, devices, entities, automations, scripts, scenes, and helpers. An item can have several labels, while it can belong to only one area.</p>
+ <p>Use labels in automation targets, dashboard filters, and scripts instead of maintaining a list of individual entities. If an entity changes but its label remains, the group is easier to maintain.</p>
  </li>
  </ol>
  </section>
 
- <section id="done" data-nav="Named example set">
- <h2 data-icon="done">Naming example set (ready to copy)</h2>
+ <section id="done" data-nav="Name examples">
+ <h2 data-icon="done">Naming examples</h2>
  <table class="data-table">
  <thead>
  <tr>
  <th>Type</th>
- <th>friendly name</th>
+ <th>Friendly name</th>
  <th>Entity ID</th>
  </tr>
  </thead>
  <tbody>
- <tr><td>lamp</td><td>main light</td><td><code>light.living_room_main</code></td></tr>
- <tr><td>lamp</td><td>Atmosphere light</td><td><code>light.living_room_ambient</code></td></tr>
- <tr><td>switch</td><td>water dispenser</td><td><code>switch.kitchen_water_dispenser</code></td></tr>
- <tr><td>sensor</td><td>People are here</td><td><code>binary_sensor.master_bedroom_occupancy</code></td></tr>
- <tr><td>air conditioner</td><td>air conditioner</td><td><code>climate.master_bedroom_ac</code></td></tr>
+ <tr><td>Light</td><td>Main Light</td><td><code>light.living_room_main</code></td></tr>
+ <tr><td>Light</td><td>Ambient Light</td><td><code>light.living_room_ambient</code></td></tr>
+ <tr><td>Switch</td><td>Water Dispenser</td><td><code>switch.kitchen_water_dispenser</code></td></tr>
+ <tr><td>Occupancy sensor</td><td>Occupancy</td><td><code>binary_sensor.master_bedroom_occupancy</code></td></tr>
+ <tr><td>Climate</td><td>Air Conditioner</td><td><code>climate.master_bedroom_ac</code></td></tr>
  </tbody>
  </table>
- <div class="callout"><strong>Next step</strong>: Think about the naming. Chapter 6 lets you pull commonly used entities to the dashboard; Chapter 8 teaches you to write the Your first automation with these names.</div>
+ <div class="callout"><strong>Next step:</strong> Chapter 6 shows how to place frequently used entities on a dashboard. Chapter 8 uses these names in your first automation.</div>
  </section>
 
  <section id="categories" data-nav="Categories">
- <h2 data-icon="labels">Categories: The fourth category (advanced)</h2>
- <p>HA was introduced after 2024.04 <strong>Categories</strong> (Category) is often confused with Labels. Here we will help you distinguish them:</p>
+ <h2 data-icon="labels">Categories: another classification tool</h2>
+ <p>Home Assistant introduced <strong>categories</strong> in 2024.04. They serve a different purpose from labels:</p>
  <table class="data-table">
  <thead>
  <tr>
- <th>Dimensions</th>
- <th>Labels Labels</th>
+ <th>Comparison</th>
+ <th>Labels</th>
  <th>Categories</th>
  </tr>
  </thead>
  <tbody>
- <tr><td>Where can I stick it?</td><td>Area/Devices/Entity/Automation/Script/Scene/Helper</td><td>Only automation/scripts/scenes/helpers</td></tr>
- <tr><td>Can it be used as an automation target?</td><td>OK</td><td>No, it’s purely a background list classification</td></tr>
- <tr><td>Typical usage</td><td>"All living room lights" "All safety devices"</td><td>"Lighting", "Ambience", "Safety" (the list is easy to find)</td></tr>
+ <tr><td>Where they apply</td><td>Areas, devices, entities, automations, scripts, scenes, and helpers</td><td>Automations, scripts, scenes, and helpers only</td></tr>
+ <tr><td>Automation target</td><td>Yes</td><td>No; categories organize lists in the interface</td></tr>
+ <tr><td>Typical use</td><td>“All living-room lights” or “All security devices”</td><td>“Lighting,” “Ambience,” or “Security” for easier browsing</td></tr>
  </tbody>
  </table>
- <div class="callout"><strong>In one sentence:</strong> If you want to use it in automation, select Labels. If you just want to keep it in the background list, select Categories.</div>
+ <div class="callout"><strong>Concept:</strong> Use labels when an automation needs the group. Use categories when you only need to organize a list in the interface.</div>
  </section>
 
  <section id="faq" data-nav="FAQ">
  <h2 data-icon="faq">FAQ</h2>
  <details class="faq">
- <summary>If the entity ID is changed, will all the old automation be rewritten?</summary>
- <div class="body">HA has the function of "synchronously updating automation references when renaming", but it only covers the automation of UI creation. YAML handwritten and Node-RED need to be searched and replaced by yourself.</div>
+ <summary>Will Home Assistant update old automations when I change an entity ID?</summary>
+ <div class="body">Home Assistant can update references in automations created through the UI when you rename an entity. You must search for and replace references in hand-written YAML and Node-RED flows yourself.</div>
  </details>
  <details class="faq">
- <summary>What is the difference between "label" and "area"?</summary>
- <div class="body">The area is "location" (where), and the label is "property" (what type / who can control / what use). A device can only belong to one zone, but can have multiple tags.</div>
+ <summary>What is the difference between a label and an area?</summary>
+ <div class="body">An area describes location. A label describes a property, audience, or purpose. A device can belong to one area but can have multiple labels.</div>
  </details>
  <details class="faq">
- <summary>Can friendly names be repeated?</summary>
- <div class="body">Yes. Different areas with the same name will not conflict (HA will be displayed with the area prefix). However, the voice assistant will not be able to tell the difference when giving instructions, so it is recommended to avoid it.</div>
+ <summary>Can friendly names be duplicated?</summary>
+ <div class="body">Yes. Identical friendly names in different areas do not conflict because Home Assistant can display the area prefix. Voice assistants may still have trouble distinguishing them, so unique names are safer.</div>
  </details>
  </section>
 
- <section id="troubleshoot" data-nav="Common problems">
- <h2 data-icon="advanced">Common problems</h2>
+ <section id="troubleshoot" data-nav="Troubleshooting">
+ <h2 data-icon="advanced">Troubleshooting</h2>
  <details class="faq">
- <summary>After changing the entity_id, a certain automation does not move?</summary>
- <div class="body">Because the automation refers to the old entity_id. Go to "Settings → Automations & Scenes" to check one by one, or use "Settings → Tools (the old sidebar is called "Developer Tools") → Templates" to search for the old name. This is why Chapter 8 will teach "Always use entity_id instead of device_id" - if you change the entity_id, at least you will find out that it is broken immediately. If the device_id is changed, it will be harder to find out.</div>
+ <summary>Why did an automation stop after I changed an entity_id?</summary>
+ <div class="body">The automation probably still references the old entity_id. Review your automations under Settings → Automations &amp; scenes, and search templates or configuration for the old value. In current versions, templates are under Settings → Tools → Templates; earlier versions place Developer tools in the sidebar. Chapter 8 explains why targeting entity_id instead of device_id makes device replacements easier to manage.</div>
  </details>
  <details class="faq">
- <summary>What is the difference between Friendly name and entity_id?</summary>
- <div class="body">The friendly name is the display name shown in the UI (for example: the main light in the living room), which can be changed without breaking anything; entity_id is the system identification code (for example:<code>light.living_room_main</code>), changes will affect all automations, dashboards, and scripts that reference it. <strong>Normally just change the friendly name</strong>.</div>
+ <summary>How do friendly name and entity_id differ?</summary>
+ <div class="body">The friendly name is the display name in the UI, such as “Living Room Main Light.” You can usually change it without breaking anything. The entity_id is the system identifier, such as <code>light.living_room_main</code>. Changing it affects automations, dashboards, and scripts that reference the old value. <strong>For routine display changes, change only the friendly name.</strong></div>
  </details>
  <details class="faq">
- <summary>Can I change the name in batches?</summary>
- <div class="body">HA itself does not have a batch rename UI. Can be edited directly <code>.storage/core.entity_registry</code>(Not recommended, easy to break) Or use "Bulk Rename" on HACS to customize the card. Safe approach: Modify new devices once and then move on to the next one.</div>
+ <summary>Can I rename several entities at once?</summary>
+ <div class="body">Home Assistant does not provide a batch-renaming UI. Directly editing <code>.storage/core.entity_registry</code> is risky and not recommended. Third-party bulk-renaming tools may be available through HACS, but their support can change. The safest approach is to finish naming each new device before you configure the next one.</div>
  </details>
  </section>
 
