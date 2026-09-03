@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chapter 1 · 登入 Home Assistant · Home Assistant 新居入住指南</title>
-  <meta name="description" content="如何登入 Home Assistant：找到 HA 網址的三種方式、Owner 與 Administrator 的差別、「保持登入」怎麼用，以及網頁後台與 Companion App 的取捨。" />
+  <title>Chapter 1 · Log in to Home Assistant · Home Assistant Onboarding Guide</title>
+  <meta name="description" content="How to log in to Home Assistant: three ways to find the HA URL, the difference between Owner and Administrator, how to use "Stay logged in", and the choice between the web interface and the Companion App." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch1_login.html" />
   <meta name="robots" content="noindex, follow" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Home Assistant 新居入住指南" />
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Chapter 1 · 登入 Home Assistant · Home Assistant 新居入住指南" />
-  <meta property="og:description" content="如何登入 Home Assistant：找到 HA 網址的三種方式、Owner 與 Administrator 的差別、「保持登入」怎麼用，以及網頁後台與 Companion App 的取捨。" />
+  <meta property="og:title" content="Chapter 1 · Log in to Home Assistant · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="How to log in to Home Assistant: three ways to find the HA URL, the difference between Owner and Administrator, how to use "Stay logged in", and the choice between the web interface and the Companion App." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch1_login.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch1/01_login_page.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chapter 1 · 登入 Home Assistant · Home Assistant 新居入住指南" />
-  <meta name="twitter:description" content="如何登入 Home Assistant：找到 HA 網址的三種方式、Owner 與 Administrator 的差別、「保持登入」怎麼用，以及網頁後台與 Companion App 的取捨。" />
+  <meta name="twitter:title" content="Chapter 1 · Log in to Home Assistant · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="How to log in to Home Assistant: three ways to find the HA URL, the difference between Owner and Administrator, how to use "Stay logged in", and the choice between the web interface and the Companion App." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch1/01_login_page.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -32,53 +32,53 @@
 <body>
 <div class="layout">
   <aside class="sidebar">
-    <a class="brand" href="tutorial.html">HA 新居入住指南</a>
-    <div class="brand-sub">從零到能用</div>
+    <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
+    <div class="brand-sub">From scratch to functional</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch1_login.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch1_login.html" lang="en" aria-current="page">EN</a></nav>
-    <a class="hub-link" href="index.html">◂ 資源總覽</a>
+    <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">基礎：從零到能用</li>
-      <li data-i18n="pending"><a href="ch1_login.html" class="active">登入 HA</a></li>
-      <li data-i18n="pending"><a href="ch2_system_settings.html">系統設定</a></li>
-      <li data-i18n="pending"><a href="ch3_floors_areas.html">樓層與區域</a></li>
-      <li data-i18n="pending"><a href="ch4_naming_labels.html">命名與標籤</a></li>
-      <li data-i18n="pending"><a href="ch5_users.html">用戶管理</a></li>
-      <li data-i18n="pending"><a href="ch6_dashboard.html">儀表板</a></li>
-      <li data-i18n="pending"><a href="ch7_notifications.html">通知</a></li>
-      <li data-i18n="pending"><a href="ch8_first_automation.html">第一個自動化</a></li>
-      <li data-i18n="pending"><a href="ch9_backups.html">備份</a></li>
-      <li data-i18n="pending"><a href="ch10_scripts.html">腳本 Scripts</a></li>
-      <li data-i18n="pending"><a href="ch11_devices.html">裝置詳細設定</a></li>
-      <li data-i18n="pending"><a href="ch12_domains.html">Domain 控制圖鑑</a></li>
-      <li class="part-label">擴充：接上更多裝置</li>
-      <li data-i18n="pending"><a href="ch13_themes.html">主題與外觀</a></li>
-      <li data-i18n="pending"><a href="ch14_integrations.html">整合服務串接</a></li>
-      <li data-i18n="pending"><a href="ch15_protocols.html">通訊協定大百科</a></li>
-      <li data-i18n="pending"><a href="ch16_todo_calendar.html">待辦與行事曆</a></li>
-      <li class="part-label">數據、能源與 AI</li>
-      <li data-i18n="pending"><a href="ch17_energy.html">能源儀表板</a></li>
-      <li data-i18n="pending"><a href="ch18_history_data.html">歷史數據與導出</a></li>
-      <li data-i18n="pending"><a href="ch19_voice_ai.html">語音助理與 AI</a></li>
-      <li class="part-label">進階架構與應用</li>
-      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on 與 Docker</a></li>
-      <li data-i18n="pending"><a href="ch21_network_remote.html">網路與遠端連線</a></li>
-      <li data-i18n="pending"><a href="ch22_life_logs.html">生活紀錄應用</a></li>
+      <li class="part-label">Basics: from scratch to functional</li>
+      <li data-i18n="pending"><a href="ch1_login.html" class="active">Login to HA</a></li>
+      <li data-i18n="pending"><a href="ch2_system_settings.html">System settings</a></li>
+      <li data-i18n="pending"><a href="ch3_floors_areas.html">Floors and areas</a></li>
+      <li data-i18n="pending"><a href="ch4_naming_labels.html">Naming and labeling</a></li>
+      <li data-i18n="pending"><a href="ch5_users.html">User management</a></li>
+      <li data-i18n="pending"><a href="ch6_dashboard.html">Dashboard</a></li>
+      <li data-i18n="pending"><a href="ch7_notifications.html">Notifications</a></li>
+      <li data-i18n="pending"><a href="ch8_first_automation.html">First automation</a></li>
+      <li data-i18n="pending"><a href="ch9_backups.html">backup</a></li>
+      <li data-i18n="pending"><a href="ch10_scripts.html">Scripts</a></li>
+      <li data-i18n="pending"><a href="ch11_devices.html">Device details</a></li>
+      <li data-i18n="pending"><a href="ch12_domains.html">Domain reference</a></li>
+      <li class="part-label">Expansion: connect more devices</li>
+      <li data-i18n="pending"><a href="ch13_themes.html">Themes and appearance</a></li>
+      <li data-i18n="pending"><a href="ch14_integrations.html">Integrations</a></li>
+      <li data-i18n="pending"><a href="ch15_protocols.html">Communication protocols</a></li>
+      <li data-i18n="pending"><a href="ch16_todo_calendar.html">To-do and calendar</a></li>
+      <li class="part-label">Data, energy and AI</li>
+      <li data-i18n="pending"><a href="ch17_energy.html">Energy dashboard</a></li>
+      <li data-i18n="pending"><a href="ch18_history_data.html">History and data export</a></li>
+      <li data-i18n="pending"><a href="ch19_voice_ai.html">Voice assistants and AI</a></li>
+      <li class="part-label">Advanced architecture and applications</li>
+      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on and Docker</a></li>
+      <li data-i18n="pending"><a href="ch21_network_remote.html">Network and remote connections</a></li>
+      <li data-i18n="pending"><a href="ch22_life_logs.html">Life logging</a></li>
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">為什麼要學這個</a>
-      <a href="#url">找到你的 HA 網址</a>
-      <a href="#steps">登入步驟</a>
-      <a href="#companion">網頁 vs. Companion App</a>
-      <a href="#faq">常見問題</a>
-      <a href="#troubleshoot">登入失敗排錯</a>
+      <a href="#why">Why should you learn this?</a>
+      <a href="#url">Find your HA URL</a>
+      <a href="#steps">Login steps</a>
+      <a href="#companion">Web vs. Companion App</a>
+      <a href="#faq">FAQ</a>
+      <a href="#troubleshoot">Troubleshooting failed login</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · 生態圈：HACS/Add-ons/遠端</a>
-      <a href="appendix_scenes_helpers_groups.html">B · 場景/輔助元件/群組</a>
-      <a href="appendix_hardware_install.html">C · 裝機前傳：硬體與 HAOS</a>
+      <a href="appendix_hacs_addons.html">A · Ecosystem: HACS/Add-ons/remote</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scene/auxiliary component/group</a>
+      <a href="appendix_hardware_install.html">C · Pre-installation: Hardware and HAOS</a>
     </div>
   </aside>
 
@@ -86,114 +86,114 @@
     <div class="callout i18n-pending"><strong>This chapter has not been translated yet.</strong> You are reading the original Chinese text. <a href="../ch1_login.html" hreflang="zh-Hant">Open the Chinese version</a></div>
     <div class="chapter-header">
       <div class="kicker">Chapter 1</div>
-      <h1>登入 Home Assistant</h1>
-      <p class="lead">先確定你能穩定進到後台，這是後面所有章節的前提。這一章教你認識登入頁、記住登入狀態，並理解「網頁後台」和「Companion App」的差別。</p>
+      <h1>Sign in to Home Assistant</h1>
+      <p class="lead">First make sure you can enter the the dashboard reliably. This is the prerequisite for all subsequent chapters. This chapter teaches you to recognize the login page, remember the login status, and understand the difference between "web interface" and "Companion App".</p>
     </div>
 
-    <section id="why" data-nav="為什麼要學這個">
-      <h2 data-icon="why">為什麼要學這個</h2>
-      <p>Home Assistant（下稱 HA）是一個「本地控制」的智慧家庭中樞：所有設備狀態、自動化、房間資料都存在你家中的那台小主機上，不會經過雲端。</p>
-      <p>因為它是自己家的伺服器，登入的方式和一般網路服務不太一樣：</p>
+    <section id="why" data-nav="Why should you learn this?">
+      <h2 data-icon="why">Why should you learn this?</h2>
+      <p>Home Assistant (hereinafter referred to as HA) is a "locally controlled" smart home hub: all device status, automation, and room data are stored on the small host in your home and will not go through the cloud.</p>
+      <p>Because it is your own server, the login method is different from ordinary Internet services:</p>
       <ul>
-        <li>沒有「忘記密碼寄信」— 密碼只有主機知道。</li>
-        <li>有可能透過區網 IP 進入，也可能透過網域名稱（Nabu Casa / 自架 DDNS）。</li>
-        <li>手機和電腦的登入體驗不同 — 建議手機裝 Companion App、電腦用瀏覽器。</li>
+        <li>There is no "forgot password" - the password is known only to the host.</li>
+        <li>It is possible to enter through the local network IP, or through the domain name (Nabu Casa/self-hosted DDNS).</li>
+        <li>The login experience on mobile phones and computers is different - it is recommended to install Companion App on mobile phones and use a browser on computers.</li>
       </ul>
-      <p><strong>兩個常被搞混的角色：擁有者 (Owner) vs 管理員 (Administrator)</strong>：安裝時建立的第一個帳號是「擁有者」，權限最大且<strong>密碼一旦忘記無法找回</strong>（HA 官方文件明講）。之後你在 ch5 建的管理員帳號權限接近，但不是擁有者。擁有者只能有一個。</p>
+      <p><strong>Two roles that are often confused: Owner vs Administrator</strong>: The first account created during installation is the "Owner", which has the greatest authority and<strong>Once the password is forgotten, it cannot be retrieved</strong>(HA official document clearly states this). The administrator account you create in ch5 later has close permissions, but is not the owner. There can only be one owner.</p>
     </section>
 
-    <section id="url" data-nav="找到你的 HA 網址">
-      <h2 data-icon="url">找到你的 HA 網址</h2>
-      <p>你的網址通常是以下三種之一：</p>
+    <section id="url" data-nav="Find your HA URL">
+      <h2 data-icon="url">Find your HA URL</h2>
+      <p>Your URL will usually be one of three:</p>
       <ul>
-        <li><strong>區網 IP</strong>：<code>http://homeassistant.local:8123</code> 或 <code>http://192.168.x.x:8123</code>。</li>
-        <li><strong>Nabu Casa 遠端</strong>：<code>https://xxxxx.ui.nabu.casa</code>（付費訂閱）。</li>
-        <li><strong>自架網域</strong>：例如 <code>https://ha.yourdomain.com</code>（例如作者用的是自架網域 <code>https://woowtech-ha.woowtech.io</code>）。</li>
+        <li><strong>LAN IP</strong>: <code>http://homeassistant.local:8123</code> or <code>http://192.168.x.x:8123</code>.</li>
+        <li><strong>Nabu Casa Remote</strong>: <code>https://xxxxx.ui.nabu.casa</code>(Paid subscription).</li>
+        <li><strong>Self-hosted domain</strong>: For example <code>https://ha.yourdomain.com</code>(For example, the author uses a self-hosted domain <code>https://woowtech-ha.woowtech.io</code>).</li>
       </ul>
-      <div class="callout tip"><strong>提示：</strong>把網址加到瀏覽器書籤，並在手機主畫面「加入書籤到桌面」，之後點一下就打開。</div>
+      <div class="callout tip"><strong>Tip:</strong>Add the URL to the browser bookmarks, and "Add bookmarks to desktop" on the phone's home screen, then click to open it.</div>
     </section>
 
-    <section id="steps" data-nav="登入步驟">
-      <h2 data-icon="steps">登入步驟</h2>
-      <div class="callout"><strong>版本差異：</strong>登入後看到的預設儀表板，2026.2 起改叫「首頁（Home）」；在那之前叫「總覽（Overview）」，舊版介面的側欄最上面會寫「總覽」。兩者是同一個位置，下面的步驟都適用。</div>
+    <section id="steps" data-nav="Login steps">
+      <h2 data-icon="steps">Login steps</h2>
+      <div class="callout"><strong>Version differences:</strong>The default dashboard you see after logging in will be called "Home" starting from 2026.2; before that, it was called "Overview". The old version of the interface will say "Overview" at the top of the sidebar. Both are in the same location and the following steps apply.</div>
       <ol class="steps">
         <li>
-          <h3>打開登入頁</h3>
-          <p>在瀏覽器輸入 HA 網址，會看到一個藍白的登入卡片，中間有 Home Assistant 的 logo。</p>
+          <h3>Open login page</h3>
+          <p>Enter the HA URL in the browser, and you will see a blue and white login card with the Home Assistant logo in the middle.</p>
           <figure class="shot">
-            <img src="../assets/screenshots/ch1/01_login_page.png" alt="HA 登入頁" />
-            <figcaption><strong>圖 1-1</strong>登入頁：帳號、密碼、記住我三個欄位。</figcaption>
+            <img src="../assets/screenshots/ch1/01_login_page.png" alt="HA login page" />
+            <figcaption><strong>Figure 1-1</strong>Login page: three fields: account, password, and remember me.</figcaption>
           </figure>
         </li>
         <li>
-          <h3>輸入帳號與密碼</h3>
-          <p>使用當初安裝 HA 時建立的管理員帳號。如果你是家人／房客，請向管理員索取專屬帳號（第 5 章會教怎麼建）。</p>
+          <h3>Enter username and password</h3>
+          <p>Use the administrator account created when you originally installed HA. If you are a family member/tenant, please ask the administrator for a dedicated account (Chapter 5 will teach you how to create one).</p>
         </li>
         <li>
-          <h3>勾選「保持登入」</h3>
-          <p>勾了以後，這台瀏覽器會記住你，不用每次開都重打密碼。官方文件沒有寫死幾天，只說明「超過 90 天沒用過的登入憑證會被自動清掉」，所以只要你固定在用，實務上就是一直保持登入。<strong>共用電腦請不要勾。</strong></p>
+          <h3>Check "Stay logged in"</h3>
+          <p>Once checked, this browser will remember you so you don't have to retype your password every time you open it. The official document does not spell out the number of days, but only states that "login credentials that have not been used for more than 90 days will be automatically cleared." So as long as you keep using it, in practice, you will always keep logged in.<strong>Do not select this option on a shared computer.</strong></p>
           <figure class="shot">
-            <img src="../assets/screenshots/ch1/02_keep_logged_in.png" alt="勾選 Keep me logged in" />
-            <figcaption><strong>圖 1-2</strong>勾選「保持登入」— 個人裝置建議打勾。</figcaption>
+            <img src="../assets/screenshots/ch1/02_keep_logged_in.png" alt="Check Keep me logged in" />
+            <figcaption><strong>Figure 1-2</strong>Check "Stay logged in" - recommended for personal devices.</figcaption>
           </figure>
         </li>
         <li>
-          <h3>進到主控台</h3>
-          <p>登入成功會直接跳到「首頁（Home）」儀表板（舊版叫「總覽 Overview」），顯示你家各區域的狀態卡片。</p>
+          <h3>Enter the dashboard</h3>
+          <p>After successful login, you will jump directly to the "Home" dashboard (the old version was called "Overview"), which displays status cards for each area of your home.</p>
           <figure class="shot">
-            <img src="../assets/screenshots/ch1/03_dashboard.png" alt="登入後的主控台" />
-            <figcaption><strong>圖 1-3</strong>主控台：左側選單、上方標籤頁、中間卡片。</figcaption>
+            <img src="../assets/screenshots/ch1/03_dashboard.png" alt="Main console after login" />
+            <figcaption><strong>Figure 1-3</strong>Main console: left menu, upper tab, middle card.</figcaption>
           </figure>
         </li>
       </ol>
     </section>
 
-    <section id="companion" data-nav="網頁 vs. Companion App">
-      <h2 data-icon="companion">網頁 vs. Companion App</h2>
-      <p>兩者連到同一個後台，資料完全同步，差別在功能：</p>
+    <section id="companion" data-nav="Web vs. Companion App">
+      <h2 data-icon="companion">Web vs. Companion App</h2>
+      <p>The two are connected to the same backend, and the data is completely synchronized. The difference lies in the functions:</p>
       <ul>
-        <li><strong>網頁</strong>：畫面大、適合改設定、寫自動化、看歷史圖表。</li>
-        <li><strong>Companion App</strong>（iOS/Android）：能收<strong>推播通知</strong>、回報手機的<strong>電量／位置／WiFi 名稱</strong>給 HA 當觸發條件、透過生物辨識快速登入。</li>
+        <li><strong>web page</strong>: Large screen, suitable for changing settings, writing automation, and viewing historical charts.</li>
+        <li><strong>Companion App</strong>(iOS/Android): Can receive<strong>push notification</strong>, report mobile phone<strong>Battery/Location/WiFi Name</strong>Set trigger conditions for HA and quickly log in through biometrics.</li>
       </ul>
-      <div class="callout"><strong>建議做法：</strong>電腦用瀏覽器改設定，手機裝 App 當日常控制與收通知。第 7 章會帶你裝 App。</div>
-      <div class="callout tip"><strong>下一步</strong>：第 5 章教你怎麼幫家人開專屬帳號、第 7 章教手機收通知。</div>
+      <div class="callout"><strong>Recommended practices:</strong>Use the browser on your computer to change settings, and install the app on your phone for daily control and notifications. Chapter 7 will walk you through installing the app.</div>
+      <div class="callout tip"><strong>Next step</strong>: Chapter 5 teaches you how to open a dedicated account for your family, and Chapter 7 teaches you how to receive notifications on your mobile phone.</div>
     </section>
 
-    <section id="faq" data-nav="常見問題">
-      <h2 data-icon="faq">常見問題</h2>
+    <section id="faq" data-nav="FAQ">
+      <h2 data-icon="faq">FAQ</h2>
       <details class="faq">
-        <summary>密碼忘記了怎麼辦？</summary>
-        <div class="body">密碼存在主機上，沒有寄信重設。<strong>如果你還登得進去而且是擁有者</strong>，直接到「設定 → 人員」選那個人改密碼就好。<strong>如果是自己被鎖在外面</strong>，HAOS 要在主機本身接上螢幕鍵盤，在那個直連的主控台打 <code>auth reset --interactive</code> 重設（官方文件特別註明：不能用 App 或附加元件裡的 SSH 終端機，一定要主機本身的畫面）；Docker 安裝則是進容器跑 <code>hass --script auth --config /config change_password 帳號 新密碼</code> 再重啟容器。如果你不是管理員，最快的路是請管理員從第 5 章的「使用者」幫你重設一次。</div>
+        <summary>What should I do if I forget my password?</summary>
+        <div class="body">The password is stored on the host and no reset message has been sent.<strong>If you can still log in and are the owner</strong>, just go to "Settings → Personnel" and select that person to change the password.<strong>If you are locked out</strong>, HAOS needs to connect the on-screen keyboard to the host itself, and type on the directly connected console. <code>auth reset --interactive</code> Reset (the official document specifically states: You cannot use the SSH terminal in the App or add-on, you must use the screen of the host itself); Docker installation is to run into the container <code>hass --script auth --config /config change_password account new password</code> Restart the container. If you are not an administrator, the fastest way is to ask the administrator to reset it for you from "Users" in Chapter 5.</div>
       </details>
       <details class="faq">
-        <summary>登入頁一直轉圈圈進不去？</summary>
-        <div class="body">先確認網址對不對、你的手機／電腦有沒有連到家裡 WiFi（區網 IP 只能在家連）。如果是外網網址，檢查 HA 主機是否還開著、Nabu Casa 或 DDNS 有沒有失效。</div>
+        <summary>The login page keeps spinning around and you can’t get to it?</summary>
+        <div class="body">First confirm whether the URL is correct and whether your mobile phone/computer is connected to your home WiFi (the local network IP can only be connected at home). If it is an external network address, check whether the HA host is still open and whether Nabu Casa or DDNS has failed.</div>
       </details>
       <details class="faq">
-        <summary>能用同一組帳號在多個裝置登入嗎？</summary>
-        <div class="body">可以，各裝置都是獨立 session，登出一個不影響其他。</div>
+        <summary>Can I use the same account to log in to multiple devices?</summary>
+        <div class="body">Yes, each device is an independent session, and logging out of one will not affect the others.</div>
       </details>
     </section>
 
-    <section id="troubleshoot" data-nav="登入失敗排錯">
-      <h2 data-icon="advanced">登入失敗排錯</h2>
-      <p>照下面清單一條一條試：</p>
+    <section id="troubleshoot" data-nav="Troubleshooting failed login">
+      <h2 data-icon="advanced">Troubleshooting failed login</h2>
+      <p>Try the following list one by one:</p>
       <ol class="steps">
         <li>
-          <h3>網址對嗎</h3>
-          <p>先在同一個 WiFi 下用瀏覽器打 <code>http://homeassistant.local:8123</code>。這是 HAOS 預設 mDNS 網址。</p>
+          <h3>Is the URL correct?</h3>
+          <p>First open it with a browser under the same WiFi <code>http://homeassistant.local:8123</code>. This is the HAOS default mDNS URL.</p>
         </li>
         <li>
-          <h3>SSL 憑證警告？</h3>
-          <p>如果用區網 IP 而看到「不安全」警告，那是正常的（沒憑證），點「進階 → 繼續前往」即可。</p>
+          <h3>SSL certificate warning?</h3>
+          <p>If you see an "unsafe" warning when using a local network IP, it is normal (no certificate), just click "Advanced → Continue".</p>
         </li>
         <li>
-          <h3>忘記擁有者密碼</h3>
-          <p>官方明講「無法從 Home Assistant 內部找回擁有者密碼」。HAOS 的正解是在主機接螢幕鍵盤，於直連主控台執行 <code>auth reset --interactive</code>（不能用 SSH 終端機）；Docker 則進容器用 <code>hass --script auth</code> 改。兩條都走不通就只剩重跑一次初始設定，或從備份還原（ch9 會教）。這也是為什麼要<strong>盡快建立備份</strong>。</p>
+          <h3>Forgot owner password</h3>
+          <p>The official statement states that "the owner password cannot be retrieved from within Home Assistant." The correct solution to HAOS is to connect the on-screen keyboard to the host and execute it directly on the console <code>auth reset --interactive</code>(SSH terminal cannot be used); Docker is used to enter the container <code>hass --script auth</code> Change. If both methods fail, the only option left is to rerun the initial settings or restore from backup (will be taught in ch9). This is why<strong>Create a backup as soon as possible</strong>.</p>
         </li>
         <li>
-          <h3>Companion App 一直登入失敗</h3>
-          <p>App 版的登入用的是外網網址；家裡沒對外設定就會失敗。ch7 會裝 App，附錄講遠端連線方案。</p>
+          <h3>Companion App keeps failing to log in</h3>
+          <p>The login of the App version uses the external network address; if there is no external setting at home, it will fail. ch7 will install the App, and the appendix talks about the remote connection solution.</p>
         </li>
       </ol>
     </section>
@@ -205,13 +205,13 @@
       </a>
       <a class="next" href="ch2_system_settings.html">
         <span class="label">Next →</span>
-        <span class="title">02 · 系統設定</span>
+        <span class="title">02 · System settings</span>
       </a>
     </div>
 
     <footer class="site-footer">
-      <p>Home Assistant 新居入住指南 is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
-      <p class="footer-meta">截圖取自 Home Assistant 官方介面。Home Assistant 為 Open Home Foundation 的商標，本站與其無隸屬關係。 · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
+      <p>Home Assistant New Home Move-In Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
+      <p class="footer-meta">Screenshot taken from Home Assistant official interface. Home Assistant is a trademark of the Open Home Foundation, and this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
   </main>
 </div>

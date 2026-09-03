@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chapter 19 · 語音助理與 LLM 串接 · Home Assistant 新居入住指南</title>
-  <meta name="description" content="Home Assistant 語音助理教學：Assist 與對話代理、喚醒詞與語音轉文字的本地雲端方案、接上 OpenAI 或其他 LLM 當對話代理，以及隱私與成本取捨。" />
+  <title>Chapter 19 · Voice Assistant and LLM Connection · Home Assistant Onboarding Guide</title>
+  <meta name="description" content="Home Assistant voice assistant tutorial: Assist and conversational agents, local cloud solutions for wake words and speech-to-text, connecting to OpenAI or other LLMs as conversational agents, and privacy and cost trade-offs." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch19_voice_ai.html" />
   <meta name="robots" content="noindex, follow" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Home Assistant 新居入住指南" />
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Chapter 19 · 語音助理與 LLM 串接 · Home Assistant 新居入住指南" />
-  <meta property="og:description" content="Home Assistant 語音助理教學：Assist 與對話代理、喚醒詞與語音轉文字的本地雲端方案、接上 OpenAI 或其他 LLM 當對話代理，以及隱私與成本取捨。" />
+  <meta property="og:title" content="Chapter 19 · Voice Assistant and LLM Connection · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Home Assistant voice assistant tutorial: Assist and conversational agents, local cloud solutions for wake words and speech-to-text, connecting to OpenAI or other LLMs as conversational agents, and privacy and cost trade-offs." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch19_voice_ai.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chapter 19 · 語音助理與 LLM 串接 · Home Assistant 新居入住指南" />
-  <meta name="twitter:description" content="Home Assistant 語音助理教學：Assist 與對話代理、喚醒詞與語音轉文字的本地雲端方案、接上 OpenAI 或其他 LLM 當對話代理，以及隱私與成本取捨。" />
+  <meta name="twitter:title" content="Chapter 19 · Voice Assistant and LLM Connection · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Home Assistant voice assistant tutorial: Assist and conversational agents, local cloud solutions for wake words and speech-to-text, connecting to OpenAI or other LLMs as conversational agents, and privacy and cost trade-offs." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -32,61 +32,61 @@
 <body>
 <div class="layout">
   <aside class="sidebar">
-    <a class="brand" href="tutorial.html">HA 新居入住指南</a>
-    <div class="brand-sub">從零到能用</div>
+    <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
+    <div class="brand-sub">From scratch to functional</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch19_voice_ai.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch19_voice_ai.html" lang="en" aria-current="page">EN</a></nav>
-    <a class="hub-link" href="index.html">◂ 資源總覽</a>
+    <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">基礎：從零到能用</li>
-      <li data-i18n="pending"><a href="ch1_login.html">登入 HA</a></li>
-      <li data-i18n="pending"><a href="ch2_system_settings.html">系統設定</a></li>
-      <li data-i18n="pending"><a href="ch3_floors_areas.html">樓層與區域</a></li>
-      <li data-i18n="pending"><a href="ch4_naming_labels.html">命名與標籤</a></li>
-      <li data-i18n="pending"><a href="ch5_users.html">用戶管理</a></li>
-      <li data-i18n="pending"><a href="ch6_dashboard.html">儀表板</a></li>
-      <li data-i18n="pending"><a href="ch7_notifications.html">通知</a></li>
-      <li data-i18n="pending"><a href="ch8_first_automation.html">第一個自動化</a></li>
-      <li data-i18n="pending"><a href="ch9_backups.html">備份</a></li>
-      <li data-i18n="pending"><a href="ch10_scripts.html">腳本 Scripts</a></li>
-      <li data-i18n="pending"><a href="ch11_devices.html">裝置詳細設定</a></li>
-      <li data-i18n="pending"><a href="ch12_domains.html">Domain 控制圖鑑</a></li>
-      <li class="part-label">擴充：接上更多裝置</li>
-      <li data-i18n="pending"><a href="ch13_themes.html">主題與外觀</a></li>
-      <li data-i18n="pending"><a href="ch14_integrations.html">整合服務串接</a></li>
-      <li data-i18n="pending"><a href="ch15_protocols.html">通訊協定大百科</a></li>
-      <li data-i18n="pending"><a href="ch16_todo_calendar.html">待辦與行事曆</a></li>
-      <li class="part-label">數據、能源與 AI</li>
-      <li data-i18n="pending"><a href="ch17_energy.html">能源儀表板</a></li>
-      <li data-i18n="pending"><a href="ch18_history_data.html">歷史數據與導出</a></li>
-      <li data-i18n="pending"><a href="ch19_voice_ai.html" class="active">語音助理與 AI</a></li>
-      <li class="part-label">進階架構與應用</li>
-      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on 與 Docker</a></li>
-      <li data-i18n="pending"><a href="ch21_network_remote.html">網路與遠端連線</a></li>
-      <li data-i18n="pending"><a href="ch22_life_logs.html">生活紀錄應用</a></li>
+      <li class="part-label">Basics: from scratch to functional</li>
+      <li data-i18n="pending"><a href="ch1_login.html">Login to HA</a></li>
+      <li data-i18n="pending"><a href="ch2_system_settings.html">System settings</a></li>
+      <li data-i18n="pending"><a href="ch3_floors_areas.html">Floors and areas</a></li>
+      <li data-i18n="pending"><a href="ch4_naming_labels.html">Naming and labeling</a></li>
+      <li data-i18n="pending"><a href="ch5_users.html">User management</a></li>
+      <li data-i18n="pending"><a href="ch6_dashboard.html">Dashboard</a></li>
+      <li data-i18n="pending"><a href="ch7_notifications.html">Notifications</a></li>
+      <li data-i18n="pending"><a href="ch8_first_automation.html">First automation</a></li>
+      <li data-i18n="pending"><a href="ch9_backups.html">backup</a></li>
+      <li data-i18n="pending"><a href="ch10_scripts.html">Scripts</a></li>
+      <li data-i18n="pending"><a href="ch11_devices.html">Device details</a></li>
+      <li data-i18n="pending"><a href="ch12_domains.html">Domain reference</a></li>
+      <li class="part-label">Expansion: connect more devices</li>
+      <li data-i18n="pending"><a href="ch13_themes.html">Themes and appearance</a></li>
+      <li data-i18n="pending"><a href="ch14_integrations.html">Integrations</a></li>
+      <li data-i18n="pending"><a href="ch15_protocols.html">Communication protocols</a></li>
+      <li data-i18n="pending"><a href="ch16_todo_calendar.html">To-do and calendar</a></li>
+      <li class="part-label">Data, energy and AI</li>
+      <li data-i18n="pending"><a href="ch17_energy.html">Energy dashboard</a></li>
+      <li data-i18n="pending"><a href="ch18_history_data.html">History and data export</a></li>
+      <li data-i18n="pending"><a href="ch19_voice_ai.html" class="active">Voice assistants and AI</a></li>
+      <li class="part-label">Advanced architecture and applications</li>
+      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on and Docker</a></li>
+      <li data-i18n="pending"><a href="ch21_network_remote.html">Network and remote connections</a></li>
+      <li data-i18n="pending"><a href="ch22_life_logs.html">Life logging</a></li>
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">為什麼要學</a>
-      <a href="#assist_basics">三個名詞</a>
-      <a href="#pipeline">四段流水線</a>
-      <a href="#expose">公開實體</a>
-      <a href="#steps_local">動手做本地</a>
-      <a href="#cloud">雲端方案</a>
-      <a href="#llm">接上 LLM</a>
-      <a href="#llm_control">讓它能控制</a>
-      <a href="#mcp">MCP 現況</a>
-      <a href="#webpanel">掛外部網頁</a>
-      <a href="#hardware">語音硬體</a>
-      <a href="#tradeoffs">取捨比較</a>
-      <a href="#troubleshoot">常見卡關</a>
-      <a href="#faq">常見問題</a>
+      <a href="#why">Why should we learn</a>
+      <a href="#assist_basics">three nouns</a>
+      <a href="#pipeline">Four-stage assembly line</a>
+      <a href="#expose">public entity</a>
+      <a href="#steps_local">Do it locally</a>
+      <a href="#cloud">Cloud solution</a>
+      <a href="#llm">Connect with LLM</a>
+      <a href="#llm_control">make it controllable</a>
+      <a href="#mcp">Current status of MCP</a>
+      <a href="#webpanel">Hang external web page</a>
+      <a href="#hardware">Voice hardware</a>
+      <a href="#tradeoffs">Comparison of trade-offs</a>
+      <a href="#troubleshoot">Common stuck levels</a>
+      <a href="#faq">FAQ</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · 生態圈：HACS/Add-ons/遠端</a>
-      <a href="appendix_scenes_helpers_groups.html">B · 場景/輔助元件/群組</a>
-      <a href="appendix_hardware_install.html">C · 裝機前傳：硬體與 HAOS</a>
+      <a href="appendix_hacs_addons.html">A · Ecosystem: HACS/Add-ons/remote</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scene/auxiliary component/group</a>
+      <a href="appendix_hardware_install.html">C · Pre-installation: Hardware and HAOS</a>
     </div>
   </aside>
 
@@ -94,533 +94,533 @@
     <div class="callout i18n-pending"><strong>This chapter has not been translated yet.</strong> You are reading the original Chinese text. <a href="../ch19_voice_ai.html" hreflang="zh-Hant">Open the Chinese version</a></div>
     <div class="chapter-header">
       <div class="kicker">Chapter 19</div>
-      <h1>語音助理與 LLM 串接</h1>
-      <p class="lead">這一章把你的家從「用手機點」升級成「用嘴巴喊」。你會學會 Home Assistant 內建的 Assist 怎麼運作、怎麼決定哪些裝置聽得懂你講話、怎麼把語音辨識跟朗讀全部搬回家裡跑，還有怎麼把 ChatGPT、Gemini、Claude 這類大型語言模型（LLM）接上來，讓它真的能幫你關燈。</p>
+      <h1>Voice assistant and LLM serial connection</h1>
+      <p class="lead">This chapter upgrades your home from "clicking with your mobile phone" to "shouting with your mouth". You will learn how Home Assistant's built-in Assist works, how to decide which devices can understand what you are saying, how to bring speech recognition and reading to your home, and how to connect large language models (LLM) such as ChatGPT, Gemini, and Claude so that it can really turn off the lights for you.</p>
     </div>
 
-    <section id="why" data-nav="為什麼要學">
-      <h2 data-icon="why">為什麼要學這個</h2>
-      <p>你已經在<a href="ch6_dashboard.html">第 6 章</a>做好儀表板、在<a href="ch8_first_automation.html">第 8 章</a>寫過自動化了。但生活裡有一種情境是儀表板救不了的：你手上端著一鍋湯走進廚房，或是你已經躺平在床上、手機掉到床底下。這時候你需要的是喊一聲就有人理你。</p>
-      <p>Home Assistant 內建的語音助理叫 <strong>Assist</strong>，它是完全免費、內建的，不用裝任何東西就能用。而且它跟 Google 助理、Alexa 最大的不同是：<strong>你可以決定它的每一段要跑在你家裡，還是跑在別人的雲端。</strong></p>
-      <p>讀完這章你會有這些能力：</p>
+    <section id="why" data-nav="Why should we learn">
+      <h2 data-icon="why">Why should you learn this?</h2>
+      <p>you are already<a href="ch6_dashboard.html">Chapter 6</a>Make a good dashboard and<a href="ch8_first_automation.html">Chapter 8</a>I have written about automation. But there’s one situation in life that a dashboard can’t save: you walk into the kitchen with a pot of soup in your hands, or you’re lying flat on your bed and your phone has fallen under the bed. What you need at this time is to shout and someone will take care of you.</p>
+      <p>Home Assistant’s built-in voice assistant calls <strong>Assist</strong>, it is completely free, built-in, and can be used without installing anything. And its biggest difference from Google Assistant and Alexa is:<strong>You can decide whether each segment of it should run in your home or on someone else's cloud.</strong></p>
+      <p>After reading this chapter you will have these abilities:</p>
       <ul>
-        <li>知道 Assist 到底是什麼、跟「LLM」是兩回事還是一回事。</li>
-        <li>會設定哪些實體（Entity）可以被語音控制、哪些絕對不要開放。</li>
-        <li>會自己組一條語音流水線（Assist pipeline），四段各自挑本地或雲端。</li>
-        <li>會把 OpenAI／Google／Anthropic 的模型設成對話代理，而且真的叫得動家裡的燈。</li>
-        <li>知道 Model Context Protocol（MCP）在 Home Assistant 裡是什麼角色。</li>
-        <li>知道錢會花在哪、延遲會卡在哪、隱私會漏在哪。</li>
+        <li>Know what Assist is and whether it is two different things or the same thing as "LLM".</li>
+        <li>It will set which entities can be controlled by voice and which ones should never be opened.</li>
+        <li>I will set up a voice pipeline (Assist pipeline) by myself, and choose the local or cloud for each of the four sections.</li>
+        <li>Will set the OpenAI/Google/Anthropic model as a conversational agent, and it can really turn on the lights in the house.</li>
+        <li>Know the role of Model Context Protocol (MCP) in Home Assistant.</li>
+        <li>Know where money will be spent, where delays will get stuck, and where privacy will leak.</li>
       </ul>
-      <div class="callout"><strong>觀念：</strong>這章大量依賴你前面的功課。<a href="ch3_floors_areas.html">第 3 章</a>的區域（Area）跟<a href="ch4_naming_labels.html">第 4 章</a>的命名沒做好，語音助理會爛到你想砸手機。名字亂 = 叫不動，這是鐵律。</div>
+      <div class="callout"><strong>Concept:</strong>This chapter relies heavily on your previous homework.<a href="ch3_floors_areas.html">Chapter 3</a>Area (Area) and<a href="ch4_naming_labels.html">Chapter 4</a>If the naming is not done well, the voice assistant will be so bad that you will want to smash your phone. A random name = a bad name, this is an iron rule.</div>
     </section>
 
-    <section id="assist_basics" data-nav="三個名詞">
-      <h2 data-icon="concept">Assist 是什麼：先分清楚三個名詞</h2>
-      <p>很多人一開始就被三個詞搞混，我們先切乾淨。</p>
+    <section id="assist_basics" data-nav="three nouns">
+      <h2 data-icon="concept">What is Assist: First distinguish three nouns</h2>
+      <p>Many people are confused by three words at the beginning. Let’s cut it clean first.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>名詞</th><th>白話解釋</th><th>你會在哪裡看到它</th></tr>
+          <tr><th>noun</th><th>vernacular explanation</th><th>where would you see it</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Assist</strong></td><td>Home Assistant 整套語音功能的品牌名。包含打字聊天和講話兩種用法。</td><td>右上角的對話圖示、手機 App 的三點選單</td></tr>
-          <tr><td><strong>對話代理（Conversation agent）</strong></td><td>真正在「聽懂你在講什麼」的那顆腦袋。可以是內建的，也可以換成 LLM。</td><td>設定 → 語音助理 → 助理的設定畫面</td></tr>
-          <tr><td><strong>語音流水線（Assist pipeline）</strong></td><td>一整條加工線：喚醒詞 → 語音轉文字 → 對話代理 → 文字轉語音。</td><td>設定 → 語音助理 裡的每一個「助理」就是一條流水線</td></tr>
+          <tr><td><strong>Assist</strong></td><td>Home Assistant The brand name for the entire suite of voice features. Including typing chat and speaking.</td><td>The conversation icon in the upper right corner and the three-dot menu of the mobile app</td></tr>
+          <tr><td><strong>Conversation agent</strong></td><td>The brain that really “understands what you’re talking about.” It can be built-in, or it can be replaced by LLM.</td><td>Settings → Voice Assistant → Assistant’s setting screen</td></tr>
+          <tr><td><strong>Voice pipeline (Assist pipeline)</strong></td><td>A whole processing line: wake word → speech to text → conversation agent → text to speech.</td><td>Each "Assistant" in Settings → Voice Assistant is an assembly line</td></tr>
         </tbody>
       </table>
 
-      <p>最重要的一件事：<strong>Home Assistant 內建的對話代理不是 AI，它是一個句型比對器。</strong>它拿你講的話去比對一大堆事先寫好的句型範本，比對到就觸發對應的意圖（Intent），例如「打開客廳的燈」對到 <code>HassTurnOn</code>。</p>
-      <p>這帶來兩個結果：</p>
+      <p>The most important thing:<strong>The conversational agent built into Home Assistant is not AI, it’s a sentence comparer.</strong>It compares what you say with a large number of pre-written sentence templates, and triggers the corresponding intent (Intent) when compared, such as "turn on the lights in the living room". <code>HassTurnOn</code>.</p>
+      <p>This has two consequences:</p>
       <ul>
-        <li><strong>好處</strong>：速度極快、完全在本機、零成本、不會亂講話。你叫它關燈它就是關燈。</li>
-        <li><strong>壞處</strong>：句型沒中就是聽不懂。你說「幫我把客廳弄暗一點好嗎拜託」，它可能就當機了。而且它完全不會閒聊。</li>
+        <li><strong>Benefits</strong>: Extremely fast, completely local, zero cost, no random talking. You tell it to turn off the lights and it turns off the lights.</li>
+        <li><strong>Disadvantages</strong>: If you miss the sentence pattern, you just can’t understand it. You say, "Can you please help me make the living room darker," and it might crash. And it’s totally nonchatty.</li>
       </ul>
-      <p>內建代理這幾年有在補強。2025.9 之後加了一個「模糊比對（fuzzy matcher）」，你多講幾個贅字、換個講法，它也還是能對到正確的意圖。不過官方講得很老實：<strong>這個功能是先從英文開始做的</strong>，其他語言會陸續跟上。所以講中文的你，短期內還是要靠好念的名字跟別名來拉高命中率。</p>
+      <p>The built-in agent has been strengthened in recent years. After 2025.9, a "fuzzy matcher" was added. Even if you add a few more redundant words and change the way of speaking, it can still achieve the correct intention. But the official statement is very honest:<strong>This function is first implemented in English</strong>, other languages will follow. Therefore, if you speak Chinese, you still have to rely on easy-to-pronounce names and aliases to increase your hit rate in the short term.</p>
 
-      <div class="callout tip"><strong>提示：</strong>先別急著接 LLM。把內建代理調到「叫得動」再說。內建代理是免費、即時、可靠的基準線，LLM 是加值。很多人跳過基準線直接上 LLM，結果家裡變成一個很貴又很慢的關燈機器。</div>
+      <div class="callout tip"><strong>Tip:</strong>Don’t rush to pick up LLM yet. Adjust the built-in agent to "can be called". The built-in proxy is a free, instant, reliable baseline, and the LLM is a bonus. Many people skip the baseline and go directly to LLM, and as a result, their home becomes an expensive and slow light-off machine.</div>
 
-      <p>想先玩玩看不用設定任何東西：登入 Home Assistant 後，點右上角的對話圖示（一個講話泡泡），直接打字「turn on the living room light」或用你設定的語言講一句。這就是 Assist 的最小可用形態。</p>
+      <p>If you want to play it for a while without setting anything up: After logging in to Home Assistant, click the conversation icon (a speech bubble) in the upper right corner and type "turn on the living room light" or speak a sentence in the language you set. This is the smallest usable form of Assist.</p>
     </section>
 
-    <section id="pipeline" data-nav="四段流水線">
-      <h2 data-icon="protocol">流水線的四段，每段都能換零件</h2>
-      <p>把語音助理想成一條工廠輸送帶。你喊一句話進去，最後吐出動作跟回話。中間有四個站，每個站都可以獨立選要用本地的還是雲端的。</p>
+    <section id="pipeline" data-nav="Four-stage assembly line">
+      <h2 data-icon="protocol">There are four sections of the assembly line, and parts can be replaced in each section.</h2>
+      <p>Think of a voice assistant as a factory conveyor belt. You shout a sentence, and finally spit out actions and replies. There are four stations in the middle, and each station can independently choose whether to use local or cloud.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>#</th><th>站名</th><th>它在幹嘛</th><th>本地選項</th><th>雲端選項</th></tr>
+          <tr><th>#</th><th>Site name</th><th>what is it doing</th><th>local options</th><th>Cloud options</th></tr>
         </thead>
         <tbody>
-          <tr><td>1</td><td>喚醒詞<br>（Wake word）</td><td>一直豎著耳朵等你叫它的名字</td><td>openWakeWord（跑在 HA 主機上）、microWakeWord（跑在裝置晶片上）</td><td>無，喚醒詞一律在本地</td></tr>
-          <tr><td>2</td><td>語音轉文字<br>（STT）</td><td>把你的聲音變成一行字</td><td>Whisper、Speech-to-Phrase</td><td>Home Assistant Cloud、OpenAI、Google Gemini</td></tr>
-          <tr><td>3</td><td>對話代理</td><td>看懂那行字要幹嘛，決定動作</td><td>內建 Assist、Ollama（本地 LLM）</td><td>OpenAI、Google、Anthropic</td></tr>
-          <tr><td>4</td><td>文字轉語音<br>（TTS）</td><td>把回話唸出來</td><td>Piper</td><td>Home Assistant Cloud、OpenAI、Google Gemini</td></tr>
+          <tr><td>1</td><td>wake word<br> (Wake word)</td><td>It keeps its ears pricked up, waiting for you to call its name.</td><td>openWakeWord (running on the HA host), microWakeWord (running on the device chip)</td><td>None, the wake word is always local</td></tr>
+          <tr><td>2</td><td>speech to text<br> (STT)</td><td>Turn your voice into a line of words</td><td>Whisper, Speech-to-Phrase</td><td>Home Assistant Cloud, OpenAI, Google Gemini</td></tr>
+          <tr><td>3</td><td>conversational agent</td><td>Understand what you want to do after reading that line of text and decide the action</td><td>Built-in Assist, Ollama (local LLM)</td><td>OpenAI, Google, Anthropic</td></tr>
+          <tr><td>4</td><td>text to speech<br> (TTS)</td><td>read out the reply</td><td>Piper</td><td>Home Assistant Cloud, OpenAI, Google Gemini</td></tr>
         </tbody>
       </table>
 
-      <div class="callout"><strong>觀念：</strong>四段可以混搭。很常見的實用組合是「喚醒詞在裝置上（省電）＋ 語音轉文字用雲端（中文準）＋ 對話代理用內建（快又免費）＋ 朗讀用雲端（聲音好聽）」。你不必全本地或全雲端，二選一是假議題。</div>
+      <div class="callout"><strong>Concept:</strong>The four sections can be mixed and matched. A very common and practical combination is "wake words on the device (power saving) + voice-to-text in the cloud (Chinese accurate) + built-in conversation agent (fast and free) + reading aloud in the cloud (good sound)". You don’t have to be all local or all cloud, choosing one or the other is a false question.</div>
 
-      <p>如果你只打字不講話（例如在手機 App 裡打字問 Assist），那第 1、2、4 站根本不會啟動，只有對話代理會跑。所以「我想接 ChatGPT 來聊天」跟「我想對著音箱喊」是兩件難度差很多的事。</p>
+      <p>If you only type and do not speak (for example, typing and asking Assist in a mobile app), stations 1, 2, and 4 will not start at all, and only the conversation agent will run. So "I want to chat via ChatGPT" and "I want to shout into the speaker" are two very different things.</p>
 
-      <h3>本地方案的角色分工</h3>
+      <h3>Role division of local solutions</h3>
       <ul>
-        <li><strong>Whisper</strong>：語音轉文字，通用型，語言支援廣（包含中文）。官方 Add-on 的模型預設是 <code>auto</code>，在樹莓派這種 ARM 機器上會挑 <code>tiny-int8</code>，其他機器挑 <code>base-int8</code>。你可以自己往上調到 <code>small</code>、<code>medium</code>，但吃 CPU 會明顯變重。</li>
-        <li><strong>Speech-to-Phrase</strong>：語音轉文字，但它只認得「你家裡真的有的東西」的句子，所以在很弱的硬體上也超快。代價是它不支援自由講話，而且<strong>目前的語言清單裡沒有中文</strong>，講中文的家庭基本上用不到。</li>
-        <li><strong>Piper</strong>：文字轉語音，本地朗讀，速度快、資源需求低。</li>
-        <li><strong>openWakeWord</strong>：喚醒詞偵測，跑在 Home Assistant 主機上。官方說法是一台樹莓派 4 大約可以同時扛 5 台語音衛星（satellite）串流音訊，再多就要把偵測搬到另一台機器上。</li>
+        <li><strong>Whisper</strong>: Speech to text, universal, with wide language support (including Chinese). The model default for the official Add-on is <code>auto</code>, on an ARM machine like Raspberry Pi, you will choose <code>tiny-int8</code>, other machines pick <code>base-int8</code>. You can adjust it yourself to <code>small</code>, <code>medium</code>, but eating up the CPU will obviously make it heavier.</li>
+        <li><strong>Speech-to-Phrase</strong>: Speech to text, but it only recognizes the sentence "things you really have at home", so it is super fast even on weak hardware. The trade-off is that it does not support free speech, and<strong>There is no Chinese in the current language list</strong>, which is basically not used by Chinese-speaking families.</li>
+        <li><strong>Piper</strong>: Text-to-speech, local reading, fast speed and low resource requirements.</li>
+        <li><strong>openWakeWord</strong>: Wake word detection, running on the Home Assistant host. The official statement is that a Raspberry Pi 4 can handle approximately 5 voice satellites (satellites) streaming audio at the same time. If there are more, the detection must be moved to another machine.</li>
       </ul>
 
-      <div class="callout warn"><strong>注意：</strong>Whisper 的語言設定不要留在 <code>auto</code>。官方文件明講，自動偵測語言會讓每一次請求都<strong>慢很多</strong>。直接指定你家講的語言。</div>
+      <div class="callout warn"><strong>Warning:</strong>Don’t leave Whisper’s language settings in <code>auto</code>. The official document clearly states that automatic language detection will make every request<strong>much slower</strong>. Simply specify the language your home speaks.</div>
 
-      <p>這四個都是官方 Add-on，安裝之後透過 <strong>Wyoming</strong> 這個通訊協定被 Home Assistant 發現。Add-on 商店怎麼用已經在<a href="appendix_hacs_addons.html">附錄 A</a> 講過了，這裡不重複。</p>
+      <p>These four are official Add-ons. After installation, use <strong>Wyoming</strong> This protocol is discovered by Home Assistant. How to use the Add-on store is already in<a href="appendix_hacs_addons.html">Appendix A</a> I’ve talked about it before, so I won’t repeat it here.</p>
     </section>
 
-    <section id="expose" data-nav="公開實體">
-      <h2 data-icon="security">哪些東西聽得懂你講話：公開實體</h2>
-      <p>這是全章最重要、也最多人漏掉的設定。<strong>Home Assistant 不會把你所有實體都交給語音助理。</strong>你必須明確「公開（Expose）」它們，語音助理才看得到。這是刻意的安全設計。</p>
+    <section id="expose" data-nav="public entity">
+      <h2 data-icon="security">What understands you: Public entity</h2>
+      <p>This is the most important setting in the entire chapter and the one that most people miss.<strong>Home Assistant doesn’t hand over all of your physical presence to the voice assistant.</strong>You must explicitly "Expose" them for the voice assistant to see them. This is intentionally safe by design.</p>
 
       <ol class="steps">
         <li>
-          <h3>打開公開設定頁</h3>
-          <p>左側欄 <strong>設定（Settings）</strong> → <strong>語音助理（Voice assistants）</strong>，然後切到 <strong>公開（Expose）</strong> 分頁。</p>
+          <h3>Open public settings page</h3>
+          <p>left column <strong>Settings</strong> → <strong>Voice assistants</strong>, then cut to <strong>Expose</strong> Pagination.</p>
         </li>
         <li>
-          <h3>看看目前公開了什麼</h3>
-          <p>清單會列出已經公開的實體，以及它被公開給哪些助理。這裡的助理不只 Assist，如果你有接 Google Assistant 或 Alexa，它們也會出現在同一張表上。</p>
+          <h3>See what's public so far</h3>
+          <p>The list lists the entities that have been exposed, and the assistants to which it was exposed. The assistant here is not only Assist, if you have connected Google Assistant or Alexa, they will also appear on the same table.</p>
         </li>
         <li>
-          <h3>加入你要的實體</h3>
-          <p>按 <strong>公開實體（Expose entities）</strong> 按鈕可以一次勾選多個加進來。也可以點單一實體進去，細調它要公開給哪幾個助理。</p>
+          <h3>Add the entities you want</h3>
+          <p>press <strong>Expose entities</strong> Buttons can be checked to add multiple ones at one time. You can also click on a single entity to fine-tune which assistants it should be exposed to.</p>
         </li>
         <li>
-          <h3>順手加別名（Alias）</h3>
-          <p>點進單一實體後可以加別名。實體叫「客廳主燈」但你平常都講「大燈」，那就把「大燈」加成別名。你也可以從實體的資訊視窗右上角齒輪 → <strong>語音助理</strong> 進去改。</p>
+          <h3>Add an alias easily (Alias)</h3>
+          <p>You can add an alias after clicking on a single entity. The entity is called "living room main light" but if you usually talk about "headlight", then add "headlight" as an alias. You can also click the gear in the upper right corner of the entity's information window → <strong>voice assistant</strong> Go in and change it.</p>
         </li>
         <li>
-          <h3>把不該被喊的東西移除</h3>
-          <p>門鎖、警報器、電熱水器、任何會發熱或有安全疑慮的東西，除非你真的想清楚了，否則從清單裡拿掉。</p>
+          <h3>Remove things that shouldn't be shouted</h3>
+          <p>Door locks, alarms, electric water heaters, anything that generates heat or has safety concerns, unless you really think about it, take it off the list.</p>
         </li>
       </ol>
 
-      <div class="callout danger"><strong>危險：</strong>門鎖（<code>lock</code>）跟警報主機（<code>alarm_control_panel</code>）公開給語音助理，等於任何站在你家窗外對著音箱喊話的人都可能開你家門。除非你完全清楚自己在幹嘛，預設就是不要公開。</div>
+      <div class="callout danger"><strong>Danger:</strong>door lock (<code>lock</code>) and the alarm host (<code>alarm_control_panel</code>) is exposed to the voice assistant, which means that anyone standing outside your window and shouting into the speaker can open your door. Unless you know exactly what you're doing, the default is to keep it private.</div>
 
-      <h3>公開太多會怎樣</h3>
-      <p>官方的最佳實務講得很直白：<strong>只公開最少必要的實體</strong>。原因有兩個，而且兩個都很痛：</p>
+      <h3>What happens if you reveal too much?</h3>
+      <p>The official best practices are very straightforward:<strong>Expose only the minimum necessary entities</strong>. There are two reasons, and both of them hurt:</p>
       <table class="data-table">
         <thead>
-          <tr><th>用內建對話代理時</th><th>用 LLM 當對話代理時</th></tr>
+          <tr><th>When using the built-in conversational agent</th><th>When using LLM as a conversational agent</th></tr>
         </thead>
         <tbody>
-          <tr><td>名字跟別名越多，句型比對要掃的東西越多，反應越慢；名字相近還會誤中，你叫「房間燈」結果開到「房間空氣清淨機的指示燈」。</td><td>每一個公開的實體都會被塞進送給模型的提示裡，直接變成 token 成本，而且清單一長模型就開始選錯裝置。官方在 Ollama 的文件裡建議實驗本地模型時<strong>公開少於 25 個實體</strong>。</td></tr>
+          <tr><td>The more names and aliases there are, the more things need to be scanned for sentence comparison, and the slower the response. If the names are similar, there will be errors. If you call "room light", it will turn on "room air purifier indicator light."</td><td>Every public entity will be stuffed into the hint sent to the model, directly turned into a token cost, and the model will start to select the wrong device as the list grows. The official recommendation in Ollama's documentation is to experiment with local models<strong>Exposes less than 25 entities</strong>.</td></tr>
         </tbody>
       </table>
 
-      <h3>區域與樓層的別名</h3>
-      <p>光公開實體還不夠。你要能說「把客廳的燈全部關掉」，前提是那些燈真的被指派到「客廳」這個區域。區域跟樓層也可以加別名：<strong>設定</strong> → <strong>區域、標籤與區間（Areas, labels &amp; zones）</strong>，點區域卡片上的鉛筆 → <strong>新增別名</strong>；樓層則是點旁邊的三點選單 → <strong>編輯樓層</strong> → <strong>新增別名</strong>。</p>
+      <h3>Aliases for areas and floors</h3>
+      <p>It’s not enough to just make your entities public. You need to be able to say "turn off all the lights in the living room", provided that those lights are really assigned to the "living room" area. You can also add aliases to areas and floors:<strong>Settings</strong> → <strong>Areas, labels &amp; zones</strong>, click the pencil on the area card → <strong>Add alias</strong>; To select the floor, click the three-dot menu next to it → <strong>Edit floor</strong> → <strong>Add alias</strong>.</p>
 
-      <div class="callout tip"><strong>提示：</strong>官方建議的命名格式是「區域 + 描述 + 裝置類型」，例如「客廳 檯燈」。如果那個房間只有一盞燈，直接叫「客廳燈」就好。像 <code>Tuya Light Controller 0E54B1 Light 1</code> 這種原廠名，語音助理是絕對叫不動的，趕快回<a href="ch4_naming_labels.html">第 4 章</a>改名。</div>
+      <div class="callout tip"><strong>Tip:</strong>The officially recommended naming format is "Area + Description + Device Type", such as "Living Room Table Lamp". If there is only one light in that room, just call it "living room light". like <code>Tuya Light Controller 0E54B1 Light 1</code> With this kind of original name, the voice assistant will definitely not be able to call you. Please reply as soon as possible.<a href="ch4_naming_labels.html">Chapter 4</a>Change name.</div>
     </section>
 
-    <section id="steps_local" data-nav="動手做本地">
-      <h2 data-icon="steps">動手做：組一條可以講話的流水線</h2>
-      <p>這一節我們實際做出一個可以對著手機講話的助理。下面用「本地 Whisper + 本地 Piper + 內建代理」當範例，這是最省錢、隱私最好的起手式。</p>
+    <section id="steps_local" data-nav="Do it locally">
+      <h2 data-icon="steps">Do it yourself: Build an assembly line that can talk</h2>
+      <p>In this section we actually make an assistant that can speak to the mobile phone. The following uses "local Whisper + local Piper + built-in proxy" as an example. This is the cheapest and most private way to start.</p>
 
       <ol class="steps">
         <li>
-          <h3>安裝語音轉文字 Add-on</h3>
-          <p>到 <strong>設定</strong> → <strong>附加元件（Add-ons）</strong> → <strong>附加元件商店</strong>，找到 <strong>Whisper</strong>，安裝後啟動。啟動前先進它的設定分頁，把 <code>language</code> 改成你要用的語言，不要留 <code>auto</code>。</p>
+          <h3>Install the Speech-to-Text Add-on</h3>
+          <p>Arrive <strong>Settings</strong> → <strong>Add-ons</strong> → <strong>add-on store</strong>, find <strong>Whisper</strong>, start after installation. Before starting, go to its Settings tab and put <code>language</code> Change it to the language you want to use, leave it blank <code>auto</code>.</p>
         </li>
         <li>
-          <h3>安裝文字轉語音 Add-on</h3>
-          <p>同一個商店裡找到 <strong>Piper</strong>，安裝後啟動。</p>
+          <h3>Install the Text-to-Speech Add-on</h3>
+          <p>Found in the same store <strong>Piper</strong>, start after installation.</p>
         </li>
         <li>
-          <h3>接受 Wyoming 的自動探索</h3>
-          <p>回到 <strong>設定</strong> → <strong>裝置與服務（Devices &amp; services）</strong>。剛剛啟動的兩個 Add-on 會被 <strong>Wyoming Protocol</strong> 整合自動探索到，各按一次 <strong>新增（Add）</strong> 就好。如果沒自動跳出來，可以手動 <strong>新增整合</strong> → 搜尋 Wyoming Protocol。</p>
+          <h3>Accept Wyoming's automated exploration</h3>
+          <p>return to <strong>Settings</strong> → <strong>Devices &amp; services</strong>. The two Add-ons just started will be <strong>Wyoming Protocol</strong> Integrate automatic discovery, click once each <strong>Add</strong> Just fine. If it does not pop up automatically, you can manually <strong>New integration</strong> → Search Wyoming Protocol.</p>
         </li>
         <li>
-          <h3>建立助理</h3>
-          <p>到 <strong>設定</strong> → <strong>語音助理</strong>，按 <strong>新增助理（Add assistant）</strong>。取一個看得懂的名字（例如「家裡本地版」），選語言。</p>
+          <h3>Create assistant</h3>
+          <p>Arrive <strong>Settings</strong> → <strong>voice assistant</strong>, press <strong>Add assistant</strong>. Choose a name you can understand (for example, "Home Local Version") and choose a language.</p>
         </li>
         <li>
-          <h3>把四段零件裝上去</h3>
-          <p>在同一個畫面裡：<strong>對話代理</strong> 選 <code>Home Assistant</code>；<strong>語音轉文字</strong> 選你剛加的 Whisper 並挑語言；<strong>文字轉語音</strong> 選 Piper 並挑語音變體。喚醒詞那一欄如果你還沒有實體語音裝置，可以先留著不管。</p>
+          <h3>Install the four parts</h3>
+          <p>In the same screen:<strong>conversational agent</strong> choose <code>Home Assistant</code>; <strong>speech to text</strong> Select the Whisper you just added and select the language;<strong>text to speech</strong> Select Piper and choose a voice variant. If you don’t have a physical voice device yet in the wake word column, you can leave it alone for now.</p>
         </li>
         <li>
-          <h3>公開實體</h3>
-          <p>切到 <strong>公開</strong> 分頁，照上一節把你要控制的燈、插座、風扇加進去。沒做這步的話，接下來一定叫不動。</p>
+          <h3>public entity</h3>
+          <p>Cut to <strong>public</strong> Break pages, follow the previous section and add the lights, sockets, and fans you want to control. If you don’t do this step, you will definitely not be able to scream next.</p>
         </li>
         <li>
-          <h3>用手機測試</h3>
-          <p>打開 Companion App（<a href="ch7_notifications.html">第 7 章</a>裝好的那個），右上角三點選單 → <strong>Assist</strong>。先打字測，能打字關燈之後再按麥克風講話測。</p>
+          <h3>Test with mobile phone</h3>
+          <p>Open the Companion App (<a href="ch7_notifications.html">Chapter 7</a>The installed one), three-dot menu in the upper right corner → <strong>Assist</strong>. Test by typing first. After you can type and turn off the light, press the microphone to test.</p>
         </li>
         <li>
-          <h3>設成預設助理</h3>
-          <p>一切都通了之後，回到 <strong>設定</strong> → <strong>語音助理</strong>，把這個助理設成預設。之後所有 Assist 入口都會走它。</p>
+          <h3>Set as default assistant</h3>
+          <p>After everything is cleared, return to <strong>Settings</strong> → <strong>voice assistant</strong>, set this assistant as the default. All Assist entrances will follow it.</p>
         </li>
       </ol>
 
-      <div class="callout warn"><strong>注意：</strong>如果 <strong>設定</strong> → <strong>語音助理</strong> 裡完全看不到 Assist 區塊，官方的解法是在 <code>configuration.yaml</code> 裡加上一行 <code>assist_pipeline:</code> 再重啟。一般用 <code>default_config:</code> 的安裝不會遇到這個問題。</div>
+      <div class="callout warn"><strong>Warning:</strong>if <strong>Settings</strong> → <strong>voice assistant</strong> You can't see the Assist block at all. The official solution is in <code>configuration.yaml</code> Add a line <code>assist_pipeline:</code> Reboot again. General use <code>default_config:</code> The installation will not encounter this problem.</div>
     </section>
 
-    <section id="cloud" data-nav="雲端方案">
-      <h2 data-icon="remote">雲端方案：Home Assistant Cloud 幫你做掉什麼</h2>
-      <p>Home Assistant Cloud（背後的公司叫 Nabu Casa）是官方訂閱服務，錢會直接回到 Home Assistant 開發上。它跟語音有關的部分是兩件事：<strong>雲端語音轉文字</strong>和<strong>雲端文字轉語音</strong>。</p>
+    <section id="cloud" data-nav="Cloud solution">
+      <h2 data-icon="remote">Cloud solution: What Home Assistant Cloud can do for you</h2>
+      <p>Home Assistant Cloud (the company behind it is called Nabu Casa) is an official subscription service, and the money goes directly back into Home Assistant development. The voice-related part of it is two things:<strong>Cloud speech to text</strong>and<strong>Cloud text-to-speech</strong>.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>項目</th><th>內容</th></tr>
+          <tr><th>Project</th><th>content</th></tr>
         </thead>
         <tbody>
-          <tr><td>價格</td><td>美國區 6.50 美元／月，或 65 美元／年；歐盟區 7.50 歐元／月，或 75 歐元／年。台灣的實際扣款金額看你信用卡走哪個區。</td></tr>
-          <tr><td>試用</td><td>官方標示 31 天試用</td></tr>
-          <tr><td>語音轉文字</td><td>官方支援清單裡有 <strong>Chinese (Taiwan) – zh-TW</strong>，另外也有 zh-CN、zh-HK 與粵語（yue-CN）</td></tr>
-          <tr><td>文字轉語音</td><td>官方清單列出一百多個語言／口音變體，同樣包含 <strong>zh-TW</strong>，而且一種語言常常有好幾個聲音可挑</td></tr>
-          <tr><td>其他順便給的</td><td>遠端安全連線、雲端備份、Google Assistant 與 Alexa 串接等</td></tr>
+          <tr><td>Price</td><td>US$6.50/month, or US$65/year; EU: €7.50/month, or €75/year. The billed amount depends on your account region, payment method, and applicable taxes.</td></tr>
+          <tr><td>trial</td><td>Official label 31 days trial</td></tr>
+          <tr><td>speech to text</td><td>It’s in the official support list <strong>Chinese (Taiwan) – zh-TW</strong>, there are also zh-CN, zh-HK and Cantonese (yue-CN)</td></tr>
+          <tr><td>text to speech</td><td>The official list lists over a hundred language/accent variations, also including <strong>zh-TW</strong>, and a language often has several sounds to choose from.</td></tr>
+          <tr><td>Others given by the way</td><td>Remote secure connection, cloud backup, Google Assistant and Alexa connection, etc.</td></tr>
         </tbody>
       </table>
 
-      <div class="callout tip"><strong>提示：</strong>對講中文的家庭，這是這一章 CP 值最高的一個決定。本地的 Speech-to-Phrase 目前語言清單裡沒有中文；本地 Whisper 中文可以跑但要夠力的 CPU 才不卡。如果你只有一台樹莓派，訂閱 Cloud 把 STT 跟 TTS 丟出去、對話代理留在本地，體感差異非常大。</div>
+      <div class="callout tip"><strong>Tip:</strong>For Chinese-speaking families, this is the decision with the highest CP value in this chapter. The local Speech-to-Phrase currently does not have Chinese in the language list; the local Whisper Chinese can run, but it requires a capable CPU to avoid lag. If you only have a Raspberry Pi, subscribe to Cloud, throw out STT and TTS, and keep the conversation agent locally. The somatosensory difference is very big.</div>
 
-      <p>設定方式很無腦：訂閱並登入之後，Home Assistant 會依你的地區語言<strong>自動建立一個助理</strong>。你只要到 <strong>設定</strong> → <strong>語音助理</strong> 選那個 <strong>Home Assistant Cloud</strong> 助理，確認語音轉文字、文字轉語音的語言，對話代理保持 <code>Home Assistant</code>，就可以用了。</p>
+      <p>The setting method is very brainless: after subscribing and logging in, Home Assistant will adjust the settings according to your regional language.<strong>Automatically create an assistant</strong>. You just need to arrive <strong>Settings</strong> → <strong>voice assistant</strong> choose that <strong>Home Assistant Cloud</strong> Assistant, confirm speech-to-text, text-to-speech language, conversation agent remains <code>Home Assistant</code>, you can use it.</p>
 
-      <div class="callout"><strong>觀念：</strong>Cloud 的語音處理是「經過但不留存」。官方的說法是音訊<strong>一轉成文字就刪掉</strong>，語音資料也<strong>不會拿去訓練模型</strong>。但這仍然是「你的聲音離開了家裡」，跟全本地方案本質不同，自己權衡。另外，官方文件目前沒有寫任何用量上限或配額，所以也別聽人家說「無限用」——沒寫就是沒寫，不要當保證。</div>
+      <div class="callout"><strong>Concept:</strong>Cloud's voice processing is "passed but not retained." The official statement is that the audio<strong>Once converted to text, delete it.</strong>, the voice data is also<strong>It will not be used to train the model</strong>. But this is still "your voice leaves home", which is fundamentally different from the all-local solution. You have to weigh it yourself. In addition, official documents currently do not include any usage caps or quotas, so don’t listen to people saying “unlimited usage” – if it’s not written, it’s not written, so don’t take it as a guarantee.</div>
     </section>
 
-    <section id="llm" data-nav="接上 LLM">
-      <h2 data-icon="ai">接上 LLM：把腦袋換成大型語言模型</h2>
-      <p>內建代理只認句型。當你想要「今天有點冷，幫我處理一下」這種模糊講法也叫得動裝置，或想要它回話有個性，就該把對話代理換成 LLM。</p>
+    <section id="llm" data-nav="Connect with LLM">
+      <h2 data-icon="ai">Continuing with LLM: replace your head with a large language model</h2>
+      <p>The built-in agent only recognizes sentence patterns. When you want a vague way of saying "It's a bit cold today, help me deal with it", or you want it to respond with personality, you should change the conversation agent to LLM.</p>
 
-      <h3>有哪些官方整合</h3>
+      <h3>What official integrations are there?</h3>
       <table class="data-table">
         <thead>
-          <tr><th>整合名稱</th><th>你需要什麼</th><th>特點</th></tr>
+          <tr><th>Integration name</th><th>what do you need</th><th>Features</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>OpenAI Conversation</strong></td><td>OpenAI API 金鑰</td><td>官方文件目前標示的預設模型是 <code>gpt-4o-mini</code>（下拉選單裡通常還有更新的模型可挑，模型清單變動很快，以你畫面上看到的為準）。這個整合會分出四種子項目（subentry）：對話（Conversation）、AI Task、語音轉文字、文字轉語音。</td></tr>
-          <tr><td><strong>Google Generative AI</strong></td><td>Google AI Studio 的 API 金鑰（有免費額度，但有速率限制，而且要在支援地區）</td><td>同時提供對話代理、語音轉文字、文字轉語音三種實體。有「建議設定（Recommended settings）」開關，懶得調參數就開著。</td></tr>
-          <tr><td><strong>Anthropic</strong></td><td>Anthropic Console 的 API 金鑰（需先開通付費）</td><td>選項比較細：快取策略、思考預算、程式碼執行、網路搜尋等都可以開關。</td></tr>
-          <tr><td><strong>Ollama</strong></td><td>一台自己跑 Ollama 的機器</td><td>完全本地、不用付 token 錢。但控制功能官方標為<strong>實驗性</strong>，而且只有支援 Tools 的模型才能控制 Home Assistant。</td></tr>
+          <tr><td><strong>OpenAI Conversation</strong></td><td>OpenAI API key</td><td>The default model currently marked in the official documentation is <code>gpt-4o-mini</code>(There are usually newer models to choose from in the drop-down menu, and the model list changes quickly, whichever you see on the screen shall prevail). This integration will be divided into four subentries: Conversation, AI Task, speech-to-text, and text-to-speech.</td></tr>
+          <tr><td><strong>Google Generative AI</strong></td><td>API key of Google AI Studio (there is a free quota, but there is a rate limit, and it must be in a supported region)</td><td>It also provides three entities: dialogue agent, speech-to-text, and text-to-speech. There is a "Recommended settings" switch, so I leave it on if I'm too lazy to adjust parameters.</td></tr>
+          <tr><td><strong>Anthropic</strong></td><td>Anthropic Console API key (need to activate and pay first)</td><td>The options are more detailed: cache policy, budget thinking, code execution, network search, etc. can be turned on and off.</td></tr>
+          <tr><td><strong>Ollama</strong></td><td>A machine that runs Ollama on its own</td><td>Completely local, no need to pay token. However, the control function is officially labeled as<strong>Experimental</strong>, and only Tools-enabled models can control Home Assistant.</td></tr>
         </tbody>
       </table>
 
-      <h3>設定流程</h3>
+      <h3>Setup process</h3>
       <ol class="steps">
         <li>
-          <h3>加整合</h3>
-          <p><strong>設定</strong> → <strong>裝置與服務</strong> → <strong>新增整合</strong>，搜尋你要的那一家（OpenAI、Google Generative AI、Anthropic、Ollama），照畫面填 API 金鑰或本地網址。</p>
+          <h3>Add integration</h3>
+          <p><strong>Settings</strong> → <strong>Devices and Services</strong> → <strong>New integration</strong>, search for the one you want (OpenAI, Google Generative AI, Anthropic, Ollama), fill in the API key or local URL according to the screen.</p>
         </li>
         <li>
-          <h3>建一個新的助理</h3>
-          <p><strong>設定</strong> → <strong>語音助理</strong> → <strong>新增助理</strong>。取名字，然後在<strong>對話代理</strong>那一欄選剛剛加進來的那個 LLM。</p>
+          <h3>Create a new assistant</h3>
+          <p><strong>Settings</strong> → <strong>voice assistant</strong> → <strong>Add new assistant</strong>. Pick a name and then<strong>conversational agent</strong>In that column, select the LLM just added.</p>
         </li>
         <li>
-          <h3>調它的個性</h3>
-          <p>在代理名稱旁邊的齒輪進去，會有一個提示範本（prompt template）欄位。你可以寫「你是一個講話很簡短的管家，回答不超過兩句話」，也可以寫「你是超級瑪利歐，講話要好笑」。這欄支援 Home Assistant 的範本語法，所以可以塞進即時資訊。</p>
+          <h3>adjust its personality</h3>
+          <p>Go into the gear next to the agent name and there will be a prompt template field. You can write "You are a butler who speaks very briefly and answers no more than two sentences", or you can write "You are Super Mario and your speech must be funny." This column supports Home Assistant's template syntax, so real-time information can be inserted.</p>
         </li>
         <li>
-          <h3>打開控制權限</h3>
-          <p>同一個設定畫面裡找 <strong>控制 Home Assistant（Control Home Assistant）</strong>。這個一定要開，否則它只會跟你聊天，不會關燈。詳見下一節。</p>
+          <h3>Turn on control permissions</h3>
+          <p>Find it in the same settings screen <strong>Control Home Assistant (Control Home Assistant)</strong>. This must be turned on, otherwise it will only chat with you and not turn off the light. See the next section for details.</p>
         </li>
         <li>
-          <h3>先用打字測</h3>
-          <p>在代理的選單裡選「開始對話」，用打字測到穩定了，再把語音轉文字、文字轉語音掛上去。這樣出問題時你知道是哪一段爛掉。</p>
+          <h3>Test by typing first</h3>
+          <p>Select "Start Conversation" in the agent's menu, use typing to test that it is stable, and then enable voice-to-text and text-to-speech. This way you know which section is broken when something goes wrong.</p>
         </li>
       </ol>
 
-      <div class="callout warn"><strong>注意：</strong>語音轉文字跟文字轉語音是<strong>獨立於對話代理</strong>設定的。換成 LLM 對話代理不會自動讓它會聽會講，那兩段還是要各自選引擎。</div>
+      <div class="callout warn"><strong>Warning:</strong>Speech to text and text to speech are<strong>independent of conversational agent</strong>set. Switching to the LLM dialogue agent will not automatically allow it to listen and speak. You still have to choose the engine for those two paragraphs.</div>
     </section>
 
-    <section id="llm_control" data-nav="讓它能控制">
-      <h2 data-icon="advanced">讓 LLM 真的叫得動你家的燈</h2>
-      <p>很多人接完 LLM 之後發現：它很會聊天，但叫它關燈它就開始瞎掰「好的，我已經幫你關閉客廳燈了」——然後燈還亮著。原因幾乎都是下面這三件事其中之一。</p>
+    <section id="llm_control" data-nav="make it controllable">
+      <h2 data-icon="advanced">Let LLM really make your lights move</h2>
+      <p>After receiving LLM, many people found that it is very good at chatting, but when you ask it to turn off the lights, it starts to say "Okay, I have turned off the living room lights for you" - and then the lights are still on. The reason is almost always one of the following three things.</p>
 
-      <h3>第一：控制開關沒打開</h3>
-      <p>OpenAI、Google Generative AI、Anthropic 這三個整合，設定裡都有一個 <strong>控制 Home Assistant（Control Home Assistant）</strong> 的選項。打開之後，模型才會拿到 Home Assistant 的 Assist API 當工具（Tool）用。沒開就是純聊天機器人。</p>
-      <p>版本比較舊的話，同一個位置可能不是開關，而是一個下拉選單，選項寫著「無控制（No control）」跟「Assist」——選 <strong>Assist</strong> 就是把控制權打開，意思一樣。</p>
+      <h3>First: the control switch is not turned on</h3>
+      <p>The three integrations of OpenAI, Google Generative AI, and Anthropic have one in the settings. <strong>Control Home Assistant (Control Home Assistant)</strong> options. After opening, the model will get the Assist API of Home Assistant and use it as a tool. If not opened, it is a pure chatbot.</p>
+      <p>If the version is older, the same position may not be a switch, but a drop-down menu with the options saying "No control" and "Assist" - select <strong>Assist</strong> It means turning on the control, which means the same thing.</p>
 
-      <h3>第二：實體沒公開</h3>
-      <p>這是最常見的。官方文件對這三家整合的說法都一樣：模型<strong>只能控制或查詢「已公開」的實體</strong>。開了控制權限但沒公開任何實體，等於給它一台沒有按鈕的遙控器。回到前面的「公開實體」那節做完。</p>
+      <h3>Second: The entity is not disclosed</h3>
+      <p>This is the most common. Official documents all say the same thing about the integration of these three companies: model<strong>Only "public" entities can be controlled or queried</strong>. Turning on the control permission but not exposing any entity is equivalent to giving it a remote control without buttons. Go back to the previous "Public Entity" section and finish.</p>
 
-      <h3>第三：模型太小</h3>
-      <p>如果你用的是 Ollama 跑本地小模型，官方文件講得很老實：小模型比大模型更容易出錯，而且<strong>開啟控制功能後，小模型可能無法穩定維持對話</strong>。官方甚至建議一個變通做法：開兩個 Ollama 設定，一個不開控制專門聊天，另一個開控制專門操作裝置。</p>
+      <h3>Third: The model is too small</h3>
+      <p>If you are using Ollama to run local small models, the official documents are very honest: small models are more error-prone than large models, and<strong>After turning on the control function, small models may not be able to maintain dialogue stably.</strong>. The official even suggested a workaround: open two Ollama settings, one with no control and dedicated to chatting, and the other with control and dedicated operation of the device.</p>
 
-      <div class="callout"><strong>觀念：</strong>「控制 Home Assistant」和「公開實體」是兩道獨立的閘門，要同時打開才會通。這種雙重確認是刻意的：你不會希望一個雲端模型某天心血來潮把你家全部電器打開。</div>
+      <div class="callout"><strong>Concept:</strong>"Control Home Assistant" and "Public Entity" are two independent gates that must be opened at the same time. This double-checking is intentional: You don't want a cloud-based model to turn on all your appliances on a whim one day.</div>
 
-      <h3>省錢又保險的組合技：優先本地處理</h3>
-      <p>在助理的三點選單裡有一個 <strong>優先在本地處理指令（Prefer handling commands locally）</strong> 的開關。打開之後，Home Assistant 會先讓內建的句型比對器試試看，比對得到就直接執行，比對不到才丟給 LLM。</p>
-      <p>這一招同時解決三個問題：</p>
+      <h3>A combination that saves money and is safe: Prioritize local processing</h3>
+      <p>There is one in the assistant's three-dot menu <strong>Prefer handling commands locally</strong> switch. After opening it, Home Assistant will first let the built-in sentence pattern comparer try it. If the comparison is found, it will be executed directly. If the comparison fails, it will be thrown to LLM.</p>
+      <p>This trick solves three problems at the same time:</p>
       <ul>
-        <li><strong>快</strong>：「開客廳燈」這種簡單指令走本地，幾乎零延遲。</li>
-        <li><strong>省</strong>：日常八成的指令根本不會呼叫 API，不燒 token。</li>
-        <li><strong>穩</strong>：關燈這種事交給不會亂想的比對器，比交給模型可靠。</li>
+        <li><strong>Fast</strong>: A simple command like "turn on the living room lights" is sent locally with almost zero delay.</li>
+        <li><strong>province</strong>: 80% of the daily commands do not call the API at all and do not burn tokens.</li>
+        <li><strong>stable</strong>: Turning off the lights is left to a comparator that doesn’t think too much, which is more reliable than leaving it to a model.</li>
       </ul>
-      <div class="callout tip"><strong>提示：</strong>幾乎所有情況下這個開關都該打開。除非你就是想要 LLM 完整接管所有語意理解（例如你在做多語言家庭，或你的講法很少符合內建句型）。</div>
+      <div class="callout tip"><strong>Tip:</strong>This switch should be on in almost all cases. Unless you just want LLM to completely take over all semantic understanding (for example, you are working in a multilingual family, or your speech rarely conforms to the built-in sentence patterns).</div>
 
-      <h3>讓 LLM 使用你的腳本</h3>
-      <p>你在<a href="ch10_scripts.html">第 10 章</a>寫的腳本（Script），也可以被公開給語音助理。這其實是「教 LLM 新技能」最乾淨的方式：把一串複雜動作包成腳本、取一個講人話的名字、公開出去，模型就會在適當時機呼叫它。比起讓模型自己拼湊十個動作，這樣穩定太多。</p>
+      <h3>Let LLM use your script</h3>
+      <p>you are here<a href="ch10_scripts.html">Chapter 10</a>Written scripts can also be exposed to voice assistants. This is actually the cleanest way to "teach LLM new skills": wrap a series of complex actions into a script, give it a human-speaking name, make it public, and the model will call it at the appropriate time. This is much more stable than letting the model piece together ten movements on its own.</p>
     </section>
 
-    <section id="mcp" data-nav="MCP 現況">
-      <h2 data-icon="protocol">Model Context Protocol（MCP）現在是什麼狀況</h2>
-      <p>MCP 是一套讓大型語言模型跟外部工具溝通的開放協定。Home Assistant 官方在部落格裡把它形容成「一層很薄的東西，讓 LLM 可以接上任何東西」。目前 Home Assistant 在 MCP 這件事上有<strong>兩個方向、兩個不同的整合</strong>，非常容易搞混，我們拆開講。</p>
+    <section id="mcp" data-nav="Current status of MCP">
+      <h2 data-icon="protocol">What is the current status of Model Context Protocol (MCP)?</h2>
+      <p>MCP is a set of open protocols that allow large language models to communicate with external tools. Home Assistant officially described it in the blog as "a very thin layer that allows LLM to connect to anything." Currently Home Assistant has<strong>Two directions, two different integrations</strong>, it is very easy to confuse, let’s break it down.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th></th><th>MCP Server（伺服器）</th><th>MCP（用戶端）</th></tr>
+          <tr><th></th><th>MCP Server</th><th>MCP (client)</th></tr>
         </thead>
         <tbody>
-          <tr><td>方向</td><td>外面的 AI 來控制你家</td><td>你家的對話代理去用外面的工具</td></tr>
-          <tr><td>整合名稱</td><td><strong>Model Context Protocol Server</strong></td><td><strong>Model Context Protocol</strong></td></tr>
-          <tr><td>典型情境</td><td>用 Claude 或 ChatGPT 這類外部 App，直接叫它幫你關家裡的燈</td><td>讓你家的 Assist 對話代理多出「記憶」、「網路搜尋」之類本來沒有的能力</td></tr>
-          <tr><td>怎麼設定</td><td>設定 → 裝置與服務 → 新增整合 → Model Context Protocol Server，設定過程會問你要不要允許用戶端控制 Home Assistant</td><td>設定 → 裝置與服務 → 新增整合 → Model Context Protocol，填 SSE 伺服器網址，需要驗證的話再填 OAuth 用戶端 ID 與密鑰</td></tr>
-          <tr><td>端點／驗證</td><td>對外開在 <code>/api/mcp</code>（要指定某一組 LLM API 的話是 <code>/api/mcp/&lt;api_id&gt;</code>，內建那組就是 <code>/api/mcp/assist</code>）；驗證支援 OAuth（用 IndieAuth，用戶端 ID 就是那個 App 的網址，例如 <code>https://claude.ai</code>，Client Secret 用不到、隨便填或留空都行），不支援 OAuth 的用戶端則用長期存取權杖</td><td>目前只支援 MCP 的 Tools，還不支援 prompts、resources、sampling、notifications</td></tr>
+          <tr><td>direction</td><td>AI from outside to control your home</td><td>Use external tools for your conversational agent</td></tr>
+          <tr><td>Integration name</td><td><strong>Model Context Protocol Server</strong></td><td><strong>Model Context Protocol</strong></td></tr>
+          <tr><td>typical situation</td><td>Use an external app like Claude or ChatGPT to directly ask it to turn off the lights at home for you</td><td>Let your Assist dialogue agent have additional capabilities such as "memory" and "network search" that it does not have before.</td></tr>
+          <tr><td>How to set</td><td>Settings → Devices and Services → New Integration → Model Context Protocol Server, the setting process will ask you whether you want to allow the client to control Home Assistant</td><td>Settings → Devices and Services → Add Integration → Model Context Protocol, fill in the SSE server URL, and if verification is required, fill in the OAuth client ID and key</td></tr>
+          <tr><td>Endpoint/Authentication</td><td>Open to the outside world <code>/api/mcp</code>(To specify a certain set of LLM APIs, it is <code>/api/mcp/&lt;api_id&gt;</code>, the built-in group is <code>/api/mcp/assist</code>); Authentication supports OAuth (with IndieAuth, the client ID is the URL of the App, for example <code>https://claude.ai</code>, Client Secret is not used, you can fill it in casually or leave it blank). Clients that do not support OAuth use long-term access tokens.</td><td>Currently, only MCP Tools are supported, prompts, resources, sampling, and notifications are not supported.</td></tr>
         </tbody>
       </table>
 
-      <p>用戶端那個整合是在 2025.2 版加入的。設定完之後，它抓到的工具會像 Home Assistant 原生的 Assist API 一樣被丟給對話代理用——不過你還要<strong>另外去對話代理的設定裡</strong>把這些工具啟用。</p>
+      <p>The client integration was added in version 2025.2. Once set up, the tools it grabs will be thrown to the conversational agent just like Home Assistant’s native Assist API—but you still have to<strong>Also go to the settings of the conversational agent</strong>Enable these tools.</p>
 
-      <div class="callout danger"><strong>危險：</strong>MCP Server 那一邊等於把「控制你家」這件事開放給一個外部服務。要用的話，務必：只公開你真的需要的實體、優先用 OAuth 而不是到處貼長期權杖、而且絕對不要把 <code>/api/mcp</code> 隨便暴露在沒有防護的公開網際網路上。遠端存取的做法請回<a href="appendix_hacs_addons.html">附錄 A</a>。</div>
+      <div class="callout danger"><strong>Danger:</strong>The MCP Server side is equivalent to opening up the matter of "controlling your home" to an external service. If you do use it, be sure to: only expose the entities you really need, prioritize OAuth over sticking long-term tokens everywhere, and never put <code>/api/mcp</code> Casually exposed to the unprotected public Internet. Please come back to the remote access method.<a href="appendix_hacs_addons.html">Appendix A</a>.</div>
 
-      <div class="callout warn"><strong>注意：</strong>MCP 這塊變動非常快，各家 AI App 的支援程度也一直在改。上面寫的是官方文件目前的說法，你實際操作時如果畫面對不起來，以你版本的畫面與官方整合頁為準。</div>
+      <div class="callout warn"><strong>Warning:</strong>MCP changes very quickly, and the support level of various AI Apps is also constantly changing. What is written above is the current statement of the official document. If the screen is not correct during your actual operation, your version of the screen and the official integration page shall prevail.</div>
     </section>
 
-    <section id="webpanel" data-nav="掛外部網頁">
-      <h2 data-icon="url">把外部 AI 網頁掛進側邊欄</h2>
-      <p>有時候你根本不需要串 API，只是想在 Home Assistant 的側邊欄按一下就跳到某個 AI 網頁，不用另外開分頁。這在平板掛牆上的情境特別有用。</p>
+    <section id="webpanel" data-nav="Hang external web page">
+      <h2 data-icon="url">Hang external AI web pages into the sidebar</h2>
+      <p>Sometimes you don’t need to connect to the API at all, but just want to jump to an AI web page by clicking on the sidebar of Home Assistant without opening a separate page. This is particularly useful in a flat-panel wall-mounted situation.</p>
 
-      <div class="callout warn"><strong>注意：</strong>舊教學裡常見的 <code>panel_iframe:</code> YAML 設定<strong>已經被「網頁（Webpage）」儀表板取代</strong>了。官方寫得很清楚：舊的 iFrame panel 設定會在升級時自動遷移成新的網頁儀表板，你不用手動改，但新設定不要再抄 <code>panel_iframe</code>，網路上教你貼那段 YAML 的文章都可以直接關掉。</div>
+      <div class="callout warn"><strong>Warning:</strong>Common in old teaching <code>panel_iframe:</code> YAML settings<strong>Has been replaced by the "Webpage" dashboard</strong>. The official website is very clear: the old iFrame panel settings will be automatically migrated to the new web dashboard during the upgrade. You don’t have to change it manually, but don’t copy the new settings. <code>panel_iframe</code>, the article on the Internet that teaches you how to post that YAML can be turned off directly.</div>
 
       <ol class="steps">
         <li>
-          <h3>進儀表板設定</h3>
-          <p><strong>設定</strong> → <strong>儀表板（Dashboards）</strong>。</p>
+          <h3>Go to dashboard settings</h3>
+          <p><strong>Settings</strong> → <strong>Dashboards</strong>.</p>
         </li>
         <li>
-          <h3>新增儀表板</h3>
-          <p>按 <strong>新增儀表板（Add dashboard）</strong>，在類型清單裡挑 <strong>網頁（Webpage）</strong>。</p>
+          <h3>Add new dashboard</h3>
+          <p>press <strong>Add dashboard</strong>, select from the type list <strong>Webpage</strong>.</p>
         </li>
         <li>
-          <h3>填名字、圖示、網址</h3>
-          <p>取一個側邊欄上看得懂的名字，選一個圖示，填入你要嵌入的網址。</p>
+          <h3>Fill in your name, icon, and website address</h3>
+          <p>Choose a name that is easy to read on the sidebar, choose an icon, and fill in the URL you want to embed.</p>
         </li>
         <li>
-          <h3>決定誰看得到</h3>
-          <p>可以設定只有管理員看得到、以及要不要顯示在側邊欄。家裡有小朋友的話這格很有用。</p>
+          <h3>Decide who can see</h3>
+          <p>You can set whether only administrators can see it and whether it should be displayed in the sidebar. This grid is useful if you have children at home.</p>
         </li>
         <li>
-          <h3>按建立，然後測試</h3>
-          <p>回到主畫面，側邊欄應該多一個項目，點下去就是那個網頁。</p>
+          <h3>Press build then test</h3>
+          <p>Return to the main screen, there should be one more item in the sidebar, click on it to see that web page.</p>
         </li>
       </ol>
 
-      <div class="callout warn"><strong>注意：</strong>不是每個網頁都嵌得進去。很多網站（包括不少 AI 服務）會用瀏覽器的安全標頭明確禁止被別人 iframe，結果就是你看到一片空白。這不是你設定錯，是對方擋的，沒有解。另外，如果你的 Home Assistant 是 HTTPS，嵌入的網頁也必須是 HTTPS，不然瀏覽器會擋掉。</div>
+      <div class="callout warn"><strong>Warning:</strong>Not every web page can be embedded. Many websites (including many AI services) will use the browser's security header to explicitly prohibit being iframed by others. As a result, you will see a blank page. This is not because you set it wrong, but because the other party is blocking it. There is no solution. In addition, if your Home Assistant is HTTPS, the embedded web page must also be HTTPS, otherwise the browser will block it.</div>
 
-      <p>如果你只是想在某一個檢視裡塞一小塊網頁，而不是整個側邊欄項目，那用<strong>網頁卡片（Webpage card）</strong>就好，加卡片的方式跟<a href="ch6_dashboard.html">第 6 章</a>一樣。</p>
+      <p>If you just want to fit a small piece of webpage into a view, rather than the entire sidebar item, use<strong>Webpage card</strong>That’s fine. The way to add cards is the same as<a href="ch6_dashboard.html">Chapter 6</a>Same.</p>
     </section>
 
-    <section id="hardware" data-nav="語音硬體">
-      <h2 data-icon="hardware">要對著什麼講話：語音硬體</h2>
-      <p>流水線設好了，但你總得有個東西聽你講。從最便宜到最爽，選項大概是這樣。</p>
+    <section id="hardware" data-nav="Voice hardware">
+      <h2 data-icon="hardware">What to speak to: Speech hardware</h2>
+      <p>The assembly line is set up, but you have to have something listening to you. From cheapest to most enjoyable, here’s what the options look like.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>方案</th><th>成本</th><th>喚醒詞</th><th>適合場景</th></tr>
+          <tr><th>Plan</th><th>cost</th><th>wake word</th><th>Suitable for the scene</th></tr>
         </thead>
         <tbody>
-          <tr><td>Companion App（Android）</td><td>免費</td><td>支援，可選 Hey Nabu／Hey Jarvis／Hey Mycroft</td><td>隨身、外出、測試流水線</td></tr>
-          <tr><td>Companion App（iPhone／iPad）</td><td>免費</td><td>沒有內建喚醒詞；靠捷徑（Shortcuts）觸發，或用「語音控制」硬湊一個</td><td>隨身，但多半要動手按</td></tr>
-          <tr><td>舊平板掛牆</td><td>手邊有就免費</td><td>看瀏覽器與 App 支援</td><td>玄關、廚房固定點</td></tr>
-          <tr><td>ESPHome 自製語音裝置</td><td>低（ESP32-S3 開發板等級）</td><td>可用裝置端的 microWakeWord</td><td>想自己焊、想塞進特定角落</td></tr>
-          <tr><td>Home Assistant Voice Preview Edition</td><td>官方建議售價 69 美元／59 歐元</td><td>Okay Nabu／Hey Jarvis／Hey Mycroft，用 microWakeWord 在裝置上跑</td><td>想要一台放著就好、不折騰</td></tr>
+          <tr><td>Companion App (Android)</td><td>free</td><td>Support, optional Hey Nabu/Hey Jarvis/Hey Mycroft</td><td>Take it with you, go out, and test the assembly line</td></tr>
+          <tr><td>Companion App (iPhone/iPad)</td><td>free</td><td>There is no built-in wake word; rely on shortcuts to trigger it, or use "voice control" to create one</td><td>Take it with you, but most of the time you have to press it with your hands</td></tr>
+          <tr><td>Old flat wall hanging</td><td>Free if you have it on hand</td><td>See browser and app support</td><td>Entrance and kitchen fixed points</td></tr>
+          <tr><td>ESPHome homemade voice device</td><td>Low (ESP32-S3 development board level)</td><td>microWakeWord available on device</td><td>Want to weld by yourself, want to squeeze into a specific corner</td></tr>
+          <tr><td>Home Assistant Voice Preview Edition</td><td>Official suggested retail price: US$69/€59</td><td>Okay Nabu/Hey Jarvis/Hey Mycroft, run on the device using microWakeWord</td><td>If you want one, just keep it, no hassle</td></tr>
         </tbody>
       </table>
 
-      <h3>Android 上怎麼叫出 Assist</h3>
+      <h3>How to call Assist on Android</h3>
       <ul>
-        <li>App 裡右上角三點選單 → <strong>Assist</strong>。</li>
-        <li>設成系統預設的數位助理之後，就能用手勢叫出來（從左下角往上滑、長按電源鍵，看你手機）。設成預設後也能從鎖定畫面啟動。</li>
-        <li>加桌面小工具：長按桌面 → 小工具 → Home Assistant → 拖出 Assist。</li>
-        <li>喚醒詞設定在 App 的 <strong>設定</strong> → <strong>Companion app</strong> → <strong>Assist for Android</strong>。</li>
+        <li>Three-dot menu in the upper right corner of the App → <strong>Assist</strong>.</li>
+        <li>After setting it as the system's default digital assistant, you can call it out with gestures (swipe up from the lower left corner, long press the power button, and look at your phone). It can also be launched from the lock screen after being set as default.</li>
+        <li>Add desktop gadgets: long press the desktop → Gadgets → Home Assistant → drag out Assist.</li>
+        <li>The wake word is set in the App <strong>Settings</strong> → <strong>Companion app</strong> → <strong>Assist for Android</strong>.</li>
       </ul>
 
-      <h3>iPhone 上怎麼叫出 Assist</h3>
+      <h3>How to call Assist on iPhone</h3>
       <ul>
-        <li>App 裡右上角三點選單 → <strong>Assist</strong>。</li>
-        <li>用 iOS 的「捷徑」App 建一個 Assist 捷徑，然後綁到你喜歡的觸發方式：背面輕點兩下、長按動作按鈕、控制中心、鎖定畫面小工具。</li>
-        <li>想要不動手：iOS 的<strong>語音控制（Voice Control）</strong>這個輔助使用功能可以自訂一句話（例如「Okay Nabu」）去觸發那個捷徑，算是 iPhone 上最接近喚醒詞的做法。官方也直說了，這條路<strong>比按按鈕或叫 Siri 慢</strong>，而且語音控制開著會一直在聽，自己斟酌。</li>
-        <li>注意：透過 Siri 觸發的捷徑，語言會跟著 Siri 的語言走，不是跟著你的流水線設定走。手動觸發的捷徑則可以指定語言——想要中英文各一個，就把捷徑匯入兩次、各設一種語言。</li>
+        <li>Three-dot menu in the upper right corner of the App → <strong>Assist</strong>.</li>
+        <li>Use the iOS "Shortcuts" app to create an Assist shortcut, and then bind it to your favorite trigger method: double tap on the back, long press on the action button, Control Center, lock screen widget.</li>
+        <li>Want to do it or not: iOS<strong>Voice Control</strong>This auxiliary usage function can customize a sentence (such as "Okay Nabu") to trigger that shortcut, which is the closest thing to a wake-up word on the iPhone. The official also said directly that this road<strong>Slower than pressing a button or asking Siri</strong>, and the voice control will keep listening, so you can decide for yourself.</li>
+        <li>Note: Through shortcuts triggered by Siri, the language will follow Siri's language, not your pipeline settings. For manually triggered shortcuts, you can specify the language - if you want one in Chinese and English, import the shortcut twice and set one language each.</li>
       </ul>
 
-      <h3>官方硬體：Voice Preview Edition</h3>
-      <p>如果你懶得折騰，這是最省事的一台。裡面是 ESP32-S3（16MB flash、8MB PSRAM）加上 XMOS XU316 音訊晶片，負責回音消除、降噪跟自動增益——講白話就是「電視在放聲音的時候它還聽得到你」。雙麥克風陣列，內建喇叭也有 3.5mm 輸出孔，機身上有實體靜音開關、旋鈕音量、LED 燈環，還有一個 Grove 擴充埠可以接感測器。尺寸 84×84×21mm、96 公克。<strong>它不需要 Home Assistant Cloud 也能用</strong>，可以全本地跑，只是官方提醒全本地的完整體驗需要比較有力的主機（大約 Intel N100 等級起跳）。</p>
+      <h3>Official hardware: Voice Preview Edition</h3>
+      <p>If you are too lazy to bother, this is the easiest one. Inside is ESP32-S3 (16MB flash, 8MB PSRAM) plus XMOS XU316 audio chip, which is responsible for echo cancellation, noise reduction and automatic gain - in vernacular, "the TV can still hear you when it is playing sound." It has a dual microphone array and a built-in speaker with a 3.5mm output hole. The body has a physical mute switch, volume knob, LED light ring, and a Grove expansion port for connecting sensors. Dimensions: 84×84×21mm, 96 grams.<strong>It doesn’t require Home Assistant Cloud to work</strong>, can be run fully locally, but the official reminder is that a complete full local experience requires a relatively capable host (approximately Intel N100 level starting).</p>
 
-      <div class="callout tip"><strong>提示：</strong>從 2025.10 版開始，每一台 Assist 語音衛星可以設定<strong>最多兩組喚醒詞、對應兩條不同的流水線</strong>。這超好用：例如「Okay Nabu」走全本地的快速關燈流水線，「Hey Jarvis」走接了 LLM 的雲端流水線。一台機器兩種人格，講哪個名字就走哪條路。多語言家庭也可以一個喚醒詞一種語言。</div>
+      <div class="callout tip"><strong>Tip:</strong>Starting with version 2025.10, each Assist voice satellite can be configured<strong>Up to two sets of wake words, corresponding to two different pipelines</strong>. This is super easy to use: for example, "Okay Nabu" uses a local quick light-off assembly line, and "Hey Jarvis" uses LLM's cloud assembly line. One machine has two personalities. Whichever name it says, it will take whichever path it takes. Multilingual families can also use one wake word per language.</div>
 
-      <h3>順便一提：語音衛星可以主動找你講話</h3>
-      <p>語音裝置不只是被動等你喊。<code>assist_satellite</code> 這個領域（Domain）提供三個動作，可以寫進自動化裡：</p>
+      <h3>By the way: Voice satellites can actively talk to you</h3>
+      <p>Voice devices don’t just passively wait for you to shout.<code>assist_satellite</code> This domain (Domain) provides three actions that can be written into automation:</p>
       <pre class="code-block"><code>actions:
   - action: assist_satellite.announce
     target:
       entity_id: assist_satellite.living_room
     data:
-      message: 洗衣機洗好了</code></pre>
-      <p>另外兩個是 <code>assist_satellite.start_conversation</code>（主動開啟一段對話）跟 <code>assist_satellite.ask_question</code>（問你一個問題並拿到你的回答）。第三個特別好玩：可以做出「偵測到有人開門 → 玄關的音箱問『要不要順便開客廳燈？』→ 你說要 → 燈就開」這種互動。</p>
-      <p>寫這種自動化很容易踩到一個坑：<strong>它正在跟人講話的時候，你又叫它播報</strong>，兩段話會互相蓋台。從 2026.2 起，自動化的條件（Condition）裡多了一組專門給語音衛星用的條件，可以判斷這台裝置現在是<strong>閒置、正在聽、正在處理、還是正在回話</strong>。播報前先加一個「閒置才播」的條件，家人講到一半被打斷的情況就沒了。</p>
-      <div class="callout tip"><strong>提示：</strong>2025.10 起還多了一個很貼心的行為：當你下的指令就是在這台衛星所在的區域裡執行（例如你在客廳對客廳的音箱說「開燈」），它會用<strong>一聲短提示音</strong>代替把整句「已為您打開客廳燈」唸出來。省掉的那兩秒，體感差很多。</div>
+      message: The washing machine is ready</code></pre>
+      <p>The other two are <code>assist_satellite.start_conversation</code>(Take the initiative to start a conversation) Follow <code>assist_satellite.ask_question</code>(Ask you a question and get your answer). The third one is particularly fun: you can create an interaction such as "detect someone opening the door → the speaker in the entrance asks "Do you want to turn on the living room lights?" → you say yes → the lights will turn on."</p>
+      <p>It’s easy to step into a pit when writing this kind of automation:<strong>When it is talking to people, you ask it to broadcast again</strong>, the two paragraphs will overshadow each other. Starting from 2026.2, there is an additional set of conditions specifically for voice satellites in the automation conditions (Condition), which can determine whether the device is now<strong>Idle, listening, processing, or answering</strong>. Before broadcasting, add a condition of "Broadcast only when idle", so that the family members will not be interrupted in the middle of speaking.</p>
+      <div class="callout tip"><strong>Tip:</strong>Starting from 2025.10, there is also a very considerate behavior: when the command you give is executed in the area where the satellite is located (for example, you say "turn on the lights" to the speaker in the living room), it will use<strong>One short beep</strong>Instead of saying the entire sentence "I have turned on the living room light for you". Those two seconds saved make a huge difference in physical sensation.</div>
     </section>
 
-    <section id="tradeoffs" data-nav="取捨比較">
-      <h2 data-icon="compare">隱私、成本、延遲：三個東西不可能全拿</h2>
-      <p>這一節沒有標準答案，只有給你做決定的表。</p>
+    <section id="tradeoffs" data-nav="Comparison of trade-offs">
+      <h2 data-icon="compare">Privacy, cost, delay: it’s impossible to get all three</h2>
+      <p>There are no standard answers in this section, just a table for you to make a decision.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>組合</th><th>隱私</th><th>金錢成本</th><th>反應速度</th><th>聽懂中文的能力</th></tr>
+          <tr><th>combination</th><th>Privacy</th><th>money cost</th><th>reaction speed</th><th>Ability to understand Chinese</th></tr>
         </thead>
         <tbody>
-          <tr><td>全本地（Whisper + 內建代理 + Piper）</td><td>最好，聲音不出家門</td><td>零，但要一台夠力的主機</td><td>看 CPU，樹莓派上會明顯等</td><td>Whisper 中文可以，但小模型會聽錯</td></tr>
-          <tr><td>Cloud 語音 + 內建代理</td><td>聲音經過 Nabu Casa，官方聲明不儲存不訓練</td><td>約 6.5 美元／月</td><td>快，通常一兩秒內</td><td>好，官方支援 zh-TW</td></tr>
-          <tr><td>Cloud 語音 + 雲端 LLM 代理</td><td>聲音跟家中裝置清單都會送給 AI 供應商</td><td>訂閱費 + 每次對話的 token 費</td><td>最慢，多一次模型往返</td><td>最好，模糊講法也能懂</td></tr>
-          <tr><td>全本地 + Ollama 本地 LLM</td><td>最好</td><td>零 token 費，但要顯卡等級的硬體</td><td>看你的機器，通常偏慢</td><td>看模型，小模型中文常出包</td></tr>
+          <tr><td>Full local (Whisper + built-in proxy + Piper)</td><td>It's best if your voice doesn't leave the house</td><td>Zero, but a capable host is required</td><td>Look at the CPU. It will obviously wait on the Raspberry Pi.</td><td>Whisper is ok in Chinese, but the small model will misunderstand it.</td></tr>
+          <tr><td>Cloud Voice + Built-in Agent</td><td>The sound passed Nabu Casa, the official statement does not store or train</td><td>About $6.5/month</td><td>Fast, usually within a second or two</td><td>OK, official support zh-TW</td></tr>
+          <tr><td>Cloud Voice + Cloud LLM Agent</td><td>The sound and home device list will be sent to the AI provider</td><td>Subscription fee + token fee per conversation</td><td>The slowest, one more model round trip</td><td>Best, you can understand it even if you explain it vaguely</td></tr>
+          <tr><td>Full local + Ollama local LLM</td><td>best</td><td>Zero token fee, but graphics card-level hardware is required</td><td>It depends on your machine, it is usually slow.</td><td>Look at the models, small models are often sold in Chinese packages</td></tr>
         </tbody>
       </table>
 
-      <div class="callout tip"><strong>提示：</strong>「接了 LLM 就一定慢」這件事在 2025.10 之後改善很多。以前是模型要把整段回答生完，才開始唸；現在文字轉語音改成<strong>邊收邊唸</strong>（串流），官方講的改善幅度是「回應開始出聲的時間快了約十倍」。所以如果你上次試 LLM 覺得慢到不能用，值得再試一次。</div>
+      <div class="callout tip"><strong>Tip:</strong>"It will definitely be slow after taking LLM" This matter has improved a lot after 2025.10. In the past, the model had to generate the entire answer before starting to read it; now the text-to-speech conversion has been changed to<strong>Reading while collecting</strong>(Streaming), the official improvement is that "the time for the response to start speaking is about ten times faster." So if you tried LLM last time and found it too slow to be useful, it’s worth trying again.</div>
 
-      <h3>關於 token 花費，你該知道的心態</h3>
-      <p>雲端 LLM 是按用量計費的，各家的單價一直在變，這裡不寫死數字（寫了很快就過期，去各家官網看最新價目）。但有幾個會讓帳單暴衝的原則是不會變的：</p>
+      <h3>What you should know about token spending</h3>
+      <p>Cloud LLM is billed based on usage, and each company's unit price is constantly changing. I won't write down hard numbers here (it will expire soon after writing them down, so go to each company's official website to see the latest prices). But there are a few principles that will keep your bills skyrocketing:</p>
       <ul>
-        <li><strong>每一句話都會把你公開的實體清單送過去。</strong>公開 200 個實體跟公開 20 個，成本差一個數量級。</li>
-        <li><strong>提示範本寫太長</strong>也是每次都在付錢。個性設定寫個三五句就好，不要寫小說。</li>
-        <li><strong>「優先在本地處理指令」打開</strong>，日常關燈開燈根本不會呼叫 API。這是最有效的省錢開關。</li>
-        <li>先<strong>設定用量上限</strong>再把 API 金鑰貼進去。三家供應商的後台都可以設，去設。</li>
+        <li><strong>Each sentence will send you a list of public entities.</strong>The cost difference between exposing 200 entities and 20 entities is an order of magnitude.</li>
+        <li><strong>Prompt template is too long</strong>Also paying every time. Just write three or five sentences about personality settings, don't write a novel.</li>
+        <li><strong>"Prioritize local processing of instructions" is turned on</strong>, the API will not be called at all when turning off and on the lights in daily life. This is the most effective money-saving switch.</li>
+        <li>First<strong>Set usage limit</strong>Then paste the API key. The backends of the three suppliers can be set up.</li>
       </ul>
 
-      <div class="callout danger"><strong>危險：</strong>API 金鑰等於你的信用卡。不要把金鑰貼在論壇、截圖、GitHub、或請人幫忙看設定的訊息裡。金鑰不小心外流就立刻去供應商後台撤銷重發，不要心存僥倖。</div>
+      <div class="callout danger"><strong>Danger:</strong>The API key is equal to your credit card. Do not post the key in forums, screenshots, GitHub, or messages asking for help with setting up. If the key is accidentally leaked, go to the supplier's backend immediately to cancel and reissue it. Don't take any chances.</div>
 
-      <div class="callout"><strong>觀念：</strong>延遲是體感的殺手。喊完到燈亮如果超過三秒，家人就不會再用了，你這章白做。如果你只能優化一件事，優化「常用的那五句話」的速度，其他慢一點沒關係。</div>
+      <div class="callout"><strong>Concept:</strong>Latency is a physical killer. If it takes more than three seconds from the time you finish shouting until the light comes on, your family will no longer use it, and your work has been in vain. If you can only optimize one thing, optimize the speed of "the five most commonly used sentences", it doesn't matter if the others are slower.</div>
     </section>
 
-    <section id="troubleshoot" data-nav="常見卡關">
-      <h2 data-icon="troubleshoot">常見卡關</h2>
+    <section id="troubleshoot" data-nav="Common stuck levels">
+      <h2 data-icon="troubleshoot">Common stuck levels</h2>
 
       <ol class="steps">
         <li>
-          <h3>叫不動任何裝置，它說「抱歉，我不知道那個」</h3>
-          <p>九成是實體沒公開。去 <strong>設定</strong> → <strong>語音助理</strong> → <strong>公開</strong> 分頁確認那個實體在清單裡。第二個可能是你講的名字跟 Home Assistant 裡的名字對不上——它是拿實體的名稱或別名去比對的，差一個字就可能不算數，所以想到什麼講法就加什麼別名。第三個可能是它根本不在你以為的區域裡，回<a href="ch3_floors_areas.html">第 3 章</a>檢查。</p>
+          <h3>Can't call any device, it says "Sorry, I don't know about that"</h3>
+          <p>Ninety percent of it is the entity that has not been made public. go <strong>Settings</strong> → <strong>voice assistant</strong> → <strong>public</strong> Paginate to confirm that the entity is in the list. The second possibility is that the name you mentioned does not match the name in Home Assistant - it uses the name or alias of the entity to compare, and if it is different by one word, it may not count, so add whatever alias comes to mind. The third possibility is that it is not in the area you thought it was at all.<a href="ch3_floors_areas.html">Chapter 3</a>Check.</p>
         </li>
         <li>
-          <h3>不知道問題出在哪一段</h3>
-          <p>用官方的除錯工具。<strong>設定</strong> → <strong>語音助理</strong> → 點你的助理 → 開啟除錯（Debug）對話框，從下拉選單挑你剛剛那一次執行，就能看到每一段各花了多久、辨識出來的文字是什麼。在除錯畫面右上角的圖示裡還可以選 <strong>Run text pipeline</strong>，直接打一句話跑完整條流水線。</p>
+          <h3>I don’t know which section the problem lies in</h3>
+          <p>Use official debugging tools.<strong>Settings</strong> → <strong>voice assistant</strong> → Click your assistant → Open the Debug dialog box, select the execution you just performed from the drop-down menu, and you can see how long each paragraph took and what text was recognized. In the icon in the upper right corner of the debugging screen, you can also select <strong>Run text pipeline</strong>, just type one sentence and run the entire assembly line.</p>
         </li>
         <li>
-          <h3>只想知道句子有沒有被解析，不要真的執行</h3>
-          <p>用 Assist 的句型測試工具：<strong>設定（Settings）</strong> → <strong>工具（Tools）</strong> → <strong>Assist</strong> 分頁。它會告訴你這句話被解析成哪個意圖、鎖定了哪些實體，但<strong>不會真的動作</strong>。改名字、加別名之後拿它來驗收最快。</p>
-          <p>找不到「工具」的話看你的版本：<strong>2026.2 以前</strong>這一組工具叫「開發者工具（Developer tools）」，掛在左側欄最下面；2026.2 起它被搬進<strong>設定</strong>頁面的最下方，改叫「工具」。電腦上最快的走法是按 <kbd>Ctrl</kbd> + <kbd>K</kbd>（Mac 是 <kbd>Cmd</kbd> + <kbd>K</kbd>）打開快速搜尋，直接打「tools」或「開發者」。</p>
+          <h3>I just want to know whether the sentence has been parsed, not actually executed.</h3>
+          <p>Use Assist’s sentence pattern testing tool:<strong>Settings</strong> → <strong>Tools</strong> → <strong>Assist</strong> Pagination. It will tell you which intent the sentence was parsed into and which entities were locked, but<strong>Doesn't really move</strong>. After changing the name and adding an alias, it is the fastest to use it for acceptance.</p>
+          <p>If you can't find "Tools", check your version:<strong>2026.2 ago</strong>This set of tools is called "Developer tools" and is hung at the bottom of the left column; it will be moved into<strong>Settings</strong>At the bottom of the page, it's called "Tools". The fastest way to move on the computer is to press <kbd>Ctrl</kbd> + <kbd>K</kbd>(Mac is <kbd>Cmd</kbd> + <kbd>K</kbd>) Open quick search and type "tools" or "developer" directly.</p>
         </li>
         <li>
-          <h3>它有反應但沒有聲音</h3>
-          <p>先檢查 <strong>設定</strong> → <strong>系統</strong> → <strong>網路</strong> 裡的「本地網路 Home Assistant URL」是不是正確的。朗讀出來的音檔要靠這個網址讓裝置去抓，網址錯了就是有畫面沒聲音。如果你是純手寫 YAML 沒有用 <code>default_config:</code>，還要確認 <code>media_source:</code> 有加。</p>
+          <h3>it reacts but has no sound</h3>
+          <p>Check first <strong>Settings</strong> → <strong>system</strong> → <strong>Internet</strong> Is the "Local Network Home Assistant URL" in "Local Network Home Assistant URL" correct? The audio file that is read aloud depends on this URL for the device to capture. If the URL is wrong, there will be pictures but no sound. YAML is useless if you write it purely by hand <code>default_config:</code>, also confirm <code>media_source:</code> There are plus.</p>
         </li>
         <li>
-          <h3>名字念不對、或每次都要講很饒舌的全名</h3>
-          <p>加別名。<strong>設定</strong> → <strong>語音助理</strong> → <strong>公開</strong> → 點該實體 → 新增別名。一個實體可以有多個別名，你家每個人講法不一樣就每種都加一個。中文特別容易遇到「口語簡稱」跟「正式名稱」不同的狀況，別名就是解法。</p>
+          <h3>I can’t pronounce my name correctly, or I have to pronounce my full name in a garrulous way every time.</h3>
+          <p>Add an alias.<strong>Settings</strong> → <strong>voice assistant</strong> → <strong>public</strong> → Click the entity → Add an alias. An entity can have multiple aliases. If everyone in your family has different opinions, just add one for each. Chinese is particularly prone to encounter situations where the "colloquial abbreviation" and the "formal name" are different, and aliases are the solution.</p>
         </li>
         <li>
-          <h3>誤觸發：叫 A 卻開到 B</h3>
-          <p>這是公開太多 + 名字太像的併發症。處理順序是：先砍掉不需要公開的實體，再把剩下容易搞混的重新命名成「區域 + 描述」的格式。官方最佳實務也提醒，實體的領域（Domain）跟裝置類別（Device class）要設對——你沒辦法叫 Assist「打開」一個被歸類成開關的閥門。</p>
+          <h3>False trigger: Call A but drive to B</h3>
+          <p>This is the complication of too much disclosure + too much similarity in names. The order of processing is: first cut off the entities that do not need to be disclosed, and then rename the remaining ones that are easy to confuse into the "region + description" format. Official best practices also remind that the domain of the entity (Domain) and the device class (Device class) must be set correctly - you cannot ask Assist to "open" a valve classified as a switch.</p>
         </li>
         <li>
-          <h3>本地 Whisper 慢到想哭</h3>
-          <p>三個方向：把 <code>language</code> 從 <code>auto</code> 改成固定語言（官方說 auto 會慢<strong>很多</strong>）；模型往下調（<code>tiny-int8</code>、<code>base-int8</code> 這種 int8 壓縮版）；或是把語音轉文字換成 Home Assistant Cloud，把本機留給對話代理。Whisper 的 <code>beam_size</code> 預設是 <code>0</code>，代表在 ARM 機器上自動用 1、其他機器用 5——數字越大越準但越慢。</p>
+          <h3>Local Whisper is so slow that I want to cry</h3>
+          <p>Three directions: turn <code>language</code> from <code>auto</code> Change to a fixed language (officially, auto will be slower)<strong>a lot</strong>); adjust the model downward (<code>tiny-int8</code>, <code>base-int8</code> This int8 compressed version); or convert speech to text into Home Assistant Cloud, leaving the local machine to the conversation agent. Whisper's <code>beam_size</code> The default is <code>0</code>, which means that it automatically uses 1 on ARM machines and 5 on other machines - the larger the number, the more accurate it is but the slower it is.</p>
         </li>
         <li>
-          <h3>喚醒詞常常沒反應，或半夜自己醒來</h3>
-          <p>先確認你的喚醒詞是跑在裝置上（microWakeWord）還是主機上（openWakeWord）。跑在主機上時，官方提到一台樹莓派 4 大約同時支撐 5 台衛星串流，超過就會開始卡。裝置端的問題則多半是麥克風增益或降噪設定，用 ESPHome 調整那台裝置的設定。</p>
+          <h3>There is often no response to the wake-up word, or I wake up by myself in the middle of the night</h3>
+          <p>First confirm whether your wake word is running on the device (microWakeWord) or on the host (openWakeWord). When running on the host, the official mentioned that a Raspberry Pi 4 can support approximately 5 satellite streams at the same time, and it will start to freeze if it exceeds that. The problem on the device side is probably the microphone gain or noise reduction settings. Use ESPHome to adjust the settings of that device.</p>
         </li>
         <li>
-          <h3>LLM 說它做了但其實沒做</h3>
-          <p>模型幻覺的經典場景。檢查順序：整合設定裡的 <strong>控制 Home Assistant</strong> 有沒有開 → 那個實體有沒有公開 → 模型是不是太小（本地小模型開啟控制後可能連對話都撐不住）。改善做法是打開「優先在本地處理指令」，讓確定性高的指令根本不經過模型。</p>
+          <h3>LLM says it does but it doesn’t</h3>
+          <p>Classic scene of model hallucination. Checking order: Integration settings <strong>Control Home Assistant</strong> Is it turned on → Is the entity public → Is the model too small (local small models may not even be able to hold conversations after the control is turned on). The improvement method is to turn on "Priority to process instructions locally" so that instructions with high certainty do not go through the model at all.</p>
         </li>
         <li>
-          <h3>嵌進側邊欄的網頁是一片空白</h3>
-          <p>對方網站用安全標頭禁止被 iframe 嵌入，這是它們決定的，你改不了。換一個網站，或改用「在新分頁開啟」的做法。另外檢查 HTTPS／HTTP 有沒有混用。</p>
+          <h3>Web pages with embedded sidebars are blank</h3>
+          <p>The other website uses a security header to prohibit iframe embedding. This is decided by them and you cannot change it. Change a website, or use the "open in new tab" method instead. Also check whether HTTPS/HTTP are mixed.</p>
         </li>
       </ol>
     </section>
 
-    <section id="faq" data-nav="常見問題">
-      <h2 data-icon="faq">常見問題</h2>
+    <section id="faq" data-nav="FAQ">
+      <h2 data-icon="faq">FAQ</h2>
 
       <details class="faq">
-        <summary>我一定要付錢訂 Home Assistant Cloud 才能用語音嗎？</summary>
-        <div class="body">不用。Assist 本身完全免費內建，本地的 Whisper、Piper、openWakeWord 也都是免費的官方 Add-on。訂閱 Cloud 買的是「不用自己養一台夠力的主機」跟「中文語音辨識與朗讀品質」。如果你的 Home Assistant 跑在樹莓派上又要用中文，訂閱通常比升級硬體划算；如果你有一台閒置的小主機，全本地完全可行。</div>
+        <summary>Do I have to pay for Home Assistant Cloud to use voice?</summary>
+        <div class="body">No need. Assist itself is completely built-in for free, and the local Whisper, Piper, and openWakeWord are also free official Add-ons. What you buy by subscribing to Cloud is "you don't have to have a capable host yourself" and "Chinese speech recognition and reading quality". If your Home Assistant runs on a Raspberry Pi and you want to use Chinese, subscribing is usually more cost-effective than upgrading the hardware; if you have an idle small host, going full local is completely feasible.</div>
       </details>
 
       <details class="faq">
-        <summary>內建 Assist 跟接 ChatGPT 差在哪？我一定要接 LLM 嗎？</summary>
-        <div class="body">內建 Assist 是句型比對，講對句型就百分之百執行，速度快、免費、離線可用，但完全不會變通也不會聊天。LLM 能懂模糊的講法、能講人話、能連續對話，但每次都要付 token 錢、會慢、偶爾會幻覺（說做了其實沒做）。大部分家庭最實用的答案是<strong>兩個都要</strong>：接 LLM 當對話代理，同時打開「優先在本地處理指令」，簡單指令走本地，聽不懂的才丟給 LLM。</div>
+        <summary>What is the difference between built-in Assist and ChatGPT? Do I have to take LLM?</summary>
+        <div class="body">The built-in Assist is a sentence pattern comparison. Once the sentence pattern is correct, it will be executed 100%. It is fast, free, and available offline, but it cannot adapt or chat at all. LLM can understand vague teachings, speak human language, and have continuous conversations, but it has to pay tokens every time, is slow, and occasionally hallucinates (it says it does it but doesn't do it). The most practical answer for most families is<strong>Want both</strong>: Connect LLM as the dialogue agent, and turn on "Prioritize processing commands locally" at the same time. Simple commands are sent locally, and those that do not understand are thrown to LLM.</div>
       </details>
 
       <details class="faq">
-        <summary>把 API 金鑰貼進 Home Assistant，我家的資料會被拿去訓練模型嗎？</summary>
-        <div class="body">這要看你用哪一家、以及該家的 API 條款怎麼寫，Home Assistant 管不到這件事，各家政策也會變，請直接去該供應商的資料使用政策看。你能控制的是<strong>送出去多少</strong>：只公開必要的實體，模型就只會看到那些。門鎖、攝影機、有個資意味的東西不要公開。如果你完全不接受資料離開家裡，那答案是用 Ollama 跑本地模型，或乾脆只用內建代理。</div>
+        <summary>If I paste the API key into Home Assistant, will my family’s data be used to train the model?</summary>
+        <div class="body">It depends on which provider you use and how the provider's API terms are written. Home Assistant cannot control this matter, and each provider's policies will also change. Please go directly to the provider's data usage policy. What you can control is<strong>How much to give away</strong>: Expose only the necessary entities and the model will only see those. Do not disclose door locks, cameras, or anything with a sense of personal status. If you don't accept data leaving home at all, the answer is to run local models with Ollama, or simply use the built-in proxy.</div>
       </details>
 
       <details class="faq">
-        <summary>我可以叫語音助理開門鎖或解除保全嗎？</summary>
-        <div class="body">技術上可以（把 <code>lock</code> 或 <code>alarm_control_panel</code> 的實體公開就行），但強烈不建議。語音沒有辦法可靠地分辨是誰在講話，站在門外對著窗戶喊也可能被聽到。如果你真的要做，至少改成用腳本包一層，加上額外的條件（例如某支手機必須在家、某個時間區間內），並且清楚知道自己承擔什麼風險。<a href="ch10_scripts.html">第 10 章</a>有腳本的寫法。</div>
+        <summary>Can I ask the voice assistant to unlock the door or release security?</summary>
+        <div class="body">Technically possible (put <code>lock</code> or <code>alarm_control_panel</code> It’s OK if the entity is made public), but it is strongly not recommended. There is no way to reliably tell who is speaking with voice, and you may be heard standing outside the door and shouting into the window. If you really want to do it, at least use a script to wrap it up, add additional conditions (for example, a certain mobile phone must be at home, within a certain time range), and know clearly what risks you are taking.<a href="ch10_scripts.html">Chapter 10</a>Scripted writing.</div>
       </details>
 
       <details class="faq">
-        <summary>中文講不太準，有什麼優化順序？</summary>
-        <div class="body">照這個順序調：<strong>一、</strong>確認語音轉文字引擎的語言設定是中文而不是 auto。<strong>二、</strong>把裝置名稱改成好念的口語（「客廳燈」比「客廳吸頂燈第一組」好一百倍），並大量加別名。<strong>三、</strong>如果本地 Whisper 用小模型聽不準，往上調模型或改用 Home Assistant Cloud 的語音轉文字（它的清單裡有 zh-TW）。<strong>四、</strong>還是不行的話，把對話代理換成 LLM，讓模型去容忍辨識出來的錯字。順帶一提，本地的 Speech-to-Phrase 目前語言清單裡沒有中文，這條路不用試。</div>
+        <summary>I can’t speak Chinese accurately, what’s the order of optimization?</summary>
+        <div class="body">Follow this order:<strong>1.</strong>Make sure the speech-to-text engine language setting is Chinese and not auto.<strong>2.</strong>Change the name of the device to a colloquial language that is easy to pronounce ("living room lamp" is a hundred times better than "living room ceiling lamp set 1"), and add a lot of aliases.<strong>Three.</strong>If the local Whisper cannot hear accurately with a small model, adjust the model upward or use Home Assistant Cloud's speech-to-text instead (zh-TW is in its list).<strong>Four.</strong>If that still doesn’t work, replace the conversational agent with an LLM and let the model tolerate the identified typos. By the way, the local Speech-to-Phrase currently does not have Chinese in the language list, so there is no need to try this method.</div>
       </details>
 
       <details class="faq">
-        <summary>Assist 聽不懂我某個特定講法，可以自己教它嗎？</summary>
-        <div class="body">可以，而且有兩條路。<strong>不想碰 YAML 的走這條：</strong>到 <strong>設定</strong> → <strong>自動化與場景</strong> → <strong>建立自動化</strong>，觸發（Trigger）的下拉選單裡選 <strong>句子（Sentence）</strong>，把你想講的那句話填進去，動作那邊接你要做的事。這等於用自動化教它一句新台詞，全程點選就好。<strong>想寫設定檔的走這條：</strong>在 <code>configuration.yaml</code> 裡擴充現有意圖：<pre class="code-block"><code>conversation:
+        <summary>Assist doesn't understand a specific teaching method of mine, can I teach it myself?</summary>
+        <div class="body">Yes, and there are two ways.<strong>If you don’t want to touch YAML, go this way:</strong>Arrive <strong>Settings</strong> → <strong>Automation and scenarios</strong> → <strong>Build automation</strong>, select from the drop-down menu of Trigger <strong>Sentence</strong>, fill in the sentence you want to say, and pick up what you want to do on the action side. This is equivalent to using automation to teach it a new line, just click the whole process.<strong>If you want to write a configuration file, go this way:</strong>in <code>configuration.yaml</code> To extend an existing intent:<pre class="code-block"><code>conversation:
   intents:
     HassTurnOn:
-      - "activate [the] {name}"</code></pre>更完整的做法是在設定資料夾裡開 <code>config/custom_sentences/&lt;語言代碼&gt;/</code> 目錄（英文就是 <code>config/custom_sentences/en/</code>）放 YAML 檔，可以自己定義意圖、清單、數值範圍，甚至改掉它回你的句子（同目錄放一個 <code>responses.yaml</code>）。改完之後重新啟動一次 Home Assistant 最保險。</div>
+      - "activate [the] {name}"</code></pre>A more complete approach is to open it in the settings folder <code>config/custom_sentences/&lt;language code&gt;/</code> Table of contents (English is <code>config/custom_sentences/en/</code>) into a YAML file, you can define your own intentions, lists, value ranges, and even change it back to your sentences (put one in the same directory <code>responses.yaml</code>). It is safest to restart Home Assistant after making changes.</div>
       </details>
 
       <details class="faq">
-        <summary>一台音箱可以同時服務講中文的我跟講英文的家人嗎？</summary>
-        <div class="body">可以。從 2025.10 版開始，每台 Assist 語音衛星支援<strong>最多兩組喚醒詞、各自對應一條流水線</strong>。你可以讓「Okay Nabu」走中文流水線、「Hey Jarvis」走英文流水線。同樣的機制也能拿來分「本地快速版」跟「雲端 LLM 版」，看你喊哪個名字決定走哪條路。</div>
+        <summary>Can one speaker serve me who speaks Chinese and my family who speak English at the same time?</summary>
+        <div class="body">Yes. Starting with version 2025.10, every Assist voice satellite supports<strong>Up to two sets of wake-up words, each corresponding to an assembly line</strong>. You can put "Okay Nabu" on the Chinese assembly line and "Hey Jarvis" on the English assembly line. The same mechanism can also be used to divide "local express version" and "cloud LLM version", depending on which name you call determines which path to take.</div>
       </details>
 
       <details class="faq">
-        <summary>MCP 到底要不要碰？</summary>
-        <div class="body">如果你只是想在家裡用語音關燈，<strong>完全不用碰</strong>，前面的內容就夠了。MCP 適合兩種人：想在 Claude、ChatGPT 這類外部 App 裡直接操作家裡（用 Model Context Protocol Server 整合，端點是 <code>/api/mcp</code>），或是想給家裡的對話代理加上額外工具例如記憶、網路搜尋（用 Model Context Protocol 用戶端整合，2025.2 版加入，目前只支援 Tools）。兩者都牽涉到把控制權交出去，設定前先把「公開實體」的清單縮到最小。</div>
+        <summary>Should MCP be touched?</summary>
+        <div class="body">If you just want to use your voice to turn off the lights at home,<strong>No need to touch at all</strong>, the previous content is enough. MCP is suitable for two types of people: those who want to directly operate their homes in external apps such as Claude and ChatGPT (integrated with Model Context Protocol Server, the endpoint is <code>/api/mcp</code>), or want to add additional tools to the conversational agent at home such as memory and network search (integrated using the Model Context Protocol client, added in version 2025.2, currently only supports Tools). Both involve handing over control and minimizing the list of "public entities" before setting them up.</div>
       </details>
 
       <details class="faq">
-        <summary>我把外部 AI 網站掛進側邊欄，結果一片空白，是我設錯了嗎？</summary>
-        <div class="body">通常不是。很多網站會用瀏覽器的安全機制明確禁止自己被別人的網頁嵌入，這是對方的決定，你沒辦法繞過。另外也要確認協定一致：Home Assistant 用 HTTPS 的話，嵌入的網址也得是 HTTPS。順帶提醒，舊教學裡的 <code>panel_iframe:</code> YAML 設定已經被「網頁」儀表板取代（升級時會自動遷移），現在請用 <strong>設定</strong> → <strong>儀表板</strong> → <strong>新增儀表板</strong> → <strong>網頁</strong>。</div>
+        <summary>I put the external AI website into the sidebar, but the result is blank. Am I setting it wrong?</summary>
+        <div class="body">Usually not. Many websites will use the browser's security mechanism to explicitly prohibit themselves from being embedded in other people's web pages. This is the other party's decision and you cannot bypass it. Also make sure the protocols are consistent: if Home Assistant uses HTTPS, the embedded URL must also be HTTPS. By the way, as a reminder, in the old teaching <code>panel_iframe:</code> YAML settings have been replaced by the "Web" dashboard (will be automatically migrated when upgrading), please use now <strong>Settings</strong> → <strong>Dashboard</strong> → <strong>Add new dashboard</strong> → <strong>web page</strong>.</div>
       </details>
 
       <details class="faq">
-        <summary>可以在自動化裡「叫 AI 幫我做事」嗎？</summary>
-        <div class="body">可以，而且有兩條路。第一條是 <code>conversation.process</code> 動作，把一段文字丟給指定的對話代理處理，等於用程式的方式跟 Assist 講話。第二條是 <strong>AI Task</strong>（2025.7 版加入的建構區塊整合），提供 <code>ai_task.generate_data</code> 跟 <code>ai_task.generate_image</code> 兩個動作，專門用來在自動化裡產生文字、結構化資料或圖片，例如「看一眼攝影機畫面，數一下車道上有幾台車」。這比自己拼一大堆範本乾淨很多。</div>
+        <summary>Can I "ask AI to do things for me" in automation?</summary>
+        <div class="body">Yes, and there are two ways. The first one is <code>conversation.process</code> Action, throw a piece of text to the designated dialogue agent for processing, which is equivalent to talking to Assist in a programmatic way. The second article is <strong>AI Task</strong>(Building block integration added in version 2025.7), provided <code>ai_task.generate_data</code> follow <code>ai_task.generate_image</code> Two actions, specifically used to generate text, structured data or images in automation, such as "take a look at the camera screen and count the number of cars in the lane". This is much cleaner than putting together a bunch of templates by yourself.</div>
       </details>
     </section>
 
     <div class="pager">
       <a class="prev" href="ch18_history_data.html">
         <span class="label">← Previous</span>
-        <span class="title">18 · 歷史數據與導出</span>
+        <span class="title">18· History and data export</span>
       </a>
       <a class="next" href="ch20_addons_docker.html">
         <span class="label">Next →</span>
-        <span class="title">20 · Add-on 與 Docker</span>
+        <span class="title">20 · Add-on and Docker</span>
       </a>
     </div>
 
     <footer class="site-footer">
-      <p>Home Assistant 新居入住指南 is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
-      <p class="footer-meta">截圖取自 Home Assistant 官方介面。Home Assistant 為 Open Home Foundation 的商標，本站與其無隸屬關係。 · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
+      <p>Home Assistant New Home Move-In Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
+      <p class="footer-meta">Screenshot taken from Home Assistant official interface. Home Assistant is a trademark of the Open Home Foundation, and this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
   </main>
 </div>

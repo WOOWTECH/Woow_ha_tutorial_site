@@ -1,0 +1,10 @@
+{
+  "file": "ch11_devices.html",
+  "entries": [
+    {
+      "unit": "#faq",
+      "zh": "<code>/config/devices/device/裝置ID</code>",
+      "en": "<code>/config/devices/device/deviceID</code>"
+    }
+  ]
+}

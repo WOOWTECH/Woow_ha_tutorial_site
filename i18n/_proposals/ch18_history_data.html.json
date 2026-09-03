@@ -1,0 +1,25 @@
+{
+  "file": "ch18_history_data.html",
+  "entries": [
+    {
+      "unit": "#purge",
+      "zh": "<pre class=\"code-block\"><code>alias: 每天清掉吵鬧功率感測器的舊資料\ntriggers:\n  - trigger: time\n    at: \"04:15:00\"\nactions:\n  - action: recorder.purge_entities\n    data:\n      keep_days: 5\n      entity_id: sensor.power_sensor_0\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Clear old data from noisy power sensors every day\ntriggers:\n  - trigger: time\n    at: \"04:15:00\"\nactions:\n  - action: recorder.purge_entities\n    data:\n      keep_days: 5\n      entity_id: sensor.power_sensor_0\nmode: single</code></pre>"
+    },
+    {
+      "unit": "#mariadb",
+      "zh": "<pre class=\"code-block\"><code>recorder:\n  db_url: mysql://homeassistant:你的密碼@core-mariadb/homeassistant?charset=utf8mb4\n  purge_keep_days: 14</code></pre>",
+      "en": "<pre class=\"code-block\"><code>recorder:\n  db_url: mysql://homeassistant:your password@core-mariadb/homeassistant?charset=utf8mb4\n  purge_keep_days: 14</code></pre>"
+    },
+    {
+      "unit": "#mariadb",
+      "zh": "<code>mariadb_url: mysql://homeassistant:真正的密碼@core-mariadb/homeassistant?charset=utf8mb4</code>",
+      "en": "<code>mariadb_url: mysql://homeassistant:real password @core-mariadb/homeassistant?charset=utf8mb4</code>"
+    },
+    {
+      "unit": "#sql_sensor",
+      "zh": "<pre class=\"code-block\"><code>alias: 資料庫太肥就通知我\ntriggers:\n  - trigger: numeric_state\n    entity_id: sensor.database_size\n    above: 2000\n    for: \"01:00:00\"\nconditions: []\nactions:\n  - action: notify.persistent_notification\n    data:\n      title: 資料庫警告\n      message: 資料庫已經超過 2000 MiB（大約 2 GB），該去看看是誰在灌水了。\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Notify me if the database is too big\ntriggers:\n  - trigger: numeric_state\n    entity_id: sensor.database_size\n    above: 2000\n    for: \"01:00:00\"\nconditions: []\nactions:\n  - action: notify.persistent_notification\n    data:\n      title: Database warning\n      message: The database has exceeded 2000 MiB (approximately 2 GB), it's time to find out who is spamming it.\nmode: single</code></pre>"
+    }
+  ]
+}

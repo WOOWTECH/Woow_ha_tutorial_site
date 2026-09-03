@@ -1,4 +1,617 @@
 {
   "_readme": "code 區塊的例外清單：只有列在這裡的 <pre>/<code>/<kbd> 才允許與 zh 不同（通常是程式碼裡的中文註解或中文佔位值）。zh 那邊改了就會對不上而紅燈。由 scripts/apply_code_translations.js 維護。",
-  "allow": []
+  "allow": [
+    {
+      "file": "appendix_hardware_install.html",
+      "unit": "#flash",
+      "zh": "<code>haos_generic-x86-64-<em>版本</em>.img.xz</code>",
+      "en": "<code>haos_generic-x86-64-<em>Version</em>.img.xz</code>"
+    },
+    {
+      "file": "appendix_hardware_install.html",
+      "unit": "#troubleshoot",
+      "zh": "<code>http://那個IP:8123</code>",
+      "en": "<code>http://thatIP:8123</code>"
+    },
+    {
+      "file": "appendix_scenes_helpers_groups.html",
+      "unit": "#combined",
+      "zh": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>alias: 浴室夜間動作燈\ntriggers:\n  - trigger: state\n    entity_id: binary_sensor.bathroom_motion\n    to: \"on\"\nconditions:\n  - condition: state\n    entity_id: schedule.night_time\n    state: \"on\"\nactions:\n  - action: scene.turn_on\n    target: { entity_id: scene.bathroom_night_soft }\n  - action: timer.start\n    target: { entity_id: timer.bathroom_light }</code></pre>",
+      "en": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>alias: bathroom night action light\ntriggers:\n  - trigger: state\n    entity_id: binary_sensor.bathroom_motion\n    to: \"on\"\nconditions:\n  - condition: state\n    entity_id: schedule.night_time\n    state: \"on\"\nactions:\n  - action: scene.turn_on\n    target: { entity_id: scene.bathroom_night_soft }\n  - action: timer.start\n    target: { entity_id: timer.bathroom_light }</code></pre>"
+    },
+    {
+      "file": "appendix_scenes_helpers_groups.html",
+      "unit": "#combined",
+      "zh": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>alias: 浴室動作燈熄滅\ntriggers:\n  - trigger: event\n    event_type: timer.finished\n    event_data: { entity_id: timer.bathroom_light }\nactions:\n  - action: light.turn_off\n    target: { entity_id: light.bathroom_all }\n    data: { transition: 3 }</code></pre>",
+      "en": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>alias: Bathroom action light goes out\ntriggers:\n  - trigger: event\n    event_type: timer.finished\n    event_data: { entity_id: timer.bathroom_light }\nactions:\n  - action: light.turn_off\n    target: { entity_id: light.bathroom_all }\n    data: { transition: 3 }</code></pre>"
+    },
+    {
+      "file": "ch10_scripts.html",
+      "unit": "#steps",
+      "zh": "<code>notify.mobile_app_你的手機</code>",
+      "en": "<code>notify.mobile_app_your mobile phone</code>"
+    },
+    {
+      "file": "ch10_scripts.html",
+      "unit": "#fields",
+      "zh": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>fields:\n  delay_seconds:\n    name: 玄關燈延遲秒數\n    description: 幾秒後關玄關燈\n    default: 30\n    selector:\n      number:\n        min: 5\n        max: 300\n        unit_of_measurement: 秒</code></pre>",
+      "en": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>fields:\n  delay_seconds:\n    name: Entrance light delay seconds\n    description: Turn off the entrance light in a few seconds\n    default: 30\n    selector:\n      number:\n        min: 5\n        max: 300\n        unit_of_measurement: seconds</code></pre>"
+    },
+    {
+      "file": "ch10_scripts.html",
+      "unit": "#patterns",
+      "zh": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>alias: nag_until_laundry_picked\nmode: restart\nsequence:\n  - repeat:\n      until:\n        - condition: state\n          entity_id: binary_sensor.laundry_motion\n          state: \"on\"\n      sequence:\n        - action: notify.mobile_app_dad\n          data:\n            message: 洗衣機洗完了，快去拿！\n        - delay: \"00:03:00\"</code></pre>",
+      "en": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>alias: nag_until_laundry_picked\nmode: restart\nsequence:\n  - repeat:\n      until:\n        - condition: state\n          entity_id: binary_sensor.laundry_motion\n          state: \"on\"\n      sequence:\n        - action: notify.mobile_app_dad\n          data:\n            message: The washing machine has finished washing, go and get it!\n        - delay: \"00:03:00\"</code></pre>"
+    },
+    {
+      "file": "ch10_scripts.html",
+      "unit": "#patterns",
+      "zh": "<code>action: script.其他腳本</code>",
+      "en": "<code>action: script.Other scripts</code>"
+    },
+    {
+      "file": "ch11_devices.html",
+      "unit": "#faq",
+      "zh": "<code>/config/devices/device/裝置ID</code>",
+      "en": "<code>/config/devices/device/deviceID</code>"
+    },
+    {
+      "file": "ch12_domains.html",
+      "unit": "#notify",
+      "zh": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>action: notify.mobile_app_iphone\ndata:\n  title: 洗衣機洗完了\n  message: 記得拿出來\n  data:\n    push:\n      sound: US-EN-Alexa-Laundry-Ready.wav  # iOS 音效\n      badge: 1\n    actions:                                # 可點按動作\n      - action: LAUNDRY_DONE\n        title: 好，我來拿\n      - action: LAUNDRY_SNOOZE\n        title: 10 分鐘後提醒\n    image: /api/camera_proxy/camera.laundry # 直接顯示相機截圖\n    tag: laundry                            # 相同 tag 會覆蓋前一則\n    channel: laundry                        # Android 通知通道\n    ttl: 0                                  # Android 高優先</code></pre>",
+      "en": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>action: notify.mobile_app_iphone\ndata:\n  title: The washing machine has finished washing\n  message: Remember to take it out\n  data:\n    push:\n      sound: US-EN-Alexa-Laundry-Ready.wav # iOS sound effects\n      badge: 1\n    actions: # Clickable actions\n      - action: LAUNDRY_DONE\n        title: OK, I'll get it\n      - action: LAUNDRY_SNOOZE\n        title: Reminder in 10 minutes\n    image: /api/camera_proxy/camera.laundry # Directly display camera screenshots\n    tag: laundry # The same tag will overwrite the previous one\n    channel: laundry # Android notification channel\n    ttl: 0 # Android high priority</code></pre>"
+    },
+    {
+      "file": "ch13_themes.html",
+      "unit": "#scope",
+      "zh": "<pre class=\"code-block\"><code>alias: 日落換成深色主題\ntriggers:\n  - trigger: sun\n    event: sunset\nactions:\n  - action: frontend.set_theme\n    data:\n      name: \"my_home_dark\"</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: sunset changed to dark theme\ntriggers:\n  - trigger: sun\n    event: sunset\nactions:\n  - action: frontend.set_theme\n    data:\n      name: \"my_home_dark\"</code></pre>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#oauth",
+      "zh": "<pre class=\"code-block\"><code>&lt;你的 HA 網址&gt;/auth/external/callback</code></pre>",
+      "en": "<pre class=\"code-block\"><code>&lt;your HA URL&gt;/auth/external/callback</code></pre>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#location",
+      "zh": "<code>device_tracker.&lt;你的裝置名&gt;</code>",
+      "en": "<code>device_tracker.&lt;your device name&gt;</code>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#calendar_notify",
+      "zh": "<pre class=\"code-block\"><code>rest_command:\n  line_push:\n    url: \"https://api.line.me/v2/bot/message/push\"\n    method: post\n    content_type: \"application/json\"\n    headers:\n      Authorization: \"Bearer 你的_CHANNEL_ACCESS_TOKEN\"\n    payload: &gt;-\n      {\"to\": \"你的_USER_ID\",\n       \"messages\": [{\"type\": \"text\", \"text\": \"{{ msg }}\"}]}</code></pre>",
+      "en": "<pre class=\"code-block\"><code>rest_command:\n  line_push:\n    url: \"https://api.line.me/v2/bot/message/push\"\n    method: post\n    content_type: \"application/json\"\n    headers:\n      Authorization: \"Bearer your_CHANNEL_ACCESS_TOKEN\"\n    payload: &gt;-\n      {\"to\": \"your_USER_ID\",\n       \"messages\": [{\"type\": \"text\", \"text\": \"{{ msg }}\"}]}</code></pre>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#calendar_notify",
+      "zh": "<pre class=\"code-block\"><code>actions:\n  - action: rest_command.line_push\n    data:\n      msg: \"洗衣機洗好了，記得去晾\"</code></pre>",
+      "en": "<pre class=\"code-block\"><code>actions:\n  - action: rest_command.line_push\n    data:\n      msg: \"The washing machine has finished washing, remember to dry it\"</code></pre>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#faq",
+      "zh": "<code>設定 → 工具 → YAML</code>",
+      "en": "<code>Settings → Tools → YAML</code>"
+    },
+    {
+      "file": "ch15_protocols.html",
+      "unit": "#knx_modbus",
+      "zh": "<pre class=\"code-block\"><code>modbus:\n  - name: modbus_hub\n    type: tcp\n    host: 192.168.1.60\n    port: 502\n    sensors:\n      - name: 辦公室總電表\n        address: 100\n        input_type: holding\n        device_address: 1</code></pre>",
+      "en": "<pre class=\"code-block\"><code>modbus:\n  - name: modbus_hub\n    type: tcp\n    host: 192.168.1.60\n    port: 502\n    sensors:\n      - name: Office master meter\n        address: 100\n        input_type: holding\n        device_address: 1</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#todo_actions",
+      "zh": "<pre class=\"code-block\"><code>action: todo.add_item\ntarget:\n  entity_id: todo.family_chores\ndata:\n  item: 換客廳冷氣濾網\n  due_date: \"2026-09-01\"\n  description: 拆下來用水沖乾淨，陰乾一天再裝回去</code></pre>",
+      "en": "<pre class=\"code-block\"><code>action: todo.add_item\ntarget:\n  entity_id: todo.family_chores\ndata:\n  item: Replacement of living room air conditioner filter\n  due_date: \"2026-09-01\"\n  description: Take it apart, rinse it with water, dry it in the shade for a day and then put it back together.</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#todo_actions",
+      "zh": "<pre class=\"code-block\"><code>action: todo.update_item\ntarget:\n  entity_id: todo.family_chores\ndata:\n  item: 換客廳冷氣濾網\n  status: completed</code></pre>",
+      "en": "<pre class=\"code-block\"><code>action: todo.update_item\ntarget:\n  entity_id: todo.family_chores\ndata:\n  item: Replacement of living room air conditioner filter\n  status: completed</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#todo_actions",
+      "zh": "<pre class=\"code-block\"><code>todo.family_chores:\n  items:\n    - summary: 換客廳冷氣濾網\n      uid: \"01244b28-e604-11ee-a0a4-e45f0197c057\"\n      status: needs_action\n      due: \"2026-09-01\"\n      description: 拆下來用水沖乾淨\n    - summary: 繳管理費\n      uid: \"ae993df4-e604-11ee-a0a4-e45f0197c057\"\n      status: needs_action</code></pre>",
+      "en": "<pre class=\"code-block\"><code>todo.family_chores:\n  items:\n    - summary: Replace the living room air-conditioning filter\n      uid: \"01244b28-e604-11ee-a0a4-e45f0197c057\"\n      status: needs_action\n      due: \"2026-09-01\"\n      description: Remove and rinse with water\n    - summary: Pay management fee\n      uid: \"ae993df4-e604-11ee-a0a4-e45f0197c057\"\n      status: needs_action</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#todo_trigger",
+      "zh": "<pre class=\"code-block\"><code>alias: 購物清單有人加東西就通知\ntriggers:\n  - trigger: todo.item_added\n    target:\n      entity_id: todo.shopping_list\nactions:\n  - action: notify.mobile_app_my_phone\n    data:\n      title: 購物清單更新\n      message: 有人加了新東西，出門前記得看一下</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Notify when someone adds something to the shopping list\ntriggers:\n  - trigger: todo.item_added\n    target:\n      entity_id: todo.shopping_list\nactions:\n  - action: notify.mobile_app_my_phone\n    data:\n      title: Shopping list update\n      message: Someone has added something new, remember to take a look before going out</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#local_calendar",
+      "zh": "<pre class=\"code-block\"><code>action: calendar.create_event\ntarget:\n  entity_id: calendar.family\ndata:\n  summary: 家庭聚餐\n  start_date_time: \"2026-09-20 18:00:00\"\n  end_date_time: \"2026-09-20 20:00:00\"\n  location: 阿嬤家</code></pre>",
+      "en": "<pre class=\"code-block\"><code>action: calendar.create_event\ntarget:\n  entity_id: calendar.family\ndata:\n  summary: family dinner\n  start_date_time: \"2026-09-20 18:00:00\"\n  end_date_time: \"2026-09-20 20:00:00\"\n  location: Grandma’s house</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#cards",
+      "zh": "<pre class=\"code-block\"><code>type: todo-list\nentity: todo.family_chores\ntitle: 這週家務\nhide_completed: true\ndisplay_order: duedate_asc</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: todo-list\nentity: todo.family_chores\ntitle: Housework this week\nhide_completed: true\ndisplay_order: duedate_asc</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#cards",
+      "zh": "<pre class=\"code-block\"><code>type: todo-list\nentity: todo.family_chores\ntitle: 今天要做\nhide_completed: true\ndue_date_period:\n  calendar:\n    period: day</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: todo-list\nentity: todo.family_chores\ntitle: To do today\nhide_completed: true\ndue_date_period:\n  calendar:\n    period: day</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#cards",
+      "zh": "<pre class=\"code-block\"><code>type: calendar\ntitle: 這個月\nentities:\n  - calendar.trash_day\n  - calendar.family_chores\n  - calendar.bills\ninitial_view: listWeek</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: calendar\ntitle: this month\nentities:\n  - calendar.trash_day\n  - calendar.family_chores\n  - calendar.bills\ninitial_view: listWeek</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#calendar_trigger",
+      "zh": "<code>\"時:分:秒\"</code>",
+      "en": "<code>\"hour:minute:second\"</code>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#recipes",
+      "zh": "<pre class=\"code-block\"><code>alias: 垃圾車快到了\ntriggers:\n  - trigger: calendar\n    entity_id: calendar.trash_day\n    event: start\n    offset: \"-00:20:00\"\nactions:\n  - action: notify.mobile_app_my_phone\n    data:\n      title: 20 分鐘後垃圾車\n      message: \"{{ trigger.calendar_event.summary }}｜袋子拿了嗎\"\n  - action: light.turn_on\n    target:\n      entity_id: light.entrance\n    data:\n      brightness_pct: 80\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: The garbage truck is coming\ntriggers:\n  - trigger: calendar\n    entity_id: calendar.trash_day\n    event: start\n    offset: \"-00:20:00\"\nactions:\n  - action: notify.mobile_app_my_phone\n    data:\n      title: Garbage truck in 20 minutes\n      message: \"{{ trigger.calendar_event.summary }}｜Have you got the bag?\"\n  - action: light.turn_on\n    target:\n      entity_id: light.entrance\n    data:\n      brightness_pct: 80\nmode: single</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#recipes",
+      "zh": "<pre class=\"code-block\"><code>alias: 今天到期的待辦提醒\ntriggers:\n  - trigger: time\n    at: \"08:00:00\"\nactions:\n  - action: todo.get_items\n    target:\n      entity_id: todo.family_chores\n    data:\n      status: needs_action\n    response_variable: result\n  - variables:\n      today: \"{{ now().date() | string }}\"\n      due_today: >-\n        {{ result['todo.family_chores']['items']\n           | selectattr('due', 'defined')\n           | rejectattr('due', 'none')\n           | selectattr('due', 'search', today)\n           | map(attribute='summary') | list }}\n  - if:\n      - condition: template\n        value_template: \"{{ due_today | count > 0 }}\"\n    then:\n      - action: notify.mobile_app_my_phone\n        data:\n          title: 今天有 {{ due_today | count }} 件事到期\n          message: \"{{ due_today | join('、') }}\"\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: To-do reminder due today\ntriggers:\n  - trigger: time\n    at: \"08:00:00\"\nactions:\n  - action: todo.get_items\n    target:\n      entity_id: todo.family_chores\n    data:\n      status: needs_action\n    response_variable: result\n  - variables:\n      today: \"{{ now().date() | string }}\"\n      due_today: &gt;-\n        {{ result['todo.family_chores']['items']\n           | selectattr('due', 'defined')\n           | rejectattr('due', 'none')\n           | selectattr('due', 'search', today)\n           | map(attribute='summary') | list }}\n  -if:\n      - condition: template\n        value_template: \"{{ due_today | count &gt; 0 }}\"\n    then:\n      - action: notify.mobile_app_my_phone\n        data:\n          title: {{ due_today | count }} things are due today\n          message: \"{{ due_today | join(', ') }}\"\nmode: single</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#recipes",
+      "zh": "<pre class=\"code-block\"><code>alias: 保養行事曆自動生待辦\ntriggers:\n  - trigger: calendar\n    entity_id: calendar.maintenance\n    event: start\nactions:\n  - action: todo.add_item\n    target:\n      entity_id: todo.family_chores\n    data:\n      item: \"{{ trigger.calendar_event.summary }}\"\n      due_date: \"{{ trigger.calendar_event.start[:10] }}\"\n      description: \"{{ trigger.calendar_event.description }}\"\nmode: queued\nmax: 10</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Maintenance calendar automatically generates to-do items\ntriggers:\n  - trigger: calendar\n    entity_id: calendar.maintenance\n    event: start\nactions:\n  - action: todo.add_item\n    target:\n      entity_id: todo.family_chores\n    data:\n      item: \"{{ trigger.calendar_event.summary }}\"\n      due_date: \"{{ trigger.calendar_event.start[:10] }}\"\n      description: \"{{ trigger.calendar_event.description }}\"\nmode: queued\nmax: 10</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#recipes",
+      "zh": "<pre class=\"code-block\"><code>alias: 家事輪值提醒\ntriggers:\n  - trigger: calendar\n    entity_id: calendar.chore_rotation\n    event: start\n    offset: \"-01:00:00\"\nactions:\n  - action: todo.add_item\n    target:\n      entity_id: todo.family_chores\n    data:\n      item: \"{{ trigger.calendar_event.summary }}\"\n  - action: notify.family_all\n    data:\n      title: 家事輪值\n      message: \"一小時後：{{ trigger.calendar_event.summary }}\"\nmode: queued\nmax: 10</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: household rotation reminder\ntriggers:\n  - trigger: calendar\n    entity_id: calendar.chore_rotation\n    event:start\n    offset: \"-01:00:00\"\nactions:\n  - action: todo.add_item\n    target:\n      entity_id: todo.family_chores\n    data:\n      item: \"{{ trigger.calendar_event.summary }}\"\n  - action: notify.family_all\n    data:\n      title: Housework rotation\n      message: \"One hour later: {{ trigger.calendar_event.summary }}\"\nmode: queued\nmax: 10</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#recipes",
+      "zh": "<pre class=\"code-block\"><code>alias: 會議室隨預約開關\ntriggers:\n  - trigger: calendar\n    id: meeting_start\n    entity_id: calendar.meeting_room\n    event: start\n    offset: \"-00:10:00\"\n  - trigger: calendar\n    id: meeting_end\n    entity_id: calendar.meeting_room\n    event: end\nactions:\n  - choose:\n      - conditions:\n          - condition: trigger\n            id: meeting_start\n        sequence:\n          - action: light.turn_on\n            target:\n              entity_id: light.meeting_room\n          - action: climate.turn_on\n            target:\n              entity_id: climate.meeting_room\n      - conditions:\n          - condition: trigger\n            id: meeting_end\n        sequence:\n          - action: light.turn_off\n            target:\n              entity_id: light.meeting_room\n          - action: climate.turn_off\n            target:\n              entity_id: climate.meeting_room\nmode: queued\nmax: 10</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Meeting rooms can be opened and closed by reservation\ntriggers:\n  - trigger: calendar\n    id: meeting_start\n    entity_id: calendar.meeting_room\n    event: start\n    offset: \"-00:10:00\"\n  - trigger: calendar\n    id: meeting_end\n    entity_id: calendar.meeting_room\n    event:end\nactions:\n  -choose:\n      - conditions:\n          - condition: trigger\n            id: meeting_start\n        sequence:\n          - action: light.turn_on\n            target:\n              entity_id: light.meeting_room\n          - action: climate.turn_on\n            target:\n              entity_id: climate.meeting_room\n      - conditions:\n          - condition: trigger\n            id: meeting_end\n        sequence:\n          - action: light.turn_off\n            target:\n              entity_id: light.meeting_room\n          - action: climate.turn_off\n            target:\n              entity_id: climate.meeting_room\nmode: queued\nmax: 10</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#recipes",
+      "zh": "<pre class=\"code-block\"><code>alias: 週日晚上清空已完成\ntriggers:\n  - trigger: time\n    at: \"22:00:00\"\nconditions:\n  - condition: time\n    weekday:\n      - sun\nactions:\n  - action: todo.remove_completed_items\n    target:\n      entity_id: todo.family_chores\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Cleanup completed on Sunday night\ntriggers:\n  - trigger: time\n    at: \"22:00:00\"\nconditions:\n  - condition: time\n    weekday:\n      - sun\nactions:\n  - action: todo.remove_completed_items\n    target:\n      entity_id: todo.family_chores\nmode: single</code></pre>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#faq",
+      "zh": "<code>result['todo.你的清單']['items']</code>",
+      "en": "<code>result['todo.your list']['items']</code>"
+    },
+    {
+      "file": "ch16_todo_calendar.html",
+      "unit": "#faq",
+      "zh": "<code>{{ '倒垃圾' in trigger.calendar_event.summary }}</code>",
+      "en": "<code>{{ 'Take out the trash' in trigger.calendar_event.summary }}</code>"
+    },
+    {
+      "file": "ch17_energy.html",
+      "unit": "#integral",
+      "zh": "<pre class=\"code-block\"><code>sensor:\n  - platform: integration\n    source: sensor.living_room_ac_power\n    name: 客廳冷氣用電量\n    unit_prefix: k\n    unit_time: h\n    method: trapezoidal\n    max_sub_interval: \"00:01:00\"\n    round: 3</code></pre>",
+      "en": "<pre class=\"code-block\"><code>sensor:\n  - platform: integration\n    source: sensor.living_room_ac_power\n    name: Electricity consumption of living room air conditioner\n    unit_prefix: k\n    unit_time:h\n    method: trapezoidal\n    max_sub_interval: \"00:01:00\"\n    Round: 3</code></pre>"
+    },
+    {
+      "file": "ch17_energy.html",
+      "unit": "#utility_meter",
+      "zh": "<pre class=\"code-block\"><code>utility_meter:\n  ac_daily:\n    source: sensor.living_room_ac_energy\n    name: 客廳冷氣 今日用電\n    cycle: daily\n  ac_monthly:\n    source: sensor.living_room_ac_energy\n    name: 客廳冷氣 本月用電\n    cycle: monthly\n  ac_yearly:\n    source: sensor.living_room_ac_energy\n    name: 客廳冷氣 今年用電\n    cycle: yearly</code></pre>",
+      "en": "<pre class=\"code-block\"><code>utility_meter:\n  ac_daily:\n    source: sensor.living_room_ac_energy\n    name: Living room air conditioner Today’s electricity consumption\n    cycle:daily\n  ac_monthly:\n    source: sensor.living_room_ac_energy\n    name: Living room air conditioner Electricity consumption this month\n    cycle: monthly\n  ac_yearly:\n    source: sensor.living_room_ac_energy\n    name: Living room air conditioner Electricity consumption this year\n    cycle: yearly</code></pre>"
+    },
+    {
+      "file": "ch17_energy.html",
+      "unit": "#cost",
+      "zh": "<pre class=\"code-block\"><code>utility_meter:\n  home_daily:\n    source: sensor.home_energy\n    name: 家庭 今日用電\n    cycle: daily\n    tariffs:\n      - peak\n      - offpeak\n  home_monthly:\n    source: sensor.home_energy\n    name: 家庭 本月用電\n    cycle: monthly\n    tariffs:\n      - peak\n      - offpeak</code></pre>",
+      "en": "<pre class=\"code-block\"><code>utility_meter:\n  home_daily:\n    source: sensor.home_energy\n    name: Household electricity consumption today\n    cycle:daily\n    tariffs:\n      - peak\n      -offpeak\n  home_monthly:\n    source: sensor.home_energy\n    name: Household electricity consumption this month\n    cycle: monthly\n    tariffs:\n      -peak\n      -offpeak</code></pre>"
+    },
+    {
+      "file": "ch17_energy.html",
+      "unit": "#cost",
+      "zh": "<pre class=\"code-block\"><code>alias: 切到尖峰費率\ntriggers:\n  - trigger: time\n    at: \"16:00:00\"\nconditions:\n  - condition: time\n    weekday:\n      - mon\n      - tue\n      - wed\n      - thu\n      - fri\nactions:\n  - action: select.select_option\n    target:\n      entity_id: select.home_daily\n    data:\n      option: peak\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: switch to peak rate\ntriggers:\n  - trigger: time\n    at: \"16:00:00\"\nconditions:\n  - condition: time\n    weekday:\n      -mon\n      -tue\n      - wed\n      - thu\n      - fri\nactions:\n  - action: select.select_option\n    target:\n      entity_id: select.home_daily\n    data:\n      option: peak\nmode: single</code></pre>"
+    },
+    {
+      "file": "ch17_energy.html",
+      "unit": "#advanced",
+      "zh": "<pre class=\"code-block\"><code>template:\n  - sensor:\n      - name: \"太陽能自發自用率\"\n        unique_id: solar_self_consumption_ratio\n        unit_of_measurement: \"%\"\n        state_class: measurement\n        availability: >\n          {{ is_number(states('sensor.solar_production_monthly'))\n             and is_number(states('sensor.grid_export_monthly'))\n             and states('sensor.solar_production_monthly') | float(0) > 0 }}\n        state: >\n          {% set gen = states('sensor.solar_production_monthly') | float(0) %}\n          {% set exp = states('sensor.grid_export_monthly') | float(0) %}\n          {{ ((gen - exp) / gen * 100) | round(1) }}</code></pre>",
+      "en": "<pre class=\"code-block\"><code>template:\n  - sensor:\n      - name: \"solar energy self-consumption rate\"\n        unique_id: solar_self_consumption_ratio\n        unit_of_measurement: \"%\"\n        state_class: measurement\n        availability: &gt;\n          {{ is_number(states('sensor.solar_production_monthly'))\n             and is_number(states('sensor.grid_export_monthly'))\n             and states('sensor.solar_production_monthly') | float(0) &gt; 0 }}\n        state: &gt;\n          {% set gen = states('sensor.solar_production_monthly') | float(0) %}\n          {% set exp = states('sensor.grid_export_monthly') | float(0) %}\n          {{ ((gen - exp) / gen * 100) | round(1) }}</code></pre>"
+    },
+    {
+      "file": "ch18_history_data.html",
+      "unit": "#purge",
+      "zh": "<pre class=\"code-block\"><code>alias: 每天清掉吵鬧功率感測器的舊資料\ntriggers:\n  - trigger: time\n    at: \"04:15:00\"\nactions:\n  - action: recorder.purge_entities\n    data:\n      keep_days: 5\n      entity_id: sensor.power_sensor_0\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Clear old data from noisy power sensors every day\ntriggers:\n  - trigger: time\n    at: \"04:15:00\"\nactions:\n  - action: recorder.purge_entities\n    data:\n      keep_days: 5\n      entity_id: sensor.power_sensor_0\nmode: single</code></pre>"
+    },
+    {
+      "file": "ch18_history_data.html",
+      "unit": "#mariadb",
+      "zh": "<pre class=\"code-block\"><code>recorder:\n  db_url: mysql://homeassistant:你的密碼@core-mariadb/homeassistant?charset=utf8mb4\n  purge_keep_days: 14</code></pre>",
+      "en": "<pre class=\"code-block\"><code>recorder:\n  db_url: mysql://homeassistant:your password@core-mariadb/homeassistant?charset=utf8mb4\n  purge_keep_days: 14</code></pre>"
+    },
+    {
+      "file": "ch18_history_data.html",
+      "unit": "#mariadb",
+      "zh": "<code>mariadb_url: mysql://homeassistant:真正的密碼@core-mariadb/homeassistant?charset=utf8mb4</code>",
+      "en": "<code>mariadb_url: mysql://homeassistant:real password @core-mariadb/homeassistant?charset=utf8mb4</code>"
+    },
+    {
+      "file": "ch18_history_data.html",
+      "unit": "#sql_sensor",
+      "zh": "<pre class=\"code-block\"><code>alias: 資料庫太肥就通知我\ntriggers:\n  - trigger: numeric_state\n    entity_id: sensor.database_size\n    above: 2000\n    for: \"01:00:00\"\nconditions: []\nactions:\n  - action: notify.persistent_notification\n    data:\n      title: 資料庫警告\n      message: 資料庫已經超過 2000 MiB（大約 2 GB），該去看看是誰在灌水了。\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Notify me if the database is too big\ntriggers:\n  - trigger: numeric_state\n    entity_id: sensor.database_size\n    above: 2000\n    for: \"01:00:00\"\nconditions: []\nactions:\n  - action: notify.persistent_notification\n    data:\n      title: Database warning\n      message: The database has exceeded 2000 MiB (approximately 2 GB), it's time to find out who is spamming it.\nmode: single</code></pre>"
+    },
+    {
+      "file": "ch19_voice_ai.html",
+      "unit": "#hardware",
+      "zh": "<pre class=\"code-block\"><code>actions:\n  - action: assist_satellite.announce\n    target:\n      entity_id: assist_satellite.living_room\n    data:\n      message: 洗衣機洗好了</code></pre>",
+      "en": "<pre class=\"code-block\"><code>actions:\n  - action: assist_satellite.announce\n    target:\n      entity_id: assist_satellite.living_room\n    data:\n      message: The washing machine is ready</code></pre>"
+    },
+    {
+      "file": "ch19_voice_ai.html",
+      "unit": "#faq",
+      "zh": "<code>config/custom_sentences/&lt;語言代碼&gt;/</code>",
+      "en": "<code>config/custom_sentences/&lt;language code&gt;/</code>"
+    },
+    {
+      "file": "ch1_login.html",
+      "unit": "#faq",
+      "zh": "<code>hass --script auth --config /config change_password 帳號 新密碼</code>",
+      "en": "<code>hass --script auth --config /config change_password account new password</code>"
+    },
+    {
+      "file": "ch21_network_remote.html",
+      "unit": "#nabu_casa",
+      "zh": "<code>home.你的網域.com</code>",
+      "en": "<code>home.yourdomain.com</code>"
+    },
+    {
+      "file": "ch21_network_remote.html",
+      "unit": "#cloudflare",
+      "zh": "<code>ha.你的網域.com</code>",
+      "en": "<code>ha.yourdomain.com</code>"
+    },
+    {
+      "file": "ch21_network_remote.html",
+      "unit": "#cloudflare",
+      "zh": "<code>https://ha.你的網域.com</code>",
+      "en": "<code>https://ha.yourdomain.com</code>"
+    },
+    {
+      "file": "ch21_network_remote.html",
+      "unit": "#ddns_proxy",
+      "zh": "<code>https://你的網域.duckdns.org</code>",
+      "en": "<code>https://yourdomain.duckdns.org</code>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#first_helper",
+      "zh": "<kbd>建立</kbd>",
+      "en": "<kbd>Establish</kbd>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#first_helper",
+      "zh": "<kbd>執行</kbd>",
+      "en": "<kbd>implement</kbd>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#first_helper",
+      "zh": "<pre class=\"code-block\"><code>alias: 每天午夜重置喝水杯數\ntriggers:\n  - trigger: time\n    at: \"00:00:00\"\nconditions: []\nactions:\n  - action: counter.reset\n    target:\n      entity_id: counter.water_cups_today\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Reset the number of drinking glasses at midnight every day\ntriggers:\n  - trigger: time\n    at: \"00:00:00\"\nconditions: []\nactions:\n  - action: counter.reset\n    target:\n      entity_id: counter.water_cups_today\nmode: single</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#first_helper",
+      "zh": "<pre class=\"code-block\"><code>type: tile\nentity: counter.water_cups_today\nname: 今日喝水\nfeatures:\n  - type: counter-actions\n    actions:\n      - increment\n      - decrement\n      - reset</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type:tile\nentity: counter.water_cups_today\nname: drink water today\nfeatures:\n  - type: counter-actions\n    actions:\n      - increment\n      - decrement\n      -reset</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#case_habit",
+      "zh": "<pre class=\"code-block\"><code>alias: 每週一重置運動次數\ntriggers:\n  - trigger: time\n    at: \"05:00:00\"\nconditions:\n  - condition: time\n    weekday:\n      - mon\nactions:\n  - action: counter.reset\n    target:\n      entity_id: counter.workout_count\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Reset exercise times every Monday\ntriggers:\n  - trigger: time\n    at: \"05:00:00\"\nconditions:\n  - condition: time\n    weekday:\n      -mon\nactions:\n  - action: counter.reset\n    target:\n      entity_id: counter.workout_count\nmode: single</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#case_habit",
+      "zh": "<pre class=\"code-block\"><code>type: gauge\nentity: counter.water_cups_today\nname: 今日喝水\nunit: 杯\nmin: 0\nmax: 8\nneedle: true\nsegments:\n  - from: 0\n    color: var(--error-color)\n  - from: 3\n    color: var(--warning-color)\n  - from: 6\n    color: var(--success-color)</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: gauge\nentity: counter.water_cups_today\nname: drink water today\nunit: cup\nmin: 0\nmax: 8\nneedle: true\nsegments: segments\n  - from: 0\n    color: var(--error-color)\n  - from: 3\n    color: var(--warning-color)\n  - from: 6\n    color: var(--success-color)</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#case_money",
+      "zh": "<code>元</code>",
+      "en": "<code>Yuan</code>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#case_money",
+      "zh": "<pre class=\"code-block\"><code>alias: 記一筆支出\nsequence:\n  - action: input_number.set_value\n    target:\n      entity_id: input_number.expense_month_total\n    data:\n      value: >-\n        {{ states('input_number.expense_month_total') | float(0)\n           + states('input_number.expense_entry') | float(0) }}\n  - action: input_number.set_value\n    target:\n      entity_id: input_number.expense_entry\n    data:\n      value: 0\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: record an expense\nsequence:\n  - action: input_number.set_value\n    target:\n      entity_id: input_number.expense_month_total\n    data:\n      value: &gt;-\n        {{ states('input_number.expense_month_total') | float(0)\n           + states('input_number.expense_entry') | float(0) }}\n  - action: input_number.set_value\n    target:\n      entity_id: input_number.expense_entry\n    data:\n      value: 0\nmode: single</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#case_money",
+      "zh": "<pre class=\"code-block\"><code>alias: 每月一號結算支出\ntriggers:\n  - trigger: time\n    at: \"00:05:00\"\nconditions:\n  - condition: template\n    value_template: \"{{ now().day == 1 }}\"\nactions:\n  - action: input_number.set_value\n    target:\n      entity_id: input_number.expense_last_month\n    data:\n      value: \"{{ states('input_number.expense_month_total') | float(0) }}\"\n  - action: input_number.set_value\n    target:\n      entity_id: input_number.expense_month_total\n    data:\n      value: 0\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Settlement expenses on the first of every month\ntriggers:\n  - trigger: time\n    at: \"00:05:00\"\nconditions:\n  - condition: template\n    value_template: \"{{ now().day == 1 }}\"\nactions:\n  - action: input_number.set_value\n    target:\n      entity_id: input_number.expense_last_month\n    data:\n      value: \"{{ states('input_number.expense_month_total') | float(0) }}\"\n  - action: input_number.set_value\n    target:\n      entity_id: input_number.expense_month_total\n    data:\n      value: 0\nmode: single</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#case_maintain",
+      "zh": "<code>天</code>",
+      "en": "<code>sky</code>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#case_maintain",
+      "zh": "<pre class=\"code-block\"><code>alias: 濾網換好了\nsequence:\n  - action: input_datetime.set_datetime\n    target:\n      entity_id: input_datetime.filter_last_change\n    data:\n      date: \"{{ now().strftime('%Y-%m-%d') }}\"\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: The filter has been replaced\nsequence:\n  - action: input_datetime.set_datetime\n    target:\n      entity_id: input_datetime.filter_last_change\n    data:\n      date: \"{{ now().strftime('%Y-%m-%d') }}\"\nmode: single</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#case_maintain",
+      "zh": "<pre class=\"code-block\"><code>alias: 濾網該換了提醒\ntriggers:\n  - trigger: time\n    at: \"09:00:00\"\nconditions:\n  - condition: numeric_state\n    entity_id: sensor.filter_days_since\n    above: 89\nactions:\n  - action: notify.persistent_notification\n    data:\n      title: 客廳清淨機\n      message: >-\n        濾網已經用了 {{ states('sensor.filter_days_since') }} 天，該換了。\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Reminder that it’s time to change the filter\ntriggers:\n  - trigger: time\n    at: \"09:00:00\"\nconditions:\n  - condition: numeric_state\n    entity_id: sensor.filter_days_since\n    above: 89\nactions:\n  - action: notify.persistent_notification\n    data:\n      title: Living room purifier\n      message: &gt;-\n        The filter has been used for {{ states('sensor.filter_days_since') }} days and it's time to replace it.\nmode: single</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#case_maintain",
+      "zh": "<pre class=\"code-block\"><code>type: markdown\ntitle: 保養狀態\ncontent: |-\n  | 項目 | 已經過 | 週期 |\n  |---|---|---|\n  | 清淨機濾網 | {{ states('sensor.filter_days_since') }} 天 | 90 天 |\n  | 魚缸換水 | {{ states('sensor.tank_days_since') }} 天 | 14 天 |\n  | 冷氣清洗 | {{ states('sensor.ac_days_since') }} 天 | 180 天 |</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: markdown\ntitle: maintenance status\ncontent: |-\n  | Project | Passed | Cycle |\n  |---|---|---|\n  | Purifier filter | {{ states('sensor.filter_days_since') }} days | 90 days |\n  | Fish tank water change | {{ states('sensor.tank_days_since') }} days | 14 days |\n  | Air conditioning cleaning | {{ states('sensor.ac_days_since') }} days | 180 days |</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#case_notes",
+      "zh": "<pre class=\"code-block\"><code>alias: 留言更新時記時間\ntriggers:\n  - trigger: state\n    entity_id: input_text.family_message\nconditions: []\nactions:\n  - action: input_datetime.set_datetime\n    target:\n      entity_id: input_datetime.family_message_time\n    data:\n      datetime: \"{{ now().strftime('%Y-%m-%d %H:%M:%S') }}\"\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: time when message is updated\ntriggers:\n  - trigger: state\n    entity_id: input_text.family_message\nconditions: []\nactions:\n  - action: input_datetime.set_datetime\n    target:\n      entity_id: input_datetime.family_message_time\n    data:\n      datetime: \"{{ now().strftime('%Y-%m-%d %H:%M:%S') }}\"\nmode: single</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#case_notes",
+      "zh": "<pre class=\"code-block\"><code>actions:\n  - action: todo.add_item\n    target:\n      entity_id: todo.shopping_list\n    data:\n      item: 買清淨機濾網</code></pre>",
+      "en": "<pre class=\"code-block\"><code>actions:\n  - action: todo.add_item\n    target:\n      entity_id: todo.shopping_list\n    data:\n      item: Buy a purifier filter</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#charts",
+      "zh": "<pre class=\"code-block\"><code>type: history-graph\ntitle: 這兩天的喝水與運動\nhours_to_show: 48\nentities:\n  - entity: counter.water_cups_today\n    name: 喝水\n  - entity: counter.workout_count\n    name: 運動</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: history-graph\ntitle: Drink water and exercise in these two days\nhours_to_show: 48\nentities:\n  - entity: counter.water_cups_today\n    name: drink water\n  - entity: counter.workout_count\n    name: sports</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#charts",
+      "zh": "<pre class=\"code-block\"><code>template:\n  - sensor:\n      - name: \"體重紀錄\"\n        unique_id: weight_record\n        unit_of_measurement: \"kg\"\n        device_class: weight\n        state_class: measurement\n        state: \"{{ states('input_number.weight') | float(0) }}\"\n        availability: \"{{ is_number(states('input_number.weight')) }}\"</code></pre>",
+      "en": "<pre class=\"code-block\"><code>template:\n  - sensor:\n      - name: \"Weight Record\"\n        unique_id: weight_record\n        unit_of_measurement: \"kg\"\n        device_class: weight\n        state_class: measurement\n        state: \"{{ states('input_number.weight') | float(0) }}\"\n        availability: \"{{ is_number(states('input_number.weight')) }}\"</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#charts",
+      "zh": "<pre class=\"code-block\"><code>type: statistics-graph\ntitle: 體重趨勢\ndays_to_show: 90\nchart_type: line\nperiod: day\nstat_types:\n  - mean\nentities:\n  - entity: sensor.weight_record\n    name: 體重</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: statistics-graph\ntitle: Weight Trends\ndays_to_show: 90\nchart_type: line\nperiod: day\nstat_types:\n  - mean\nentities:\n  - entity: sensor.weight_record\n    name: weight</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#charts",
+      "zh": "<pre class=\"code-block\"><code>type: markdown\ntitle: 本月摘要\ncontent: |-\n  ### 這個月到目前為止\n\n  - 支出累計 **{{ states('input_number.expense_month_total') | int(0) }}** 元\n  - 上個月同期 {{ states('input_number.expense_last_month') | int(0) }} 元\n  - 電表度數 {{ states('input_number.meter_electricity') }} kWh\n  - 上次抄表 {{ states('input_datetime.meter_read_date') }}</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: markdown\ntitle: Summary of this month\ncontent: |-\n  ### So far this month\n\n  - Accumulated expenditure **{{ states('input_number.expense_month_total') | int(0) }}** yuan\n  - Same period last month {{ states('input_number.expense_last_month') | int(0) }} yuan\n  - Electricity meter {{ states('input_number.meter_electricity') }} kWh\n  - Last meter reading {{ states('input_datetime.meter_read_date') }}</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#derived",
+      "zh": "<pre class=\"code-block\"><code>template:\n  - sensor:\n      - name: \"電表累計\"\n        unique_id: meter_electricity_total\n        unit_of_measurement: \"kWh\"\n        device_class: energy\n        state_class: total_increasing\n        state: \"{{ states('input_number.meter_electricity') | float(0) }}\"</code></pre>",
+      "en": "<pre class=\"code-block\"><code>template:\n  - sensor:\n      - name: \"Meter total\"\n        unique_id: meter_electricity_total\n        unit_of_measurement: \"kWh\"\n        device_class: energy\n        state_class: total_increasing\n        state: \"{{ states('input_number.meter_electricity') | float(0) }}\"</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#derived",
+      "zh": "<pre class=\"code-block\"><code>type: statistics-graph\ntitle: 每月用電\ndays_to_show: 365\nchart_type: bar\nperiod: month\nstat_types:\n  - change\nentities:\n  - sensor.meter_electricity_total</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: statistics-graph\ntitle: Monthly electricity consumption\ndays_to_show: 365\nchart_type: bar\nperiod: month\nstat_types:\n  -change\nentities:\n  - sensor.meter_electricity_total</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#dashboard",
+      "zh": "<pre class=\"code-block\"><code>type: heading\nheading: 今天\nicon: mdi:calendar-today\nheading_style: title\nbadges:\n  - type: entity\n    entity: counter.water_cups_today\n  - type: entity\n    entity: counter.workout_count</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: heading\nheading: today\nicon: mdi:calendar-today\nheading_style: title\nbadges:\n  - type: entity\n    entity: counter.water_cups_today\n  - type: entity\n    entity: counter.workout_count</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#dashboard",
+      "zh": "<pre class=\"code-block\"><code>type: conditional\nconditions:\n  - condition: numeric_state\n    entity: sensor.filter_days_since\n    above: 89\ncard:\n  type: markdown\n  content: 濾網已經超過 90 天，記得換。</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: conditional\nconditions:\n  - condition: numeric_state\n    entity: sensor.filter_days_since\n    above: 89\ncard:\n  type: markdown\n  content: The filter is more than 90 days old. Remember to replace it.</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#dashboard",
+      "zh": "<pre class=\"code-block\"><code>type: conditional\nconditions:\n  - condition: screen\n    media_query: \"(min-width: 1024px)\"\ncard:\n  type: statistics-graph\n  title: 完整趨勢\n  days_to_show: 365\n  chart_type: line\n  entities:\n    - sensor.weight_record</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: conditional\nconditions:\n  - condition: screen\n    media_query: \"(min-width: 1024px)\"\ncard:\n  type: statistics-graph\n  title: Complete Trend\n  days_to_show: 365\n  chart_type: line\n  entities:\n    - sensor.weight_record</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#dashboard",
+      "zh": "<pre class=\"code-block\"><code>type: conditional\nconditions:\n  - condition: screen\n    media_query: \"(max-width: 1023px)\"\ncard:\n  type: gauge\n  entity: counter.water_cups_today\n  name: 今日喝水\n  min: 0\n  max: 8</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: conditional\nconditions:\n  - condition: screen\n    media_query: \"(max-width: 1023px)\"\ncard:\n  type: gauge\n  entity: counter.water_cups_today\n  name: drink water today\n  min: 0\n  max: 8</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#export",
+      "zh": "<kbd>下載資料</kbd>",
+      "en": "<kbd>Download information</kbd>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#export",
+      "zh": "<pre class=\"code-block\"><code>actions:\n  - action: todo.add_item\n    target:\n      entity_id: todo.household_log\n    data:\n      item: >-\n        {{ now().strftime('%Y-%m') }} 支出\n        {{ states('input_number.expense_month_total') | int(0) }} 元</code></pre>",
+      "en": "<pre class=\"code-block\"><code>actions:\n  - action: todo.add_item\n    target:\n      entity_id: todo.household_log\n    data:\n      item: &gt;-\n        {{ now().strftime('%Y-%m') }} Expenditure\n        {{ states('input_number.expense_month_total') | int(0) }} yuan</code></pre>"
+    },
+    {
+      "file": "ch4_naming_labels.html",
+      "unit": "#labels",
+      "zh": "<code>照明</code>",
+      "en": "<code>illumination</code>"
+    },
+    {
+      "file": "ch4_naming_labels.html",
+      "unit": "#labels",
+      "zh": "<code>不斷電</code>",
+      "en": "<code>Uninterrupted power supply</code>"
+    },
+    {
+      "file": "ch4_naming_labels.html",
+      "unit": "#labels",
+      "zh": "<code>房客可控</code>",
+      "en": "<code>Tenant control</code>"
+    },
+    {
+      "file": "ch5_users.html",
+      "unit": "#companion_flow",
+      "zh": "<code>URL → QR 產生器</code>",
+      "en": "<code>URL → QR generator</code>"
+    },
+    {
+      "file": "ch5_users.html",
+      "unit": "#companion_flow",
+      "zh": "<code>sensor.手機_battery / sensor.手機_geocoded_location</code>",
+      "en": "<code>sensor.mobile_battery / sensor.mobile_geocoded_location</code>"
+    },
+    {
+      "file": "ch5_users.html",
+      "unit": "#companion_flow",
+      "zh": "<code>device_tracker.手機</code>",
+      "en": "<code>device_tracker.mobile phone</code>"
+    },
+    {
+      "file": "ch5_users.html",
+      "unit": "#companion_flow",
+      "zh": "<code>sensor.手機_battery_level</code>",
+      "en": "<code>sensor.mobile_battery_level</code>"
+    },
+    {
+      "file": "ch5_users.html",
+      "unit": "#companion_flow",
+      "zh": "<code>sensor.手機_battery_state</code>",
+      "en": "<code>sensor.mobile_battery_state</code>"
+    },
+    {
+      "file": "ch5_users.html",
+      "unit": "#companion_flow",
+      "zh": "<code>sensor.手機_geocoded_location</code>",
+      "en": "<code>sensor.mobile_geocoded_location</code>"
+    },
+    {
+      "file": "ch7_notifications.html",
+      "unit": "#app",
+      "zh": "<code>sensor.你的名字_battery_level</code>",
+      "en": "<code>sensor.yourname_battery_level</code>"
+    },
+    {
+      "file": "ch7_notifications.html",
+      "unit": "#app",
+      "zh": "<code>device_tracker.你的名字_phone</code>",
+      "en": "<code>device_tracker.yourname_phone</code>"
+    },
+    {
+      "file": "ch7_notifications.html",
+      "unit": "#test",
+      "zh": "<code>notify.mobile_app_&lt;裝置名&gt;</code>",
+      "en": "<code>notify.mobile_app_&lt;device name&gt;</code>"
+    },
+    {
+      "file": "ch7_notifications.html",
+      "unit": "#test",
+      "zh": "<pre class=\"code-block\">action: notify.mobile_app_xxx\ndata:\n  title: \"測試通知\"\n  message: \"從 HA 發來的第一則訊息\"</pre>",
+      "en": "<pre class=\"code-block\">action: notify.mobile_app_xxx\ndata:\n  title: \"Test Notification\"\n  message: \"First message sent from HA\"</pre>"
+    },
+    {
+      "file": "ch7_notifications.html",
+      "unit": "#advanced",
+      "zh": "<pre class=\"code-block\">action: notify.mobile_app_xxx\ndata:\n  title: \"門口有人按電鈴\"\n  message: \"點下面決定要不要開門\"\n  data:\n    actions:\n      - action: \"OPEN_DOOR\"\n        title: \"開門\"\n      - action: \"IGNORE\"\n        title: \"不理\"</pre>",
+      "en": "<pre class=\"code-block\">action: notify.mobile_app_xxx\ndata:\n  title: \"Someone rang the bell at the door\"\n  message: \"Click below to decide whether to open the door or not.\"\n  data:\n    actions:\n      - action: \"OPEN_DOOR\"\n        title: \"Open the door\"\n      - action: \"IGNORE\"\n        title: \"ignore\"</pre>"
+    },
+    {
+      "file": "skills.html",
+      "unit": "#install",
+      "zh": "<pre class=\"code-block\"><code># GitHub repo（最常用）\ngit:github.com/komal-SkyNET/claude-skill-homeassistant\n\n# 釘住版本（tag 或 commit，正式環境建議用）\ngit:github.com/anthropics/skills@v1.0.0\n\n# npm 套件\nnpm:@scope/some-skill\n\n# 本地路徑（自己寫的、或從 monorepo clone 下來的子目錄）\n~/skills/my-ha-skill</code></pre>",
+      "en": "<pre class=\"code-block\"><code># GitHub repo (most commonly used)\ngit:github.com/komal-SkyNET/claude-skill-homeassistant\n\n# Pin the version (tag or commit, recommended for formal environments)\ngit:github.com/anthropics/skills@v1.0.0\n\n# npm packages\nnpm:@scope/some-skill\n\n# Local path (written by yourself or a subdirectory cloned from monorepo)\n~/skills/my-ha-skill</code></pre>"
+    },
+    {
+      "file": "skills.html",
+      "unit": "#collections",
+      "zh": "<pre class=\"code-block\"><code># 當清單用，不建議整包安裝\nhttps://github.com/hesreallyhim/awesome-claude-code</code></pre>",
+      "en": "<pre class=\"code-block\"><code># Used as a list, it is not recommended to install the whole package\nhttps://github.com/hesreallyhim/awesome-claude-code</code></pre>"
+    },
+    {
+      "file": "skills.html",
+      "unit": "#spec",
+      "zh": "<pre class=\"code-block\"><code>washer-notify/\n├── SKILL.md          ← 唯一必要檔案\n└── references/       ← 選用附件（AI 用到才讀）\n    └── ha-service-map.md\n\n# SKILL.md 內容\n---\nname: washer-notify\ndescription: |\n  當使用者問「洗衣機洗完了嗎」「該收衣服了嗎」，或提到\n  自動化洗衣機提醒時觸發。可透過 HA API 讀取\n  sensor.washer_power 判斷是否處於運轉/待機/完成狀態。\nlicense: MIT\ncompatibility:\n  agents: [claude-code, opencode, openclaw, hermes]\n  mcp: [ha-mcp-woow, home-assistant/mcp-server]\nallowed-tools: [ha_get_state, ha_get_history, notify_send]\n---\n\n# 洗衣機提醒 skill\n\n當使用者提到洗衣機時，先讀 sensor.washer_power 過去 15 分鐘的\n歷史：如果從 &gt;100W 掉到 &lt;5W 並持續 3 分鐘以上，回覆「洗完了」；\n還在運轉則回覆預估剩餘時間（依平均運轉 45 分鐘估算）。\n\n若使用者要求自動提醒，用 ha_config_set_automation 建一條：\ntrigger: sensor.washer_power &lt; 5W 持續 3 分鐘\naction: notify.mobile_app_myphone\n先給使用者 YAML 摘要，同意再套用。</code></pre>",
+      "en": "<pre class=\"code-block\"><code>washer-notify/\n├── SKILL.md ← Only necessary file\n└── references/ ← Select attachments (read only when AI is used)\n    └── ha-service-map.md\n\n# SKILL.md Contents\n---\nname: washer-notify\ndescription: |\n  When users ask \"Is the washing machine finished?\" \"Is it time to put away the clothes?\" or mention\n  Triggered when automated washing machine reminds. Can be read via HA API\n  sensor.washer_power determines whether it is in running/standby/completion state.\nlicense: MIT\ncompatibility:\n  agents: [claude-code, opencode, openclaw, hermes]\n  mcp: [ha-mcp-woow, home-assistant/mcp-server]\nallowed-tools: [ha_get_state, ha_get_history, notify_send]\n---\n\n# Washing machine reminder skill\n\nWhen the user mentions a washing machine, first read sensor.washer_power for the past 15 minutes.\nHistory: If it drops from &gt;100W to &lt;5W and lasts for more than 3 minutes, reply \"washed\";\nIf it is still running, the estimated remaining time will be returned (estimated based on an average running time of 45 minutes).\n\nIf the user requires automatic reminder, use ha_config_set_automation to create one:\ntrigger: sensor.washer_power &lt; 5W for 3 minutes\naction: notify.mobile_app_myphone\nGive the user the YAML summary first and agree before applying it.</code></pre>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#helper_types",
+      "zh": "<kbd>建立輔助工具</kbd>",
+      "en": "<kbd>Create auxiliary tools</kbd>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#first_helper",
+      "zh": "<kbd>編輯</kbd>",
+      "en": "<kbd>edit</kbd>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#first_helper",
+      "zh": "<kbd>新增卡片</kbd>",
+      "en": "<kbd>Add new card</kbd>"
+    },
+    {
+      "file": "ch5_users.html",
+      "unit": "#companion_flow",
+      "zh": "<code>notify.mobile_app_家人使用者名</code>",
+      "en": "<code>notify.mobile_app_family username</code>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#first_helper",
+      "zh": "<kbd>建立輔助工具</kbd>",
+      "en": "<kbd>Create auxiliary tools</kbd>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#case_maintain",
+      "zh": "<kbd>建立輔助工具</kbd>",
+      "en": "<kbd>Create auxiliary tools</kbd>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#case_notes",
+      "zh": "<kbd>新增卡片</kbd>",
+      "en": "<kbd>Add new card</kbd>"
+    },
+    {
+      "file": "ch22_life_logs.html",
+      "unit": "#dashboard",
+      "zh": "<kbd>編輯</kbd>",
+      "en": "<kbd>edit</kbd>"
+    }
+  ]
 }

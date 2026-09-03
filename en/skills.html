@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HA AI Agent Skill 手冊 · WoowTech</title>
-  <meta name="description" content="搭配 AI LLM／agent 使用 Home Assistant 的 Skill 手冊：精選 10 顆與 HA 相關的 skills（HA 管理、ESPHome、Dashboard、Blueprint）、6 大熱門集合型錄、安裝速查、相容性守則、安全提醒、SKILL.md 規格與 FAQ。星數為 2026-08-20 GitHub 公開快照。" />
+  <title>HA AI Agent Skill Manual · WoowTech</title>
+  <meta name="description" content="Skill manual for using Home Assistant with AI LLM/agent: 10 selected HA-related skills (HA management, ESPHome, Dashboard, Blueprint), 6 popular collection catalogs, installation quick check, compatibility rules, security reminders, SKILL.md specifications and FAQ. Stars for 2026-08-20 GitHub public snapshot." />
   <meta name="author" content="WoowTech" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/skills.html" />
@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
   <style>
-/* HA Skill 手冊 — Woow_ha_tutorial_site 版型 × woowtech Brand Prompt Library v2 */
+/* HA Skill Manual — Woow_ha_tutorial_site Pattern × woowtech Brand Prompt Library v2 */
 :root {
   --ww-blue: #6183FC; --ww-blue-600: #4A6DE8; --ww-blue-700: #3A57C4;
   --ww-blue-050: #EEF2FF; --ww-blue-100: #DCE4FF;
@@ -149,237 +149,237 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
 <body>
 <div class="layout">
   <aside class="sidebar" id="sidebar">
-    <a class="brand" href="#top">HA AI Skill 手冊</a>
-    <div class="brand-sub">WoowTech · 型錄與速查</div>
+    <a class="brand" href="#top">HA AI Skill Manual</a>
+    <div class="brand-sub">WoowTech · Catalog and Quick Reference</div>
     <!-- i18n:switch --><nav class="lang-switch" aria-label="Language"><a href="../skills.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="skills.html" lang="en" aria-current="page">EN</a></nav><!-- /i18n:switch -->
-    <a class="hub-link" href="index.html">◂ HA 資源總覽</a>
-    <button class="nav-toggle" id="navToggle" type="button">本冊內容<span class="nav-toggle-caret"></span></button>
+    <a class="hub-link" href="index.html">◂ HA Resource Hub</a>
+    <button class="nav-toggle" id="navToggle" type="button">Contents of this volume<span class="nav-toggle-caret"></span></button>
     <div class="toc-in-chapter">
-      <h2>本冊內容</h2>
-      <a href="#why">Skill 是什麼</a>
-      <a href="#install">怎麼裝</a>
-      <a href="#picks">精選十顆 HA skill</a>
-      <a href="#collections">六大集合型錄</a>
-      <a href="#compat">相容性須知</a>
-      <a href="#safety">安全守則</a>
-      <a href="#spec">SKILL.md 規格</a>
-      <a href="#faq">常見問題</a>
-      <a href="#download">下載</a>
+      <h2>Contents of this volume</h2>
+      <a href="#why">What is Skill</a>
+      <a href="#install">How to install</a>
+      <a href="#picks">Selected ten HA skills</a>
+      <a href="#collections">Six collection catalogs</a>
+      <a href="#compat">Compatibility information</a>
+      <a href="#safety">safety rules</a>
+      <a href="#spec">SKILL.md Specifications</a>
+      <a href="#faq">FAQ</a>
+      <a href="#download">Download</a>
     </div>
   </aside>
 
   <main class="content" id="top">
     <div class="chapter-header">
       <span class="kicker-script">teach your AI home assistant</span>
-      <div class="kicker">WoowTech Skill 手冊</div>
-      <h1>裝一顆 Skill，AI 立刻學會怎麼跟你家 HA 打交道</h1>
-      <p class="lead">Skill 是給 AI agent 看的「工作手冊」：一個資料夾、一份 <code>SKILL.md</code>，裝進 Claude Code／OpenClaw／Cursor／Codex 等支援的 harness，AI 遇到對應情況就會照著做。這本手冊挑好 10 顆與 Home Assistant 相關的實用 skills，附 6 大熱門集合型錄、安裝速查、相容性與安全守則。</p>
-      <div class="callout"><strong>調查基準：</strong>本冊集合規模、星數與維護狀態為 <strong>2026-08-20 GitHub 公開快照</strong>，會隨時間變動；安裝前建議點進原始 repo 再確認一次。</div>
+      <div class="kicker">WoowTech Skill Manual</div>
+      <h1>Install a Skill and the AI will immediately learn how to deal with your HA</h1>
+      <p class="lead">Skill is a "work manual" for the AI agent: a folder, a <code>SKILL.md</code>, install it into the supported harness such as Claude Code/OpenClaw/Cursor/Codex, etc., and the AI will act accordingly when encountering the corresponding situation. This manual selects 10 practical skills related to Home Assistant, and includes 6 popular collection catalogs, installation quick checks, compatibility and safety rules.</p>
+      <div class="callout"><strong>Survey baseline:</strong>The collection size, number of stars and maintenance status of this volume are: <strong>2026-08-20 GitHub public snapshot</strong>, will change over time; it is recommended to click on the original repo to confirm again before installation.</div>
     </div>
 
-    <section id="why" data-nav="Skill 是什麼">
-      <h2 data-icon="why">Skill 是什麼、為什麼要裝</h2>
-      <p>把 Claude／Codex／Gemini／OpenClaw／Hermes 之類的 AI agent 想成很聰明的實習生：任何家用系統都能聊，但「你家 HA 的實體命名、area 規劃、既有 blueprint、Zigbee 拓樸」它一定不會通靈。Skill 就是<strong>丟給 AI 的 handover 文件</strong>——把「遇到 HA 什麼場景，照什麼步驟做」寫成 Markdown，放到技能資料夾，AI 遇到就會翻出來照做。</p>
+    <section id="why" data-nav="What is Skill">
+      <h2 data-icon="why">What is Skill and why should it be installed?</h2>
+      <p>Think of AI agents such as Claude/Codex/Gemini/OpenClaw/Hermes as very smart interns: any home system can talk, but it will definitely not be able to understand "your HA's entity naming, area planning, existing blueprint, and Zigbee topology." Skill is<strong>Handover file thrown to AI</strong>—Write "What scenario should you encounter HA, what steps should you follow?" in Markdown, and put it in the skill folder. When the AI encounters it, it will translate it and follow it.</p>
       <ul>
-        <li><strong>裝別人寫好的</strong>：HA 管理、ESPHome 韌體、Dashboard 設計、Blueprint 匯入、custom integration 開發——社群已寫好一堆。</li>
-        <li><strong>之後寫自己的</strong>：家裡的獨門流程（洗衣機提醒、能源週報）也能包成 skill，寫法見本冊 <a href="#spec">SKILL.md 規格</a> 一節。</li>
+        <li><strong>Pretending to be written by someone else</strong>: HA management, ESPHome firmware, Dashboard design, Blueprint import, custom integration development - the community has already written a lot.</li>
+        <li><strong>Then write your own</strong>: Unique processes at home (washing machine reminders, weekly energy reports) can also be packaged as skills. See this booklet for how to write them. <a href="#spec">SKILL.md Specifications</a> One section.</li>
       </ul>
-      <p>Skill 跟 <a href="ch19_voice_ai.html">Assist 語音助理</a>、<a href="ch14_integrations.html">Integration</a>、<a href="appendix_scenes_helpers_groups.html">Blueprint</a> 是完全不同的東西——它是加在<strong>你用的 AI agent 那一端</strong>，不是加在 HA 那一端。HA 你可能一行都不動。</p>
+      <p>Skill follows <a href="ch19_voice_ai.html">Assist voice assistant</a>, <a href="ch14_integrations.html">Integration</a>, <a href="appendix_scenes_helpers_groups.html">Blueprint</a> is something completely different - it is added to<strong>Which side of the AI agent do you use?</strong>, not on the HA side. HA You may not move a line.</p>
     </section>
 
-    <section id="install" data-nav="怎麼裝">
-      <h2 data-icon="steps">怎麼裝（3 分鐘版）</h2>
-      <p>SKILL.md 這個規格由 Anthropic 發起（<a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a>），已被 Claude Code、Codex、Gemini CLI、Cursor、OpenCode、OpenClaw、Hermes 等主流 agent harness 採用。裝法依 harness 不同略有差異，共同步驟是：</p>
+    <section id="install" data-nav="How to install">
+      <h2 data-icon="steps">How to install (3-minute version)</h2>
+      <p>SKILL.md This specification is sponsored by Anthropic (<a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a>), has been adopted by mainstream agent harnesses such as Claude Code, Codex, Gemini CLI, Cursor, OpenCode, OpenClaw, and Hermes. The installation method varies slightly depending on the harness. The common steps are:</p>
       <ol class="steps">
         <li>
-          <h3>打開你的 agent harness 的 Skills／Plugins 面板</h3>
-          <p>Claude Code：Settings → Skills；OpenClaw / Hermes：Skills 面板；Codex：<code>~/.codex/skills/</code> 目錄。</p>
+          <h3>Open the Skills/Plugins panel of your agent harness</h3>
+          <p>Claude Code: Settings → Skills; OpenClaw / Hermes: Skills panel; Codex:<code>~/.codex/skills/</code> Directory.</p>
         </li>
         <li>
-          <h3>貼上 package spec，按 Install</h3>
-          <p>各 harness 支援的寫法略有差異，最常見這幾種：</p>
-          <pre class="code-block"><code># GitHub repo（最常用）
+          <h3>Paste the package spec and press Install</h3>
+          <p>Each harness supports slightly different writing methods, the most common ones are:</p>
+          <pre class="code-block"><code># GitHub repo (most commonly used)
 git:github.com/komal-SkyNET/claude-skill-homeassistant
 
-# 釘住版本（tag 或 commit，正式環境建議用）
+# Pin the version (tag or commit, recommended for formal environments)
 git:github.com/anthropics/skills@v1.0.0
 
-# npm 套件
+# npm packages
 npm:@scope/some-skill
 
-# 本地路徑（自己寫的、或從 monorepo clone 下來的子目錄）
+# Local path (written by yourself or a subdirectory cloned from monorepo)
 ~/skills/my-ha-skill</code></pre>
         </li>
         <li>
-          <h3>Reload session 驗證</h3>
-          <p>裝完開新 session（skill 是 session 開始時載入），問它：「目前載入了哪些 skill？」確認有進到清單。</p>
+          <h3>Reload session verification</h3>
+          <p>After installation, open a new session (skill is loaded at the beginning of the session) and ask it: "What skills are currently loaded?" Make sure it is in the list.</p>
         </li>
         <li>
-          <h3>先讀後用：問 AI 這顆 skill 會做什麼</h3>
-          <p>裝完別急著讓它跑，先叫 AI 讀 SKILL.md 摘要給你聽——這也是 <a href="#safety">安全守則</a> 的第一條。</p>
+          <h3>Read first, then use: Ask AI what this skill will do</h3>
+          <p>Don’t rush to let it run after installing it. First ask the AI to read the summary of SKILL.md to you - this is also <a href="#safety">safety rules</a> The first article.</p>
         </li>
       </ol>
-      <div class="callout tip"><strong>提示：</strong>Monorepo（例如 anthropics/skills、tonylofgren/aurora-smart-home）整包裝進去，多數 harness 會遞迴掃描所有 SKILL.md。只想要其中一顆時，clone 下來後用本地路徑指向那個子資料夾——目前 git spec 沒有標準的「只裝子目錄」語法。</div>
+      <div class="callout tip"><strong>Tip:</strong>Monorepo (e.g. anthropics/skills, tonylofgren/aurora-smart-home) is included in the entire package, and most harnesses recursively scan all SKILL.md. When you only want one of them, clone it and use the local path to point to that subfolder - currently git spec does not have a standard "only install subdirectory" syntax.</div>
     </section>
 
-    <section id="picks" data-nav="精選十顆 HA skill">
-      <h2 data-icon="ai">精選十顆（HA 視角）</h2>
-      <p>從熱門集合與 HA 專門 repo 裡挑出來、對智慧家庭最對口的實用款。由「最對口／最推薦入門」往下排：</p>
+    <section id="picks" data-nav="Selected ten HA skills">
+      <h2 data-icon="ai">Selected ten (HA perspective)</h2>
+      <p>Selected from popular collections and HA's dedicated repo, the most practical models are suitable for smart homes. Arranged from "most relevant/most recommended to get started":</p>
       <table class="data-table">
         <thead>
-          <tr><th>Skill</th><th>它幫你做什麼</th><th>安裝 spec</th></tr>
+          <tr><th>Skill</th><th>what does it do for you</th><th>Install spec</th></tr>
         </thead>
         <tbody>
           <tr>
             <td><a href="https://github.com/komal-SkyNET/claude-skill-homeassistant" rel="noopener">claude-skill-homeassistant</a><br><span style="color:var(--ink-500);font-size:12px">≈791★</span></td>
-            <td>目前 HA 專用 skill 之王：寫／改 automation、blueprint、dashboard，管 add-ons，讀 log，跑 template 測試。<strong>最對口也最高風險</strong>——會動線上 HA 設定，先在測試機／備份後驗證。</td>
+            <td>The current king of HA-specific skills: writing/modifying automation, blueprint, dashboard, managing add-ons, reading logs, and running template tests.<strong>The most relevant and the highest risk</strong>—The online HA settings will be activated and verified first on the test machine/backup.</td>
             <td><code>git:github.com/komal-SkyNET/claude-skill-homeassistant</code></td>
           </tr>
           <tr>
             <td><a href="https://github.com/dcb/homeassistant-claude-kit" rel="noopener">homeassistant-claude-kit</a><br><span style="color:var(--ink-500);font-size:12px">≈118★</span></td>
-            <td>AI-guided 全套包：automation 樣板、行動優先 React dashboard 模板、Claude Code skills 管 config。適合想有「一站式體驗」而不是自己拼湊的用戶。</td>
+            <td>AI-guided full package: automation boilerplate, action-first React dashboard template, Claude Code skills management config. Suitable for users who want to have a "one-stop experience" instead of piecing it together by themselves.</td>
             <td><code>git:github.com/dcb/homeassistant-claude-kit</code></td>
           </tr>
           <tr>
             <td><a href="https://github.com/tonylofgren/aurora-smart-home" rel="noopener">aurora-smart-home</a><br><span style="color:var(--ink-500);font-size:12px">≈102★</span></td>
-            <td>整個智慧家庭的 skill 集合：Home Assistant、ESPHome、Node-RED、custom integration、dashboard、甚至硬體 PCB。<strong>想同時管 HA + ESPHome 韌體的必裝</strong>。</td>
+            <td>A collection of skills for the entire smart home: Home Assistant, ESPHome, Node-RED, custom integration, dashboard, and even hardware PCB.<strong>A must-install if you want to manage HA + ESPHome firmware at the same time</strong>.</td>
             <td><code>git:github.com/tonylofgren/aurora-smart-home</code></td>
           </tr>
           <tr>
             <td><a href="https://github.com/anthropics/skills" rel="noopener">docx / pdf / pptx / xlsx</a><br><span style="color:var(--ink-500);font-size:12px">official</span></td>
-            <td>官方文件四件套。對 HA 家庭來說：能源分析輸出 Excel、家電保固清單存 PDF、家庭週報生成 Word、社區發表用 PPTX。</td>
+            <td>Set of four official documents. For HA families: energy analysis output in Excel, home appliance warranty list in PDF, household weekly report generation in Word, and community publication in PPTX.</td>
             <td><code>git:github.com/anthropics/skills</code></td>
           </tr>
           <tr>
             <td><a href="https://github.com/anthropics/skills" rel="noopener">skill-creator</a><br><span style="color:var(--ink-500);font-size:12px">official</span></td>
-            <td>讓 AI 幫你把家裡的獨門流程（洗衣提醒、能源週報、換濾網警報）包成新 skill——AI 教 AI，比自己讀 spec 快多了。</td>
+            <td>Let AI help you package the unique processes at home (laundry reminder, weekly energy report, filter replacement alarm) into a new skill - AI teaches AI, which is much faster than reading the spec yourself.</td>
             <td><code>git:github.com/anthropics/skills</code></td>
           </tr>
           <tr>
             <td><a href="https://github.com/ESJavadex/claude-homeassistant-plugins" rel="noopener">claude-homeassistant-plugins</a><br><span style="color:var(--ink-500);font-size:12px">≈26★</span></td>
-            <td>HA plugins / skills / agents marketplace，含 MCP hook 與多個對應的 skill 目錄，適合當「HA plugin 開發套件」用。</td>
+            <td>HA plugins / skills / agents marketplace, including MCP hooks and multiple corresponding skill directories, is suitable for use as "HA plugin development kit".</td>
             <td><code>git:github.com/ESJavadex/claude-homeassistant-plugins</code></td>
           </tr>
           <tr>
             <td><a href="https://github.com/markusleben/ha-nova" rel="noopener">ha-nova</a><br><span style="color:var(--ink-500);font-size:12px">≈21★</span></td>
-            <td>Lean relay + LLM skills 給 Claude Code／Codex／OpenCode 用，把 HA API 呼叫抽成薄層。跨 agent 想共用一份 HA skill 選這個。</td>
+            <td>Lean relay + LLM skills for Claude Code/Codex/OpenCode to abstract HA API calls into thin layers. If you want to share an HA skill across agents, choose this.</td>
             <td><code>git:github.com/markusleben/ha-nova</code></td>
           </tr>
           <tr>
             <td><a href="https://github.com/johnnyh1975/HA_Bubble_Skill" rel="noopener">HA_Bubble_Skill</a><br><span style="color:var(--ink-500);font-size:12px">≈13★</span></td>
-            <td>Dashboard 專用：Bubble Card／Streamline Card／Sidebar Card／Mushroom 的建構 skill，含 WCAG 色彩檢查與整套故障排除。<strong>要做漂亮儀表板必裝</strong>。</td>
+            <td>Dashboard-specific: Bubble Card/Streamline Card/Sidebar Card/Mushroom construction skills, including WCAG color checking and a complete set of troubleshooting.<strong>A must-have for making a beautiful dashboard</strong>.</td>
             <td><code>git:github.com/johnnyh1975/HA_Bubble_Skill</code></td>
           </tr>
           <tr>
             <td><a href="https://github.com/mattpocock/skills" rel="noopener">grill-me</a><br><span style="color:var(--ink-500);font-size:12px">from mattpocock/skills</span></td>
-            <td>動工前被 AI 連環拷問，把「我要重寫全屋 automation」這種大工程的需求問到清楚才開工。純 Markdown，跨 agent 通用。</td>
+            <td>Before starting the construction, I was tortured by the AI. I asked clearly about the requirements for a big project like "I want to rewrite the whole house automation" before starting the construction. Pure Markdown, universal across agents.</td>
             <td><code>git:github.com/mattpocock/skills</code></td>
           </tr>
           <tr>
-            <td><a href="https://github.com/kepano/obsidian-skills" rel="noopener">defuddle</a><br><span style="color:var(--ink-500);font-size:12px">from kepano/obsidian-skills · ≈4.7 萬★</span></td>
-            <td>把網頁擷取成乾淨 Markdown——家電說明書、HA 社群解法、YouTube 逐字稿存進家庭知識庫必備。省 token 又乾淨。</td>
+            <td><a href="https://github.com/kepano/obsidian-skills" rel="noopener">defuddle</a><br><span style="color:var(--ink-500);font-size:12px">from kepano/obsidian-skills · ≈47,000★</span></td>
+            <td>Extract web pages into clean Markdown - necessary for storing home appliance manuals, HA community solutions, and YouTube verbatim transcripts into the family knowledge base. It saves tokens and is clean.</td>
             <td><code>git:github.com/kepano/obsidian-skills</code></td>
           </tr>
         </tbody>
       </table>
     </section>
 
-    <section id="collections" data-nav="六大集合型錄">
-      <h2 data-icon="collections">六大熱門集合型錄</h2>
-      <p>想一次裝一整包、或自己逛著挑，從這六個入口開始：</p>
+    <section id="collections" data-nav="Six collection catalogs">
+      <h2 data-icon="collections">Six popular collection catalogs</h2>
+      <p>If you want to pack a whole bag at once, or shop around and choose by yourself, start from these six entrances:</p>
       <div class="feature-grid">
 
         <div class="feature-card">
           <h3>anthropics/skills</h3>
-          <div class="pnote">官方示範＋規格所在地 · ≈17 萬★ · 極活躍</div>
-          <p>Agent Skills 規格與官方 template 的家。19 顆 skill 含文件四件套（docx/pdf/pptx/xlsx）、canvas-design、mcp-builder、skill-creator。<strong>HA 家庭第一包就裝這個。</strong></p>
+          <div class="pnote">Official demonstration + specification location · ≈170,000★ · Extremely active</div>
+          <p>Home of Agent Skills specifications and official templates. The 19 skills include a four-piece file set (docx/pdf/pptx/xlsx), canvas-design, mcp-builder, and skill-creator.<strong>HA This is the first pack in the family.</strong></p>
           <pre class="code-block"><code>git:github.com/anthropics/skills</code></pre>
-          <p class="pnote">注意：文件四件套為 source-available 非開源；部分 skill 附 scripts 需要 Python／JS 環境。</p>
+          <p class="pnote">Note: The four-piece set of files is source-available and non-open source; some skills with scripts require a Python/JS environment.</p>
         </div>
 
         <div class="feature-card">
           <h3>tonylofgren/aurora-smart-home</h3>
-          <div class="pnote">HA 智慧家庭專門集合 · ≈102★ · 對口</div>
-          <p>目前最完整的智慧家庭多 skill 集合：<code>home-assistant</code>、<code>esphome</code>、<code>node-red</code>、<code>ha-dashboard-design</code>、<code>ha-integration-dev</code>、<code>hacs</code>、fab-ready hardware 設計。</p>
+          <div class="pnote">HA Smart Home Special Collection · ≈102★ · Correspondence</div>
+          <p>Currently the most complete smart home multi-skill collection:<code>home-assistant</code>, <code>esphome</code>, <code>node-red</code>, <code>ha-dashboard-design</code>, <code>ha-integration-dev</code>, <code>hacs</code>, fab-ready hardware design.</p>
           <pre class="code-block"><code>git:github.com/tonylofgren/aurora-smart-home</code></pre>
-          <p class="pnote">注意：星數少＝審閱的人少，它會指導 agent 改你的 HA 設定——匯入前自己把 SKILL.md 讀一遍。</p>
+          <p class="pnote">Note: Fewer stars = fewer reviewers. It will instruct the agent to change your HA settings - read SKILL.md yourself before importing.</p>
         </div>
 
         <div class="feature-card">
           <h3>komal-SkyNET/claude-skill-homeassistant</h3>
-          <div class="pnote">HA 專用單一 skill · ≈791★ · 極活躍</div>
-          <p>單一 skill 但功能最完整的 HA 管家 agent。README 有教怎麼跟 Claude Code 對話直接改 HA 設定、拉 log、跑 template 測試、加自動化。</p>
+          <div class="pnote">HA dedicated single skill · ≈791★ · Extremely active</div>
+          <p>A single skill but the most complete HA housekeeping agent. The README teaches how to directly change HA settings, pull logs, run template tests, and add automation by talking to Claude Code.</p>
           <pre class="code-block"><code>git:github.com/komal-SkyNET/claude-skill-homeassistant</code></pre>
-          <p class="pnote">建議先在測試 HA 或做完備份後再用；正式環境釘 <code>@tag</code>。</p>
+          <p class="pnote">It is recommended to test HA or make a backup before using it; it is recommended to use it in the official environment. <code>@tag</code>.</p>
         </div>
 
         <div class="feature-card">
           <h3>kepano/obsidian-skills</h3>
-          <div class="pnote">筆記／家庭知識庫 · ≈4.7 萬★ · Obsidian CEO 出品</div>
-          <p>5 顆：<code>obsidian-markdown</code>、<code>bases</code>、<code>json-canvas</code>、<code>obsidian-cli</code>、<code>defuddle</code>。用 Obsidian 做家庭知識庫必裝；<code>defuddle</code> 不用 Obsidian 也超好用。</p>
+          <div class="pnote">Notes/Family Knowledge Base · ≈47,000★ · Produced by Obsidian CEO</div>
+          <p>5 pieces:<code>obsidian-markdown</code>, <code>bases</code>, <code>json-canvas</code>, <code>obsidian-cli</code>, <code>defuddle</code>. A must-have for using Obsidian as a family knowledge base;<code>defuddle</code> It’s super easy to use without Obsidian.</p>
           <pre class="code-block"><code>git:github.com/kepano/obsidian-skills</code></pre>
-          <p class="pnote">obsidian-cli 需本機裝 CLI；HA add-on 容器內以 vault 資料夾操作為主。</p>
+          <p class="pnote">obsidian-cli requires the CLI to be installed locally; the HA add-on container mainly operates on the vault folder.</p>
         </div>
 
         <div class="feature-card">
           <h3>mattpocock/skills</h3>
-          <div class="pnote">Real Engineers 用 · ≈22 萬★ · 極活躍</div>
-          <p><code>grill-me</code>、<code>tdd</code>、<code>diagnosing-bugs</code>、<code>handoff</code>、<code>teach</code>——工程向為主，但 <code>grill-me</code>／<code>handoff</code> 對「重寫家裡全套 automation」「換代新家配置 HA」這種規劃型任務都超好用。純 Markdown、跨 agent 可用。</p>
+          <div class="pnote">Used by Real Engineers · ≈220,000★ · Very active</div>
+          <p><code>grill-me</code>, <code>tdd</code>, <code>diagnosing-bugs</code>, <code>handoff</code>, <code>teach</code>—Engineering major, but <code>grill-me</code>/<code>handoff</code> It is very useful for planning tasks such as "rewriting the entire automation at home" and "configuring HA for a new home". Pure Markdown, available across agents.</p>
           <pre class="code-block"><code>git:github.com/mattpocock/skills</code></pre>
         </div>
 
         <div class="feature-card">
           <h3>hesreallyhim/awesome-claude-code</h3>
-          <div class="pnote">策展入口 · ≈5.3 萬★</div>
-          <p>Claude Code 生態圈的 awesome list：skills、agents、狀態列、developer tooling、plugins 都有。當目錄逛，看到對眼的再點進去裝原始 repo。</p>
-          <pre class="code-block"><code># 當清單用，不建議整包安裝
+          <div class="pnote">Curation entrance · ≈53,000★</div>
+          <p>The awesome list of the Claude Code ecosystem includes skills, agents, status columns, developer tooling, and plugins. When browsing the directory, if you see something you like, click on it to install the original repo.</p>
+          <pre class="code-block"><code># Used as a list, it is not recommended to install the whole package
 https://github.com/hesreallyhim/awesome-claude-code</code></pre>
-          <p class="pnote">品質參差，逐顆檢視再裝。</p>
+          <p class="pnote">The quality varies, check each piece one by one before installing.</p>
         </div>
 
       </div>
-      <p class="pnote" style="margin-top:14px">備查（HA 相關但範圍小或活躍度低）：<a href="https://github.com/nolte/claude-home-assistant" rel="noopener">nolte/claude-home-assistant</a>（HA 開發向，含 Lovelace／blueprint／ESPHome／add-on skills）、<a href="https://github.com/dallanwagz/untether" rel="noopener">dallanwagz/untether</a>（把雲端 BLE 裝置反向工程為本地 HA integration）、<a href="https://github.com/yaniv-golan/smalltv-ultra-skill" rel="noopener">smalltv-ultra-skill</a>（GeekMagic SmallTV Ultra 韌體開發）——星數少，適合有明確場景時再看。</p>
+      <p class="pnote" style="margin-top:14px">For reference (HA related but small scope or low activity):<a href="https://github.com/nolte/claude-home-assistant" rel="noopener">nolte/claude-home-assistant</a>(HA development orientation, including Lovelace/blueprint/ESPHome/add-on skills),<a href="https://github.com/dallanwagz/untether" rel="noopener">dallanwagz/untether</a>(Reverse engineer cloud BLE device to local HA integration),<a href="https://github.com/yaniv-golan/smalltv-ultra-skill" rel="noopener">smalltv-ultra-skill</a>(GeekMagic SmallTV Ultra firmware development) - The number of stars is small, so it is suitable to watch when there are clear scenes.</p>
     </section>
 
-    <section id="compat" data-nav="相容性須知">
-      <h2 data-icon="integration">相容性須知</h2>
-      <p>SKILL.md 規格已被 Claude Code、Codex、Gemini CLI、Cursor、OpenCode、OpenClaw、Hermes 等主流 agent harness 採用；純 Markdown 的 skill 幾乎到處能跑。會「退化」的只有三種情況：</p>
+    <section id="compat" data-nav="Compatibility information">
+      <h2 data-icon="integration">Compatibility information</h2>
+      <p>The SKILL.md specification has been adopted by mainstream agent harnesses such as Claude Code, Codex, Gemini CLI, Cursor, OpenCode, OpenClaw, and Hermes; pure Markdown skills can run almost everywhere. There are only three situations that will "degenerate":</p>
       <ul>
-        <li><strong>依賴 Claude Code 專屬機制</strong>（hooks、plugin 指令、subagent 派工）——skill 本文仍可讀，但自動觸發行為可能不完整。</li>
-        <li><strong>依賴特定 MCP／SaaS 帳號</strong>——例如 HA 相關 skill 多半假設你有配好 <code>ha-mcp-woow</code> 或官方 MCP Server integration；沒接就沒用。</li>
-        <li><strong><code>scripts/</code> 需要容器內沒有的 runtime</strong>——若在 HA add-on 容器內跑 agent，Python 套件、Node 版本要對得上，純 Markdown skill 相容性最好。</li>
+        <li><strong>Rely on Claude Code exclusive mechanism</strong>(hooks, plugin commands, subagent dispatch) - skill This article is still readable, but the automatic triggering behavior may be incomplete.</li>
+        <li><strong>Rely on specific MCP/SaaS account</strong>—For example, HA-related skills are mostly assumed to be equipped properly. <code>ha-mcp-woow</code> Or official MCP Server integration; if not connected, it is useless.</li>
+        <li><strong><code>scripts/</code> Requires a runtime that is not available in the container</strong>—If you run the agent in the HA add-on container, the Python package and Node version must match. Pure Markdown skill has the best compatibility.</li>
       </ul>
-      <div class="callout"><strong>觀念：</strong>挑 skill 的第一準則不是星數，是「它假設的環境你有沒有」。對 HA 相關 skill 尤其重要——多數假設你已經有 HA + MCP + 對應 integration。</div>
+      <div class="callout"><strong>Concept:</strong>The first criterion for choosing a skill is not the number of stars, but "do you have the environment it assumes?" Especially important for HA related skills - most assume you already have HA + MCP + corresponding integration.</div>
     </section>
 
-    <section id="safety" data-nav="安全守則">
-      <h2 data-icon="safety">安全守則</h2>
-      <div class="callout warn"><strong>注意：</strong>Skill 的本質是「餵給 agent 的指令」。裝第三方 skill＝<strong>讓一段陌生文字指揮你家的 AI 去動你家的 HA</strong>。</div>
+    <section id="safety" data-nav="safety rules">
+      <h2 data-icon="safety">safety rules</h2>
+      <div class="callout warn"><strong>Warning:</strong>The essence of Skill is "instructions fed to the agent". Install third-party skill=<strong>Let a strange text instruct your AI to move your HA</strong>.</div>
       <ul>
-        <li><strong>先讀後裝</strong>：安裝前把 SKILL.md 打開讀一遍，或叫 AI 先讀給你聽：「先讀這顆 skill 的 SKILL.md 內容，告訴我它會做什麼、有沒有動我家 HA config 的風險，我同意再裝。」</li>
-        <li><strong>會動 HA config 的先做完整備份</strong>：像 <code>claude-skill-homeassistant</code>、<code>aurora-smart-home</code> 這類會直接改 automation／dashboard／configuration.yaml 的，<strong>先按 Settings → Backups 手動備份</strong>——搞砸還能還原。</li>
-        <li><strong>先在測試 HA 實例驗證</strong>：如果家裡的 HA 已經很複雜，強烈建議另開一個乾淨的 HA container 當測試機，skill 動作驗證過再放到正式機。</li>
-        <li><strong>正式環境釘版本</strong>：用 <code>@tag</code> 或 <code>@commit</code> 釘住，避免上游改內容你無感升級。</li>
-        <li><strong>暴露給 AI 的實體要挑</strong>：Settings → Voice Assistants → Expose 只勾必要的區域／實體。門鎖、警報、電源總開關這類「操作無法回復」的先別給。</li>
-        <li><strong>星數＝人氣，不＝安全</strong>：熱門集合一樣要看它拿什麼權限做什麼事——尤其是有 <code>scripts/</code> 的 skill。</li>
+        <li><strong>Read first and install later</strong>: Open SKILL.md and read it before installation, or ask AI to read it to you first: "Read the content of SKILL.md of this skill first, tell me what it will do, and whether there is any risk of touching my HA config. I agree to install it again."</li>
+        <li><strong>If you know how to move HA config, make a complete backup first.</strong>: like <code>claude-skill-homeassistant</code>, <code>aurora-smart-home</code> This type will directly change automation/dashboard/configuration.yaml.<strong>First press Settings → backups to perform manual backup</strong>—If you mess up, you can still recover.</li>
+        <li><strong>First test the HA instance verification</strong>: If the HA at home is already very complex, it is strongly recommended to open another clean HA container as a test machine, and then put it into the official machine after verifying the skill action.</li>
+        <li><strong>Formal environment nail version</strong>: use <code>@tag</code> or <code>@commit</code> Pin it to avoid upstream changes and you won’t feel the need to upgrade.</li>
+        <li><strong>Entities exposed to AI should be selected</strong>: Settings → Voice Assistants → Expose Check only the necessary areas/entities. Don't give it to door locks, alarms, and power switches that "cannot be restored".</li>
+        <li><strong>Number of stars = popularity, not = safety</strong>: Popular collections also depend on what permissions they have and what they do - especially if there are <code>scripts/</code> skill.</li>
       </ul>
     </section>
 
-    <section id="spec" data-nav="SKILL.md 規格">
-      <h2 data-icon="what">SKILL.md 規格速查</h2>
-      <p>一顆 skill 的最小骨架（詳細規格見 <a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a>）：</p>
+    <section id="spec" data-nav="SKILL.md Specifications">
+      <h2 data-icon="what">SKILL.md Quick Specs</h2>
+      <p>The minimum skeleton of a skill (for detailed specifications, see <a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a>): </p>
       <pre class="code-block"><code>washer-notify/
-├── SKILL.md          ← 唯一必要檔案
-└── references/       ← 選用附件（AI 用到才讀）
+├── SKILL.md ← Only necessary file
+└── references/ ← Select attachments (read only when AI is used)
     └── ha-service-map.md
 
-# SKILL.md 內容
+# SKILL.md Contents
 ---
 name: washer-notify
 description: |
-  當使用者問「洗衣機洗完了嗎」「該收衣服了嗎」，或提到
-  自動化洗衣機提醒時觸發。可透過 HA API 讀取
-  sensor.washer_power 判斷是否處於運轉/待機/完成狀態。
+  When users ask "Is the washing machine finished?" "Is it time to put away the clothes?" or mention
+  Triggered when automated washing machine reminds. Can be read via HA API
+  sensor.washer_power determines whether it is in running/standby/completion state.
 license: MIT
 compatibility:
   agents: [claude-code, opencode, openclaw, hermes]
@@ -387,71 +387,71 @@ compatibility:
 allowed-tools: [ha_get_state, ha_get_history, notify_send]
 ---
 
-# 洗衣機提醒 skill
+# Washing machine reminder skill
 
-當使用者提到洗衣機時，先讀 sensor.washer_power 過去 15 分鐘的
-歷史：如果從 &gt;100W 掉到 &lt;5W 並持續 3 分鐘以上，回覆「洗完了」；
-還在運轉則回覆預估剩餘時間（依平均運轉 45 分鐘估算）。
+When the user mentions a washing machine, first read sensor.washer_power for the past 15 minutes.
+History: If it drops from &gt;100W to &lt;5W and lasts for more than 3 minutes, reply "washed";
+If it is still running, the estimated remaining time will be returned (estimated based on an average running time of 45 minutes).
 
-若使用者要求自動提醒，用 ha_config_set_automation 建一條：
-trigger: sensor.washer_power &lt; 5W 持續 3 分鐘
+If the user requires automatic reminder, use ha_config_set_automation to create one:
+trigger: sensor.washer_power &lt; 5W for 3 minutes
 action: notify.mobile_app_myphone
-先給使用者 YAML 摘要，同意再套用。</code></pre>
+Give the user the YAML summary first and agree before applying it.</code></pre>
       <table class="data-table">
         <thead>
-          <tr><th>欄位</th><th>必填</th><th>說明</th></tr>
+          <tr><th>field</th><th>Required</th><th>Description</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>name</code></td><td>是</td><td>小寫英數與連字號，1–64 字元。</td></tr>
-          <tr><td><code>description</code></td><td>是</td><td>做什麼＋何時用。<strong>AI 靠這行決定要不要載入</strong>——把使用者會講的話寫進去。</td></tr>
-          <tr><td><code>license</code></td><td>否</td><td>建議寫，讓別人知道能不能改。</td></tr>
-          <tr><td><code>compatibility</code></td><td>否</td><td>標注支援的 agent／MCP，跨 harness 分享時很有用。</td></tr>
-          <tr><td><code>allowed-tools</code></td><td>否</td><td>限制 skill 只能呼叫哪些工具，安全防線。</td></tr>
+          <tr><td><code>name</code></td><td>Yes</td><td>Lowercase numbers and hyphens, 1–64 characters.</td></tr>
+          <tr><td><code>description</code></td><td>Yes</td><td>What to do + when to use.<strong>The AI relies on this line to decide whether to load</strong>—Write in what the user would say.</td></tr>
+          <tr><td><code>license</code></td><td>No</td><td>I suggest you write it and let others know if it can be changed.</td></tr>
+          <tr><td><code>compatibility</code></td><td>No</td><td>Mark supported agents/MCPs, which is useful when sharing across harnesses.</td></tr>
+          <tr><td><code>allowed-tools</code></td><td>No</td><td>Limit which tools the skill can call, which is a line of security.</td></tr>
         </tbody>
       </table>
-      <p>慣例：SKILL.md 保持精簡，附件放 <code>references/</code>、<code>scripts/</code>、<code>assets/</code>，AI 需要才讀，避免吃爆 context。HA 相關 skill 建議在 <code>references/</code> 放一份「service 對照表」，AI 呼叫前先查。</p>
+      <p>Convention: Keep SKILL.md simple and put attachments <code>references/</code>, <code>scripts/</code>, <code>assets/</code>, AI reads only when needed to avoid overloading the context. HA related skills are recommended in <code>references/</code> Put a "service comparison table" and check it before the AI calls.</p>
     </section>
 
-    <section id="faq" data-nav="常見問題">
-      <h2 data-icon="faq">常見問題</h2>
+    <section id="faq" data-nav="FAQ">
+      <h2 data-icon="faq">FAQ</h2>
       <details class="faq">
-        <summary>裝了但完全沒反應？</summary>
-        <div class="body">先開新 session（skill 是 session 開始時載入）。再問 AI「目前載入了哪些 skill？」確認有進清單；有進但不觸發，多半是 <code>description</code> 沒涵蓋你的講法——直接點名：「用 <code>claude-skill-homeassistant</code> 幫我做這件事」。</div>
+        <summary>Pretended but no response at all?</summary>
+        <div class="body">Open a new session first (skill is loaded when the session starts). Then ask the AI "What skills are currently loaded?" to confirm that they are in the list; if they are in the list but are not triggered, it is probably <code>description</code> Didn’t cover what you said – just name it: “Use <code>claude-skill-homeassistant</code> Help me do this".</div>
       </details>
       <details class="faq">
-        <summary>Skill 跟 HA 的 Blueprint、Integration、Assist 差在哪？</summary>
-        <div class="body">位置不同：Skill 加在你用的 AI agent 那一端（Claude Code／OpenClaw／...），HA 一行都不動。Blueprint／Integration／Assist 都是加在 HA 那一端。Skill 教「AI 怎麼跟 HA 打交道」，Blueprint 教「HA 怎麼自己處理事件」——兩者不衝突，可以疊。</div>
+        <summary>What is the difference between Skill and HA’s Blueprint, Integration, and Assist?</summary>
+        <div class="body">The location is different: Skill is added to the end of the AI agent you use (Claude Code/OpenClaw/...), and HA does not move a line. Blueprint/Integration/Assist are all added on the HA side. Skill teaches "AI how to deal with HA", and Blueprint teaches "how HA handles events on its own" - the two do not conflict and can be overlapped.</div>
       </details>
       <details class="faq">
-        <summary>Skill 裝太多會怎樣？</summary>
-        <div class="body">每顆 skill 的名稱與描述會佔 system prompt 的 context，裝幾十包會讓 AI 分心也變貴。原則：常用的留著（HA 相關的 3–5 顆＋官方文件套），試玩過不用的就移除。</div>
+        <summary>What happens if you install too many Skills?</summary>
+        <div class="body">The name and description of each skill will occupy the context of the system prompt. Installing dozens of packages will distract the AI and become expensive. Principle: Keep the commonly used ones (3-5 related to HA + official document set), and remove the ones you don’t use after the trial.</div>
       </details>
       <details class="faq">
-        <summary>可以只裝 monorepo 裡其中一顆嗎？例如只要 aurora-smart-home 裡的 esphome？</summary>
-        <div class="body">git spec 目前沒有標準子目錄語法。實務做法：clone 到本機，把想要的那個子資料夾（含 SKILL.md）放到 harness 的 skills 目錄（Claude Code 是 <code>~/.claude/skills/</code>），或用本地路徑安裝。</div>
+        <summary>Can I install only one of the monorepo? For example, only esphome in aurora-smart-home?</summary>
+        <div class="body">git spec currently has no standard subdirectory syntax. Practical approach: Clone to the local machine and put the desired subfolder (including SKILL.md) into the skills directory of the harness (Claude Code is <code>~/.claude/skills/</code>), or install using a local path.</div>
       </details>
       <details class="faq">
-        <summary>會 skill 動壞我的 HA 嗎？怎麼救？</summary>
-        <div class="body">會，尤其是有 <code>ha_config_set_*</code> 權限的 skill。所以安全守則第 2 條寫「先做完整備份」——搞砸就 Settings → Backups → Restore 回去。若已經沒備份、正式機被改壞，看 <code>configuration.yaml</code> 的 git／snapshot 版本；HA Green／Yellow 出廠的 WoowTech 機種有每日自動快照。</div>
+        <summary>Will skill damage my HA? How to save?</summary>
+        <div class="body">Yes, especially if <code>ha_config_set_*</code> Permission skill. So the 2nd safety rule says "make a full backup first" - if you mess up, go back to Settings → backups → Restore. If there is no backup or the official machine has been modified, see <code>configuration.yaml</code> git/snapshot version; HA Green/Yellow factory WoowTech models have daily automatic snapshots.</div>
       </details>
       <details class="faq">
-        <summary>怎麼自己寫一顆 HA skill？</summary>
-        <div class="body">最快：裝 <code>skill-creator</code>（<a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a> 內），叫它「幫我把『家庭週報產出流程』寫成 skill」，你邊描述邊改，10 分鐘出雛型。或依 <a href="#spec">SKILL.md 規格</a> 節裡的範例自己起頭。</div>
+        <summary>How to write a HA skill yourself?</summary>
+        <div class="body">Fastest: install <code>skill-creator</code> (<a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a> (within), call it "Help me write the "Family Weekly Report Production Process" as a skill." You can modify it as you describe it, and the prototype will be ready in 10 minutes. Or depend on <a href="#spec">SKILL.md Specifications</a> The types in the section start by themselves.</div>
       </details>
     </section>
 
-    <section id="download" data-nav="下載">
-      <h2 data-icon="download">把這本帶走</h2>
-      <p>整本是自包含單檔 HTML，圖示全部內嵌，下載後離線可開。集合資訊會過期，重要決定前回<a href="index.html">資源總覽</a>看線上版。</p>
+    <section id="download" data-nav="Download">
+      <h2 data-icon="download">take this book away</h2>
+      <p>The entire book is a self-contained single file of HTML, with all images embedded, and can be opened offline after downloading. The collection information will expire, important decisions will be made before returning<a href="index.html">Resource Hub</a>Watch the online version.</p>
       <p>
-        <a class="btn-pill" href="skills.html" download="ha-skill手冊.html">下載本冊 HTML</a>
-        <a class="btn-ghost" href="index.html">回資源總覽</a>
+        <a class="btn-pill" href="skills.html" download="ha-skill-handbook.html">Download this booklet HTML</a>
+        <a class="btn-ghost" href="index.html">Return to Resource Hub</a>
       </p>
     </section>
 
     <footer class="site-footer">
-      <p>《HA AI Agent Skill 手冊》由 <strong>WoowTech 渥屋科技</strong> 製作，以 <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> 授權釋出。第三方 skill 各依其原始授權；集合規模為 2026-08-20 GitHub 公開快照。</p>
-      <p class="footer-meta">The Smart Space Solution · <a href="index.html">HA 資源總覽</a></p>
+      <p>"HA AI Agent Skill Manual" by <strong>WoowTech Wowu Technology</strong> make, to <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> Authorized release. Third-party skills are subject to their original authorization; the collection size is the 2026-08-20 GitHub public snapshot.</p>
+      <p class="footer-meta">The Smart Space Solution · <a href="index.html">HA Resource Hub</a></p>
     </footer>
   </main>
 </div>

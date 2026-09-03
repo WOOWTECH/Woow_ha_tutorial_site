@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Appendix A · 生態圈：HACS、Add-ons、遠端連線 · Home Assistant 新居入住指南</title>
-  <meta name="description" content="Home Assistant 生態圈：官方 Add-on 商店、HACS 社群套件商店，以及 Nabu Casa、DDNS、VPN、Cloudflare Tunnel 四種遠端連線方案的比較。" />
+  <title>Appendix A · Ecosystem: HACS, Add-ons, remote connection · Home Assistant Onboarding Guide</title>
+  <meta name="description" content="Home Assistant ecosystem: official Add-on store, HACS community suite store, and comparison of four remote connection solutions: Nabu Casa, DDNS, VPN, and Cloudflare Tunnel." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/appendix_hacs_addons.html" />
   <meta name="robots" content="noindex, follow" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Home Assistant 新居入住指南" />
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Appendix A · 生態圈：HACS、Add-ons、遠端連線 · Home Assistant 新居入住指南" />
-  <meta property="og:description" content="Home Assistant 生態圈：官方 Add-on 商店、HACS 社群套件商店，以及 Nabu Casa、DDNS、VPN、Cloudflare Tunnel 四種遠端連線方案的比較。" />
+  <meta property="og:title" content="Appendix A · Ecosystem: HACS, Add-ons, remote connection · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Home Assistant ecosystem: official Add-on store, HACS community suite store, and comparison of four remote connection solutions: Nabu Casa, DDNS, VPN, and Cloudflare Tunnel." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/appendix_hacs_addons.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Appendix A · 生態圈：HACS、Add-ons、遠端連線 · Home Assistant 新居入住指南" />
-  <meta name="twitter:description" content="Home Assistant 生態圈：官方 Add-on 商店、HACS 社群套件商店，以及 Nabu Casa、DDNS、VPN、Cloudflare Tunnel 四種遠端連線方案的比較。" />
+  <meta name="twitter:title" content="Appendix A · Ecosystem: HACS, Add-ons, remote connection · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Home Assistant ecosystem: official Add-on store, HACS community suite store, and comparison of four remote connection solutions: Nabu Casa, DDNS, VPN, and Cloudflare Tunnel." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -32,52 +32,52 @@
 <body>
 <div class="layout">
   <aside class="sidebar">
-    <a class="brand" href="tutorial.html">HA 新居入住指南</a>
-    <div class="brand-sub">從零到能用</div>
+    <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
+    <div class="brand-sub">From scratch to functional</div>
     <nav class="lang-switch" aria-label="Language"><a href="../appendix_hacs_addons.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="appendix_hacs_addons.html" lang="en" aria-current="page">EN</a></nav>
-    <a class="hub-link" href="index.html">◂ 資源總覽</a>
+    <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">基礎：從零到能用</li>
-      <li data-i18n="pending"><a href="ch1_login.html">登入 HA</a></li>
-      <li data-i18n="pending"><a href="ch2_system_settings.html">系統設定</a></li>
-      <li data-i18n="pending"><a href="ch3_floors_areas.html">樓層與區域</a></li>
-      <li data-i18n="pending"><a href="ch4_naming_labels.html">命名與標籤</a></li>
-      <li data-i18n="pending"><a href="ch5_users.html">用戶管理</a></li>
-      <li data-i18n="pending"><a href="ch6_dashboard.html">儀表板</a></li>
-      <li data-i18n="pending"><a href="ch7_notifications.html">通知</a></li>
-      <li data-i18n="pending"><a href="ch8_first_automation.html">第一個自動化</a></li>
-      <li data-i18n="pending"><a href="ch9_backups.html">備份</a></li>
-      <li data-i18n="pending"><a href="ch10_scripts.html">腳本 Scripts</a></li>
-      <li data-i18n="pending"><a href="ch11_devices.html">裝置詳細設定</a></li>
-      <li data-i18n="pending"><a href="ch12_domains.html">Domain 控制圖鑑</a></li>
-      <li class="part-label">擴充：接上更多裝置</li>
-      <li data-i18n="pending"><a href="ch13_themes.html">主題與外觀</a></li>
-      <li data-i18n="pending"><a href="ch14_integrations.html">整合服務串接</a></li>
-      <li data-i18n="pending"><a href="ch15_protocols.html">通訊協定大百科</a></li>
-      <li data-i18n="pending"><a href="ch16_todo_calendar.html">待辦與行事曆</a></li>
-      <li class="part-label">數據、能源與 AI</li>
-      <li data-i18n="pending"><a href="ch17_energy.html">能源儀表板</a></li>
-      <li data-i18n="pending"><a href="ch18_history_data.html">歷史數據與導出</a></li>
-      <li data-i18n="pending"><a href="ch19_voice_ai.html">語音助理與 AI</a></li>
-      <li class="part-label">進階架構與應用</li>
-      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on 與 Docker</a></li>
-      <li data-i18n="pending"><a href="ch21_network_remote.html">網路與遠端連線</a></li>
-      <li data-i18n="pending"><a href="ch22_life_logs.html">生活紀錄應用</a></li>
+      <li class="part-label">Basics: from scratch to functional</li>
+      <li data-i18n="pending"><a href="ch1_login.html">Login to HA</a></li>
+      <li data-i18n="pending"><a href="ch2_system_settings.html">System settings</a></li>
+      <li data-i18n="pending"><a href="ch3_floors_areas.html">Floors and areas</a></li>
+      <li data-i18n="pending"><a href="ch4_naming_labels.html">Naming and labeling</a></li>
+      <li data-i18n="pending"><a href="ch5_users.html">User management</a></li>
+      <li data-i18n="pending"><a href="ch6_dashboard.html">Dashboard</a></li>
+      <li data-i18n="pending"><a href="ch7_notifications.html">Notifications</a></li>
+      <li data-i18n="pending"><a href="ch8_first_automation.html">First automation</a></li>
+      <li data-i18n="pending"><a href="ch9_backups.html">backup</a></li>
+      <li data-i18n="pending"><a href="ch10_scripts.html">Scripts</a></li>
+      <li data-i18n="pending"><a href="ch11_devices.html">Device details</a></li>
+      <li data-i18n="pending"><a href="ch12_domains.html">Domain reference</a></li>
+      <li class="part-label">Expansion: connect more devices</li>
+      <li data-i18n="pending"><a href="ch13_themes.html">Themes and appearance</a></li>
+      <li data-i18n="pending"><a href="ch14_integrations.html">Integrations</a></li>
+      <li data-i18n="pending"><a href="ch15_protocols.html">Communication protocols</a></li>
+      <li data-i18n="pending"><a href="ch16_todo_calendar.html">To-do and calendar</a></li>
+      <li class="part-label">Data, energy and AI</li>
+      <li data-i18n="pending"><a href="ch17_energy.html">Energy dashboard</a></li>
+      <li data-i18n="pending"><a href="ch18_history_data.html">History and data export</a></li>
+      <li data-i18n="pending"><a href="ch19_voice_ai.html">Voice assistants and AI</a></li>
+      <li class="part-label">Advanced architecture and applications</li>
+      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on and Docker</a></li>
+      <li data-i18n="pending"><a href="ch21_network_remote.html">Network and remote connections</a></li>
+      <li data-i18n="pending"><a href="ch22_life_logs.html">Life logging</a></li>
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#addons">官方應用程式商店</a>
-      <a href="#hacs">HACS 社群商店</a>
-      <a href="#remote">遠端連線四條路</a>
-      <a href="#warning">資安警告</a>
-      <a href="#faq">常見問題</a>
+      <a href="#addons">Official App Store</a>
+      <a href="#hacs">HACS community store</a>
+      <a href="#remote">Four remote connections</a>
+      <a href="#warning">Security warning</a>
+      <a href="#faq">FAQ</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html" class="active">A · 生態圈：HACS/Add-ons/遠端</a>
-      <a href="appendix_scenes_helpers_groups.html">B · 場景/輔助元件/群組</a>
-      <a href="appendix_hardware_install.html">C · 裝機前傳：硬體與 HAOS</a>
+      <a href="appendix_hacs_addons.html" class="active">A · Ecosystem: HACS/Add-ons/remote</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scene/auxiliary component/group</a>
+      <a href="appendix_hardware_install.html">C · Pre-installation: Hardware and HAOS</a>
     </div>
   </aside>
 
@@ -85,269 +85,269 @@
     <div class="callout i18n-pending"><strong>This chapter has not been translated yet.</strong> You are reading the original Chinese text. <a href="../appendix_hacs_addons.html" hreflang="zh-Hant">Open the Chinese version</a></div>
     <div class="chapter-header">
       <div class="kicker">Appendix A</div>
-      <h1>生態圈：HACS、應用程式與遠端連線</h1>
-      <p class="lead">這三個題目不屬於「從零到能用」的必修課，但幾乎每個 HA 玩家最後都會碰到。這裡給你一份可以按需要跳讀的地圖。</p>
+      <h1>Ecosystem: HACS, Apps and Remote Connectivity</h1>
+      <p class="lead">These three questions are not required courses in "from scratch to usable", but almost every HA player will encounter them in the end. Here's a map you can skip to as needed.</p>
     </div>
 
-    <section id="addons" data-nav="官方應用程式商店">
-      <h2 data-icon="addons">官方應用程式商店（App store）</h2>
-      <div class="callout"><strong>改名注意：</strong>從 2026.2 版起，官方把「附加元件（Add-on）」正式改名成「應用程式（Apps）」，商店叫「應用程式商店（App store）」，選單路徑也從「設定 → 附加元件」變成「設定 → 應用程式」。東西完全沒變，只是換了名字。你手上如果還是 2026.2 以前的版本，看到「附加元件 / Add-on / Add-on Store」，指的就是這一節講的應用程式。</div>
-      <p>應用程式（Apps，舊版叫附加元件 Add-on）是跑在 HA OS 上的<strong>獨立容器程式</strong>，可以想成 HA 主機順便幫你開的一台小伺服器。<em>只有 HA OS 和 HA Supervised 有應用程式商店</em>，HA Container / HA Core 沒有。</p>
-      <p>路徑：「設定 → 應用程式 → 安裝應用程式」（Settings → Apps → Install app）。</p>
-      <p>會用到應用程式的時機：</p>
+    <section id="addons" data-nav="Official App Store">
+      <h2 data-icon="addons">Official App store</h2>
+      <div class="callout"><strong>Note on name change:</strong>Starting from version 2026.2, the official name of "Add-on" has been officially changed to "Apps", the store is called "App store", and the menu path has also changed from "Settings → Add-ons" to "Settings → Applications". Nothing has changed at all, just the name has been changed. If you still have a version before 2026.2 and see "Add-on / Add-on / Add-on Store", it refers to the application discussed in this section.</div>
+      <p>Applications (Apps, called add-ons in the old version) run on HA OS<strong>standalone container program</strong>, can be thought of as a small server that the HA host helps you open.<em>Only HA OS and HA Supervised have app stores</em>, HA Container / HA Core no.</p>
+      <p>Path: "Settings → Apps → Install app" (Settings → Apps → Install app).</p>
+      <p>When the app will be used:</p>
       <ul>
-        <li>要跑 Zigbee2MQTT / ESPHome 等本地服務。</li>
-        <li>要 SSH 進主機除錯。</li>
-        <li>要用 Node-RED 這種視覺化流程工具。</li>
+        <li>To run local services such as Zigbee2MQTT / ESPHome.</li>
+        <li>SSH into the host to debug.</li>
+        <li>Use Node-RED, a visual process tool.</li>
       </ul>
-      <p>幾個最常裝的官方應用程式：</p>
+      <p>Some of the most commonly installed official applications:</p>
       <ul>
-        <li><strong>File editor</strong>——瀏覽器裡直接改 YAML 檔，適合輕度編輯。</li>
-        <li><strong>Studio Code Server</strong>——完整 VS Code 網頁版，寫大量 YAML 或 template 首選。</li>
-        <li><strong>Samba share</strong>——把 HA 的 <code>/config</code> 開成網芳，讓你用電腦的檔案總管操作。</li>
-        <li><strong>Terminal &amp; SSH</strong>——SSH 進 HA OS，做進階排錯。</li>
-        <li><strong>Node-RED</strong>——拖拉式的視覺化自動化工具，複雜流程比 UI 好維護。</li>
-        <li><strong>ESPHome</strong>——燒錄 ESP32 / ESP8266 韌體，DIY 感應器必備。</li>
-        <li><strong>Zigbee2MQTT</strong>——比 ZHA 支援更多 Zigbee 設備，社群更新快。</li>
-        <li><strong>Mosquitto broker</strong>——MQTT 訊息代理，Z2M / 很多 DIY 裝置的通訊底層。</li>
+        <li><strong>File editor</strong>—Change YAML files directly in the browser, suitable for light editing.</li>
+        <li><strong>Studio Code Server</strong>—The complete VS Code web version, the first choice for writing large amounts of YAML or templates.</li>
+        <li><strong>Samba share</strong>—Put HA’s <code>/config</code> KaiChengWangFang allows you to operate using your computer's file manager.</li>
+        <li><strong>Terminal &amp; SSH</strong>—SSH into HA OS for advanced troubleshooting.</li>
+        <li><strong>Node-RED</strong>—Drag-and-drop visual automation tool, complex processes are easier to maintain than UI.</li>
+        <li><strong>ESPHome</strong>—Burning ESP32 / ESP8266 firmware, a must for DIY sensors.</li>
+        <li><strong>Zigbee2MQTT</strong>—Supports more Zigbee devices than ZHA, and the community updates quickly.</li>
+        <li><strong>Mosquitto broker</strong>—MQTT message broker, the communication underlying layer of Z2M/many DIY devices.</li>
       </ul>
-      <div class="callout tip"><strong>建議做法：</strong>先確定你有明確需求再裝。每裝一個應用程式就多一份要維護、要更新、要占資源的服務。</div>
+      <div class="callout tip"><strong>Recommended practices:</strong>Make sure you have clear needs before installing. Every time you install an application, there is one more service that needs to be maintained, updated, and takes up resources.</div>
     </section>
 
-    <section id="hacs" data-nav="HACS 社群商店">
-      <h2 data-icon="hacs">HACS（Home Assistant Community Store）</h2>
-      <p>HACS 是<strong>社群維護</strong>的第三方套件商店，跟官方應用程式商店（App store）是<em>兩件不同的事</em>：</p>
+    <section id="hacs" data-nav="HACS community store">
+      <h2 data-icon="hacs">HACS (Home Assistant Community Store)</h2>
+      <p>HACS is<strong>Community maintenance</strong>third-party package store, which is the same as the official App store (App store)<em>two different things</em>: </p>
       <ul>
-        <li><strong>官方應用程式商店</strong>：管的是「跑在 HA OS 上的獨立容器程式」，官方審核。</li>
-        <li><strong>HACS</strong>：管的是「塞進 HA 本體裡跑的東西」——自訂整合（integrations）、自訂儀表板卡片（Lovelace cards）、主題、python_script、AppDaemon 應用。無官方審核，作者自負品質。</li>
+        <li><strong>Official App Store</strong>: It deals with "independent container programs running on HA OS" and is officially reviewed.</li>
+        <li><strong>HACS</strong>: It is in charge of "things that are plugged into the HA ontology" - custom integrations, custom dashboard cards (Lovelace cards), themes, python_script, and AppDaemon applications. There is no official review, and the author is responsible for the quality.</li>
       </ul>
-      <p><strong>什麼時候該裝 HACS？</strong>當你發現「官方整合裡沒有我這台設備」或「內建的卡片不夠好看 / 不夠強」時，八成 HACS 上有解。裝之前不用急，先確認官方沒有支援再考慮。</p>
-      <p><strong>安裝流程重點（詳細看官方文件）：</strong></p>
+      <p><strong>When should I install HACS?</strong>When you find that "my device is not included in the official integration" or "the built-in cards are not pretty/capable enough", 80% of the time HACS has a solution. There is no need to rush before installing. First confirm that there is no official support before considering.</p>
+      <p><strong>Key points of the installation process (see official documents for details):</strong></p>
       <ol>
-        <li>裝 HACS 本身需要 SSH / Studio Code Server 進 HA 執行一段安裝腳本（近期版本也支援用應用程式「HACS Bootstrap」一鍵處理）。</li>
-        <li>然後在 HA 加入一個新的整合「HACS」，會顯示一組 GitHub 裝置碼（device code）與網址；瀏覽器打開網址、登入 GitHub、貼上裝置碼授權即可（不用再手動產生 personal access token）。</li>
-        <li>完成後左側選單會多一個 HACS 圖示，裡面就是社群套件市集。</li>
+        <li>Installing HACS itself requires SSH/Studio Code Server to enter HA and execute an installation script (recent versions also support one-click processing using the application "HACS Bootstrap").</li>
+        <li>Then add a new integration "HACS" to HA, which will display a set of GitHub device codes and URLs; open the URL in a browser, log in to GitHub, and paste the device code for authorization (no need to manually generate a personal access token).</li>
+        <li>After completion, there will be a HACS icon on the left menu, which is the community package market.</li>
       </ol>
-      <p>官方安裝文件：<a href="https://hacs.xyz" target="_blank" rel="noopener">https://hacs.xyz</a>。步驟隨版本會變，請以官方為準。</p>
-      <p><strong>裝完常見套件方向：</strong></p>
+      <p>Official installation files:<a href="https://hacs.xyz" target="_blank" rel="noopener">https://hacs.xyz</a>. The steps will change with the version, please refer to the official version.</p>
+      <p><strong>Directions for installing common kits:</strong></p>
       <ul>
-        <li><strong>自訂儀表板卡片</strong>：<code>mushroom-cards</code>（現代簡潔）、<code>button-card</code>（自訂到極致）、<code>mini-graph-card</code>（漂亮的歷史曲線）、<code>swipe-card</code>（手機用左右滑動）。</li>
-        <li><strong>社群整合</strong>：小米 / Aqara localized、Tuya localized（避開國際版雲端）、SwitchBot API、台電電費、氣象局預報。</li>
-        <li><strong>主題</strong>：Google Home、Graphite、Noctis 等社群主題。</li>
+        <li><strong>Customize dashboard cards</strong>: <code>mushroom-cards</code>(Modern simplicity),<code>button-card</code>(Customized to the extreme),<code>mini-graph-card</code>(beautiful historical curve),<code>swipe-card</code>(Swipe left and right on your phone).</li>
+        <li><strong>community integration</strong>: Xiaomi/Aqara localized, Tuya localized (avoiding the international version of the cloud), SwitchBot API, your utility bill and national weather service forecast.</li>
+        <li><strong>Topic</strong>: Google Home, Graphite, Noctis and other social themes.</li>
       </ul>
-      <div class="callout warn"><strong>提醒：</strong>HACS 套件是<em>無審核</em>的第三方程式碼，選 star 數多、最近有更新（3 個月內）的作者。不要一次裝一大堆，HA 更新時容易一起壞。</div>
+      <div class="callout warn"><strong>Reminder:</strong>The HACS suite is<em>No review</em>For third-party code, select authors with a large number of stars and recent updates (within 3 months). Do not install a large number of them at once, as they may all break when updating HA.</div>
     </section>
 
-    <section id="remote" data-nav="遠端連線四條路">
-      <h2 data-icon="remote">遠端連線的四條路</h2>
-      <p>在家連 HA 用區網 IP 就夠了，但一旦出門想遠端看攝影機、關燈、收通知，就需要外網連線。有四種主流方案：</p>
+    <section id="remote" data-nav="Four remote connections">
+      <h2 data-icon="remote">Four remote connections</h2>
+      <p>It is enough to use the local network IP to connect to HA at home, but once you go out and want to watch the camera remotely, turn off the lights, and receive notifications, you need an external network connection. There are four mainstream options:</p>
       <table class="data-table">
         <thead>
           <tr>
-            <th>方案</th>
-            <th>成本</th>
-            <th>安全性</th>
-            <th>難度</th>
-            <th>適合</th>
+            <th>Plan</th>
+            <th>cost</th>
+            <th>security</th>
+            <th>difficulty</th>
+            <th>suitable for</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><strong>Nabu Casa</strong></td>
-            <td>USD $6.5/月</td>
-            <td>高</td>
-            <td>很低</td>
-            <td>大部分人。順便支持 HA 官方</td>
+            <td>USD $6.5/month</td>
+            <td>high</td>
+            <td>very low</td>
+            <td>Most people. By the way, support HA official</td>
           </tr>
           <tr>
             <td><strong>DuckDNS + Let's Encrypt</strong></td>
-            <td>免費</td>
-            <td>中（暴露公網）</td>
-            <td>中</td>
-            <td>要免費 + 有公網 IP + 願意設路由器</td>
+            <td>free</td>
+            <td>Medium (Exposed public network)</td>
+            <td>in</td>
+            <td>It needs to be free + have a public IP + be willing to set up a router</td>
           </tr>
           <tr>
             <td><strong>Tailscale / ZeroTier</strong></td>
-            <td>免費（個人）</td>
-            <td>最高</td>
-            <td>低</td>
-            <td>技術玩家、在意隱私、不需要分享給非家人</td>
+            <td>Free (individual)</td>
+            <td>highest</td>
+            <td>low</td>
+            <td>Technical gamer, concerned about privacy, no need to share with non-family members</td>
           </tr>
           <tr>
             <td><strong>Cloudflare Tunnel</strong></td>
-            <td>免費</td>
-            <td>中高</td>
-            <td>中</td>
-            <td>沒公網 IP（電信 CGNAT）也能對外</td>
+            <td>free</td>
+            <td>Middle to high</td>
+            <td>in</td>
+            <td>It can be externally connected without public network IP (telecom CGNAT)</td>
           </tr>
         </tbody>
       </table>
 
-      <p><strong>1. Nabu Casa（Home Assistant Cloud）</strong>——官方付費雲端。最省心，付了錢裝好整合就通了。額外送 Google Assistant / Alexa 連動、Cloud TTS（雲端語音合成）。不想折騰的第一首選，也是唯一能<em>順便贊助 HA 開發</em>的方案。</p>
+      <p><strong>1. Nabu Casa (Home Assistant Cloud)</strong>—Official paid cloud. The most worry-free thing is to just pay the money and install the integration. Comes with additional Google Assistant/Alexa linkage and Cloud TTS (cloud speech synthesis). The first choice if you don’t want to bother, and the only one that can<em>Sponsor HA development by the way</em>plan.</p>
 
-      <p><strong>2. DuckDNS + Let's Encrypt</strong>——用免費的動態 DNS 服務把家裡浮動 IP 綁一個網址（如 <code>myhome.duckdns.org</code>），再用 Let's Encrypt 拿免費 SSL 憑證。需要在路由器做 port forward。缺點是把 HA 暴露到公開網路，是攻擊面最大的方案。</p>
+      <p><strong>2. DuckDNS + Let's Encrypt</strong>—Use free dynamic DNS service to bind the floating IP at home to a URL (such as <code>myhome.duckdns.org</code>), then use Let's Encrypt to get a free SSL certificate. Need to do port forward on the router. The disadvantage is that it exposes HA to the public network, which is the solution with the largest attack surface.</p>
 
-      <p><strong>3. Tailscale / ZeroTier</strong>——這是「VPN 到你家」的做法。手機裝 Tailscale App，家裡 HA 也裝，兩者形成一個私人區網，出門也能像在家一樣用區網 IP 連 HA。<strong>最安全</strong>因為完全不暴露到公網。缺點：家人也要裝 App、無法分享給外人（不能像貼網址一樣傳給水電工）。</p>
+      <p><strong>3. Tailscale / ZeroTier</strong>—This is the approach of "VPN to your home". Install the Tailscale App on your mobile phone and the HA at home. The two form a private zone network. You can use the zone network IP to connect to the HA when you go out, just like at home.<strong>safest</strong>Because it is not exposed to the public network at all. Disadvantages: Family members also need to install the app, and it cannot be shared with outsiders (it cannot be passed to plumbers like a URL).</p>
 
-      <p><strong>4. Cloudflare Tunnel</strong>——Cloudflare 幫你在 HA 和它的 CDN 之間建立一條加密隧道，你不用有公網 IP、不用開路由器 port，Cloudflare 會提供一個網址讓你連進來。適合家裡是電信業者 CGNAT（沒公網 IP）的環境，還能順便用 Cloudflare 的 WAF 防護。</p>
+      <p><strong>4. Cloudflare Tunnel</strong>—Cloudflare helps you establish an encrypted tunnel between HA and its CDN. You don’t need to have a public IP or open a router port. Cloudflare will provide a URL for you to connect. It is suitable for environments where the home is a telecom operator CGNAT (no public network IP), and you can also use Cloudflare's WAF protection.</p>
     </section>
 
-    <section id="warning" data-nav="資安警告">
-      <h2 data-icon="warning">資安警告</h2>
+    <section id="warning" data-nav="Security warning">
+      <h2 data-icon="warning">Security warning</h2>
       <div class="callout danger">
-        <strong>絕對不要</strong>直接把 HA 的 8123 port 轉發（port forward）到公網、也不套用 HTTPS 憑證。
-        HA 預設沒開兩步驟驗證、也沒 IP 白名單。網路上的爬蟲天天在掃 8123 port，只要暴露就是被攻擊。
-        真的要走 DDNS 路線的話，<em>必須</em>：(1) 前面掛 Nginx 反向代理處理 HTTPS、(2) 開啟 HA 的兩步驟驗證（MFA）、(3) 用強密碼、(4) 有可能的話加 Cloudflare / fail2ban 擋暴力破解。
+        <strong>Absolutely not</strong>Directly forward HA's 8123 port to the public network without applying HTTPS credentials.
+        HA does not have two-step verification enabled by default, nor does it have an IP whitelist. Crawlers on the Internet scan port 8123 every day, and as long as it is exposed, it will be attacked.
+        If you really want to go the DDNS route,<em>Must</em>(1) Hang Nginx reverse proxy in front to process HTTPS, (2) Enable HA's two-step authentication (MFA), (3) Use strong passwords, (4) If possible, add Cloudflare / fail2ban to prevent brute force cracking.
       </div>
-      <p>如果你不知道上面這些是什麼，請直接用 Nabu Casa 或 Tailscale，不要自己開 port。這不是折騰技術能省下的錢，是把家裡整套智慧家庭 + 攝影機 + 門鎖權限公開在網路上的風險。</p>
+      <p>If you don't know what the above are, please use Nabu Casa or Tailscale directly instead of opening the port yourself. This is not the money you can save by tinkering with technology, but the risk of exposing your entire smart home + camera + door lock permissions to the Internet.</p>
     </section>
 
-    <section id="faq" data-nav="常見問題">
-      <h2 data-icon="faq">常見問題</h2>
+    <section id="faq" data-nav="FAQ">
+      <h2 data-icon="faq">FAQ</h2>
 
       <details class="faq">
-        <summary>HACS 裝的東西會不會拖慢 Home Assistant？</summary>
+        <summary>Will the HACS stuff slow down Home Assistant?</summary>
         <div class="body">
-          <p>會，但要看你裝的是哪一種——HACS 裡有兩類完全不同的東西：</p>
+          <p>Yes, but it depends on which one you install - there are two completely different types of things in HACS:</p>
           <table class="data-table">
             <thead>
-              <tr><th>類型</th><th>跑在哪</th><th>影響</th></tr>
+              <tr><th>Type</th><th>Where to run</th><th>influence</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>自訂整合</strong>（custom integration）</td><td>HA 主機的後端，跟內建整合搶同一份 CPU 和記憶體</td><td>啟動變慢、寫得爛的會卡住整個啟動流程、有的會頻繁打外部 API</td></tr>
-              <tr><td><strong>自訂卡片 / 主題</strong>（Lovelace card、theme）</td><td>你的瀏覽器或手機 App</td><td>幾乎不影響主機，只是儀表板第一次載入多下載幾個檔案</td></tr>
+              <tr><td><strong>Custom integration</strong> (custom integration)</td><td>The backend of the HA host is integrated with the built-in to grab the same CPU and memory</td><td>The startup is slow, poorly written ones will block the entire startup process, and some will frequently hit external APIs.</td></tr>
+              <tr><td><strong>Customized cards/themes</strong> (Lovelace card, theme)</td><td>Your browser or mobile app</td><td>Almost no impact on the host, just downloading a few more files when the dashboard is first loaded</td></tr>
             </tbody>
           </table>
-          <p>所以「裝了 20 個漂亮卡片」通常沒事，「裝了 8 個自訂整合每個都在輪詢雲端」就會有感。HACS 本身也會定期去 GitHub 查更新，不過那是背景的小流量。</p>
-          <p>懷疑是誰在拖時間，最乾淨的判斷方式是<strong>用安全模式開一次</strong>（作法看下一題）：安全模式完全不載入自訂整合、自訂卡片和自訂主題，如果安全模式下順得像新的一樣，那答案就很明顯了。</p>
-          <div class="callout tip"><strong>提示：</strong>裝之前先問一句「內建的真的不行嗎」。很多人裝一堆卡片，最後常用的只有兩三個，剩下的變成更新時的地雷。</div>
+          <p>So "installing 20 beautiful cards" is usually fine, but "installing 8 custom integrations, each of which is polling the cloud" will be fine. HACS itself will regularly check GitHub for updates, but that is a small amount of traffic in the background.</p>
+          <p>If you suspect who is stalling for time, the cleanest way to judge is<strong>Open in safe mode</strong>(See the next question for how to do it): Safe mode does not load custom integrations, custom cards, and custom themes at all. If it runs like new in safe mode, the answer is obvious.</p>
+          <div class="callout tip"><strong>hint:</strong>Before installing, ask "Is the built-in one really not good?" Many people pack a bunch of cards, and in the end only two or three are commonly used, and the rest become mines during updates.</div>
         </div>
       </details>
 
       <details class="faq">
-        <summary>更新完 Home Assistant，某個 HACS 裝的東西壞了 / 開不起來，怎麼辦？</summary>
+        <summary>After updating Home Assistant, something installed in the HACS is broken/cannot be turned on. What should I do?</summary>
         <div class="body">
-          <p>這是玩 HACS 的必經之路，別緊張，照順序來：</p>
+          <p>This is the only way to play HACS, don’t be nervous, follow this order:</p>
           <ol class="steps">
             <li>
-              <h3>用安全模式把 HA 救起來</h3>
-              <p><strong>設定 → 系統 → 右上角「重新啟動 Home Assistant」→ 選「以安全模式重新啟動」</strong>。這會載入 HA 核心，但不載入任何自訂整合、自訂卡片、自訂主題，讓你至少進得去介面。</p>
+              <h3>Use safe mode to rescue HA</h3>
+              <p><strong>Settings → System → "Restart Home Assistant" in the upper right corner → select "Restart in Safe Mode"</strong>. This will load the HA core, but not any custom integrations, custom cards, or custom themes, so you can at least get into the interface.</p>
             </li>
             <li>
-              <h3>看紀錄找出兇手</h3>
-              <p><strong>設定 → 系統 → 紀錄</strong>。壞掉的自訂整合通常會留下一整段錯誤，第一行就會寫是哪個 <code>custom_components</code> 出事。</p>
+              <h3>Look at the records to find the murderer</h3>
+              <p><strong>Settings → System → Records</strong>. Broken custom integrations often leave a whole section of errors, with the first line saying which <code>custom_components</code> Something happened.</p>
             </li>
             <li>
-              <h3>去那個套件的 GitHub 看 Issues</h3>
-              <p>HA 每個月都有新版，大改版當天作者的 repo 一定已經有人開好 issue 了。通常等作者發個更新版就好，HACS 裡按更新就解決。</p>
+              <h3>Go to the GitHub of that package to see the Issues</h3>
+              <p>HA has a new version every month. On the day of the major revision, someone must have opened an issue in the author's repo. Usually, just wait for the author to send an updated version, and press update in HACS to solve the problem.</p>
             </li>
             <li>
-              <h3>等不了就先移除它</h3>
-              <p>在 HACS 裡把該套件移除，重開機讓 HA 恢復正常，之後再裝回來。少一個功能總比整台開不起來好。</p>
+              <h3>If you can't wait, remove it first.</h3>
+              <p>Remove the package from HACS, reboot the system to allow HA to return to normal, and then install it back again. It’s better to have one less function than to not be able to use the entire machine.</p>
             </li>
             <li>
-              <h3>真的救不回來就還原備份</h3>
-              <p>回到<a href="ch9_backups.html">第 9 章</a>的備份還原流程，退回更新前那一版。<strong>這就是為什麼升級前一定要有備份。</strong></p>
+              <h3>If you really can’t save it, restore the backup.</h3>
+              <p>return to<a href="ch9_backups.html">Chapter 9</a>backup and restore process, return to the version before the update.<strong>This is why you must have a backup before upgrading.</strong></p>
             </li>
           </ol>
-          <div class="callout tip"><strong>養成習慣：</strong>更新 HA 之前先看官方 release 公告的 Breaking changes 段落，再確認手上的自訂整合最近有沒有在更新。作者半年沒動的套件，遲早會在某次大改版陣亡。</div>
+          <div class="callout tip"><strong>Make it a habit:</strong>Before updating HA, first read the Breaking changes section of the official release announcement, and then confirm whether the custom integration you have has been updated recently. The package that the author has not touched for half a year will sooner or later be killed in a major revision.</div>
         </div>
       </details>
 
       <details class="faq">
-        <summary>同一個功能，什麼時候該找應用程式（舊稱附加元件）、什麼時候該找 HACS？</summary>
+        <summary>For the same function, when should we look for applications (formerly known as add-ons) and when should we look for HACS?</summary>
         <div class="body">
-          <p>用「這東西需不需要獨立跑一支程式」來分：</p>
+          <p>Use "Does this thing need to run a separate program" to classify:</p>
           <table class="data-table">
             <thead>
-              <tr><th>你想要的</th><th>該去哪找</th></tr>
+              <tr><th>what you want</th><th>Where to find</th></tr>
             </thead>
             <tbody>
-              <tr><td>一支獨立的伺服器程式：MQTT broker、Zigbee2MQTT、ESPHome、Node-RED、資料庫、SSH</td><td>應用程式（Apps，舊稱 Add-on）</td></tr>
-              <tr><td>讓 HA 認得某個官方沒支援的裝置或服務</td><td>HACS 的自訂整合</td></tr>
-              <tr><td>儀表板要更好看、更特別的卡片、換主題</td><td>HACS 的卡片 / 主題</td></tr>
+              <tr><td>An independent server program: MQTT broker, Zigbee2MQTT, ESPHome, Node-RED, database, SSH</td><td>Applications (formerly known as Add-on)</td></tr>
+              <tr><td>Let HA recognize a device or service that is not officially supported</td><td>Custom integration for HACS</td></tr>
+              <tr><td>The dashboard should look better, have more special cards, and change the theme</td><td>HACS Cards/Topics</td></tr>
             </tbody>
           </table>
-          <p>Zigbee2MQTT 是最容易搞混的例子，因為它<strong>兩邊都會碰到</strong>：程式本體是應用程式（或你自己跑的容器），裝置要出現在 HA 裡靠的是 MQTT 整合的自動探索，而它那個漂亮的網路地圖卡片又是 HACS 上的東西。三件事，三個地方，不是同一個。</p>
+          <p>Zigbee2MQTT is the most confusing example because it<strong>Will be encountered on both sides</strong>: The program itself is an application (or a container you run yourself). The device appears in HA through the automatic discovery of MQTT integration, and its beautiful network map card is something on HACS. Three things, three places, not the same.</p>
         </div>
       </details>
 
       <details class="faq">
-        <summary>我是 Docker（HA Container）裝的，沒有應用程式商店（舊稱附加元件商店），是不是就玩不了這些？</summary>
+        <summary>I installed it with Docker (HA Container) and there is no app store (formerly known as the add-on store). Am I unable to play these games?</summary>
         <div class="body">
-          <p>不是，你只是要多做一步。分成兩件事看：</p>
+          <p>No, you just have to take one more step. Let’s break it down into two things:</p>
           <ul>
-            <li><strong>HACS 照樣能用。</strong>HACS 支援 OS / Supervised、Container、Core 三種安裝方式。Container 和 Core 是用同一份官方下載腳本：進到容器（或主機）的終端機執行 <code>wget -O - https://get.hacs.xyz | bash -</code>，重開 HA，再到整合頁面加入 HACS 走 GitHub 授權就完成了。OS / Supervised 則是直接加 HACS 的應用程式儲存庫（app repository）來裝。步驟會隨版本調整，以 <a href="https://hacs.xyz" target="_blank" rel="noopener">hacs.xyz</a> 的說明為準。</li>
-            <li><strong>應用程式的功能要自己開容器。</strong>應用程式說穿了就是 Supervisor 幫你管理的 Docker 容器。Zigbee2MQTT、ESPHome、Mosquitto、Node-RED 這些都有各自的官方 Docker image，你在 <code>docker compose</code> 裡多寫一段就有了，功能一模一樣，差別在<em>更新、備份、設定介面都要你自己顧</em>，不會出現在 HA 的介面裡，也不會被 HA 的備份包進去。</li>
+            <li><strong>HACS still works.</strong>HACS supports three installation methods: OS/Supervised, Container, and Core. Container and Core use the same official download script: enter the terminal of the container (or host) and execute it <code>wget -O - https://get.hacs.xyz | bash -</code>, restart HA, go to the integration page to join HACS, and go through GitHub authorization to complete. OS/Supervised is installed directly by adding the HACS app repository. The steps will be adjusted according to the version to <a href="https://hacs.xyz" target="_blank" rel="noopener">hacs.xyz</a> The description shall prevail.</li>
+            <li><strong>The functions of the application must be opened in its own container.</strong>To put it bluntly, the application is a Docker container managed by Supervisor for you. Zigbee2MQTT, ESPHome, Mosquitto, and Node-RED all have their own official Docker images. You can <code>docker compose</code> Just write one more paragraph and it will have the same function. The difference is<em>Updates, backups, and interface settings are all yours to take care of.</em>, will not appear in the HA interface, nor will it be included in the HA backup package.</li>
           </ul>
-          <div class="callout warn"><strong>先想清楚：</strong>如果你發現自己一直在補這些手工步驟，代表 HA OS 可能比較適合你。反過來說，如果這台機器上還跑著別的服務、你本來就熟 Docker，那 Container 的彈性是值得的。這是取捨，沒有標準答案。</div>
+          <div class="callout warn"><strong>Think clearly first:</strong>If you find yourself constantly completing these manual steps, HA OS may be more suitable for you. On the other hand, if there are other services running on this machine and you are familiar with Docker, then the flexibility of Container is worth it. This is a trade-off, and there is no standard answer.</div>
         </div>
       </details>
 
       <details class="faq">
-        <summary>遠端連線這四種，到底哪個最安全？</summary>
+        <summary>Which of the four types of remote connections is the safest?</summary>
         <div class="body">
-          <p>只論安全性，排序是這樣：</p>
+          <p>As far as safety is concerned, the ranking is as follows:</p>
           <ol class="steps">
             <li>
-              <h3>Tailscale / ZeroTier —— 最安全</h3>
-              <p>因為你的 HA <strong>從來沒有出現在公開網路上</strong>。沒有網址可以掃、沒有 port 可以敲，攻擊者連目標都找不到。代價是每個要用的人都得裝 App 並被你授權。</p>
+              <h3>Tailscale / ZeroTier - the most secure</h3>
+              <p>Because of your HA <strong>Never appeared on the public internet</strong>. There is no URL to scan, no port to type, and the attacker cannot even find the target. The price is that everyone who wants to use it must install the app and be authorized by you.</p>
             </li>
             <li>
-              <h3>Nabu Casa —— 安全且省心</h3>
-              <p>官方雲端幫你處理憑證和連線通道，一樣不用在路由器開 port。你要顧的就是自己的 HA 帳號密碼。</p>
+              <h3>Nabu Casa – safe and worry-free</h3>
+              <p>The official cloud helps you handle credentials and connection channels, and there is no need to open a port on the router. All you have to worry about is your HA account password.</p>
             </li>
             <li>
-              <h3>Cloudflare Tunnel —— 中上，但看你怎麼設</h3>
-              <p>不用開 port 這點很好，但預設情況下那個網址是<em>任何人都連得到</em>的，只是他們會停在 HA 的登入頁。要拉到「安全」等級，得再搭 Cloudflare Access 之類的身分驗證擋在前面。</p>
+              <h3>Cloudflare Tunnel - Above average, but it depends on how you set it up</h3>
+              <p>It’s good that you don’t need to open a port, but by default the URL is<em>Anyone can even get it</em>Yes, except they will stop at the HA login page. To get to the "Secure" level, you need to use identity verification like Cloudflare Access to get in front of it.</p>
             </li>
             <li>
-              <h3>DuckDNS + port forward —— 最危險</h3>
-              <p>把 HA 直接掛在公開網路上，本文前面的資安警告講的就是這條路。</p>
+              <h3>DuckDNS + port forward - the most dangerous</h3>
+              <p>Hang the HA directly on the public network. The security warning earlier in this article talks about this approach.</p>
             </li>
           </ol>
-          <p>不管你選哪一條，<strong>兩步驟驗證（MFA）都要開</strong>——設定方法在<a href="ch5_users.html">第 5 章</a>。這是唯一一件不管用哪個方案都必做的事。</p>
+          <p>No matter which one you choose,<strong>Two-step verification (MFA) must be turned on</strong>—The setting method is in<a href="ch5_users.html">Chapter 5</a>. This is the only thing that must be done no matter which plan is used.</p>
         </div>
       </details>
 
       <details class="faq">
-        <summary>Nabu Casa 一個月 6.5 美金，值得訂嗎？</summary>
+        <summary>Nabu Casa costs $6.50 a month. Is it worth booking?</summary>
         <div class="body">
-          <p>先看你付的到底是什麼。目前官方定價是<strong>每月 6.5 美金、包年 65 美金</strong>（歐元區是每月 €7.50、包年 €75），而且可以<strong>免費試用一個月</strong>再決定。內容包含：</p>
+          <p>First look at what you are paying for. The current official pricing is<strong>$6.5 per month, $65 per year</strong>(Eurozone is €7.50 per month, €75 per year), and you can<strong>Free trial for one month</strong>Decide again. Content includes:</p>
           <ul>
-            <li>安全的遠端連線，不用碰路由器。</li>
-            <li>Google Assistant 與 Amazon Alexa 連動——自己接這兩個要申請開發者帳號、設 OAuth，是真的麻煩。</li>
-            <li>Assist 語音助理用的雲端語音合成（TTS）與語音辨識（STT）。</li>
-            <li>相機 WebRTC 連線在無法直連時的中繼（TURN）伺服器，人在外面看相機時有差。</li>
-            <li>你的錢直接進 Home Assistant 的開發，這個專案沒有廣告也不賣你的資料，就是靠這個活。</li>
+            <li>Secure remote connection without touching the router.</li>
+            <li>Google Assistant and Amazon Alexa are connected - it is really troublesome to apply for a developer account and set up OAuth to connect these two.</li>
+            <li>Cloud-based speech synthesis (TTS) and speech recognition (STT) for Assist voice assistant.</li>
+            <li>When the camera WebRTC connection cannot be directly connected to the relay (TURN) server, there will be errors when people look at the camera outside.</li>
+            <li>Your money goes directly to the development of Home Assistant. This project has no ads and doesn't sell your data. It just depends on this.</li>
           </ul>
-          <p><strong>建議這樣判斷：</strong></p>
+          <p><strong>It is recommended to judge like this:</strong></p>
           <table class="data-table">
             <thead>
-              <tr><th>你的情況</th><th>建議</th></tr>
+              <tr><th>your situation</th><th>Suggestions</th></tr>
             </thead>
             <tbody>
-              <tr><td>只想要遠端連線，家裡沒有語音助理，也不介意每個人都裝 App</td><td>Tailscale 免費就夠了</td></tr>
-              <tr><td>要接 Google / Alexa，或家裡有人不想裝 VPN App</td><td>Nabu Casa，省下的時間遠超過這個錢</td></tr>
-              <tr><td>常在外面看家裡的相機</td><td>Nabu Casa，中繼伺服器這點自架很難補</td></tr>
-              <tr><td>你就是想學這些網路技術</td><td>自己架，但務必照資安警告那節做好</td></tr>
+              <tr><td>I just want remote connection, I don’t have a voice assistant at home, and I don’t mind if everyone installs the app.</td><td>Tailscale is free and that’s enough</td></tr>
+              <tr><td>Want to connect to Google/Alexa, or someone at home doesn’t want to install VPN App</td><td>Nabu Casa, the time saved far exceeds the money</td></tr>
+              <tr><td>Often looking at the camera at home outside</td><td>Nabu Casa, the relay server is difficult to fix on your own</td></tr>
+              <tr><td>You just want to learn these Internet technologies</td><td>Fight it yourself, but be sure to follow the information security warning section</td></tr>
             </tbody>
           </table>
-          <div class="callout tip"><strong>老實說：</strong>如果你連「port forward」是什麼都要 Google，那這筆錢買的不是功能，是「不會因為設錯而把家裡攝影機公開在網路上」的保險。先用免費試用跑一個月，答案自己會出現。</div>
+          <div class="callout tip"><strong>Honestly:</strong>If you even want to Google what "port forward" is, then what you pay for is not the function, but the insurance that "your home camera will not be exposed to the Internet due to incorrect settings." Use the free trial for a month first, and the answer will appear by itself.</div>
         </div>
       </details>
 
       <details class="faq">
-        <summary>Cloudflare Tunnel 是免費的，我可以用它在外面看家裡的攝影機嗎？</summary>
+        <summary>Cloudflare Tunnel is free, can I use it to watch my home cameras from outside?</summary>
         <div class="body">
-          <p>技術上可以，但這是最容易踩線的用法。Cloudflare 的 CDN 條款對「透過它傳送不是託管在 Cloudflare 自家服務上的影片與大型檔案」一直有限制——後來的條款改版明確寫的是：影片內容要放在 Cloudflare 自己的服務（Stream、Images、R2）上才不受限。你家攝影機的即時串流顯然不屬於這一類。</p>
-          <p>偶爾點開看一眼大概不會怎樣，但如果你在儀表板上掛四台相機整天串流，就是拿長期大流量去測人家的耐性，帳號被限制或被關掉都不能算冤枉。</p>
-          <p><strong>想在外面順順地看相機，比較妥當的選擇：</strong></p>
+          <p>Technically possible, but this is the easiest way to step on the line. Cloudflare's CDN terms have always had restrictions on "transmitting videos and large files that are not hosted on Cloudflare's own services through it" - later revisions to the terms clearly stated that video content must be placed on Cloudflare's own services (Stream, Images, R2) to be unrestricted. Your camera's live stream obviously doesn't fall into this category.</p>
+          <p>It probably won't matter if you click on it occasionally to take a look, but if you hang four cameras on the dashboard and stream all day long, you are testing people's patience with long-term heavy traffic. It is not unfair to have your account restricted or closed.</p>
+          <p><strong>If you want to watch the camera smoothly outside, a more appropriate choice is:</strong></p>
           <ul>
-            <li>Nabu Casa——相機遠端串流本來就是它的功能之一，還有 TURN 中繼幫忙。</li>
-            <li>Tailscale / ZeroTier——等於在自己的私人網路裡看，沒有第三方條款問題，只是路由繞遠時畫質會受手機網速影響。</li>
+            <li>Nabu Casa - Camera remote streaming is one of its functions, and TURN relay helps.</li>
+            <li>Tailscale/ZeroTier - It is equivalent to watching on your own private network. There are no third-party terms and conditions, but the picture quality will be affected by the mobile phone network speed when the route is far away.</li>
           </ul>
-          <p>Cloudflare Tunnel 比較適合的定位是：家裡是電信 CGNAT 拿不到公網 IP、主要需求是遠端開關燈和看狀態，而不是當監視器的影像通道。</p>
+          <p>Cloudflare Tunnel is more suitable for positioning: the home is a telecommunications company and CGNAT cannot get the public network IP. The main requirement is to turn on and off the lights remotely and check the status, rather than serving as the image channel of the monitor.</p>
         </div>
       </details>
     </section>
@@ -355,17 +355,17 @@
     <div class="pager">
       <a class="prev" href="ch22_life_logs.html">
         <span class="label">← Previous</span>
-        <span class="title">22 · 生活紀錄應用</span>
+        <span class="title">22 · Life record application</span>
       </a>
       <a class="next" href="appendix_scenes_helpers_groups.html">
         <span class="label">Next appendix →</span>
-        <span class="title">B · 場景/輔助元件/群組</span>
+        <span class="title">B · Scene/auxiliary component/group</span>
       </a>
     </div>
 
     <footer class="site-footer">
-      <p>Home Assistant 新居入住指南 is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
-      <p class="footer-meta">截圖取自 Home Assistant 官方介面。Home Assistant 為 Open Home Foundation 的商標，本站與其無隸屬關係。 · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
+      <p>Home Assistant New Home Move-In Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
+      <p class="footer-meta">Screenshot taken from Home Assistant official interface. Home Assistant is a trademark of the Open Home Foundation, and this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
   </main>
 </div>

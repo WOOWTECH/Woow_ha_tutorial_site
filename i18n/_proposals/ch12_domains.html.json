@@ -1,0 +1,10 @@
+{
+  "file": "ch12_domains.html",
+  "entries": [
+    {
+      "unit": "#notify",
+      "zh": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>action: notify.mobile_app_iphone\ndata:\n  title: 洗衣機洗完了\n  message: 記得拿出來\n  data:\n    push:\n      sound: US-EN-Alexa-Laundry-Ready.wav  # iOS 音效\n      badge: 1\n    actions:                                # 可點按動作\n      - action: LAUNDRY_DONE\n        title: 好，我來拿\n      - action: LAUNDRY_SNOOZE\n        title: 10 分鐘後提醒\n    image: /api/camera_proxy/camera.laundry # 直接顯示相機截圖\n    tag: laundry                            # 相同 tag 會覆蓋前一則\n    channel: laundry                        # Android 通知通道\n    ttl: 0                                  # Android 高優先</code></pre>",
+      "en": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>action: notify.mobile_app_iphone\ndata:\n  title: The washing machine has finished washing\n  message: Remember to take it out\n  data:\n    push:\n      sound: US-EN-Alexa-Laundry-Ready.wav # iOS sound effects\n      badge: 1\n    actions: # Clickable actions\n      - action: LAUNDRY_DONE\n        title: OK, I'll get it\n      - action: LAUNDRY_SNOOZE\n        title: Reminder in 10 minutes\n    image: /api/camera_proxy/camera.laundry # Directly display camera screenshots\n    tag: laundry # The same tag will overwrite the previous one\n    channel: laundry # Android notification channel\n    ttl: 0 # Android high priority</code></pre>"
+    }
+  ]
+}

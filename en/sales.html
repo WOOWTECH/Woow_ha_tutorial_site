@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WoowTech 智慧家庭 · HAOS 代設定 × 雲端 PaaS · 銷售手冊</title>
-  <meta name="description" content="想要智慧家庭又不想自架？兩條路：買 HAOS 硬體＋WoowTech 全套代設定，或月租 WoowTech 雲端 PaaS 免自架。硬體選型、代裝 add-ons、代寫 automations、常用整合內建，一頁講清楚。" />
+  <title>WoowTech Smart Home · HAOS Generation Setting × Cloud PaaS · Sales Manual</title>
+  <meta name="description" content="Want a smart home but don’t want to have to worry about yourself? There are two ways: buy HAOS hardware + WoowTech full set of generation settings, or rent WoowTech cloud PaaS monthly without self-installation. Hardware selection, installation of add-ons, automations, and commonly used integrated built-ins are all explained in one page." />
   <meta name="author" content="WoowTech" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/sales.html" />
@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
   <style>
-/* HA 銷售手冊 — Woow_ha_tutorial_site 版型 × woowtech Brand Prompt Library v2 */
+/* HA Sales Manual — Woow_ha_tutorial_site Pattern × woowtech Brand Prompt Library v2 */
 :root {
   --ww-blue: #6183FC;
   --ww-blue-600: #4A6DE8;
@@ -180,7 +180,7 @@ section p, section li { color: var(--ink-700); max-width: var(--max-content); }
 .feature-card ul { margin: 8px 0 0; padding-left: 20px; }
 .feature-card ul li { font-size: 14px; margin-bottom: 6px; }
 
-/* 兩大方案卡（大版） */
+/* Two major plan cards (large version) */
 .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .plan-card {
   padding: 28px 26px; border: 1px solid var(--hairline); border-radius: var(--radius);
@@ -359,421 +359,421 @@ details.faq .body { padding: 16px 20px; color: var(--ink-700); font-size: 14px; 
 <body>
 <div class="layout">
   <aside class="sidebar" id="sidebar">
-    <a class="brand" href="#top">WoowTech 智慧家庭</a>
-    <div class="brand-sub">HAOS 代設定 × 雲端 PaaS</div>
+    <a class="brand" href="#top">WoowTech smart home</a>
+    <div class="brand-sub">HAOS generation setting × Cloud PaaS</div>
     <!-- i18n:switch --><nav class="lang-switch" aria-label="Language"><a href="../sales.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="sales.html" lang="en" aria-current="page">EN</a></nav><!-- /i18n:switch -->
-    <a class="hub-link" href="index.html">◂ HA 資源總覽</a>
-    <button class="nav-toggle" id="navToggle" type="button">本冊內容<span class="nav-toggle-caret"></span></button>
+    <a class="hub-link" href="index.html">◂ HA Resource Hub</a>
+    <button class="nav-toggle" id="navToggle" type="button">Contents of this volume<span class="nav-toggle-caret"></span></button>
     <div class="toc-in-chapter">
-      <h2>本冊內容</h2>
-      <a href="#why">為什麼找 WoowTech</a>
-      <a href="#paths">兩條路，一次看懂</a>
-      <a href="#onprem">方案 A：HAOS 代設定</a>
-      <a href="#cloud">方案 B：雲端 PaaS</a>
-      <a href="#included">代設定包含什麼</a>
-      <a href="#day">交機後的一年</a>
-      <a href="#compare">方案比一比</a>
-      <a href="#security">資料放在哪</a>
-      <a href="#faq">常見問題</a>
-      <a href="#cta">預約諮詢</a>
+      <h2>Contents of this volume</h2>
+      <a href="#why">Why WoowTech</a>
+      <a href="#paths">Two roads, understand them once</a>
+      <a href="#onprem">Option A: HAOS generation setting</a>
+      <a href="#cloud">Option B: Cloud PaaS</a>
+      <a href="#included">What does generation setting include?</a>
+      <a href="#day">One year after handover</a>
+      <a href="#compare">Compare plans</a>
+      <a href="#security">Where is the information placed?</a>
+      <a href="#faq">FAQ</a>
+      <a href="#cta">Make an appointment for consultation</a>
     </div>
   </aside>
 
   <main class="content" id="top">
     <div class="chapter-header">
       <span class="kicker-script">smart home, done for you</span>
-      <div class="kicker">WoowTech 銷售手冊</div>
-      <h1>想要智慧家庭，又不想變成工程師</h1>
-      <p class="lead">Home Assistant 很強大，但要自己搞硬體、燒 HAOS、裝 add-ons、寫 automations——多數人就是卡在這裡。WoowTech 給你兩條路：買硬體讓我們幫你「一次代裝到能用」，或月租我們的雲端 PaaS「連硬體都不用買」。</p>
+      <div class="kicker">WoowTech Sales Brochure</div>
+      <h1>Want a smart home, but don’t want to become an engineer</h1>
+      <p class="lead">Home Assistant is very capable, but you have to build the hardware, burn HAOS, install add-ons, and write automations - this is where most people get stuck. WoowTech gives you two options: buy the hardware and let us help you "install it once until it is ready for use", or rent our cloud PaaS on a monthly basis "without even buying the hardware".</p>
       <div class="kpi-frame">
-        <div class="kpi"><div class="num">2 週</div><div class="cap">從下單到交機能用</div></div>
-        <div class="kpi"><div class="num">0 行 YAML</div><div class="cap">你不用寫任何設定檔</div></div>
-        <div class="kpi"><div class="num">3 年</div><div class="cap">保養支援 &amp; 遠端維運</div></div>
+        <div class="kpi"><div class="num">2 weeks</div><div class="cap">Can be used from order placement to delivery</div></div>
+        <div class="kpi"><div class="num">0 lines of YAML</div><div class="cap">You don't need to write any configuration files</div></div>
+        <div class="kpi"><div class="num">3 years</div><div class="cap">Maintenance support &amp; remote maintenance</div></div>
       </div>
     </div>
 
-    <section id="why" data-nav="為什麼找 WoowTech">
-      <h2 data-icon="why">為什麼不自己裝就好</h2>
-      <p>Home Assistant 是全球最開放、社群最活躍的智慧家庭大腦。它的優勢，也剛好是門檻：<strong>什麼都能接、代表什麼都要自己選</strong>。挑硬體、燒映像檔、綁 Zigbee／Matter、寫每個 automation、遇到升級把家裡搞掛——這是「自架」的隱藏成本。</p>
+    <section id="why" data-nav="Why WoowTech">
+      <h2 data-icon="why">Why don't you just install it yourself?</h2>
+      <p>Home Assistant is the world’s most open and socially active smart home brain. Its advantages are also just the threshold:<strong>You can accept anything, and you have to choose whatever it represents.</strong>. Choosing hardware, burning image files, tying Zigbee/Matter, writing every automation, and upgrading your home will cause problems - this is the hidden cost of "self-built".</p>
       <ul>
-        <li><strong>時間成本</strong>：翻文件、看 YouTube、卡半天的時間，通常比方案費用還高。</li>
-        <li><strong>穩定成本</strong>：升級一個 breaking change 沒注意到，全家的燈半夜自己開派對。</li>
-        <li><strong>安全成本</strong>：把 8123 埠隨便對外開，等於把家門鑰匙丟到網路上。</li>
+        <li><strong>time cost</strong>: Looking through files, watching YouTube, and being stuck for half a day are usually more expensive than the plan fee.</li>
+        <li><strong>Stable costs</strong>:Upgrade a breaking change. I didn’t notice that the whole family’s lights started a party by themselves in the middle of the night.</li>
+        <li><strong>security cost</strong>: Opening port 8123 to the outside world is equivalent to throwing your home keys on the Internet.</li>
       </ul>
-      <div class="callout"><strong>觀念：</strong>你想要的是「智慧家庭」，不是「當智慧家庭的工程師」。WoowTech 把整條裝機、維護、遠端連線的鏈路承包起來——你的角色回到「使用者」。</div>
+      <div class="callout"><strong>Concept:</strong>What you want is a "smart home", not "being a smart home engineer." WoowTech takes over the entire installation, maintenance, and remote connection links - your role returns to "user".</div>
     </section>
 
-    <section id="paths" data-nav="兩條路，一次看懂">
-      <h2 data-icon="two-paths">兩條路，選一條就好</h2>
-      <p>對「不想自架」的人，WoowTech 提供兩種完整解法。差別在「主機在你家還是在我們家」，功能與體驗一致。</p>
+    <section id="paths" data-nav="Two roads, understand them once">
+      <h2 data-icon="two-paths">There are two roads, just choose one</h2>
+      <p>For those who “don’t want to fight against themselves”, WoowTech provides two complete solutions. The difference is "the host is at your home or ours", the functions and experience are the same.</p>
       <div class="plan-grid">
 
         <div class="plan-card featured">
-          <span class="badge">方案 A · 最推薦</span>
-          <h3>HAOS 硬體 ＋ 代設定</h3>
-          <p class="plan-lead">主機放你家，資料永遠在你家。適合裝了 Zigbee／KNX／有線設備、或很在意隱私的用戶。</p>
-          <div class="plan-price">一次性建置費<small>（依硬體與 add-ons 而定，詳洽經銷商）</small></div>
+          <span class="badge">Option A · Self-hosted</span>
+          <h3>Self-hosted Home Assistant setup</h3>
+          <p class="plan-lead">The host is placed at your home, and the data is always at your home. Suitable for users who have installed Zigbee/KNX/wired devices or are very concerned about privacy.</p>
+          <div class="plan-price">[ONE-TIME PRICE AND CURRENCY TO BE CONFIRMED]<small>(Depends on hardware and add-ons, contact channel to be confirmed)</small></div>
           <ul>
-            <li>Home Assistant Green / Yellow / 樹莓派 / 迷你電腦 四款硬體任選</li>
-            <li>HAOS 系統燒錄、初始化、時區與網路設定</li>
-            <li>代裝必要 add-ons（Zigbee2MQTT、ESPHome、MQTT、SSH、Studio Code Server 等）</li>
-            <li>代寫入住常用 automations（回家模式／晚安／通知／備份）</li>
-            <li>遠端連線建置（Nabu Casa／Cloudflare Tunnel／WireGuard 三選一）</li>
-            <li>3 年遠端維運＋升級保養</li>
+            <li>Home Assistant Green/Yellow/Raspberry Pi/Mini Computer Four hardware options to choose from</li>
+            <li>HAOS system programming, initialization, time zone and network settings</li>
+            <li>Necessary add-ons for installation (Zigbee2MQTT, ESPHome, MQTT, SSH, Studio Code Server, etc.)</li>
+            <li>Write down common automations for check-in (home mode/good night/notification/backup)</li>
+            <li>Remote connection establishment (Choose one of three Nabu Casa/Cloudflare Tunnel/WireGuard)</li>
+            <li>3 years of remote maintenance + upgrade maintenance</li>
           </ul>
-          <a class="cta" href="#onprem">看方案 A 細節 →</a>
+          <a class="cta" href="#onprem">See Option A details →</a>
         </div>
 
         <div class="plan-card">
-          <span class="badge">方案 B · 免自架</span>
-          <h3>WoowTech 雲端 PaaS</h3>
-          <p class="plan-lead">連硬體都不用買，月租開箱即用。適合租屋族、想快速試水溫、或設備以 Wi-Fi／雲端整合為主的用戶。</p>
-          <div class="plan-price">月租制<small>（每戶方案，詳洽經銷商）</small></div>
+          <span class="badge">Option B · Managed by WoowTech</span>
+          <h3>Managed by WoowTech</h3>
+          <p class="plan-lead">You don’t even need to buy the hardware, you can use it right out of the box with the monthly rental. Suitable for renters, users who want to quickly test the water temperature, or users whose devices mainly focus on Wi-Fi/cloud integration.</p>
+          <div class="plan-price">[RECURRING PRICE AND CURRENCY TO BE CONFIRMED]<small>(Plan for each household, contact channel to be confirmed)</small></div>
           <ul>
-            <li>你的專屬 HA 實例，跑在 WoowTech 台灣資料中心</li>
-            <li>常用整合預先啟用（天氣／行事曆／通知／能源）</li>
-            <li>登入即用的雲端網址＋Companion App 直連</li>
-            <li>官方 Blueprints、社群主題已裝好</li>
-            <li>自動快照備份、版本升級由 WoowTech 統一維護</li>
-            <li>可隨時升級為 A 方案，資料一次匯出到你家硬體</li>
+            <li>Your dedicated HA instance, running in a WoowTech-managed hosting location [REGION TO BE CONFIRMED]</li>
+            <li>Frequently used integrations pre-enabled (weather/calendar/notifications/energy)</li>
+            <li>Login-ready cloud URL + Companion App direct connection</li>
+            <li>Official Blueprints and community themes have been installed</li>
+            <li>Automatic snapshot backup and version upgrade are maintained by WoowTech</li>
+            <li>You can upgrade to Option A at any time, and the data will be exported to your home hardware at once</li>
           </ul>
-          <a class="cta ghost" href="#cloud">看方案 B 細節 →</a>
+          <a class="cta ghost" href="#cloud">See Option B details →</a>
         </div>
 
       </div>
-      <div class="callout tip"><strong>提示：</strong>不確定該選哪一個？<strong>先租雲端方案 B</strong> 玩三個月，習慣了、也知道自己缺哪些設備了，再升級成 A 方案把主機搬回家——這是我們最常推薦的路徑。</div>
+      <div class="callout tip"><strong>Note:</strong>This international edition keeps pricing, currency, service area, hosting region, contact channel, and CTA destination as explicit placeholders until WoowTech approves the business brief. Not sure which option fits?<strong>Start with Option B</strong> After playing for three months, you will get used to it and know what equipment you are missing, and then upgrade to Option A and move the console home - this is the path we most often recommend.</div>
     </section>
 
-    <section id="onprem" data-nav="方案 A：HAOS 代設定">
-      <h2 data-icon="onprem">方案 A：買 HAOS 硬體，我們幫你設定到能用</h2>
-      <p>你收到的是一台可以直接用的智慧家庭主機——不是一盒零件加一份「請自行照 YouTube 安裝」的說明書。</p>
+    <section id="onprem" data-nav="Option A: HAOS generation setting">
+      <h2 data-icon="onprem">Option A: Buy HAOS hardware and we will help you set it up until it works</h2>
+      <p>What you receive is a ready-to-use smart home host - not a box of parts and an instruction manual that says "Please follow YouTube to install it yourself."</p>
 
-      <h3>硬體怎麼挑</h3>
-      <p>我們同時代理 Nabu Casa 官方主機與市面上主流的迷你電腦，依你家的規模與預算推薦：</p>
+      <h3>How to choose hardware</h3>
+      <p>We also represent Nabu Casa official hosts and mainstream mini computers on the market. We recommend the following based on the size and budget of your home:</p>
       <table class="data-table">
         <thead>
-          <tr><th>機型</th><th>適合誰</th><th>裝置上限（實務）</th><th>備註</th></tr>
+          <tr><th>Model</th><th>Suitable for whom</th><th>Device upper limit (practical)</th><th>Remarks</th></tr>
         </thead>
         <tbody>
           <tr>
             <th>Home Assistant Green</th>
-            <td>兩房小家庭、輕度使用</td><td>50 個實體以內</td>
-            <td>Nabu Casa 官方入門機，插電就跑，最省事</td>
+            <td>Small family with two rooms, lightly used</td><td>Within 50 entities</td>
+            <td>Nabu Casa's official entry-level phone, plug it in and run, the easiest thing to do</td>
           </tr>
           <tr>
             <th>Home Assistant Yellow</th>
-            <td>透天／有 Zigbee／要 PoE</td><td>200 個實體</td>
-            <td>內建 Zigbee／Thread，可插 CM4／CM5，擴充性最好</td>
+            <td>Toutian/has Zigbee/requires PoE</td><td>200 entities</td>
+            <td>Built-in Zigbee/Thread, pluggable CM4/CM5, best expandability</td>
           </tr>
           <tr>
-            <th>樹莓派 5 ＋ SSD</th>
-            <td>DIY 派、想省預算</td><td>150 個實體</td>
-            <td>WoowTech 出貨為 SSD 版本，避開 SD 卡壞卡的坑</td>
+            <th>Raspberry Pi 5 + SSD</th>
+            <td>DIY style, want to save budget</td><td>150 entities</td>
+            <td>WoowTech ships as SSD version to avoid the pitfalls of bad SD cards.</td>
           </tr>
           <tr>
-            <th>Intel N100 迷你電腦</th>
-            <td>中大坪數／多住戶／要跑 LLM</td><td>500＋ 實體</td>
-            <td>x86 平台效能最強，做能源監控與 AI 語音都游刃有餘</td>
+            <th>Intel N100 Mini PC</th>
+            <td>Zhongda area/Multiple households/Going to LLM</td><td>500+ entities</td>
+            <td>The x86 platform has the most capable performance and is capable of energy monitoring and AI voice processing.</td>
           </tr>
         </tbody>
       </table>
-      <p>Zigbee 天線、Z-Wave、Matter Thread border router、SkyConnect 也可搭售——我們會依你家已有／想買的設備清單建議協定。</p>
+      <p>Zigbee antennas, Z-Wave, Matter Thread border router, and SkyConnect are also available for purchase - we will recommend an agreement based on the list of equipment you already have/want to buy at home.</p>
 
-      <h3>WoowTech 幫你做什麼</h3>
-      <p>從你點頭下單到我們把主機交給你，中間你不用碰任何一行設定：</p>
+      <h3>What WoowTech can do for you</h3>
+      <p>From the moment you nod your order to the moment we hand over the host to you, you don’t have to touch a single line of settings:</p>
       <ol class="steps">
         <li>
-          <h3>諮詢與需求盤點（30 分鐘）</h3>
-          <p>你家坪數、樓層、既有設備清單（燈、冷氣、窗簾、監控、門禁）、家人組成、想要的日常情境——WoowTech 顧問一次問清楚。</p>
+          <h3>Consultation and demand inventory (30 minutes)</h3>
+          <p>The number of square meters of your home, floors, list of existing equipment (lights, air conditioners, curtains, surveillance, access control), family composition, and desired daily situations—WoowTech consultants will ask you all in one go.</p>
         </li>
         <li>
-          <h3>方案設計與硬體訂購</h3>
-          <p>我們出一份「硬體＋協定＋add-ons＋automations」清單給你，你確認後下單，一週內硬體到我們工廠。</p>
+          <h3>Solution design and hardware ordering</h3>
+          <p>We will give you a list of "hardware + protocols + add-ons + automations". After you confirm it, place the order, and the hardware will arrive at our factory within a week.</p>
         </li>
         <li>
-          <h3>工廠代裝與內部測試</h3>
-          <p>HAOS 系統燒錄、時區／地區／單位、樓層區域、常用 add-ons、初始 automations、Companion App QR、遠端連線與備份——全部在我們的測試環境跑一輪確認才出貨。</p>
+          <h3>Factory installation and internal testing</h3>
+          <p>HAOS system programming, time zone/region/unit, floor area, commonly used add-ons, initial automations, Companion App QR, remote connection and backup - all are run through our test environment for confirmation before shipment.</p>
         </li>
         <li>
-          <h3>到府或宅配交機</h3>
-          <p>大台北到府安裝＋接家中網路；外縣市宅配到府＋線上教學。教學結束你已經能用手機開燈、看到通知。</p>
+          <h3>Door-to-door or home delivery machine</h3>
+          <p>Installation, shipping, and remote onboarding availability depends on your country [SERVICE AREA TO BE CONFIRMED]. By the end of the teaching, you can already use your mobile phone to turn on lights and see notifications.</p>
         </li>
         <li>
-          <h3>3 年遠端維運</h3>
-          <p>透過我們建的安全通道，升級、修 bug、加新 automation、換設備都可以遠端處理，你不用把家裡的網路開洞。</p>
+          <h3>3 years of remote maintenance</h3>
+          <p>Through the secure channel we built, upgrading, fixing bugs, adding new automation, and replacing equipment can all be handled remotely. You don’t need to open holes in your home network.</p>
         </li>
       </ol>
     </section>
 
-    <section id="cloud" data-nav="方案 B：雲端 PaaS">
-      <h2 data-icon="cloud">方案 B：從 WoowTech 雲端 PaaS 開始</h2>
-      <p>不想買硬體、家裡沒地方擺主機、只是想先試試看智慧家庭是什麼樣子——這個方案給你一個「馬上能登入的 Home Assistant」，月租制，隨時停用。</p>
+    <section id="cloud" data-nav="Option B: Cloud PaaS">
+      <h2 data-icon="cloud">Option B: Start with Managed by WoowTech</h2>
+      <p>You don’t want to buy hardware, you don’t have room to put a host at home, and you just want to try out what a smart home is like first. This plan gives you a “Home Assistant that you can log in to right away” on a monthly basis, and you can deactivate it at any time.</p>
 
-      <h3>你會拿到什麼</h3>
+      <h3>what will you get</h3>
       <ul>
-        <li><strong>專屬實例</strong>：你的 HA 跑在 WoowTech 台灣資料中心，一戶一個實例、資料獨立。</li>
-        <li><strong>登入即用的雲端網址</strong>：<code>your-home.woowtech.io</code>，Companion App 直接輸入登入。</li>
-        <li><strong>官方＋常用整合預裝</strong>：天氣、行事曆、通知、Cloudflare Zero Trust、Assist 語音助理、能源監控框架。</li>
-        <li><strong>Blueprints 與主題</strong>：常見自動化樣板（動作感應開燈、日出日落、家人回家、缺席警告）已載入。</li>
-        <li><strong>自動快照</strong>：每日備份保留 30 天，可下載到你家硬碟。</li>
+        <li><strong>Dedicated instance</strong>: Your HA runs in a WoowTech-managed hosting location [REGION TO BE CONFIRMED], with one instance per household and independent data.</li>
+        <li><strong>Login-ready cloud URL</strong>: <code>your-home.woowtech.io</code>, Companion App directly enter to log in.</li>
+        <li><strong>Official + commonly used integrated pre-installation</strong>: Weather, calendar, notifications, Cloudflare Zero Trust, Assist voice assistant, energy monitoring framework.</li>
+        <li><strong>Blueprints and themes</strong>: Common automation templates (motion sensor to turn on lights, sunrise and sunset, family members coming home, absence warning) have been loaded.</li>
+        <li><strong>Automatic snapshot</strong>: Daily backups are retained for 30 days and can be downloaded to your home hard drive.</li>
       </ul>
 
-      <h3>什麼設備接得上、什麼接不上</h3>
-      <p>雲端方案最大的差別是「本地設備要能對外連得到 HA」。以下是常見情境：</p>
+      <h3>What devices can be connected and what cannot be connected?</h3>
+      <p>The biggest difference between cloud solutions is that "local devices must be able to connect to the outside to obtain HA." The following are common scenarios:</p>
       <table class="data-table">
         <thead>
-          <tr><th>設備類型</th><th>能不能接雲端方案</th><th>備註</th></tr>
+          <tr><th>Device type</th><th>Can I use a cloud solution?</th><th>Remarks</th></tr>
         </thead>
         <tbody>
-          <tr><td>Google／Apple／Alexa 雲端音箱</td><td>能</td><td>雲端整合直連</td></tr>
-          <tr><td>米家／Aqara／Tuya 雲端 API</td><td>能</td><td>需要對應帳號</td></tr>
-          <tr><td>Wi-Fi 智慧插座、燈泡</td><td>能</td><td>多數走廠商雲端</td></tr>
-          <tr><td>Zigbee／Z-Wave／Matter Thread</td><td>不建議</td><td>需要本地 hub，建議走方案 A</td></tr>
-          <tr><td>KNX／Modbus／有線監控</td><td>不建議</td><td>本地協定為主，走方案 A</td></tr>
-          <tr><td>HomeKit（本地）</td><td>看設備</td><td>雲端 HomeKit 可，本地控制建議 A</td></tr>
+          <tr><td>Google/Apple/Alexa Cloud Speaker</td><td>can</td><td>Cloud integration direct connection</td></tr>
+          <tr><td>Mijia/Aqara/Tuya Cloud API</td><td>can</td><td>Corresponding account required</td></tr>
+          <tr><td>Wi-Fi smart sockets and light bulbs</td><td>can</td><td>Most use the manufacturer's cloud</td></tr>
+          <tr><td>Zigbee/Z-Wave/Matter Thread</td><td>Not recommended</td><td>A local hub is required. It is recommended to use option A.</td></tr>
+          <tr><td>KNX/Modbus/wired monitoring</td><td>Not recommended</td><td>Mainly local agreement, take Option A</td></tr>
+          <tr><td>HomeKit (native)</td><td>Look at the equipment</td><td>Cloud HomeKit is available, local control is recommended A</td></tr>
         </tbody>
       </table>
-      <div class="callout warn"><strong>注意：</strong>如果你家有一堆 Zigbee 燈泡、Aqara 感測器、或是想接 KNX／有線監控，雲端方案沒辦法看到這些本地協定。這種情況直接走方案 A。</div>
+      <div class="callout warn"><strong>Warning:</strong>If your home has a bunch of Zigbee bulbs, Aqara sensors, or wants to connect to KNX/wired monitoring, the cloud solution has no way of seeing these local protocols. In this case, just go to Option A.</div>
 
-      <h3>雲端方案的路徑</h3>
+      <h3>The path to cloud solutions</h3>
       <ol class="steps">
         <li>
-          <h3>線上下單、選方案</h3>
-          <p>依家庭規模（小家庭／全家／專業）與 add-ons 用量選月租方案，30 分鐘內開通。</p>
+          <h3>Online ordering and plan selection</h3>
+          <p>Choose a monthly rental plan based on your family size (small family/whole family/professional) and add-ons usage, and activate it in 30 minutes.</p>
         </li>
         <li>
-          <h3>WoowTech 幫你做基本設定</h3>
-          <p>顧問線上遠端會議 60 分鐘：地區時區、家庭成員、常用整合帳號綁定、Companion App 安裝與通知測試。</p>
+          <h3>WoowTech helps you with basic settings</h3>
+          <p>Consultant online remote meeting for 60 minutes: regional time zone, family members, commonly used integrated account binding, Companion App installation and notification testing.</p>
         </li>
         <li>
-          <h3>之後你自己用</h3>
-          <p>教你怎麼加設備、開新 automation、查歷史數據；卡關就寄客服或看《<a href="tutorial.html">HA 新居入住指南</a>》。</p>
+          <h3>You can use it later</h3>
+          <p>Teach you how to add equipment, open new automation, and check historical data; if you are stuck, please use the support channel [TO BE CONFIRMED] or read "<a href="tutorial.html">HA Onboarding Guide</a>》.</p>
         </li>
         <li>
-          <h3>要升級隨時可以</h3>
-          <p>發現要接的本地設備太多？WoowTech 直接把你雲端的資料匯出到你家硬體，升級成方案 A，你設定不用重來。</p>
+          <h3>You can upgrade at any time</h3>
+          <p>Found that there are too many local devices to connect to? WoowTech directly exports your cloud data to your home hardware and upgrades to Option A, so you don’t have to redo settings.</p>
         </li>
       </ol>
     </section>
 
-    <section id="included" data-nav="代設定包含什麼">
-      <h2 data-icon="steps">代設定包含什麼</h2>
-      <p>不管走 A 還是 B，「代設定」的定義是一致的：把《<a href="tutorial.html">HA 新居入住指南</a>》裡 22 章要你自己做的事，全部由 WoowTech 顧問一次做好。</p>
+    <section id="included" data-nav="What does generation setting include?">
+      <h2 data-icon="steps">What does generation setting include?</h2>
+      <p>Regardless of whether you go A or B, the definition of "generation setting" is the same: put "<a href="tutorial.html">HA Onboarding Guide</a>"What you are asked to do by yourself in the 22 chapters will be done by WoowTech consultants in one go.</p>
 
       <div class="feature-grid">
 
         <div class="feature-card">
           <span class="tile"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#6183FC" d="M17,17H7V7H17M21,11V9H19V7C19,5.89 18.1,5 17,5H15V3H13V5H11V3H9V5H7C5.89,5 5,5.89 5,7V9H3V11H5V13H3V15H5V17A2,2 0 0,0 7,19H9V21H11V19H13V21H15V19H17A2,2 0 0,0 19,17V15H21V13H19V11M13,13H11V11H13M15,9H9V15H15V9Z"/></svg></span>
-          <h3>系統與環境</h3>
+          <h3>System and Environment</h3>
           <ul>
-            <li>時區、語言、單位、地理位置</li>
-            <li>樓層與區域（Floor／Area）</li>
-            <li>實體命名、Label 標籤、Category 分類</li>
-            <li>家人／訪客帳號、權限、MFA</li>
+            <li>Time zone, language, unit, geographical location</li>
+            <li>Floor/Area</li>
+            <li>Entity naming, Label label, Category classification</li>
+            <li>Family/guest accounts, permissions, MFA</li>
           </ul>
         </div>
 
         <div class="feature-card">
           <span class="tile"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#6183FC" d="M14,20A2,2 0 0,1 12,22A2,2 0 0,1 10,20H14M12,2A1,1 0 0,1 13,3V4.08C15.84,4.56 18,7.03 18,10V16L21,19H3L6,16V10C6,7.03 8.16,4.56 11,4.08V3A1,1 0 0,1 12,2Z"/></svg></span>
-          <h3>Add-ons 與整合</h3>
+          <h3>Add-ons and integrations</h3>
           <ul>
-            <li>Zigbee2MQTT / ZHA（方案 A）</li>
-            <li>ESPHome、Node-RED、Studio Code Server</li>
-            <li>File editor、Terminal &amp; SSH（工程用）</li>
-            <li>MQTT broker、InfluxDB／MariaDB（進階用）</li>
-            <li>天氣、行事曆、通知、Companion App 綁定</li>
+            <li>Zigbee2MQTT/ZHA (Scenario A)</li>
+            <li>ESPHome, Node-RED, Studio Code Server</li>
+            <li>File editor, Terminal &amp; SSH (for engineering)</li>
+            <li>MQTT broker, InfluxDB/MariaDB (for advanced use)</li>
+            <li>Weather, calendar, notifications, Companion App binding</li>
           </ul>
         </div>
 
         <div class="feature-card">
           <span class="tile"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#6183FC" d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/></svg></span>
-          <h3>入住第一批 Automations</h3>
+          <h3>Move into the first batch of Automations</h3>
           <ul>
-            <li>日落開玄關燈、日出關夜燈</li>
-            <li>回家模式（大家離家後回家的判斷）</li>
-            <li>晚安模式（關燈、冷氣改睡眠、鎖門）</li>
-            <li>低電量／設備離線通知</li>
-            <li>每日自動備份、備份成功通知</li>
+            <li>Turn on the porch lights at sunset and turn off the night lights at sunrise</li>
+            <li>Go home mode (judgment when everyone returns home after leaving home)</li>
+            <li>Good night mode (turn off lights, switch to sleep mode with air conditioning, lock door)</li>
+            <li>Low battery/device offline notification</li>
+            <li>Daily automatic backup and backup success notification</li>
           </ul>
         </div>
 
         <div class="feature-card">
           <span class="tile"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="#6183FC" d="M11,13H13V16H16V11H18L12,6L6,11H8V16H11V13M12,1L21,5V11C21,16.55 17.16,21.74 12,23C6.84,21.74 3,16.55 3,11V5L12,1Z"/></svg></span>
-          <h3>遠端連線與安全</h3>
+          <h3>Remote connectivity and security</h3>
           <ul>
-            <li>Nabu Casa、Cloudflare Tunnel、WireGuard 三選一</li>
-            <li>trusted_proxies、reverse proxy 硬規則設定</li>
-            <li>Fail2ban、Rate limit、二階段驗證</li>
-            <li>不把 8123 直接對外，家門口不留鑰匙</li>
+            <li>Choose one of Nabu Casa, Cloudflare Tunnel, and WireGuard</li>
+            <li>Trusted_proxies, reverse proxy hard rule settings</li>
+            <li>Fail2ban, Rate limit, two-stage verification</li>
+            <li>Do not expose 8123 directly to the outside world, and leave no key at the door.</li>
           </ul>
         </div>
 
       </div>
-      <div class="callout tip"><strong>提示：</strong>教學裡沒有的、你家獨有的需求（例如接三菱冷氣、水電表、KNX 玄關板），我們有專案客製額度，可額外加購。</div>
+      <div class="callout tip"><strong>Tip:</strong>For your home's unique needs that are not covered in the tutorial (such as connecting Mitsubishi air conditioners, water and electricity meters, and KNX entrance panels), we have project customization quotas that can be purchased additionally.</div>
     </section>
 
-    <section id="day" data-nav="交機後的一年">
-      <h2 data-icon="ai">交機後的一年，你會經歷什麼</h2>
-      <p>方案的價值不是「裝好那一天」，而是「一年後家還跑得動」。這是典型的 WoowTech 客戶時間軸：</p>
+    <section id="day" data-nav="One year after handover">
+      <h2 data-icon="ai">What will you experience in the year after handover?</h2>
+      <p>The value of a plan is not "the day it is installed", but "the home can still run after a year." Here is a typical WoowTech customer timeline:</p>
       <ol class="steps">
         <li>
-          <h3>Day 0 · 交機當天</h3>
-          <p>你用手機開了第一盞燈、收到第一則通知、看到第一張儀表板。教學結束，剩下時間你在跟家人炫耀。</p>
+          <h3>Day 0 · The day of delivery</h3>
+          <p>The first light you turn on, the first notification you receive, the first dashboard you see on your phone. Teaching is over and you have the rest of the time to show off to your family.</p>
         </li>
         <li>
-          <h3>Day 7 · 第一週</h3>
-          <p>Companion App 每天用；晚安模式已經變成家人的儀式；發現想改的細節，寄一封信給 WoowTech 顧問，48 小時內完成。</p>
+          <h3>Day 7 · First week</h3>
+          <p>Companion App is used every day; the good night pattern has become a family ritual; if you find the details you want to change, send a letter to the WoowTech consultant and it will be completed within 48 hours.</p>
         </li>
         <li>
-          <h3>Day 30 · 一個月</h3>
-          <p>你添購了新的智慧插座、想加一個「洗衣機洗完通知」，WoowTech 遠端幫你接進來，你不用學任何東西。</p>
+          <h3>Day 30 · One month</h3>
+          <p>You have purchased a new smart socket and want to add a "washing machine finished notification". WoowTech will help you connect remotely, and you don't have to learn anything.</p>
         </li>
         <li>
-          <h3>Day 90 · 三個月</h3>
-          <p>你自己已經會用 UI 開新 automation，簡單的規則不用麻煩我們。看到能源儀表板，找出家裡的吃電怪獸——通常在冷氣或除濕機。</p>
+          <h3>Day 90 · Three months</h3>
+          <p>You already know how to use the UI to open a new automation, so don’t bother us with simple rules. Look at the energy dashboard to identify the power-hungry monster in your home—usually the air conditioner or dehumidifier.</p>
         </li>
         <li>
-          <h3>Day 180 · 半年</h3>
-          <p>HA 出了新版，可能有 breaking change。WoowTech 統一先在測試環境驗證，OK 才推到你家——你完全無感升級。</p>
+          <h3>Day 180 · half a year</h3>
+          <p>HA has released a new version, there may be breaking changes. WoowTech Unified first verifies it in the test environment, and then pushes it to your home if it is OK - you have no need to upgrade at all.</p>
         </li>
         <li>
-          <h3>Day 365 · 一年</h3>
-          <p>回頭看：省下的電費、省下的糾結、家人不再喊「怎麼不會用」。續約下一年遠端維運，繼續讓 WoowTech 幫你把家越顧越好。</p>
+          <h3>Day 365 · one year</h3>
+          <p>Looking back: the electricity bills saved, the entanglements saved, and my family no longer yelled "Why can't I use it?" Renew your remote maintenance contract for another year and let WoowTech help you take better care of your home.</p>
         </li>
       </ol>
     </section>
 
-    <section id="compare" data-nav="方案比一比">
-      <h2 data-icon="compare">兩方案與自架的比較</h2>
+    <section id="compare" data-nav="Compare plans">
+      <h2 data-icon="compare">Comparison between two options and self-frame</h2>
       <table class="data-table">
         <thead>
           <tr>
             <th></th>
-            <th>自架 DIY</th>
-            <th>雲端方案 B</th>
-            <th class="pi-col">代設定方案 A</th>
+            <th>DIY</th>
+            <th>Option B</th>
+            <th class="pi-col">Option A</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th>初期投入時間</th>
-            <td>10–40 小時</td>
-            <td>1 小時（線上會議）</td>
-            <td class="pi-col">1 小時（諮詢）＋交機教學</td>
+            <th>Initial investment time</th>
+            <td>10–40 hours</td>
+            <td>1 hour (online meeting)</td>
+            <td class="pi-col">1 hour (consultation) + hands-on teaching</td>
           </tr>
           <tr>
-            <th>硬體採購</th>
-            <td>自己查、自己買</td>
-            <td>不用</td>
-            <td class="pi-col">WoowTech 建議＋代購</td>
+            <th>Hardware procurement</th>
+            <td>Check it yourself, buy it yourself</td>
+            <td>No need</td>
+            <td class="pi-col">WoowTech suggestions + purchasing agents</td>
           </tr>
           <tr>
-            <th>Zigbee／Z-Wave／KNX 本地設備</th>
-            <td>要自己選 hub</td>
-            <td>不支援</td>
-            <td class="pi-col">完整支援，代裝天線</td>
+            <th>Zigbee/Z-Wave/KNX local device</th>
+            <td>You have to choose your own hub</td>
+            <td>Not supported</td>
+            <td class="pi-col">Complete support, installed antenna</td>
           </tr>
           <tr>
-            <th>資料存哪裡</th>
-            <td>你家主機</td>
-            <td>WoowTech 台灣機房</td>
-            <td class="pi-col">你家主機</td>
+            <th>Where is the data stored?</th>
+            <td>Your host</td>
+            <td>WoowTech-managed hosting [REGION TO BE CONFIRMED]</td>
+            <td class="pi-col">Your host</td>
           </tr>
           <tr>
-            <th>升級 breaking change</th>
-            <td>自己盯著文件</td>
-            <td>WoowTech 統一處理</td>
-            <td class="pi-col">WoowTech 統一處理</td>
+            <th>Upgrade breaking change</th>
+            <td>Stare at the file yourself</td>
+            <td>WoowTech unified processing</td>
+            <td class="pi-col">WoowTech unified processing</td>
           </tr>
           <tr>
-            <th>遠端連線安全</th>
-            <td>自己搞（易出包）</td>
-            <td>內建</td>
-            <td class="pi-col">Nabu Casa／Tunnel／VPN 三選一</td>
+            <th>Remote connection security</th>
+            <td>Do it yourself (easy to package)</td>
+            <td>Built-in</td>
+            <td class="pi-col">Nabu Casa/Tunnel/VPN Choose one from three</td>
           </tr>
           <tr>
-            <th>費用模式</th>
-            <td>硬體＋時間</td>
-            <td>月租</td>
-            <td class="pi-col">一次性建置＋年度維運</td>
+            <th>fee model</th>
+            <td>Hardware + time</td>
+            <td>monthly rent</td>
+            <td class="pi-col">One-time construction + annual maintenance</td>
           </tr>
           <tr>
-            <th>不熟 3C 的家人</th>
-            <td>只能問你</td>
-            <td>可直接寄信給 WoowTech</td>
-            <td class="pi-col">可直接寄信給 WoowTech</td>
+            <th>Family members who are not familiar with 3C</th>
+            <td>I can only ask you</td>
+            <td>You can write directly to WoowTech</td>
+            <td class="pi-col">You can write directly to WoowTech</td>
           </tr>
         </tbody>
       </table>
     </section>
 
-    <section id="security" data-nav="資料放在哪">
-      <h2 data-icon="security">資料放在哪、誰能看到</h2>
-      <p>這是我們每個客戶第一個問的問題。WoowTech 的答案是：<strong>能不放雲端就不放，一定要放的也放在台灣、只你能看</strong>。</p>
+    <section id="security" data-nav="Where is the information placed?">
+      <h2 data-icon="security">Where is the information placed and who can see it?</h2>
+      <p>This is the first question every one of our customers asks. WoowTech’s answer is:<strong>Keep data local whenever possible; where managed hosting is required, document the hosting region and access controls before purchase.</strong>.</p>
 
-      <h3>方案 A（本地）</h3>
+      <h3>Option A (local)</h3>
       <ul>
-        <li>感測器、攝影機、作息、能源、對話——全部只在你家主機。</li>
-        <li>WoowTech 遠端維運透過短時效的安全通道進出，操作都留下 audit log。</li>
-        <li>就算 WoowTech 消失，你的主機還在，資料還在。</li>
+        <li>Sensors, cameras, schedules, energy, conversations—all hosted in your home.</li>
+        <li>WoowTech remote maintenance is accessed through a short-term secure channel, and all operations leave audit logs.</li>
+        <li>Even if WoowTech disappears, your host will still be there and your data will still be there.</li>
       </ul>
 
-      <h3>方案 B（雲端）</h3>
+      <h3>Option B (Cloud)</h3>
       <ul>
-        <li>你的 HA 實例跑在 WoowTech 台灣資料中心（新北八德機房，SOC 2 Type II）。</li>
-        <li>一戶一個容器＋一個資料庫，磁碟加密，跨戶隔離。</li>
-        <li>每日快照可下載到你自己的硬碟。</li>
-        <li>WoowTech 員工除非你開票求助，否則不會登入你的實例。</li>
+        <li>Your HA instance runs in WoowTech-managed hosting [REGION, FACILITY, AND COMPLIANCE CLAIMS TO BE CONFIRMED].</li>
+        <li>One container + one database per household, disk encryption, and cross-household isolation.</li>
+        <li>Daily snapshots can be downloaded to your own hard drive.</li>
+        <li>WoowTech employees will not log into your instance unless you open a ticket for help.</li>
       </ul>
 
-      <div class="callout"><strong>觀念：</strong>智慧家庭最脆弱的一環，通常是「把 8123 埠對外開了但沒設好」。無論你選 A 或 B，這件事都不用你煩。</div>
+      <div class="callout"><strong>Concept:</strong>The most vulnerable link in a smart home is usually "opening the 8123 port to the outside world but not setting it up properly." Whether you choose A or B, this matter doesn’t bother you.</div>
     </section>
 
-    <section id="faq" data-nav="常見問題">
-      <h2 data-icon="faq">常見問題</h2>
+    <section id="faq" data-nav="FAQ">
+      <h2 data-icon="faq">FAQ</h2>
       <details class="faq">
-        <summary>費用是多少？可以先報個範圍嗎？</summary>
-        <div class="body">建置費依硬體與 add-ons 深度差很多；月租依家庭規模分三段。我們沒有把價格表放網頁上，因為「你家實際需要什麼」的估價才有意義——請直接聯絡 WoowTech 或您的經銷商，30 分鐘諮詢完就能給你精準報價。</div>
+        <summary>How much does it cost? Can you indicate a range first?</summary>
+        <div class="body">The construction fee varies greatly depending on the depth of hardware and add-ons; the monthly rent is divided into three levels based on family size. We do not put the price list on the website, because the estimate of "what your home actually needs" is meaningful - please use the contact channel once it is confirmed, and we can give you an accurate quotation after a 30-minute consultation.</div>
       </details>
       <details class="faq">
-        <summary>我已經有 HA 在跑，可以接手嗎？</summary>
-        <div class="body">可以，這是很常見的情境。WoowTech 會做一份「現況健檢報告」——哪些設定不安全、哪些 add-ons 該換、有沒有升級雷區——你決定要不要委託我們接手維運。委託後你的 HA 進到我們的維護排程，跟直接從 A 方案出貨的機器享有一樣待遇。</div>
+        <summary>I already have HA running, can I take over?</summary>
+        <div class="body">Yes, this is a very common situation. WoowTech will make a "current health inspection report" - which settings are unsafe, which add-ons should be replaced, and whether there are any upgrade minefields - you decide whether to entrust us to take over the maintenance. After entrustment, your HA will enter our maintenance schedule and enjoy the same treatment as machines shipped directly from Option A.</div>
       </details>
       <details class="faq">
-        <summary>我家在南部（或外島），也能到府嗎？</summary>
-        <div class="body">大台北免費到府；台中／台南／高雄可預約到府（可能加收交通）；其他地區與外島出貨到府＋線上教學為主。方案 A 的機器都是我們工廠內部先設定到能用才寄出，你插電接網路就能開始用，遠端連線讓我們可以像人在旁邊一樣協助你。</div>
+        <summary>Is installation or delivery available in my country?</summary>
+        <div class="body">On-site installation, shipping, travel charges, and online onboarding vary by country [SERVICE AREA AND FEES TO BE CONFIRMED]. The machines in Option A are all set up in our factory before being shipped out. You can start using them just by plugging them in and connecting them to the Internet. The remote connection allows us to assist you as if someone is right next to you.</div>
       </details>
       <details class="faq">
-        <summary>我搬家怎麼辦？</summary>
-        <div class="body">方案 A：主機拎著走，新家插電就恢復。網路環境變了要重新設遠端連線，WoowTech 遠端協助 30 分鐘內完成。方案 B：雲端方案跟實體地址沒關係，搬家你不用做任何事，只要在 HA 裡把 Zone 的地址改成新家就好。</div>
+        <summary>What should I do if I move?</summary>
+        <div class="body">Option A: Take the host with you and restore it when the new home is plugged in. If the network environment changes and you need to reset the remote connection, WoowTech remote assistance can complete it within 30 minutes. Option B: The cloud solution has nothing to do with the physical address. You don’t have to do anything when moving, just change the Zone’s address in HA to your new home.</div>
       </details>
       <details class="faq">
-        <summary>WoowTech 會不會偷看我家的資料？</summary>
-        <div class="body">不會，而且合約寫明有罰則。方案 A 我們連進來要走短時效授權通道，你可以隨時撤銷；方案 B 我們預設無法登入你的實例，需要幫你處理時你要在客服系統開票授權——每一次操作都留下審核紀錄，你隨時可以匯出來看。</div>
+        <summary>Will WoowTech peek into my home information?</summary>
+        <div class="body">No, and the contract states there are penalties. Option A: We need to use the short-term authorization channel to connect, and you can revoke it at any time; Option B: By default, we cannot log in to your instance. If you need to help you handle it, you need to issue an invoice and authorize it in the customer service system - every operation will leave an audit record, which you can export at any time.</div>
       </details>
       <details class="faq">
-        <summary>可以只買硬體，不要代設定嗎？</summary>
-        <div class="body">可以，我們也是官方 HA 硬體的經銷商。不過如果你只是想省設定費，我們的經驗是：多數人 3 個月後還是會回來委託我們——時間成本比方案費高得多。純硬體購買會附上《HA 新居入住指南》完整教學，如果你確定自己想學，這條路完全支援你。</div>
+        <summary>Can I just buy the hardware and not set it up?</summary>
+        <div class="body">Yes, we are also resellers of official HA hardware. However, if you just want to save the setup fee, our experience is that most people will still come back to entrust us after 3 months - the time cost is much higher than the solution fee. Pure hardware purchases will come with the complete tutorial of "HA Onboarding Guide". If you are sure you want to learn, this path will fully support you.</div>
       </details>
       <details class="faq">
-        <summary>Nabu Casa 官方雲跟你們的方案 B 差在哪？</summary>
-        <div class="body">Nabu Casa 是「幫你把家裡的 HA 加雲端連線與語音」；WoowTech 方案 B 是「連 HA 主機都直接跑在雲端」，你連硬體都不用買。兩個定位不同：家裡已經有 HA 又想要遠端連線與 Google／Alexa 語音，選 Nabu Casa；連硬體都不想買、想馬上開始，選方案 B。</div>
+        <summary>What’s the difference between Nabu Casa’s official cloud and your Option B?</summary>
+        <div class="body">Nabu Casa "helps you add cloud connection and voice to your home HA"; WoowTech Option B is "even the HA host runs directly on the cloud", and you don't even need to buy hardware. The two positions are different: if you already have HA at home and want to connect remotely with Google/Alexa voice, choose Nabu Casa; if you don’t even want to buy the hardware and want to start right away, choose Option B.</div>
       </details>
     </section>
 
-    <section id="cta" data-nav="預約諮詢">
-      <h2 data-icon="handshake">下一步</h2>
+    <section id="cta" data-nav="Make an appointment for consultation">
+      <h2 data-icon="handshake">Next step</h2>
       <div class="cta-band">
         <span class="script">let's chat</span>
-        <h3>30 分鐘諮詢，帶走一份客製方案</h3>
-        <p>不管你是「還沒有主機、想從零開始」還是「已經有 HA 但不想再自己維護」，我們都準備了對應的路徑。線上或到府都可以。</p>
-        <a class="btn-pill" href="#">聯絡 WoowTech 或您的經銷商</a>
+        <h3>30-minute consultation and take away a customized plan</h3>
+        <p>Whether you "don't have a host yet and want to start from scratch" or "already have HA but don't want to maintain it yourself", we have prepared the corresponding path. Available online or at home.</p>
+        <a class="btn-pill" href="#">[CONTACT CHANNEL AND CTA DESTINATION TO BE CONFIRMED]</a>
       </div>
     </section>
 
     <footer class="site-footer">
-      <p>《WoowTech 智慧家庭銷售手冊》由 <strong>WoowTech 渥屋科技</strong> 製作。價格與方案內容以實際合約為準，詳洽經銷商。</p>
-      <p class="footer-meta">The Smart Space Solution · 智慧空間解決方案 · © 2026 WOOW Technology Co., Ltd. · <a href="index.html">HA 資源總覽</a></p>
+      <p>"WoowTech Smart Home Sales Manual" by <strong>WoowTech Wowu Technology</strong> Make. Prices and program contents are subject to the actual contract, contact channel to be confirmed.</p>
+      <p class="footer-meta">The Smart Space Solution · Smart Space Solution · © 2026 WOOW Technology Co., Ltd. · <a href="index.html">HA Resource Hub</a></p>
     </footer>
   </main>
 </div>

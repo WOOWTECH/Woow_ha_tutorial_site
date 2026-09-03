@@ -1,0 +1,20 @@
+{
+  "file": "skills.html",
+  "entries": [
+    {
+      "unit": "#install",
+      "zh": "<pre class=\"code-block\"><code># GitHub repo（最常用）\ngit:github.com/komal-SkyNET/claude-skill-homeassistant\n\n# 釘住版本（tag 或 commit，正式環境建議用）\ngit:github.com/anthropics/skills@v1.0.0\n\n# npm 套件\nnpm:@scope/some-skill\n\n# 本地路徑（自己寫的、或從 monorepo clone 下來的子目錄）\n~/skills/my-ha-skill</code></pre>",
+      "en": "<pre class=\"code-block\"><code># GitHub repo (most commonly used)\ngit:github.com/komal-SkyNET/claude-skill-homeassistant\n\n# Pin the version (tag or commit, recommended for formal environments)\ngit:github.com/anthropics/skills@v1.0.0\n\n# npm packages\nnpm:@scope/some-skill\n\n# Local path (written by yourself or a subdirectory cloned from monorepo)\n~/skills/my-ha-skill</code></pre>"
+    },
+    {
+      "unit": "#collections",
+      "zh": "<pre class=\"code-block\"><code># 當清單用，不建議整包安裝\nhttps://github.com/hesreallyhim/awesome-claude-code</code></pre>",
+      "en": "<pre class=\"code-block\"><code># Used as a list, it is not recommended to install the whole package\nhttps://github.com/hesreallyhim/awesome-claude-code</code></pre>"
+    },
+    {
+      "unit": "#spec",
+      "zh": "<pre class=\"code-block\"><code>washer-notify/\n├── SKILL.md          ← 唯一必要檔案\n└── references/       ← 選用附件（AI 用到才讀）\n    └── ha-service-map.md\n\n# SKILL.md 內容\n---\nname: washer-notify\ndescription: |\n  當使用者問「洗衣機洗完了嗎」「該收衣服了嗎」，或提到\n  自動化洗衣機提醒時觸發。可透過 HA API 讀取\n  sensor.washer_power 判斷是否處於運轉/待機/完成狀態。\nlicense: MIT\ncompatibility:\n  agents: [claude-code, opencode, openclaw, hermes]\n  mcp: [ha-mcp-woow, home-assistant/mcp-server]\nallowed-tools: [ha_get_state, ha_get_history, notify_send]\n---\n\n# 洗衣機提醒 skill\n\n當使用者提到洗衣機時，先讀 sensor.washer_power 過去 15 分鐘的\n歷史：如果從 &gt;100W 掉到 &lt;5W 並持續 3 分鐘以上，回覆「洗完了」；\n還在運轉則回覆預估剩餘時間（依平均運轉 45 分鐘估算）。\n\n若使用者要求自動提醒，用 ha_config_set_automation 建一條：\ntrigger: sensor.washer_power &lt; 5W 持續 3 分鐘\naction: notify.mobile_app_myphone\n先給使用者 YAML 摘要，同意再套用。</code></pre>",
+      "en": "<pre class=\"code-block\"><code>washer-notify/\n├── SKILL.md ← Only necessary file\n└── references/ ← Select attachments (read only when AI is used)\n    └── ha-service-map.md\n\n# SKILL.md Contents\n---\nname: washer-notify\ndescription: |\n  When users ask \"Is the washing machine finished?\" \"Is it time to put away the clothes?\" or mention\n  Triggered when automated washing machine reminds. Can be read via HA API\n  sensor.washer_power determines whether it is in running/standby/completion state.\nlicense: MIT\ncompatibility:\n  agents: [claude-code, opencode, openclaw, hermes]\n  mcp: [ha-mcp-woow, home-assistant/mcp-server]\nallowed-tools: [ha_get_state, ha_get_history, notify_send]\n---\n\n# Washing machine reminder skill\n\nWhen the user mentions a washing machine, first read sensor.washer_power for the past 15 minutes.\nHistory: If it drops from &gt;100W to &lt;5W and lasts for more than 3 minutes, reply \"washed\";\nIf it is still running, the estimated remaining time will be returned (estimated based on an average running time of 45 minutes).\n\nIf the user requires automatic reminder, use ha_config_set_automation to create one:\ntrigger: sensor.washer_power &lt; 5W for 3 minutes\naction: notify.mobile_app_myphone\nGive the user the YAML summary first and agree before applying it.</code></pre>"
+    }
+  ]
+}

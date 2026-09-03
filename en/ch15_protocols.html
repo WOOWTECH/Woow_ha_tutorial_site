@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chapter 15 · 通訊協定大百科 · Home Assistant 新居入住指南</title>
-  <meta name="description" content="Home Assistant 通訊協定完整對照：Wi-Fi、Zigbee、Z-Wave、Thread 與 Matter、藍牙、KNX、Modbus、MQTT 的差別、選購建議與在 HA 裡的整合方式。" />
+  <title>Chapter 15 · Encyclopedia of Communication Protocols · Home Assistant Onboarding Guide</title>
+  <meta name="description" content="A complete comparison of Home Assistant communication protocols: differences between Wi-Fi, Zigbee, Z-Wave, Thread and Matter, Bluetooth, KNX, Modbus, and MQTT, purchasing recommendations, and integration methods in HA." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch15_protocols.html" />
   <meta name="robots" content="noindex, follow" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Home Assistant 新居入住指南" />
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Chapter 15 · 通訊協定大百科 · Home Assistant 新居入住指南" />
-  <meta property="og:description" content="Home Assistant 通訊協定完整對照：Wi-Fi、Zigbee、Z-Wave、Thread 與 Matter、藍牙、KNX、Modbus、MQTT 的差別、選購建議與在 HA 裡的整合方式。" />
+  <meta property="og:title" content="Chapter 15 · Encyclopedia of Communication Protocols · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="A complete comparison of Home Assistant communication protocols: differences between Wi-Fi, Zigbee, Z-Wave, Thread and Matter, Bluetooth, KNX, Modbus, and MQTT, purchasing recommendations, and integration methods in HA." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch15_protocols.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chapter 15 · 通訊協定大百科 · Home Assistant 新居入住指南" />
-  <meta name="twitter:description" content="Home Assistant 通訊協定完整對照：Wi-Fi、Zigbee、Z-Wave、Thread 與 Matter、藍牙、KNX、Modbus、MQTT 的差別、選購建議與在 HA 裡的整合方式。" />
+  <meta name="twitter:title" content="Chapter 15 · Encyclopedia of Communication Protocols · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="A complete comparison of Home Assistant communication protocols: differences between Wi-Fi, Zigbee, Z-Wave, Thread and Matter, Bluetooth, KNX, Modbus, and MQTT, purchasing recommendations, and integration methods in HA." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -32,61 +32,61 @@
 <body>
 <div class="layout">
   <aside class="sidebar">
-    <a class="brand" href="tutorial.html">HA 新居入住指南</a>
-    <div class="brand-sub">從零到能用</div>
+    <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
+    <div class="brand-sub">From scratch to functional</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch15_protocols.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch15_protocols.html" lang="en" aria-current="page">EN</a></nav>
-    <a class="hub-link" href="index.html">◂ 資源總覽</a>
+    <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">基礎：從零到能用</li>
-      <li data-i18n="pending"><a href="ch1_login.html">登入 HA</a></li>
-      <li data-i18n="pending"><a href="ch2_system_settings.html">系統設定</a></li>
-      <li data-i18n="pending"><a href="ch3_floors_areas.html">樓層與區域</a></li>
-      <li data-i18n="pending"><a href="ch4_naming_labels.html">命名與標籤</a></li>
-      <li data-i18n="pending"><a href="ch5_users.html">用戶管理</a></li>
-      <li data-i18n="pending"><a href="ch6_dashboard.html">儀表板</a></li>
-      <li data-i18n="pending"><a href="ch7_notifications.html">通知</a></li>
-      <li data-i18n="pending"><a href="ch8_first_automation.html">第一個自動化</a></li>
-      <li data-i18n="pending"><a href="ch9_backups.html">備份</a></li>
-      <li data-i18n="pending"><a href="ch10_scripts.html">腳本 Scripts</a></li>
-      <li data-i18n="pending"><a href="ch11_devices.html">裝置詳細設定</a></li>
-      <li data-i18n="pending"><a href="ch12_domains.html">Domain 控制圖鑑</a></li>
-      <li class="part-label">擴充：接上更多裝置</li>
-      <li data-i18n="pending"><a href="ch13_themes.html">主題與外觀</a></li>
-      <li data-i18n="pending"><a href="ch14_integrations.html">整合服務串接</a></li>
-      <li data-i18n="pending"><a href="ch15_protocols.html" class="active">通訊協定大百科</a></li>
-      <li data-i18n="pending"><a href="ch16_todo_calendar.html">待辦與行事曆</a></li>
-      <li class="part-label">數據、能源與 AI</li>
-      <li data-i18n="pending"><a href="ch17_energy.html">能源儀表板</a></li>
-      <li data-i18n="pending"><a href="ch18_history_data.html">歷史數據與導出</a></li>
-      <li data-i18n="pending"><a href="ch19_voice_ai.html">語音助理與 AI</a></li>
-      <li class="part-label">進階架構與應用</li>
-      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on 與 Docker</a></li>
-      <li data-i18n="pending"><a href="ch21_network_remote.html">網路與遠端連線</a></li>
-      <li data-i18n="pending"><a href="ch22_life_logs.html">生活紀錄應用</a></li>
+      <li class="part-label">Basics: from scratch to functional</li>
+      <li data-i18n="pending"><a href="ch1_login.html">Login to HA</a></li>
+      <li data-i18n="pending"><a href="ch2_system_settings.html">System settings</a></li>
+      <li data-i18n="pending"><a href="ch3_floors_areas.html">Floors and areas</a></li>
+      <li data-i18n="pending"><a href="ch4_naming_labels.html">Naming and labeling</a></li>
+      <li data-i18n="pending"><a href="ch5_users.html">User management</a></li>
+      <li data-i18n="pending"><a href="ch6_dashboard.html">Dashboard</a></li>
+      <li data-i18n="pending"><a href="ch7_notifications.html">Notifications</a></li>
+      <li data-i18n="pending"><a href="ch8_first_automation.html">First automation</a></li>
+      <li data-i18n="pending"><a href="ch9_backups.html">backup</a></li>
+      <li data-i18n="pending"><a href="ch10_scripts.html">Scripts</a></li>
+      <li data-i18n="pending"><a href="ch11_devices.html">Device details</a></li>
+      <li data-i18n="pending"><a href="ch12_domains.html">Domain reference</a></li>
+      <li class="part-label">Expansion: connect more devices</li>
+      <li data-i18n="pending"><a href="ch13_themes.html">Themes and appearance</a></li>
+      <li data-i18n="pending"><a href="ch14_integrations.html">Integrations</a></li>
+      <li data-i18n="pending"><a href="ch15_protocols.html" class="active">Communication protocols</a></li>
+      <li data-i18n="pending"><a href="ch16_todo_calendar.html">To-do and calendar</a></li>
+      <li class="part-label">Data, energy and AI</li>
+      <li data-i18n="pending"><a href="ch17_energy.html">Energy dashboard</a></li>
+      <li data-i18n="pending"><a href="ch18_history_data.html">History and data export</a></li>
+      <li data-i18n="pending"><a href="ch19_voice_ai.html">Voice assistants and AI</a></li>
+      <li class="part-label">Advanced architecture and applications</li>
+      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on and Docker</a></li>
+      <li data-i18n="pending"><a href="ch21_network_remote.html">Network and remote connections</a></li>
+      <li data-i18n="pending"><a href="ch22_life_logs.html">Life logging</a></li>
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">為什麼要學</a>
-      <a href="#layers">協定在管什麼</a>
-      <a href="#master">主對照表</a>
-      <a href="#steps">盤點你家協定</a>
-      <a href="#zigbee">Zigbee 深入</a>
-      <a href="#zha_z2m">ZHA 或 Z2M</a>
+      <a href="#why">Why should we learn</a>
+      <a href="#layers">What does the agreement govern?</a>
+      <a href="#master">master lookup table</a>
+      <a href="#steps">Take stock of your family agreements</a>
+      <a href="#zigbee">Zigbee in depth</a>
+      <a href="#zha_z2m">ZHA or Z2M</a>
       <a href="#zwave">Z-Wave</a>
       <a href="#matter">Matter/Thread</a>
-      <a href="#mqtt">MQTT 與 HTTP</a>
-      <a href="#bluetooth">藍牙與 Proxy</a>
-      <a href="#knx_modbus">KNX 與 Modbus</a>
-      <a href="#buying">買之前五檢查</a>
-      <a href="#troubleshoot">常見卡關</a>
-      <a href="#faq">常見問題</a>
+      <a href="#mqtt">MQTT and HTTP</a>
+      <a href="#bluetooth">Bluetooth and Proxy</a>
+      <a href="#knx_modbus">KNX and Modbus</a>
+      <a href="#buying">Five checks before buying</a>
+      <a href="#troubleshoot">Common stuck levels</a>
+      <a href="#faq">FAQ</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · 生態圈：HACS/Add-ons/遠端</a>
-      <a href="appendix_scenes_helpers_groups.html">B · 場景/輔助元件/群組</a>
-      <a href="appendix_hardware_install.html">C · 裝機前傳：硬體與 HAOS</a>
+      <a href="appendix_hacs_addons.html">A · Ecosystem: HACS/Add-ons/remote</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scene/auxiliary component/group</a>
+      <a href="appendix_hardware_install.html">C · Pre-installation: Hardware and HAOS</a>
     </div>
   </aside>
 
@@ -94,384 +94,384 @@
     <div class="callout i18n-pending"><strong>This chapter has not been translated yet.</strong> You are reading the original Chinese text. <a href="../ch15_protocols.html" hreflang="zh-Hant">Open the Chinese version</a></div>
     <div class="chapter-header">
       <div class="kicker">Chapter 15</div>
-      <h1>通訊協定大百科</h1>
-      <p class="lead">Wi-Fi、Zigbee、Z-Wave、Thread、Matter、藍牙、KNX、Modbus、MQTT⋯⋯這些名字到底差在哪？這一章把它們一次攤平比較，讓你在按下「加入購物車」之前就知道：這顆燈泡買回家會不會變成一塊廢鐵。看完你會有一張可以查一輩子的速查表，還有一套買設備前的自我檢查流程。</p>
+      <h1>Communication protocols</h1>
+      <p class="lead">Wi-Fi, Zigbee, Z-Wave, Thread, Matter, Bluetooth, KNX, Modbus, MQTT... What is the difference between these names? This chapter flattens them out and compares them at once, so that you can know whether this light bulb will turn into a piece of scrap metal before you click "Add to Cart". After reading this, you will have a cheat sheet that will last you a lifetime, as well as a self-examination process before buying equipment.</p>
     </div>
 
-    <section id="why" data-nav="為什麼要學">
-      <h2 data-icon="why">為什麼要學這個</h2>
-      <p>你在<a href="ch14_integrations.html">第 14 章</a>學會了怎麼在 Home Assistant 裡新增「整合（Integration）」。但整合是軟體層的事，這章要往下鑽一層：訊號到底是怎麼從你手機飛到那顆燈泡上的。</p>
-      <p>為什麼要管這麼底層的事？三個很痛的理由：</p>
+    <section id="why" data-nav="Why should we learn">
+      <h2 data-icon="why">Why should you learn this?</h2>
+      <p>you are here<a href="ch14_integrations.html">Chapter 14</a>Learned how to add "Integration" in Home Assistant. But integration is a matter of the software layer. This chapter goes a step further: How does the signal fly from your mobile phone to that light bulb?</p>
+      <p>Why bother with such low-level things? Three painful reasons:</p>
       <ul>
-        <li><strong>買錯就是白買。</strong>網拍上一顆便宜的「智慧開關」，寫著支援語音助理，你買回家卻發現它只認自家 App 的雲端帳號，Home Assistant 根本抓不到。錢丟水裡。</li>
-        <li><strong>網路斷線就全家癱瘓。</strong>有些協定是「本地控制」，路由器對外斷線也照樣開燈；有些是「雲端控制」，中華電信一抽風你家玄關就變全黑。</li>
-        <li><strong>裝到第 20 個裝置才發現有人數上限。</strong>典型情境：全家買 Wi-Fi 插座，裝到第十幾個時路由器開始掉線，因為家用路由器能同時掛的裝置數量是有限的。這種坑要在買第一顆之前就避開。</li>
+        <li><strong>Buying wrong means buying in vain.</strong>A cheap "smart switch" sold online says it supports voice assistants, but when you buy it home you find that it only recognizes your own app's cloud account, and Home Assistant can't capture it at all. Money is thrown into the water.</li>
+        <li><strong>If the Internet is disconnected, the whole family will be paralyzed.</strong>Some protocols are "local control", and the lights will still turn on even if the router is disconnected; some are "cloud control", and your entrance will turn completely black when Chunghwa Telecom has a draft.</li>
+        <li><strong>It was only after installing the 20th device that I discovered there was an upper limit on the number of users.</strong>Typical scenario: The whole family buys Wi-Fi sockets, and the router starts to drop out when the tenth socket is installed, because the number of devices that a home router can connect to at the same time is limited. This pitfall should be avoided before buying your first one.</li>
       </ul>
-      <div class="callout"><strong>觀念：</strong>協定（Protocol）就是「裝置之間講話用的語言 + 用什麼方式把聲音傳出去」。選協定就是在選你家的通訊基礎建設，跟選房子要不要拉網路線是同一個等級的決定。</div>
-      <p>讀完這章，你會有能力做這三件事：看到一個商品頁就判斷它能不能進 Home Assistant、幫家裡選一套主力協定不會後悔、遇到「裝置離線」時知道要從哪一層開始查。</p>
+      <div class="callout"><strong>Concept:</strong>Protocol is "the language used to speak between devices + the method used to transmit the sound." Choosing a protocol is choosing your home’s communication infrastructure, which is the same level of decision as choosing whether to build a house or not.</div>
+      <p>After reading this chapter, you will have the ability to do these three things: judge whether it can be used in Home Assistant when you see a product page, choose a main protocol for your home without regrets, and know which level to start checking when encountering "device offline".</p>
     </section>
 
-    <section id="layers" data-nav="協定在管什麼">
-      <h2 data-icon="concept">協定到底在管什麼：把它拆成三層</h2>
-      <p>大部分人的混亂來自把三件不同的事混在一起講。先把它拆開，後面就都通了。想像你在客廳跟廚房的家人講話：</p>
+    <section id="layers" data-nav="What does the agreement govern?">
+      <h2 data-icon="concept">What does the agreement deal with: split it into three layers</h2>
+      <p>Most of the confusion comes from talking about three different things together. Take it apart first and everything will be clear from the back. Imagine you are in the living room talking to your family in the kitchen:</p>
 
-      <h3>第一層：無線電（用什麼把聲音送出去）</h3>
-      <p>就是「用喊的、用對講機、還是用電話線」。Wi-Fi、Zigbee、Thread、藍牙都是靠 2.4GHz 這個頻段的無線電；Z-Wave 用的是另一個比較低的頻段；KNX 和 Modbus RTU 則根本不用無線電，走實體線路。</p>
+      <h3>The first layer: radio (what is used to send the sound out)</h3>
+      <p>It means "by shouting, using a walkie-talkie, or using a telephone line." Wi-Fi, Zigbee, Thread, and Bluetooth all rely on radios in the 2.4GHz frequency band; Z-Wave uses another lower frequency band; KNX and Modbus RTU do not use radios at all and use physical lines.</p>
 
-      <h3>第二層：資料格式（講的是哪一種語言）</h3>
-      <p>兩個人都用對講機，但一個講台語一個講法語，還是沒辦法溝通。Zigbee 裝置之間彼此聽得懂，但 Zigbee 不會自動聽懂 Z-Wave。Matter 之所以被吹捧，就是因為它想當那個「大家都會的共通語言」。</p>
+      <h3>Second level: data format (which language is spoken)</h3>
+      <p>Both of them used walkie-talkies, but one spoke Spanish and the other spoke French, so they still couldn't communicate. Zigbee devices understand each other, but Zigbee does not automatically understand Z-Wave. The reason why Matter is touted is because it wants to be the "common language that everyone can understand."</p>
 
-      <h3>第三層：Home Assistant 怎麼聽到（誰幫你翻譯）</h3>
-      <p>你的 Home Assistant 主機本身只有網路孔和 Wi-Fi，它沒有 Zigbee 天線也沒有 Z-Wave 天線。所以要嘛插一支 USB 接收器（協調器／Coordinator），要嘛靠原廠的閘道器（Gateway／Hub）把訊號轉成網路封包再送進來。</p>
+      <h3>Layer 3: How does Home Assistant hear it (who can translate it for you)</h3>
+      <p>Your Home Assistant console itself only has a network port and Wi-Fi, it doesn't have a Zigbee antenna or a Z-Wave antenna. So either plug in a USB receiver (Coordinator), or rely on the original gateway (Gateway/Hub) to convert the signal into a network packet and then send it out.</p>
 
-      <div class="callout tip"><strong>提示：</strong>看到一個新協定，就用這三個問題套下去：「它用什麼傳？」「Home Assistant 有沒有對應的整合？」「中間需不需要多買一個盒子？」三題答完，你大概就知道值不值得買了。</div>
+      <div class="callout tip"><strong>Tip:</strong>When you see a new protocol, use these three questions to ask: "What is it used to transmit?" "Does Home Assistant have corresponding integration?" "Do I need to buy an extra box in the middle?" After answering these three questions, you will probably know whether it is worth buying.</div>
 
-      <h3>兩個一定要分清楚的詞</h3>
+      <h3>Two words that must be distinguished clearly</h3>
       <table class="data-table">
         <thead>
-          <tr><th>名詞</th><th>白話解釋</th><th>為什麼你要在意</th></tr>
+          <tr><th>noun</th><th>vernacular explanation</th><th>why do you care</th></tr>
         </thead>
         <tbody>
-          <tr><td>本地控制（Local）</td><td>指令從 Home Assistant 直接送到裝置，不出你家</td><td>快、穩、斷網也能用、不怕原廠倒閉</td></tr>
-          <tr><td>雲端控制（Cloud）</td><td>指令要先上網到廠商伺服器，再繞回你家</td><td>慢半拍、斷網就死、廠商收攤你就變磚</td></tr>
-          <tr><td>Mesh（網狀網路）</td><td>裝置之間會互相幫忙轉發訊號，一顆傳一顆</td><td>訊號可以繞過牆壁往外長，房子越大越重要</td></tr>
-          <tr><td>閘道器（Gateway／Hub）</td><td>把某種協定翻譯成網路訊號的中間盒子</td><td>多一個要插電的東西，也多一個故障點</td></tr>
+          <tr><td>Local control (Local)</td><td>Commands are sent directly from Home Assistant to your device without leaving your home</td><td>It’s fast, stable, can be used even if the internet is disconnected, and you’re not afraid of the original factory going bankrupt.</td></tr>
+          <tr><td>Cloud control (Cloud)</td><td>The command must first go online to the manufacturer's server and then loop back to your home.</td><td>If you slow down a beat, you will die if you are disconnected from the Internet, and if the vendor closes the stall, you will become a brick.</td></tr>
+          <tr><td>Mesh</td><td>Devices will help each other forward signals, one to another</td><td>Signals can go around the walls and grow outwards. The bigger the house, the more important it is.</td></tr>
+          <tr><td>Gateway/Hub</td><td>A middle box that translates a certain protocol into network signals</td><td>One more thing to plug in, and one more point of failure</td></tr>
         </tbody>
       </table>
     </section>
 
-    <section id="master" data-nav="主對照表">
-      <h2 data-icon="compare">主對照表：九種協定一次比完</h2>
-      <p>這是全章最該收藏的一張表。傳輸距離那一欄請當成「概略感覺」而不是規格書數字，因為實際距離受牆壁材質、家具、干擾影響非常大，同一顆裝置放在木板隔間跟放在鋼筋混凝土隔間可以差三倍。</p>
+    <section id="master" data-nav="master lookup table">
+      <h2 data-icon="compare">Master Comparison Table: Compare nine agreements at once</h2>
+      <p>This is the most collectable table in the entire chapter. Please treat the transmission distance column as a "rough feeling" rather than a specification number, because the actual distance is greatly affected by wall material, furniture, and interference. The same device placed in a wooden partition can be three times different than that in a reinforced concrete partition.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>協定</th><th>傳輸距離感覺</th><th>耗電</th><th>要不要閘道</th><th>能本地控制嗎</th><th>Mesh</th></tr>
+          <tr><th>Agreement</th><th>Transmission distance feeling</th><th>Power consumption</th><th>Do you want a gateway?</th><th>Can it be controlled locally?</th><th>Mesh</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Wi-Fi</strong></td><td>一般家用路由器覆蓋範圍，隔一兩道牆</td><td>高，幾乎都要接電</td><td>不用，路由器就是</td><td>看廠商，很多是雲端</td><td>否</td></tr>
-          <tr><td><strong>Zigbee</strong></td><td>單跳室內十幾公尺，可靠 mesh 接力延伸</td><td>很低，電池款可撐數月到一年以上</td><td>要，USB 協調器或原廠閘道</td><td>是</td><td>是</td></tr>
-          <tr><td><strong>Z-Wave</strong></td><td>比 Zigbee 略遠，穿牆通常較好</td><td>很低</td><td>要，USB 協調器</td><td>是</td><td>是</td></tr>
-          <tr><td><strong>Thread + Matter</strong></td><td>類似 Zigbee，靠 border router 接上家裡網路</td><td>很低</td><td>要 border router（很多裝置已內建）</td><td>是</td><td>是</td></tr>
-          <tr><td><strong>藍牙 BLE</strong></td><td>同一個房間，隔牆就開始掉</td><td>極低，鈕扣電池可撐很久</td><td>主機內建藍牙或用 BLE proxy</td><td>是</td><td>否（要靠多個 proxy 補）</td></tr>
-          <tr><td><strong>KNX</strong></td><td>靠佈線，整棟樓都可以</td><td>不適用（有線供電）</td><td>要 KNX IP 介面／路由器</td><td>是</td><td>否（匯流排架構）</td></tr>
-          <tr><td><strong>Modbus RTU</strong></td><td>RS-485 線可拉很長</td><td>不適用</td><td>要 USB 轉 RS-485 轉換器</td><td>是</td><td>否</td></tr>
-          <tr><td><strong>Modbus TCP</strong></td><td>網路線／區網範圍</td><td>不適用</td><td>不用，直接走區網</td><td>是</td><td>否</td></tr>
-          <tr><td><strong>MQTT</strong></td><td>區網範圍（它本身不是無線電）</td><td>不適用</td><td>要一台 broker（可裝在 HA 主機上）</td><td>是</td><td>否</td></tr>
-          <tr><td><strong>純區網 HTTP</strong></td><td>區網範圍</td><td>不適用</td><td>不用</td><td>是</td><td>否</td></tr>
+          <tr><td><strong>Wi-Fi</strong></td><td>Generally, the coverage range of home routers is separated by one or two walls.</td><td>High, almost all have to be connected to electricity</td><td>No, the router is</td><td>Depending on the manufacturer, many are cloud-based</td><td>No</td></tr>
+          <tr><td><strong>Zigbee</strong></td><td>Single jump over ten meters indoors, reliable mesh relay extension</td><td>Very low, the battery model can last from several months to more than a year</td><td>Yes, USB coordinator or factory gateway</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td><strong>Z-Wave</strong></td><td>Slightly farther than Zigbee, usually better through walls</td><td>very low</td><td>Yes, USB coordinator</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td><strong>Thread + Matter</strong></td><td>Similar to Zigbee, rely on border router to connect to home network</td><td>very low</td><td>Requires a border router (many devices have it built-in)</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td><strong>Bluetooth BLE</strong></td><td>In the same room, the partition walls started to fall off</td><td>Extremely low, button battery can last a long time</td><td>The host has built-in Bluetooth or uses BLE proxy</td><td>Yes</td><td>No (relying on multiple proxies)</td></tr>
+          <tr><td><strong>KNX</strong></td><td>With wiring, the whole building can be used</td><td>Not applicable (wired power supply)</td><td>Requires KNX IP interface/router</td><td>Yes</td><td>No (bus architecture)</td></tr>
+          <tr><td><strong>Modbus RTU</strong></td><td>RS-485 cables can be stretched very long</td><td>Not applicable</td><td>Requires USB to RS-485 converter</td><td>Yes</td><td>No</td></tr>
+          <tr><td><strong>Modbus TCP</strong></td><td>Network line/area network range</td><td>Not applicable</td><td>No, just use the district network</td><td>Yes</td><td>No</td></tr>
+          <tr><td><strong>MQTT</strong></td><td>Zone network range (it is not a radio itself)</td><td>Not applicable</td><td>A broker is required (can be installed on the HA host)</td><td>Yes</td><td>No</td></tr>
+          <tr><td><strong>Pure zone network HTTP</strong></td><td>Area network scope</td><td>Not applicable</td><td>No need</td><td>Yes</td><td>No</td></tr>
         </tbody>
       </table>
 
-      <p>接下來這張表回答「所以我到底要怎麼把它接進 Home Assistant」：</p>
+      <p>Next, this table answers "So how do I connect it to Home Assistant?":</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>協定</th><th>常見品牌／裝置</th><th>在 HA 裡怎麼接</th></tr>
+          <tr><th>Agreement</th><th>Common brands/devices</th><th>How to connect in HA</th></tr>
         </thead>
         <tbody>
-          <tr><td>Wi-Fi</td><td>Tuya／塗鴉系、Shelly、TP-Link、小米系、各家掃地機</td><td>多半有各自的整合，在<strong>設定 &gt; 裝置與服務 &gt; 新增整合</strong>搜尋品牌名。刷 ESPHome 或 Tasmota 韌體的自製裝置也走這條</td></tr>
-          <tr><td>Zigbee</td><td>IKEA、Aqara、Philips Hue、SONOFF、Tuya Zigbee 款</td><td>插一支 Zigbee 協調器，用 ZHA 整合或 Zigbee2MQTT</td></tr>
-          <tr><td>Z-Wave</td><td>Aeotec、Fibaro、Zooz、Heltun</td><td>插 Z-Wave 協調器，用 Z-Wave 整合（背後跑 Z-Wave JS）</td></tr>
-          <tr><td>Thread / Matter</td><td>Nanoleaf、Eve、Aqara 新款、SwitchBot 部分型號</td><td>安裝 Matter 整合與 Matter Server，用手機 App 配對</td></tr>
-          <tr><td>藍牙 BLE</td><td>小米溫濕度計、SwitchBot、各種藍牙體重計與植物感測器</td><td>Bluetooth 整合 + 主機內建藍牙，或加 ESPHome Bluetooth Proxy</td></tr>
-          <tr><td>KNX</td><td>ABB、Gira、Jung、Schneider（多為建案／商辦）</td><td>KNX 整合，透過 KNX IP 介面連線</td></tr>
-          <tr><td>Modbus</td><td>電表、變頻器、PLC、工業級空調控制器、部分太陽能逆變器</td><td>Modbus 整合，寫在 <code>configuration.yaml</code></td></tr>
-          <tr><td>MQTT</td><td>Zigbee2MQTT、Tasmota、ESPHome 也可走、各種 DIY 裝置</td><td>安裝 Mosquitto broker，再新增 MQTT 整合</td></tr>
-          <tr><td>純區網 HTTP</td><td>部分 NAS、印表機、開源韌體裝置、自架服務</td><td>官方整合，或用 <code>rest_command</code> 自己打 API</td></tr>
+          <tr><td>Wi-Fi</td><td>Tuya/Tuya series, Shelly, TP-Link, Xiaomi series, various sweepers</td><td>Most of them have their own integration, in<strong>Settings &gt; Devices &amp; Services &gt; Add Integration</strong>Search for a brand name. Homemade devices that flash ESPHome or Tasmota firmware can also use this method.</td></tr>
+          <tr><td>Zigbee</td><td>IKEA, Aqara, Philips Hue, SONOFF, Tuya Zigbee models</td><td>Plug in a Zigbee coordinator, use ZHA integration or Zigbee2MQTT</td></tr>
+          <tr><td>Z-Wave</td><td>Aeotec, Fibaro, Zooz, Heltun</td><td>Plug in the Z-Wave coordinator and integrate with Z-Wave (running Z-Wave JS behind it)</td></tr>
+          <tr><td>Thread / Matter</td><td>Nanoleaf, Eve, Aqara new models, some SwitchBot models</td><td>Install Matter integration and Matter Server, pair with mobile app</td></tr>
+          <tr><td>Bluetooth BLE</td><td>Xiaomi temperature and humidity meter, SwitchBot, various Bluetooth scales and plant sensors</td><td>Bluetooth integration + built-in Bluetooth on the host, or add ESPHome Bluetooth Proxy</td></tr>
+          <tr><td>KNX</td><td>ABB, Gira, Jung, Schneider (mostly construction projects/commercial offices)</td><td>KNX integration, connection via KNX IP interface</td></tr>
+          <tr><td>Modbus</td><td>Electric meters, frequency converters, PLCs, industrial air conditioning controllers, some solar inverters</td><td>Modbus integration, written in <code>configuration.yaml</code></td></tr>
+          <tr><td>MQTT</td><td>Zigbee2MQTT, Tasmota, ESPHome are also available, and various DIY devices</td><td>Install Mosquitto broker and add MQTT integration</td></tr>
+          <tr><td>Pure zone network HTTP</td><td>Some NAS, printers, open source firmware devices, self-hosted services</td><td>Official integration, or use <code>rest_command</code> Make the API yourself</td></tr>
         </tbody>
       </table>
 
-      <div class="callout warn"><strong>注意：</strong>同一個品牌常常同時賣 Wi-Fi 版和 Zigbee 版，外觀幾乎一樣，型號差一兩個字母。下單前把商品標題整行看完，不要只看圖片。</div>
+      <div class="callout warn"><strong>Warning:</strong>The same brand often sells both Wi-Fi and Zigbee versions, which look almost the same and differ by one or two letters in the model number. Before placing an order, read the entire product title, not just the picture.</div>
     </section>
 
-    <section id="steps" data-nav="盤點你家協定">
-      <h2 data-icon="steps">動手做：盤點你家現在跑哪些協定</h2>
-      <p>在買新東西之前，先搞清楚你現在手上有什麼。這五步大概十分鐘就能做完。</p>
+    <section id="steps" data-nav="Take stock of your family agreements">
+      <h2 data-icon="steps">Do it yourself: Take stock of which agreements your home currently runs</h2>
+      <p>Before buying something new, figure out what you already have. These five steps can be completed in about ten minutes.</p>
 
       <ol class="steps">
         <li>
-          <h3>打開整合列表，看看已經有哪些</h3>
-          <p>左側選單點<strong>設定</strong>，進入<strong>裝置與服務</strong>。這一頁列出所有已經接上的整合。把裡面出現的名字抄下來，例如看到「MQTT」「Zigbee Home Automation」「Bluetooth」，就代表你家已經在跑這些協定了。</p>
+          <h3>Open the list of integrations and see what's already there</h3>
+          <p>Left menu point<strong>Settings</strong>, enter<strong>Devices and Services</strong>. This page lists all connected integrations. Copy the names that appear in it. For example, if you see "MQTT", "Zigbee Home Automation" and "Bluetooth", it means that your home is already running these protocols.</p>
         </li>
         <li>
-          <h3>檢查有沒有 Zigbee 或 Z-Wave 專屬頁面</h3>
-          <p>如果你已經插了 Zigbee 協調器並設定好 ZHA，<strong>設定</strong>選單裡會多出一個 <strong>Zigbee</strong> 項目；Z-Wave 設好之後同樣會出現 <strong>Z-Wave</strong> 項目。有沒有這兩個入口，就是最快判斷「我家有沒有這套網路」的方法。不同版本的選單位置可能微調，以你畫面上看到的為準。</p>
+          <h3>Check if there is a dedicated Zigbee or Z-Wave page</h3>
+          <p>If you have plugged in the Zigbee coordinator and set up ZHA,<strong>Settings</strong>There will be one more in the menu <strong>Zigbee</strong> Project; this will also appear after Z-Wave is set up <strong>Z-Wave</strong> project. The presence of these two entrances is the fastest way to determine "whether my home has this network." The menu position of different versions may be slightly adjusted, whichever you see on the screen.</p>
         </li>
         <li>
-          <h3>數一數 Wi-Fi 裝置有幾台</h3>
-          <p>登入你家路由器的管理頁面，找「已連線裝置」或類似名稱的清單。把不是手機、電腦、電視的那些數出來——那些就是你的 Wi-Fi 智慧裝置。如果這個數字已經超過十幾台而你還打算繼續加，那接下來就該考慮改用 Zigbee 或 Thread 了。</p>
+          <h3>Count how many Wi-Fi devices there are</h3>
+          <p>Log into your router's management page and look for a list of "Connected Devices" or something similar. Count the ones that aren't phones, computers, TVs—those are your Wi-Fi smart devices. If this number has exceeded a dozen units and you plan to continue adding more, then it is time to consider switching to Zigbee or Thread.</p>
         </li>
         <li>
-          <h3>把每個裝置標記成「本地」或「雲端」</h3>
-          <p>回到<strong>設定 &gt; 裝置與服務</strong>，逐一點進整合。判斷方法很簡單：如果當初設定時要你輸入廠商 App 的帳號密碼、或是跳出網頁去廠商官網授權，那大概率是雲端；如果只要求你填一個區網 IP 或直接自動找到，那就是本地。</p>
+          <h3>Mark each device as "local" or "cloud"</h3>
+          <p>return to<strong>Settings &gt; Devices &amp; Services</strong>, integrate point by point. The judgment method is very simple: if you are required to enter the account and password of the manufacturer's App during the initial setting, or jump out of the webpage and go to the manufacturer's official website for authorization, then it is most likely the cloud; if you are only asked to fill in a local network IP or it is automatically found directly, then it is the local one.</p>
         </li>
         <li>
-          <h3>做一次斷網演習</h3>
-          <p>把路由器對外的網路線拔掉（不是關 Wi-Fi，是拔掉對外那條），維持你家內部區網。然後試著用 Home Assistant 開關每一個裝置。能動的就是真本地，轉圈圈然後失敗的就是雲端依賴。演習完記得把線插回去。</p>
+          <h3>Do a drill to disconnect from the internet</h3>
+          <p>Unplug the router's external network cable (not turn off Wi-Fi, but unplug the external one) to maintain your home's internal area network. Then try turning each device on and off with Home Assistant. What moves is true local, what spins around and then fails is cloud dependence. Remember to plug the cord back in after the exercise.</p>
         </li>
         <li>
-          <h3>把結果記下來</h3>
-          <p>用<a href="ch4_naming_labels.html">第 4 章</a>教的標籤（Label）功能，幫雲端依賴的裝置加一個「雲端」標籤。之後停電或斷網時，你一眼就知道哪些東西會失效，也知道下次要優先汰換誰。</p>
+          <h3>write down the result</h3>
+          <p>use<a href="ch4_naming_labels.html">Chapter 4</a>The Label function is taught to add a "Cloud" label to the devices that the cloud relies on. When there is a power outage or Internet outage later, you will know at a glance what will fail and who to replace first next time.</p>
         </li>
       </ol>
     </section>
 
-    <section id="zigbee" data-nav="Zigbee 深入">
-      <h2 data-icon="protocol">Zigbee 深入：協調器、路由器、頻道干擾</h2>
-      <p>Zigbee 是台灣家庭最容易入手、裝置最便宜、電池最耐用的一套。但它有幾個地雷，踩到會讓你以為「Zigbee 好爛」，其實只是佈點沒做對。</p>
+    <section id="zigbee" data-nav="Zigbee in depth">
+      <h2 data-icon="protocol">Zigbee in depth: Coordinators, routers, channel jamming</h2>
+      <p>Zigbee devices are widely available in many markets, often inexpensive, and commonly battery-efficient. But it has a few landmines. Stepping on them will make you think "Zigbee sucks", but in fact it's just that the layout is not done right.</p>
 
-      <h3>三種角色：協調器、路由器、終端裝置</h3>
+      <h3>Three roles: coordinator, router, terminal device</h3>
       <table class="data-table">
         <thead>
-          <tr><th>角色</th><th>是什麼</th><th>典型例子</th><th>要注意</th></tr>
+          <tr><th>role</th><th>what is</th><th>Typical example</th><th>Pay attention to</th></tr>
         </thead>
         <tbody>
-          <tr><td>協調器 Coordinator</td><td>整個網路的大腦，全家只能有一個</td><td>插在 HA 主機上的 USB 接收器</td><td>它掛了整個 Zigbee 網路就停擺</td></tr>
-          <tr><td>路由器 Router</td><td>幫忙轉發訊號的中繼站</td><td>Zigbee 燈泡、插座、常時供電的開關</td><td>必須是「一直有電」的裝置才會當路由器</td></tr>
-          <tr><td>終端裝置 End Device</td><td>只負責回報，不幫別人轉發</td><td>電池款門窗感應器、溫濕度計、按鈕</td><td>它不會擴大你的網路覆蓋</td></tr>
+          <tr><td>Coordinator Coordinator</td><td>There can only be one brain for the entire network in the whole family.</td><td>USB receiver plugged into HA host</td><td>It hangs down the entire Zigbee network and shuts down</td></tr>
+          <tr><td>Router Router</td><td>A relay station that helps forward signals</td><td>Zigbee light bulbs, sockets, and switches with always-on power</td><td>A device must be "always powered" to function as a router</td></tr>
+          <tr><td>End Device End Device</td><td>Only responsible for repaying, not forwarding for others</td><td>Battery door and window sensors, thermometer and hygrometer, buttons</td><td>It won't extend your network coverage</td></tr>
         </tbody>
       </table>
 
-      <div class="callout"><strong>觀念：</strong>官方文件明講 Zigbee 路由器裝置「必須是一直保持可用的」。所以擴大 Zigbee 覆蓋範圍的正解不是買更強的協調器，而是在中間走廊、樓梯間多裝幾顆插電的 Zigbee 插座或燈泡，讓訊號有地方接力。</div>
+      <div class="callout"><strong>Concept:</strong>The official documentation states that Zigbee router devices "must remain available at all times." Therefore, the correct solution to expand Zigbee coverage is not to buy a stronger coordinator, but to install a few more plugged-in Zigbee sockets or light bulbs in the middle corridors and stairwells so that the signal has a place to be relayed.</div>
 
-      <h3>協調器怎麼選</h3>
-      <p>Home Assistant 官方文件目前列為推薦的協調器包含幾個系列：Silicon Labs EmberZNet 晶片的機種（例如官方的 Home Assistant Connect ZBT-2、Connect ZBT-1、Home Assistant Yellow、SONOFF ZBDongle-E、SMLIGHT SLZB-07）、Texas Instruments 的 CC2652 與 CC1352 系列 USB 棒，以及 dresden elektronik 的 ConBee III。</p>
-      <p>文件同時把一批舊機種列為不再推薦，包含 ConBee II、RaspBee II、SONOFF ZBBridge、Nortek HUSBZB-1、Elelabs 系列、Digi XBee 系列、ZiGate 系列，以及 TI 的 CC2530／CC2531／CC2538。網拍和二手市場上這些還很多，價格常常只要推薦款的三分之一——看到特別便宜，先查一下型號在不在這份「不推薦」名單裡再下單。</p>
-      <p>官方自家的 Connect ZBT-2 規格是 Silicon Labs MG24 晶片搭 ESP32-S3 負責 USB 連線，傳輸速率 460800（前一代 ZBT-1 是 115200），改用外接天線，官方建議售價 49 美元／45 歐元，盒裝附一條 1.5 公尺 USB-C 線。</p>
+      <h3>How to choose a coordinator</h3>
+      <p>Home Assistant official documents currently list several series of recommended coordinators: Silicon Labs EmberZNet chip models (such as the official Home Assistant Connect ZBT-2, Connect ZBT-1, Home Assistant Yellow, SONOFF ZBDongle-E, SMLIGHT SLZB-07), Texas Instruments' CC2652 and CC1352 series USB sticks, and dresden elektronik's ConBee III.</p>
+      <p>The document also lists a number of old models as no longer recommended, including ConBee II, RaspBee II, SONOFF ZBBridge, Nortek HUSBZB-1, Elelabs series, Digi XBee series, ZiGate series, and TI's CC2530/CC2531/CC2538. There are many of these on online auctions and second-hand markets, and the price is often only one-third of the recommended model. If you see a particularly cheap model, check to see if the model is on the "not recommended" list before placing an order.</p>
+      <p>The official specification of Connect ZBT-2 is Silicon Labs MG24 chip with ESP32-S3 responsible for USB connection. The transmission rate is 460800 (the previous generation ZBT-1 is 115200). It uses an external antenna instead. The official recommended price is US$49/€45. The box comes with a 1.5-meter USB-C cable.</p>
 
-      <div class="callout warn"><strong>注意：</strong>ZBT-2 一次只能跑一種協定。官方文件寫得很白：它沒辦法同時當 Zigbee 協調器和 Thread border router。你要嘛用它跑 Zigbee，要嘛用它跑 Thread，兩個都要就準備買兩支。</div>
+      <div class="callout warn"><strong>Warning:</strong>ZBT-2 can only run one protocol at a time. The official documentation is very clear: it cannot function as a Zigbee coordinator and Thread border router at the same time. Either use it to run Zigbee or use it to run Thread. If you want both, be prepared to buy two.</div>
 
-      <h3>頻道干擾：別急著改 Zigbee 頻道</h3>
-      <p>Zigbee 和 Wi-Fi 都擠在 2.4GHz，所以互相干擾是常態。但官方 ZHA 文件的建議跟很多網路教學相反，它說的是：<strong>最佳做法是不要去改 Zigbee 頻道</strong>。ZHA 的「Smart」選項在建立網路時會掃描所有頻道，優先挑 15、20、25 這三個，這是一次性的動作。</p>
-      <p>如果真的一直有干擾，文件建議的順序是：先把協調器放遠離 Wi-Fi 基地台和其他 Wi-Fi 訊號源，還是不行的話，去改<strong>你家路由器的 Wi-Fi 頻道</strong>，而不是改 Zigbee 頻道。原因很現實：改 Zigbee 頻道通常意味著全部裝置要重新配對，那是一個下午的工。</p>
+      <h3>Channel interference: Don’t rush to change the Zigbee channel</h3>
+      <p>Zigbee and Wi-Fi are both squeezed into 2.4GHz, so interference with each other is the norm. However, the suggestions in the official ZHA document are contrary to many online teachings. It says:<strong>Best practice is not to change the Zigbee channel</strong>. ZHA's "Smart" option will scan all channels when establishing a network, giving priority to 15, 20, and 25. This is a one-time action.</p>
+      <p>If there is really constant interference, the order suggested by the document is: first place the coordinator away from Wi-Fi base stations and other Wi-Fi signal sources. If that still doesn't work, change it.<strong>Your router’s Wi-Fi channel</strong>, instead of changing the Zigbee channel. The reason is practical: changing the Zigbee channel usually means re-pairing all the devices, an afternoon's work.</p>
 
-      <h3>USB 3.0 是隱形殺手</h3>
-      <div class="callout danger"><strong>危險：</strong>官方文件明確警告：Zigbee USB 接收器只能插 USB 2.0 埠，不要插 USB 3.x 埠。USB 3.0 會產生大量 2.4GHz 頻段的雜訊，直接把你的 Zigbee 網路打殘。如果你的主機只有 USB 3 埠，就買一個有供電的 USB 2.0 集線器來轉。</div>
-      <p>另外強烈建議用一條 USB 延長線把接收器拉離主機本體，因為主機、硬碟、SSD 本身都是干擾源。文件提醒延長線要選屏蔽良好的，通常線材越粗屏蔽越好。</p>
+      <h3>USB 3.0 is the invisible killer</h3>
+      <div class="callout danger"><strong>Danger:</strong>The official documentation clearly warns: Zigbee USB receivers can only be plugged into USB 2.0 ports, not USB 3.x ports. USB 3.0 will generate a lot of noise in the 2.4GHz band, which will directly destroy your Zigbee network. If your host only has USB 3 ports, buy a powered USB 2.0 hub to convert them.</div>
+      <p>In addition, it is strongly recommended to use a USB extension cable to pull the receiver away from the host body, because the host, hard disk, and SSD themselves are all sources of interference. The document reminds you to choose extension cords that are well shielded. Generally, the thicker the wire, the better the shielding.</p>
 
-      <h3>佈點建議</h3>
+      <h3>Suggestions for placement</h3>
       <ul>
-        <li>協調器放在房子的<strong>中心位置</strong>，不要塞在電視櫃最裡面或金屬機櫃裡。</li>
-        <li>遠離電器和大量電線，冰箱、微波爐、電源供應器旁邊都是壞位置。</li>
-        <li>大坪數或長型格局，先在中段裝一顆插電的 Zigbee 裝置當接力點，再往外擴。</li>
-        <li>ZHA 使用者可以在 <strong>設定 &gt; Zigbee</strong> 裡選「顯示地圖」（Show map）看網路拓撲，上面的 RSSI 與 LQI 數值可以幫你找出哪一段連線特別弱。</li>
+        <li>The coordinator is placed in the house<strong>central location</strong>, do not stuff it into the innermost part of the TV cabinet or the metal cabinet.</li>
+        <li>Stay away from electrical appliances and lots of wires. Refrigerators, microwaves, and power supplies are all bad places.</li>
+        <li>For large square footage or long layout, first install a plug-in Zigbee device in the middle as a relay point, and then expand outward.</li>
+        <li>ZHA users can <strong>Settings &gt; Zigbee</strong> Select "Show map" to see the network topology. The RSSI and LQI values above can help you find which section of the connection is particularly weak.</li>
       </ul>
     </section>
 
-    <section id="zha_z2m" data-nav="ZHA 或 Z2M">
-      <h2 data-icon="compare">ZHA 還是 Zigbee2MQTT？</h2>
-      <p>同一支協調器、同一批 Zigbee 裝置，你有兩條路可以接進 Home Assistant。這是新手最常糾結的選擇題。</p>
+    <section id="zha_z2m" data-nav="ZHA or Z2M">
+      <h2 data-icon="compare">ZHA or Zigbee2MQTT?</h2>
+      <p>With the same coordinator and the same batch of Zigbee devices, you have two ways to access Home Assistant. This is the most common multiple-choice question that newbies struggle with.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>比較項目</th><th>ZHA（Zigbee Home Automation）</th><th>Zigbee2MQTT</th></tr>
+          <tr><th>Compare items</th><th>ZHA (Zigbee Home Automation)</th><th>Zigbee2MQTT</th></tr>
         </thead>
         <tbody>
-          <tr><td>本質</td><td>Home Assistant 內建整合</td><td>獨立軟體，透過 MQTT 跟 HA 溝通</td></tr>
-          <tr><td>安裝難度</td><td>低。插上接收器通常會被自動偵測，在裝置與服務裡完成設定</td><td>中。要先裝 MQTT broker，再裝 Zigbee2MQTT，還要設定連接埠</td></tr>
-          <tr><td>要幾個元件</td><td>一個（整合本身）</td><td>三個（broker、Zigbee2MQTT、MQTT 整合）</td></tr>
-          <tr><td>設定介面</td><td>直接在 HA 裡面，有 <strong>設定 &gt; Zigbee</strong> 專屬頁面</td><td>另外一個獨立的網頁介面</td></tr>
-          <tr><td>冷門裝置支援</td><td>靠 zigpy 函式庫，多數常見裝置沒問題</td><td>社群更新快，冷門或新上市裝置常常先在這裡有支援</td></tr>
-          <tr><td>HA 掛掉時</td><td>Zigbee 網路跟著停</td><td>Zigbee2MQTT 還在跑，訊息會留在 broker</td></tr>
-          <tr><td>適合誰</td><td>第一次玩、想少踩坑、裝置都是主流品牌</td><td>裝置雜、有冷門品牌、想要更細的調校</td></tr>
+          <tr><td>essence</td><td>Home Assistant built-in integration</td><td>Independent software, communicates with HA through MQTT</td></tr>
+          <tr><td>Installation difficulty</td><td>low. Plugging in the receiver will usually be automatically detected and the settings can be completed in Devices and Services.</td><td>in. You need to install MQTT broker first, then install Zigbee2MQTT, and set the connection port.</td></tr>
+          <tr><td>How many components are needed</td><td>a (integration itself)</td><td>Three (broker, Zigbee2MQTT, MQTT integration)</td></tr>
+          <tr><td>Setting interface</td><td>Directly in HA, there is <strong>Settings &gt; Zigbee</strong> Exclusive page</td><td>Another independent web interface</td></tr>
+          <tr><td>Unpopular device support</td><td>Relying on the zigpy library, most common devices will have no problem</td><td>The community updates quickly, and unpopular or newly launched devices are often supported here first.</td></tr>
+          <tr><td>When HA hangs up</td><td>Zigbee network stops</td><td>Zigbee2MQTT is still running, and the message will be left in the broker</td></tr>
+          <tr><td>Suitable for whom</td><td>This is my first time playing, I want to avoid pitfalls, and the equipment is from mainstream brands.</td><td>The devices are complicated, there are unpopular brands, and I want more detailed adjustments.</td></tr>
         </tbody>
       </table>
 
-      <div class="callout tip"><strong>提示：</strong>選擇建議很簡單——第一次弄就選 ZHA，因為它少了兩個會壞的東西。等你哪天遇到「這顆感應器 ZHA 認不出來」，再考慮搬家到 Zigbee2MQTT。兩邊都用同一支協調器，換過去主要成本是全部裝置要重新配對。</div>
+      <div class="callout tip"><strong>Tip:</strong>The choice suggestion is simple - choose ZHA for the first time, because it has two less things that can break. Wait until one day you encounter "ZHA cannot recognize this sensor", then consider moving to Zigbee2MQTT. Both sides use the same coordinator, and the main cost of replacing it is that all devices need to be re-paired.</div>
 
-      <div class="callout warn"><strong>注意：</strong>絕對不要同時開 ZHA 和 Zigbee2MQTT 去搶同一支 USB 接收器。一支協調器同時間只能被一個軟體使用，兩個一起開的結果是兩邊都不能用。</div>
+      <div class="callout warn"><strong>Warning:</strong>Never open ZHA and Zigbee2MQTT at the same time to grab the same USB receiver. One coordinator can only be used by one software at the same time. If two are opened at the same time, neither side will be able to use it.</div>
 
-      <p>Zigbee2MQTT 官方文件目前把 zStack（Texas Instruments）和 EmberZNet（Silicon Labs）這兩類接收器列為推薦——跟 ZHA 的推薦清單重疊度很高，所以你買一支好的協調器，兩條路都走得通。安裝方面，Zigbee2MQTT 在 Home Assistant 上就是裝成一個 App（以前叫 add-on），另外還要一個 MQTT broker，官方推薦 Mosquitto。</p>
+      <p>The Zigbee2MQTT official document currently lists two types of receivers, zStack (Texas Instruments) and EmberZNet (Silicon Labs), as recommended - there is a high degree of overlap with ZHA's recommended list, so if you buy a good coordinator, both paths will work. In terms of installation, Zigbee2MQTT is installed as an App (formerly called add-on) on Home Assistant. In addition, a MQTT broker is required. Mosquitto is officially recommended.</p>
 
-      <h3>換協調器怎麼辦</h3>
-      <p>ZHA 有內建的遷移功能，在 <strong>設定 &gt; Zigbee</strong> 裡有「Migrate」項目，官方文件說明支援 Silicon Labs、Texas Instruments 與 ConBee／RaspBee 晶片的機種之間遷移。這代表你從舊接收器換到新接收器時，有機會不用把全家感應器重配一次。實際流程請照你版本畫面上的精靈走。</p>
+      <h3>What should I do if I change the coordinator?</h3>
+      <p>ZHA has built-in migration capabilities in <strong>Settings &gt; Zigbee</strong> There is a "Migrate" project, and official documents describe support for migration between models using Silicon Labs, Texas Instruments, and ConBee/RaspBee chips. This means that when you switch from an old receiver to a new one, you have the opportunity to not have to reconfigure your entire home's sensors. Please follow the wizard on the screen of your version for the actual process.</p>
     </section>
 
     <section id="zwave" data-nav="Z-Wave">
-      <h2 data-icon="hardware">Z-Wave：貴一點，但穩</h2>
-      <p>Z-Wave 在台灣的能見度比 Zigbee 低很多，價格也明顯貴，但它在歐美是很主流的選擇，因為它不跟 Wi-Fi 擠 2.4GHz，干擾問題天生就少一大半。</p>
+      <h2 data-icon="hardware">Z-Wave: more expensive, but stable</h2>
+      <p>Z-Wave availability and pricing vary by market. It is a mainstream choice in Europe and the United States because it does not squeeze 2.4GHz with Wi-Fi, and the interference problem is naturally reduced by more than half.</p>
 
-      <h3>買之前先搞清楚頻段</h3>
-      <div class="callout danger"><strong>危險：</strong>Z-Wave 用的是低於 1GHz 的頻段，而且<strong>不同地區用的頻率不一樣</strong>。歐規、美規、澳規的裝置彼此完全不能通訊。從國外網站下單前，一定要確認你買的協調器和裝置是同一個地區版本，買錯不是「效果差一點」，是「完全連不上」。台灣市面上流通的版本不固定，跟賣家問清楚。</div>
+      <h3>Find out the frequency band before buying</h3>
+      <div class="callout danger"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. Z-Wave uses frequency bands below 1GHz, and<strong>Different regions use different frequencies</strong>. European, American, and Australian devices cannot communicate with each other at all. Before placing an order from a foreign website, be sure to confirm that the coordinator and device you buy are the same regional version. The wrong purchase is not "less effective" but "completely unable to connect". Regional versions vary by market, so confirm the exact frequency with the seller.</div>
 
-      <h3>在 Home Assistant 裡怎麼跑</h3>
-      <p>Home Assistant 的 Z-Wave 整合背後跑的是 Z-Wave JS。設定好之後，官方文件說你可以從 <strong>設定 &gt; Z-Wave</strong> 或 <strong>設定 &gt; 裝置與服務 &gt; Z-Wave</strong> 進入管理頁面。它會用到 Z-Wave JS 這個「應用程式（App）」——這個東西以前叫做「附加元件（Add-on）」，Home Assistant 在 2026.2 版把 Add-on 正式改名成 App，選單路徑變成 <strong>設定 &gt; 應用程式</strong>（英文介面是 Settings &gt; Apps；中文介面的翻譯用詞可能還會微調，看到「App」或「應用程式」都是同一個地方）。這部分在<a href="appendix_hacs_addons.html">附錄 A</a> 有更完整的說明。</p>
+      <h3>How to run in Home Assistant</h3>
+      <p>Behind Home Assistant’s Z-Wave integration is Z-Wave JS. After setting it up, the official documentation says you can <strong>Settings &gt; Z-Wave</strong> or <strong>Settings &gt; Devices &amp; Services &gt; Z-Wave</strong> Enter the management page. It will use the "App" of Z-Wave JS - this thing was formerly called "Add-on". Home Assistant officially renamed Add-on to App in version 2026.2, and the menu path becomes <strong>Settings &gt; Apps</strong>(The English interface is Settings &gt; Apps; the translation of the Chinese interface may be slightly adjusted, and you will see "App" or "App" in the same place). This part is in<a href="appendix_hacs_addons.html">Appendix A</a> There are more complete instructions.</p>
 
-      <h3>硬體與加入裝置</h3>
-      <p>官方文件對剛入門的人建議直接買 <strong>800 系列</strong>的接收器，並且把韌體更新到 <code>7.23.2</code> 以上；文件裡也點名了官方自家的 Home Assistant Connect ZWA-2。除此之外，Aeotec Z-Stick Gen5+、Zooz ZST10、Nortek HUSBZB-1 這類舊機種也在能用的清單裡，但那是「還能跑」，不是「建議新買」。</p>
-      <p>把裝置加進網路（術語叫「納入／Inclusion」）有兩種做法：</p>
+      <h3>Hardware and add-on devices</h3>
+      <p>The official document recommends that people who are just getting started buy it directly. <strong>800 series</strong>receiver and update the firmware to <code>7.23.2</code> Above; the official Home Assistant Connect ZWA-2 is also named in the document. In addition, old models such as Aeotec Z-Stick Gen5+, Zooz ZST10, and Nortek HUSBZB-1 are also on the usable list, but they are "still running" and not "recommended to buy new".</p>
+      <p>There are two ways to add a device to the network (termed "inclusion"):</p>
       <ul>
-        <li><strong>SmartStart</strong>：掃描裝置上的 QR code，之後裝置一通電，官方文件說會在 10 分鐘內自動加入。</li>
-        <li><strong>傳統納入</strong>：把主機和裝置都切到納入模式。裝置那邊怎麼進入納入模式，一定要查該裝置的說明書，每家做法都不同。</li>
+        <li><strong>SmartStart</strong>: Scan the QR code on the device, and as soon as the device is powered on, the official document says it will automatically join within 10 minutes.</li>
+        <li><strong>tradition incorporated</strong>: Switch both the host and the device to inclusion mode. For how to enter the inclusion mode on the device, you must check the instruction manual of the device. Each manufacturer's method is different.</li>
       </ul>
-      <p>安全性方面，Z-Wave 支援 S2 加密，官方文件提到 S2 不會造成額外的網路流量負擔還能帶來額外好處。新建網路時安全金鑰會自動產生。另外還有 Z-Wave Long Range 這種長距離網路型態可以搭配支援的裝置使用。</p>
+      <p>In terms of security, Z-Wave supports S2 encryption. Official documents mention that S2 will not cause additional network traffic burden and can bring additional benefits. Security keys are automatically generated when creating a new network. There is also Z-Wave Long Range, a long-distance network type that can be used with supported devices.</p>
     </section>
 
     <section id="matter" data-nav="Matter/Thread">
-      <h2 data-icon="integration">Matter 與 Thread：一個是語言，一個是路</h2>
-      <p>這兩個詞最常被搞混，一句話分清楚：<strong>Thread 是怎麼傳（無線電那一層），Matter 是講什麼（資料格式那一層）</strong>。所以世界上存在「Matter over Thread」的裝置，也存在「Matter over Wi-Fi」的裝置，兩種都是 Matter。</p>
+      <h2 data-icon="integration">Matter and Thread: One is language and the other is road</h2>
+      <p>These two words are most often confused, but they can be clearly distinguished in one sentence:<strong>How does Thread transmit (the radio layer), and what does Matter talk about (the data format layer)</strong>. Therefore, there are "Matter over Thread" devices and "Matter over Wi-Fi" devices in the world, and both are Matter.</p>
 
-      <h3>Thread border router 是什麼</h3>
-      <p>Thread 裝置自己組一個低耗電的 mesh 網路，但它們講的是 IPv6，要有一個東西幫忙把 Thread 網路接到你家的 Wi-Fi／有線網路上，那個東西就叫 border router（邊界路由器）。</p>
-      <p>官方 Thread 整合文件目前列出的 border router 包含：</p>
+      <h3>What is Thread border router?</h3>
+      <p>Thread devices form a low-power mesh network by themselves, but they talk about IPv6. You need something to help connect the Thread network to your home Wi-Fi/wired network. That thing is called a border router.</p>
+      <p>The official Thread integration documentation currently lists border routers as:</p>
       <table class="data-table">
         <thead>
-          <tr><th>陣營</th><th>裝置</th></tr>
+          <tr><th>camp</th><th>device</th></tr>
         </thead>
         <tbody>
-          <tr><td>Home Assistant 官方</td><td>Home Assistant Yellow、Connect ZBT-1、Connect ZBT-2（搭配 OpenThread Border Router 這個 App）</td></tr>
-          <tr><td>Google</td><td>Nest Hub 第 2 代、Nest Hub Max、Nest Wifi Pro、Nest Wifi、Google TV Streamer (4K)</td></tr>
-          <tr><td>Apple</td><td>HomePod 第 2 代、HomePod mini、Apple TV 4K 第 2／3 代</td></tr>
-          <tr><td>其他</td><td>Nanoleaf 與 Amazon 的部分裝置</td></tr>
+          <tr><td>Home Assistant Official</td><td>Home Assistant Yellow, Connect ZBT-1, Connect ZBT-2 (with OpenThread Border Router App)</td></tr>
+          <tr><td>Google</td><td>Nest Hub 2nd Gen, Nest Hub Max, Nest Wifi Pro, Nest Wifi, Google TV Streamer (4K)</td></tr>
+          <tr><td>Apple</td><td>HomePod 2nd generation, HomePod mini, Apple TV 4K 2nd/3rd generation</td></tr>
+          <tr><td>Others</td><td>Some devices from Nanoleaf and Amazon</td></tr>
         </tbody>
       </table>
-      <p>好消息是：如果你家已經有 HomePod mini 或 Nest Hub，你其實已經有一台 border router 了，不用再買。要查看家裡的 Thread 網路狀態，路徑是 <strong>設定 &gt; 裝置與服務 &gt; Thread &gt; 設定</strong>。</p>
+      <p>The good news is: If you already have a HomePod mini or Nest Hub at home, you actually already have a border router and don’t need to buy another one. To check the Thread network status at home, the path is <strong>Settings &gt; Devices &amp; Services &gt; Thread &gt; Settings</strong>.</p>
 
-      <h3>在 Home Assistant 加入 Matter 裝置</h3>
-      <p>先講一個很多人卡住的前提：<strong>配對 Matter 裝置必須用手機的 Companion App，瀏覽器做不到</strong>。官方文件寫得很清楚，Home Assistant 的 Matter 控制器是透過 Companion App 來完成配對的。Companion App 的安裝在<a href="ch7_notifications.html">第 7 章</a>有講。</p>
+      <h3>Add Matter devices to Home Assistant</h3>
+      <p>Let me first talk about a premise that many people get stuck on:<strong>To pair Matter devices, you must use your phone’s Companion App, which cannot be done using a browser.</strong>. The official documentation makes it clear that Home Assistant’s Matter controller is paired through the Companion App. Companion App is installed in<a href="ch7_notifications.html">Chapter 7</a>There is talk.</p>
 
       <ol class="steps">
         <li>
-          <h3>先裝好 Matter 整合</h3>
-          <p>到<strong>設定 &gt; 裝置與服務</strong>，新增 Matter 整合。如果你跑的是 Home Assistant OS，系統會問你要不要安裝官方的 Matter Server，按<strong>提交</strong>讓它自己裝就好。這個 Matter Server 是一個獨立跑的程式，負責把你的 Matter 網路（術語叫 Fabric）跟 Home Assistant 接起來。</p>
+          <h3>Install Matter integration first</h3>
+          <p>Arrive<strong>Settings &gt; Devices &amp; Services</strong>, added Matter integration. If you are running Home Assistant OS, you will be asked if you want to install the official Matter Server. Click<strong>Submit</strong>Just let it install itself. This Matter Server is a stand-alone program that is responsible for connecting your Matter network (termed Fabric) with Home Assistant.</p>
         </li>
         <li>
-          <h3>確認 IPv6 有開</h3>
-          <p>官方文件把這列為必要條件：IPv6 必須啟用。檢查路徑是 <strong>設定 &gt; 系統 &gt; 網路</strong>，把 IPv6 設成自動（Automatic）或靜態（static）。這一步沒做，後面配對會莫名其妙失敗。</p>
+          <h3>Make sure IPv6 is turned on</h3>
+          <p>The official documentation lists this as a requirement: IPv6 must be enabled. Check the path is <strong>Settings &gt; System &gt; Network</strong>, set IPv6 to Automatic or static. If this step is not done, subsequent pairing will fail inexplicably.</p>
         </li>
         <li>
-          <h3>用手機打開 Companion App</h3>
-          <p>在手機的 Home Assistant App 裡，進入 <strong>設定 &gt; Matter</strong>，點<strong>新增裝置</strong>。Android 使用者還要把 App 的定位權限設成「一律允許」，否則掃不到裝置。</p>
+          <h3>Open the Companion App on your phone</h3>
+          <p>In the Home Assistant App on your phone, enter <strong>Settings &gt; Matter</strong>, point<strong>Add new device</strong>. Android users must also set the app's location permission to "Always Allow", otherwise the device cannot be scanned.</p>
         </li>
         <li>
-          <h3>選擇這是新裝置還是二手</h3>
-          <p>如果裝置是全新沒被別的平台加入過，選「不，這是新的」（No, it's new.），然後用手機相機掃裝置上的 QR code，或是點「更多選項」手動輸入配對碼。最後按<strong>加入 Home Assistant</strong>。</p>
+          <h3>Select whether this is a new or used unit</h3>
+          <p>If the device is brand new and has not been added to another platform, select "No, it's new." and then scan the QR code on the device with your phone's camera, or click "More Options" to manually enter the pairing code. Finally press<strong>Join Home Assistant</strong>.</p>
         </li>
         <li>
-          <h3>如果裝置已經在別的平台</h3>
-          <p>裝置如果已經加進 Apple 家庭或 Google Home，選「是，它已在使用中」（Yes, it's already in use），指出它目前接在哪個控制器上，然後照畫面指示做。實際流程是到那個平台的 App 裡產生一組分享用的 QR code 或配對碼，再拿到 Home Assistant 這邊用。Matter 的一大優點就是同一個裝置可以同時被多個平台控制。</p>
+          <h3>If the device is already on another platform</h3>
+          <p>If the device is already added to Apple Home or Google Home, select "Yes, it's already in use," indicate which controller it is currently connected to, and follow the on-screen instructions. The actual process is to generate a set of QR codes or pairing codes for sharing in the app of that platform, and then get them to Home Assistant for use. One of the great things about Matter is that the same device can be controlled by multiple platforms at the same time.</p>
         </li>
       </ol>
 
-      <div class="callout warn"><strong>注意：</strong>Matter 很吃 mDNS／multicast 這種區網廣播封包。官方文件要求這類流量必須能在你的網路裡自由通行。如果你家有做 VLAN 切網、或路由器開了「AP 隔離」，Matter 幾乎一定會配對失敗。另外配對 Wi-Fi 版 Matter 裝置時，手機要跟裝置在同一個 2.4GHz 網路上。</div>
+      <div class="callout warn"><strong>Warning:</strong>Matter eats local network broadcast packets such as mDNS/multicast. Official documents require that this type of traffic must be able to pass freely through your network. If your home has VLAN network switching, or the router has "AP isolation" enabled, Matter will almost certainly fail to pair. In addition, when pairing the Wi-Fi version of Matter device, the mobile phone and the device must be on the same 2.4GHz network.</div>
 
-      <div class="callout"><strong>觀念：</strong>Matter 支援的裝置類型一直在擴充。目前官方文件列出的涵蓋燈、開關、鎖、窗簾、風扇、空調、熱水器、感應器、二元感應器、按鈕、警報器、閥門、掃地機器人、電動車，還有一些通用型態（數值、選項、更新）。但實務上「支援」不等於「每個功能都能用」——很多裝置基本開關沒問題，某些原廠 App 才有的花式功能就是抓不到。買之前建議搜一下那個型號在社群的實際回報。</div>
+      <div class="callout"><strong>Concept:</strong>The device types Matter supports are constantly expanding. Currently, official documents list lights, switches, locks, curtains, fans, air conditioners, water heaters, sensors, binary sensors, buttons, alarms, valves, sweeping robots, electric vehicles, and some general types (values, options, updates). But in practice, "support" does not mean "every function can be used" - many devices have no problem with basic switches, but some fancy functions that are only available in original apps are just not available. Before buying, it is recommended to search the actual returns of that model in the community.</div>
     </section>
 
-    <section id="mqtt" data-nav="MQTT 與 HTTP">
-      <h2 data-icon="network">MQTT 與純區網 HTTP：DIY 的兩條萬用路</h2>
-      <p>前面講的都是「某種無線電」。MQTT 和 HTTP 不一樣，它們是跑在你家網路上的<strong>訊息格式</strong>，不管底下是 Wi-Fi 還是網路線。當某個裝置沒有專屬整合時，這兩條路就是你的救命繩。</p>
+    <section id="mqtt" data-nav="MQTT and HTTP">
+      <h2 data-icon="network">MQTT and pure zone network HTTP: two versatile paths for DIY</h2>
+      <p>What I talked about earlier was "some kind of radio". MQTT is different from HTTP, they run on your home network<strong>Message format</strong>, regardless of whether it’s a Wi-Fi or network cable underneath. These two paths are your lifeline when there is no dedicated integration for a device.</p>
 
-      <h3>MQTT 是什麼：一個社區佈告欄</h3>
-      <p>想像社區大廳有一面佈告欄，上面分很多格子（術語叫「主題／Topic」）。溫濕度計每五分鐘就去「客廳／溫度」那一格貼一張紙條寫上 26.5。Home Assistant 只要事先說「我要訂閱客廳／溫度這一格」，有人一貼它就知道。這面佈告欄就是 <strong>broker（訊息代理伺服器）</strong>。</p>
-      <p>這個設計的好處是：貼紙條的人不需要知道誰在看，看的人也不需要知道誰在貼。所以你可以加無限多個裝置和無限多個訂閱者，彼此都不用互相認識。</p>
+      <h3>What is MQTT: A community bulletin board</h3>
+      <p>Imagine that there is a bulletin board in a community hall with many grids (the term is called "topic"). Every five minutes on the thermometer and hygrometer, go to the "living room/temperature" box and put a piece of paper on it and write 26.5. Home Assistant only needs to say "I want to subscribe to the living room/temperature grid" in advance, and it will know as soon as someone posts it. This bulletin board is <strong>broker (message proxy server)</strong>.</p>
+      <p>The advantage of this design is that the person posting the sticker does not need to know who is reading it, and the person viewing it does not need to know who is posting it. So you can add unlimited devices and unlimited subscribers without knowing each other.</p>
 
-      <h3>裝一個 broker</h3>
-      <p>官方 MQTT 文件說最簡單的做法是安裝官方的 Mosquitto Broker 這個 App（也就是以前說的 Mosquitto add-on），而且在設定 MQTT 整合的過程中可以順便自動裝好。</p>
-      <p>新增 MQTT 整合的路徑是 <strong>設定 &gt; 裝置與服務</strong>，右下角<strong>新增整合</strong>，清單裡選 <strong>MQTT</strong>。</p>
+      <h3>Install a broker</h3>
+      <p>The official MQTT document says that the easiest way is to install the official Mosquitto Broker App (also known as Mosquitto add-on), and it can be automatically installed during the process of setting up MQTT integration.</p>
+      <p>The path to add MQTT integration is <strong>Settings &gt; Devices &amp; Services</strong>, lower right corner<strong>New integration</strong>, select from the list <strong>MQTT</strong>.</p>
 
-      <h3>自動探索（Discovery）：最迷人的部分</h3>
-      <div class="callout"><strong>觀念：</strong>官方文件說明 MQTT 自動探索<strong>預設就是開啟的</strong>，探索主題的預設前綴是 <code>homeassistant</code>。意思是裝置只要按照約定格式，往 <code>homeassistant/...</code> 開頭的主題丟一則自我介紹訊息，Home Assistant 就會自動幫它生出實體，你完全不用手寫設定。</div>
-      <p>這就是為什麼 Zigbee2MQTT 和 Tasmota 用起來那麼順——你在它們那邊配對好一顆新感應器，Home Assistant 這邊過幾秒就自己冒出來了。</p>
-      <p>設定好之後要回頭改東西，官方文件把它分成兩件事：</p>
+      <h3>Automated Discovery: The most fascinating part</h3>
+      <div class="callout"><strong>Concept:</strong>Official documentation describing MQTT automatic exploration<strong>It is on by default</strong>, the default prefix for exploring topics is <code>homeassistant</code>. This means that the device only needs to follow the agreed format and go to <code>homeassistant/...</code> Drop a self-introduction message into the opening topic, and Home Assistant will automatically create an entity for it, so you don’t have to set it manually at all.</div>
+      <p>This is why Zigbee2MQTT and Tasmota are so smooth to use - you pair a new sensor with them, and Home Assistant will appear on its own in a few seconds.</p>
+      <p>After setting it up, you need to go back and change things. The official documentation divides it into two things:</p>
       <ul>
-        <li><strong>改 broker 的連線資訊</strong>（換 IP、換帳號密碼）：<strong>設定 &gt; 裝置與服務</strong>，選 MQTT 整合，點三個點的選單，選<strong>重新設定</strong>（Reconfigure）。</li>
-        <li><strong>改自動探索之類的選項</strong>：在同一個 MQTT 整合頁面，點<strong>設定 MQTT 選項</strong>（Configure MQTT Options）這顆按鈕。</li>
+        <li><strong>Change the broker’s connection information</strong>(Change IP, change account password):<strong>Settings &gt; Devices &amp; Services</strong>, select MQTT integration, click the three-dot menu, and select<strong>reset</strong> (Reconfigure).</li>
+        <li><strong>Change options like automatic exploration</strong>: On the same MQTT integration page, click<strong>Set MQTT options</strong>(Configure MQTT Options) button.</li>
       </ul>
-      <p>實際的按鈕文字會隨版本和語系不同，以你畫面上看到的為準——認「三個點的選單」和「整合頁面上的按鈕」這兩個位置比較不會迷路。</p>
+      <p>The actual button text will vary depending on the version and language. It should be based on what you see on the screen - look for the "three-dot menu" and "button on the integrated page" to avoid getting lost.</p>
 
-      <h3>純區網 HTTP：最後手段，但很好用</h3>
-      <p>有些裝置什麼協定都不支援，但它有一個網頁介面，或者提供一個網址讓你打。這時候可以用 <code>rest_command</code> 這個整合自己打 API。它目前只能寫在 <code>configuration.yaml</code> 裡：</p>
+      <h3>Pure zone network HTTP: last resort, but useful</h3>
+      <p>Some devices do not support any protocols, but they have a web interface or provide a URL for you to call. It can be used at this time <code>rest_command</code> This integration creates its own API. It can currently only be written in <code>configuration.yaml</code> Here:</p>
       <pre class="code-block"><code>rest_command:
   open_gate:
     url: "http://192.168.1.50/api/open"
     method: post
     verify_ssl: false</code></pre>
-      <p>官方文件列出的參數包含 <code>url</code>（必填，支援範本）、<code>method</code>（預設 <code>get</code>，可用 get／patch／post／put／delete）、<code>headers</code>、<code>payload</code>、<code>verify_ssl</code>（預設 <code>true</code>）、<code>timeout</code>（預設 10 秒）。上面那個範例把 <code>verify_ssl</code> 關掉，是因為區網裡的小裝置多半沒有正式的憑證；如果你打的是外網服務，就不要關。設定好之後，在自動化或腳本裡這樣呼叫：</p>
+      <p>The parameters listed in the official document include <code>url</code>(Required, support template),<code>method</code>(Default <code>get</code>, available get/patch/post/put/delete),<code>headers</code>, <code>payload</code>, <code>verify_ssl</code>(Default <code>true</code>), <code>timeout</code>(Default 10 seconds). The example above <code>verify_ssl</code> Turn it off because most small devices in the local network do not have formal credentials; if you are calling an external network service, do not turn it off. After setting it up, call it like this in automation or script:</p>
       <pre class="code-block"><code>actions:
   - action: rest_command.open_gate</code></pre>
-      <div class="callout tip"><strong>提示：</strong>注意這裡用的是 <code>action:</code> 而不是舊寫法的 <code>service:</code>。Home Assistant 已經把「服務（Service）」改稱「動作（Action）」，YAML 的 <code>triggers:</code> / <code>conditions:</code> / <code>actions:</code> 也都是複數形。<a href="ch8_first_automation.html">第 8 章</a>有完整說明。</div>
+      <div class="callout tip"><strong>Tip:</strong>Note that what is used here is <code>action:</code> rather than the old way of writing <code>service:</code>. Home Assistant has renamed "Service" to "Action". YAML <code>triggers:</code> / <code>conditions:</code> / <code>actions:</code> They are also in the plural form.<a href="ch8_first_automation.html">Chapter 8</a>There are full instructions.</div>
     </section>
 
-    <section id="bluetooth" data-nav="藍牙與 Proxy">
-      <h2 data-icon="advanced">藍牙 BLE：便宜、省電、但傳不遠</h2>
-      <p>低功耗藍牙（BLE，Bluetooth Low Energy）的裝置通常最便宜，一顆鈕扣電池能撐很久。缺點也很直接：<strong>它幾乎不穿牆</strong>，而且它不會 mesh，一個房間的訊號傳不到隔壁房間。</p>
+    <section id="bluetooth" data-nav="Bluetooth and Proxy">
+      <h2 data-icon="advanced">Bluetooth BLE: cheap, power-saving, but not far-reaching</h2>
+      <p>Bluetooth Low Energy (BLE) devices are usually the cheapest, and a button battery can last a long time. The disadvantages are also very direct:<strong>it barely penetrates walls</strong>, and it does not mesh, so the signal in one room cannot be transmitted to the next room.</p>
 
-      <h3>兩種運作方式</h3>
+      <h3>Two ways of operation</h3>
       <table class="data-table">
         <thead>
-          <tr><th>模式</th><th>怎麼運作</th><th>適合</th></tr>
+          <tr><th>mode</th><th>How it works</th><th>suitable for</th></tr>
         </thead>
         <tbody>
-          <tr><td>被動接收（廣播）</td><td>裝置自己一直對空氣喊數值，HA 聽到就記下來</td><td>溫濕度計、植物感測器這類只回報的裝置</td></tr>
-          <tr><td>主動連線</td><td>HA 主動跟裝置建立連線去問或去下指令</td><td>藍牙鎖、需要下指令的窗簾機、溫控器</td></tr>
+          <tr><td>Passive reception (broadcast)</td><td>The device itself keeps shouting values into the air, and HA writes them down when he hears them.</td><td>Devices that only report, such as thermohygrometers and plant sensors,</td></tr>
+          <tr><td>Active connection</td><td>HA actively establishes a connection with the device to ask or issue commands.</td><td>Bluetooth locks, curtain machines that require commands, and thermostats</td></tr>
         </tbody>
       </table>
-      <p>Home Assistant 的 Bluetooth 整合提供三種掃描模式：<strong>Auto</strong>（以被動聆聽為主，穿插短暫的主動掃描）、<strong>Active</strong>（持續主動詢問，更新最快但比較耗裝置的電池）、<strong>Passive</strong>（只聽，對電池影響最小）。官方文件說 Auto 模式跟一直開著主動掃描比起來，可以少掉大約 95% 的掃描耗電，所以除非你有特別理由，維持 Auto 就好。</p>
-      <p>新增路徑是 <strong>設定 &gt; 裝置與服務 &gt; 新增整合 &gt; Bluetooth</strong>。</p>
+      <p>Home Assistant's Bluetooth integration offers three scanning modes:<strong>Auto</strong>(Mainly passive listening, interspersed with short active scanning),<strong>Active</strong>(continuous and proactive inquiry, the fastest update but more battery consumption of the device),<strong>Passive</strong>(Listen only, minimal impact on battery). Official documents say that Auto mode can reduce scanning power consumption by about 95% compared to always turning on active scanning, so unless you have a special reason, just keep it in Auto.</p>
+      <p>The new path is <strong>Settings &gt; Devices &amp; Services &gt; Add integration &gt; Bluetooth</strong>.</p>
 
-      <h3>BLE Proxy：把耳朵裝到每個房間</h3>
-      <p>既然藍牙傳不遠，解法就是不要只靠主機那一顆藍牙。你可以在各個房間放一台便宜的小裝置當「代收員」，它用藍牙聽到訊號，再透過 Wi-Fi 或網路線把資料轉送給 Home Assistant。這就是 Bluetooth Proxy。</p>
-      <p>官方 Bluetooth 文件說明整合可以接收來自外部轉發器的廣播資料，並點名了 ESPHome 的 ESP32 裝置、Shelly Gen2 以上的裝置，以及 SMLIGHT SLZB-U。</p>
+      <h3>BLE Proxy: Put ears in every room</h3>
+      <p>Since Bluetooth can’t transmit far, the solution is not to rely solely on the host’s Bluetooth. You can place a cheap little device in each room as a "collector," which listens to the signal using Bluetooth and forwards the data to Home Assistant via Wi-Fi or a network cable. This is Bluetooth Proxy.</p>
+      <p>The official Bluetooth documentation states that the integration can receive broadcast data from external repeaters, and names ESPHome's ESP32 devices, Shelly Gen2 and above devices, and SMLIGHT SLZB-U.</p>
 
-      <div class="callout tip"><strong>提示：</strong>如果你家已經有幾顆 Shelly Gen2 以上的智慧開關藏在牆裡，它們可以順便當藍牙代收員，等於免費升級。這是很多人不知道的隱藏功能。</div>
+      <div class="callout tip"><strong>Tip:</strong>If your home already has several Shelly Gen2 or above smart switches hidden in the wall, they can be used as Bluetooth collectors, which is a free upgrade. This is a hidden feature that many people don’t know about.</div>
 
-      <h3>自己做一個 ESPHome Bluetooth Proxy</h3>
-      <p>買一片 ESP32 開發板（幾百塊台幣），刷上 ESPHome，設定檔的核心只有這幾行：</p>
+      <h3>Make your own ESPHome Bluetooth Proxy</h3>
+      <p>Buy an ESP32 development board (a low-cost board) and run ESPHome. The core of the configuration file only has these lines:</p>
       <pre class="code-block"><code>esp32_ble_tracker:
 
 bluetooth_proxy:
   active: true</code></pre>
-      <p>ESPHome 官方文件對這個元件的說明重點：</p>
+      <p>The official ESPHome document explains the key points of this component:</p>
       <ul>
-        <li>要用 ESP32 系列的板子。文件建議把 ESP32 平台設成 <code>esp-idf</code> 框架，因為另一個 <code>arduino</code> 框架吃掉的記憶體多很多、跑起來也比較差。</li>
-        <li><code>active</code> 打開的是「代理主動連線」的能力。不同版本的文件對這個選項的預設值講法不一致，所以像上面那樣<strong>明寫 <code>active: true</code></strong> 最保險，你就知道自己開了什麼。</li>
-        <li><code>connection_slots</code> 是同時能維持的主動連線數，<strong>預設 3</strong>。文件建議不要超過 <code>5</code>，以免記憶體不夠出問題；在 <code>esp-idf</code> 框架下最多可以到 <code>9</code>。每個 slot 大約吃 1KB 記憶體，而且這個數字不能超過 <code>esp32_ble_tracker</code> 那邊設定的 <code>max_connections</code>。</li>
-        <li>用網路線的板子（例如 Olimex ESP32-PoE-ISO）通常比較穩，因為不用跟 Wi-Fi 搶 2.4GHz 的天線。</li>
+        <li>Use ESP32 series boards. The document recommends setting the ESP32 platform to <code>esp-idf</code> frame because another <code>arduino</code> The framework consumes much more memory and runs poorly.</li>
+        <li><code>active</code> What is turned on is the ability of "agent active connection". Different versions of the document have inconsistent explanations of the default value of this option, so as above<strong>clearly written <code>active: true</code></strong> The safest thing is that you know what you are prescribing.</li>
+        <li><code>connection_slots</code> is the number of active connections that can be maintained at the same time,<strong>Default 3</strong>. The document recommends not exceeding <code>5</code>, to avoid problems caused by insufficient memory; in <code>esp-idf</code> Under the framework, you can reach up to <code>9</code>. Each slot consumes approximately 1KB of memory, and this number cannot exceed <code>esp32_ble_tracker</code> It's set there <code>max_connections</code>.</li>
+        <li>Boards that use network cables (such as Olimex ESP32-PoE-ISO) are usually more stable because they don't have to compete with Wi-Fi for the 2.4GHz antenna.</li>
       </ul>
-      <div class="callout warn"><strong>注意：</strong>連線 slot 是會用完的。一台 proxy 開 3 個 slot，代表它同時最多維持 3 個「主動連線」的裝置。如果你家有五把藍牙鎖，就要多放幾台 proxy 分攤。只是被動聽廣播的溫濕度計不佔 slot，那種你放幾十顆都沒關係。</div>
+      <div class="callout warn"><strong>Warning:</strong>The connection slot will be used up. A proxy has 3 slots, which means it can maintain up to 3 "actively connected" devices at the same time. If you have five Bluetooth locks in your home, you need to put a few more proxies to share them. It’s just that the thermometer and hygrometer that passively listens to the radio does not occupy a slot. It doesn’t matter if you put dozens of them.</div>
     </section>
 
-    <section id="knx_modbus" data-nav="KNX 與 Modbus">
-      <h2 data-icon="records">KNX 與 Modbus：建案與辦公室的世界</h2>
-      <p>這兩個是「大人的協定」。你在網拍上買不太到，但如果你家是有做智能化的新成屋、或你負責公司辦公室的設備，很可能整棟樓底下就是跑這兩套。它們的共同特徵是：有線、極穩、幾十年不壞、但設定門檻高。</p>
+    <section id="knx_modbus" data-nav="KNX and Modbus">
+      <h2 data-icon="records">KNX and Modbus: the world of construction and offices</h2>
+      <p>These two are "adults' agreement". You can’t buy them much at online auctions, but if your home is a newly-built house with smart features, or you are responsible for the equipment of a company’s office, it is very likely that these two sets are running under the entire building. Their common characteristics are: wired, extremely stable, not broken for decades, but with high thresholds.</p>
 
-      <h3>KNX：牆壁裡的匯流排</h3>
-      <p>KNX 是歐洲建築自動化的標準，走的是一條專用的匯流排線（bus），所有開關、窗簾、空調控制器都掛在這條線上。它最大的特色是<strong>沒有中央大腦也能運作</strong>——你把「客廳牆上的按鍵」和「客廳的燈」設定成同一個群組位址，按下去燈就會亮，就算主機掛了也一樣。</p>
-      <p><strong>群組位址（Group Address）</strong>是 KNX 的核心觀念。它長得像 <code>1/2/3</code> 這樣的三段數字。你可以把它想成佈告欄上的格子編號：按鍵往 <code>1/2/3</code> 這格丟一個「開」，所有訂閱這格的燈就一起亮。官方 KNX 整合文件說明群組位址以字串或整數設定，三層結構就是 <code>1/2/3</code> 這種格式。</p>
-      <p>在 Home Assistant 裡，KNX 整合可以從 UI 設定：到<strong>設定 &gt; 裝置與服務 &gt; 新增整合</strong>選 KNX。官方文件列出三種連線方式：</p>
+      <h3>KNX: Busbar in the wall</h3>
+      <p>KNX is the European standard for building automation. It uses a dedicated bus line (bus), and all switches, curtains, and air conditioning controllers are hung on this line. Its biggest feature is<strong>Can function without a central brain</strong>—You set the "button on the wall in the living room" and the "light in the living room" to the same group address. When you press them, the light will turn on, even if the host is hung up.</p>
+      <p><strong>Group Address</strong>It is the core concept of KNX. it looks like <code>1/2/3</code> Such a three-segment number. You can think of it like the grid numbers on a bulletin board: press the button to go <code>1/2/3</code> If you drop an "on" in this grid, all the lights subscribed to this grid will light up together. The official KNX integration document explains that the group address is set with a string or integer, and the three-layer structure is <code>1/2/3</code> this format.</p>
+      <p>In Home Assistant, KNX integration can be accessed from the UI settings: to<strong>Settings &gt; Devices &amp; Services &gt; Add Integration</strong>Choose KNX. Official documents list three connection methods:</p>
       <table class="data-table">
         <thead>
-          <tr><th>連線方式</th><th>做什麼</th></tr>
+          <tr><th>Connection method</th><th>what to do</th></tr>
         </thead>
         <tbody>
-          <tr><td>自動（Automatic）</td><td>啟動時自己掃描，找出網路上的 KNX IP 介面</td></tr>
-          <tr><td>穿隧（Tunneling）</td><td>指定連到某一台特定的 KNX IP 介面</td></tr>
-          <tr><td>路由（Routing）</td><td>用群播（Multicast）跟 KNX IP 路由器溝通</td></tr>
+          <tr><td>Automatic</td><td>Scan by itself at startup to find the KNX IP interface on the network</td></tr>
+          <tr><td>Tunneling</td><td>Designate to connect to a specific KNX IP interface</td></tr>
+          <tr><td>Routing</td><td>Communicate with KNX IP router using Multicast</td></tr>
         </tbody>
       </table>
-      <p>另外還有加密版本的 Secure Tunneling 與 KNX IP Secure Routing。文件也提到有一個 KNX 面板，可以直接從前端建立實體、設定裝置與曝露內容，不用手寫 YAML。</p>
-      <div class="callout"><strong>觀念：</strong>KNX 的專案設定通常是用一套叫 ETS 的專業軟體做的，那是水電／系統商的工具。如果你家是建商裝好的，去跟施工方要 ETS 專案檔或至少要一份群組位址表，這會省下你幾十小時的猜測。加密設定的部分，官方文件說明可以從 ETS 匯出 Keyring 檔再匯入 Home Assistant，路徑是在 KNX 整合的三點選單選<strong>重新設定</strong>，再選匯入 KNX Keyring。</div>
+      <p>There are also encrypted versions of Secure Tunneling and KNX IP Secure Routing. The document also mentions a KNX panel that can create entities, configure devices, and expose content directly from the front end without having to write YAML by hand.</p>
+      <div class="callout"><strong>Concept:</strong>KNX project settings are usually done using a set of professional software called ETS, which is a tool for utility/system vendors. If your home was installed by a builder, ask the builder for an ETS project file or at least a group address list. This will save you dozens of hours of guesswork. As for the encryption settings, the official document states that you can export the Keyring file from ETS and then import it into Home Assistant. The path is the three-click radio button integrated in KNX.<strong>reset</strong>, and then select Import KNX Keyring.</div>
 
-      <h3>Modbus：工業設備的通用語</h3>
-      <p>Modbus 是工業界的老爺爺協定，1979 年就有了，到現在電表、變頻器、PLC、大型空調主機、太陽能逆變器還是滿滿都是它。它極度單純：設備裡面有一堆編號的格子（暫存器／Register），你去讀某個編號的格子，拿到一個數字，然後你自己要知道那個數字代表什麼。</p>
-      <p>Modbus 有兩種常見接法：</p>
+      <h3>Modbus: the lingua franca of industrial equipment</h3>
+      <p>Modbus is the grandfather agreement in the industry. It has been around since 1979. It is still used in electricity meters, frequency converters, PLCs, large air-conditioning hosts, and solar inverters. It is extremely simple: there are a bunch of numbered cells (registers) in the device. You read a numbered cell and get a number, and then you have to know what that number represents.</p>
+      <p>Modbus has two common connection methods:</p>
       <ul>
-        <li><strong>Modbus RTU</strong>：走 RS-485 實體線，通常要買一個 USB 轉 RS-485 的轉換器插在主機上。線可以拉很長，抗干擾好。</li>
-        <li><strong>Modbus TCP</strong>：走網路線，設備有自己的 IP。設定簡單很多。</li>
+        <li><strong>Modbus RTU</strong>: To use the RS-485 physical cable, you usually need to buy a USB to RS-485 converter and plug it into the host computer. The wire can be stretched very long and has good anti-interference.</li>
+        <li><strong>Modbus TCP</strong>: Take the network route, the device has its own IP. The setup is much simpler.</li>
       </ul>
-      <p>官方 Modbus 整合文件目前是<strong>只能寫 YAML</strong>，改完要重啟 Home Assistant 才生效。支援的連線型態有 <code>tcp</code>、<code>udp</code>、<code>rtuovertcp</code>、<code>serial</code> 四種。最小設定像這樣：</p>
+      <p>The official Modbus integration documentation is currently<strong>Can only write YAML</strong>, you need to restart Home Assistant after making the changes to take effect. Supported connection types are <code>tcp</code>, <code>udp</code>, <code>rtuovertcp</code>, <code>serial</code> Four kinds. The minimum settings are like this:</p>
       <pre class="code-block"><code>modbus:
   - name: modbus_hub
     type: tcp
     host: 192.168.1.60
     port: 502
     sensors:
-      - name: 辦公室總電表
+      - name: Office master meter
         address: 100
         input_type: holding
         device_address: 1</code></pre>
-      <p>如果是 RS-485 序列埠，關鍵欄位換成這組：</p>
+      <p>If it is an RS-485 serial port, change the key fields to this group:</p>
       <pre class="code-block"><code>modbus:
   - name: modbus_hub
     type: serial
@@ -481,170 +481,170 @@ bluetooth_proxy:
     method: rtu
     parity: E
     stopbits: 1</code></pre>
-      <p>幾個文件裡明列的重點參數與預設值：</p>
+      <p>Key parameters and default values listed in several files:</p>
       <table class="data-table">
         <thead>
-          <tr><th>參數</th><th>意思</th><th>預設值</th></tr>
+          <tr><th>parameters</th><th>meaning</th><th>Default value</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>address</code></td><td>要讀的暫存器或線圈位址，可以用十六進位如 <code>0x789A</code></td><td>必填</td></tr>
-          <tr><td><code>input_type</code></td><td>讀取型態：<code>discrete_input</code>、<code>coil</code>、<code>holding</code>、<code>input</code></td><td>依平台而定</td></tr>
-          <tr><td><code>slave</code> / <code>device_address</code></td><td>設備在匯流排上的編號</td><td><code>1</code></td></tr>
-          <tr><td><code>scan_interval</code></td><td>多久去讀一次（秒）</td><td><code>15</code></td></tr>
+          <tr><td><code>address</code></td><td>The register or coil address to be read can be expressed in hexadecimal, such as <code>0x789A</code></td><td>Required</td></tr>
+          <tr><td><code>input_type</code></td><td>Read type:<code>discrete_input</code>, <code>coil</code>, <code>holding</code>, <code>input</code></td><td>Depends on platform</td></tr>
+          <tr><td><code>slave</code> / <code>device_address</code></td><td>The number of the device on the bus</td><td><code>1</code></td></tr>
+          <tr><td><code>scan_interval</code></td><td>How often to read (seconds)</td><td><code>15</code></td></tr>
         </tbody>
       </table>
-      <p>目前官方文件說支援七種實體平台：感測器、開關、二元感測器、空調、窗簾、風扇、燈。</p>
-      <div class="callout warn"><strong>注意：</strong>官方文件有一條很容易踩的規則：<strong>每一個 modbus 設備底下至少要定義一個實體，否則整個整合不會載入</strong>。所以不要先寫一個空的連線設定想說之後再補，那樣連線根本不會起來。</div>
-      <div class="callout danger"><strong>危險：</strong>Modbus 是可以「寫入」的。對著工業設備寫錯暫存器，輕則參數跑掉，重則設備損壞或造成危險。第一次接觸請只做讀取（<code>sensors:</code>），要寫入之前務必拿到設備的暫存器對照表，並且跟設備管理人確認過。</div>
+      <p>Currently, official documents say that seven types of physical platforms are supported: sensors, switches, binary sensors, air conditioners, curtains, fans, and lights.</p>
+      <div class="callout warn"><strong>Warning:</strong>The official document has a rule that is easy to step on:<strong>At least one entity must be defined under each modbus device, otherwise the entire integration will not be loaded.</strong>. So don't write an empty connection setting first and then add it later, otherwise the connection will not be established at all.</div>
+      <div class="callout danger"><strong>Danger:</strong>Modbus can be "written". If you write the wrong temporary register to industrial equipment, the parameters may be lost, or the equipment may be damaged or dangerous. Please only do reading for first time contact (<code>sensors:</code>), you must obtain the device's temporary register lookup table before writing, and confirm it with the device manager.</div>
     </section>
 
-    <section id="buying" data-nav="買之前五檢查">
-      <h2 data-icon="cost">買設備前的五個檢查與選購決策流程</h2>
-      <p>這一段是全章最實用的部分。把它存成書籤，每次下單前跑一遍。</p>
+    <section id="buying" data-nav="Five checks before buying">
+      <h2 data-icon="cost">Five inspections and purchase decision-making process before buying equipment</h2>
+      <p>This section is the most practical part of the entire chapter. Save it as a bookmark and run it every time before placing an order.</p>
 
-      <h3>五個檢查</h3>
+      <h3>five checks</h3>
       <ol class="steps">
         <li>
-          <h3>它到底是哪個協定？</h3>
-          <p>商品標題和規格表裡找。找不到「Zigbee」「Z-Wave」「Matter」「Thread」「藍牙」這些字，只寫「智慧」「WiFi 連線」「手機遠端」，那就當它是 Wi-Fi 雲端裝置。同型號有不同協定版本時，型號尾巴的字母通常就是關鍵。</p>
+          <h3>Which agreement is it?</h3>
+          <p>Look in the product title and specification sheet. I can't find the words "Zigbee", "Z-Wave", "Matter", "Thread" and "Bluetooth". I only write "smart", "WiFi connection" and "mobile phone remote", so I assume it is a Wi-Fi cloud device. When there are different agreement versions of the same model, the letter at the end of the model is usually the key.</p>
         </li>
         <li>
-          <h3>能不能不靠雲端運作？</h3>
-          <p>看有沒有寫「本地控制」「Local API」「Local control」。或者反過來找警訊：如果規格寫「需搭配 XX App 使用」「需註冊帳號」，多半有雲端依賴。Matter 認證的裝置在這方面比較有保障，因為 Matter 本身就是設計成本地運作的。</p>
+          <h3>Can it operate without relying on the cloud?</h3>
+          <p>See if "Local control", "Local API" and "Local control" are written. Or look for warning signs in reverse: If the specifications say "Requires use with XX App" and "Requires account registration", it probably depends on the cloud. Matter-certified devices are more secure in this regard because Matter itself is designed to operate locally.</p>
         </li>
         <li>
-          <h3>Home Assistant 有沒有對應的整合？</h3>
-          <p>下單前先到 <code>home-assistant.io/integrations/</code> 搜品牌名。有官方整合最好；只有 HACS 社群整合的話，順便看一下那個專案最近有沒有在更新，半年沒更新的要小心。</p>
+          <h3>Is there any corresponding integration for Home Assistant?</h3>
+          <p>First come before ordering <code>home-assistant.io/integrations/</code> Search the brand name. It is best to have official integration; if there is only HACS community integration, check to see if that project has been updated recently. Be careful if it has not been updated in half a year.</p>
         </li>
         <li>
-          <h3>要不要多買一個閘道器？</h3>
-          <p>有些品牌的 Zigbee 裝置會綁自家閘道。如果你已經有通用的 Zigbee 協調器，多數狀況下可以直接配對，不用買它的閘道；但也有品牌會用私有指令讓通用協調器只能做基本開關。買之前搜「品牌名 + ZHA」或「品牌名 + Zigbee2MQTT」看社群回報。</p>
+          <h3>Should I buy another gateway?</h3>
+          <p>Some brands of Zigbee devices will tie their own gateways. If you already have a universal Zigbee coordinator, in most cases you can pair it directly without buying its gateway; however, some brands will use private instructions to make the universal coordinator only perform basic switching. Before buying, search "Brand Name + ZHA" or "Brand Name + Zigbee2MQTT" to see community feedback.</p>
         </li>
         <li>
-          <h3>壞掉之後買得到嗎？</h3>
-          <p>選一個在台灣買得到、社群討論度高的型號，比選一個規格漂亮但只有一家海外賣的好。三年後你要加裝第二顆時會感謝自己。</p>
+          <h3>Can I buy it after it breaks?</h3>
+          <p>It is better to choose a model that is available in your region and highly discussed in the community than to choose a model with beautiful specifications but only sold by one overseas store. You'll thank yourself three years from now when you add a second one.</p>
         </li>
       </ol>
 
-      <h3>選購決策流程</h3>
-      <p>照著這個順序問自己，答案就出來了：</p>
+      <h3>Purchase decision process</h3>
+      <p>Ask yourself in this order and the answer will come out:</p>
       <table class="data-table">
         <thead>
-          <tr><th>情況</th><th>建議走哪條路</th><th>理由</th></tr>
+          <tr><th>situation</th><th>Which way to go?</th><th>Reason</th></tr>
         </thead>
         <tbody>
-          <tr><td>裝置要用電池，而且要裝很多顆（感應器、按鈕）</td><td>Zigbee 或 Thread</td><td>Wi-Fi 太耗電，電池款根本做不出來或撐不久</td></tr>
-          <tr><td>只要裝一兩個，而且位置就在路由器旁邊</td><td>Wi-Fi 也可以</td><td>不用多買協調器，最省事</td></tr>
-          <tr><td>你已經有 Zigbee 協調器</td><td>繼續買 Zigbee</td><td>邊際成本最低，而且每加一顆插電裝置 mesh 就更穩</td></tr>
-          <tr><td>你家已經有 HomePod mini 或 Nest Hub</td><td>可以考慮 Thread + Matter</td><td>border router 已經有了，等於省一筆</td></tr>
-          <tr><td>你需要跨平台（家人用 iPhone，你用 Android）</td><td>Matter</td><td>同一個裝置能同時被多個平台控制</td></tr>
-          <tr><td>要接電表、逆變器、工業設備</td><td>Modbus</td><td>那個世界就是講 Modbus</td></tr>
-          <tr><td>建案已經預埋 KNX</td><td>KNX</td><td>拆掉重做不划算，直接接上去</td></tr>
-          <tr><td>單純想知道房間溫濕度，預算超低</td><td>藍牙 BLE + proxy</td><td>感測器最便宜，proxy 一片 ESP32 就搞定</td></tr>
+          <tr><td>The device requires batteries and requires many sensors (sensors and buttons).</td><td>Zigbee or Thread</td><td>Wi-Fi consumes too much power, and the battery model cannot be made at all or will not last long.</td></tr>
+          <tr><td>Just install one or two, and the location is right next to the router</td><td>Wi-Fi is also available</td><td>No need to buy more coordinators, the easiest thing to do</td></tr>
+          <tr><td>You already have a Zigbee coordinator</td><td>Keep buying Zigbee</td><td>The marginal cost is the lowest, and every additional plug-in device mesh is more stable</td></tr>
+          <tr><td>You already have a HomePod mini or Nest Hub at home</td><td>Consider Thread + Matter</td><td>I already have a border router, which is equivalent to saving money.</td></tr>
+          <tr><td>You need to be cross-platform (family uses iPhone, you use Android)</td><td>Matter</td><td>The same device can be controlled by multiple platforms at the same time</td></tr>
+          <tr><td>To connect electricity meters, inverters, and industrial equipment</td><td>Modbus</td><td>That world is all about Modbus</td></tr>
+          <tr><td>The construction project has been pre-installed in KNX</td><td>KNX</td><td>It's not cost-effective to tear it down and rebuild it, so just reconnect it.</td></tr>
+          <tr><td>I just want to know the room temperature and humidity, and my budget is super low.</td><td>Bluetooth BLE + proxy</td><td>The sensor is the cheapest, and a proxy ESP32 is all it takes.</td></tr>
         </tbody>
       </table>
 
-      <div class="callout tip"><strong>提示：</strong>給第一次規劃的人的懶人建議：主力選一套 Zigbee（買一支官方或推薦清單上的協調器），Wi-Fi 只用在少數固定接電、耗流量大的東西（攝影機、掃地機），藍牙用來補溫濕度感測。這樣的組合便宜、本地、好維護，而且未來要加 Thread 也不衝突。</div>
+      <div class="callout tip"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. Lazy advice for those who are planning for the first time: Choose a set of Zigbee for the main purpose (buy a coordinator on the official or recommended list), Wi-Fi is only used for a few things that are fixedly connected to power and consume a lot of data (cameras, sweepers), and Bluetooth is used to supplement temperature and humidity sensing. This combination is cheap, local, and easy to maintain, and there will be no conflict if Thread is added in the future.</div>
     </section>
 
-    <section id="troubleshoot" data-nav="常見卡關">
-      <h2 data-icon="troubleshoot">常見卡關</h2>
+    <section id="troubleshoot" data-nav="Common stuck levels">
+      <h2 data-icon="troubleshoot">Common stuck levels</h2>
 
       <ol class="steps">
         <li>
-          <h3>某個裝置常常顯示「離線／不可用」</h3>
-          <p>先分辨是「全部裝置都掉」還是「只有這一個掉」。全部掉就查協調器或閘道本身（USB 有沒有鬆、是不是插到 USB 3 埠、有沒有被別的軟體佔用）。只有一個掉，通常是訊號問題：它離最近的路由器裝置太遠，或中間隔了承重牆、金屬門、鏡子、魚缸。做法是在中間補一個常時供電的裝置當接力點。電池款裝置也要先確認不是單純沒電了——很多人花三小時查網路，結果是電池沒電。</p>
+          <h3>A device often displays "Offline/Unavailable"</h3>
+          <p>First, distinguish whether "all devices are dropped" or "only this one is dropped." If everything goes wrong, check the coordinator or the gateway itself (whether the USB is loose, whether it is plugged into the USB 3 port, whether it is occupied by other software). When only one fails, it's usually a signal problem: it's too far from the nearest router device, or it's separated by a load-bearing wall, metal door, mirror, or fish tank. The method is to add a constant power supply device in the middle as a relay point. For battery-powered devices, you must first confirm that the device is not simply out of power—many people spend three hours checking the Internet, only to find out that the battery is out of power.</p>
         </li>
         <li>
-          <h3>Zigbee 裝置離協調器只有五公尺還是不穩</h3>
-          <p>檢查 USB 埠。官方文件明確講不要插 USB 3.x 埠，USB 3 產生的雜訊會直接干擾 2.4GHz。接著檢查有沒有用延長線把接收器拉離主機，以及協調器旁邊有沒有 Wi-Fi 基地台。ZHA 使用者可以到 <strong>設定 &gt; Zigbee</strong> 開「顯示地圖」看 LQI／RSSI，數值特別低的那一段就是問題所在。</p>
+          <h3>Zigbee device is only five meters away from the coordinator and still unstable</h3>
+          <p>Check the USB port. The official document clearly states not to plug in the USB 3.x port. The noise generated by USB 3 will directly interfere with 2.4GHz. Then check to see if you have used an extension cord to pull the receiver away from the console, and if there is a Wi-Fi base station next to the coordinator. ZHA users can go to <strong>Settings &gt; Zigbee</strong> Open "Show Map" to look at LQI/RSSI. The section with particularly low values is the problem.</p>
         </li>
         <li>
-          <h3>Mesh 傳不到最遠的房間</h3>
-          <p>記住 mesh 只靠「常時供電」的裝置接力，電池裝置不會幫忙轉發。所以在最遠房間裝十顆電池感應器，網路一樣長不過去。正解是在中段（走廊、樓梯口）裝一顆插電的 Zigbee 插座或燈泡。加完之後，最遠那些裝置可能需要重新配對或等一段時間才會自動改走新路徑。</p>
+          <h3>Mesh cannot reach the farthest room</h3>
+          <p>Remember that mesh only relies on "constantly powered" devices for relay, and battery devices will not help forwarding. Therefore, if ten battery-powered sensors are installed in the farthest room, the network will not be able to reach them. The correct solution is to install a plugged-in Zigbee socket or light bulb in the middle (corridor, stairway). After adding, the devices furthest away may need to be re-paired or wait for a period of time before they automatically change paths.</p>
         </li>
         <li>
-          <h3>Matter 裝置怎麼配對都失敗</h3>
-          <p>照官方文件的必要條件逐項檢查：IPv6 有沒有在 <strong>設定 &gt; 系統 &gt; 網路</strong> 開啟（自動或靜態）；mDNS／multicast 流量能不能在你的網路裡自由通行（有做 VLAN 或開了 AP 隔離就會擋掉）；有沒有用手機的 Companion App 而不是瀏覽器；Android 的定位權限是不是設成「一律允許」；配對 Wi-Fi 版裝置時手機是不是在同一個 2.4GHz 網路上。這五項只要漏一項就會失敗。</p>
+          <h3>Matter device fails to pair no matter how</h3>
+          <p>Check item by item according to the necessary conditions of official documents: Is IPv6 <strong>Settings &gt; System &gt; Network</strong> Enable (automatic or static); whether mDNS/multicast traffic can pass freely in your network (it will be blocked if VLAN or AP isolation is turned on); whether you are using the mobile phone's Companion App instead of the browser; whether the Android positioning permission is set to "Always allow"; whether the mobile phone is on the same 2.4GHz network when pairing the Wi-Fi version of the device. If you miss one of these five items, you will fail.</p>
         </li>
         <li>
-          <h3>買了裝置才發現被閘道品牌鎖死</h3>
-          <p>症狀是：明明是 Zigbee 裝置，通用協調器卻配對不了，或配對後只能做最基本的開關，進階功能全部消失。這是廠商用私有指令的結果。能做的補救有兩條：一是查 Zigbee2MQTT 那邊有沒有對應的支援檔（社群常常會逆向出來）；二是認賠買它的原廠閘道，看有沒有本地 API 可以接。長期解法只有一個——下次買之前先搜社群回報。</p>
+          <h3>I bought the device only to find it was locked by the gateway brand.</h3>
+          <p>The symptoms are: Although it is a Zigbee device, the universal coordinator cannot be paired, or after pairing, it can only perform the most basic switch, and all advanced functions disappear. This is the result of the manufacturer using proprietary instructions. There are two remedies that can be done: one is to check whether there is a corresponding support file for Zigbee2MQTT (the community often reverses it); the other is to buy its original gateway at a loss to see if there is a local API that can be connected. There is only one long-term solution - search the community for feedback before buying next time.</p>
         </li>
         <li>
-          <h3>網路一斷，一半的裝置就死了</h3>
-          <p>這是雲端依賴的典型症狀。用<a href="#steps">前面那個斷網演習</a>找出是哪些，加上標籤標記起來。短期能做的是：把重要的自動化（安全、照明）改成用本地裝置觸發；長期就是逐步汰換。特別注意「門鎖」和「警報」這類東西，絕對不要讓它依賴雲端。</p>
+          <h3>When the Internet goes down, half of the devices die.</h3>
+          <p>This is a classic symptom of cloud dependence. use<a href="#steps">The previous network disconnection exercise</a>Find out which ones they are and label them. What can be done in the short term is to change important automation (security, lighting) to be triggered by local devices; in the long term, it can be gradually replaced. Pay special attention to things like "door locks" and "alarms" and never let them rely on the cloud.</p>
         </li>
         <li>
-          <h3>Modbus 設定寫了但整合沒起來</h3>
-          <p>最常見的原因是：只寫了連線設定卻沒定義任何實體。官方文件說每個 modbus 設備至少要有一個實體，否則整合不會載入。另外 Modbus 設定改完必須重啟 Home Assistant，不是重新載入就好。序列埠的裝置路徑（<code>/dev/ttyUSB0</code>）也可能因為插拔順序而改變。</p>
+          <h3>Modbus settings are written but not integrated.</h3>
+          <p>The most common reason is: only the connection settings are written but no entities are defined. The official documentation says that each modbus device must have at least one entity, otherwise the integration won't load. In addition, Home Assistant must be restarted after changing the Modbus settings, not just reloading. The device path of the serial port (<code>/dev/ttyUSB0</code>) may also change due to the plug-in sequence.</p>
         </li>
       </ol>
     </section>
 
-    <section id="faq" data-nav="常見問題">
-      <h2 data-icon="faq">常見問題</h2>
+    <section id="faq" data-nav="FAQ">
+      <h2 data-icon="faq">FAQ</h2>
 
       <details class="faq">
-        <summary>我可以同時用好幾種協定嗎？會不會打架？</summary>
-        <div class="body">可以，而且幾乎每個人最後都是混用。Home Assistant 的整個設計就是為了把不同協定的裝置放在同一個介面裡。實務上完全不衝突——你可以在同一個自動化裡，用藍牙溫濕度計當觸發條件，去開一顆 Zigbee 燈，同時推播到手機。唯一要注意的是無線電層面的干擾：Wi-Fi、Zigbee、Thread、藍牙都擠在 2.4GHz，裝置太多太密時要注意協調器的擺放位置。</div>
+        <summary>Can I use several protocols at the same time? Will there be a fight?</summary>
+        <div class="body">Yes, and almost everyone ends up mixing it. The entire design of Home Assistant is to put devices with different protocols into the same interface. In practice, there is no conflict at all - you can use a Bluetooth temperature and humidity meter as a trigger condition in the same automation to turn on a Zigbee light and push it to the mobile phone at the same time. The only thing to pay attention to is the interference at the radio level: Wi-Fi, Zigbee, Thread, and Bluetooth are all crowded at 2.4GHz. When there are too many and too dense devices, pay attention to the placement of the coordinator.</div>
       </details>
 
       <details class="faq">
-        <summary>Matter 出來了，那 Zigbee 是不是要被淘汰了？我現在還要買嗎？</summary>
-        <div class="body">短期內不用擔心。Zigbee 裝置的數量、價格和可取得性目前都還是最有優勢的，而且 Home Assistant 對 Zigbee 的支援非常成熟。Matter 和 Thread 是很好的方向，但生態還在長，某些型號的進階功能支援度不一定完整。比較穩健的做法是：現在要大量佈感應器就用 Zigbee，遇到你剛好想買的東西有 Matter 版本、價格也不貴，那就買 Matter 版。兩套並存完全沒問題。</div>
+        <summary>Matter is out, will Zigbee be eliminated? Do I still want to buy it now?</summary>
+        <div class="body">Don't worry about it in the short term. The quantity, price, and availability of Zigbee devices are currently the most advantageous, and Home Assistant’s support for Zigbee is very mature. Matter and Thread are good directions, but the ecosystem is still growing, and advanced feature support for some models may not be complete. A more prudent approach is: if you need a large number of sensors now, use Zigbee. If something you happen to want to buy has a Matter version and the price is not expensive, then buy the Matter version. It’s absolutely no problem to have both sets coexisting.</div>
       </details>
 
       <details class="faq">
-        <summary>Zigbee 協調器一定要用官方的嗎？網拍便宜的能用嗎？</summary>
-        <div class="body">不一定要官方的。Home Assistant 的 ZHA 文件有一份明確的推薦清單，包含 Silicon Labs EmberZNet 系列（如 Connect ZBT-2、ZBT-1、SONOFF ZBDongle-E、SMLIGHT SLZB-07）、Texas Instruments 的 CC2652／CC1352 系列，以及 ConBee III。清單上的機種都可以放心買。要避開的是文件列為不再推薦的舊機種，例如 ConBee II、RaspBee II、SONOFF ZBBridge、HUSBZB-1、ZiGate 系列等。網拍上特別便宜的常常就是這些舊型號。</div>
+        <summary>Do I have to use the official Zigbee coordinator? Can I use cheap online photography?</summary>
+        <div class="body">It doesn’t have to be official. Home Assistant's ZHA document has a clear list of recommendations, including Silicon Labs' EmberZNet series (such as Connect ZBT-2, ZBT-1, SONOFF ZBDongle-E, SMLIGHT SLZB-07), Texas Instruments' CC2652/CC1352 series, and ConBee III. All models on the list can be purchased with confidence. What to avoid are older models that are listed as no longer recommended in the documentation, such as ConBee II, RaspBee II, SONOFF ZBBridge, HUSBZB-1, ZiGate series, etc. The ones that are especially cheap on online auctions are often these old models.</div>
       </details>
 
       <details class="faq">
-        <summary>我看到教學說要進「設定 &gt; 附加元件」，但我的畫面找不到？</summary>
-        <div class="body">Home Assistant 在 2026.2 版把「附加元件（Add-on）」正式改名成「應用程式（App）」，選單路徑變成 <strong>設定 &gt; 應用程式</strong>（英文介面是 Settings &gt; Apps，中文翻譯用詞可能還會微調）。官方說明的理由很直白：多數人都知道「App」是什麼，打開手機的 App 商店、挑一個、裝起來，就是這種感覺。所以你看到舊教學寫 Add-on 的地方，現在都要去 App 那邊找，東西本身沒變，Mosquitto、Z-Wave JS、OpenThread Border Router 都還在。順帶一提，同一版也把新的「Home 儀表板」設為新安裝的預設，舊版的 Overview 樣板還可以從 <strong>設定 &gt; 儀表板 &gt; 建立</strong> 選「Overview (legacy)」拿回來。</div>
+        <summary>I saw the tutorial saying that I need to go to "Settings &gt; Add-ons", but I can't find it on my screen?</summary>
+        <div class="body">Home Assistant officially renamed "Add-on" to "App" in version 2026.2, and the menu path became <strong>Settings &gt; Apps</strong>(The English interface is Settings &gt; Apps, and the Chinese translation may be slightly adjusted). The official reason is very straightforward: most people know what an “App” is. This is how it feels when you open the App store on your phone, pick one, and install it. So when you see the place where Add-on was written in the old teaching, you now have to go to the app to find it. The thing itself has not changed. Mosquitto, Z-Wave JS, and OpenThread Border Router are all still there. By the way, the same version also sets the new "Home Dashboard" as the default for new installations. The old version of the Overview template can also be downloaded from <strong>Settings &gt; Dashboard &gt; Create</strong> Select "Overview (legacy)" to get it back.</div>
       </details>
 
       <details class="faq">
-        <summary>Zigbee 頻道跟 Wi-Fi 打架，我是不是該去改 Zigbee 頻道？</summary>
-        <div class="body">官方 ZHA 文件的建議剛好相反：最佳做法是<strong>不要</strong>去改 Zigbee 頻道。ZHA 的「Smart」選項在建立網路時就會掃描所有頻道並優先選擇 15、20、25。如果真的持續有干擾，建議的順序是先把協調器放遠離 Wi-Fi 基地台，還是不行的話去改你家路由器的 Wi-Fi 頻道。原因很實際：改 Zigbee 頻道通常會讓所有裝置需要重新配對，代價太高。</div>
+        <summary>The Zigbee channel is fighting with Wi-Fi. Should I change the Zigbee channel?</summary>
+        <div class="body">The official ZHA documentation suggests just the opposite: the best practice is<strong>Don't</strong>Go and change the Zigbee channel. ZHA's "Smart" option will scan all channels and prioritize 15, 20, and 25 when establishing a network. If there is continuous interference, the recommended order is to first move the coordinator away from the Wi-Fi base station. If that still doesn't work, change the Wi-Fi channel of your router. The reason is practical: changing the Zigbee channel usually requires all devices to be re-paired, which is too expensive.</div>
       </details>
 
       <details class="faq">
-        <summary>一台 ESP32 Bluetooth Proxy 可以接幾個藍牙裝置？</summary>
-        <div class="body">要分兩種情況。只是被動聽廣播的裝置（溫濕度計那種）數量幾乎沒有限制，因為根本不需要建立連線。需要「主動連線」的裝置才會佔用連線槽（connection slot），ESPHome 文件說 <code>connection_slots</code> 預設是 3 個，建議不要超過 5 個以免記憶體出問題，用 <code>esp-idf</code> 框架最多可以到 9 個，每個槽大約吃 1KB 記憶體。所以如果你有很多需要主動連線的裝置，正解不是把一台 proxy 的槽數開到爆，而是多放幾台 proxy 分散在不同房間。</div>
+        <summary>How many Bluetooth devices can an ESP32 Bluetooth Proxy connect to?</summary>
+        <div class="body">There are two situations. There is almost no limit to the number of devices (such as thermometers and hygrometers) that can passively listen to the broadcast, because there is no need to establish a connection at all. Only devices that require "active connection" will occupy the connection slot, the ESPHome documentation says <code>connection_slots</code> The default is 3. It is recommended not to exceed 5 to avoid memory problems. Use <code>esp-idf</code> There can be up to 9 frames, and each slot consumes approximately 1KB of memory. So if you have a lot of devices that need to be actively connected, the correct solution is not to maximize the number of slots on a proxy, but to put a few more proxies scattered in different rooms.</div>
       </details>
 
       <details class="faq">
-        <summary>KNX 和 Modbus 這種東西，我一般家庭有可能用到嗎？</summary>
-        <div class="body">KNX 通常出現在有做智能化的新建案或商辦，一般公寓自己拉的機率低。但如果你家是預售屋交屋時就有中央控制面板，很值得去問建商是不是 KNX，是的話你可以把它整個接進 Home Assistant，那會比廠商給的 App 好用一百倍。Modbus 的機會反而比較高——很多太陽能逆變器、儲能設備、分電箱電表、大樓中央空調都是 Modbus，如果你想在 Home Assistant 裡看用電資料，很可能就會遇到它。</div>
+        <summary>Is it possible for my average family to use KNX and Modbus?</summary>
+        <div class="body">KNX usually appears in newly built projects or commercial offices that are equipped with smart devices. Generally, the probability of self-installation of apartments is low. But if your home is pre-sold and has a central control panel when it is handed over, it is worth asking the builder if it is KNX. If so, you can connect it entirely to Home Assistant, which will be a hundred times easier to use than the app provided by the manufacturer. The chance of using Modbus is relatively high - many solar inverters, energy storage equipment, distribution box meters, and central air conditioners in buildings are all Modbus. If you want to see electricity consumption data in Home Assistant, you are likely to encounter it.</div>
       </details>
 
       <details class="faq">
-        <summary>MQTT 聽起來很萬能，那我是不是全部裝置都該用 MQTT？</summary>
-        <div class="body">不是。MQTT 是一種「訊息傳遞方式」，不是無線電協定，它本身沒辦法讓你的燈泡憑空多出通訊能力。它的用途是：當某個系統（例如 Zigbee2MQTT、Tasmota、你自己寫的樹莓派程式）需要跟 Home Assistant 交換資料時，MQTT 提供一條乾淨的通道，而且有自動探索功能，裝置能自己冒出來。如果你的裝置已經有官方整合，直接用整合就好，不需要為了用 MQTT 而用 MQTT，那只是多一個會壞的中間層。</div>
+        <summary>MQTT sounds very versatile, so should all my devices use MQTT?</summary>
+        <div class="body">no. MQTT is a "messaging method", not a radio protocol. It itself cannot give your light bulb extra communication capabilities out of thin air. Its purpose is: when a system (such as Zigbee2MQTT, Tasmota, or a Raspberry Pi program you wrote yourself) needs to exchange data with Home Assistant, MQTT provides a clean channel and has an automatic discovery function so that the device can emerge on its own. If your device already has official integration, just use the integration directly. There is no need to use MQTT for the sake of using MQTT. It is just an extra middle layer that will break.</div>
       </details>
 
       <details class="faq">
-        <summary>我想同時用 Zigbee 和 Thread，一支 USB 棒夠嗎？</summary>
-        <div class="body">以官方的 Connect ZBT-2 來說，答案是不夠。官方文件明講它沒辦法同時跑 Zigbee 和 Thread，一次只能選一種。所以兩種網路都要的話，最單純的做法就是準備兩支接收器。另一個省錢的方向是：如果你家已經有 HomePod mini、Apple TV 4K、Nest Hub 第 2 代這類裝置，它們本身就是 Thread border router，那 USB 棒就專心跑 Zigbee 就好。</div>
+        <summary>I want to use Zigbee and Thread at the same time, is a USB stick enough?</summary>
+        <div class="body">In the case of the official Connect ZBT-2, the answer is not enough. The official document clearly states that it cannot run Zigbee and Thread at the same time, and can only choose one at a time. So if you want both networks, the simplest way is to prepare two receivers. Another direction to save money is: if your home already has devices such as HomePod mini, Apple TV 4K, and Nest Hub 2nd generation, which themselves are Thread border routers, then the USB stick can concentrate on running Zigbee.</div>
       </details>
     </section>
 
     <div class="pager">
       <a class="prev" href="ch14_integrations.html">
         <span class="label">← Previous</span>
-        <span class="title">14 · 整合服務串接</span>
+        <span class="title">14 · Integrations</span>
       </a>
       <a class="next" href="ch16_todo_calendar.html">
         <span class="label">Next →</span>
-        <span class="title">16 · 待辦與行事曆</span>
+        <span class="title">16 · To-do and calendar</span>
       </a>
     </div>
 
     <footer class="site-footer">
-      <p>Home Assistant 新居入住指南 is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
-      <p class="footer-meta">截圖取自 Home Assistant 官方介面。Home Assistant 為 Open Home Foundation 的商標，本站與其無隸屬關係。 · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
+      <p>Home Assistant New Home Move-In Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
+      <p class="footer-meta">Screenshot taken from Home Assistant official interface. Home Assistant is a trademark of the Open Home Foundation, and this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
   </main>
 </div>

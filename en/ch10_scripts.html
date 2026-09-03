@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chapter 10 · 腳本 Scripts · Home Assistant 新居入住指南</title>
-  <meta name="description" content="Home Assistant Script 腳本教學：與自動化的差別、Fields 參數化、Single/Restart/Queued/Parallel 執行模式，以及四種呼叫腳本的入口。" />
+  <title>Chapter 10 · Scripts · Home Assistant Onboarding Guide</title>
+  <meta name="description" content="Home Assistant Script script tutorial: differences with automation, Fields parameterization, Single/Restart/Queued/Parallel execution modes, and four entrances to call scripts." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch10_scripts.html" />
   <meta name="robots" content="noindex, follow" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Home Assistant 新居入住指南" />
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Chapter 10 · 腳本 Scripts · Home Assistant 新居入住指南" />
-  <meta property="og:description" content="Home Assistant Script 腳本教學：與自動化的差別、Fields 參數化、Single/Restart/Queued/Parallel 執行模式，以及四種呼叫腳本的入口。" />
+  <meta property="og:title" content="Chapter 10 · Scripts · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Home Assistant Script script tutorial: differences with automation, Fields parameterization, Single/Restart/Queued/Parallel execution modes, and four entrances to call scripts." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch10_scripts.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch10/01_scripts_page.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chapter 10 · 腳本 Scripts · Home Assistant 新居入住指南" />
-  <meta name="twitter:description" content="Home Assistant Script 腳本教學：與自動化的差別、Fields 參數化、Single/Restart/Queued/Parallel 執行模式，以及四種呼叫腳本的入口。" />
+  <meta name="twitter:title" content="Chapter 10 · Scripts · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Home Assistant Script script tutorial: differences with automation, Fields parameterization, Single/Restart/Queued/Parallel execution modes, and four entrances to call scripts." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch10/01_scripts_page.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -32,56 +32,56 @@
 <body>
 <div class="layout">
   <aside class="sidebar">
-    <a class="brand" href="tutorial.html">HA 新居入住指南</a>
-    <div class="brand-sub">從零到能用</div>
+    <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
+    <div class="brand-sub">From scratch to functional</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch10_scripts.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch10_scripts.html" lang="en" aria-current="page">EN</a></nav>
-    <a class="hub-link" href="index.html">◂ 資源總覽</a>
+    <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">基礎：從零到能用</li>
-      <li data-i18n="pending"><a href="ch1_login.html">登入 HA</a></li>
-      <li data-i18n="pending"><a href="ch2_system_settings.html">系統設定</a></li>
-      <li data-i18n="pending"><a href="ch3_floors_areas.html">樓層與區域</a></li>
-      <li data-i18n="pending"><a href="ch4_naming_labels.html">命名與標籤</a></li>
-      <li data-i18n="pending"><a href="ch5_users.html">用戶管理</a></li>
-      <li data-i18n="pending"><a href="ch6_dashboard.html">儀表板</a></li>
-      <li data-i18n="pending"><a href="ch7_notifications.html">通知</a></li>
-      <li data-i18n="pending"><a href="ch8_first_automation.html">第一個自動化</a></li>
-      <li data-i18n="pending"><a href="ch9_backups.html">備份</a></li>
-      <li data-i18n="pending"><a href="ch10_scripts.html" class="active">腳本 Scripts</a></li>
-      <li data-i18n="pending"><a href="ch11_devices.html">裝置詳細設定</a></li>
-      <li data-i18n="pending"><a href="ch12_domains.html">Domain 控制圖鑑</a></li>
-      <li class="part-label">擴充：接上更多裝置</li>
-      <li data-i18n="pending"><a href="ch13_themes.html">主題與外觀</a></li>
-      <li data-i18n="pending"><a href="ch14_integrations.html">整合服務串接</a></li>
-      <li data-i18n="pending"><a href="ch15_protocols.html">通訊協定大百科</a></li>
-      <li data-i18n="pending"><a href="ch16_todo_calendar.html">待辦與行事曆</a></li>
-      <li class="part-label">數據、能源與 AI</li>
-      <li data-i18n="pending"><a href="ch17_energy.html">能源儀表板</a></li>
-      <li data-i18n="pending"><a href="ch18_history_data.html">歷史數據與導出</a></li>
-      <li data-i18n="pending"><a href="ch19_voice_ai.html">語音助理與 AI</a></li>
-      <li class="part-label">進階架構與應用</li>
-      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on 與 Docker</a></li>
-      <li data-i18n="pending"><a href="ch21_network_remote.html">網路與遠端連線</a></li>
-      <li data-i18n="pending"><a href="ch22_life_logs.html">生活紀錄應用</a></li>
+      <li class="part-label">Basics: from scratch to functional</li>
+      <li data-i18n="pending"><a href="ch1_login.html">Login to HA</a></li>
+      <li data-i18n="pending"><a href="ch2_system_settings.html">System settings</a></li>
+      <li data-i18n="pending"><a href="ch3_floors_areas.html">Floors and areas</a></li>
+      <li data-i18n="pending"><a href="ch4_naming_labels.html">Naming and labeling</a></li>
+      <li data-i18n="pending"><a href="ch5_users.html">User management</a></li>
+      <li data-i18n="pending"><a href="ch6_dashboard.html">Dashboard</a></li>
+      <li data-i18n="pending"><a href="ch7_notifications.html">Notifications</a></li>
+      <li data-i18n="pending"><a href="ch8_first_automation.html">First automation</a></li>
+      <li data-i18n="pending"><a href="ch9_backups.html">backup</a></li>
+      <li data-i18n="pending"><a href="ch10_scripts.html" class="active">Scripts</a></li>
+      <li data-i18n="pending"><a href="ch11_devices.html">Device details</a></li>
+      <li data-i18n="pending"><a href="ch12_domains.html">Domain reference</a></li>
+      <li class="part-label">Expansion: connect more devices</li>
+      <li data-i18n="pending"><a href="ch13_themes.html">Themes and appearance</a></li>
+      <li data-i18n="pending"><a href="ch14_integrations.html">Integrations</a></li>
+      <li data-i18n="pending"><a href="ch15_protocols.html">Communication protocols</a></li>
+      <li data-i18n="pending"><a href="ch16_todo_calendar.html">To-do and calendar</a></li>
+      <li class="part-label">Data, energy and AI</li>
+      <li data-i18n="pending"><a href="ch17_energy.html">Energy dashboard</a></li>
+      <li data-i18n="pending"><a href="ch18_history_data.html">History and data export</a></li>
+      <li data-i18n="pending"><a href="ch19_voice_ai.html">Voice assistants and AI</a></li>
+      <li class="part-label">Advanced architecture and applications</li>
+      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on and Docker</a></li>
+      <li data-i18n="pending"><a href="ch21_network_remote.html">Network and remote connections</a></li>
+      <li data-i18n="pending"><a href="ch22_life_logs.html">Life logging</a></li>
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">為什麼需要腳本</a>
-      <a href="#vs">腳本 vs 自動化 vs 場景</a>
-      <a href="#steps">動手做：第一個腳本</a>
-      <a href="#fields">加參數（Fields）</a>
-      <a href="#modes">執行模式</a>
-      <a href="#patterns">實用範例集</a>
-      <a href="#call">如何呼叫腳本</a>
-      <a href="#troubleshoot">常見卡關</a>
-      <a href="#faq">常見問題</a>
+      <a href="#why">Why do you need a script?</a>
+      <a href="#vs">Scripting vs Automation vs Scenarios</a>
+      <a href="#steps">Hands-on: First Script</a>
+      <a href="#fields">Add parameters (Fields)</a>
+      <a href="#modes">execution mode</a>
+      <a href="#patterns">Collection of practical examples</a>
+      <a href="#call">How to call a script</a>
+      <a href="#troubleshoot">Common stuck levels</a>
+      <a href="#faq">FAQ</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · 生態圈：HACS/Add-ons/遠端</a>
-      <a href="appendix_scenes_helpers_groups.html">B · 場景/輔助元件/群組</a>
-      <a href="appendix_hardware_install.html">C · 裝機前傳：硬體與 HAOS</a>
+      <a href="appendix_hacs_addons.html">A · Ecosystem: HACS/Add-ons/remote</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scene/auxiliary component/group</a>
+      <a href="appendix_hardware_install.html">C · Pre-installation: Hardware and HAOS</a>
     </div>
   </aside>
 
@@ -89,167 +89,167 @@
     <div class="callout i18n-pending"><strong>This chapter has not been translated yet.</strong> You are reading the original Chinese text. <a href="../ch10_scripts.html" hreflang="zh-Hant">Open the Chinese version</a></div>
     <div class="chapter-header">
       <div class="kicker">Chapter 10</div>
-      <h1>腳本 Scripts</h1>
-      <p class="lead">把「一連串動作」打包起來取名字。之後自動化、按鈕、語音都能一句話喚起它。第 8 章的自動化是「一個獨立完整運作的東西」；腳本則是「一段被叫的動作」。</p>
+      <h1>Scripts</h1>
+      <p class="lead">Pack up a "series of actions" and give it a name. Then automation, buttons, and voice can all evoke it in one sentence. The automation in Chapter 8 is "a thing that operates independently and completely"; the script is "a called action".</p>
     </div>
 
-    <section id="why" data-nav="為什麼需要腳本">
-      <h2 data-icon="why">為什麼需要腳本</h2>
-      <p>當你發現自己在很多個自動化裡重複貼同一段動作，例如：</p>
+    <section id="why" data-nav="Why do you need a script?">
+      <h2 data-icon="why">Why do you need a script?</h2>
+      <p>When you find yourself repeating the same action in many automations, for example:</p>
       <ul>
-        <li>「關全家燈 + 冷氣關 + 掃地機開始 + 玄關燈延遲 30 秒關」— 出門情境</li>
-        <li>「所有窗簾拉起 + 主燈 20% + 音響播早安歌單」— 起床情境</li>
-        <li>「主臥燈慢慢淡到 5% 再關」— 睡覺淡出</li>
+        <li>"Turn off the lights in the whole house + turn off the air conditioner + start the sweeper + delay turning off the entrance light for 30 seconds" - going out situation</li>
+        <li>"All curtains are drawn + main lights 20% + sound playing good morning playlist" - wake-up situation</li>
+        <li>"The light in the master bedroom slowly fades to 5% and then turns off" - Fade out for sleep</li>
       </ul>
-      <p>直接把這一整段包成一個腳本，例如 <code>script.leaving_home</code>，之後：</p>
+      <p>Directly wrap this entire paragraph into a script, for example <code>script.leaving_home</code>, after:</p>
       <ul>
-        <li>離家自動化 → 只要「呼叫 <code>script.leaving_home</code>」一行</li>
-        <li>玄關 Zigbee 按鈕長按 → 也呼叫 <code>script.leaving_home</code></li>
-        <li>語音助理說「我要出門了」→ 也呼叫 <code>script.leaving_home</code></li>
-        <li>儀表板放一顆大按鈕 → 也呼叫 <code>script.leaving_home</code></li>
+        <li>Automation away from home → Just "call <code>script.leaving_home</code>"One line</li>
+        <li>Entrance Zigbee button long press → also call <code>script.leaving_home</code></li>
+        <li>The voice assistant says "I'm going out" → also calls <code>script.leaving_home</code></li>
+        <li>Put a big button on the dashboard → also call <code>script.leaving_home</code></li>
       </ul>
-      <p>之後你想改「出門要不要順便關飲水機」，只改腳本這一個地方，四個入口全部同步。<strong>這就是把邏輯集中的價值。</strong></p>
+      <p>Later, if you want to change "Should you turn off the water dispenser when you go out?", you only need to change the script, and all four entrances will be synchronized.<strong>This is the value of centralizing logic.</strong></p>
     </section>
 
-    <section id="vs" data-nav="腳本 vs 自動化 vs 場景">
-      <h2 data-icon="concept">腳本 vs 自動化 vs 場景</h2>
-      <p>三個名詞新手常混淆，先分清楚：</p>
+    <section id="vs" data-nav="Scripting vs Automation vs Scenarios">
+      <h2 data-icon="concept">Scripting vs Automation vs Scenarios</h2>
+      <p>There are three nouns that are often confused by novices. Let’s first distinguish them:</p>
       <ul>
-        <li><strong>自動化 Automation</strong>：三段式（觸發／條件／動作），會「自己啟動」。例：日落時觸發。</li>
-        <li><strong>腳本 Script</strong>：只有動作段，不會自己啟動，<em>要被叫</em>。可以有延遲、迴圈、條件分支，比場景強大很多。</li>
-        <li><strong>場景 Scene</strong>：一組實體「狀態快照」（燈 60% / 冷氣 26°C / 窗簾 100%）。呼叫時瞬間把所有實體切到指定狀態。<em>不能有延遲或邏輯</em>。</li>
+        <li><strong>Automation Automation</strong>: Three-stage (trigger/condition/action), it will "start by itself". Example: Triggered at sunset.</li>
+        <li><strong>Script Script</strong>: It only has action segments and will not start by itself.<em>to be called</em>. It can have delays, loops, and conditional branches, which is much more capable than scenes.</li>
+        <li><strong>Scene</strong>: A group of entity "status snapshots" (lights 60%/air conditioner 26°C/curtains 100%). When called, all entities are instantly switched to the specified state.<em>No delays or logic</em>.</li>
       </ul>
-      <div class="callout"><strong>簡單決策樹：</strong>
+      <div class="callout"><strong>Simple decision tree:</strong>
       <ul style="margin:8px 0 0 20px;">
-        <li>「一次把 5 顆燈調成固定亮度」→ <strong>場景</strong>（最單純）</li>
-        <li>「先做 A，等 3 秒，再做 B，如果 X 才做 C」→ <strong>腳本</strong>（有邏輯）</li>
-        <li>「早上 7 點自動做 X」→ <strong>自動化</strong>（有觸發）</li>
+        <li>"Adjust 5 lights to a fixed brightness at a time" → <strong>scene</strong>(the simplest)</li>
+        <li>"Do A first, wait 3 seconds, then do B, and only do C if X" → <strong>script</strong>(logical)</li>
+        <li>"Automatically do X at 7 a.m." → <strong>Automation</strong>(with trigger)</li>
       </ul>
-      場景常被腳本「呼叫」— 場景是磚塊，腳本是砌牆的方法。</div>
+      The scene is often "called" by the script - the scene is the bricks and the script is the method for building the wall.</div>
     </section>
 
-    <section id="steps" data-nav="動手做：第一個腳本">
-      <h2 data-icon="steps">動手做：第一個腳本「離家模式」</h2>
-      <div class="callout"><strong>名稱改過了：</strong>以前的「服務（Service）」現在叫「<strong>動作（Action）</strong>」——介面上的「呼叫服務」變成「執行動作」，YAML 裡的 <code>service:</code> 要寫成 <code>action:</code>（HA 2024.8 起）。另外「開發者工具」在 2026.2 從側欄搬進<strong>設定 → 工具</strong>，2026.8 又把 Developer Tools 簡化成 <strong>Tools（工具）</strong>，裡面原本的「服務」分頁現在叫「<strong>動作</strong>」。舊寫法 HA 目前還讀得懂，但介面上已經找不到舊名字了。</div>
+    <section id="steps" data-nav="Hands-on: First Script">
+      <h2 data-icon="steps">Hands-on: The first script "Leaving Home Mode"</h2>
+      <div class="callout"><strong>The name has been changed:</strong>The former "Service" is now called "<strong>Action</strong>"—"Call Service" on the interface becomes "Execute Action", and the "Call Service" in YAML <code>service:</code> to be written as <code>action:</code>(HA 2024.8 onwards). In addition, "Developer Tools" will be moved from the sidebar in 2026.2<strong>Settings → Tools</strong>, 2026.8 simplified Developer Tools into <strong>Tools</strong>, the original "Service" tab inside is now called "<strong>action</strong>”. The old way of writing HA is still understandable, but the old name can no longer be found on the interface.</div>
       <ol class="steps">
         <li>
-          <h3>設定 → 自動化與場景 → 腳本頁籤</h3>
-          <p>右下角「＋ 新增腳本」→ 選「建立新腳本」。（如果選「從藍圖」也可，但先從空白開始。）</p>
+          <h3>Settings → Automation and Scenarios → Script tab</h3>
+          <p>"+ Add Script" in the lower right corner → select "Create New Script". (You can also choose "From Blueprint", but start with a blank first.)</p>
           <figure class="shot">
-            <img src="../assets/screenshots/ch10/01_scripts_page.png" alt="腳本頁面" />
-            <figcaption><strong>圖 10-1</strong>腳本管理頁 — 顯示所有已建立的腳本。</figcaption>
+            <img src="../assets/screenshots/ch10/01_scripts_page.png" alt="script page" />
+            <figcaption><strong>Figure 10-1</strong>Script Management Page - Displays all created scripts.</figcaption>
           </figure>
         </li>
         <li>
-          <h3>填寫名稱與 icon</h3>
-          <p><strong>名稱</strong>：「離家模式」<br><strong>Icon</strong>：<code>mdi:door-open</code>（可從 <a href="https://pictogrammers.com/library/mdi/" target="_blank" rel="noopener">pictogrammers.com</a> 找）<br>頁面下方會自動生成 entity_id：<code>script.leaving_home</code>。這個 ID 之後用來呼叫，取個好記的名字。</p>
+          <h3>Fill in the name and icon</h3>
+          <p><strong>Name</strong>: "Leaving Home Mode"<br><strong>Icon</strong>: <code>mdi:door-open</code>(Available from <a href="https://pictogrammers.com/library/mdi/" target="_blank" rel="noopener">pictogrammers.com</a> find)<br>The entity_id will be automatically generated at the bottom of the page:<code>script.leaving_home</code>. This ID is then used to make calls and give it a memorable name.</p>
         </li>
         <li>
-          <h3>加動作：關掉所有燈</h3>
-          <p>「＋ 新增動作」→「執行動作」（舊版叫「呼叫服務」）→ 選 <code>light.turn_off</code>。<br><strong>目標</strong>：不要一顆一顆選；用「區域」選「全部」，或用「標籤」（第 4 章教的）選「燈光」。這樣之後新加的燈會自動被涵蓋。</p>
+          <h3>Add action: turn off all lights</h3>
+          <p>"+ New Action" → "Execute Action" (the old version was called "Call Service") → Select <code>light.turn_off</code>.<br><strong>target</strong>: Don't select one by one; use "Area" to select "All", or use "Tag" (taught in Chapter 4) to select "Lights". In this way, newly added lights will be automatically covered.</p>
           <figure class="shot">
-            <img src="../assets/screenshots/ch10/02_add_action.png" alt="新增動作" />
-            <figcaption><strong>圖 10-2</strong>用「區域」或「標籤」當目標，比一顆一顆選穩健。</figcaption>
+            <img src="../assets/screenshots/ch10/02_add_action.png" alt="Add action" />
+            <figcaption><strong>Figure 10-2</strong>Using "area" or "label" as the target is more stable than selecting one target at a time.</figcaption>
           </figure>
         </li>
         <li>
-          <h3>加動作：關冷氣</h3>
-          <p>「＋ 新增動作」→ <code>climate.turn_off</code> → 目標選所有 climate 實體或用「冷氣」標籤。</p>
+          <h3>Add action: turn off the air conditioner</h3>
+          <p>“＋New action”→ <code>climate.turn_off</code> → Target all climate entities or use the "air conditioning" tag.</p>
         </li>
         <li>
-          <h3>加動作：等 30 秒</h3>
-          <p>「＋ 新增動作」→「延遲」→ 30 秒。這是腳本比場景強的地方，可以排時序。</p>
+          <h3>Add action: wait 30 seconds</h3>
+          <p>"+ New action" → "Delay" → 30 seconds. This is where scripts are stronger than scenes, as they can be arranged in sequence.</p>
         </li>
         <li>
-          <h3>加動作：關玄關燈</h3>
-          <p>「＋ 新增動作」→ <code>light.turn_off</code> → 目標選<em>玄關燈</em>單一實體。<strong>用意</strong>：前面已經關全家燈，玄關燈延遲 30 秒才關，讓你有時間穿鞋出門。</p>
+          <h3>Add action: Entrance light</h3>
+          <p>“＋New action”→ <code>light.turn_off</code> → Target selection<em>Entrance light</em>Single entity.<strong>Intention</strong>: The lights in the whole house have been turned off in the front, and the entrance light will be turned off with a delay of 30 seconds, giving you time to put on your shoes and go out.</p>
         </li>
         <li>
-          <h3>加動作：推播通知</h3>
-          <p>「＋ 新增動作」→ <code>notify.mobile_app_你的手機</code>（見第 7 章）→ 訊息：「離家模式已啟動 ✅」。這樣就算按錯，手機會提示你。</p>
+          <h3>Add action: push notification</h3>
+          <p>“＋New action”→ <code>notify.mobile_app_your mobile phone</code>(See Chapter 7) → Message: "Away from home mode activated ✅". In this way, even if you press the wrong button, your phone will prompt you.</p>
         </li>
         <li>
-          <h3>右上角「儲存」→ 點試跑（▶）</h3>
-          <p>儲存後上方會出現橘色「儲存」變綠 → 按「執行腳本」測試。如果動作正確，手機應收到通知。</p>
-          <div class="callout tip"><strong>驗證：</strong>到「設定 → 工具 → 動作」呼叫 <code>script.leaving_home</code>，也應該完整跑一次。同一個入口從腳本頁、設定 → 工具、儀表板、自動化叫都是等價的。</div>
+          <h3>"Save" in the upper right corner → click Test Run (▶)</h3>
+          <p>After saving, the orange "Save" will appear above and turn green → click "Execute Script" to test. If done correctly, your phone should receive a notification.</p>
+          <div class="callout tip"><strong>Verify:</strong>Go to "Settings → Tools → Actions" to call <code>script.leaving_home</code>, should also be run completely. The same entry is equivalent from the script page, Settings → Tools, Dashboard, and Automation.</div>
         </li>
       </ol>
     </section>
 
-    <section id="fields" data-nav="加參數（Fields）">
-      <h2 data-icon="steps">加參數（Fields）— 讓腳本可被客製</h2>
-      <p>剛才的腳本寫死了「30 秒延遲」，如果晚上想 60 秒、白天想 15 秒怎麼辦？加一個 <strong>Field（欄位）</strong>：</p>
+    <section id="fields" data-nav="Add parameters (Fields)">
+      <h2 data-icon="steps">Add parameters (Fields) - make the script customizable</h2>
+      <p>The "30-second delay" was written into the script just now. What if I think for 60 seconds at night and 15 seconds during the day? add one <strong>Field</strong>: </p>
       <ol class="steps">
         <li>
-          <h3>編輯腳本 → 右上「⋮」→「編輯 YAML」</h3>
-          <p>UI 也能加欄位（在腳本頁面下方「欄位」區），但 YAML 一次看得清楚。加入：</p>
+          <h3>Edit script → upper right "⋮" → "Edit YAML"</h3>
+          <p>The UI can also add fields (in the "Fields" area at the bottom of the script page), but YAML can be seen clearly at once. Join:</p>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>fields:
   delay_seconds:
-    name: 玄關燈延遲秒數
-    description: 幾秒後關玄關燈
+    name: Entrance light delay seconds
+    description: Turn off the entrance light in a few seconds
     default: 30
     selector:
       number:
         min: 5
         max: 300
-        unit_of_measurement: 秒</code></pre>
+        unit_of_measurement: seconds</code></pre>
         </li>
         <li>
-          <h3>把動作裡的 30 改成變數</h3>
+          <h3>Change 30 in the action into a variable</h3>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>- delay:
     seconds: "{{ delay_seconds }}"</code></pre>
-          <p>之後呼叫時就能傳參數：<code>script.leaving_home</code> + <code>delay_seconds: 60</code>。</p>
+          <p>Then you can pass parameters when calling:<code>script.leaving_home</code> + <code>delay_seconds: 60</code>.</p>
         </li>
         <li>
-          <h3>UI 呼叫也能填欄位</h3>
-          <p>加了 fields 後，在儀表板卡片、自動化的動作、設定 → 工具呼叫這隻腳本時，會自動出現一個可以填「延遲秒數」的欄位，非工程師也能改。</p>
+          <h3>UI calls can also fill in fields</h3>
+          <p>After adding fields, when calling this script in the dashboard card, automated action, setting → tool, a field that can be filled with "delay seconds" will automatically appear, and non-engineers can also change it.</p>
         </li>
       </ol>
-      <div class="callout"><strong>常用 selector：</strong> <code>number</code>（數字）、<code>text</code>（文字）、<code>boolean</code>（開關）、<code>entity</code>（選實體）、<code>area</code>（選區域）、<code>time</code>（選時間）。有 selector UI 就會渲染成對應元件，比純文字友善。</div>
+      <div class="callout"><strong>Commonly used selectors:</strong> <code>number</code>(number),<code>text</code>(text),<code>boolean</code>(switch),<code>entity</code>(Select entity),<code>area</code>(select area),<code>time</code>(Select time). If there is a selector UI, it will be rendered into corresponding components, which is friendlier than pure text.</div>
     </section>
 
-    <section id="modes" data-nav="執行模式">
-      <h2 data-icon="steps">執行模式 Single / Restart / Queued / Parallel</h2>
-      <p>當腳本正在跑，又被叫一次會怎樣？這由「模式」決定，跟自動化一樣：</p>
+    <section id="modes" data-nav="execution mode">
+      <h2 data-icon="steps">Execution mode Single / Restart / Queued / Parallel</h2>
+      <p>What happens if the script is called again while the script is running? This is determined by the "mode", just like automation:</p>
       <table class="data-table">
         <thead>
           <tr>
-            <th>模式</th>
-            <th>行為</th>
-            <th>適合場景</th>
+            <th>mode</th>
+            <th>behavior</th>
+            <th>Suitable for the scene</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><code>single</code>（預設）</td>
-            <td>已經在跑就忽略新的呼叫</td>
-            <td>離家、睡覺這種一次性情境</td>
+            <td><code>single</code>(Default)</td>
+            <td>Already running and ignoring new calls</td>
+            <td>One-time situations like leaving home and going to bed</td>
           </tr>
           <tr>
             <td><code>restart</code></td>
-            <td>停止目前這次、從頭再跑</td>
-            <td>動作感應器亮燈（有人再動就重算延遲）</td>
+            <td>Stop this time and start again from the beginning</td>
+            <td>The motion sensor lights up (if someone moves again, the delay will be recalculated)</td>
           </tr>
           <tr>
             <td><code>queued</code></td>
-            <td>依序排隊執行</td>
-            <td>推播訊息、記錄事件</td>
+            <td>Queue execution in sequence</td>
+            <td>Push messages and record events</td>
           </tr>
           <tr>
             <td><code>parallel</code></td>
-            <td>同時開多份</td>
-            <td>大量獨立事件同時觸發</td>
+            <td>Open multiple copies at the same time</td>
+            <td>A large number of independent events trigger simultaneously</td>
           </tr>
         </tbody>
       </table>
-      <div class="callout warn"><strong>坑：</strong>離家腳本如果留 <code>single</code>，你在門口不小心連按兩下按鈕，第二次會被丟掉（正確）；但如果是「客廳燈慢慢淡出」的腳本用 <code>single</code>，你按第二次想「再淡一次」就不會動。這種場景改成 <code>restart</code>。</div>
+      <div class="callout warn"><strong>Pit:</strong>Leaving Home Script If You Stay <code>single</code>, if you accidentally click the button twice at the door, the second time will be discarded (correct); but if it is a script of "living room lights slowly fade out" <code>single</code>, if you press it a second time and think "fader it again", it won't move. Change this scenario to <code>restart</code>.</div>
     </section>
 
-    <section id="patterns" data-nav="實用範例集">
-      <h2 data-icon="tips">實用範例集</h2>
+    <section id="patterns" data-nav="Collection of practical examples">
+      <h2 data-icon="tips">Collection of practical examples</h2>
 
-      <h3>1. 睡覺淡出（restart 模式）</h3>
-      <p>從當前亮度開始 30 秒內淡到 1%，再過 5 秒關掉。中途再按會重來。</p>
+      <h3>1. Sleep fade out (restart mode)</h3>
+      <p>Fade to 1% within 30 seconds from the current brightness, then turn off after 5 seconds. Pressing it again in the middle will restart.</p>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>alias: bedroom_fade_out
 mode: restart
 sequence:
@@ -264,8 +264,8 @@ sequence:
     target:
       entity_id: light.bedroom_main</code></pre>
 
-      <h3>2. 迴圈通知直到有人回應（repeat until）</h3>
-      <p>洗衣機洗完每 3 分鐘推播一次，直到有人到洗衣間（Zigbee 動作感應器觸發）為止。</p>
+      <h3>2. Loop notification until someone responds (repeat until)</h3>
+      <p>When the washing machine is finished washing, the broadcast will be pushed every 3 minutes until someone comes to the laundry room (Zigbee motion sensor triggers).</p>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>alias: nag_until_laundry_picked
 mode: restart
 sequence:
@@ -277,11 +277,11 @@ sequence:
       sequence:
         - action: notify.mobile_app_dad
           data:
-            message: 洗衣機洗完了，快去拿！
+            message: The washing machine has finished washing, go and get it!
         - delay: "00:03:00"</code></pre>
 
-      <h3>3. 條件分支（choose）</h3>
-      <p>回家時根據時段做不同事：白天只開空調、晚上開燈+空調、深夜只開夜燈。</p>
+      <h3>3. Conditional branch (choose)</h3>
+      <p>When you get home, do different things according to the time of day: only turn on the air conditioner during the day, turn on the lights + air conditioner at night, and only turn on the night light late at night.</p>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>alias: arriving_home
 sequence:
   - choose:
@@ -304,8 +304,8 @@ sequence:
       - action: climate.turn_on
         target: { entity_id: climate.livingroom }</code></pre>
 
-      <h3>4. 並行動作（parallel）— 全開全關的最快版本</h3>
-      <p>正常一連串動作是序列跑，用 <code>parallel</code> 可以同時發，快很多：</p>
+      <h3>4. Parallel action (parallel) - the fastest version of fully open and fully closed</h3>
+      <p>A normal series of actions is a sequence run, use <code>parallel</code> You can send them at the same time, which is much faster:</p>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>sequence:
   - parallel:
       - action: light.turn_off
@@ -315,98 +315,98 @@ sequence:
       - action: media_player.turn_off
         target: { entity_id: media_player.tv }</code></pre>
 
-      <h3>5. 呼叫其他腳本 / 場景</h3>
+      <h3>5. Call other scripts/scenes</h3>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>sequence:
   - action: scene.turn_on
     target: { entity_id: scene.movie_night }
   - delay: "00:00:02"
   - action: script.turn_on
     target: { entity_id: script.close_all_curtains }</code></pre>
-      <p><strong>差別</strong>：用 <code>script.turn_on</code> 呼叫是「發射後不管」，主腳本繼續往下跑；直接寫 <code>action: script.其他腳本</code>（不加 turn_on）則是「等它跑完再繼續」。想同步等就用後者。</p>
+      <p><strong>difference</strong>: use <code>script.turn_on</code> The call is "fire and forget", the main script continues to run; write directly <code>action: script.Other scripts</code>(Without turn_on) it means "wait until it finishes running before continuing". If you want to synchronize and wait, use the latter.</p>
     </section>
 
-    <section id="call" data-nav="如何呼叫腳本">
-      <h2 data-icon="steps">如何呼叫腳本（4 種入口）</h2>
+    <section id="call" data-nav="How to call a script">
+      <h2 data-icon="steps">How to call a script (4 entries)</h2>
       <ol class="steps">
         <li>
-          <h3>從自動化的動作段</h3>
-          <p>自動化 → 動作 → 選「執行動作」→ <code>script.leaving_home</code>（或直接選腳本 entity）。有 fields 時會顯示欄位。</p>
+          <h3>from automated action segments</h3>
+          <p>Automation → Action → Select "Execute Action" → <code>script.leaving_home</code>(Or directly select the script entity). Fields are displayed when fields are present.</p>
         </li>
         <li>
-          <h3>從儀表板卡片</h3>
-          <p>加一顆按鈕卡（Button card）→ 點擊動作選「執行動作」→ <code>script.turn_on</code> → 目標選腳本。想更花俏用 <strong>Tile card</strong> + 客製 icon。</p>
+          <h3>Card from dashboard</h3>
+          <p>Add a Button card → Click on the action and select "Execute Action" → <code>script.turn_on</code> → Target selection script. Want to use it more fancyly <strong>Tile card</strong> + Custom icon.</p>
         </li>
         <li>
-          <h3>從 Zigbee 遙控器 / 場景面板</h3>
-          <p>用第 8 章講的「MQTT 事件」或「ZHA 事件」抓按鈕，動作段呼叫這隻腳本。長按、短按、雙擊都可映射到不同腳本。</p>
+          <h3>From Zigbee remote/scene panel</h3>
+          <p>Use the "MQTT event" or "ZHA event" mentioned in Chapter 8 to grab the button, and the action section calls this script. Long press, short press, and double-click can all be mapped to different scripts.</p>
         </li>
         <li>
-          <h3>從語音助理 Assist</h3>
-          <p>「暴露 Expose」給 Assist（設定 → 語音助理 → 暴露腳本），之後可以說「Hey，離家模式」直接叫。這是內建功能，不用寫任何整合。</p>
+          <h3>Assist from voice assistant</h3>
+          <p>"Expose" to Assist (Settings → Voice Assistant → Expose Script), and then you can say "Hey, away from home mode" to call directly. This is a built-in function, no need to write any integration.</p>
         </li>
       </ol>
     </section>
 
-    <section id="troubleshoot" data-nav="常見卡關">
-      <h2 data-icon="advanced">常見卡關</h2>
+    <section id="troubleshoot" data-nav="Common stuck levels">
+      <h2 data-icon="advanced">Common stuck levels</h2>
       <details class="faq">
-        <summary>腳本執行到一半停住不繼續？</summary>
+        <summary>The script stops in the middle of execution and does not continue?</summary>
         <div class="body">
           <ul>
-            <li>檢查是不是某個 <code>wait_template</code> 或 <code>wait_for_trigger</code> 沒 timeout — 加 <code>timeout: "00:00:30"</code> + <code>continue_on_timeout: true</code>。</li>
-            <li>某個動作執行失敗會拋錯中止，加 <code>continue_on_error: true</code> 讓它跳過繼續。</li>
-            <li>去「設定 → 工具 → 動作」單獨測那個動作，看是不是實體不存在或參數錯。</li>
+            <li>Check if it is a <code>wait_template</code> or <code>wait_for_trigger</code> No timeout — add <code>timeout: "00:00:30"</code> + <code>continue_on_timeout: true</code>.</li>
+            <li>If an action fails to execute, an error will be thrown and aborted. <code>continue_on_error: true</code> Let it skip to continue.</li>
+            <li>Go to "Settings → Tools → Actions" to test that action individually to see if the entity does not exist or the parameters are wrong.</li>
           </ul>
         </div>
       </details>
       <details class="faq">
-        <summary>fields 加了，儀表板按鈕卡沒出現填寫欄位？</summary>
-        <div class="body">按鈕卡預設「按下就跑」，不會問欄位。想要彈出對話框請用「Entity card」或設定「hold_action → more-info」，會顯示欄位；或改用 <strong>Mushroom Template card</strong>（HACS）自己畫。</div>
+        <summary>Fields are added, but the fill-in field does not appear on the dashboard button card?</summary>
+        <div class="body">The button card defaults to "press and run" and does not ask for fields. If you want to pop up a dialog box, please use "Entity card" or set "hold_action → more-info", the fields will be displayed; or use <strong>Mushroom Template card</strong>(HACS) Draw it yourself.</div>
       </details>
       <details class="faq">
-        <summary>「執行腳本」按了沒反應？</summary>
-        <div class="body">去「設定 → 系統 → 日誌」看有沒有錯。腳本失敗常見是：實體 ID 拼錯、目標裝置離線、權限不夠（非管理員帳號跑管理員的腳本）。</div>
+        <summary>Nothing happens when I press "Execute Script"?</summary>
+        <div class="body">Go to "Settings → System → Log" to see if there is anything wrong. Common script failures include: misspelled entity ID, offline target device, insufficient permissions (non-administrator account running administrator script).</div>
       </details>
       <details class="faq">
-        <summary>腳本裡的 <code>{{ variable }}</code> 沒被取代？</summary>
-        <div class="body">要用引號包起來：<code>value: "{{ my_var }}"</code>。純數字或布林可以省，但字串必須引號。另外 <code>{{ }}</code> 只在 <code>data:</code> 值裡工作，key 名不能用模板。</div>
+        <summary>in the script <code>{{ variable }}</code> Not replaced?</summary>
+        <div class="body">To wrap it in quotes:<code>value: "{{ my_var }}"</code>. Pure numbers or Boolean can be omitted, but strings must be quoted. In addition <code>{{ }}</code> only in <code>data:</code> Working within values, key names cannot use templates.</div>
       </details>
     </section>
 
-    <section id="faq" data-nav="常見問題">
-      <h2 data-icon="faq">常見問題</h2>
+    <section id="faq" data-nav="FAQ">
+      <h2 data-icon="faq">FAQ</h2>
       <details class="faq">
-        <summary>腳本可以自己觸發嗎？</summary>
-        <div class="body">不行，腳本沒有觸發段。想要「條件到就自己跑」，寫一個自動化，它的動作是呼叫這隻腳本。</div>
+        <summary>Can the script be triggered by itself?</summary>
+        <div class="body">No, the script does not have a trigger section. If you want to "run by yourself when the conditions are met", write an automation whose action is to call this script.</div>
       </details>
       <details class="faq">
-        <summary>腳本可以呼叫腳本嗎？巢狀幾層？</summary>
-        <div class="body">可以，實務上不限層數（HA 官方沒設硬上限）。但每呼叫一層就多一層難以追蹤，超過 3 層通常代表結構要重整。可以把共用步驟拉出來，父腳本只管流程。</div>
+        <summary>Can a script call a script? How many layers are there in the nest?</summary>
+        <div class="body">Yes, in practice there is no limit to the number of layers (HA does not officially set a hard upper limit). But each layer you call adds another layer that is difficult to track, and more than 3 layers usually indicates a restructuring. Shared steps can be pulled out, and the parent script only takes care of the process.</div>
       </details>
       <details class="faq">
-        <summary>腳本刪掉後，用到它的自動化會怎樣？</summary>
-        <div class="body">會壞掉，執行到那一行時動作執行失敗。刪腳本前用「設定 → 自動化 → 三個點 → 追蹤器」或到「設定 → 工具 → 事件」監聽 <code>service_registered</code> 找誰在用它。</div>
+        <summary>After the script is deleted, what happens to the automation that uses it?</summary>
+        <div class="body">It will be broken and the action will fail when executing to that line. Before deleting the script, use "Settings → Automation → Three Dots → Tracker" or go to "Settings → Tools → Events" to monitor <code>service_registered</code> Find out who is using it.</div>
       </details>
       <details class="faq">
-        <summary>Blueprint 是什麼？跟腳本什麼關係？</summary>
-        <div class="body">Blueprint 是<em>腳本或自動化的模板</em>，第 8 章有講。把常用邏輯做成 Blueprint，任何人匯入後只填幾個參數（哪個燈、哪個感應器）就有一份可用的腳本，適合分享和大量部署。</div>
+        <summary>What is Blueprint? What does it have to do with the script?</summary>
+        <div class="body">Blueprint is<em>Script or automated templates</em>, discussed in Chapter 8. Commonly used logic is made into a Blueprint. After importing it, anyone only needs to fill in a few parameters (which light, which sensor) to have a usable script, which is suitable for sharing and mass deployment.</div>
       </details>
     </section>
 
     <div class="pager">
       <a class="prev" href="ch9_backups.html">
         <span class="label">← Previous</span>
-        <span class="title">09 · 備份</span>
+        <span class="title">09 · backup</span>
       </a>
       <a class="next" href="ch11_devices.html">
         <span class="label">Next →</span>
-        <span class="title">11 · 裝置詳細設定</span>
+        <span class="title">11·Device detailed settings</span>
       </a>
     </div>
 
     <footer class="site-footer">
-      <p>Home Assistant 新居入住指南 is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
-      <p class="footer-meta">截圖取自 Home Assistant 官方介面。Home Assistant 為 Open Home Foundation 的商標，本站與其無隸屬關係。 · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
+      <p>Home Assistant New Home Move-In Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
+      <p class="footer-meta">Screenshot taken from Home Assistant official interface. Home Assistant is a trademark of the Open Home Foundation, and this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
   </main>
 </div>

@@ -1,0 +1,90 @@
+{
+  "file": "ch16_todo_calendar.html",
+  "entries": [
+    {
+      "unit": "#todo_actions",
+      "zh": "<pre class=\"code-block\"><code>action: todo.add_item\ntarget:\n  entity_id: todo.family_chores\ndata:\n  item: 換客廳冷氣濾網\n  due_date: \"2026-09-01\"\n  description: 拆下來用水沖乾淨，陰乾一天再裝回去</code></pre>",
+      "en": "<pre class=\"code-block\"><code>action: todo.add_item\ntarget:\n  entity_id: todo.family_chores\ndata:\n  item: Replacement of living room air conditioner filter\n  due_date: \"2026-09-01\"\n  description: Take it apart, rinse it with water, dry it in the shade for a day and then put it back together.</code></pre>"
+    },
+    {
+      "unit": "#todo_actions",
+      "zh": "<pre class=\"code-block\"><code>action: todo.update_item\ntarget:\n  entity_id: todo.family_chores\ndata:\n  item: 換客廳冷氣濾網\n  status: completed</code></pre>",
+      "en": "<pre class=\"code-block\"><code>action: todo.update_item\ntarget:\n  entity_id: todo.family_chores\ndata:\n  item: Replacement of living room air conditioner filter\n  status: completed</code></pre>"
+    },
+    {
+      "unit": "#todo_actions",
+      "zh": "<pre class=\"code-block\"><code>todo.family_chores:\n  items:\n    - summary: 換客廳冷氣濾網\n      uid: \"01244b28-e604-11ee-a0a4-e45f0197c057\"\n      status: needs_action\n      due: \"2026-09-01\"\n      description: 拆下來用水沖乾淨\n    - summary: 繳管理費\n      uid: \"ae993df4-e604-11ee-a0a4-e45f0197c057\"\n      status: needs_action</code></pre>",
+      "en": "<pre class=\"code-block\"><code>todo.family_chores:\n  items:\n    - summary: Replace the living room air-conditioning filter\n      uid: \"01244b28-e604-11ee-a0a4-e45f0197c057\"\n      status: needs_action\n      due: \"2026-09-01\"\n      description: Remove and rinse with water\n    - summary: Pay management fee\n      uid: \"ae993df4-e604-11ee-a0a4-e45f0197c057\"\n      status: needs_action</code></pre>"
+    },
+    {
+      "unit": "#todo_trigger",
+      "zh": "<pre class=\"code-block\"><code>alias: 購物清單有人加東西就通知\ntriggers:\n  - trigger: todo.item_added\n    target:\n      entity_id: todo.shopping_list\nactions:\n  - action: notify.mobile_app_my_phone\n    data:\n      title: 購物清單更新\n      message: 有人加了新東西，出門前記得看一下</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Notify when someone adds something to the shopping list\ntriggers:\n  - trigger: todo.item_added\n    target:\n      entity_id: todo.shopping_list\nactions:\n  - action: notify.mobile_app_my_phone\n    data:\n      title: Shopping list update\n      message: Someone has added something new, remember to take a look before going out</code></pre>"
+    },
+    {
+      "unit": "#local_calendar",
+      "zh": "<pre class=\"code-block\"><code>action: calendar.create_event\ntarget:\n  entity_id: calendar.family\ndata:\n  summary: 家庭聚餐\n  start_date_time: \"2026-09-20 18:00:00\"\n  end_date_time: \"2026-09-20 20:00:00\"\n  location: 阿嬤家</code></pre>",
+      "en": "<pre class=\"code-block\"><code>action: calendar.create_event\ntarget:\n  entity_id: calendar.family\ndata:\n  summary: family dinner\n  start_date_time: \"2026-09-20 18:00:00\"\n  end_date_time: \"2026-09-20 20:00:00\"\n  location: Grandma’s house</code></pre>"
+    },
+    {
+      "unit": "#cards",
+      "zh": "<pre class=\"code-block\"><code>type: todo-list\nentity: todo.family_chores\ntitle: 這週家務\nhide_completed: true\ndisplay_order: duedate_asc</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: todo-list\nentity: todo.family_chores\ntitle: Housework this week\nhide_completed: true\ndisplay_order: duedate_asc</code></pre>"
+    },
+    {
+      "unit": "#cards",
+      "zh": "<pre class=\"code-block\"><code>type: todo-list\nentity: todo.family_chores\ntitle: 今天要做\nhide_completed: true\ndue_date_period:\n  calendar:\n    period: day</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: todo-list\nentity: todo.family_chores\ntitle: To do today\nhide_completed: true\ndue_date_period:\n  calendar:\n    period: day</code></pre>"
+    },
+    {
+      "unit": "#cards",
+      "zh": "<pre class=\"code-block\"><code>type: calendar\ntitle: 這個月\nentities:\n  - calendar.trash_day\n  - calendar.family_chores\n  - calendar.bills\ninitial_view: listWeek</code></pre>",
+      "en": "<pre class=\"code-block\"><code>type: calendar\ntitle: this month\nentities:\n  - calendar.trash_day\n  - calendar.family_chores\n  - calendar.bills\ninitial_view: listWeek</code></pre>"
+    },
+    {
+      "unit": "#calendar_trigger",
+      "zh": "<code>\"時:分:秒\"</code>",
+      "en": "<code>\"hour:minute:second\"</code>"
+    },
+    {
+      "unit": "#recipes",
+      "zh": "<pre class=\"code-block\"><code>alias: 垃圾車快到了\ntriggers:\n  - trigger: calendar\n    entity_id: calendar.trash_day\n    event: start\n    offset: \"-00:20:00\"\nactions:\n  - action: notify.mobile_app_my_phone\n    data:\n      title: 20 分鐘後垃圾車\n      message: \"{{ trigger.calendar_event.summary }}｜袋子拿了嗎\"\n  - action: light.turn_on\n    target:\n      entity_id: light.entrance\n    data:\n      brightness_pct: 80\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: The garbage truck is coming\ntriggers:\n  - trigger: calendar\n    entity_id: calendar.trash_day\n    event: start\n    offset: \"-00:20:00\"\nactions:\n  - action: notify.mobile_app_my_phone\n    data:\n      title: Garbage truck in 20 minutes\n      message: \"{{ trigger.calendar_event.summary }}｜Have you got the bag?\"\n  - action: light.turn_on\n    target:\n      entity_id: light.entrance\n    data:\n      brightness_pct: 80\nmode: single</code></pre>"
+    },
+    {
+      "unit": "#recipes",
+      "zh": "<pre class=\"code-block\"><code>alias: 今天到期的待辦提醒\ntriggers:\n  - trigger: time\n    at: \"08:00:00\"\nactions:\n  - action: todo.get_items\n    target:\n      entity_id: todo.family_chores\n    data:\n      status: needs_action\n    response_variable: result\n  - variables:\n      today: \"{{ now().date() | string }}\"\n      due_today: >-\n        {{ result['todo.family_chores']['items']\n           | selectattr('due', 'defined')\n           | rejectattr('due', 'none')\n           | selectattr('due', 'search', today)\n           | map(attribute='summary') | list }}\n  - if:\n      - condition: template\n        value_template: \"{{ due_today | count > 0 }}\"\n    then:\n      - action: notify.mobile_app_my_phone\n        data:\n          title: 今天有 {{ due_today | count }} 件事到期\n          message: \"{{ due_today | join('、') }}\"\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: To-do reminder due today\ntriggers:\n  - trigger: time\n    at: \"08:00:00\"\nactions:\n  - action: todo.get_items\n    target:\n      entity_id: todo.family_chores\n    data:\n      status: needs_action\n    response_variable: result\n  - variables:\n      today: \"{{ now().date() | string }}\"\n      due_today: &gt;-\n        {{ result['todo.family_chores']['items']\n           | selectattr('due', 'defined')\n           | rejectattr('due', 'none')\n           | selectattr('due', 'search', today)\n           | map(attribute='summary') | list }}\n  -if:\n      - condition: template\n        value_template: \"{{ due_today | count &gt; 0 }}\"\n    then:\n      - action: notify.mobile_app_my_phone\n        data:\n          title: {{ due_today | count }} things are due today\n          message: \"{{ due_today | join(', ') }}\"\nmode: single</code></pre>"
+    },
+    {
+      "unit": "#recipes",
+      "zh": "<pre class=\"code-block\"><code>alias: 保養行事曆自動生待辦\ntriggers:\n  - trigger: calendar\n    entity_id: calendar.maintenance\n    event: start\nactions:\n  - action: todo.add_item\n    target:\n      entity_id: todo.family_chores\n    data:\n      item: \"{{ trigger.calendar_event.summary }}\"\n      due_date: \"{{ trigger.calendar_event.start[:10] }}\"\n      description: \"{{ trigger.calendar_event.description }}\"\nmode: queued\nmax: 10</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Maintenance calendar automatically generates to-do items\ntriggers:\n  - trigger: calendar\n    entity_id: calendar.maintenance\n    event: start\nactions:\n  - action: todo.add_item\n    target:\n      entity_id: todo.family_chores\n    data:\n      item: \"{{ trigger.calendar_event.summary }}\"\n      due_date: \"{{ trigger.calendar_event.start[:10] }}\"\n      description: \"{{ trigger.calendar_event.description }}\"\nmode: queued\nmax: 10</code></pre>"
+    },
+    {
+      "unit": "#recipes",
+      "zh": "<pre class=\"code-block\"><code>alias: 家事輪值提醒\ntriggers:\n  - trigger: calendar\n    entity_id: calendar.chore_rotation\n    event: start\n    offset: \"-01:00:00\"\nactions:\n  - action: todo.add_item\n    target:\n      entity_id: todo.family_chores\n    data:\n      item: \"{{ trigger.calendar_event.summary }}\"\n  - action: notify.family_all\n    data:\n      title: 家事輪值\n      message: \"一小時後：{{ trigger.calendar_event.summary }}\"\nmode: queued\nmax: 10</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: household rotation reminder\ntriggers:\n  - trigger: calendar\n    entity_id: calendar.chore_rotation\n    event:start\n    offset: \"-01:00:00\"\nactions:\n  - action: todo.add_item\n    target:\n      entity_id: todo.family_chores\n    data:\n      item: \"{{ trigger.calendar_event.summary }}\"\n  - action: notify.family_all\n    data:\n      title: Housework rotation\n      message: \"One hour later: {{ trigger.calendar_event.summary }}\"\nmode: queued\nmax: 10</code></pre>"
+    },
+    {
+      "unit": "#recipes",
+      "zh": "<pre class=\"code-block\"><code>alias: 會議室隨預約開關\ntriggers:\n  - trigger: calendar\n    id: meeting_start\n    entity_id: calendar.meeting_room\n    event: start\n    offset: \"-00:10:00\"\n  - trigger: calendar\n    id: meeting_end\n    entity_id: calendar.meeting_room\n    event: end\nactions:\n  - choose:\n      - conditions:\n          - condition: trigger\n            id: meeting_start\n        sequence:\n          - action: light.turn_on\n            target:\n              entity_id: light.meeting_room\n          - action: climate.turn_on\n            target:\n              entity_id: climate.meeting_room\n      - conditions:\n          - condition: trigger\n            id: meeting_end\n        sequence:\n          - action: light.turn_off\n            target:\n              entity_id: light.meeting_room\n          - action: climate.turn_off\n            target:\n              entity_id: climate.meeting_room\nmode: queued\nmax: 10</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Meeting rooms can be opened and closed by reservation\ntriggers:\n  - trigger: calendar\n    id: meeting_start\n    entity_id: calendar.meeting_room\n    event: start\n    offset: \"-00:10:00\"\n  - trigger: calendar\n    id: meeting_end\n    entity_id: calendar.meeting_room\n    event:end\nactions:\n  -choose:\n      - conditions:\n          - condition: trigger\n            id: meeting_start\n        sequence:\n          - action: light.turn_on\n            target:\n              entity_id: light.meeting_room\n          - action: climate.turn_on\n            target:\n              entity_id: climate.meeting_room\n      - conditions:\n          - condition: trigger\n            id: meeting_end\n        sequence:\n          - action: light.turn_off\n            target:\n              entity_id: light.meeting_room\n          - action: climate.turn_off\n            target:\n              entity_id: climate.meeting_room\nmode: queued\nmax: 10</code></pre>"
+    },
+    {
+      "unit": "#recipes",
+      "zh": "<pre class=\"code-block\"><code>alias: 週日晚上清空已完成\ntriggers:\n  - trigger: time\n    at: \"22:00:00\"\nconditions:\n  - condition: time\n    weekday:\n      - sun\nactions:\n  - action: todo.remove_completed_items\n    target:\n      entity_id: todo.family_chores\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: Cleanup completed on Sunday night\ntriggers:\n  - trigger: time\n    at: \"22:00:00\"\nconditions:\n  - condition: time\n    weekday:\n      - sun\nactions:\n  - action: todo.remove_completed_items\n    target:\n      entity_id: todo.family_chores\nmode: single</code></pre>"
+    },
+    {
+      "unit": "#faq",
+      "zh": "<code>result['todo.你的清單']['items']</code>",
+      "en": "<code>result['todo.your list']['items']</code>"
+    },
+    {
+      "unit": "#faq",
+      "zh": "<code>{{ '倒垃圾' in trigger.calendar_event.summary }}</code>",
+      "en": "<code>{{ 'Take out the trash' in trigger.calendar_event.summary }}</code>"
+    }
+  ]
+}

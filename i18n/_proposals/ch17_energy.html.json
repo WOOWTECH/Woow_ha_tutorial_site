@@ -1,0 +1,30 @@
+{
+  "file": "ch17_energy.html",
+  "entries": [
+    {
+      "unit": "#integral",
+      "zh": "<pre class=\"code-block\"><code>sensor:\n  - platform: integration\n    source: sensor.living_room_ac_power\n    name: 客廳冷氣用電量\n    unit_prefix: k\n    unit_time: h\n    method: trapezoidal\n    max_sub_interval: \"00:01:00\"\n    round: 3</code></pre>",
+      "en": "<pre class=\"code-block\"><code>sensor:\n  - platform: integration\n    source: sensor.living_room_ac_power\n    name: Electricity consumption of living room air conditioner\n    unit_prefix: k\n    unit_time:h\n    method: trapezoidal\n    max_sub_interval: \"00:01:00\"\n    Round: 3</code></pre>"
+    },
+    {
+      "unit": "#utility_meter",
+      "zh": "<pre class=\"code-block\"><code>utility_meter:\n  ac_daily:\n    source: sensor.living_room_ac_energy\n    name: 客廳冷氣 今日用電\n    cycle: daily\n  ac_monthly:\n    source: sensor.living_room_ac_energy\n    name: 客廳冷氣 本月用電\n    cycle: monthly\n  ac_yearly:\n    source: sensor.living_room_ac_energy\n    name: 客廳冷氣 今年用電\n    cycle: yearly</code></pre>",
+      "en": "<pre class=\"code-block\"><code>utility_meter:\n  ac_daily:\n    source: sensor.living_room_ac_energy\n    name: Living room air conditioner Today’s electricity consumption\n    cycle:daily\n  ac_monthly:\n    source: sensor.living_room_ac_energy\n    name: Living room air conditioner Electricity consumption this month\n    cycle: monthly\n  ac_yearly:\n    source: sensor.living_room_ac_energy\n    name: Living room air conditioner Electricity consumption this year\n    cycle: yearly</code></pre>"
+    },
+    {
+      "unit": "#cost",
+      "zh": "<pre class=\"code-block\"><code>utility_meter:\n  home_daily:\n    source: sensor.home_energy\n    name: 家庭 今日用電\n    cycle: daily\n    tariffs:\n      - peak\n      - offpeak\n  home_monthly:\n    source: sensor.home_energy\n    name: 家庭 本月用電\n    cycle: monthly\n    tariffs:\n      - peak\n      - offpeak</code></pre>",
+      "en": "<pre class=\"code-block\"><code>utility_meter:\n  home_daily:\n    source: sensor.home_energy\n    name: Household electricity consumption today\n    cycle:daily\n    tariffs:\n      - peak\n      -offpeak\n  home_monthly:\n    source: sensor.home_energy\n    name: Household electricity consumption this month\n    cycle: monthly\n    tariffs:\n      -peak\n      -offpeak</code></pre>"
+    },
+    {
+      "unit": "#cost",
+      "zh": "<pre class=\"code-block\"><code>alias: 切到尖峰費率\ntriggers:\n  - trigger: time\n    at: \"16:00:00\"\nconditions:\n  - condition: time\n    weekday:\n      - mon\n      - tue\n      - wed\n      - thu\n      - fri\nactions:\n  - action: select.select_option\n    target:\n      entity_id: select.home_daily\n    data:\n      option: peak\nmode: single</code></pre>",
+      "en": "<pre class=\"code-block\"><code>alias: switch to peak rate\ntriggers:\n  - trigger: time\n    at: \"16:00:00\"\nconditions:\n  - condition: time\n    weekday:\n      -mon\n      -tue\n      - wed\n      - thu\n      - fri\nactions:\n  - action: select.select_option\n    target:\n      entity_id: select.home_daily\n    data:\n      option: peak\nmode: single</code></pre>"
+    },
+    {
+      "unit": "#advanced",
+      "zh": "<pre class=\"code-block\"><code>template:\n  - sensor:\n      - name: \"太陽能自發自用率\"\n        unique_id: solar_self_consumption_ratio\n        unit_of_measurement: \"%\"\n        state_class: measurement\n        availability: >\n          {{ is_number(states('sensor.solar_production_monthly'))\n             and is_number(states('sensor.grid_export_monthly'))\n             and states('sensor.solar_production_monthly') | float(0) > 0 }}\n        state: >\n          {% set gen = states('sensor.solar_production_monthly') | float(0) %}\n          {% set exp = states('sensor.grid_export_monthly') | float(0) %}\n          {{ ((gen - exp) / gen * 100) | round(1) }}</code></pre>",
+      "en": "<pre class=\"code-block\"><code>template:\n  - sensor:\n      - name: \"solar energy self-consumption rate\"\n        unique_id: solar_self_consumption_ratio\n        unit_of_measurement: \"%\"\n        state_class: measurement\n        availability: &gt;\n          {{ is_number(states('sensor.solar_production_monthly'))\n             and is_number(states('sensor.grid_export_monthly'))\n             and states('sensor.solar_production_monthly') | float(0) &gt; 0 }}\n        state: &gt;\n          {% set gen = states('sensor.solar_production_monthly') | float(0) %}\n          {% set exp = states('sensor.grid_export_monthly') | float(0) %}\n          {{ ((gen - exp) / gen * 100) | round(1) }}</code></pre>"
+    }
+  ]
+}

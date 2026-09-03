@@ -15,6 +15,46 @@
     "skills.html": {
       "policy": "translate",
       "brief": "Full translation; any prompt demanding Traditional Chinese output becomes English-only."
+    },
+    "ch2_system_settings.html#steps": {
+      "policy": "localize",
+      "brief": "Generalize the Taiwan-specific example for international readers and retain an explicit Note in the existing callout."
+    },
+    "appendix_hardware_install.html#power": {
+      "policy": "localize",
+      "brief": "Generalize the Taiwan-specific example for international readers and retain an explicit Note in the existing callout."
+    },
+    "ch14_integrations.html#steps": {
+      "policy": "localize",
+      "brief": "Generalize the Taiwan-specific example for international readers and retain an explicit Note in the existing callout."
+    },
+    "ch14_integrations.html#weather": {
+      "policy": "localize",
+      "brief": "Generalize the Taiwan-specific example for international readers and retain an explicit Note in the existing callout."
+    },
+    "ch14_integrations.html#calendar_notify": {
+      "policy": "localize",
+      "brief": "Generalize the Taiwan-specific example for international readers and retain an explicit Note in the existing callout."
+    },
+    "ch15_protocols.html#zwave": {
+      "policy": "localize",
+      "brief": "Generalize the Taiwan-specific example for international readers and retain an explicit Note in the existing callout."
+    },
+    "ch15_protocols.html#buying": {
+      "policy": "localize",
+      "brief": "Generalize the Taiwan-specific example for international readers and retain an explicit Note in the existing callout."
+    },
+    "ch17_energy.html#cost": {
+      "policy": "localize",
+      "brief": "Generalize the Taiwan-specific example for international readers and retain an explicit Note in the existing callout."
+    },
+    "ch21_network_remote.html#cloudflare": {
+      "policy": "localize",
+      "brief": "Generalize the Taiwan-specific example for international readers and retain an explicit Note in the existing callout."
+    },
+    "ch20_addons_docker.html#docker_basics": {
+      "policy": "localize",
+      "brief": "Generalize the Taiwan-specific example for international readers and retain an explicit Note in the existing callout."
     }
   }
 }

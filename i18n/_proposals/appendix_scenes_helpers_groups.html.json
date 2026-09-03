@@ -1,0 +1,15 @@
+{
+  "file": "appendix_scenes_helpers_groups.html",
+  "entries": [
+    {
+      "unit": "#combined",
+      "zh": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>alias: 浴室夜間動作燈\ntriggers:\n  - trigger: state\n    entity_id: binary_sensor.bathroom_motion\n    to: \"on\"\nconditions:\n  - condition: state\n    entity_id: schedule.night_time\n    state: \"on\"\nactions:\n  - action: scene.turn_on\n    target: { entity_id: scene.bathroom_night_soft }\n  - action: timer.start\n    target: { entity_id: timer.bathroom_light }</code></pre>",
+      "en": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>alias: bathroom night action light\ntriggers:\n  - trigger: state\n    entity_id: binary_sensor.bathroom_motion\n    to: \"on\"\nconditions:\n  - condition: state\n    entity_id: schedule.night_time\n    state: \"on\"\nactions:\n  - action: scene.turn_on\n    target: { entity_id: scene.bathroom_night_soft }\n  - action: timer.start\n    target: { entity_id: timer.bathroom_light }</code></pre>"
+    },
+    {
+      "unit": "#combined",
+      "zh": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>alias: 浴室動作燈熄滅\ntriggers:\n  - trigger: event\n    event_type: timer.finished\n    event_data: { entity_id: timer.bathroom_light }\nactions:\n  - action: light.turn_off\n    target: { entity_id: light.bathroom_all }\n    data: { transition: 3 }</code></pre>",
+      "en": "<pre style=\"background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;\"><code>alias: Bathroom action light goes out\ntriggers:\n  - trigger: event\n    event_type: timer.finished\n    event_data: { entity_id: timer.bathroom_light }\nactions:\n  - action: light.turn_off\n    target: { entity_id: light.bathroom_all }\n    data: { transition: 3 }</code></pre>"
+    }
+  ]
+}

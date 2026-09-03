@@ -1,0 +1,10 @@
+{
+  "file": "ch15_protocols.html",
+  "entries": [
+    {
+      "unit": "#knx_modbus",
+      "zh": "<pre class=\"code-block\"><code>modbus:\n  - name: modbus_hub\n    type: tcp\n    host: 192.168.1.60\n    port: 502\n    sensors:\n      - name: 辦公室總電表\n        address: 100\n        input_type: holding\n        device_address: 1</code></pre>",
+      "en": "<pre class=\"code-block\"><code>modbus:\n  - name: modbus_hub\n    type: tcp\n    host: 192.168.1.60\n    port: 502\n    sensors:\n      - name: Office master meter\n        address: 100\n        input_type: holding\n        device_address: 1</code></pre>"
+    }
+  ]
+}

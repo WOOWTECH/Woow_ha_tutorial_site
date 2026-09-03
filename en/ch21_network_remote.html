@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chapter 21 · 網路與遠端連線實務 · Home Assistant 新居入住指南</title>
-  <meta name="description" content="Home Assistant 遠端連線實務：DHCP 固定位址、Nabu Casa 與 Cloudflare Tunnel 與 VPN 與 DDNS 反向代理四條路線的實作、trusted_proxies 設定與資安硬規則。" />
+  <title>Chapter 21 · Network and Remote Connection Practice · Home Assistant Onboarding Guide</title>
+  <meta name="description" content="Home Assistant remote connection practice: DHCP fixed address, implementation of four routes of Nabu Casa and Cloudflare Tunnel, VPN and DDNS reverse proxy, trusted_proxies settings and information security hard rules." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch21_network_remote.html" />
   <meta name="robots" content="noindex, follow" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Home Assistant 新居入住指南" />
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Chapter 21 · 網路與遠端連線實務 · Home Assistant 新居入住指南" />
-  <meta property="og:description" content="Home Assistant 遠端連線實務：DHCP 固定位址、Nabu Casa 與 Cloudflare Tunnel 與 VPN 與 DDNS 反向代理四條路線的實作、trusted_proxies 設定與資安硬規則。" />
+  <meta property="og:title" content="Chapter 21 · Network and Remote Connection Practice · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Home Assistant remote connection practice: DHCP fixed address, implementation of four routes of Nabu Casa and Cloudflare Tunnel, VPN and DDNS reverse proxy, trusted_proxies settings and information security hard rules." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch21_network_remote.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chapter 21 · 網路與遠端連線實務 · Home Assistant 新居入住指南" />
-  <meta name="twitter:description" content="Home Assistant 遠端連線實務：DHCP 固定位址、Nabu Casa 與 Cloudflare Tunnel 與 VPN 與 DDNS 反向代理四條路線的實作、trusted_proxies 設定與資安硬規則。" />
+  <meta name="twitter:title" content="Chapter 21 · Network and Remote Connection Practice · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Home Assistant remote connection practice: DHCP fixed address, implementation of four routes of Nabu Casa and Cloudflare Tunnel, VPN and DDNS reverse proxy, trusted_proxies settings and information security hard rules." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -32,61 +32,61 @@
 <body>
 <div class="layout">
   <aside class="sidebar">
-    <a class="brand" href="tutorial.html">HA 新居入住指南</a>
-    <div class="brand-sub">從零到能用</div>
+    <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
+    <div class="brand-sub">From scratch to functional</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch21_network_remote.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch21_network_remote.html" lang="en" aria-current="page">EN</a></nav>
-    <a class="hub-link" href="index.html">◂ 資源總覽</a>
+    <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">基礎：從零到能用</li>
-      <li data-i18n="pending"><a href="ch1_login.html">登入 HA</a></li>
-      <li data-i18n="pending"><a href="ch2_system_settings.html">系統設定</a></li>
-      <li data-i18n="pending"><a href="ch3_floors_areas.html">樓層與區域</a></li>
-      <li data-i18n="pending"><a href="ch4_naming_labels.html">命名與標籤</a></li>
-      <li data-i18n="pending"><a href="ch5_users.html">用戶管理</a></li>
-      <li data-i18n="pending"><a href="ch6_dashboard.html">儀表板</a></li>
-      <li data-i18n="pending"><a href="ch7_notifications.html">通知</a></li>
-      <li data-i18n="pending"><a href="ch8_first_automation.html">第一個自動化</a></li>
-      <li data-i18n="pending"><a href="ch9_backups.html">備份</a></li>
-      <li data-i18n="pending"><a href="ch10_scripts.html">腳本 Scripts</a></li>
-      <li data-i18n="pending"><a href="ch11_devices.html">裝置詳細設定</a></li>
-      <li data-i18n="pending"><a href="ch12_domains.html">Domain 控制圖鑑</a></li>
-      <li class="part-label">擴充：接上更多裝置</li>
-      <li data-i18n="pending"><a href="ch13_themes.html">主題與外觀</a></li>
-      <li data-i18n="pending"><a href="ch14_integrations.html">整合服務串接</a></li>
-      <li data-i18n="pending"><a href="ch15_protocols.html">通訊協定大百科</a></li>
-      <li data-i18n="pending"><a href="ch16_todo_calendar.html">待辦與行事曆</a></li>
-      <li class="part-label">數據、能源與 AI</li>
-      <li data-i18n="pending"><a href="ch17_energy.html">能源儀表板</a></li>
-      <li data-i18n="pending"><a href="ch18_history_data.html">歷史數據與導出</a></li>
-      <li data-i18n="pending"><a href="ch19_voice_ai.html">語音助理與 AI</a></li>
-      <li class="part-label">進階架構與應用</li>
-      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on 與 Docker</a></li>
-      <li data-i18n="pending"><a href="ch21_network_remote.html" class="active">網路與遠端連線</a></li>
-      <li data-i18n="pending"><a href="ch22_life_logs.html">生活紀錄應用</a></li>
+      <li class="part-label">Basics: from scratch to functional</li>
+      <li data-i18n="pending"><a href="ch1_login.html">Login to HA</a></li>
+      <li data-i18n="pending"><a href="ch2_system_settings.html">System settings</a></li>
+      <li data-i18n="pending"><a href="ch3_floors_areas.html">Floors and areas</a></li>
+      <li data-i18n="pending"><a href="ch4_naming_labels.html">Naming and labeling</a></li>
+      <li data-i18n="pending"><a href="ch5_users.html">User management</a></li>
+      <li data-i18n="pending"><a href="ch6_dashboard.html">Dashboard</a></li>
+      <li data-i18n="pending"><a href="ch7_notifications.html">Notifications</a></li>
+      <li data-i18n="pending"><a href="ch8_first_automation.html">First automation</a></li>
+      <li data-i18n="pending"><a href="ch9_backups.html">backup</a></li>
+      <li data-i18n="pending"><a href="ch10_scripts.html">Scripts</a></li>
+      <li data-i18n="pending"><a href="ch11_devices.html">Device details</a></li>
+      <li data-i18n="pending"><a href="ch12_domains.html">Domain reference</a></li>
+      <li class="part-label">Expansion: connect more devices</li>
+      <li data-i18n="pending"><a href="ch13_themes.html">Themes and appearance</a></li>
+      <li data-i18n="pending"><a href="ch14_integrations.html">Integrations</a></li>
+      <li data-i18n="pending"><a href="ch15_protocols.html">Communication protocols</a></li>
+      <li data-i18n="pending"><a href="ch16_todo_calendar.html">To-do and calendar</a></li>
+      <li class="part-label">Data, energy and AI</li>
+      <li data-i18n="pending"><a href="ch17_energy.html">Energy dashboard</a></li>
+      <li data-i18n="pending"><a href="ch18_history_data.html">History and data export</a></li>
+      <li data-i18n="pending"><a href="ch19_voice_ai.html">Voice assistants and AI</a></li>
+      <li class="part-label">Advanced architecture and applications</li>
+      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on and Docker</a></li>
+      <li data-i18n="pending"><a href="ch21_network_remote.html" class="active">Network and remote connections</a></li>
+      <li data-i18n="pending"><a href="ch22_life_logs.html">Life logging</a></li>
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">為什麼要學</a>
-      <a href="#lan_basics">區網基礎</a>
-      <a href="#steps">動手固定IP</a>
-      <a href="#mdns_port">本機網址與埠</a>
-      <a href="#decision">哪條適合你</a>
+      <a href="#why">Why should we learn</a>
+      <a href="#lan_basics">District network basics</a>
+      <a href="#steps">Hands-on fixed IP</a>
+      <a href="#mdns_port">Local URL and port</a>
+      <a href="#decision">Which one suits you</a>
       <a href="#nabu_casa">Nabu Casa</a>
       <a href="#cloudflare">CF Tunnel</a>
-      <a href="#vpn">VPN方案</a>
-      <a href="#ddns_proxy">DDNS與代理</a>
-      <a href="#proxy_config">信任代理設定</a>
-      <a href="#hardening">資安硬規則</a>
-      <a href="#site_grade">案場級網路</a>
-      <a href="#troubleshoot">常見卡關</a>
-      <a href="#faq">常見問題</a>
+      <a href="#vpn">VPN plan</a>
+      <a href="#ddns_proxy">DDNS and proxy</a>
+      <a href="#proxy_config">Trust proxy settings</a>
+      <a href="#hardening">Hard rules for information security</a>
+      <a href="#site_grade">Case-level network</a>
+      <a href="#troubleshoot">Common stuck levels</a>
+      <a href="#faq">FAQ</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · 生態圈：HACS/Add-ons/遠端</a>
-      <a href="appendix_scenes_helpers_groups.html">B · 場景/輔助元件/群組</a>
-      <a href="appendix_hardware_install.html">C · 裝機前傳：硬體與 HAOS</a>
+      <a href="appendix_hacs_addons.html">A · Ecosystem: HACS/Add-ons/remote</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scene/auxiliary component/group</a>
+      <a href="appendix_hardware_install.html">C · Pre-installation: Hardware and HAOS</a>
     </div>
   </aside>
 
@@ -94,517 +94,517 @@
     <div class="callout i18n-pending"><strong>This chapter has not been translated yet.</strong> You are reading the original Chinese text. <a href="../ch21_network_remote.html" hreflang="zh-Hant">Open the Chinese version</a></div>
     <div class="chapter-header">
       <div class="kicker">Chapter 21</div>
-      <h1>網路與遠端連線實務</h1>
-      <p class="lead">在家裡連得上，出門就連不上；App 一離開 Wi-Fi 就轉圈圈；朋友叫你「開個 port 就好」但你隱約覺得怪怪的。這章從路由器的固定 IP 開始，把四條對外連線的路一條一條實作給你看，並把「絕對不能做」的那幾件事釘死。</p>
+      <h1>Network and remote connection practices</h1>
+      <p class="lead">You can connect at home, but not when you go out; the app will spin in circles as soon as you leave the Wi-Fi; your friend tells you to "just open a port" but you feel vaguely weird. This chapter starts with the fixed IP of the router, shows you the implementation of the four external connection routes one by one, and nails down the things that "absolutely cannot be done".</p>
     </div>
 
-    <section id="why" data-nav="為什麼要學">
-      <h2 data-icon="why">為什麼遠端連線是最容易做壞的一關</h2>
+    <section id="why" data-nav="Why should we learn">
+      <h2 data-icon="why">Why is remote connection the easiest thing to do wrong?</h2>
 
-      <p><a href="appendix_hacs_addons.html#remote">附錄 A</a> 已經把四條遠端路線並排比較過了，那一篇是「選哪條」。這一章是「選好之後，實際怎麼做、做壞會怎樣」。</p>
+      <p><a href="appendix_hacs_addons.html#remote">Appendix A</a> Having compared the four remote routes side by side, that article is “Which one to choose?” This chapter is "After making a choice, how to actually do it and what will happen if you do it wrong."</p>
 
-      <p>先講清楚這關特別的地方：前面二十章你做壞了，最慘就是燈不會亮、自動化不跑，關起門來自己難過。<strong>這一章做壞了，是你家的門開在網路上讓全世界看。</strong></p>
+      <p>Let me first explain what is special about this level: if you did something wrong in the first twenty chapters, the worst thing is that the lights will not turn on, the automation will not run, and you will feel sad behind closed doors.<strong>What went wrong in this chapter is that the door to your home is open for the whole world to see on the Internet.</strong></p>
 
-      <p>Home Assistant 裡面有什麼？你家每個房間有沒有人、門窗開關、攝影機畫面、電子鎖、你幾點出門幾點回家。這些東西如果被人拿到，跟鑰匙被複製沒兩樣。所以這章的順序是刻意的：<strong>先把區網弄穩，再談對外</strong>。很多人跳過第一步直接想「怎麼從外面連」，結果連家裡都時好時壞。</p>
+      <p>What’s inside Home Assistant? Is there anyone in each room of your house, door and window switches, camera images, electronic locks, what time do you go out and what time do you come home. If these things are obtained by others, it is no different than the keys being copied. So the order of this chapter is deliberate:<strong>First stabilize the district network, and then talk about external affairs</strong>. Many people skip the first step and think directly about "how to connect from the outside." As a result, even the home is in trouble.</p>
 
-      <p>讀完這章你會有這些能力：</p>
+      <p>After reading this chapter you will have these abilities:</p>
 
       <ul>
-        <li>在路由器上把 Home Assistant 主機的 IP 釘死，讓它永遠不會跑掉</li>
-        <li>看懂 <code>homeassistant.local</code> 為什麼有時候能用有時候不能用，並且知道不能用的時候該打什麼</li>
-        <li>從四條對外路線裡挑一條，並照著步驟做完</li>
-        <li>知道反向代理後面那兩行設定為什麼不設就登入不了</li>
-        <li>知道哪些事情<strong>永遠不要做</strong>，包含你在網路上一定會看到的那個「開 8123 port forward」教學</li>
+        <li>Pin the IP of the Home Assistant host on the router so it never runs away</li>
+        <li>Understand <code>homeassistant.local</code> Why sometimes it works and sometimes it doesn't, and you know what to do when it doesn't work.</li>
+        <li>Choose one of the four external routes and follow the steps to complete it</li>
+        <li>Do you know why you can’t log in if you don’t set the two lines after the reverse proxy?</li>
+        <li>know what things<strong>never do</strong>, including the "Open 8123 port forward" tutorial that you will definitely see on the Internet.</li>
       </ul>
 
-      <div class="callout warn"><strong>注意：</strong>Home Assistant 2026.8 版把網路相關設定<strong>整個搬進 UI</strong> 了，原本寫在 <code>configuration.yaml</code> 的 <code>http:</code> 區塊已經進入淘汰期。這章會以新的 UI 位置為主、舊的 YAML 寫法為輔。你的版本如果比 2026.8 舊，看到的畫面會不一樣，往下每一段都有註明。</div>
+      <div class="callout warn"><strong>Warning:</strong>Home Assistant 2026.8 version changes network-related settings<strong>Move the entire UI into</strong> , originally written in <code>configuration.yaml</code> of <code>http:</code> The block has entered the elimination period. This chapter will focus on the new UI location and the old YAML writing method as a supplement. If your version is older than 2026.8, the screen you see will be different. This is noted in each paragraph below.</div>
     </section>
 
-    <section id="lan_basics" data-nav="區網基礎">
-      <h2 data-icon="network">區網基礎：IP、DHCP，跟為什麼一定要固定</h2>
+    <section id="lan_basics" data-nav="District network basics">
+      <h2 data-icon="network">Basics of district network: IP, DHCP, and why they must be fixed</h2>
 
-      <p>用「大樓門牌」來想這件事最快。</p>
+      <p>It’s fastest to think of it in terms of “building door number”.</p>
 
-      <p>你家的路由器就是大樓管理員。每一台連上你家 Wi-Fi 或網路線的裝置 —— 手機、筆電、電視、Home Assistant 主機 —— 管理員都會發一個門牌號碼給它，長得像 <code>192.168.1.37</code>。這個門牌就是 <strong>IP 位址（IP Address）</strong>。</p>
+      <p>Your router is the building administrator. For every device connected to your home's Wi-Fi or network cable—your phone, your laptop, your TV, your Home Assistant console—the administrator will issue it a house number that looks like <code>192.168.1.37</code>. This is the house number <strong>IP Address</strong>.</p>
 
-      <p>發門牌這件事有個名字叫 <strong>DHCP</strong>。它是自動的，你什麼都不用做，插上去就有。方便，但有個要命的特性：<strong>門牌是用租的，不是買的。</strong></p>
+      <p>There is a name for issuing house numbers. <strong>DHCP</strong>. It's automatic, you don't have to do anything, just plug it in and it goes. Convenient, but has a fatal feature:<strong>House numbers are for renting, not buying.</strong></p>
 
-      <p>租約會到期。你的 Home Assistant 主機今天是 <code>192.168.1.37</code>，跳電之後重開，管理員可能發給它 <code>192.168.1.52</code>，而 <code>.37</code> 被發給了你新買的掃地機器人。</p>
+      <p>The lease will expire. Your Home Assistant console is today <code>192.168.1.37</code>, restart after a power trip, the administrator may send it <code>192.168.1.52</code>, while <code>.37</code> You were given a new sweeping robot.</p>
 
-      <h3>門牌跑掉會壞掉哪些東西</h3>
+      <h3>What will be damaged if the house number is lost?</h3>
 
       <table class="data-table">
         <thead>
-          <tr><th>會壞掉的東西</th><th>症狀</th></tr>
+          <tr><th>Something that will break</th><th>Symptoms</th></tr>
         </thead>
         <tbody>
-          <tr><td>你存在瀏覽器書籤的網址</td><td>打開就轉圈圈，最後跳「無法連線」</td></tr>
-          <tr><td>手機 App 設定的內部網址</td><td>在家反而連不上，出門用雲端卻正常，超反直覺</td></tr>
-          <tr><td>路由器上的 port forward 規則</td><td>規則還指著舊門牌，等於指到別人家</td></tr>
-          <tr><td>反向代理設定</td><td>代理找不到後端，網頁直接 502</td></tr>
-          <tr><td>用 IP 綁定的裝置整合</td><td>印表機、NAS、攝影機整排變成「無法使用」</td></tr>
-          <tr><td>你自己寫的自動化裡的網址</td><td>靜靜地失敗，而且不會跳錯誤給你看</td></tr>
+          <tr><td>URLs that you have bookmarked in your browser</td><td>When you open it, it will spin in circles, and finally it will say "Unable to connect".</td></tr>
+          <tr><td>Internal URL set by the mobile app</td><td>I can't connect at home, but when I go out, I can use the cloud normally. It's super counter-intuitive.</td></tr>
+          <tr><td>port forward rules on the router</td><td>The rules also point to the old house number, which is equivalent to pointing to someone else's house.</td></tr>
+          <tr><td>Reverse proxy settings</td><td>The proxy cannot find the backend, and the web page directly responds with 502</td></tr>
+          <tr><td>Device integration using IP binding</td><td>The entire row of printers, NAS, and cameras became "unusable"</td></tr>
+          <tr><td>The URL in the automation you wrote yourself</td><td>Fail silently without showing you errors</td></tr>
         </tbody>
       </table>
 
-      <p>所以規則很簡單：<strong>Home Assistant 主機的 IP 一定要固定。</strong>這不是進階技巧，這是必做的第零步。</p>
+      <p>So the rules are simple:<strong>The IP of the Home Assistant host must be fixed.</strong>This is not an advanced technique, this is step zero that must be done.</p>
 
-      <h3>固定 IP 有兩種做法，選對的那種</h3>
+      <h3>There are two ways to fix IP, choose the right one</h3>
 
       <table class="data-table">
         <thead>
-          <tr><th>做法</th><th>設定在哪</th><th>評價</th></tr>
+          <tr><th>practice</th><th>Where is the setting</th><th>Evaluation</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>DHCP 固定位址保留</strong><br>（DHCP Reservation）</td><td>路由器</td><td><strong>推薦。</strong>管理員記住「這台機器永遠給這個門牌」，機器自己什麼都不用改，換 SD 卡、重灌都還在</td></tr>
-          <tr><td><strong>裝置端靜態 IP</strong><br>（Static IP）</td><td>Home Assistant 主機</td><td>能用，但你得自己填閘道、遮罩、DNS，填錯一格機器就從網路上消失，要接螢幕鍵盤救。而且路由器不知道你佔了這個號碼，可能發給別人造成衝突</td></tr>
+          <tr><td><strong>DHCP fixed address reservation</strong><br> (DHCP Reservation)</td><td>router</td><td><strong>Recommended.</strong>The administrator remembers "this machine will always have this house number". The machine itself does not need to change anything. It will still be there even if the SD card is replaced or the machine is refilled.</td></tr>
+          <tr><td><strong>Device side static IP</strong><br> (Static IP)</td><td>Home Assistant host</td><td>It works, but you have to fill in the gateway, mask, and DNS yourself. If you fill in one wrong box, the machine will disappear from the Internet. You need to use the on-screen keyboard to save it. Moreover, the router does not know that you have occupied this number and may send it to others, causing conflicts.</td></tr>
         </tbody>
       </table>
 
-      <div class="callout tip"><strong>提示：</strong>兩種都做也可以，但要確保填的是同一個 IP，而且那個 IP 要落在路由器的 DHCP 發放範圍<strong>之外</strong>（或者做成保留）。不然遲早會撞號。新手就乖乖只做路由器那邊的保留。</div>
+      <div class="callout tip"><strong>Tip:</strong>You can do both, but make sure you fill in the same IP, and that IP must fall within the DHCP distribution range of the router.<strong>outside</strong>(Or make it a reservation). Otherwise, sooner or later there will be a collision. As a novice, just keep the settings on the router side.</div>
 
-      <h3>順手把 MAC 位址學起來</h3>
+      <h3>Learn MAC address easily</h3>
 
-      <p>要在路由器上做保留，你得先讓路由器認得「哪一台是 Home Assistant」。認的方式是 <strong>MAC 位址（MAC Address）</strong> —— 每張網路卡出廠就刻死的一組編號，長得像 <code>DC:A6:32:1B:4E:F0</code>。</p>
+      <p>To make a reservation on the router, you must first let the router recognize "which one is Home Assistant." The way to recognize it is <strong>MAC Address</strong> —A set of numbers that are engraved into each network card at the factory. They look like <code>DC:A6:32:1B:4E:F0</code>.</p>
 
-      <p>門牌會換，MAC 不會換。所以路由器上的保留規則其實是在說：「看到 MAC 是這串的傢伙來要門牌，一律給它 <code>192.168.1.37</code>。」</p>
+      <p>The house number will change, but the MAC will not. So the reservation rule on the router actually says: "Whenever the guy who sees this MAC string comes and asks for the house number, give it to him. <code>192.168.1.37</code>.”</p>
     </section>
 
-    <section id="steps" data-nav="動手固定IP">
-      <h2 data-icon="steps">動手做：把主機 IP 釘死，並確認網路頁</h2>
+    <section id="steps" data-nav="Hands-on fixed IP">
+      <h2 data-icon="steps">Do it yourself: Pin the host IP and confirm the network page</h2>
 
       <ol class="steps">
         <li>
-          <h3>在 Home Assistant 裡找出主機的 IP 和 MAC</h3>
-          <p>走 <strong>設定 → 系統 → 網路</strong>。這一頁會列出你主機的網路介面（有線、無線）和目前拿到的 IP 位址。把 IP 抄下來。</p>
-          <p>MAC 位址不一定會顯示在這頁，<strong>最好找的地方是路由器的連線裝置清單</strong> —— 打開路由器管理頁，找名字含 <code>homeassistant</code>、或 IP 跟你剛抄下來那串一樣的那一台，旁邊就會列出 MAC。這樣還有一個好處：等一下要做保留，本來就得在路由器上做，你人已經在那裡了。</p>
+          <h3>Find out the host’s IP and MAC in Home Assistant</h3>
+          <p>go <strong>Settings → System → Network</strong>. This page will list your host's network interface (wired, wireless) and the IP address it currently has. Copy the IP.</p>
+          <p>The MAC address may not be displayed on this page.<strong>The best place to look is in the router's list of connected devices.</strong> —Open the router management page and look for the name containing <code>homeassistant</code>, or the one whose IP is the same as the one you just copied down, the MAC will be listed next to it. This also has another advantage: if you want to make a reservation later, you have to do it on the router, and you are already there.</p>
         </li>
         <li>
-          <h3>登入路由器管理頁</h3>
-          <p>路由器的管理網址通常是 <code>192.168.1.1</code> 或 <code>192.168.0.1</code>，也常常印在機器底下的貼紙上。帳密同樣在貼紙上 —— 如果你從來沒改過那組預設密碼，<strong>現在就改</strong>，這是後面所有資安措施的地基。</p>
+          <h3>Log in to the router management page</h3>
+          <p>The router's management URL is usually <code>192.168.1.1</code> or <code>192.168.0.1</code>, is also often printed on a sticker under the machine. The password is also on the sticker - if you have never changed the default password,<strong>Change it now</strong>, which is the foundation for all subsequent information security measures.</p>
         </li>
         <li>
-          <h3>找到 DHCP 保留的設定頁</h3>
-          <p>每家路由器叫法都不一樣，這是最卡的一步。常見的名字有：<strong>DHCP 保留位址</strong>、<strong>DHCP Reservation</strong>、<strong>Address Reservation</strong>、<strong>靜態 DHCP</strong>、<strong>Static Lease</strong>、<strong>固定分配</strong>。位置通常在「區域網路 / LAN」或「進階設定 → DHCP 伺服器」底下。</p>
-          <p>找不到就用你的路由器型號去搜「型號 + DHCP 保留」。這個功能連最便宜的家用機都有，只是藏得深。</p>
+          <h3>Find the DHCP reserved settings page</h3>
+          <p>Every router has a different name, and this is the trickiest step. Common names include:<strong>DHCP reserved address</strong>, <strong>DHCP Reservation</strong>, <strong>Address Reservation</strong>, <strong>Static DHCP</strong>, <strong>Static Lease</strong>, <strong>fixed allocation</strong>. The location is usually under "Local Area Network/LAN" or "Advanced Settings → DHCP Server".</p>
+          <p>If you can't find it, use your router model to search for "Model + DHCP Reserved". This feature is available even on the cheapest home computers, but it’s just hidden deep inside.</p>
         </li>
         <li>
-          <h3>新增一筆保留</h3>
-          <p>填入第 1 步抄下來的 MAC 位址，指定你要給的 IP。建議挑一個好記又不容易撞到的號碼，例如 <code>192.168.1.10</code>。備註欄寫上「Home Assistant」，三個月後的你會感謝現在的你。</p>
-          <p>存檔。有些路由器需要重開才生效。</p>
+          <h3>Add a new reservation</h3>
+          <p>Fill in the MAC address copied in step 1 and specify the IP you want to give. It is recommended to choose a number that is easy to remember and difficult to bump into, for example <code>192.168.1.10</code>. Write "Home Assistant" in the remarks column, and you will thank you now three months later.</p>
+          <p>Archive. Some routers need to be restarted to take effect.</p>
         </li>
         <li>
-          <h3>讓主機重新拿一次號碼</h3>
-          <p>保留設好之後，主機不會馬上換過去，要等舊租約到期。最快的方式是把 Home Assistant 主機重開一次（<strong>設定 → 系統</strong> 右上角的電源選單 → 重新啟動系統），或把網路線拔插一下。</p>
+          <h3>Let the host get the number again</h3>
+          <p>After the reservation is set, the host will not be changed immediately until the old lease expires. The fastest way is to restart the Home Assistant host (<strong>Settings → System</strong> Power menu in the upper right corner → Restart system), or unplug the network cable.</p>
         </li>
         <li>
-          <h3>驗收</h3>
-          <p>重開完，回到 <strong>設定 → 系統 → 網路</strong>，確認顯示的 IP 就是你指定的那一個。然後用新 IP 打開網頁，能正常登入就成功了。把這個網址設成書籤，取代你原本那個。</p>
+          <h3>Acceptance</h3>
+          <p>After reopening, return to <strong>Settings → System → Network</strong>, confirm that the IP displayed is the one you specified. Then use the new IP to open the webpage, and you can log in normally and it will be successful. Bookmark this URL instead of your original one.</p>
         </li>
         <li>
-          <h3>把內部網址填進去</h3>
-          <p>同樣在 <strong>設定 → 系統 → 網路</strong> 這一頁，有「內部網址（Internal URL）」與「外部網址（External URL）」兩格。內部網址填你剛剛釘好的那個，例如 <code>http://192.168.1.10:8123</code>。</p>
-          <p>這兩格<strong>只要填到連接埠就好，後面不要再接路徑</strong>。填 <code>http://192.168.1.10:8123/lovelace</code> 這種寫法會讓後面產生連結的功能接出奇怪的網址，是常見的自找麻煩。</p>
+          <h3>Fill in the internal URL</h3>
+          <p>Also in <strong>Settings → System → Network</strong> This page has two spaces: "Internal URL" and "External URL". Fill in the internal URL with the one you just pinned, for example <code>http://192.168.1.10:8123</code>.</p>
+          <p>These two grids<strong>Just fill in the connection port and don’t add the path later.</strong>. fill in <code>http://192.168.1.10:8123/lovelace</code> This way of writing will cause the subsequent link generation function to receive a strange URL, which is a common cause of trouble.</p>
         </li>
       </ol>
 
-      <div class="callout"><strong>觀念：</strong>這兩格為什麼重要？因為 Home Assistant 產生通知連結、把攝影機畫面推給手機、或告訴 App「你該連去哪」的時候，用的就是這兩格。填錯的話症狀很怪：功能都在，就是點通知進不去。</div>
+      <div class="callout"><strong>Concept:</strong>Why are these two boxes important? Because Home Assistant uses these two boxes when it generates notification links, pushes camera images to the phone, or tells the app "where you should go." If you fill it in incorrectly, the symptoms will be very strange: all the functions are there, but you can’t access the notification when you click on it.</div>
     </section>
 
-    <section id="mdns_port" data-nav="本機網址與埠">
-      <h2 data-icon="url">homeassistant.local 是什麼，還有 8123 這個號碼</h2>
+    <section id="mdns_port" data-nav="Local URL and port">
+      <h2 data-icon="url">What is homeassistant.local and the number 8123?</h2>
 
-      <h3>.local 網址背後的魔法叫 mDNS</h3>
+      <h3>The magic behind .local URLs is called mDNS</h3>
 
-      <p>你第一次裝 Home Assistant 的時候，教學叫你打 <code>homeassistant.local:8123</code>，然後它就通了。這件事其實有點神奇 —— 你家又沒有 DNS 伺服器，誰告訴你電腦這串字要去哪？</p>
+      <p>When you first installed Home Assistant, the tutorial asked you to <code>homeassistant.local:8123</code>, and then it works. This thing is actually a bit magical - you don't have a DNS server at home, who tells you where this string of characters on your computer is going?</p>
 
-      <p>答案是 <strong>mDNS（Multicast DNS，多播 DNS）</strong>。運作方式白話講就是<strong>在教室裡大喊</strong>：</p>
+      <p>The answer is <strong>mDNS (Multicast DNS, multicast DNS)</strong>. In plain English, the way it works is<strong>shouting in the classroom</strong>: </p>
 
       <ol class="steps">
         <li>
-          <h3>你的電腦對全區網廣播</h3>
-          <p>「有沒有人叫 homeassistant？」這句話用多播的方式送出去，同一個網段裡每台機器都聽得到。</p>
+          <h3>Your computer broadcasts to the entire district network</h3>
+          <p>"Is there anyone called HomeAssistant?" This sentence is sent out in a multicast manner, and every machine in the same network segment can hear it.</p>
         </li>
         <li>
-          <h3>Home Assistant 主機舉手</h3>
-          <p>「我是，我在 192.168.1.10。」</p>
+          <h3>Home Assistant host raises hand</h3>
+          <p>"I am, I'm at 192.168.1.10."</p>
         </li>
         <li>
-          <h3>你的電腦記下來，直接連過去</h3>
-          <p>整個過程不需要任何伺服器，全靠喊話。Apple 那邊叫這套 Bonjour，Linux 那邊的實作叫 Avahi，其實是同一件事。</p>
+          <h3>Write it down on your computer and connect directly.</h3>
+          <p>The whole process does not require any server, it all relies on shouting. The Apple side calls this Bonjour, and the Linux implementation is called Avahi, which is actually the same thing.</p>
         </li>
       </ol>
 
-      <h3>為什麼它常常失效</h3>
+      <h3>why it often fails</h3>
 
-      <p>因為「喊話」有很多種方式會被擋掉：</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>失效原因</th><th>怎麼判斷</th><th>解法</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>你和主機不在同一個網段（VLAN 或訪客網路）</td><td>手機接主要 Wi-Fi 可以，接訪客 Wi-Fi 就不行</td><td>用 IP 直連，或在路由器上開 mDNS 轉發</td></tr>
-          <tr><td>路由器或交換器把多播流量擋掉了</td><td>全家都連不到 .local，但 IP 直連正常</td><td>找路由器裡 IGMP Snooping、Multicast、mDNS 的設定，或直接改用 IP</td></tr>
-          <tr><td>裝置的 Wi-Fi 開了「用戶端隔離」</td><td>手機連得到外網，連不到家裡任何一台機器</td><td>關掉路由器的 AP Isolation / Client Isolation</td></tr>
-          <tr><td>作業系統或瀏覽器不支援</td><td>某些 Android 版本、部分企業網路環境</td><td>用 IP</td></tr>
-          <tr><td>你人在外面</td><td>離開家就一定不通</td><td>mDNS <strong>本來就只在區網有效</strong>，這不是壞掉</td></tr>
-          <tr><td>網路上有兩台都叫 homeassistant</td><td>連過去是別台機器</td><td>把其中一台改名</td></tr>
-        </tbody>
-      </table>
-
-      <div class="callout warn"><strong>注意：</strong>最重要的一句話 —— <code>homeassistant.local</code> <strong>在外網永遠不會通</strong>。它不是你的公開網址，也不能拿去設 port forward。看到有人問「我在外面打 homeassistant.local 連不到」，答案就是這個。</div>
-
-      <h3>8123 這個號碼，跟 2026.8 之後的變化</h3>
-
-      <p>如果 IP 是門牌，<strong>連接埠（Port）就是門牌後面的分機號碼</strong>。同一台機器可以同時跑很多服務，靠分機號碼區分誰是誰。Home Assistant 歷來用的號碼是 <strong>8123</strong>，所以網址才要寫成 <code>http://192.168.1.10:8123</code>。</p>
-
-      <p>但這件事在 2026.8 版有變動，而且改得很值得知道：</p>
+      <p>Because "shouting" can be blocked in many ways:</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>你的情況</th><th>預設連接埠</th><th>網址長怎樣</th></tr>
+          <tr><th>Failure reason</th><th>How to judge</th><th>Solution</th></tr>
         </thead>
         <tbody>
-          <tr><td>2026.8 之後<strong>全新安裝</strong>的 Home Assistant OS</td><td><code>80</code></td><td><code>http://homeassistant.local</code>（後面不用加號碼）</td></tr>
-          <tr><td>2026.8 之前就在跑的系統，升級上來</td><td>維持 <code>8123</code></td><td><code>http://homeassistant.local:8123</code></td></tr>
-          <tr><td>Container / Docker 安裝</td><td><code>8123</code></td><td><code>http://192.168.1.10:8123</code></td></tr>
+          <tr><td>You and the host are not on the same network segment (VLAN or guest network)</td><td>The mobile phone can be connected to the main Wi-Fi, but not the guest Wi-Fi.</td><td>Use IP direct connection, or enable mDNS forwarding on the router</td></tr>
+          <tr><td>A router or switch is blocking multicast traffic</td><td>The whole family cannot connect to .local, but the direct IP connection is normal</td><td>Find the settings for IGMP Snooping, Multicast, and mDNS in the router, or directly switch to IP</td></tr>
+          <tr><td>The device's Wi-Fi has "Client Isolation" turned on</td><td>The mobile phone can connect to the external network, but cannot connect to any machine at home.</td><td>Turn off the router’s AP Isolation / Client Isolation</td></tr>
+          <tr><td>The operating system or browser does not support it</td><td>Some Android versions, some enterprise network environments</td><td>Use IP</td></tr>
+          <tr><td>You are outside</td><td>It will definitely be inaccessible if you leave home</td><td>mDNS <strong>Originally only valid in the district network</strong>, this is not broken</td></tr>
+          <tr><td>There are two devices on the Internet called homeassistant.</td><td>Even in the past it was another machine</td><td>Rename one of them</td></tr>
         </tbody>
       </table>
 
-      <p>官方在改版說明裡講得很白：<strong>已經在跑的系統什麼都不會變，你也不需要做任何事，這只影響全新安裝的 Home Assistant OS。</strong>換句話說，網路上絕大多數教學裡的 <code>:8123</code> 對你多半還是對的。</p>
+      <div class="callout warn"><strong>Warning:</strong>The most important sentence— <code>homeassistant.local</code> <strong>It will never work on the external network</strong>. It is not your public URL and cannot be used to set up port forward. I saw someone asking "I can't connect to homeassistant.local when I call it outside." The answer is this.</div>
 
-      <p>為什麼要改？因為 <code>80</code> 是網頁的預設號碼，瀏覽器會自動補，網址就能少打一截 —— 純粹是為了讓新手少一個門檻。</p>
+      <h3>The number 8123, changes after 2026.8</h3>
 
-      <div class="callout tip"><strong>提示：</strong>2026.8 之後你可以自己在 <strong>設定 → 系統 → 網路</strong> 改連接埠。官方在這裡放了一個很貼心的保險：<strong>改完之後系統會等你確認「還連得上嗎」，如果五分鐘內你沒確認，它就當作出事了，自動把舊設定放回去並重新啟動。</strong>所以就算改壞了也不會把自己鎖在門外。</div>
+      <p>If the IP is a house number,<strong>The port is the extension number behind the house number.</strong>. The same machine can run many services at the same time, and the extension number is used to distinguish who is who. The number that Home Assistant historically uses is <strong>8123</strong>, so the URL must be written as <code>http://192.168.1.10:8123</code>.</p>
+
+      <p>But this matter has changed in version 2026.8, and the changes are worth knowing:</p>
+
+      <table class="data-table">
+        <thead>
+          <tr><th>your situation</th><th>Default port</th><th>How long is the URL?</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>After 2026.8<strong>fresh install</strong>Home Assistant OS</td><td><code>80</code></td><td><code>http://homeassistant.local</code>(No need to add the number later)</td></tr>
+          <tr><td>The system that was running before 2026.8 was upgraded.</td><td>maintain <code>8123</code></td><td><code>http://homeassistant.local:8123</code></td></tr>
+          <tr><td>Container/Docker installation</td><td><code>8123</code></td><td><code>http://192.168.1.10:8123</code></td></tr>
+        </tbody>
+      </table>
+
+      <p>The official statement on the revision is very clear:<strong>Nothing will change on systems that are already running and you don’t need to do anything. This only affects fresh installations of Home Assistant OS.</strong>In other words, most teachings on the Internet <code>:8123</code> It's probably right for you.</p>
+
+      <p>Why change? because <code>80</code> It is the default number of the web page, and the browser will automatically fill it in, so the URL can be shortened - purely to reduce the threshold for novices.</p>
+
+      <div class="callout tip"><strong>Tip:</strong>After 2026.8 you can <strong>Settings → System → Network</strong> Change the connection port. The official has put a very considerate insurance policy here:<strong>After making the changes, the system will wait for you to confirm "Is it still connected?" If you don't confirm within five minutes, it will treat it as something wrong and automatically put back the old settings and restart.</strong>So even if you change for the worse, you won't lock yourself out.</div>
     </section>
 
-    <section id="decision" data-nav="哪條適合你">
-      <h2 data-icon="compare">四條路，哪一條適合你</h2>
+    <section id="decision" data-nav="Which one suits you">
+      <h2 data-icon="compare">Four roads, which one is suitable for you?</h2>
 
-      <p><a href="appendix_hacs_addons.html#remote">附錄 A</a> 已經介紹過這四條路各是什麼，這裡不重講，直接給你決策用的對照表。看完挑一條，然後跳到對應的那一節動手。</p>
+      <p><a href="appendix_hacs_addons.html#remote">Appendix A</a> I have already introduced what each of these four paths is, so I won’t repeat them here. I will directly give you a comparison table for decision-making. After reading, pick one, and then jump to the corresponding section to start.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>比較項目</th><th>Nabu Casa</th><th>Cloudflare Tunnel</th><th>VPN<br>(Tailscale / WireGuard)</th><th>DDNS + 反向代理</th></tr>
+          <tr><th>Compare items</th><th>Nabu Casa</th><th>Cloudflare Tunnel</th><th>VPN<br>(Tailscale / WireGuard)</th><th>DDNS + reverse proxy</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>費用</strong></td><td>美國 US$6.50/月 或 US$65/年；歐盟 €7.50/月、€75/年；英國 £6.50/月、£65/年；加拿大 CAD 8.70/月、CAD 87/年；其他地區 US$6.50/月。註冊時有一個月免費試用</td><td>基本用量免費，但需自備網域（網域每年約數百元）</td><td>Tailscale 個人方案免費額度就夠家用；自架 WireGuard 免費</td><td>DDNS 有免費方案，憑證免費，成本是你的時間</td></tr>
-          <tr><td><strong>難度</strong></td><td>最低，開一個開關</td><td>中，要會設 Cloudflare 後台</td><td>Tailscale 低；自架 WireGuard 中高</td><td><strong>最高</strong>，要動路由器、DNS、憑證、代理四件事</td></tr>
-          <tr><td><strong>資安</strong></td><td>好。官方維護，不開任何 port</td><td>好。不開任何 port，且可疊 Cloudflare 的存取控管</td><td><strong>最好</strong>。介面根本不對公網開放，只有你的裝置進得來</td><td>看你設定功力。做對很好，做錯是全章最危險的一條</td></tr>
-          <tr><td><strong>怕不怕 CGNAT</strong></td><td>不怕</td><td>不怕</td><td>Tailscale 不怕；<strong>自架 WireGuard 會死</strong></td><td><strong>會死</strong>，CGNAT 下 DDNS 完全無效</td></tr>
-          <tr><td><strong>語音助理串接</strong><br>(Alexa / Google)</td><td><strong>直接支援</strong>，訂閱內含</td><td>技術上可行但要自己接雲端服務，麻煩</td><td><strong>不行</strong>。語音雲端不在你的 VPN 裡面</td><td>可行但要自己接雲端服務，麻煩</td></tr>
-          <tr><td><strong>分享給家人</strong></td><td>給網址加帳號就好</td><td>給網址加帳號就好</td><td>對方要裝 VPN 並加入你的網路，長輩會卡住</td><td>給網址加帳號就好</td></tr>
-          <tr><td><strong>維護成本</strong></td><td>幾乎零</td><td>低</td><td>低</td><td>高。憑證會到期、IP 會變、代理會壞</td></tr>
+          <tr><td><strong>cost</strong></td><td>US$6.50/month or US$65/year; EU €7.50/month, €75/year; UK £6.50/month, £65/year; Canada CAD 8.70/month, CAD 87/year; other regions US$6.50/month. Get a one-month free trial when you sign up</td><td>Basic usage is free, but you need to bring your own domain (the domain costs about several hundred yuan per year)</td><td>The free quota of Tailscale’s personal plan is enough for home use; self-installed WireGuard is free</td><td>DDNS has a free plan, the certificate is free, and the cost is your time</td></tr>
+          <tr><td><strong>difficulty</strong></td><td>lowest, turn on a switch</td><td>, you need to be able to set up the Cloudflare backend</td><td>Tailscale low; self-installed WireGuard medium high</td><td><strong>highest</strong>, four things need to be done: router, DNS, certificate, and proxy.</td></tr>
+          <tr><td><strong>Information security</strong></td><td>OK. Official maintenance, no ports are opened</td><td>OK. No ports are opened, and Cloudflare’s access control can be stacked</td><td><strong>best</strong>. The interface is not open to the public network at all, only your device can access it.</td><td>It depends on your setting skills. Doing it right is good, but doing it wrong is the most dangerous thing in the whole chapter.</td></tr>
+          <tr><td><strong>Are you afraid of CGNAT?</strong></td><td>Not afraid</td><td>Not afraid</td><td>Tailscale is not afraid;<strong>Self-installed WireGuard will die</strong></td><td><strong>Will die</strong>, DDNS is completely invalid under CGNAT</td></tr>
+          <tr><td><strong>Voice assistant serial connection</strong><br>(Alexa / Google)</td><td><strong>direct support</strong>, included in subscription</td><td>Technically possible, but you have to connect to the cloud service yourself, which is troublesome</td><td><strong>No</strong>. Voice Cloud is not inside your VPN</td><td>It's feasible, but you have to connect to the cloud service yourself, which is troublesome</td></tr>
+          <tr><td><strong>share with family</strong></td><td>Just add an account to the website</td><td>Just add an account to the website</td><td>If the other party needs to install a VPN and join your network, the elder will be stuck.</td><td>Just add an account to the website</td></tr>
+          <tr><td><strong>Maintenance cost</strong></td><td>almost zero</td><td>low</td><td>low</td><td>high. Credentials will expire, IPs will change, and proxies will break.</td></tr>
         </tbody>
       </table>
 
-      <h3>三十秒選好</h3>
+      <h3>Choose in thirty seconds</h3>
 
       <ul>
-        <li><strong>不想折騰、要用 Alexa 或 Google 語音、想支持官方開發</strong> → Nabu Casa。這也是官方文件自己標為「對多數人最簡單也最安全」的選項。</li>
-        <li><strong>只有自己和伴侶用、不需要語音助理、想省錢又要安全</strong> → Tailscale。這是安全性最高的一條。</li>
-        <li><strong>已經有網域、想要漂亮的自訂網址、也想給家人用</strong> → Cloudflare Tunnel。</li>
-        <li><strong>你想學網路、有固定或準固定的對外 IP、願意花一個週末</strong> → DDNS + 反向代理。</li>
+        <li><strong>Don’t want to bother, want to use Alexa or Google Voice, and want to support official development</strong> → Nabu Casa. This is also the option that the official document itself labels as "the simplest and safest for most people."</li>
+        <li><strong>Only for yourself and your partner, no need for voice assistant, want to save money and be safe</strong> → Tailscale. This is the most secure one.</li>
+        <li><strong>Already have a domain, want a beautiful customized website, and want to use it for family members</strong> → Cloudflare Tunnel.</li>
+        <li><strong>You want to learn networking, have a fixed or quasi-fixed external IP, and are willing to spend a weekend</strong> → DDNS + reverse proxy.</li>
       </ul>
 
-      <div class="callout"><strong>觀念：</strong>這四條不是互斥的。很常見的組合是「Nabu Casa 給家人日常用 + Tailscale 給自己維護時用」，兩條同時開著沒有任何問題。</div>
+      <div class="callout"><strong>Concept:</strong>These four are not mutually exclusive. A very common combination is "Nabu Casa for daily use by the family + Tailscale for self-maintenance". There is no problem if both are turned on at the same time.</div>
     </section>
 
     <section id="nabu_casa" data-nav="Nabu Casa">
-      <h2 data-icon="remote">路線一：Home Assistant Cloud（Nabu Casa）</h2>
+      <h2 data-icon="remote">Route 1: Home Assistant Cloud (Nabu Casa)</h2>
 
-      <p>這是官方自己營運的訂閱服務，訂閱費直接回頭養 Home Assistant、ESPHome、Z-Wave JS 這些專案的開發。所以它同時是「最省事的方案」和「最直接的贊助方式」。</p>
+      <p>This is an official subscription service operated by itself. The subscription fee goes directly back to support the development of projects such as Home Assistant, ESPHome, and Z-Wave JS. Therefore, it is at the same time “the easiest solution” and “the most direct way to sponsor”.</p>
 
-      <h3>它幫你做了什麼</h3>
+      <h3>what did it do for you</h3>
 
-      <p>你的主機主動往外跟 Nabu Casa 的伺服器建立一條連線，之後所有外面來的請求都走這條既有的連線進來。<strong>你的路由器完全不用開任何洞</strong> —— 這就是為什麼它不怕 CGNAT、也不怕你家 IP 天天在變。</p>
+      <p>Your host actively establishes a connection with Nabu Casa's server, and all subsequent requests from the outside come in through this existing connection.<strong>There is no need to make any holes in your router</strong> —This is why it is not afraid of CGNAT or your IP changing every day.</p>
 
-      <h3>實作步驟</h3>
+      <h3>Implementation steps</h3>
 
       <ol class="steps">
         <li>
-          <h3>找到雲端設定</h3>
-          <p>走 <strong>設定 → 系統 → 網路</strong>，在「Home Assistant 網址」底下的<strong>網際網路（Internet）</strong>那一欄，把「使用 Home Assistant Cloud（Use Home Assistant Cloud）」打開。另一個入口是 <strong>設定 → Home Assistant Cloud</strong>，兩邊都能到同一個地方，以你畫面上有的那個為準。</p>
+          <h3>Find cloud settings</h3>
+          <p>go <strong>Settings → System → Network</strong>, under "Home Assistant URL"<strong>Internet</strong>In that column, turn on "Use Home Assistant Cloud". Another entrance is <strong>Settings → Home Assistant Cloud</strong>, both sides can go to the same place, whichever is on your screen.</p>
         </li>
         <li>
-          <h3>註冊或登入帳號</h3>
-          <p>用 email 註冊一個 Nabu Casa 帳號。<strong>這跟你登入 Home Assistant 的帳號是兩回事</strong>，別搞混。註冊時可以選「開始一個月免費試用」，不用先付錢。</p>
+          <h3>Register or log in to an account</h3>
+          <p>Register a Nabu Casa account using email.<strong>This is different from the account you use to log into Home Assistant.</strong>, don’t get confused. When registering, you can choose "Start a one-month free trial" without paying upfront.</p>
         </li>
         <li>
-          <h3>打開遠端連線開關</h3>
-          <p>登入之後把遠端控制的開關打開。系統會配一組固定的網址給你，格式是一長串代碼加上 <code>.ui.nabu.casa</code>，例如 <code>https://abcd1234-ef56-7890-abcd-ef1234567890.ui.nabu.casa</code>。</p>
-          <p>醜歸醜，但它是 HTTPS、是唯一的、而且不會變。</p>
+          <h3>Turn on the remote connection switch</h3>
+          <p>After logging in, turn on the remote control switch. The system will allocate a fixed set of URLs to you. The format is a long string of codes plus <code>.ui.nabu.casa</code>, for example <code>https://abcd1234-ef56-7890-abcd-ef1234567890.ui.nabu.casa</code>.</p>
+          <p>It's ugly, but it's HTTPS, it's unique, and it won't change.</p>
         </li>
         <li>
-          <h3>把網址存進手機 App</h3>
-          <p>打開 Companion App（<a href="ch7_notifications.html">第 7 章</a>裝過的那個），到 App 的設定裡把這個網址填進「外部網址」。內部網址維持你在區網的 IP。App 會自己判斷現在該用哪一個。</p>
+          <h3>Save the URL into the mobile app</h3>
+          <p>Open the Companion App (<a href="ch7_notifications.html">Chapter 7</a>The one that has been installed), go to the App settings and fill this URL into the "External URL". The internal URL maintains your IP on the local network. The app will decide which one to use now.</p>
         </li>
         <li>
-          <h3>測試</h3>
-          <p>把手機 Wi-Fi 關掉，只用行動網路，打開 App。能進去就成功了。</p>
+          <h3>test</h3>
+          <p>Turn off your phone's Wi-Fi, use only the mobile network, and open the app. If you can get in, you will be successful.</p>
         </li>
       </ol>
 
-      <div class="callout warn"><strong>注意：</strong>官方文件有一條很容易踩的說明：<strong>透過 Home Assistant Cloud 進來的連線，在系統看來 IP 全部都是 <code>127.0.0.1</code>。</strong>這代表後面要講的「IP 封鎖」功能對雲端連線幾乎沒有鑑別力 —— 封了一個等於封掉全部雲端使用者。這也是為什麼用 Nabu Casa 的人<strong>更要靠 MFA 而不是靠 IP 封鎖</strong>。</div>
+      <div class="callout warn"><strong>Warning:</strong>The official document has an easy-to-follow explanation:<strong>For connections coming through Home Assistant Cloud, all IP addresses from the system’s perspective are <code>127.0.0.1</code>.</strong>This means that the "IP Blocking" function to be discussed later has little ability to identify cloud connections - blocking one is equivalent to blocking all cloud users. This is why people who use Nabu Casa<strong>Rely on MFA more than IP blocking</strong>.</div>
 
-      <div class="callout tip"><strong>提示：</strong>如果你有自己的網域，官方支援把預設網址換成 <code>home.你的網域.com</code> 這種自訂網址。這功能需要 Home Assistant 2023.9.0 以上版本，設定方式是在 Nabu Casa 後台加上，並到你的 DNS 服務商加一筆對應紀錄。</div>
+      <div class="callout tip"><strong>Tip:</strong>If you have your own domain, official support is to change the default URL to <code>home.yourdomain.com</code> This kind of custom URL. This function requires Home Assistant 2023.9.0 or above. The setting method is to add it in the Nabu Casa backend and add a corresponding record to your DNS service provider.</div>
     </section>
 
     <section id="cloudflare" data-nav="CF Tunnel">
-      <h2 data-icon="addons">路線二：Cloudflare Tunnel</h2>
+      <h2 data-icon="addons">Route 2: Cloudflare Tunnel</h2>
 
-      <p>概念跟 Nabu Casa 一模一樣 —— <strong>你的主機主動往外連，不開任何 port</strong> —— 差別在營運的是 Cloudflare，而且用你自己的網域，所以網址可以很漂亮。</p>
+      <p>The concept is exactly the same as Nabu Casa— <strong>Your host actively connects to the outside without opening any ports.</strong> —The difference is that it is operated by Cloudflare and uses your own domain, so the URL can be very beautiful.</p>
 
-      <h3>你需要準備什麼</h3>
+      <h3>What do you need to prepare</h3>
 
       <table class="data-table">
         <thead>
-          <tr><th>準備項目</th><th>說明</th></tr>
+          <tr><th>Prepare project</th><th>Description</th></tr>
         </thead>
         <tbody>
-          <tr><td>Cloudflare 帳號</td><td>免費方案就夠</td></tr>
-          <tr><td><strong>一個你擁有的網域</strong></td><td>這條路的硬門檻。而且必須把網域的 DNS 交給 Cloudflare 管理</td></tr>
-          <tr><td>Home Assistant OS 或 Supervised</td><td>因為要裝 App（附加元件）。Container 安裝的人得自己另外跑 cloudflared 容器</td></tr>
+          <tr><td>Cloudflare account</td><td>Free plan is enough</td></tr>
+          <tr><td><strong>a domain you own</strong></td><td>The hard threshold of this road. And the DNS of the domain must be managed by Cloudflare</td></tr>
+          <tr><td>Home Assistant OS or Supervised</td><td>Because you need to install apps (add-ons). The person who installed Container has to run another cloudflared container by himself.</td></tr>
         </tbody>
       </table>
 
-      <div class="callout warn"><strong>注意：</strong>Cloudflared 的官方說明特別提到，<strong>Freenom 那類免費網域已經不能用了</strong>。要走這條路就得去正規的網域商買一個，一年通常幾百塊台幣。</div>
+      <div class="callout warn"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. Cloudflared’s official description specifically mentions,<strong>Free domains like Freenom are no longer available</strong>. To take this route, you have to go to a regular domain provider and buy one, which usually costs a modest annual fee.</div>
 
-      <h3>實作步驟</h3>
+      <h3>Implementation steps</h3>
 
       <ol class="steps">
         <li>
-          <h3>先把網域交給 Cloudflare</h3>
-          <p>在 Cloudflare 後台新增你的網域，它會給你兩組名稱伺服器（Nameserver）。回到你買網域的地方，把名稱伺服器改成 Cloudflare 給的那兩組。這步生效要等，有時候幾分鐘有時候幾小時。</p>
+          <h3>Give the domain to Cloudflare first</h3>
+          <p>Add your domain in the Cloudflare backend and it will give you two sets of name servers. Go back to where you bought the domain and change the name servers to the two groups provided by Cloudflare. You have to wait for this step to take effect, sometimes a few minutes and sometimes a few hours.</p>
         </li>
         <li>
-          <h3>加入第三方 App 倉庫</h3>
-          <p>Cloudflared 不是官方內建的 App，要自己加倉庫。走 <strong>設定 → Apps</strong>（舊版叫「附加元件」）→ <strong>安裝 App（Install app）</strong> → 右上角三點選單 → <strong>倉庫（Repositories）</strong>，貼上 <code>https://github.com/homeassistant-apps/repository</code>，按新增。</p>
-          <p>你在舊教學裡會看到 <code>brenner-tobias/addon-cloudflared</code> 這個網址。那個舊倉庫現在的說明頁自己就寫著「已經搬到 homeassistant-apps 這個組織」，並要你改用上面那串新的，所以別再貼舊的了。加第三方倉庫的完整流程在<a href="ch20_addons_docker.html">第 20 章</a>講過。</p>
+          <h3>Join third-party app warehouse</h3>
+          <p>Cloudflared is not an official built-in app, so you need to add a warehouse yourself. go <strong>Settings → Apps</strong>(The old version was called "add-on") → <strong>Install app</strong> → Three-dot menu in the upper right corner → <strong>Repositories</strong>, paste <code>https://github.com/homeassistant-apps/repository</code>, press Add.</p>
+          <p>You will see in the old teaching <code>brenner-tobias/addon-cloudflared</code> this URL. The current description page of that old warehouse says "It has been moved to the homeassistant-apps organization" and asks you to switch to the new one above, so don't post the old one again. The complete process of adding a third-party warehouse is here<a href="ch20_addons_docker.html">Chapter 20</a>Spoken.</p>
         </li>
         <li>
-          <h3>安裝並設定 Cloudflared</h3>
-          <p>倉庫加好之後，清單裡會多出一張新卡片，在裡面找到 Cloudflared，安裝。到它的設定分頁，填入你想用的外部網址，例如 <code>ha.你的網域.com</code>。</p>
+          <h3>Install and set up Cloudflared</h3>
+          <p>After the warehouse is added, a new card will appear in the list. Find Cloudflared in it and install it. Go to its settings page and fill in the external URL you want to use, for example <code>ha.yourdomain.com</code>.</p>
         </li>
         <li>
-          <h3>啟動並完成授權</h3>
-          <p>啟動 App，然後<strong>去看它的記錄檔分頁</strong>。它會印出一個授權網址，你要用瀏覽器打開、登入 Cloudflare、授權這條通道連到你的網域。這一步是新手最容易漏掉的 —— 不看記錄檔就不知道要做什麼。</p>
+          <h3>Start and complete authorization</h3>
+          <p>Launch the app and then<strong>Go to its log file page</strong>. It will print out an authorization URL, which you need to open with a browser, log in to Cloudflare, and authorize this channel to connect to your domain. This step is most likely to be missed by novices - they don't know what to do without looking at the log file.</p>
         </li>
         <li>
-          <h3>設定信任代理</h3>
-          <p>這條路的流量是從 App 容器轉進 Home Assistant 的，等於中間多了一層代理。<strong>不設定信任代理，請求會直接被 Home Assistant 擋掉</strong>（典型症狀是網頁打得開卻登不進去，或整頁 <code>400 Bad Request</code>），設定方式看下面「反向代理必設」那一節。</p>
+          <h3>Set up trusted proxy</h3>
+          <p>The traffic on this path is transferred from the App container to Home Assistant, which is equivalent to an extra layer of proxy in the middle.<strong>Without setting a trust proxy, the request will be directly blocked by Home Assistant.</strong>(Typical symptoms are that the web page can be opened but cannot be logged in, or the entire page <code>400 Bad Request</code>), please refer to the section "Reverse proxy must be set up" below for the setting method.</p>
         </li>
         <li>
-          <h3>測試</h3>
-          <p>關掉手機 Wi-Fi，用行動網路打開 <code>https://ha.你的網域.com</code>。</p>
+          <h3>test</h3>
+          <p>Turn off your phone's Wi-Fi and turn it on using your mobile network <code>https://ha.yourdomain.com</code>.</p>
         </li>
       </ol>
 
-      <div class="callout tip"><strong>提示：</strong>Cloudflare 後台可以再往上疊一層存取控管，要求先通過驗證才碰得到 Home Assistant 的登入頁。對於「我不希望我的登入頁被全世界掃到」的人，這是這條路最大的加分項。</div>
+      <div class="callout tip"><strong>Tip:</strong>The Cloudflare backend can add another layer of access control, requiring verification before accessing the Home Assistant login page. For people who say "I don't want my login page to be scanned by the whole world", this is the biggest plus point of this path.</div>
     </section>
 
-    <section id="vpn" data-nav="VPN方案">
-      <h2 data-icon="security">路線三：VPN（Tailscale 或 WireGuard）</h2>
+    <section id="vpn" data-nav="VPN plan">
+      <h2 data-icon="security">Route 3: VPN (Tailscale or WireGuard)</h2>
 
-      <p>前兩條路是「把 Home Assistant 安全地放到網路上」。VPN 是完全不同的思路：<strong>把你的手機拉進家裡的網路</strong>。</p>
+      <p>The first two paths are to "put Home Assistant securely on the Internet." VPN is a completely different idea:<strong>Connect your phone to your home network</strong>.</p>
 
-      <p>用鑰匙來比喻最傳神：前兩條是在門口裝了一個很嚴格的警衛，VPN 是根本沒有門，只有拿到鑰匙的人才知道有這棟房子。因為 Home Assistant 從頭到尾沒有對公網開放過，<strong>這是四條路裡資安最強的一條</strong>。</p>
+      <p>The metaphor of a key is the most vivid: the first two are to install a very strict guard at the door, but the VPN has no door at all, and only the person who gets the key knows that the house exists. Because Home Assistant has never been open to the public network from beginning to end,<strong>This is the strongest information security path among the four.</strong>.</p>
 
-      <h3>Tailscale：新手直接選這個</h3>
+      <h3>Tailscale: Newbies should choose this directly</h3>
 
-      <p>Tailscale 幫你把 VPN 最難的部分（金鑰交換、打洞、找路）全部自動化了。它甚至能穿過 CGNAT，這點對台灣很多用戶是關鍵。</p>
+      <p>Tailscale helps you automate all the hardest parts of VPN (key exchange, hole drilling, and path finding). It can even pass through CGNAT, which is important for users behind carrier-grade NAT in any region.</p>
 
       <ol class="steps">
         <li>
-          <h3>註冊 Tailscale 帳號</h3>
-          <p>用 Google 或 GitHub 帳號登入即可，個人使用的免費額度對家庭場景綽綽有餘。</p>
+          <h3>Register for a Tailscale account</h3>
+          <p>Just log in with a Google or GitHub account, and the free quota for personal use is more than enough for family scenarios.</p>
         </li>
         <li>
-          <h3>加入社群 App 倉庫</h3>
-          <p>走 <strong>設定 → Apps</strong> → <strong>安裝 App</strong> → 右上角三點選單 → <strong>倉庫</strong>，加入 <code>https://github.com/hassio-addons/repository</code>。這是 Home Assistant Community Add-ons（現在叫 Community Apps）的倉庫，Tailscale 和 WireGuard 都在裡面。</p>
+          <h3>Join the community app repository</h3>
+          <p>go <strong>Settings → Apps</strong> → <strong>Install App</strong> → Three-dot menu in the upper right corner → <strong>warehouse</strong>, join <code>https://github.com/hassio-addons/repository</code>. This is the repository for Home Assistant Community Add-ons (now called Community Apps), which includes Tailscale and WireGuard.</p>
         </li>
         <li>
-          <h3>安裝並啟動 Tailscale</h3>
-          <p>安裝完啟動，然後<strong>看記錄檔分頁</strong>，裡面會有一個授權網址。用瀏覽器打開它，把這台機器加進你的 Tailscale 網路。</p>
+          <h3>Install and start Tailscale</h3>
+          <p>Start after installation, and then<strong>View log file pagination</strong>, there will be an authorization URL inside. Open it with a browser and add the machine to your Tailscale network.</p>
         </li>
         <li>
-          <h3>手機也裝 Tailscale</h3>
-          <p>從 App Store 或 Play 商店裝 Tailscale App，用同一個帳號登入。</p>
+          <h3>Tailscale is also installed on mobile phones</h3>
+          <p>Install the Tailscale App from the App Store or Play Store and log in with the same account.</p>
         </li>
         <li>
-          <h3>用 Tailscale 網址連線</h3>
-          <p>連上 VPN 之後，你可以用 Home Assistant 在 Tailscale 網路裡的位址連線。如果 MagicDNS 有開，網址會長得像 <code>homeassistant.tail1234.ts.net</code> 這種格式（<code>tail1234</code> 是系統配給你的）。</p>
+          <h3>Connect with Tailscale URL</h3>
+          <p>After connecting to the VPN, you can use Home Assistant to connect to an address on the Tailscale network. If MagicDNS is turned on, the URL will look like <code>homeassistant.tail1234.ts.net</code> This format (<code>tail1234</code> It is assigned to you by the system).</p>
         </li>
       </ol>
 
-      <div class="callout"><strong>觀念：</strong>Tailscale App 有一個叫 <code>advertise_routes</code> 的設定，預設是把你家的區網網段分享出去。打開它的好處是：連上 VPN 之後，你不只連得到 Home Assistant，連家裡的 NAS、印表機、路由器管理頁都能碰到，等於整條網路線牽到你手機上。維護的時候超好用。</div>
+      <div class="callout"><strong>Concept:</strong>Tailscale App has one called <code>advertise_routes</code> The default setting is to share your home's local network segment. The advantage of turning it on is: after connecting to the VPN, you can not only connect to Home Assistant, but also the NAS, printer, and router management pages at home, which means that the entire network line is connected to your mobile phone. Very useful during maintenance.</div>
 
-      <div class="callout warn"><strong>注意：</strong>如果你用 Tailscale 的 Serve 或 Funnel 功能來對外分享，流量會經過一層本機代理，這時候<strong>同樣要設定信任代理</strong>，而且信任的位址是 <code>127.0.0.1</code>。不設就會一直被要求登入卻登不進去。單純用 VPN 直連（沒開 Serve/Funnel）則不需要這步。</div>
+      <div class="callout warn"><strong>Warning:</strong>If you use Tailscale's Serve or Funnel function to share externally, the traffic will pass through a layer of local proxy.<strong>Also set up a trusted proxy</strong>, and the trusted address is <code>127.0.0.1</code>. If you don't set it, you will keep being asked to log in but unable to log in. Simply using VPN direct connection (without turning on Serve/Funnel) does not require this step.</div>
 
-      <h3>WireGuard：自架派的選擇</h3>
+      <h3>WireGuard: The choice of self-installation school</h3>
 
-      <p>WireGuard 是 Tailscale 底層用的同一套技術，差別是你自己架、自己管金鑰。社群 App 倉庫（就是上面那個 <code>hassio-addons/repository</code>）裡有 WireGuard 可以裝。</p>
+      <p>WireGuard is the same technology used at the bottom of Tailscale. The difference is that you build it yourself and manage the keys yourself. Social App Warehouse (the one above <code>hassio-addons/repository</code>), WireGuard can be installed.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th></th><th>Tailscale</th><th>自架 WireGuard</th></tr>
+          <tr><th></th><th>Tailscale</th><th>Self-built WireGuard</th></tr>
         </thead>
         <tbody>
-          <tr><td>誰管金鑰</td><td>Tailscale 的協調伺服器</td><td>你自己，每台裝置手動配對</td></tr>
-          <tr><td>要不要開 port</td><td>不用</td><td><strong>要</strong>，得在路由器開 UDP port forward</td></tr>
-          <tr><td>CGNAT 底下</td><td>能用</td><td><strong>不能用</strong></td></tr>
-          <tr><td>依賴第三方</td><td>是</td><td>否，完全自主</td></tr>
-          <tr><td>加一台新裝置</td><td>登入帳號就好</td><td>要產生金鑰、改設定、重啟</td></tr>
+          <tr><td>Who cares about the key</td><td>Tailscale's coordination server</td><td>Yourself, manual pairing per device</td></tr>
+          <tr><td>Do you want to open the port?</td><td>No need</td><td><strong>want</strong>, you have to open UDP port forward on the router</td></tr>
+          <tr><td>CGNAT bottom</td><td>Can be used</td><td><strong>Cannot be used</strong></td></tr>
+          <tr><td>Reliance on third parties</td><td>Yes</td><td>No, completely autonomous</td></tr>
+          <tr><td>Add a new device</td><td>Just log in to your account</td><td>To generate a key, change settings, and restart</td></tr>
         </tbody>
       </table>
 
-      <p>選 WireGuard 的理由通常只有一個：<strong>你不想依賴任何第三方服務</strong>。如果你沒有這個堅持，Tailscale 省下來的時間很可觀。</p>
+      <p>There is usually only one reason to choose WireGuard:<strong>You don’t want to rely on any third-party services</strong>. If you don't insist on this, the time saved by Tailscale is considerable.</p>
 
-      <div class="callout warn"><strong>注意：</strong>VPN 這條路有個先天限制 —— <strong>Alexa、Google Assistant 這類雲端語音助理沒辦法用</strong>。因為它們的伺服器在網際網路上，不在你的 VPN 裡面，永遠連不到你的 Home Assistant。要語音就得配 Nabu Casa，或走本地語音（<a href="ch19_voice_ai.html">第 19 章</a>）。</div>
+      <div class="callout warn"><strong>Warning:</strong>The VPN path has inherent limitations— <strong>Cloud voice assistants such as Alexa and Google Assistant cannot be used</strong>. Because their servers are on the Internet, not in your VPN, they will never be able to connect to your Home Assistant. If you want the voice, you have to match Nabu Casa, or use the local voice (<a href="ch19_voice_ai.html">Chapter 19</a>).</div>
     </section>
 
-    <section id="ddns_proxy" data-nav="DDNS與代理">
-      <h2 data-icon="docker">路線四：DDNS + 反向代理 + Let's Encrypt</h2>
+    <section id="ddns_proxy" data-nav="DDNS and proxy">
+      <h2 data-icon="docker">Route 4: DDNS + reverse proxy + Let's Encrypt</h2>
 
-      <p>這是最傳統、最硬派、也最容易做壞的一條。先講清楚它由三個獨立的零件組成，各解決一個問題：</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>零件</th><th>解決什麼問題</th><th>白話比喻</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>DDNS</strong><br>動態網域名稱</td><td>你家對外 IP 會變，記不住也沒辦法給別人</td><td>你搬家會通知郵局改地址，DDNS 是自動幫你通知</td></tr>
-          <tr><td><strong>反向代理</strong><br>Reverse Proxy</td><td>幫你收 HTTPS 加密流量，解密後轉給 Home Assistant</td><td>大樓一樓的收發櫃檯，包裹統一在這裡收，再送上樓</td></tr>
-          <tr><td><strong>Let's Encrypt</strong></td><td>免費簽發 HTTPS 憑證，讓瀏覽器不跳警告</td><td>公證處蓋章，證明這個網址真的是你的</td></tr>
-        </tbody>
-      </table>
-
-      <h3>官方提供的三個 App</h3>
-
-      <p>好消息是這三件事在官方 App 倉庫裡都有現成的，不用加第三方倉庫：</p>
+      <p>This is the most traditional, hard-core, and easiest to do bad thing. Let’s first make it clear that it consists of three independent parts, each solving a problem:</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>App 名稱</th><th>做什麼</th></tr>
+          <tr><th>Parts</th><th>what problem to solve</th><th>vernacular metaphor</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>Duck DNS</strong></td><td>把你家的浮動 IP 同步到一個 <code>xxx.duckdns.org</code> 網址，<strong>而且內建 Let's Encrypt 憑證申請</strong>，兩件事一次解決</td></tr>
-          <tr><td><strong>Let's Encrypt</strong></td><td>單純簽發與續約憑證。用別家 DDNS 或自己的網域時才需要單獨裝</td></tr>
-          <tr><td><strong>NGINX Home Assistant SSL proxy</strong></td><td>反向代理。官方一句話介紹是「用 NGINX 架一個 SSL 代理，並把 80 port 的流量導向 443」。要注意它的 <strong>80 port 預設是關掉的</strong>（官方文件說明，是為了把 80 留給其他 App 用），需要的話得自己在設定分頁打開</td></tr>
+          <tr><td><strong>DDNS</strong><br>Dynamic domain name</td><td>Your external IP will change. If you can’t remember it, you won’t be able to give it to others.</td><td>When you move, the post office will be notified to change your address. DDNS will automatically notify you.</td></tr>
+          <tr><td><strong>reverse proxy</strong><br>Reverse Proxy</td><td>Help you collect HTTPS encrypted traffic, decrypt it and forward it to Home Assistant</td><td>The mailing and receiving counter on the first floor of the building. Packages are collected here and then sent upstairs.</td></tr>
+          <tr><td><strong>Let's Encrypt</strong></td><td>Issuing HTTPS certificates for free so browsers don’t issue warnings</td><td>The notary office stamps it to prove that this website is really yours.</td></tr>
         </tbody>
       </table>
 
-      <h3>實作步驟（以 Duck DNS 這條最短路徑為例）</h3>
+      <h3>Three official apps</h3>
+
+      <p>The good news is that these three things are already available in the official App repository, so there is no need to add a third-party repository:</p>
+
+      <table class="data-table">
+        <thead>
+          <tr><th>App name</th><th>what to do</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Duck DNS</strong></td><td>Synchronize your home’s floating IP to one <code>xxx.duckdns.org</code> URL,<strong>And built-in Let's Encrypt certificate application</strong>, solve two things at once</td></tr>
+          <tr><td><strong>Let's Encrypt</strong></td><td>Simply issue and renew certificates. You need to install it separately when using other DDNS or your own domain.</td></tr>
+          <tr><td><strong>NGINX Home Assistant SSL proxy</strong></td><td>Reverse proxy. The official one-sentence introduction is "Use NGINX to set up an SSL proxy and direct port 80 traffic to 443." Pay attention to it <strong>80 port is turned off by default</strong>(The official document states that it is to leave 80 for other apps to use). If necessary, you have to open it in the settings tab.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Implementation steps (taking the shortest path of Duck DNS as an example)</h3>
 
       <ol class="steps">
         <li>
-          <h3>先確認你不在 CGNAT 底下</h3>
-          <p><strong>這一步先做，不然後面全白工。</strong>方法：登入路由器，找到 WAN 狀態頁，看它顯示的對外 IP。再用手機或電腦搜尋「我的 IP」看一次外界看到的 IP。</p>
-          <p><strong>兩個一樣 → 沒問題。兩個不一樣 → 你在 CGNAT 底下，這條路走不通</strong>，請改走前面三條的任何一條。</p>
-          <p>另一個判斷方式：路由器 WAN IP 如果落在 <code>100.64.x.x</code> 到 <code>100.127.x.x</code> 這個範圍，那是電信商專門給 CGNAT 用的區段，直接確定。</p>
+          <h3>First make sure you are not under CGNAT</h3>
+          <p><strong>Do this step first, otherwise all the rest will be wasted.</strong>Method: Log in to the router, find the WAN status page, and see the external IP it displays. Then use your mobile phone or computer to search for "My IP" to see the IP seen by the outside world.</p>
+          <p><strong>Both are the same → No problem. The two are different → You are under CGNAT and this road will not work.</strong>, please change to any of the first three items.</p>
+          <p>Another way to judge: If the router WAN IP falls <code>100.64.x.x</code> Arrive <code>100.127.x.x</code> This range is a section specifically used by telecom operators for CGNAT and can be determined directly.</p>
         </li>
         <li>
-          <h3>註冊 Duck DNS</h3>
-          <p>到 Duck DNS 網站用社群帳號登入，申請一個子網域，並把頁面最上方那串 <strong>token</strong> 抄下來。</p>
+          <h3>Register Duck DNS</h3>
+          <p>Go to the Duck DNS website to log in with a social account, apply for a subdomain, and change the string at the top of the page <strong>token</strong> Copy it.</p>
         </li>
         <li>
-          <h3>安裝並設定 Duck DNS App</h3>
-          <p>在官方 App 商店裝 Duck DNS。設定分頁裡填入 <code>token</code> 和 <code>domains</code>（你申請的網域），然後把 Let's Encrypt 底下的 <code>accept_terms</code> 改成 <code>true</code> —— 官方文件寫得很清楚：「把值改成 true 才會使用 Let's Encrypt 服務」。</p>
-          <p>憑證檔名預設是 <code>fullchain.pem</code> 和 <code>privkey.pem</code>，沒特別理由不要改。</p>
-          <p>這個 App 拿憑證走的是 <strong>DNS-01 驗證</strong> —— 白話說就是「Let's Encrypt 不會連進你家，它是去查你網域的 DNS 紀錄來確認網域是你的」。所以<strong>光是要拿到憑證，你不需要在路由器開任何洞</strong>。官方文件另外提醒，如果你是把 Duck DNS 的網域再接到自己的網域上，記得幫驗證用的名稱補一筆 CNAME，不然 DNS-01 查不到就會失敗。</p>
+          <h3>Install and set up Duck DNS App</h3>
+          <p>Install Duck DNS from the official App Store. Fill in the settings page <code>token</code> and <code>domains</code>(the domain you applied for), and then change the <code>accept_terms</code> Change to <code>true</code> —The official document writes very clearly: "Change the value to true to use the Let's Encrypt service."</p>
+          <p>The default certificate file name is <code>fullchain.pem</code> and <code>privkey.pem</code>, don’t change it without any special reason.</p>
+          <p>This app takes the voucher <strong>DNS-01 Verification</strong> — In plain words, "Let's Encrypt will not connect to your home, it will check the DNS record of your domain to confirm that the domain is yours." So<strong>Just to get the credentials, you don’t need to make any holes in the router</strong>. The official document also reminds that if you connect the Duck DNS domain to your own domain, remember to add a CNAME to the name used for verification, otherwise DNS-01 cannot be found and it will fail.</p>
         </li>
         <li>
-          <h3>安裝 NGINX SSL proxy</h3>
-          <p>裝官方的 NGINX Home Assistant SSL proxy。設定分頁填入 <code>domain</code>（你的 Duck DNS 網址）、<code>certfile</code> 和 <code>keyfile</code>（就是上面那兩個檔名，它們會放在 <code>/ssl</code> 資料夾裡）。</p>
+          <h3>Install NGINX SSL proxy</h3>
+          <p>Install the official NGINX Home Assistant SSL proxy. Set page filling <code>domain</code>(your Duck DNS URL),<code>certfile</code> and <code>keyfile</code>(These are the two file names above, they will be placed in <code>/ssl</code> folder).</p>
         </li>
         <li>
-          <h3>設定信任代理</h3>
-          <p><strong>這步不做，下一步一定失敗。</strong>看下一節。</p>
+          <h3>Set up trusted proxy</h3>
+          <p><strong>If you don’t do this step, you will definitely fail in the next step.</strong>See next section.</p>
         </li>
         <li>
-          <h3>在路由器上 port forward 443</h3>
-          <p>這一步才是真正要開洞的地方：<strong>只轉 443</strong>（HTTPS）到你的主機，目標 IP 就是你在本章第一節釘死的那個。</p>
-          <p><strong>除了 443 之外一個都不要開</strong> —— 特別是 <strong>8123 絕對不要轉</strong>（那等於把沒加密的登入頁直接掛到網路上，理由看下一節）。80 也不必轉，NGINX App 的 80 port 預設就是關的，而你的憑證是走 DNS 驗證拿的，不靠 80。</p>
+          <h3>port forward 443 on the router</h3>
+          <p>This step is where you really need to make the hole:<strong>Only forward 443</strong>(HTTPS) to your host, with the destination IP being the one you nailed in the first section of this chapter.</p>
+          <p><strong>Do not open any one except 443.</strong> —especially <strong>8123 Never transfer</strong>(That is equivalent to hanging the unencrypted login page directly on the Internet. See the next section for the reason). There is no need to transfer port 80. NGINX App's port 80 is turned off by default, and your credentials are obtained through DNS verification, not port 80.</p>
         </li>
         <li>
-          <h3>填入外部網址並測試</h3>
-          <p>到 <strong>設定 → 系統 → 網路</strong>，外部網址填 <code>https://你的網域.duckdns.org</code>。然後關掉手機 Wi-Fi 測試。</p>
+          <h3>Fill in the external URL and test</h3>
+          <p>Arrive <strong>Settings → System → Network</strong>, fill in the external URL <code>https://yourdomain.duckdns.org</code>. Then turn off the phone Wi-Fi test.</p>
         </li>
       </ol>
 
-      <div class="callout danger"><strong>危險：</strong>這條路唯一需要在路由器開洞的地方是 443。開完之後，你的登入頁就在網際網路上，全世界的掃描機器人幾分鐘內就會找到它。所以走這條路的人，<strong>後面「資安硬規則」那一節是必讀不是選讀</strong>。</div>
+      <div class="callout danger"><strong>Danger:</strong>The only part of this road that requires a hole in the router is 443. After opening it, your login page is on the Internet, and scanning robots around the world will find it in minutes. So those who take this path,<strong>The section on "Information Security Hard Rules" that follows is required reading, not optional reading.</strong>.</div>
     </section>
 
-    <section id="proxy_config" data-nav="信任代理設定">
-      <h2 data-icon="warning">反向代理後面，這兩個設定不做就登不進去</h2>
+    <section id="proxy_config" data-nav="Trust proxy settings">
+      <h2 data-icon="warning">Behind the reverse proxy, you will not be able to log in if you do not set these two settings.</h2>
 
-      <p>這一節是全章最高頻的求救問題。只要你走的是 Cloudflare Tunnel、NGINX、Tailscale Serve/Funnel、或任何形式的反向代理，<strong>都會遇到</strong>。</p>
+      <p>This section is the most frequently asked help question in the entire chapter. As long as you use Cloudflare Tunnel, NGINX, Tailscale Serve/Funnel, or any form of reverse proxy,<strong>Will encounter</strong>.</p>
 
-      <h3>為什麼會壞：Home Assistant 看到的是代理，不是你</h3>
+      <h3>Why it breaks: Home Assistant sees the agent, not you</h3>
 
-      <p>正常情況下，Home Assistant 收到請求時會看「這個請求從哪個 IP 來的」，用來記錄登入、判斷是不是內網、以及執行 IP 封鎖。</p>
+      <p>Under normal circumstances, when Home Assistant receives a request, it will look at "Which IP this request came from" to record the login, determine whether it is an intranet, and perform IP blocking.</p>
 
-      <p>但中間插了一個反向代理之後，所有請求在 Home Assistant 眼裡<strong>都是從代理那台機器來的</strong>。你在台北、你媽在高雄、還有一個俄羅斯的掃描機器人 —— 通通長得一模一樣。</p>
+      <p>But after inserting a reverse proxy in the middle, all requests will appear in the eyes of Home Assistant.<strong>They all come from the agent's machine.</strong>. You are in one city and a family member is in another, and there is a Russian scanning robot - they all look exactly the same.</p>
 
-      <p>解法是代理會在請求上附一張便條紙，叫 <code>X-Forwarded-For</code>，上面寫「這個請求真正的來源是 xxx」。但 Home Assistant <strong>預設不相信這張便條紙</strong>，因為任何人都可以偽造它 —— 如果隨便相信，攻擊者只要偽造一張寫著「我是 127.0.0.1」的便條，就能假裝自己是本機。</p>
+      <p>The solution is that the agent will attach a note to the request saying <code>X-Forwarded-For</code>, it says "The real source of this request is xxx". But Home Assistant <strong>Default is not to trust this note</strong>, because anyone can forge it - if you believe it casually, an attacker can just forge a note that says "I am 127.0.0.1" and pretend to be this machine.</p>
 
-      <p>所以你必須明確告訴 Home Assistant 兩件事：<strong>（一）請相信這張便條紙；（二）只有從這些 IP 來的便條紙才算數。</strong></p>
+      <p>So you have to explicitly tell Home Assistant two things:<strong>(1) Please trust this note; (2) Only notes from these IPs count.</strong></p>
 
-      <div class="callout danger"><strong>危險：</strong>官方文件對這件事的描述是「<strong>如果沒有設定這些選項，來自反向代理的請求會被擋掉</strong>」，而且這是刻意設計的行為，不是 bug。NGINX App 的說明更具體：「透過這個代理的請求收到 <code>400 Bad Request</code>，那你多半是漏了 <code>trusted_proxies</code> 設定。」症狀通常是打得開網頁、輸入帳密之後卻進不去，或直接一片 400。</div>
+      <div class="callout danger"><strong>Danger:</strong>Official documents describe the incident as "<strong>If these options are not set, requests from the reverse proxy will be blocked</strong>”, and this is a deliberate design behavior, not a bug. The description of NGINX App is more specific: "Requests received through this proxy <code>400 Bad Request</code>, then you probably missed it <code>trusted_proxies</code> settings. "The symptoms are usually being able to open a webpage, entering the account password but not being able to enter, or simply getting a 400."</div>
 
-      <h3>2026.8 之後：在 UI 設定（建議做法）</h3>
+      <h3>After 2026.8: Set in UI (recommended practice)</h3>
 
       <ol class="steps">
         <li>
-          <h3>打開網路設定頁</h3>
-          <p>走 <strong>設定 → 系統 → 網路</strong>，找到 HTTP 伺服器（HTTP server）那一區。</p>
+          <h3>Open the network settings page</h3>
+          <p>go <strong>Settings → System → Network</strong>, find the HTTP server area.</p>
         </li>
         <li>
-          <h3>打開「信任 X-Forwarded-For」</h3>
-          <p>官方的欄位名稱是 <strong>Trust X-Forwarded-For</strong>，把它打開。</p>
+          <h3>Open "Trust X-Forwarded-For"</h3>
+          <p>The official field name is <strong>Trust X-Forwarded-For</strong>, turn it on.</p>
         </li>
         <li>
-          <h3>填入信任的代理位址</h3>
-          <p>欄位叫 <strong>Trusted proxies（信任的代理）</strong>，官方說明是「允許設定 <code>X-Forwarded-For</code> 的反向代理 IP 位址或 CIDR 網段」。填什麼看下面的對照表。</p>
+          <h3>Fill in the trusted proxy address</h3>
+          <p>The field is called <strong>Trusted proxies</strong>, the official description is "Allow setting <code>X-Forwarded-For</code> Reverse proxy IP address or CIDR network segment. Please see the comparison table below for what to fill out.</p>
         </li>
         <li>
-          <h3>存檔並重新啟動</h3>
-          <p>存檔後重新啟動 Home Assistant，再測一次。</p>
+          <h3>Archive and restart</h3>
+          <p>After saving, restart Home Assistant and test again.</p>
         </li>
       </ol>
 
-      <h3>該填哪個位址</h3>
+      <h3>Which address should be filled in?</h3>
 
       <table class="data-table">
         <thead>
-          <tr><th>你的代理是</th><th>填進 Trusted proxies</th><th>依據</th></tr>
+          <tr><th>your agent is</th><th>Fill in Trusted proxies</th><th>Basis</th></tr>
         </thead>
         <tbody>
-          <tr><td>Home Assistant 的 App（附加元件），例如 NGINX SSL proxy、Cloudflared</td><td><code>172.30.33.0/24</code></td><td>官方 NGINX App 文件直接給的網段，這是 App 容器所在的內部網路</td></tr>
-          <tr><td>Tailscale 的 Serve / Funnel</td><td><code>127.0.0.1</code></td><td>Tailscale App 官方文件給的值</td></tr>
-          <tr><td>同一台機器上跑的代理</td><td><code>127.0.0.1</code></td><td>本機回環位址</td></tr>
-          <tr><td>區網裡另一台機器（例如獨立的 NAS 或軟路由）</td><td>那台機器的固定 IP，例如 <code>192.168.1.20</code></td><td>照實填</td></tr>
+          <tr><td>Apps (add-ons) for Home Assistant, such as NGINX SSL proxy, Cloudflared</td><td><code>172.30.33.0/24</code></td><td>The network segment directly given by the official NGINX App file. This is the internal network where the App container is located.</td></tr>
+          <tr><td>Tailscale’s Serve/Funnel</td><td><code>127.0.0.1</code></td><td>Value given by Tailscale App official document</td></tr>
+          <tr><td>Agents running on the same machine</td><td><code>127.0.0.1</code></td><td>Local loopback address</td></tr>
+          <tr><td>Another machine in the local network (such as an independent NAS or soft router)</td><td>A fixed IP for that machine, e.g. <code>192.168.1.20</code></td><td>Fill in truthfully</td></tr>
         </tbody>
       </table>
 
-      <h3>2026.8 之前：寫在 configuration.yaml</h3>
+      <h3>Before 2026.8: written in configuration.yaml</h3>
 
-      <p>舊版本沒有 UI 可以設，要寫進 <code>configuration.yaml</code>。以 App 型的代理為例：</p>
+      <p>The old version does not have UI to set, it needs to be written in <code>configuration.yaml</code>. Take the app-type agent as an example:</p>
 
       <pre class="code-block"><code>http:
   use_x_forwarded_for: true
   trusted_proxies:
     - 172.30.33.0/24</code></pre>
 
-      <p>Tailscale Serve/Funnel 的版本：</p>
+      <p>Tailscale Serve/Funnel version:</p>
 
       <pre class="code-block"><code>http:
   use_x_forwarded_for: true
   trusted_proxies:
     - 127.0.0.1</code></pre>
 
-      <p>多個代理就往下多列幾行：</p>
+      <p>For multiple agents, add a few more lines below:</p>
 
       <pre class="code-block"><code>http:
   use_x_forwarded_for: true
@@ -613,289 +613,289 @@
     - 127.0.0.1
     - 192.168.1.20</code></pre>
 
-      <div class="callout warn"><strong>注意：</strong><code>http:</code> 這個 YAML 區塊<strong>已經進入淘汰期</strong>。警告訊息從 <strong>2026.7.5</strong> 就開始跳了（不是 2026.8 才有），內容大意是：「HTTP 的 YAML 設定已淘汰，你 <code>configuration.yaml</code> 裡的設定已經被匯入，<code>http</code> 現在請到 設定 → 系統 → 網路 設定，請把 <code>http:</code> 區塊移除並重新啟動」，並附上一句<strong>「這在 2027.2.0 版會停止運作，升級前請先處理」</strong>。所以你原本的設定會<strong>自動被匯入到 UI</strong>，你要做的是把 <code>configuration.yaml</code> 裡的 <code>http:</code> 整段刪掉再重新啟動。如果你刪掉之後在 UI 找不到剛匯入的設定，先試著把瀏覽器強制重新整理一次。</div>
+      <div class="callout warn"><strong>Warning:</strong><code>http:</code> This YAML block<strong>Has entered the elimination period</strong>. warning message from <strong>2026.7.5</strong> It started to jump (not only in 2026.8), and the content was to the effect: "HTTP YAML settings have been eliminated, you <code>configuration.yaml</code> The settings in have been imported.<code>http</code> Now please go to Settings → System → Network Settings, please <code>http:</code> Block removed and restarted" with the following sentence<strong>"This will stop working in version 2027.2.0, please deal with it before upgrading"</strong>. So your original settings will be<strong>Automatically imported into UI</strong>, what you have to do is to put <code>configuration.yaml</code> inside <code>http:</code> Delete the entire section and restart. If you can’t find the newly imported settings in the UI after deleting them, try forcing a refresh of the browser first.</div>
 
-      <div class="callout danger"><strong>危險：</strong>絕對不要為了省事填 <code>0.0.0.0/0</code>（代表信任全世界）。那等於宣告「任何人偽造的便條紙我都信」，攻擊者可以直接偽裝成任何 IP，繞過你所有的 IP 封鎖，登入記錄也會全是假的。只填你真的知道是自己代理的那個位址。</div>
+      <div class="callout danger"><strong>Danger:</strong>Never fill it out just to save trouble. <code>0.0.0.0/0</code>(Represents trust in the world). That is equivalent to declaring "I believe anyone's forged note." The attacker can directly disguise himself as any IP, bypass all your IP blocks, and the login records will all be fake. Only fill in the address that you really know is your agent.</div>
     </section>
 
-    <section id="hardening" data-nav="資安硬規則">
-      <h2 data-icon="login">資安硬規則：這幾件事沒得商量</h2>
+    <section id="hardening" data-nav="Hard rules for information security">
+      <h2 data-icon="login">Hard rules for information security: these things are non-negotiable</h2>
 
-      <p>官方的安全檢查清單其實只列了三條核心原則：<strong>「每個帳號都用強而唯一的密碼，並打開多重驗證」</strong>、<strong>「把敏感資料集中放在 secrets 裡（記得備份）」</strong>、<strong>「跟著每月的版本更新」</strong>。下面是把它們落地成你今天就該做的動作。</p>
+      <p>The official safety checklist actually only lists three core principles:<strong>"Use a strong, unique password for each account and turn on multi-factor authentication."</strong>, <strong>"Put sensitive data in secrets (remember to back up)"</strong>, <strong>"Follow monthly version updates"</strong>. Here are the actions you should take to put them into practice today.</p>
 
-      <div class="callout warn"><strong>注意：</strong>第二條有個很多人誤會的地方，官方自己特別註明：<strong>把密碼放進 <code>secrets.yaml</code> 並不會把它加密</strong>。那只是「集中管理、方便你分享設定檔時不外洩」，不是保險箱。所以備份檔一樣要當成機密看待，不要隨手丟雲端硬碟公開資料夾（備份的處理看<a href="ch9_backups.html">第 9 章</a>）。</div>
+      <div class="callout warn"><strong>Warning:</strong>There is a point in Article 2 that many people have misunderstood, and the official specifically noted:<strong>put password in <code>secrets.yaml</code> It will not be encrypted</strong>. That's just for "centralized management so that you can share your profile without leaking it," not a safe. Therefore, the backup files should be treated as confidential, and do not throw away the public folder of the cloud drive (see the backup processing<a href="ch9_backups.html">Chapter 9</a>).</div>
 
-      <h3>規則一：不要把 8123 直接 port forward 到公網</h3>
+      <h3>Rule 1: Do not port forward 8123 directly to the public network</h3>
 
-      <div class="callout danger"><strong>危險：</strong>網路上最多的那種教學 ——「在路由器加一條規則把 8123 轉進去，就能從外面連了」—— <strong>是這章唯一明確禁止的做法</strong>。原因有三個，每個都足以致命：<br>
-      （一）預設是 <code>http://</code> 沒有加密，你的帳號密碼在網路上是<strong>裸奔的明文</strong>，任何中間節點都看得到。<br>
-      （二）掃描機器人整天在掃全世界的 8123，你開起來幾分鐘內就會被找到，之後是不間斷的暴力破解。<br>
-      （三）Home Assistant 一旦被攻破，等於你家的門鎖、攝影機、在家與否的紀錄全部交出去。</div>
+      <div class="callout danger"><strong>Danger:</strong>The most common tutorial on the Internet - "Add a rule to the router to transfer 8123, and you can connect from the outside" - <strong>is the only practice explicitly prohibited in this chapter</strong>. There are three reasons, each of which is fatal:<br>
+      (1) The default is <code>http://</code> Without encryption, your account password is<strong>The plain text of streaking</strong>, any intermediate node can be seen.<br>
+      (2) Scanning robots scan 8123 all over the world all day long. You will be found within a few minutes of driving, and then there will be non-stop brute force cracking.<br>
+      (3) Once Home Assistant is compromised, it means that all your door locks, cameras, and records of whether you are home or not are handed over.</div>
 
-      <p>如果你已經開了，<strong>現在就去路由器把那條規則刪掉</strong>，然後從前面四條路裡挑一條重做。這不誇張，這是本章最重要的一句話。</p>
+      <p>If you have already opened it,<strong>Now go to the router and delete that rule.</strong>, and then choose one of the first four paths to redo. This is no exaggeration, this is the most important sentence in this chapter.</p>
 
-      <h3>規則二：一定要開 MFA</h3>
+      <h3>Rule 2: Be sure to open an MFA</h3>
 
-      <p>多重驗證（MFA / 兩步驟驗證）的意思是：光有密碼還不夠，還要輸入手機上每 30 秒換一次的六位數字。密碼外洩了，攻擊者手上沒有你的手機，還是進不來。</p>
+      <p>Multi-factor authentication (MFA / two-step verification) means that it’s not enough to have a password, but also to enter a six-digit number that changes every 30 seconds on your phone. If the password is leaked, the attacker still can't get in without your phone.</p>
 
       <ol class="steps">
         <li>
-          <h3>打開個人資料頁的安全分頁</h3>
-          <p>點左下角你的名字進入<strong>個人資料（User profile）</strong>，切到 <strong>安全性（Security）</strong> 分頁。</p>
+          <h3>Open the secure tab of your profile page</h3>
+          <p>Click your name in the lower left corner to enter<strong>User profile</strong>, cut to <strong>Security</strong> Pagination.</p>
         </li>
         <li>
-          <h3>啟用多重驗證模組</h3>
-          <p>找到「多重驗證模組（Multi-factor authentication modules）」這一區，按<strong>啟用（Enable）</strong>。</p>
+          <h3>Enable multi-factor authentication module</h3>
+          <p>Find the area "Multi-factor authentication modules" and click<strong>Enable</strong>.</p>
         </li>
         <li>
-          <h3>用驗證器 App 掃 QR Code</h3>
-          <p>手機上先裝一個驗證器 App，掃描畫面上的 QR Code，然後把 App 顯示的六位數字填回去確認。</p>
+          <h3>Scan the QR Code using the validator app</h3>
+          <p>First install a validator app on your phone, scan the QR Code on the screen, and then fill in the six-digit number displayed by the app to confirm.</p>
         </li>
         <li>
-          <h3>把備援碼收好</h3>
-          <p>設定過程給你的備援資訊<strong>務必存在手機以外的地方</strong>。手機掉了又沒有備援，你會被鎖在自己家外面。</p>
+          <h3>Keep the backup code</h3>
+          <p>backup information given to you during the setup process<strong>Must be stored somewhere other than your mobile phone</strong>. If your phone is dropped and there is no backup, you will be locked out of your home.</p>
         </li>
         <li>
-          <h3>家裡每個帳號都做一次</h3>
-          <p>你自己開了沒用，家人的帳號密碼是 <code>123456</code> 一樣是破口。<a href="ch5_users.html">第 5 章</a>有多使用者管理的完整說明。</p>
+          <h3>Do this once for every account in the family</h3>
+          <p>It’s useless if you open it yourself. Your family member’s account password is <code>123456</code> It's the same breach.<a href="ch5_users.html">Chapter 5</a>There are complete instructions for multi-user management.</p>
         </li>
       </ol>
 
-      <div class="callout tip"><strong>提示：</strong>除了驗證器 App，Home Assistant 還有一種以通知為基礎的驗證模組，會把一次性密碼透過通知送到你指定的地方。但官方文件有提醒它的弱點：<strong>這個模組沒辦法知道通知有沒有成功送達，如果你收不到通知，就登入不了。</strong>所以主力還是用驗證器 App 比較穩。</div>
+      <div class="callout tip"><strong>Tip:</strong>In addition to the authenticator app, Home Assistant also has a notification-based authentication module that will send the one-time password to the place you specify through notifications. But official documents warn of its weaknesses:<strong>This module has no way of knowing whether the notification was successfully delivered. If you don't receive the notification, you won't be able to log in.</strong>Therefore, the main force is to use the authenticator app which is more stable.</div>
 
-      <h3>規則三：打開 IP 封鎖</h3>
+      <h3>Rule 3: Turn on IP blocking</h3>
 
-      <p>Home Assistant 內建一個功能：<strong>同一個 IP 連續登入失敗到一定次數，就把它擋掉</strong>。這是對付暴力破解最有效的一招。</p>
+      <p>Home Assistant has a built-in function:<strong>If the same IP fails to log in for a certain number of times, it will be blocked.</strong>. This is the most effective way to deal with brute force cracking.</p>
 
-      <p>設定位置在 <strong>設定 → 系統 → 網路</strong>，兩個欄位：</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>官方欄位名稱</th><th>作用</th><th>建議值</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>Enable IP banning</strong><br>（啟用 IP 封鎖）</td><td>打開自動封鎖</td><td>開啟</td></tr>
-          <tr><td><strong>Login attempts before ban</strong><br>（封鎖前的登入嘗試次數）</td><td>官方說明：「IP 位址被封鎖前允許的登入失敗次數。設成 <code>-1</code> 可停用自動封鎖。」</td><td>5 左右。太低你自己打錯字就被關在外面</td></tr>
-        </tbody>
-      </table>
-
-      <p>被封鎖的 IP 會寫進一個叫 <code>ip_bans.yaml</code> 的檔案，裡面記著<strong>被封鎖的 IP 和它被加進來的 UTC 時間</strong>。想解除封鎖就是把對應那幾行刪掉再重啟。</p>
-
-      <div class="callout warn"><strong>注意：</strong>兩個常見的失效情境。<br>
-      （一）<strong>用 Home Assistant Cloud 的話，官方明講所有雲端連線看起來都是 <code>127.0.0.1</code></strong>，所以 IP 封鎖對它們基本無效，你的防線得靠 MFA。<br>
-      （二）反向代理沒設好信任代理的話，所有請求看起來都來自代理，封一個等於封全部 —— 你會把自己也關在外面。這又回到上一節，先把 <code>trusted_proxies</code> 設對。</div>
-
-      <h3>規則四：只開必要的對外服務</h3>
-
-      <p>盤點一下你路由器上到底開了幾個洞。很多人的規則是好幾年前為了看監視器、下載東西、或某個遊戲開的，早就忘了。</p>
+      <p>Set location at <strong>Settings → System → Network</strong>, two fields:</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>你可能開過的</th><th>該怎麼處理</th></tr>
+          <tr><th>Official field name</th><th>function</th><th>Recommended value</th></tr>
         </thead>
         <tbody>
-          <tr><td>8123 轉到 Home Assistant</td><td><strong>立刻刪掉</strong></td></tr>
-          <tr><td>UPnP（讓裝置自己開洞）</td><td>建議關閉。這功能讓任何區網裝置都能自己在你的防火牆上打洞，你完全不知情</td></tr>
-          <tr><td>路由器的遠端管理</td><td>關閉。管理頁不該從外面碰得到</td></tr>
-          <tr><td>攝影機或 NVR 的 port</td><td>關閉，改走 Home Assistant 或 VPN 進去看</td></tr>
-          <tr><td>NAS 的各種服務 port</td><td>只留你真的每天在用的，其他關掉</td></tr>
-          <tr><td>443（走反向代理路線的人）</td><td>保留，這是唯一該留的</td></tr>
+          <tr><td><strong>Enable IP banning</strong><br>(IP blocking enabled)</td><td>Turn on auto-blocking</td><td>turn on</td></tr>
+          <tr><td><strong>Login attempts before ban</strong><br>(Number of login attempts before being blocked)</td><td>Official description: "The number of failed logins allowed before the IP address is blocked. Set to <code>-1</code> Automatic blocking can be deactivated. "</td><td>5 or so. If it's too low, you'll be locked out if you make a typo yourself.</td></tr>
         </tbody>
       </table>
 
-      <h3>臨時對外測試：可以做，但要有紀律</h3>
+      <p>The blocked IP will be written into a file called <code>ip_bans.yaml</code> file, which contains<strong>The blocked IP and the UTC time it was added to</strong>. To unblock it, just delete the corresponding lines and restart.</p>
 
-      <p>有時候你就是需要「讓外面暫時看得到」十分鐘 —— 測 webhook、給人看一眼、debug 一個 OAuth 回呼。這時候的做法與風險：</p>
+      <div class="callout warn"><strong>Warning:</strong>Two common failure scenarios.<br>
+      (1)<strong>When using Home Assistant Cloud, the official stated that all cloud connections appear to be <code>127.0.0.1</code></strong>, so IP blocking is basically ineffective against them, and your line of defense depends on MFA.<br>
+      (2) If the reverse proxy does not set up a trusted proxy, all requests will appear to come from the proxy. Blocking one is equivalent to blocking all - you will also lock yourself out. This is back to the previous section. First, let’s <code>trusted_proxies</code> Let it be right.</div>
+
+      <h3>Rule 4: Only open necessary external services</h3>
+
+      <p>Take inventory of how many holes are drilled in your router. Many people's rules were opened several years ago just to watch the monitor, download something, or play a certain game, and they have long forgotten it.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>做法</th><th>風險</th><th>紀律</th></tr>
+          <tr><th>You may have driven it</th><th>what to do</th></tr>
         </thead>
         <tbody>
-          <tr><td>臨時開一條 port forward</td><td><strong>最高。</strong>掃描機器人是全天候的，開十分鐘也可能被找到</td><td>先開好 MFA 和 IP 封鎖；設鬧鐘提醒自己關；<strong>當天一定要關</strong></td></tr>
-          <tr><td>用 Cloudflare Tunnel 臨時開一條</td><td>低。不用開 port，測完關掉 App 就沒了</td><td>測完把通道停掉</td></tr>
-          <tr><td>Tailscale Funnel 暫時對外</td><td>低到中。網址不好猜，但確實對公網開放</td><td>用完關掉，並記得設信任代理</td></tr>
-          <tr><td>直接開 Nabu Casa 試用</td><td>最低</td><td>試用期到記得決定要不要續</td></tr>
+          <tr><td>8123 Go to Home Assistant</td><td><strong>Delete immediately</strong></td></tr>
+          <tr><td>UPnP (let the device make its own holes)</td><td>It is recommended to close. This feature allows any local network device to punch a hole in your firewall without your knowledge.</td></tr>
+          <tr><td>Router remote management</td><td>Close. The admin page should not be accessible from the outside</td></tr>
+          <tr><td>Camera or NVR port</td><td>Close it and use Home Assistant or VPN to check it out.</td></tr>
+          <tr><td>Various service ports of NAS</td><td>Only keep the ones you really use every day and turn off the rest.</td></tr>
+          <tr><td>443 (people who go the reverse proxy route)</td><td>Keep it, this is the only thing that should be kept</td></tr>
         </tbody>
       </table>
 
-      <div class="callout danger"><strong>危險：</strong>臨時開洞最大的風險不是「被打」，是<strong>你忘了關</strong>。人的記憶不可靠，所以規則是：如果你不能在開洞的當下就設好一個提醒，那就不要開，改用上表下面三種做法。</div>
+      <h3>Temporary external testing: It can be done, but it must be disciplined</h3>
+
+      <p>Sometimes you just need ten minutes of "temporary visibility"—to test a webhook, give someone a peek, and debug an OAuth callback. The practices and risks at this time:</p>
+
+      <table class="data-table">
+        <thead>
+          <tr><th>practice</th><th>risk</th><th>discipline</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Temporarily open a port forward</td><td><strong>highest.</strong>The scanning robot works around the clock and can be found even if it is turned on for ten minutes.</td><td>Turn on MFA and IP blocking first; set an alarm to remind yourself to turn it off;<strong>It must be closed that day</strong></td></tr>
+          <tr><td>Use Cloudflare Tunnel to temporarily open one</td><td>low. There is no need to open the port, just close the app after testing and it will be gone.</td><td>Stop the channel after measuring</td></tr>
+          <tr><td>Tailscale Funnel is temporarily open to the public</td><td>Low to medium. The URL is difficult to guess, but it is indeed open to the public network.</td><td>Turn it off after use and remember to set up a trusted proxy</td></tr>
+          <tr><td>Open Nabu Casa directly to try it out</td><td>lowest</td><td>When the trial period is up, remember to decide whether to renew or not.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout danger"><strong>Danger:</strong>The biggest risk of making a temporary hole is not "getting beaten";<strong>you forgot to turn off</strong>. Human memory is unreliable, so the rule is: if you can't set a reminder right when you open the hole, then don't open it and use the three methods listed above instead.</div>
     </section>
 
-    <section id="site_grade" data-nav="案場級網路">
-      <h2 data-icon="advanced">案場等級：VLAN、來賓網路、多層 NAT</h2>
+    <section id="site_grade" data-nav="Case-level network">
+      <h2 data-icon="advanced">Site level: VLAN, guest network, multi-layer NAT</h2>
 
-      <p>前面講的都是「一戶住家、一台路由器」。如果你要處理的是辦公室、店面、或比較講究的住宅，會多出三個題目。</p>
+      <p>What I talked about before was “one home, one router”. If you are dealing with an office, a store, or a more elegant residence, there will be three more questions.</p>
 
-      <h3>把 IoT 裝置關進獨立網段</h3>
+      <h3>Put IoT devices into separate network segments</h3>
 
-      <p>問題出在便宜的智慧插座、燈泡、攝影機身上：它們韌體品質參差，有的用了就再也不更新。<strong>一台被攻破的智慧插座，如果和你的筆電、NAS 在同一個網段，就是一個現成的跳板。</strong></p>
+      <p>The problem lies with cheap smart sockets, light bulbs, and camera bodies: their firmware quality varies, and some are never updated after using them.<strong>A compromised smart socket, if it is on the same network segment as your laptop or NAS, is a ready springboard.</strong></p>
 
-      <p>解法是 <strong>VLAN（虛擬區域網路）</strong>：在同一組實體線材上切出好幾個互相隔離的邏輯網路。一個常見的切法：</p>
-
-      <table class="data-table">
-        <thead>
-          <tr><th>網段</th><th>放什麼</th><th>能連到誰</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>主網段</td><td>電腦、手機、NAS、Home Assistant 主機</td><td>可以連到所有網段</td></tr>
-          <tr><td>IoT 網段</td><td>插座、燈泡、感測器、電視</td><td><strong>只能連外網，不能主動連主網段</strong></td></tr>
-          <tr><td>攝影機網段</td><td>IP Cam、NVR</td><td>最嚴格，通常<strong>連外網都禁止</strong>，只允許 Home Assistant 來抓畫面</td></tr>
-          <tr><td>來賓網段</td><td>客人的手機</td><td>只能上網，看不到你家任何東西</td></tr>
-        </tbody>
-      </table>
-
-      <div class="callout warn"><strong>注意：</strong>切 VLAN 之後幾乎一定會遇到<strong>裝置自動探索全部失效</strong>。因為 Home Assistant 找新裝置靠的是 mDNS 那種「大喊」，而喊聲預設不會跨網段。你要在路由器或防火牆上額外開啟 mDNS 轉發（不同廠牌叫法不同，常見的有 mDNS Repeater、Avahi Reflector、Bonjour Gateway），並且開通必要的單向規則，讓 Home Assistant 主動連得到 IoT 網段。<strong>沒有處理這件事就切 VLAN，是案場翻車最常見的原因。</strong></div>
-
-      <div class="callout tip"><strong>提示：</strong>如果你的路由器只有「來賓網路」開關、沒有完整 VLAN 功能，那就是一個簡化版的兩段隔離 —— 把最不信任的裝置和客人丟進來賓網路，主網段留給正經裝置。雖然粗糙，但比全部混在一起好很多，而且今天下午就能做完。</div>
-
-      <h3>多層 NAT：家裡有兩台路由器</h3>
-
-      <p>很常見的情況：電信商給的數據機本身就是路由器，你嫌它 Wi-Fi 差，又自己接了一台。結果變成兩層 NAT，你的 Home Assistant 主機其實躲在兩道門後面。</p>
-
-      <p>怎麼判斷：登入你自己那台路由器，看 WAN IP。如果它顯示的是 <code>192.168.x.x</code> 或 <code>10.x.x.x</code> 這種私有位址，那你就在多層 NAT 底下。</p>
+      <p>The solution is <strong>VLAN (Virtual Area Network)</strong>: Cut out several mutually isolated logical networks on the same set of physical wires. A common cutting method:</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>解法</th><th>做法</th><th>評價</th></tr>
+          <tr><th>Network segment</th><th>What to put</th><th>Who can be reached?</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong>把電信商的機器改成橋接模式</strong></td><td>打電信客服請他們改，或自己在數據機管理頁設定</td><td><strong>最乾淨。</strong>從此只有一層 NAT</td></tr>
-          <tr><td>兩層都設 port forward</td><td>外層轉給內層路由器，內層再轉給主機</td><td>能動但脆弱，任何一層重設就要重來</td></tr>
-          <tr><td><strong>改用不需要 port forward 的方案</strong></td><td>Nabu Casa、Cloudflare Tunnel、Tailscale</td><td><strong>最省事。</strong>多層 NAT 對它們完全不是問題</td></tr>
+          <tr><td>Main network segment</td><td>Computer, mobile phone, NAS, Home Assistant host</td><td>Can connect to all network segments</td></tr>
+          <tr><td>IoT network segment</td><td>Sockets, light bulbs, sensors, TVs</td><td><strong>You can only connect to the external network and cannot actively connect to the main network segment.</strong></td></tr>
+          <tr><td>Camera segment</td><td>IP Cam, NVR</td><td>most stringent, usually<strong>Even external networks are prohibited</strong>, only allows Home Assistant to capture the screen</td></tr>
+          <tr><td>Guest segment</td><td>Guest's mobile phone</td><td>I can only access the Internet and cannot see anything in your home.</td></tr>
         </tbody>
       </table>
 
-      <p>看到第三列了嗎？這就是為什麼本章一路都在推那三條路 —— <strong>它們把 CGNAT、多層 NAT、浮動 IP 這三個最惱人的問題一次繞過去了。</strong></p>
+      <div class="callout warn"><strong>Warning:</strong>After switching to VLAN, you will almost certainly encounter<strong>Device automatic exploration all failed</strong>. Because Home Assistant relies on mDNS "shout" to find new devices, and the shout will not cross network segments by default. You need to additionally enable mDNS forwarding on the router or firewall (different brands have different names, common ones include mDNS Repeater, Avahi Reflector, Bonjour Gateway), and open the necessary one-way rules to allow Home Assistant to actively connect to the IoT network segment.<strong>Cutting VLAN without dealing with this matter is the most common reason for overturning the case.</strong></div>
 
-      <h3>案場交付前的檢查清單</h3>
+      <div class="callout tip"><strong>Tip:</strong>If your router only has a "guest network" switch and does not have full VLAN functionality, it is a simplified version of two-segment isolation - throw the least trusted devices and guests into the guest network, and leave the main network segment for serious devices. It's rough, but much better than all mixed together, and it can be done this afternoon.</div>
+
+      <h3>Multi-layer NAT: Two routers at home</h3>
+
+      <p>A very common situation: the modem provided by the telecommunications provider is itself a router. You think it has poor Wi-Fi, so you connect it yourself. The result is a two-layer NAT, and your Home Assistant host is actually hiding behind two doors.</p>
+
+      <p>How to judge: Log in to your own router and look at the WAN IP. if it shows <code>192.168.x.x</code> or <code>10.x.x.x</code> With this kind of private address, you're under multiple layers of NAT.</p>
+
+      <table class="data-table">
+        <thead>
+          <tr><th>Solution</th><th>practice</th><th>Evaluation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Change the telecommunications provider's machine to bridge mode</strong></td><td>Call telecom customer service and ask them to change it, or set it yourself on the modem management page.</td><td><strong>Cleanest.</strong>From now on there is only one layer of NAT</td></tr>
+          <tr><td>Both floors are equipped with port forward</td><td>The outer layer forwards it to the inner layer router, and the inner layer forwards it to the host.</td><td>Active but fragile, if you reset any level, you will have to start over again.</td></tr>
+          <tr><td><strong>Switch to a solution that does not require port forward</strong></td><td>Nabu Casa, Cloudflare Tunnel, Tailscale</td><td><strong>The most trouble-free.</strong>Multi-layer NAT is no problem for them</td></tr>
+        </tbody>
+      </table>
+
+      <p>See the third column? This is why this chapter pushes those three paths all the way - <strong>They bypass the three most annoying problems of CGNAT, multi-layer NAT, and floating IP at once.</strong></p>
+
+      <h3>Pre-delivery checklist</h3>
 
       <ul>
-        <li>主機 IP 已在路由器做保留，並記錄在交接文件裡</li>
-        <li>路由器管理密碼已改掉，不是出廠預設</li>
-        <li>內部網址與外部網址都已填好且測過</li>
-        <li>所有帳號都開了 MFA，IP 封鎖已啟用</li>
-        <li>路由器上沒有任何一條指向 8123 的規則</li>
-        <li>UPnP 與路由器遠端管理已關閉</li>
-        <li>備份有排程、而且有存到主機以外的地方（<a href="ch9_backups.html">第 9 章</a>）</li>
-        <li>如果有切 VLAN：mDNS 轉發已設定，且新裝置探索實測過</li>
-        <li>憑證的到期與續約機制已確認會自動執行</li>
+        <li>The host IP has been reserved on the router and recorded in the handover file</li>
+        <li>The router management password has been changed and is not the factory default.</li>
+        <li>The internal URL and external URL have been filled in and tested</li>
+        <li>MFA is turned on for all accounts and IP blocking is enabled</li>
+        <li>There is no rule on the router pointing to 8123</li>
+        <li>UPnP and router remote management are closed</li>
+        <li>The backup is scheduled and saved to a location other than the host (<a href="ch9_backups.html">Chapter 9</a>)</li>
+        <li>If there is a VLAN: mDNS forwarding has been configured and new device discovery has been tested</li>
+        <li>The expiration and renewal mechanism of the voucher has been confirmed to be automatically executed.</li>
       </ul>
     </section>
 
-    <section id="troubleshoot" data-nav="常見卡關">
-      <h2 data-icon="troubleshoot">常見卡關</h2>
+    <section id="troubleshoot" data-nav="Common stuck levels">
+      <h2 data-icon="troubleshoot">Common stuck levels</h2>
 
       <ol class="steps">
         <li>
-          <h3>憑證申請失敗，Let's Encrypt 一直報錯</h3>
-          <p>先搞清楚一件事：<strong>Duck DNS App 走的是 DNS-01 驗證</strong>，Let's Encrypt 是去查你網域的 DNS 紀錄，不會連進你家。所以「憑證拿不到」<strong>通常跟 port 沒關係</strong>，別急著去路由器亂開洞。</p>
-          <p>按這個順序檢查。<strong>（一）DNS 設定對不對</strong>：Duck DNS 那邊的網域有沒有真的建起來、token 有沒有貼錯、如果你有接自己的網域，驗證用的那筆 CNAME 有沒有補上。<strong>（二）DNS 生效了沒</strong>：剛改完的紀錄要一段時間才會全網看得到，太早按就是失敗。<strong>（三）條款有沒有接受</strong>：Duck DNS App 裡的 <code>accept_terms</code> 忘記改成 <code>true</code> 是超高頻錯誤。<strong>（四）是不是被限流了</strong>：Let's Encrypt 對同一個網域短時間內的申請次數有上限，你反覆重試反而會被鎖一段時間 —— 這時候唯一的解法是<strong>停下來等</strong>，繼續按只會更慘。<strong>（五）看 App 的記錄檔</strong>，真正的錯誤原因都寫在那裡，不要只看紅字。</p>
+          <h3>Certificate application failed, Let's Encrypt keeps reporting errors</h3>
+          <p>Let’s figure one thing out first:<strong>Duck DNS App uses DNS-01 verification</strong>, Let's Encrypt checks the DNS records of your domain and will not connect to your home. So "I can't get the voucher"<strong>Usually it has nothing to do with port</strong>, don’t rush to dig holes in the router.</p>
+          <p>Check in this order.<strong>(1) Are the DNS settings correct?</strong>:Duck DNS has the domain over there really been built, has the token been posted incorrectly, and if you have connected your own domain, has the CNAME used for verification been added?<strong>(2) Is DNS effective?</strong>: It will take some time for the newly modified record to be visible to the entire network. If you press it too early, it will fail.<strong>(3) Have you accepted the terms?</strong>: In Duck DNS App <code>accept_terms</code> Forgot to change to <code>true</code> It's a UHF error.<strong>(4) Is the current flow restricted?</strong>: Let's Encrypt has an upper limit on the number of applications for the same domain within a short period of time. If you try again and again, you will be locked for a period of time - the only solution at this time is<strong>stop and wait</strong>, continuing to press will only make things worse.<strong>(5) View the App’s log files</strong>, the real reasons for the error are written there, don’t just read the red letters.</p>
         </li>
         <li>
-          <h3>在家連得上，出門連不上（或反過來）</h3>
-          <p>幾乎都是內外網網址設定的問題。到 <strong>設定 → 系統 → 網路</strong> 確認內部網址與外部網址<strong>兩格都填了、而且都填對</strong>。然後打開手機 Companion App 的設定，確認 App 那邊也有這兩個網址。</p>
-          <p>特別提醒：這兩格<strong>填到連接埠就停手，後面不要接路徑</strong>。填成 <code>.../lovelace</code> 這種會讓通知連結、攝影機推播接出怪網址，症狀千奇百怪又很難聯想到這裡。</p>
-          <p>另外一種情況是「出門正常、回家反而不行」，通常是內部網址寫的 IP 已經過期 —— 回本章第一節把 IP 釘死。</p>
+          <h3>You can connect at home, but you can’t connect when you go out (or vice versa)</h3>
+          <p>Almost all are problems with the internal and external network URL settings. Arrive <strong>Settings → System → Network</strong> Confirm internal and external URLs<strong>Both boxes are filled in, and both are filled in correctly.</strong>. Then open the settings of the Companion App on your mobile phone and confirm that the App also has these two URLs.</p>
+          <p>Special reminder: these two spaces<strong>Stop filling in the connection port and do not continue to follow the path.</strong>. Fill in <code>.../lovelace</code> This will cause notification links and camera push notifications to lead to strange URLs, and the symptoms are all kinds of strange and difficult to associate here.</p>
+          <p>Another situation is that "it works fine when I go out, but not when I go home." Usually the IP written in the internal URL has expired - go back to the first section of this chapter to nail the IP.</p>
         </li>
         <li>
-          <h3>網頁打得開，帳密輸入後就是進不去，或直接 400</h3>
-          <p>這是反向代理沒設信任代理的典型症狀。回到「反向代理必設」那一節，把 <strong>Trust X-Forwarded-For</strong> 打開、<strong>Trusted proxies</strong> 填上正確的位址（App 型代理是 <code>172.30.33.0/24</code>，Tailscale Serve/Funnel 是 <code>127.0.0.1</code>），存檔重啟。</p>
-          <p>如果你已經設了還是不行，檢查是不是設在舊的 <code>configuration.yaml</code> 但版本已經升上 2026.8 —— 這時候該以 UI 的值為準，並把 YAML 區塊刪掉。刪完在 UI 找不到設定的話，先強制重新整理瀏覽器。</p>
+          <h3>The web page can be opened, but after entering the account password, it cannot be entered, or it will directly get 400</h3>
+          <p>This is a typical symptom of the reverse proxy not having a trusted proxy. Return to the section "Reverse proxy must be set up" and set <strong>Trust X-Forwarded-For</strong> open,<strong>Trusted proxies</strong> Fill in the correct address (App-based agents are <code>172.30.33.0/24</code>, Tailscale Serve/Funnel is <code>127.0.0.1</code>), save and restart.</p>
+          <p>If it still doesn't work if you have set it up, check whether it is set in the old <code>configuration.yaml</code> But the version has been upgraded to 2026.8 - at this time, it is time to refer to the UI value and delete the YAML block. If you can’t find the settings in the UI after deleting them, forcefully refresh the browser first.</p>
         </li>
         <li>
-          <h3>DDNS 設好了，外面還是連不到 —— CGNAT</h3>
-          <p>先做本章教過的判斷：路由器 WAN 顯示的 IP，跟你上網查到的「我的 IP」，兩個一不一樣？不一樣就是 <strong>CGNAT</strong>（電信商讓好幾百戶共用一個對外 IP）。</p>
-          <p>CGNAT 底下，<strong>DDNS 和 port forward 全部無效</strong>，這不是設定問題，是你根本沒有一個屬於自己的對外門牌。有三個選擇：（一）打給電信商問能不能申請真實 IP，通常要加錢或換方案；（二）<strong>改走 Nabu Casa、Cloudflare Tunnel 或 Tailscale</strong>，這三個完全不受影響；（三）放棄遠端。九成的人應該選（二）。</p>
+          <h3>DDNS is set up, but still cannot be connected to the outside - CGNAT</h3>
+          <p>First make the judgment taught in this chapter: Is the IP displayed on the WAN of the router different from the "My IP" you find online? The difference is <strong>CGNAT</strong>(Telecom operators allow hundreds of households to share an external IP).</p>
+          <p>CGNAT bottom,<strong>DDNS and port forward are all invalid</strong>, this is not a setting problem, it is that you simply do not have an external door number of your own. There are three options: (1) Call the telecom provider and ask if you can apply for a real IP, which usually requires adding money or changing plans; (2)<strong>Go to Nabu Casa, Cloudflare Tunnel or Tailscale instead</strong>, these three are completely unaffected; (3) Give up the far end. Ninety percent of people should choose (2).</p>
         </li>
         <li>
-          <h3>homeassistant.local 突然不能用了</h3>
-          <p>先確認你在家。再確認手機沒有連到訪客 Wi-Fi 或另一個網段。都對的話，改用 IP 直連驗證主機還活著 —— 能用 IP 進去就代表只是 mDNS 的問題，不是主機掛了。長期解法是把 IP 釘死然後改用 IP 當書籤，最不會出事。</p>
+          <h3>homeassistant.local suddenly becomes unavailable</h3>
+          <p>Make sure you are home first. Double check that the phone is not connected to guest Wi-Fi or another network segment. If everything is correct, use IP direct connection to verify that the host is still alive - if you can use IP to get in, it means it is just an mDNS problem, not that the host is down. The long-term solution is to peg the IP and use the IP as a bookmark instead, which will be the least likely to happen.</p>
         </li>
         <li>
-          <h3>改了連接埠之後連不進去</h3>
-          <p>如果你是 2026.8 之後在 UI 改的，<strong>不用緊張，什麼都不用做</strong> —— 官方設計成改完會等你確認，五分鐘內沒確認就自動把舊設定放回去並重新啟動。泡杯茶等它自己回來。</p>
-          <p>如果是舊版本或 Container 安裝手動改壞的，就得從主機端進去改回來（接螢幕鍵盤，或改 Docker 的埠對應）。</p>
+          <h3>Can't connect after changing the port</h3>
+          <p>If you changed the UI after 2026.8,<strong>Don't be nervous, don't do anything</strong> —The official design is to wait for your confirmation after the change is completed. If there is no confirmation within five minutes, the old settings will be automatically put back and restarted. Make a cup of tea and wait for it to come back on its own.</p>
+          <p>If it is an old version or the Container installation has been manually modified, you have to change it back from the host (connect the screen keyboard, or change the Docker port corresponding).</p>
         </li>
         <li>
-          <h3>被自己的 IP 封鎖擋在外面</h3>
-          <p>密碼打錯太多次觸發了封鎖。解法是從主機端編輯 <code>ip_bans.yaml</code>，把你自己那筆刪掉，再重新啟動 Home Assistant。沒辦法碰檔案的話，換一條網路進來（例如手機開行動網路熱點），你的 IP 就變了。</p>
+          <h3>Blocked by own IP block</h3>
+          <p>Typing the wrong password too many times triggered the block. The solution is to edit from the host side <code>ip_bans.yaml</code>, delete your own, and then restart Home Assistant. If you can't access the file, try another network (for example, turn on a mobile network hotspot on your phone), and your IP will change.</p>
         </li>
         <li>
-          <h3>切了 VLAN 之後找不到新裝置</h3>
-          <p>預期之內。自動探索靠的是不會跨網段的多播流量。到路由器或防火牆開啟 mDNS 轉發（mDNS Repeater / Avahi Reflector / Bonjour Gateway），並確認有允許 Home Assistant 主動連進 IoT 網段的規則。</p>
+          <h3>New device cannot be found after switching VLAN</h3>
+          <p>Within expectations. Automatic discovery relies on multicast traffic that does not cross network segments. Go to the router or firewall to enable mDNS forwarding (mDNS Repeater / Avahi Reflector / Bonjour Gateway), and confirm that there are rules that allow Home Assistant to actively connect to the IoT network segment.</p>
         </li>
       </ol>
     </section>
 
-    <section id="faq" data-nav="常見問題">
-      <h2 data-icon="faq">常見問題</h2>
+    <section id="faq" data-nav="FAQ">
+      <h2 data-icon="faq">FAQ</h2>
 
       <details class="faq">
-        <summary>我只是想在外面看一下家裡的燈開了沒，真的需要搞這麼複雜嗎？</summary>
-        <div class="body">不需要。付錢訂 Home Assistant Cloud，開一個開關，五分鐘結束，而且官方文件自己把它列為「對多數人最簡單也最安全」的選項。這章之所以厚，是因為要照顧到不想付費、想學網路、或有特殊環境（案場、多層 NAT）的人。<strong>如果你的時間比每月幾百塊值錢，就直接訂閱，不要有罪惡感</strong> —— 那筆錢還直接回頭養這個開源專案。</div>
+        <summary>I just want to check whether the lights at home are on outside. Do I really need to make it so complicated?</summary>
+        <div class="body">No need. Pay to subscribe to Home Assistant Cloud, turn on a switch, and it's over in five minutes, and the official document itself lists it as "the simplest and safest option for most people." The reason why this chapter is thick is to take care of people who do not want to pay, want to learn networking, or have special circumstances (cases, multi-layer NAT).<strong>If your time is worth more than a few hundred bucks a month, just subscribe without feeling guilty</strong> —The money was directly used back to support this open source project.</div>
       </details>
 
       <details class="faq">
-        <summary>我在網路上看到的教學都說開 8123 port forward 就好，為什麼你說不行？</summary>
-        <div class="body">因為那些教學多半很舊，寫的時候威脅環境跟現在不一樣。三個具體原因：<strong>沒有加密</strong>（預設是 <code>http://</code>，帳密在網路上是明文）、<strong>會被掃到</strong>（掃描機器人整天在掃全世界的 8123，通常幾分鐘內就找上門）、<strong>後果太重</strong>（Home Assistant 裡有你家的門鎖、攝影機、在家與否的紀錄）。這章講的四條路全部都能達到同樣的效果而且安全得多，沒有理由走那條。</div>
+        <summary>The teachings I saw on the Internet all said that just opening the 8123 port forward would be sufficient. Why do you say no?</summary>
+        <div class="body">Because most of those teachings were very old, and the threat environment was different when they were written than it is now. Three specific reasons:<strong>no encryption</strong>(The default is <code>http://</code>, the account password is in clear text on the Internet),<strong>will be scanned</strong>(Scanning robots scan for 8123 all over the world all day long, and usually come to your door within a few minutes),<strong>The consequences are too serious</strong>(Home Assistant contains your door locks, cameras, and records of whether you are at home or not). All four paths described in this chapter achieve the same results and are much safer, so there is no reason to take that one.</div>
       </details>
 
       <details class="faq">
-        <summary>我的 Home Assistant 從 2026.8 升上來，網址還要加 :8123 嗎？</summary>
-        <div class="body">要。官方在改版說明講得很明確：<strong>已經在跑的系統什麼都不變，你也不需要做任何事，新的預設只影響全新安裝的 Home Assistant OS。</strong>所以你原本的 <code>:8123</code> 繼續用就好。如果你真的很想換成不用打號碼的版本，2026.8 之後可以到 <strong>設定 → 系統 → 網路</strong> 自己改，而且改壞了五分鐘內會自動復原，風險不高 —— 但改完記得所有書籤、App 設定、反向代理設定都要跟著更新。</div>
+        <summary>My Home Assistant has been upgraded from 2026.8, do I need to add :8123 to the URL?</summary>
+        <div class="body">Want. The official revision description made it very clear:<strong>Nothing will change on the system you're already running, and you don't need to do anything. The new presets only affect newly installed Home Assistant OS.</strong>So your original <code>:8123</code> Just keep using it. If you really want to switch to a version that doesn’t require dialing a number, you can get it after 2026.8 <strong>Settings → System → Network</strong> Change it yourself, and it will automatically recover within five minutes if it is changed. The risk is not high - but after the change, remember to update all bookmarks, app settings, and reverse proxy settings.</div>
       </details>
 
       <details class="faq">
-        <summary>我的 <code>configuration.yaml</code> 裡有 <code>http:</code> 區塊，現在要不要刪？</summary>
-        <div class="body">要。從 <strong>2026.7.5</strong> 版開始 Home Assistant 就會跳警告，說 HTTP 的 YAML 設定已淘汰、設定已經幫你匯入、請把 <code>http:</code> 區塊移除，並註明<strong>「這在 2027.2.0 版會停止運作，升級前請先處理」</strong>。升級時你原本的設定會自動被匯入到 UI，正確做法是：先到 <strong>設定 → 系統 → 網路</strong> 確認設定都在（<code>trusted_proxies</code> 那些有沒有正確帶過去，尤其要看仔細），確認沒問題後把 <code>configuration.yaml</code> 裡的整個 <code>http:</code> 區塊刪掉，再重新啟動。刪完如果 UI 上找不到設定，先把瀏覽器強制重新整理一次再說。</div>
+        <summary>mine <code>configuration.yaml</code> There is <code>http:</code> Block, do you want to delete it now?</summary>
+        <div class="body">Want. from <strong>2026.7.5</strong> When the version starts, Home Assistant will pop up a warning saying that the HTTP YAML setting has been eliminated and the setting has been imported for you. Please import it for you. <code>http:</code> Block removed and noted<strong>"This will stop working in version 2027.2.0, please deal with it before upgrading"</strong>. When upgrading, your original settings will be automatically imported into the UI. The correct method is: first come first <strong>Settings → System → Network</strong> Confirm that the settings are all in (<code>trusted_proxies</code> Pay special attention to whether they have been brought over correctly), and then take them after confirming that there is no problem <code>configuration.yaml</code> the whole inside <code>http:</code> Delete the block and restart. If you can’t find the setting on the UI after deleting it, force refresh the browser first.</div>
       </details>
 
       <details class="faq">
-        <summary>Nabu Casa 和 Tailscale 可以同時開嗎？</summary>
-        <div class="body">可以，而且是很實用的組合。Nabu Casa 給家人日常用（網址一貼就能用，也能接語音助理），Tailscale 給你自己維護時用（連上之後整個家裡網路都碰得到，路由器管理頁、NAS 都能開）。兩者互不干擾。唯一要注意的是，如果 Tailscale 有開 Serve 或 Funnel，記得把 <code>127.0.0.1</code> 加進信任代理清單。</div>
+        <summary>Can Nabu Casa and Tailscale be opened at the same time?</summary>
+        <div class="body">Yes, and it's a very practical combination. Nabu Casa is for daily use by your family (you can use it by just posting the URL, and can also connect to voice assistants), and Tailscale is for you to maintain yourself (after connecting, you can access the entire home network, and you can open the router management page and NAS). The two do not interfere with each other. The only thing to note is that if Tailscale has Serve or Funnel enabled, remember to <code>127.0.0.1</code> Add to list of trusted agents.</div>
       </details>
 
       <details class="faq">
-        <summary>VPN 那條路為什麼不能用 Alexa 或 Google 語音？</summary>
-        <div class="body">因為 VPN 的邏輯是「把你的裝置拉進家裡的網路」，而 Alexa、Google Assistant 的伺服器在網際網路上，它們不可能加入你的 VPN，所以永遠連不到你的 Home Assistant。要雲端語音助理，就得走 Nabu Casa（訂閱內含這個串接），或者改用完全跑在本地、不需要對外連線的語音方案（<a href="ch19_voice_ai.html">第 19 章</a>）。</div>
+        <summary>Why can’t I use Alexa or Google Voice on the VPN route?</summary>
+        <div class="body">Because the logic of VPN is to "pull your device into the home network", and the servers of Alexa and Google Assistant are on the Internet, they cannot join your VPN, so they will never be able to connect to your Home Assistant. If you want a cloud voice assistant, you have to go to Nabu Casa (this connection is included in the subscription), or switch to a voice solution that runs completely locally and does not require external connections (<a href="ch19_voice_ai.html">Chapter 19</a>).</div>
       </details>
 
       <details class="faq">
-        <summary>Trusted proxies 我可以偷懶填 <code>0.0.0.0/0</code> 嗎？反正我家沒人要駭。</summary>
-        <div class="body">不行，這是這章最不能妥協的一條。<code>0.0.0.0/0</code> 的意思是「我相信任何人宣稱的來源 IP」。攻擊者只要在請求上偽造一個 <code>X-Forwarded-For</code> 標頭，就能假裝自己是任何 IP —— 你的 IP 封鎖完全失效、登入記錄全是假的、你連事後追查都做不到。而且「沒人要駭我」是錯覺，掃描機器人不挑對象，它掃的是整個網際網路。正確做法是只填你確實知道的那個代理位址：App 型代理填 <code>172.30.33.0/24</code>，Tailscale Serve/Funnel 填 <code>127.0.0.1</code>。</div>
+        <summary>Trusted proxies I can be lazy and fill in <code>0.0.0.0/0</code> ? Anyway, no one in my family wants to be hacked.</summary>
+        <div class="body">No, this is the most non-negotiable aspect of this chapter.<code>0.0.0.0/0</code> means "I trust the source IP claimed by anyone." The attacker only needs to forge a request <code>X-Forwarded-For</code> header, you can pretend to be any IP - your IP blocking is completely invalid, your login records are all fake, and you can't even trace it afterwards. And "no one wants to hack me" is an illusion. The scanning robot doesn't pick targets, it scans the entire Internet. The correct approach is to only fill in the proxy address that you really know: fill in the App-type proxy address <code>172.30.33.0/24</code>, fill in Tailscale Serve/Funnel <code>127.0.0.1</code>.</div>
       </details>
 
       <details class="faq">
-        <summary>我不確定自己是不是在 CGNAT 底下，怎麼三十秒確認？</summary>
-        <div class="body">兩個數字比對就好。<strong>第一個</strong>：登入路由器，找 WAN 狀態頁顯示的對外 IP。<strong>第二個</strong>：用手機或電腦搜尋「我的 IP」，看網站告訴你的 IP。<strong>兩個一樣</strong>代表你有真實對外 IP，DDNS 那條路可以走。<strong>兩個不一樣</strong>代表中間還隔著電信商的一層，你在 CGNAT 底下。另外，路由器 WAN IP 如果落在 <code>100.64.x.x</code> 到 <code>100.127.x.x</code> 這個區段，那是電信商專門留給 CGNAT 用的，可以直接確定。CGNAT 底下請走 Nabu Casa、Cloudflare Tunnel 或 Tailscale，這三條完全不受影響。</div>
+        <summary>I'm not sure if I'm under CGNAT, how can I confirm it in thirty seconds?</summary>
+        <div class="body">Just compare the two numbers.<strong>first one</strong>: Log in to the router and find the external IP displayed on the WAN status page.<strong>second</strong>: Search "My IP" on your mobile phone or computer to see the IP the website tells you.<strong>Both are the same</strong>It means you have a real external IP, DDNS is the way to go.<strong>Two different</strong>There is a layer of telecom operators between the representatives, and you are under CGNAT. Also, if the router WAN IP falls on <code>100.64.x.x</code> Arrive <code>100.127.x.x</code> This section is reserved exclusively for CGNAT by telecom operators and can be determined directly. Please use Nabu Casa, Cloudflare Tunnel or Tailscale under CGNAT, these three will not be affected at all.</div>
       </details>
 
       <details class="faq">
-        <summary>為什麼我開了 IP 封鎖，但攻擊記錄裡全部都是 127.0.0.1？</summary>
-        <div class="body">兩種可能。<strong>第一種</strong>：你在用 Home Assistant Cloud。官方文件明講「如果使用 Home Assistant Cloud 做遠端存取，所有雲端連線都會顯示成 IP <code>127.0.0.1</code>」，這是正常的，代表 IP 封鎖對雲端連線沒有鑑別力 —— 你的防線要靠 MFA。<strong>第二種</strong>：你有反向代理但沒設好信任代理，所以所有請求看起來都來自代理本身。這種情況下你千萬不要按下封鎖，因為封一個等於封掉全部（包括你自己），先去把 <code>trusted_proxies</code> 設對。</div>
+        <summary>Why do I enable IP blocking, but all attack records show 127.0.0.1?</summary>
+        <div class="body">Two possibilities.<strong>The first type</strong>: You are using Home Assistant Cloud. The official document clearly states that “If you use Home Assistant Cloud for remote access, all cloud connections will be displayed as IP <code>127.0.0.1</code>”, this is normal and means that IP blocking has no discernible effect on cloud connections - your line of defense depends on MFA.<strong>The second type</strong>: You have a reverse proxy but haven't set up a trusted proxy, so all requests appear to come from the proxy itself. In this case, you must not press block, because blocking one is equivalent to blocking all (including yourself). Go ahead and block <code>trusted_proxies</code> Let it be right.</div>
       </details>
 
       <details class="faq">
-        <summary>切 VLAN 把 IoT 裝置隔離之後，Home Assistant 還找得到它們嗎？</summary>
-        <div class="body">要額外設定才找得到。自動探索靠的是 mDNS 那種「在網段內大喊」的機制，喊聲預設不會跨 VLAN，所以你會發現新裝置全部探索不到。解法是在路由器或防火牆上開啟 mDNS 轉發（各家叫法不同：mDNS Repeater、Avahi Reflector、Bonjour Gateway），並且額外允許 Home Assistant 主機<strong>單向</strong>連進 IoT 網段（IoT 那邊仍然不能反向連回主網段）。這是案場翻車最常見的原因，切之前先確認你的網路設備支援這些功能。</div>
+        <summary>After cutting VLANs to isolate IoT devices, can Home Assistant still find them?</summary>
+        <div class="body">It requires additional settings to find it. Automatic discovery relies on mDNS's "shout within the network segment" mechanism. By default, the shout will not cross VLANs, so you will find that all new devices cannot be discovered. The solution is to enable mDNS forwarding on the router or firewall (each name is different: mDNS Repeater, Avahi Reflector, Bonjour Gateway), and additionally allow the Home Assistant host<strong>One way</strong>Connect to the IoT network segment (the IoT side still cannot connect back to the main network segment). This is the most common cause of overturning at the scene. Before proceeding, make sure your network device supports these functions.</div>
       </details>
     </section>
 
     <div class="pager">
       <a class="prev" href="ch20_addons_docker.html">
         <span class="label">← Previous</span>
-        <span class="title">20 · Add-on 與 Docker</span>
+        <span class="title">20 · Add-on and Docker</span>
       </a>
       <a class="next" href="ch22_life_logs.html">
         <span class="label">Next →</span>
-        <span class="title">22 · 生活紀錄應用</span>
+        <span class="title">22 · Life record application</span>
       </a>
     </div>
 
     <footer class="site-footer">
-      <p>Home Assistant 新居入住指南 is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
-      <p class="footer-meta">截圖取自 Home Assistant 官方介面。Home Assistant 為 Open Home Foundation 的商標，本站與其無隸屬關係。 · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
+      <p>Home Assistant New Home Move-In Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
+      <p class="footer-meta">Screenshot taken from Home Assistant official interface. Home Assistant is a trademark of the Open Home Foundation, and this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
   </main>
 </div>

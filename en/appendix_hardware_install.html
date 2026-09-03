@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Appendix C · 裝機前傳：硬體選擇與 HAOS 安裝 · Home Assistant 新居入住指南</title>
-  <meta name="description" content="Home Assistant 安裝前傳：HAOS 與 Supervised 與 Container 與 Core 四種安裝方式比較、樹莓派與迷你電腦等硬體選擇、SD 卡與 SSD、映像檔燒錄步驟與首次開機設定。" />
+  <title>Appendix C · Installation Prequel: Hardware Selection and HAOS Installation · Home Assistant Onboarding Guide</title>
+  <meta name="description" content="Home Assistant installation prequel: Comparison of four installation methods, HAOS vs. Supervised vs. Container vs. Core, hardware selection such as Raspberry Pi vs. mini computer, SD card vs. SSD, image file burning steps, and first-time boot settings." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/appendix_hardware_install.html" />
   <meta name="robots" content="noindex, follow" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Home Assistant 新居入住指南" />
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Appendix C · 裝機前傳：硬體選擇與 HAOS 安裝 · Home Assistant 新居入住指南" />
-  <meta property="og:description" content="Home Assistant 安裝前傳：HAOS 與 Supervised 與 Container 與 Core 四種安裝方式比較、樹莓派與迷你電腦等硬體選擇、SD 卡與 SSD、映像檔燒錄步驟與首次開機設定。" />
+  <meta property="og:title" content="Appendix C · Installation Prequel: Hardware Selection and HAOS Installation · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Home Assistant installation prequel: Comparison of four installation methods, HAOS vs. Supervised vs. Container vs. Core, hardware selection such as Raspberry Pi vs. mini computer, SD card vs. SSD, image file burning steps, and first-time boot settings." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/appendix_hardware_install.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Appendix C · 裝機前傳：硬體選擇與 HAOS 安裝 · Home Assistant 新居入住指南" />
-  <meta name="twitter:description" content="Home Assistant 安裝前傳：HAOS 與 Supervised 與 Container 與 Core 四種安裝方式比較、樹莓派與迷你電腦等硬體選擇、SD 卡與 SSD、映像檔燒錄步驟與首次開機設定。" />
+  <meta name="twitter:title" content="Appendix C · Installation Prequel: Hardware Selection and HAOS Installation · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Home Assistant installation prequel: Comparison of four installation methods, HAOS vs. Supervised vs. Container vs. Core, hardware selection such as Raspberry Pi vs. mini computer, SD card vs. SSD, image file burning steps, and first-time boot settings." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -32,59 +32,59 @@
 <body>
 <div class="layout">
   <aside class="sidebar">
-    <a class="brand" href="tutorial.html">HA 新居入住指南</a>
-    <div class="brand-sub">從零到能用</div>
+    <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
+    <div class="brand-sub">From scratch to functional</div>
     <nav class="lang-switch" aria-label="Language"><a href="../appendix_hardware_install.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="appendix_hardware_install.html" lang="en" aria-current="page">EN</a></nav>
-    <a class="hub-link" href="index.html">◂ 資源總覽</a>
+    <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">基礎：從零到能用</li>
-      <li data-i18n="pending"><a href="ch1_login.html">登入 HA</a></li>
-      <li data-i18n="pending"><a href="ch2_system_settings.html">系統設定</a></li>
-      <li data-i18n="pending"><a href="ch3_floors_areas.html">樓層與區域</a></li>
-      <li data-i18n="pending"><a href="ch4_naming_labels.html">命名與標籤</a></li>
-      <li data-i18n="pending"><a href="ch5_users.html">用戶管理</a></li>
-      <li data-i18n="pending"><a href="ch6_dashboard.html">儀表板</a></li>
-      <li data-i18n="pending"><a href="ch7_notifications.html">通知</a></li>
-      <li data-i18n="pending"><a href="ch8_first_automation.html">第一個自動化</a></li>
-      <li data-i18n="pending"><a href="ch9_backups.html">備份</a></li>
-      <li data-i18n="pending"><a href="ch10_scripts.html">腳本 Scripts</a></li>
-      <li data-i18n="pending"><a href="ch11_devices.html">裝置詳細設定</a></li>
-      <li data-i18n="pending"><a href="ch12_domains.html">Domain 控制圖鑑</a></li>
-      <li class="part-label">擴充：接上更多裝置</li>
-      <li data-i18n="pending"><a href="ch13_themes.html">主題與外觀</a></li>
-      <li data-i18n="pending"><a href="ch14_integrations.html">整合服務串接</a></li>
-      <li data-i18n="pending"><a href="ch15_protocols.html">通訊協定大百科</a></li>
-      <li data-i18n="pending"><a href="ch16_todo_calendar.html">待辦與行事曆</a></li>
-      <li class="part-label">數據、能源與 AI</li>
-      <li data-i18n="pending"><a href="ch17_energy.html">能源儀表板</a></li>
-      <li data-i18n="pending"><a href="ch18_history_data.html">歷史數據與導出</a></li>
-      <li data-i18n="pending"><a href="ch19_voice_ai.html">語音助理與 AI</a></li>
-      <li class="part-label">進階架構與應用</li>
-      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on 與 Docker</a></li>
-      <li data-i18n="pending"><a href="ch21_network_remote.html">網路與遠端連線</a></li>
-      <li data-i18n="pending"><a href="ch22_life_logs.html">生活紀錄應用</a></li>
+      <li class="part-label">Basics: from scratch to functional</li>
+      <li data-i18n="pending"><a href="ch1_login.html">Login to HA</a></li>
+      <li data-i18n="pending"><a href="ch2_system_settings.html">System settings</a></li>
+      <li data-i18n="pending"><a href="ch3_floors_areas.html">Floors and areas</a></li>
+      <li data-i18n="pending"><a href="ch4_naming_labels.html">Naming and labeling</a></li>
+      <li data-i18n="pending"><a href="ch5_users.html">User management</a></li>
+      <li data-i18n="pending"><a href="ch6_dashboard.html">Dashboard</a></li>
+      <li data-i18n="pending"><a href="ch7_notifications.html">Notifications</a></li>
+      <li data-i18n="pending"><a href="ch8_first_automation.html">First automation</a></li>
+      <li data-i18n="pending"><a href="ch9_backups.html">backup</a></li>
+      <li data-i18n="pending"><a href="ch10_scripts.html">Scripts</a></li>
+      <li data-i18n="pending"><a href="ch11_devices.html">Device details</a></li>
+      <li data-i18n="pending"><a href="ch12_domains.html">Domain reference</a></li>
+      <li class="part-label">Expansion: connect more devices</li>
+      <li data-i18n="pending"><a href="ch13_themes.html">Themes and appearance</a></li>
+      <li data-i18n="pending"><a href="ch14_integrations.html">Integrations</a></li>
+      <li data-i18n="pending"><a href="ch15_protocols.html">Communication protocols</a></li>
+      <li data-i18n="pending"><a href="ch16_todo_calendar.html">To-do and calendar</a></li>
+      <li class="part-label">Data, energy and AI</li>
+      <li data-i18n="pending"><a href="ch17_energy.html">Energy dashboard</a></li>
+      <li data-i18n="pending"><a href="ch18_history_data.html">History and data export</a></li>
+      <li data-i18n="pending"><a href="ch19_voice_ai.html">Voice assistants and AI</a></li>
+      <li class="part-label">Advanced architecture and applications</li>
+      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on and Docker</a></li>
+      <li data-i18n="pending"><a href="ch21_network_remote.html">Network and remote connections</a></li>
+      <li data-i18n="pending"><a href="ch22_life_logs.html">Life record application</a></li>
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">這篇要解決什麼</a>
-      <a href="#install_types">四種安裝方式</a>
-      <a href="#hardware">硬體怎麼挑</a>
-      <a href="#storage">儲存媒體</a>
-      <a href="#checklist">開箱前檢查清單</a>
-      <a href="#flash">燒錄與開機</a>
-      <a href="#onboarding">首次設定</a>
-      <a href="#network">網路怎麼接</a>
-      <a href="#power">電源與散熱</a>
-      <a href="#after">裝好之後做什麼</a>
-      <a href="#troubleshoot">常見卡關</a>
-      <a href="#faq">常見問題</a>
+      <a href="#why">What is this article going to solve?</a>
+      <a href="#install_types">Four installation methods</a>
+      <a href="#hardware">How to choose hardware</a>
+      <a href="#storage">storage media</a>
+      <a href="#checklist">Pre-unpacking checklist</a>
+      <a href="#flash">Burning and booting</a>
+      <a href="#onboarding">First time setup</a>
+      <a href="#network">How to connect to the Internet</a>
+      <a href="#power">Power and cooling</a>
+      <a href="#after">What to do after installing it</a>
+      <a href="#troubleshoot">Common stuck levels</a>
+      <a href="#faq">FAQ</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · 生態圈：HACS/Add-ons/遠端</a>
-      <a href="appendix_scenes_helpers_groups.html">B · 場景/輔助元件/群組</a>
-      <a href="appendix_hardware_install.html" class="active">C · 裝機前傳：硬體與 HAOS</a>
+      <a href="appendix_hacs_addons.html">A · Ecosystem: HACS/Add-ons/remote</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scene/auxiliary component/group</a>
+      <a href="appendix_hardware_install.html" class="active">C · Pre-installation: Hardware and HAOS</a>
     </div>
   </aside>
 
@@ -92,489 +92,489 @@
     <div class="callout i18n-pending"><strong>This chapter has not been translated yet.</strong> You are reading the original Chinese text. <a href="../appendix_hardware_install.html" hreflang="zh-Hant">Open the Chinese version</a></div>
     <div class="chapter-header">
       <div class="kicker">Appendix C</div>
-      <h1>裝機前傳：硬體選擇與 HAOS 安裝</h1>
-      <p class="lead">這本書從第 1 章開始，就假設你手上已經有一台跑著 Home Assistant 的主機。如果你根本還沒有那台機器，這篇就是你的第 0 步：挑主機、挑儲存媒體、把系統燒進去、插電開機、建立第一個帳號。走完這篇，你可以直接接到<a href="ch1_login.html">第 1 章</a>往下讀。</p>
+      <h1>Pre-installation: Hardware selection and HAOS installation</h1>
+      <p class="lead">This book begins with Chapter 1, assuming that you already have a host running Home Assistant. If you don’t have that machine yet, this article is your step 0: choose the host, choose the storage media, burn the system in, plug it in and turn it on, and create your first account. After finishing this article, you can directly receive<a href="ch1_login.html">Chapter 1</a>Read on.</p>
     </div>
 
-    <section id="why" data-nav="這篇要解決什麼">
-      <h2 data-icon="why">為什麼需要一台自己的主機</h2>
+    <section id="why" data-nav="What is this article going to solve?">
+      <h2 data-icon="why">Why do you need your own host?</h2>
 
-      <p>你可能已經看過本站前面幾章，覺得「這個我想玩」，然後卡在一個很現實的問題：<strong>那個 Home Assistant 到底裝在哪裡？</strong></p>
+      <p>You may have read the previous chapters of this site and thought "I want to play this", and then got stuck on a very real question:<strong>Where is that Home Assistant installed?</strong></p>
 
-      <p>Home Assistant 不是一個手機 App，也不是一個網站帳號。它是一套跑在<strong>你家裡某台電腦上</strong>的軟體，24 小時開著、接在你家的路由器上、跟你家的燈跟感測器講話。所有資料都留在你家，這正是很多人選它的原因，但代價就是：你得先有那台「電腦」。</p>
+      <p>Home Assistant is not a mobile app, nor is it a website account. it is a set that runs on<strong>On a computer at your home</strong>The software is open 24 hours a day, connected to your home router, and talks to your home lights and sensors. All the data stays at your home, which is why many people choose it, but the price is: you have to have that "computer" first.</p>
 
-      <p>這台電腦可以是一顆手掌大的 Raspberry Pi、一台官方賣的小盒子、一台二手迷你電腦，甚至是你家 NAS 上開的一個虛擬機。這篇會把選擇攤開來比，然後帶你把系統裝好。</p>
+      <p>This computer can be a palm-sized Raspberry Pi, an official small box, a second-hand mini computer, or even a virtual machine opened on your home NAS. This article will lay out the options, compare them, and then walk you through installing the system.</p>
 
-      <div class="callout"><strong>觀念：</strong>這台主機在 Home Assistant 的世界裡通常被叫做「主機（Host）」或「實例（Instance）」。它就是你家自動化的大腦，斷電就整套停擺——所以後面的電源與備份段落請務必看完。</div>
+      <div class="callout"><strong>Concept:</strong>This host is usually called "Host" or "Instance" in the Home Assistant world. It is the brain of your home automation. If the power is cut off, the whole system will shut down - so be sure to read the following paragraphs on power supply and backup.</div>
 
-      <p>讀完這篇你會有的能力：</p>
+      <p>After reading this article you will have the ability to:</p>
 
       <ul>
-        <li>看得懂四種安裝方式的差別，並且知道自己該選哪一種（劇透：選 HAOS）。</li>
-        <li>依照你家的規模與預算，挑出一台不會後悔的主機。</li>
-        <li>自己把系統映像檔燒進 SD 卡或 SSD，插電開機。</li>
-        <li>完成首次設定（Onboarding），建立擁有者帳號、設定家的位置。</li>
-        <li>知道哪些坑最容易踩：找不到主機、開不了機、隨機重開。</li>
+        <li>Understand the differences between the four installation methods and know which one you should choose (spoiler: choose HAOS).</li>
+        <li>Depending on the size of your home and budget, choose a console you won’t regret.</li>
+        <li>Burn the system image file into the SD card or SSD yourself, plug it in and boot it up.</li>
+        <li>Complete the first-time setup (Onboarding), create an owner account, and set the home location.</li>
+        <li>Know which pitfalls are easiest to step into: the host cannot be found, the computer cannot be turned on, and it restarts randomly.</li>
       </ul>
     </section>
 
-    <section id="install_types" data-nav="四種安裝方式">
-      <h2 data-icon="compare">四種安裝方式：新手就選 HAOS，沒有懸念</h2>
+    <section id="install_types" data-nav="Four installation methods">
+      <h2 data-icon="compare">Four installation methods: Novices should choose HAOS, there is no suspense</h2>
 
-      <p>網路上的教學會提到四個名字，很容易讓人混淆。先講結論：<strong>如果你是第一次裝，選 Home Assistant Operating System（簡稱 HAOS），不要想別的。</strong></p>
+      <p>Tutorials on the Internet will mention four names, which can easily be confusing. Let’s talk about the conclusion first:<strong>If this is your first time installing, choose Home Assistant Operating System (HAOS for short) and don’t think about anything else.</strong></p>
 
-      <p>官方文件本身現在也只主推兩種：HAOS 與 Container。Core 與 Supervised 這兩種在 2025 年 5 月被官方宣布棄用（Deprecate），官方公告的時程是從 2025.6 版開始跳提醒、到 <strong>2025.12 版正式終止支援</strong>，同時被砍掉的還有 32 位元的 i386 / armhf / armv7 架構。官方給的搬家建議是：原本用 Core 的搬到 Container，原本用 Supervised 的搬到 HAOS。</p>
+      <p>The official document itself currently only recommends two types: HAOS and Container. Core and Supervised will be officially announced to be deprecated (Deprecate) in May 2025. The official announcement timetable is from the 2025.6 version to the <strong>Version 2025.12 officially ends support</strong>, and the 32-bit i386/armhf/armv7 architecture was also axed. The official relocation advice is: Those who originally used Core should move to Container, and those who originally used Supervised should move to HAOS.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>安裝方式</th><th>它是什麼</th><th>能用 Apps（原「附加元件」）嗎</th><th>現在的狀態</th><th>適合誰</th></tr>
+          <tr><th>Installation method</th><th>what is it</th><th>Can I use Apps (formerly "add-ons")?</th><th>Current status</th><th>Suitable for whom</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>HAOS</strong><br>（Home Assistant Operating System）</td>
-            <td>一整套作業系統。整台機器從開機到 Home Assistant 全部由它包辦，你不用碰 Linux。</td>
-            <td>可以，全部功能都在</td>
-            <td>官方主推、官方推薦</td>
-            <td><strong>所有新手，以及九成以上的人</strong></td>
+            <td><strong>HAOS</strong><br> (Home Assistant Operating System)</td>
+            <td>A complete operating system. It handles everything from booting up the machine to Home Assistant, and you don’t have to touch Linux.</td>
+            <td>Okay, all functions are there</td>
+            <td>Official recommendation, official recommendation</td>
+            <td><strong>All newbies, and more than 90% of people</strong></td>
           </tr>
           <tr>
             <td><strong>Container</strong></td>
-            <td>在你自己的 Linux／Docker 環境裡跑一個 Home Assistant 容器。</td>
-            <td>不行</td>
-            <td>官方仍然支援</td>
-            <td>本來就有 Docker 主機、且很清楚自己在做什麼的人</td>
+            <td>Run a Home Assistant container in your own Linux/Docker environment.</td>
+            <td>No</td>
+            <td>Officially still supports</td>
+            <td>People who already have a Docker host and know what they are doing</td>
           </tr>
           <tr>
             <td><strong>Supervised</strong></td>
-            <td>自己管一套 Debian，再把官方的 Supervisor 裝上去。</td>
-            <td>可以，但要自己維護底層</td>
-            <td>已棄用，2025.12 起終止支援</td>
-            <td>不建議新設，官方請你搬到 HAOS</td>
+            <td>Run your own Debian and install the official Supervisor.</td>
+            <td>Yes, but you have to maintain the bottom layer yourself</td>
+            <td>Deprecated, support will end in 2025.12</td>
+            <td>It is not recommended to create a new one. Officially, please move to HAOS.</td>
           </tr>
           <tr>
             <td><strong>Core</strong></td>
-            <td>直接在 Python 環境裡跑 Home Assistant 程式本體。</td>
-            <td>不行</td>
-            <td>已棄用，2025.12 起終止支援</td>
-            <td>不建議新設，官方請你搬到 Container</td>
+            <td>Run the Home Assistant program directly in the Python environment.</td>
+            <td>No</td>
+            <td>Deprecated, support will end in 2025.12</td>
+            <td>It is not recommended to create a new one. Officially, please move it to Container.</td>
           </tr>
         </tbody>
       </table>
 
-      <div class="callout warn"><strong>注意：</strong>Container 少掉的不只是「方便」。官方文件明講，像 <strong>Thread</strong> 與 <strong>Z-Wave</strong> 這類整合是靠 Apps 在背後撐著的，Container 安裝沒有現成支援。你如果打算之後玩 Zigbee／Thread／Matter 的無線裝置，這是很致命的差別。</div>
+      <div class="callout warn"><strong>Warning:</strong>Container loses more than just "convenience". Official documents clearly state that, like <strong>Thread</strong> with <strong>Z-Wave</strong> This type of integration is supported by Apps, and there is no ready support for Container installation. If you plan to play with Zigbee/Thread/Matter wireless devices in the future, this is a fatal difference.</div>
 
-      <div class="callout tip"><strong>提示：</strong>從 <strong>2026.2</strong> 版開始，官方把原本的「附加元件（Add-ons）」正式改名叫 <strong>Apps（應用程式）</strong>，面板位置也從「設定 &gt; 附加元件」變成 <strong>設定 &gt; Apps</strong>。官方給的區分方式很好記：<em>Apps 是跟 Home Assistant 並排跑的獨立程式，整合（Integration）是把 Home Assistant 接到你的裝置與服務</em>。<a href="appendix_hacs_addons.html">附錄 A</a> 講的就是這一塊。</div>
+      <div class="callout tip"><strong>Tip:</strong>from <strong>2026.2</strong> version, the official name of the original "Add-ons" was officially changed <strong>Apps</strong>, the panel location has also changed from "Settings &gt; Plug-ins" to <strong>Settings &gt; Apps</strong>. The official distinction method is easy to remember:<em>Apps are independent programs that run side by side with Home Assistant. Integration is connecting Home Assistant to your devices and services.</em>.<a href="appendix_hacs_addons.html">Appendix A</a> That's what I'm talking about.</div>
     </section>
 
-    <section id="hardware" data-nav="硬體怎麼挑">
-      <h2 data-icon="hardware">硬體怎麼挑：五條路線攤開來比</h2>
+    <section id="hardware" data-nav="How to choose hardware">
+      <h2 data-icon="hardware">How to choose hardware: compare five routes</h2>
 
-      <p>先建立一個心理座標：Home Assistant 本身不吃效能，一般家庭裝個三五十個裝置，一顆四核心的 ARM 晶片配 4GB 記憶體綽綽有餘。真正會把主機拖垮的是<strong>你之後加上去的東西</strong>——攝影機錄影與影像辨識、本地語音助理、資料庫累積的歷史紀錄。所以「現在夠用」跟「兩年後還夠用」是兩件事。</p>
+      <p>Let’s first establish a psychological coordinate: Home Assistant itself does not suffer from performance. For an average household to install thirty or fifty devices, a quad-core ARM chip with 4GB of memory is more than enough. What will really bring down the host is<strong>Things you add later</strong>—Camera recording and image recognition, local voice assistant, and historical records accumulated in the database. So "it's enough now" and "it'll be enough in two years" are two different things.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>路線</th><th>效能感受</th><th>價位帶概念</th><th>適合的規模</th><th>要注意什麼</th></tr>
+          <tr><th>route</th><th>feelings of efficacy</th><th>price range concept</th><th>Suitable scale</th><th>What to pay attention to</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Raspberry Pi 4</strong>（至少 2GB RAM）</td>
-            <td>夠用，開機與更新偏慢</td>
-            <td>入門</td>
-            <td>幾十個裝置的一般家庭</td>
-            <td>官方明訂最低 2GB RAM；建議直上 4GB。務必配 SSD，別長期用 SD 卡</td>
+            <td><strong>Raspberry Pi 4</strong>(minimum 2GB RAM)</td>
+            <td>Sufficient, but slow to boot and update</td>
+            <td>Getting Started</td>
+            <td>A typical household with dozens of devices</td>
+            <td>The official minimum is 2GB RAM; it is recommended to go straight up to 4GB. Be sure to have an SSD, don’t use the SD card for a long time</td>
           </tr>
           <tr>
             <td><strong>Raspberry Pi 5</strong></td>
-            <td>明顯比 Pi 4 快，儀表板反應乾脆</td>
-            <td>入門偏中</td>
-            <td>一般到中型家庭</td>
-            <td>吃電比 Pi 4 兇，電源要求較高（見電源段落）</td>
+            <td>Noticeably faster than the Pi 4, the dashboard responds crisply</td>
+            <td>Medium entry level</td>
+            <td>Average to medium sized families</td>
+            <td>It consumes more power than Pi 4 and requires higher power supply (see the power supply section)</td>
           </tr>
           <tr>
-            <td><strong>Home Assistant Green</strong>（官方硬體）</td>
-            <td>跟 Pi 4 同級體感，但完全免調校</td>
-            <td>中</td>
-            <td>只想開箱即用、不想折騰的人</td>
-            <td>32GB eMMC 是內建焊死的，容量之後不好擴</td>
+            <td><strong>Home Assistant Green</strong>(official hardware)</td>
+            <td>Same level of feel as Pi 4, but no adjustment required</td>
+            <td>in</td>
+            <td>People who just want to use it out of the box without any fuss</td>
+            <td>The 32GB eMMC is built-in and soldered, and the capacity cannot be expanded later.</td>
           </tr>
           <tr>
-            <td><strong>迷你電腦</strong>（Intel N100 這類 x86）</td>
-            <td>最快，一台可以同時跑很多東西</td>
-            <td>中到中高</td>
-            <td>大型家庭、多攝影機、想跑本地語音／AI</td>
-            <td>要自己進 BIOS 設定；體積與耗電比 Pi 大</td>
+            <td><strong>mini computer</strong>(Intel N100 type x86)</td>
+            <td>The fastest, one can run many things at the same time</td>
+            <td>medium to medium high</td>
+            <td>Large family, multiple cameras, want to run local voice/AI</td>
+            <td>You need to enter the BIOS settings yourself; the size and power consumption are larger than Pi</td>
           </tr>
           <tr>
-            <td><strong>NAS 上開虛擬機</strong></td>
-            <td>看 NAS 本身的等級</td>
-            <td>如果 NAS 已經有就等於零成本</td>
-            <td>本來就有 NAS 且 24 小時開機的人</td>
-            <td>NAS 重開機＝家裡自動化全停；USB 無線電棒穿透虛擬機常出狀況</td>
+            <td><strong>Open a virtual machine on the NAS</strong></td>
+            <td>Look at the grade of the NAS itself</td>
+            <td>If the NAS already exists, the cost is zero</td>
+            <td>People who already have a NAS and leave it on 24 hours a day</td>
+            <td>NAS restarts = all home automation stops; USB wireless stick penetrates the virtual machine and often causes problems</td>
           </tr>
           <tr>
-            <td><strong>舊筆電</strong></td>
-            <td>通常很夠用，甚至過剩</td>
-            <td>零（家裡本來就有）</td>
-            <td>想先試水溫、不想花錢</td>
-            <td>要能 UEFI 開機並關掉 Secure Boot；電池老化反而是風險</td>
+            <td><strong>old laptop</strong></td>
+            <td>Usually sufficient or even excessive</td>
+            <td>Zero (I already have it at home)</td>
+            <td>I want to test the water temperature first and don’t want to spend money</td>
+            <td>Enable UEFI boot and turn off Secure Boot; battery aging is a risk</td>
           </tr>
         </tbody>
       </table>
 
-      <h3>官方硬體現況（這一段特別容易過時）</h3>
+      <h3>Official hardware status (this section is particularly easy to become outdated)</h3>
 
-      <p><strong>Home Assistant Green</strong> 是目前官方主推的現售機種，規格是 Rockchip RK3566、四核心 ARM Cortex-A55 1.8GHz、4GB 記憶體、32GB eMMC 儲存，另有一個 microSD 插槽做救援用。介面上有 Gigabit 乙太網路、兩個 USB 2.0、一個給診斷用的 HDMI，鋁製散熱片被動散熱不用風扇。盒裝就附一條 Gigabit 網路線跟一顆 12V / 1A 的萬用電源（含 EU／US／UK 三種插頭轉接頭，台灣插座跟美規同型，用 US 那顆就好），插上去就能用。官方頁面標示的建議售價是 US$199 / €179，但各地經銷商實際價格差很多，<strong>請以你買的通路公告為準</strong>。</p>
+      <p><strong>Home Assistant Green</strong> It is currently the official model currently on sale. Its specifications are Rockchip RK3566, quad-core ARM Cortex-A55 1.8GHz, 4GB memory, 32GB eMMC storage, and a microSD slot for rescue. The interface includes Gigabit Ethernet, two USB 2.0, and an HDMI for diagnostics. The aluminum heat sink dissipates passive cooling without a fan. The box comes with a Gigabit network cable and a 12V/1A universal power supply (including EU/US/UK plug adapters. choose the adapter that matches your local socket), plug them in and you're ready to use. The recommended selling price indicated on the official page is US$199 / €179, but the actual price of dealers in various places varies greatly.<strong>Please refer to the announcement of the channel you purchased from.</strong>.</p>
 
-      <p>Green 有一個規格值得先知道：官方標示兩個 USB 2.0 埠<strong>合計最多供到 5V 2A</strong>。這代表你之後如果想在上面插沒有獨立供電的 USB 硬碟，要先確認它吃得動；插 Zigbee 無線電棒這種小東西則完全沒問題。</p>
+      <p>Green has a specification worth knowing first: the official label indicates two USB 2.0 ports<strong>Total supply up to 5V 2A</strong>. This means that if you want to plug in a USB hard drive that does not have an independent power supply, you must first make sure it can handle it; plugging in something as small as a Zigbee wireless stick is completely fine.</p>
 
-      <p><strong>Home Assistant Yellow</strong> 已經<strong>停產</strong>了。官方頁面寫得很清楚：這個產品不再生產，但仍持續收到軟體更新，並建議新買家改買 Green。所以你如果在拍賣網站上看到二手 Yellow，要知道它是什麼定位：它用 Raspberry Pi Compute Module 4、有一個 M.2 M-Key 插槽可以插 NVMe SSD（2230／2242／2260／2280 都支援），還內建一顆 Silicon Labs MGM210P 無線模組，同時支援 Zigbee 3.0、OpenThread 與 Matter。內建無線電這點是它最大的賣點——但既然停產了，新手不要為了它去追二手。</p>
+      <p><strong>Home Assistant Yellow</strong> Already<strong>discontinued</strong>. The official page makes it clear: this product is no longer in production, but it continues to receive software updates, and new buyers are advised to buy Green instead. So if you see a second-hand Yellow on an auction website, you need to know its positioning: it uses Raspberry Pi Compute Module 4, has an M.2 M-Key slot to plug in an NVMe SSD (supported by 2230/2242/2260/2280), and has a built-in Silicon Labs MGM210P wireless module that also supports Zigbee 3.0, OpenThread and Matter. The built-in radio is its biggest selling point - but since it is discontinued, novices should not buy second-hand for it.</p>
 
-      <p>另外還有 <strong>ODROID</strong> 系列（官方安裝文件目前涵蓋 N2、N2+、C2、C4、M1、M1S），走的是類似 Pi 的路線但用 eMMC 模組。要注意 M1 的文件明講<strong>不支援從 NVMe 開機</strong>，N2+ 與 M1S 則是把板子用 USB-OTG 線直接接到你的電腦上、讓它變成一顆「隨身碟」再燒進去，程序跟 Pi 不一樣。這條路對新手不太友善，除非你剛好手上就有。</p>
+      <p>In addition there are <strong>ODROID</strong> series (the official installation file currently covers N2, N2+, C2, C4, M1, M1S), takes a similar route to the Pi but uses eMMC modules. Please pay attention to the documentation of M1<strong>Booting from NVMe is not supported</strong>, N2+ and M1S use a USB-OTG cable to directly connect the board to your computer, turn it into a "pen drive" and then burn it in. The procedure is different from the Pi. This path is not very beginner-friendly unless you happen to have it handy.</p>
 
-      <div class="callout tip"><strong>提示：</strong>如果你打算玩 Zigbee 或 Thread／Matter 裝置，主機本身通常沒有內建這些無線電，要另外插一根 USB 無線電棒。官方目前在賣的是 <strong>Home Assistant Connect ZBT-2</strong>（Silicon Labs MG24 晶片，另外用一顆 ESP32-S3 當 USB 控制器），它取代了已停產的 ZBT-1（舊名 SkyConnect）。它是「一根天線加一個底座」的造型，盒裝就附一條 1.5 公尺的 USB 線，讓你把它擺遠一點避開干擾。要注意它<strong>不能同時跑 Zigbee 跟 Thread</strong>，你得選一邊——官方的說法是他們不認為「一根棒子跑兩種協定」適合家裡長期使用，建議一種協定配一根。這不是這篇的重點，先知道有這回事就好。</div>
+      <div class="callout tip"><strong>Tip:</strong>If you plan to play with Zigbee or Thread/Matter devices, the console itself usually does not have these radios built into it, and you will need to plug in a separate USB radio stick. What the official is currently selling is <strong>Home Assistant Connect ZBT-2</strong>(Silicon Labs MG24 chip, and uses an ESP32-S3 as a USB controller), which replaces the discontinued ZBT-1 (formerly known as SkyConnect). It has the shape of "an antenna and a base", and the box comes with a 1.5-meter USB cable, allowing you to place it farther away to avoid interference. pay attention to it<strong>You cannot run Zigbee and Thread at the same time</strong>, you have to choose one side - the official statement is that they do not think that "one stick running two protocols" is suitable for long-term use at home, and it is recommended to use one stick for each protocol. This is not the focus of this article, just know that it exists first.</div>
     </section>
 
-    <section id="storage" data-nav="儲存媒體">
-      <h2 data-icon="records">儲存媒體：SD 卡是最常見的死因</h2>
+    <section id="storage" data-nav="storage media">
+      <h2 data-icon="records">Storage media: SD cards are the most common cause of death</h2>
 
-      <p>這一段是整篇最值錢的地方。<strong>Home Assistant 主機最常見的「壞掉」，不是主機板燒了，是 SD 卡寫壞了。</strong></p>
+      <p>This section is the most valuable part of the entire article.<strong>The most common "breakdown" of the Home Assistant host is not that the motherboard is burned, but that the SD card is damaged.</strong></p>
 
-      <h3>SD 卡為什麼會壞</h3>
+      <h3>Why does the SD card fail?</h3>
 
-      <p>SD 卡裡的快閃記憶體，每個區塊能被寫入的次數是有限的。一般人拍照用 SD 卡，一天寫幾百張照片，用五年也沒事。但 Home Assistant 不一樣：</p>
+      <p>The flash memory in the SD card has a limited number of times that each block can be written to. Most people use SD cards to take photos, and they can write hundreds of photos a day, and it will be fine even if it lasts five years. But Home Assistant is different:</p>
 
       <ul>
-        <li><strong>資料庫一直在寫。</strong>每一個感測器數值變動、每一次開燈關燈，都會被記錄器（Recorder）寫進資料庫。家裡有溫溼度感測器的話，這是每分鐘都在發生的事。</li>
-        <li><strong>系統日誌一直在寫。</strong>整合出錯、裝置離線重連，全部都會留下紀錄。</li>
-        <li><strong>它 24 小時不關機。</strong>一天寫的量乘以 365。</li>
+        <li><strong>The database is constantly being written.</strong>Every change in the sensor value and every time the light is turned on and off will be written into the database by the recorder. If you have a temperature and humidity sensor at home, this is happening every minute.</li>
+        <li><strong>The system log keeps writing.</strong>Integration errors, device offline reconnection, all will be recorded.</li>
+        <li><strong>It stays on 24 hours a day.</strong>Multiply the amount you write in a day by 365.</li>
       </ul>
 
-      <p>結果就是很多人用了半年到一年，某天早上發現儀表板叫不出來、主機沒回應，重開機也救不回來——SD 卡已經進入唯讀狀態或直接壞軌。更煩的是它常常是<strong>慢慢壞</strong>的：先是儀表板變卡、自動化偶爾不觸發、更新到一半失敗，你會先懷疑是軟體問題，繞一大圈才發現是卡。</p>
+      <p>The result is that many people have been using it for half a year to a year, and one morning they find that the dashboard cannot be called, the host does not respond, and restarting cannot save it - the SD card has entered a read-only state or is directly damaged. Even more annoying is that it is often<strong>Slowly getting bad</strong>: First, the dashboard becomes stuck, automation occasionally fails to trigger, and updates fail halfway. You will first suspect that it is a software problem, and then you will find out that it is stuck after going around a lot.</p>
 
-      <div class="callout danger"><strong>危險：</strong>SD 卡壞掉通常是<strong>沒有前兆、不可還原</strong>的。你唯一的保險是備份，而且備份不能只留在同一張卡上。<a href="ch9_backups.html">第 9 章</a>講的自動備份與異地存放，請在裝好機器的第一週就設好，不要拖。</div>
+      <div class="callout danger"><strong>Danger:</strong>A damaged SD card usually means<strong>No warning, irreversible</strong>of. Your only insurance is a backup, and the backup can't just stay on the same card.<a href="ch9_backups.html">Chapter 9</a>When talking about automatic backup and off-site storage, please set it up within the first week after installing the machine. Don’t delay.</div>
 
-      <h3>那該用什麼</h3>
+      <h3>What should I use?</h3>
 
       <table class="data-table">
         <thead>
-          <tr><th>儲存媒體</th><th>耐用度</th><th>建議容量</th><th>怎麼用</th></tr>
+          <tr><th>storage media</th><th>Durability</th><th>Recommended capacity</th><th>How to use</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>microSD 卡</td>
-            <td>最差，一年內壞掉不稀奇</td>
-            <td>官方最低要求 32GB</td>
-            <td>當作「先試看看」的起步，或緊急救援用</td>
+            <td>microSD card</td>
+            <td>Worst case, it’s not uncommon for it to break within a year.</td>
+            <td>Official minimum requirement 32GB</td>
+            <td>Use it as a "try it first" start or for emergency rescue</td>
           </tr>
           <tr>
-            <td>USB 外接 SSD</td>
-            <td>好非常多</td>
-            <td>128GB 以上很夠</td>
-            <td>Pi 4／Pi 5 常見做法，成本低效果明顯</td>
+            <td>USB external SSD</td>
+            <td>Very much better</td>
+            <td>128GB or more is enough</td>
+            <td>Pi 4/Pi 5 common practice, low cost and obvious effect</td>
           </tr>
           <tr>
             <td>NVMe SSD</td>
-            <td>最好，速度也最快</td>
+            <td>The best and the fastest</td>
             <td>128～256GB</td>
-            <td>迷你電腦、有 M.2 插槽的機器</td>
+            <td>Mini PCs, machines with M.2 slots</td>
           </tr>
           <tr>
-            <td>eMMC（焊在板子上）</td>
-            <td>比 SD 卡好，但容量固定</td>
-            <td>Green 是 32GB</td>
-            <td>官方硬體的做法，不用你操心，但也擴不了</td>
+            <td>eMMC (soldered on the board)</td>
+            <td>Better than SD card, but fixed capacity</td>
+            <td>Green is 32GB</td>
+            <td>You don’t have to worry about the official hardware approach, but it can’t be expanded either.</td>
           </tr>
         </tbody>
       </table>
 
-      <p>容量怎麼抓？系統本身加上一般家庭的資料庫，32GB 其實撐得住，但你只要開始留備份、裝幾個 Apps、或存一點攝影機片段，很快就會擠。<strong>如果是自己配，直接上 128GB 以上，價差不大而且省掉未來搬家的麻煩。</strong></p>
+      <p>How to measure capacity? For the system itself and the database of an average family, 32GB can actually hold up, but as soon as you start leaving backups, installing a few apps, or saving some camera clips, it will soon become crowded.<strong>If you configure it yourself, you can go directly to 128GB or above. The price difference is not big and it saves you the trouble of moving in the future.</strong></p>
 
-      <h3>已經裝在 SD 卡上，還有救嗎？</h3>
+      <h3>It is already installed on the SD card, is there any way to save it?</h3>
 
-      <p>有。HAOS 內建一個「搬移資料磁碟（Move data disk）」的功能，可以把資料搬到另一顆接上去的儲存裝置上，之後系統照常從原本的媒體開機，但資料讀寫都跑到新的硬碟去。路徑在 <strong>設定 &gt; 系統 &gt; 儲存空間</strong>，裡面找「Move data disk」。</p>
+      <p>Yes. HAOS has a built-in "Move data disk" function that can move data to another connected storage device. After that, the system will boot from the original media as usual, but data reading and writing will go to the new hard disk. The path is in <strong>Settings &gt; System &gt; Storage</strong>, look for "Move data disk" inside.</p>
 
-      <div class="callout warn"><strong>注意：</strong>搬資料磁碟前<strong>一定先做一份完整備份並下載到你自己的電腦</strong>。這是一個動到底層儲存的操作，出錯的代價是整套重來。</div>
+      <div class="callout warn"><strong>Warning:</strong>Before moving data disk<strong>Be sure to make a full backup first and download it to your own computer</strong>. This is an operation that moves to the underlying storage, and the cost of making a mistake is to start over.</div>
     </section>
 
-    <section id="checklist" data-nav="開箱前檢查清單">
-      <h2 data-icon="todo">開箱前檢查清單</h2>
+    <section id="checklist" data-nav="Pre-unpacking checklist">
+      <h2 data-icon="todo">Pre-unpacking checklist</h2>
 
-      <p>在你按下購物車之前，對照一下這張表。少一樣東西，安裝就會卡在半路，然後你會在深夜跑去便利商店。</p>
+      <p>Before you click on your cart, check this chart. One thing missing and the installation gets stuck halfway and you end up running to the convenience store late at night.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>要準備的東西</th><th>規格重點</th><th>為什麼一定要</th></tr>
+          <tr><th>Things to prepare</th><th>Specification focus</th><th>Why must</th></tr>
         </thead>
         <tbody>
-          <tr><td>主機本體</td><td>見上一節；至少 2GB 記憶體</td><td>官方對 Raspberry Pi 明訂的最低記憶體門檻</td></tr>
-          <tr><td>電源供應器</td><td>對應機型的原廠或同等級規格</td><td>供電不足是隨機重開機的頭號原因</td></tr>
-          <tr><td>儲存媒體</td><td>SSD 優先；SD 卡至少 32GB，最好有 A2 標示</td><td>官方安裝文件建議選有 A2 標記的卡</td></tr>
-          <tr><td>讀卡機或 USB 轉接</td><td>能接上你要燒錄的電腦</td><td>燒錄一定要在另一台電腦上做</td></tr>
-          <tr><td>網路線一條</td><td>接得到路由器或交換器</td><td>官方安裝流程要求開機時有網路線與可連外的網路</td></tr>
-          <tr><td>燒錄用的電腦</td><td>Windows／macOS／Linux 都行</td><td>跑 Raspberry Pi Imager 或 balenaEtcher</td></tr>
-          <tr><td>外殼與散熱</td><td>散熱片或小風扇</td><td>見電源與散熱一節</td></tr>
-          <tr><td>（可選）不斷電系統 UPS</td><td>能撐十幾分鐘就夠</td><td>避免跳電當下正在寫入而毀掉資料</td></tr>
-          <tr><td>（可選）USB 無線電棒</td><td>如 Connect ZBT-2</td><td>之後要玩 Zigbee／Thread 才需要</td></tr>
+          <tr><td>Host body</td><td>See previous section; at least 2GB RAM</td><td>Official minimum memory threshold for Raspberry Pi</td></tr>
+          <tr><td>power supply</td><td>The original factory or equivalent specifications of the corresponding model</td><td>Insufficient power supply is the number one cause of random reboots</td></tr>
+          <tr><td>storage media</td><td>SSD priority; SD card at least 32GB, preferably with A2 mark</td><td>The official installation file recommends choosing a card with the A2 mark.</td></tr>
+          <tr><td>Card reader or USB adapter</td><td>Can be connected to the computer you want to burn</td><td>Burning must be done on another computer</td></tr>
+          <tr><td>One network line</td><td>Access to a router or switch</td><td>The official installation process requires a network cable and an external network to be connected when booting.</td></tr>
+          <tr><td>computer for burning</td><td>Windows/macOS/Linux are all OK</td><td>Run Raspberry Pi Imager or balenaEtcher</td></tr>
+          <tr><td>Housing and heat dissipation</td><td>Heat sink or small fan</td><td>See the Power and Cooling section</td></tr>
+          <tr><td>(Optional) Uninterruptible power supply system UPS</td><td>It's enough to last for more than ten minutes</td><td>Prevent data from being destroyed due to power outage while writing</td></tr>
+          <tr><td>(Optional) USB wireless stick</td><td>Such as Connect ZBT-2</td><td>It will only be needed if you want to play Zigbee/Thread later.</td></tr>
         </tbody>
       </table>
 
-      <div class="callout tip"><strong>提示：</strong>如果你買的是 Home Assistant Green，上面清單的前五項它盒裝就附了（主機、12V 電源含多國轉接頭、網路線），你只要有一台能上網的電腦跟一個路由器空孔就能開始。這也是為什麼它適合完全不想研究的人。</div>
+      <div class="callout tip"><strong>Tip:</strong>If you buy Home Assistant Green, the first five items in the above list are included in the box (host, 12V power supply with multi-country adapter, network cable). You only need a computer with Internet access and a router hole to get started. That's why it's suitable for people who don't want to study at all.</div>
     </section>
 
-    <section id="flash" data-nav="燒錄與開機">
-      <h2 data-icon="steps">動手做：把 HAOS 燒進去、插電開機</h2>
+    <section id="flash" data-nav="Burning and booting">
+      <h2 data-icon="steps">Do it yourself: Burn in HAOS, plug it in and turn it on</h2>
 
-      <p>下面以最常見的 Raspberry Pi 為例。官方推薦的工具是 <strong>Raspberry Pi Imager</strong>（從 <code>raspberrypi.com/software</code> 下載），因為它會直接幫你抓正確的映像檔，不用自己找檔案。如果你想手動下載映像檔，官方也接受用 <strong>balenaEtcher</strong> 來燒。</p>
+      <p>The following takes the most common Raspberry Pi as an example. The officially recommended tool is <strong>Raspberry Pi Imager</strong>(from <code>raspberrypi.com/software</code> Download), because it will directly help you grab the correct image file without having to find the file yourself. If you want to download the image file manually, the official website also accepts it. <strong>balenaEtcher</strong> Come and burn.</p>
 
       <ol class="steps">
         <li>
-          <h3>在另一台電腦上裝好燒錄工具</h3>
-          <p>到 <code>raspberrypi.com/software</code> 下載 Raspberry Pi Imager 並安裝。這一步要在你的日常電腦上做，不是在 Pi 上做——Pi 現在還是空的。</p>
+          <h3>Install the burning tool on another computer</h3>
+          <p>Arrive <code>raspberrypi.com/software</code> Download Raspberry Pi Imager and install it. This step needs to be done on your regular computer, not on the Pi - which is still empty.</p>
         </li>
         <li>
-          <h3>把 SD 卡或 SSD 接到電腦</h3>
-          <p>用讀卡機插上去。系統可能會跳出「要格式化嗎」之類的視窗，<strong>按取消</strong>，燒錄工具會自己處理格式化。</p>
+          <h3>Connect the SD card or SSD to the computer</h3>
+          <p>Plug it in with a card reader. The system may pop up a window such as "Do you want to format?"<strong>Press Cancel</strong>, the burning tool will handle the formatting by itself.</p>
         </li>
         <li>
-          <h3>在 Imager 裡選作業系統</h3>
-          <p>打開 Raspberry Pi Imager，點選作業系統的按鈕，依序進入 <strong>Other specific-purpose OS &gt; Home automation &gt; Home Assistant</strong>。這裡面會列出對應不同機型的版本，選跟你手上機器相符的那一個（Raspberry Pi 4 選 RPi 4 版、Raspberry Pi 5 選 RPi 5 版）。<strong>選錯機型會燒得成功但開不了機</strong>，這是新手最常踩的坑。</p>
+          <h3>Select operating system in Imager</h3>
+          <p>Open Raspberry Pi Imager, click the operating system button, and enter in sequence <strong>Other specific-purpose OS &gt; Home automation &gt; Home Assistant</strong>. There will be a list of versions corresponding to different models. Choose the one that matches the machine you have (for Raspberry Pi 4, choose RPi 4 version, for Raspberry Pi 5, choose RPi 5 version).<strong>If you choose the wrong model, you will be able to burn it successfully but you will not be able to turn it on.</strong>, this is the most common pitfall for novices.</p>
         </li>
         <li>
-          <h3>選擇要寫入的裝置，然後寫入</h3>
-          <p>選好你的 SD 卡或 SSD，確認容量數字對得上（不要選到你的行動硬碟）。按「Next」再按「Write」開始燒。這一步會<strong>清空整個裝置</strong>，燒錄過程幾分鐘不等。完成後按「Finish」，安全退出裝置。</p>
+          <h3>Select the device to write to and then write</h3>
+          <p>Select your SD card or SSD and make sure the capacity numbers match (do not select your mobile hard drive). Press "Next" and then "Write" to start burning. This step will<strong>Erase entire device</strong>, the burning process takes several minutes. When finished, click "Finish" to exit the device safely.</p>
         </li>
         <li>
-          <h3>裝回主機、插網路線、插電</h3>
-          <p>把燒好的媒體裝回主機，<strong>先插網路線</strong>再插電。官方安裝流程要求首次開機時要有可以連外的網路，因為系統會在這時候把最新的元件抓下來。這時候不需要接螢幕跟鍵盤——如果你接了，畫面上會跑一堆文字，那是正常的，不用理它。</p>
+          <h3>Reinstall the host, plug in the network cable, and plug in the power</h3>
+          <p>Put the burned media back into the host computer,<strong>Plug in the network cable first</strong>Plug it in again. The official installation process requires that there be an external network connection when booting for the first time, because the system will grab the latest components at this time. There is no need to connect the screen and keyboard at this time - if you do, a bunch of text will run on the screen, that's normal, don't pay attention to it.</p>
         </li>
         <li>
-          <h3>等一下下，然後用瀏覽器連進去</h3>
-          <p>在同一個網路下的電腦或手機，瀏覽器打 <code>homeassistant.local</code>。官方文件說 Pi 4／Pi 5 通常一分鐘內就會出現畫面。如果沒反應，先試 <code>homeassistant.local:8123</code>，再不行就改用 IP 位址加上 <code>:8123</code>。你會看到一個「Preparing Home Assistant」的頁面，那表示它正在下載最新版本。官方文件對這一步只寫「依你的硬體與網路速度，準備可能需要一段時間」，沒有給明確的分鐘數；<strong>實務上等個十幾二十分鐘很常見，用 SD 卡的話更慢，總之不要拔電</strong>。</p>
+          <h3>Wait a moment and then connect using your browser</h3>
+          <p>On a computer or mobile phone on the same network, open the browser <code>homeassistant.local</code>. Official documentation says Pi 4/Pi 5 will typically show up within a minute. If there is no response, try first <code>homeassistant.local:8123</code>, if that doesn't work, use the IP address instead and add <code>:8123</code>. You will see a "Preparing Home Assistant" page, which means it is downloading the latest version. The official document only says "Depending on your hardware and network speed, preparation may take some time" for this step, without giving a clear number of minutes;<strong>In practice, it is common to wait for more than ten or twenty minutes. If you use an SD card, it will be even slower. In short, do not unplug the phone.</strong>.</p>
         </li>
       </ol>
 
-      <div class="callout"><strong>觀念：</strong>從 <strong>2026.8</strong> 版開始，新安裝的 HAOS 預設改用不帶連接埠號的一般網址（也就是直接 <code>homeassistant.local</code> 就好，不用加 <code>:8123</code>）。既有的安裝維持原樣不受影響。所以你在不同教學裡看到有的寫 <code>:8123</code> 有的沒寫，兩種都可能是對的，<strong>以你自己畫面上的網址為準</strong>。</div>
+      <div class="callout"><strong>Concept:</strong>from <strong>2026.8</strong> Starting from version 1, newly installed HAOS defaults to a general URL without a port number (that is, a direct <code>homeassistant.local</code> That’s fine, no need to add <code>:8123</code>). Existing installations remain intact and are not affected. So you see some writing in different teachings <code>:8123</code> Some are not written, and both may be correct.<strong>The URL on your own screen shall prevail.</strong>.</div>
 
-      <h3>如果你裝的是迷你電腦或舊筆電（x86-64）</h3>
+      <h3>If you have a mini computer or an old laptop (x86-64)</h3>
 
-      <p>流程不太一樣，重點在 BIOS。官方文件的要求是：機器要能 64 位元、而且要能用 <strong>UEFI</strong> 開機。進 BIOS（開機時通常按 <kbd>F2</kbd>、<kbd>Del</kbd>、<kbd>F1</kbd> 或 <kbd>F10</kbd>，各家不同），把開機模式設成 UEFI、<strong>把 Secure Boot 關掉</strong>，存檔離開。</p>
+      <p>The process is different, the focus is on BIOS. The official document requires that the machine must be 64-bit capable and usable <strong>UEFI</strong> Power on. Enter BIOS (usually press <kbd>F2</kbd>, <kbd>Del</kbd>, <kbd>F1</kbd> or <kbd>F10</kbd>, each manufacturer is different), set the boot mode to UEFI,<strong>Turn off Secure Boot</strong>, archive and leave.</p>
 
-      <p>映像檔是 <code>haos_generic-x86-64-<em>版本</em>.img.xz</code>。官方推薦的做法是先用隨身碟開機進 Ubuntu，再用 Ubuntu 內建的「磁碟」工具把映像還原到目標硬碟；另一個做法是在你自己的電腦上用 balenaEtcher 燒到目標媒體，再把媒體裝回機器。裝好之後一樣是插網路線、開機、連 <code>homeassistant.local</code>。</p>
+      <p>The image file is <code>haos_generic-x86-64-<em>Version</em>.img.xz</code>. The officially recommended method is to boot into Ubuntu with a flash drive, and then use Ubuntu's built-in "Disk" tool to restore the image to the target hard drive; another method is to use balenaEtcher on your own computer to burn to the target media, and then install the media back into the machine. After installation, the same steps are to plug in the network cable, turn on the computer, and connect <code>homeassistant.local</code>.</p>
 
-      <h3>如果你要裝在虛擬機或 NAS 上</h3>
+      <h3>If you want to install on a virtual machine or NAS</h3>
 
-      <p>官方有提供對應各種平台的磁碟映像格式：<code>.vdi</code>（VirtualBox）、<code>.qcow2</code>（KVM／Proxmox）、<code>.ova</code>（VMware ESXi／vSphere），文件也涵蓋 Unraid。虛擬機的資源官方給的最低配置是 <strong>2GB 記憶體、2 顆 vCPU</strong>，不夠再往上加。</p>
+      <p>Official disk image formats corresponding to various platforms are provided:<code>.vdi</code> (VirtualBox), <code>.qcow2</code> (KVM/Proxmox), <code>.ova</code>(VMware ESXi/vSphere), the documentation also covers Unraid. The official minimum configuration of virtual machine resources is <strong>2GB memory, 2 vCPUs</strong>, if it is not enough, add more.</p>
 
-      <div class="callout warn"><strong>注意：</strong>Synology 與 QNAP 的官方文件走的是 Docker 路線，也就是前面表格裡的 <strong>Container</strong> 安裝，<strong>不是 HAOS</strong>，所以會少掉 Apps 那一整塊功能。如果你想在 NAS 上得到完整體驗，要走的是「在 NAS 的虛擬機管理程式裡開一台 VM 跑 HAOS」，不是直接裝個 Docker 容器。這兩件事常常被混為一談。</div>
+      <div class="callout warn"><strong>Warning:</strong>The official documents of Synology and QNAP follow the Docker route, which is what is shown in the previous table. <strong>Container</strong> installation,<strong>Not HAOS</strong>, so an entire functionality of Apps will be lost. If you want to get a complete experience on the NAS, the best way is to "open a VM and run HAOS in the NAS hypervisor" instead of directly installing a Docker container. These two things are often conflated.</div>
     </section>
 
-    <section id="onboarding" data-nav="首次設定">
-      <h2 data-icon="login">首次開機的 Onboarding：建立你的擁有者帳號</h2>
+    <section id="onboarding" data-nav="First time setup">
+      <h2 data-icon="login">Onboarding for the first time: Creating your owner account</h2>
 
-      <p>「Preparing Home Assistant」跑完之後，畫面會換成歡迎頁。這一段官方叫做 Onboarding，全程在瀏覽器裡點一點就好，<strong>完全不用打任何指令</strong>。</p>
+      <p>After "Preparing Home Assistant" finishes running, the screen will change to the welcome page. This section is officially called Onboarding. Just click on it in the browser.<strong>No need to type any instructions at all</strong>.</p>
 
       <ol class="steps">
         <li>
-          <h3>選擇「建立我的智慧家庭」或還原備份</h3>
-          <p>全新的人選建立新的（官方文案是 <em>Create my smart home</em>）。如果你是換機器、手上有舊主機的備份檔，這裡就是還原的入口——這也是為什麼<a href="ch9_backups.html">第 9 章</a>值得早點看。</p>
+          <h3>Select "Build My Smart Home" or restore the backup</h3>
+          <p>Brand new candidates create new ones (the official copy is <em>Create my smart home</em>). If you are changing machines and have a backup file of the old machine, this is the entry point for restoration - this is why<a href="ch9_backups.html">Chapter 9</a>Worth watching early.</p>
         </li>
         <li>
-          <h3>填名字、使用者名稱、密碼</h3>
-          <p>官方文件的說法是：Home Assistant 第一次啟動時建立的這個帳號就是<strong>擁有者（Owner）</strong>，它<strong>永遠同時是管理員</strong>、權限最高，可以管系統的每一個部分，包含開新帳號。官方特別提醒：<strong>使用者名稱要全部小寫、不能有空白</strong>。</p>
-          <p>密碼請認真設，而且<strong>記牢</strong>——這台機器之後會知道你家什麼時候沒人，而且官方文件明講：<strong>擁有者的密碼忘了，就得走「我被鎖在外面」的救援程序、把系統打回重新 onboarding 的狀態</strong>，不是點個「忘記密碼」寄信給你那麼簡單。使用者與權限的細節在<a href="ch5_users.html">第 5 章</a>。</p>
+          <h3>Fill in your name, username, and password</h3>
+          <p>The official document states: The account created when Home Assistant is launched for the first time is<strong>Owner</strong>, it<strong>Always an administrator at the same time</strong>, has the highest authority and can manage every part of the system, including opening new accounts. Official special reminder:<strong>Username must be all lowercase and cannot contain spaces.</strong>.</p>
+          <p>Please set your password carefully, and<strong>Remember</strong>—This machine will know when your home is empty, and the official document clearly states:<strong>If the owner forgets his password, he has to go through the "I'm locked out" rescue procedure and put the system back into a re-onboarding state.</strong>, it’s not as simple as clicking “Forgot Password” and sending you a letter. Details of users and permissions are in<a href="ch5_users.html">Chapter 5</a>.</p>
         </li>
         <li>
-          <h3>設定家的位置</h3>
-          <p>在地圖上把位置標到你家。這一步不只是好玩——官方文件說它會一次幫你設好<strong>時區、單位系統與貨幣</strong>，並且建立一個預設半徑 100 公尺的「家」區域（Zone），之後「有人回家就開燈」這類自動化就是靠它判斷的。台灣的話時區應該會抓成 Asia/Taipei。這幾個設定之後在<a href="ch2_system_settings.html">第 2 章</a>都還能改。</p>
+          <h3>Set home location</h3>
+          <p>Mark the location to your home on the map. This step isn't just fun - the official documentation says it will set it up for you in one go<strong>Time zones, unit systems and currencies</strong>, and establish a "home" zone with a preset radius of 100 meters, and then rely on it to determine automation such as "turn on the lights when someone comes home." Choose the IANA time zone for your location. After these settings,<a href="ch2_system_settings.html">Chapter 2</a>It can all be changed.</p>
         </li>
         <li>
-          <h3>決定要不要送出分析資料</h3>
-          <p>這一頁問你要不要分享匿名的使用統計。官方文件寫得很老實：<strong>預設是關閉的</strong>，但他們鼓勵你打開，因為這些數字會影響開發團隊決定要優先支援哪些裝置。送不送都不影響功能，自己決定。</p>
+          <h3>Decide whether to send analysis data</h3>
+          <p>This page asks you if you want to share anonymous usage statistics. The official documents are written very honestly:<strong>Default is off</strong>, but they encourage you to turn it on, as these numbers will influence the development team's decision on which devices to prioritize support. Whether to send it or not will not affect the function, it is up to you.</p>
         </li>
         <li>
-          <h3>按「完成」，然後看看它找到了什麼</h3>
-          <p>按下 Finish 就會進到儀表板。Home Assistant 會自動掃描你家網路上已經看得到的裝置，跳出一堆「發現了 XXX，要設定嗎」。<strong>現在先不要急著全部點下去</strong>，先把主機穩定跑個一天再說。</p>
+          <h3>Press "Done" and see what it finds</h3>
+          <p>Pressing Finish will take you to the dashboard. Home Assistant will automatically scan the devices that are visible on your home network and pop up a bunch of "XXX found, do you want to set it up?"<strong>Don’t rush to click them all now.</strong>, let the host run stably for a day first.</p>
         </li>
       </ol>
 
-      <div class="callout tip"><strong>提示：</strong>2026.2 之後的預設首頁叫做 <strong>Home Dashboard（首頁儀表板）</strong>，裡面有一區「For You」會列出剛發現的裝置讓你快速加入，還有一個「Devices」區塊收集還沒被分到房間的裝置。如果你在別的教學看到的畫面長得不一樣，那可能是舊版的「Overview（legacy）」。儀表板怎麼改成你想要的樣子，看<a href="ch6_dashboard.html">第 6 章</a>。</div>
+      <div class="callout tip"><strong>Tip:</strong>The default homepage after 2026.2 is called <strong>Home Dashboard</strong>, there is a "For You" section that lists the newly discovered devices for you to quickly join, and there is also a "Devices" section that collects devices that have not been assigned to rooms. If the screen you see in other tutorials looks different, it may be the old version of "Overview (legacy)". How to change the dashboard to what you want, see<a href="ch6_dashboard.html">Chapter 6</a>.</div>
 
-      <div class="callout"><strong>觀念：</strong><strong>這一步做完，你就正式接上本站主線了。</strong>接下來請直接跳到<a href="ch1_login.html">第 1 章：登入 HA</a>，那邊會帶你熟悉介面、裝手機 App、然後一路蓋到自動化。這篇後面的內容是硬體層面的補充，你可以之後遇到問題再回來翻。</div>
+      <div class="callout"><strong>Concept:</strong><strong>After completing this step, you will officially be connected to the main line of this site.</strong>Next, please jump directly to<a href="ch1_login.html">Chapter 1: Login to HA</a>, where you will be familiar with the interface, install the mobile app, and then build it all the way to automation. The following content in this article is a supplement to the hardware level. You can come back to it later if you encounter problems.</div>
     </section>
 
-    <section id="network" data-nav="網路怎麼接">
-      <h2 data-icon="network">網路：拜託你牽一條網路線</h2>
+    <section id="network" data-nav="How to connect to the Internet">
+      <h2 data-icon="network">Internet: Please lead an Internet line</h2>
 
-      <p>這件事講一百次都不嫌多：<strong>你的 Home Assistant 主機，請用有線網路。</strong></p>
+      <p>I can’t say this a hundred times too many times:<strong>For your Home Assistant host, please use a wired network.</strong></p>
 
-      <p>不是說 Wi-Fi 不能跑，是它會讓你在錯的地方浪費非常多時間。想像一下這個場景：你設了一條「晚上七點半客廳自動開燈」的自動化，結果它有時候會晚個幾十秒，有時候完全不動。你去翻自動化設定、翻裝置、翻日誌，什麼都正常——實際上是主機的 Wi-Fi 在那個時間點掉了幾秒。這種問題<strong>看起來完全不像網路問題</strong>，所以特別難查。</p>
+      <p>It’s not that Wi-Fi can’t work, but it will make you waste a lot of time in the wrong place. Imagine this scenario: You set up an automation to "automatically turn on the lights in the living room at 7:30 pm". As a result, it will sometimes be tens of seconds late, and sometimes it will not move at all. You go through the automation settings, devices, and logs, and everything is normal - in fact, the host's Wi-Fi dropped for a few seconds at that time. This kind of problem<strong>It doesn't look like a network problem at all</strong>, so it is particularly difficult to check.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>比較項目</th><th>有線</th><th>Wi-Fi</th></tr>
+          <tr><th>Compare items</th><th>Wired</th><th>Wi-Fi</th></tr>
         </thead>
         <tbody>
-          <tr><td>安裝時能不能用</td><td>可以</td><td><strong>不行</strong>，官方安裝流程要求先接網路線</td></tr>
-          <tr><td>穩定性</td><td>幾乎不會斷</td><td>會受微波爐、鄰居 AP、距離影響</td></tr>
-          <tr><td>斷線時的症狀</td><td>很明顯，一看就知道</td><td>間歇性、隨機，極難查</td></tr>
-          <tr><td>對 2.4GHz 裝置的干擾</td><td>沒有</td><td>主機自己的 Wi-Fi 會跟 Zigbee 搶 2.4GHz 頻段</td></tr>
+          <tr><td>Can it be used during installation?</td><td>OK</td><td><strong>No</strong>, the official installation process requires connecting the network cable first</td></tr>
+          <tr><td>Stability</td><td>Almost never breaks</td><td>Will be affected by microwave oven, neighbor AP, distance</td></tr>
+          <tr><td>Symptoms of disconnection</td><td>It's obvious, you can tell at a glance</td><td>Intermittent, random, extremely difficult to check</td></tr>
+          <tr><td>Interference to 2.4GHz devices</td><td>No</td><td>The host's own Wi-Fi will compete with Zigbee for the 2.4GHz frequency band</td></tr>
         </tbody>
       </table>
 
-      <p>注意最後一列。Zigbee 跟 Thread 都跑在 2.4GHz，你家的 Wi-Fi 也是。如果主機本身用 2.4GHz Wi-Fi，又插著一根 Zigbee 無線電棒在旁邊，兩個會互相干擾，你的感測器就會開始「偶爾失聯」。這也是為什麼很多人會建議把 Zigbee 棒用一條 USB 延長線拉遠一點——不是迷信，是真的有效。</p>
+      <p>Pay attention to the last column. Zigbee and Thread both run at 2.4GHz, and so does your home Wi-Fi. If the host itself uses 2.4GHz Wi-Fi, and a Zigbee radio stick is plugged in next to it, the two will interfere with each other, and your sensors will start to "occasionally lose connection." This is why many people suggest extending the Zigbee stick a little further with a USB extension cable - it's not superstitious, it really works.</p>
 
-      <div class="callout warn"><strong>注意：</strong>安裝完成之後，<strong>請去你的路由器把主機的 IP 位址固定下來</strong>（DHCP 保留 / Static Lease，各家路由器名稱不同）。不然某天路由器重開，主機換了 IP，你所有存成 IP 的書籤、監視器連線、手機 App 設定就全部要重來一次。這件事花五分鐘，省你未來一個晚上。</div>
+      <div class="callout warn"><strong>Warning:</strong>After the installation is complete,<strong>Please go to your router and fix the IP address of the host.</strong>(DHCP Reserve/Static Lease, each router has a different name). Otherwise, one day the router will be restarted and the host will change its IP, and all your bookmarks saved as IP, monitor connections, and mobile app settings will have to be redone. Take five minutes to do this and save yourself a whole night in the future.</div>
 
-      <p>主機的網路設定與主機名稱可以在 <strong>設定 &gt; 系統 &gt; 網路</strong> 裡看到與調整。順帶一提，<code>homeassistant.local</code> 這種寫法靠的是 mDNS（多播 DNS），有些路由器或公司網路會擋掉它——真的連不上就用 IP，功能完全一樣。</p>
+      <p>The network settings and host name of the host can be found in <strong>Settings &gt; System &gt; Network</strong> See and adjust. By the way,<code>homeassistant.local</code> This way of writing relies on mDNS (Multicast DNS), and some routers or company networks will block it - if you really can't connect, just use IP, the function is exactly the same.</p>
     </section>
 
-    <section id="power" data-nav="電源與散熱">
-      <h2 data-icon="warning">電源、散熱、UPS：無聊但會救你一命的三件事</h2>
+    <section id="power" data-nav="Power and cooling">
+      <h2 data-icon="warning">Power supply, cooling, UPS: three boring things that will save your life</h2>
 
-      <h3>電源：不要用手機充電器隨便湊</h3>
+      <h3>Power supply: Don’t just use a mobile phone charger</h3>
 
-      <p>這是 Raspberry Pi 使用者最經典的災難。症狀是：<strong>主機會在你完全沒動它的時候隨機重開機</strong>，或是接上 USB 硬碟之後開始不穩。你會以為是系統壞了、SD 卡壞了、記憶體不夠，其實是電不夠。</p>
+      <p>This is the classic disaster for Raspberry Pi users. Symptoms are:<strong>The console will randomly reboot when you don't touch it at all.</strong>, or it becomes unstable after connecting the USB hard drive. You may think that the system is broken, the SD card is broken, or the memory is not enough, but it is actually a lack of power.</p>
 
       <table class="data-table">
         <thead>
-          <tr><th>機型</th><th>官方電源規格</th><th>供電不足會怎樣</th></tr>
+          <tr><th>Model</th><th>Official power supply specifications</th><th>What happens if there is insufficient power supply?</th></tr>
         </thead>
         <tbody>
-          <tr><td>Raspberry Pi 5</td><td>官方 27W USB-C PD 電源，5.1V / 5A</td><td>降頻、USB 裝置供電被限制、隨機重開</td></tr>
-          <tr><td>Raspberry Pi 4</td><td>官方 USB-C 電源，5.1V / 3A（15W）</td><td>畫面出現閃電符號、隨機重開</td></tr>
-          <tr><td>Home Assistant Green</td><td>盒裝附的 12V 電源</td><td>用附的就對了，不要自己換</td></tr>
-          <tr><td>迷你電腦</td><td>原廠變壓器</td><td>同上</td></tr>
+          <tr><td>Raspberry Pi 5</td><td>Official 27W USB-C PD power supply, 5.1V / 5A</td><td>Frequency reduction, USB device power supply limited, random reboots</td></tr>
+          <tr><td>Raspberry Pi 4</td><td>Official USB-C power supply, 5.1V/3A (15W)</td><td>A lightning symbol appears on the screen and it restarts randomly.</td></tr>
+          <tr><td>Home Assistant Green</td><td>12V power supply included in the box</td><td>Just use the one attached, don't replace it yourself.</td></tr>
+          <tr><td>mini computer</td><td>Original transformer</td><td>Same as above</td></tr>
         </tbody>
       </table>
 
-      <p>Pi 5 特別要注意：它要求的是 5A 的 USB-C PD 電源，這不是一般手機充電器會給的規格。你拿一個「看起來一樣是 USB-C、瓦數也夠」的充電器來接，很可能仍然餵不飽它，而且症狀會非常隱晦。<strong>這裡真的建議直接買原廠電源，這是整套系統裡最不值得省的一環。</strong></p>
+      <p>Special attention should be paid to the Pi 5: it requires a 5A USB-C PD power supply, which is not a specification given by ordinary mobile phone chargers. If you pick up a charger that "looks like USB-C and has enough wattage", you may still not be able to feed it, and the symptoms will be very subtle.<strong>It is really recommended to buy the original power supply directly. This is the least worth saving in the entire system.</strong></p>
 
-      <div class="callout danger"><strong>危險：</strong>供電不足造成的隨機重開，最可怕的不是「重開」本身，是<strong>重開的瞬間如果正在寫資料庫，檔案就可能損毀</strong>。累積幾次之後，你的資料庫就會壞掉，然後歷史紀錄全部消失。這是很多人「莫名其妙資料庫壞掉」的真正原因。</div>
+      <div class="callout danger"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. The most terrifying thing about random restarts caused by insufficient power supply is not the "restart" itself;<strong>If the database is being written at the moment of restart, the file may be damaged.</strong>. After accumulating a few times, your database will become corrupted and all historical records will disappear. This is the real reason why many people have "the database is broken inexplicably".</div>
 
-      <h3>散熱：不會燒掉，但會變慢</h3>
+      <h3>Heat dissipation: won’t burn, but will slow down</h3>
 
-      <p>ARM 晶片過熱不會爆炸，它會<strong>降頻</strong>保護自己——反應在你身上就是儀表板變卡、更新變慢。Raspberry Pi 4 與 5 在密閉塑膠殼裡長時間跑，是真的會熱。做法很簡單：買有散熱片的金屬外殼，或加一顆小風扇。Home Assistant Green 用的是鋁製散熱片被動散熱，不用風扇，這也是官方硬體省事的地方之一。</p>
+      <p>An ARM chip won’t explode if it overheats;<strong>Downclocking</strong>Protect yourself - the reaction to you is that the dashboard becomes stuck and updates slow down. Raspberry Pi 4 and 5 will really get hot if they are run in a sealed plastic case for a long time. The method is simple: buy a metal casing with a heat sink, or add a small fan. Home Assistant Green uses aluminum heat sinks for passive cooling and does not require a fan. This is one of the trouble-free aspects of the official hardware.</p>
 
-      <p>擺放位置也算散熱：不要塞在電視櫃最裡面、不要跟路由器疊在一起、不要壓在一堆線材底下。找個通風、你伸手就摸得到的地方。</p>
+      <p>The placement also counts for heat dissipation: don’t stuff it in the back of the TV cabinet, don’t stack it with the router, and don’t put it under a pile of wires. Find a ventilated place where you can reach out and touch it.</p>
 
-      <h3>UPS：跳電時的保險</h3>
+      <h3>UPS: Insurance in case of power outage</h3>
 
-      <p>台灣夏天跳電、施工停電都不算罕見。你的主機正在寫入時被硬斷電，就是前面講的資料庫損毀風險。一台便宜的不斷電系統（UPS）能撐個十幾分鐘就很夠了——重點不是讓它繼續跑，是讓它有機會<strong>好好地關機</strong>，或撐過那種幾秒鐘的瞬斷。</p>
+      <p>Grid and construction-related outages can happen in any region. Your host is hard powered off while writing, which is the risk of database damage mentioned earlier. A cheap uninterruptible power supply system (UPS) is enough if it can last for more than ten minutes - the point is not to let it continue to run, but to give it a chance<strong>Shut down properly</strong>, or survive the brief interruption of a few seconds.</p>
 
-      <div class="callout tip"><strong>提示：</strong>如果預算不允許買 UPS，退而求其次的做法是：<strong>把自動備份設好，並且讓備份自動上傳到主機以外的地方</strong>。硬體終究會壞，備份才是你真正的保險。<a href="ch9_backups.html">第 9 章</a>整章都在講這件事。</div>
+      <div class="callout tip"><strong>Tip:</strong>If the budget does not allow buying a UPS, the next best thing to do is:<strong>Set up automatic backup and have backups automatically uploaded to a location other than the host computer</strong>. Hardware will eventually break, and backup is your real insurance.<a href="ch9_backups.html">Chapter 9</a>The whole chapter is about this.</div>
     </section>
 
-    <section id="after" data-nav="裝好之後做什麼">
-      <h2 data-icon="done">裝好之後的頭三件事</h2>
+    <section id="after" data-nav="What to do after installing it">
+      <h2 data-icon="done">The first three things to do after installation</h2>
 
-      <p>系統跑起來了，先別急著買一堆燈泡。照這個順序做，你之後會少很多痛苦。</p>
+      <p>Now that the system is running, don't rush to buy a bunch of light bulbs. Follow this order and you'll be less miserable later on.</p>
 
       <ol class="steps">
         <li>
-          <h3>去路由器把 IP 固定住</h3>
-          <p>前面網路那節講過的 DHCP 保留。這是唯一一件要在 Home Assistant 以外做的事，先做完。</p>
+          <h3>Go to the router and fix the IP</h3>
+          <p>The DHCP reservation mentioned in the previous network section. This is the only thing to do outside of Home Assistant, so do it first.</p>
         </li>
         <li>
-          <h3>設定自動備份，並且讓它離開這台機器</h3>
-          <p>備份如果只存在主機自己的儲存裝置上，那張卡壞掉時備份也一起陪葬，等於沒備份。<a href="ch9_backups.html">第 9 章</a>會帶你設定自動備份與把它送到主機以外的地方。</p>
+          <h3>Set up automatic backup and let it leave this machine</h3>
+          <p>If the backup only exists on the host's own storage device, the backup will be buried with it when the card fails, which means there is no backup.<a href="ch9_backups.html">Chapter 9</a>It will take you to set up automatic backup and send it to a place other than the host computer.</p>
         </li>
         <li>
-          <h3>檢查更新，然後養成更新前先備份的習慣</h3>
-          <p>Home Assistant Core 大約每月一版（版本號長得像 <code>2026.8</code>，就是「2026 年 8 月那版」），作業系統 HAOS 則是完全獨立的一條版本號，數字小很多（撰稿時官方文件用的例子與最新釋出都是 <code>18.2</code>）。看到「Core 2026.8」跟「作業系統 18.2」同時出現不要嚇到，那是兩個不同的東西。更新很值得跟，但<strong>永遠先備份再更新</strong>。</p>
+          <h3>Check for updates and make a habit of backing up before updating</h3>
+          <p>Home Assistant Core is released approximately once a month (the version number looks like <code>2026.8</code>, which is the "August 2026 version"), the operating system HAOS is a completely independent version number, with a much smaller number (the examples used in the official documents and the latest releases at the time of writing are <code>18.2</code>). Don’t be surprised to see “Core 2026.8” and “Operating System 18.2” appear at the same time. They are two different things. Updates are well worth following, but<strong>Always back up before updating</strong>.</p>
         </li>
         <li>
-          <h3>然後就去第 1 章吧</h3>
-          <p>硬體的部分到這裡就結束了。接下來的旅程從<a href="ch1_login.html">第 1 章</a>開始：認識介面、裝手機 App、設定時區與區域、命名規則，一路到你的第一條自動化。</p>
+          <h3>Then go to Chapter 1</h3>
+          <p>The hardware part ends here. The next journey starts from<a href="ch1_login.html">Chapter 1</a>Get started: Get to know the interface, install the mobile app, set the time zone and region, naming rules, all the way to your First automation.</p>
         </li>
       </ol>
 
-      <div class="callout"><strong>觀念：</strong>你可能會在舊教學裡看到「進階模式（Advanced Mode）」這個開關，被叫去打開它才能看到某些功能。<strong>這個開關在 2026.6 已經被移除了</strong>，原本藏起來的功能現在預設就都看得到。另外 2026.8 把「開發者工具（Developer Tools）」直接改名成「工具（Tools）」，因為官方覺得那本來就是每個人都用得到的地方。看到名字對不上的教學，先想想是不是版本差異。</div>
+      <div class="callout"><strong>Concept:</strong>You may see the "Advanced Mode" switch in old tutorials and be asked to turn it on to see certain functions.<strong>This switch has been removed in 2026.6</strong>, the functions that were originally hidden are now visible by default. In addition, in 2026.8, "Developer Tools" will be renamed directly to "Tools" because the official believes that it is a place that everyone can use. When you see a tutorial with a mismatched name, first think about whether it is a version difference.</div>
     </section>
 
-    <section id="troubleshoot" data-nav="常見卡關">
-      <h2 data-icon="troubleshoot">常見卡關</h2>
+    <section id="troubleshoot" data-nav="Common stuck levels">
+      <h2 data-icon="troubleshoot">Common stuck levels</h2>
 
       <ol class="steps">
         <li>
-          <h3>瀏覽器打 homeassistant.local 完全沒反應</h3>
-          <p>這幾乎都是 mDNS 的問題，不是主機掛了。依序試：<strong>(1)</strong> 改打 <code>homeassistant.local:8123</code>——2026.8 之前安裝的機器需要帶通訊埠。<strong>(2)</strong> 去路由器的管理頁面找「已連線裝置」清單，找一台名字像 <code>homeassistant</code> 的，把它的 IP 抄下來，改打 <code>http://那個IP:8123</code>。<strong>(3)</strong> 確認你的手機或電腦跟主機在<strong>同一個網段</strong>——很多路由器的訪客網路（Guest Wi-Fi）或 2.4G／5G 分開的 SSID 會互相隔離，這時候怎麼試都連不到。<strong>(4)</strong> 公司或學校網路常會擋 mDNS，用 IP 就好。</p>
+          <h3>When the browser calls homeassistant.local, there is no response at all.</h3>
+          <p>This is almost always an mDNS problem, not a host failure. Try in order:<strong>(1)</strong> Change to type <code>homeassistant.local:8123</code>—Machines installed before 2026.8 need to have communication ports.<strong>(2)</strong> Go to the router's management page and look for the "Connected Devices" list, and look for one with a name like <code>homeassistant</code> Yes, copy its IP and type it again <code>http://thatIP:8123</code>.<strong>(3)</strong> Make sure your mobile phone or computer is connected to the host computer<strong>same network segment</strong>—The guest network (Guest Wi-Fi) or 2.4G/5G separate SSIDs of many routers will be isolated from each other. At this time, no matter how hard you try, you cannot connect.<strong>(4)</strong> Company or school networks often block mDNS, so just use IP.</p>
         </li>
         <li>
-          <h3>燒錄成功了，但插電之後完全沒動靜</h3>
-          <p>先確認<strong>燒錯機型</strong>沒有——Raspberry Pi 4 的映像放進 Pi 5、或反過來，都會安靜地開不了機，這是第一名的原因。第二個原因是燒錄工具寫失敗（尤其用便宜讀卡機時），把卡重新燒一次。第三，接個 HDMI 螢幕看看有沒有畫面：完全沒訊號通常是開機媒體的問題，有跑文字但停住則是別的問題。x86 機器則要回去檢查 BIOS 有沒有設成 UEFI、Secure Boot 有沒有關掉。</p>
+          <h3>The burning was successful, but there was no movement at all after plugging it in.</h3>
+          <p>Confirm first<strong>Burning the wrong model</strong>No - a Raspberry Pi 4 image put into a Pi 5, or vice versa, will silently boot, which is why it's #1. The second reason is that the burning tool fails to write (especially when using a cheap card reader), so burn the card again. Third, connect an HDMI screen to see if there is any picture: if there is no signal at all, it is usually a problem with the media being turned on. If text is running but stops, it is another problem. For x86 machines, you need to go back and check whether the BIOS is set to UEFI and whether Secure Boot is turned off.</p>
         </li>
         <li>
-          <h3>開機之後卡在「Preparing Home Assistant」很久</h3>
-          <p>這一頁是正常的，它在下載最新版本。官方沒有公布這一步該花多久，只說「可能需要一段時間」；<strong>經驗上十幾二十分鐘都算合理</strong>，用 SD 卡的話更慢。這時候絕對不要拔電。但如果超過一小時還在轉，去確認網路線有沒有真的通、路由器有沒有給它 IP、對外網路是不是正常——這一步一定要能連上網才過得去。</p>
+          <h3>After turning on the computer, it is stuck in "Preparing Home Assistant" for a long time.</h3>
+          <p>This page is normal, it is downloading the latest version. The official did not announce how long this step will take, only saying that "it may take some time";<strong>From experience, ten or twenty minutes is considered reasonable.</strong>, using an SD card is even slower. Never unplug the power supply at this time. But if it continues to transfer for more than an hour, check whether the network line is actually connected, whether the router has given it an IP, and whether the external network is normal - this step must be connected to the Internet.</p>
         </li>
         <li>
-          <h3>主機會自己重開機，而且找不到規律</h3>
-          <p>第一個懷疑對象是<strong>電源</strong>，不是軟體。特別是 Raspberry Pi 5 沒用 27W／5A 規格的原廠電源、或 Pi 4 用了手機充電器、或你在 USB 埠上又插了一顆沒有獨立供電的硬碟。換原廠電源試一週。第二個懷疑對象是<strong>過熱</strong>，摸摸看外殼燙不燙，加散熱片或風扇。第三才是儲存媒體開始壞了。</p>
+          <h3>The host will reboot itself and no pattern can be found</h3>
+          <p>The first suspect is<strong>power supply</strong>, not software. Especially if the Raspberry Pi 5 does not use the original 27W/5A power supply, or the Pi 4 uses a mobile phone charger, or you plug in a hard drive that does not have an independent power supply on the USB port. Replace the original power supply and try it for a week. The second suspect is<strong>overheating</strong>, touch the case to see if it is hot, and add a heat sink or fan. The third thing is that the storage media starts to break.</p>
         </li>
         <li>
-          <h3>用了幾個月，儀表板變得很卡、更新常失敗</h3>
-          <p>這是 SD 卡開始壞掉的典型徵兆。<strong>立刻做一份完整備份並下載到你自己的電腦</strong>，然後準備換成 SSD。可以用 <strong>設定 &gt; 系統 &gt; 儲存空間</strong> 裡的「Move data disk」把資料搬到 SSD，或者直接拿備份在新媒體上重裝再還原。不要抱著僥倖心態拖，壞到底就救不回來了。</p>
+          <h3>After using it for several months, the dashboard has become very stuck and updates often fail.</h3>
+          <p>This is a classic sign that the SD card is starting to go bad.<strong>Make a full backup now and download it to your own computer</strong>, and then prepare to switch to SSD. available <strong>Settings &gt; System &gt; Storage</strong> "Move data disk" in "Move data disk" to move the data to SSD, or directly take the backup and reinstall it on the new media and then restore it. Don't put it off with a lucky mentality, otherwise you won't be able to save it.</p>
         </li>
         <li>
-          <h3>裝好之後發現找不到「附加元件」在哪裡</h3>
-          <p>因為它改名了。2026.2 之後叫做 <strong>Apps</strong>，路徑是 <strong>設定 &gt; Apps</strong>。另外要注意：<strong>Container 安裝真的沒有這個面板</strong>，官方文件白紙黑字寫「Container 安裝無法使用 Apps」，不是你找不到。現在還買得到、還在支援的安裝方式裡，只有 HAOS 有 Apps（舊的 Supervised 也有，但它 2025.12 就終止支援了，不要為了這個去裝）。</p>
+          <h3>After installing it, I found that I couldn’t find the “add-ons”.</h3>
+          <p>Because it changed its name. After 2026.2 it will be called <strong>Apps</strong>, the path is <strong>Settings &gt; Apps</strong>. Also note:<strong>Container installation really does not have this panel</strong>, the official document says in black and white “Container installation cannot use Apps”, it’s not that you can’t find it. Among the installation methods that are still available and supported, only HAOS has Apps (the old Supervised also has it, but it will cease support in 2025.12, so don’t install it just for this).</p>
         </li>
       </ol>
     </section>
 
-    <section id="faq" data-nav="常見問題">
-      <h2 data-icon="faq">常見問題</h2>
+    <section id="faq" data-nav="FAQ">
+      <h2 data-icon="faq">FAQ</h2>
 
       <details class="faq">
-        <summary>我可以先用舊筆電或家裡的 Raspberry Pi 試看看，之後再換好一點的機器嗎？</summary>
-        <div class="body">完全可以，而且是很推薦的做法。Home Assistant 的備份機制讓「換機器」變得相對輕鬆：在舊機器上做一份完整備份下載下來，新機器裝好 HAOS 之後，在 Onboarding 的第一步選「還原備份」而不是「建立新的」，你的所有設定、自動化、裝置就會回來。這也是為什麼<a href="ch9_backups.html">第 9 章</a>值得在你還沒累積太多東西的時候就先看完。</div>
+        <summary>Can I try it out with an old laptop or the Raspberry Pi at home first, and then switch to a better machine?</summary>
+        <div class="body">It's absolutely possible, and it's highly recommended. Home Assistant's backup mechanism makes "changing machines" relatively easy: Make a complete backup on the old machine and download it. After installing HAOS on the new machine, select "Restore backup" instead of "Create New" in the first step of Onboarding, and all your settings, automation, and devices will be back. This is why<a href="ch9_backups.html">Chapter 9</a>It's worth reading it before you accumulate too much.</div>
       </details>
 
       <details class="faq">
-        <summary>Home Assistant Green 跟自己配一台 Raspberry Pi，到底差在哪？</summary>
-        <div class="body">差在你要花的是錢還是時間。Green 是官方硬體，盒裝就附電源與網路線、用 32GB eMMC 而不是 SD 卡、鋁製散熱片被動散熱不用風扇，插上去就跑，沒有選錯映像檔或電源不足這些坑。Raspberry Pi 則是彈性大、零件好買、之後想升級成 SSD 很自由，但每一個環節都要你自己判斷。<strong>如果你完全不想研究硬體，Green；如果你享受折騰或手上剛好有 Pi，Pi。</strong>兩者跑的是同一套 HAOS，軟體體驗一模一樣。</div>
+        <summary>What’s the difference between Home Assistant Green and owning a Raspberry Pi?</summary>
+        <div class="body">The difference is whether you have to spend money or time. Green is official hardware. It comes with a power supply and network cable in the box. It uses a 32GB eMMC instead of an SD card. It has an aluminum heat sink for passive cooling without a fan. It plugs it in and it runs. There are no pitfalls such as selecting the wrong image file or insufficient power supply. The Raspberry Pi is highly flexible, parts are easy to buy, and you can freely upgrade to an SSD later, but you have to make your own judgment in every step.<strong>If you don't want to study hardware at all, Green; if you enjoy tossing around or happen to have a Pi on hand, Pi.</strong>Both run the same HAOS, and the software experience is exactly the same.</div>
       </details>
 
       <details class="faq">
-        <summary>我想買 Home Assistant Yellow，因為它內建 Zigbee，這樣好嗎？</summary>
-        <div class="body">不建議。官方頁面已經明確標示 Yellow <strong>不再生產</strong>，只是繼續提供軟體更新，並且建議新買家改買 Green。內建無線電確實方便，但你完全可以買 Green（或任何主機）再插一根 <code>Connect ZBT-2</code> 這類 USB 無線電棒達到一樣的效果，而且棒子壞了可以單獨換、還能擺遠一點避開干擾（ZBT-2 盒裝就附一條 1.5 公尺的 USB 線，本來就是給你拉遠用的）。為了一個停產品去追二手，划不來。</div>
+        <summary>I want to buy Home Assistant Yellow because it has Zigbee built in, is that okay?</summary>
+        <div class="body">Not recommended. The official page has clearly marked Yellow <strong>no longer produced</strong>, just continue to provide software updates and recommend new buyers to buy Green instead. The built-in radio is really convenient, but you can buy a Green (or any console) and plug it in <code>Connect ZBT-2</code> This type of USB wireless stick achieves the same effect, and if the stick is broken, it can be replaced separately, and it can also be moved farther away to avoid interference (the ZBT-2 box comes with a 1.5-meter USB cable, which is originally meant for you to use at a distance). It’s not worth it to buy a second-hand product for a discontinued product.</div>
       </details>
 
       <details class="faq">
-        <summary>我已經有 NAS 了，直接裝在 NAS 上不是最省？</summary>
-        <div class="body">要看你怎麼裝。Synology 與 QNAP 的官方文件走的是 Docker 路線，那屬於 <strong>Container</strong> 安裝，會少掉整個 Apps 生態，而且官方明講 Thread 與 Z-Wave 這類靠 Apps 支撐的整合在 Container 上沒有現成支援。想要完整體驗，要在 NAS 的虛擬機管理程式裡開一台 VM 跑 HAOS（官方有提供 <code>.qcow2</code>、<code>.vdi</code>、<code>.ova</code> 等格式，最低配置建議 2GB 記憶體、2 顆 vCPU）。另外要有心理準備：<strong>NAS 重開機或更新的時候，你家的自動化會整個停擺</strong>，而 NAS 更新的頻率通常比你想像的高。USB 無線電棒要穿透虛擬機也常常出狀況。</div>
+        <summary>I already have a NAS. Wouldn’t it be the cheapest to install it directly on the NAS?</summary>
+        <div class="body">It depends on how you pretend. The official documents of Synology and QNAP take the Docker route, which is <strong>Container</strong> Installation will eliminate the entire Apps ecosystem, and the official statement states that integrations such as Thread and Z-Wave, which are supported by Apps, do not have ready support on Container. For a complete experience, you need to open a VM in the NAS virtual machine management program to run HAOS (officially provided <code>.qcow2</code>, <code>.vdi</code>, <code>.ova</code> and other formats, the minimum configuration recommended is 2GB memory and 2 vCPUs). Also be mentally prepared:<strong>When the NAS is restarted or updated, your home automation will shut down entirely.</strong>, and NAS is often updated more frequently than you think. USB wireless sticks often have problems when trying to penetrate virtual machines.</div>
       </details>
 
       <details class="faq">
-        <summary>32GB 的 SD 卡官方說可以，那我就用 32GB 就好了吧？</summary>
-        <div class="body">32GB 是官方文件寫的<strong>最低要求</strong>，不是建議值。系統本身加上一般家庭的資料庫，32GB 撐得住，但你只要開始留幾份備份、裝幾個 Apps、或存一點攝影機片段，就會開始擠。更重要的是媒體種類的問題：SD 卡在 24 小時不停寫入的情境下壽命很短，這才是真正該解決的事。<strong>能買 SSD 就買 SSD，容量抓 128GB 以上</strong>，價差不大又省掉未來搬家的功夫。真的要用 SD 卡，官方安裝文件建議挑有 <code>A2</code> 標示的卡。</div>
+        <summary>The official said that 32GB SD card is OK, so I can just use 32GB, right?</summary>
+        <div class="body">32GB is written in official documents<strong>Minimum requirements</strong>, not a recommended value. The system itself and the database of an average family can support 32GB, but as soon as you start to keep a few backups, install a few apps, or save some camera clips, it will start to squeeze. What's more important is the issue of media type: SD cards have a short lifespan when they are written non-stop 24 hours a day. This is what really needs to be solved.<strong>If you can buy an SSD, buy an SSD with a capacity of 128GB or more.</strong>, the price difference is not big and it saves the effort of moving in the future. If you really need to use an SD card, it is recommended to select the official installation file. <code>A2</code> marked card.</div>
       </details>
 
       <details class="faq">
-        <summary>網路上的教學說要打 homeassistant.local:8123，但我的機器不用打通訊埠也連得到，是我裝錯了嗎？</summary>
-        <div class="body">沒錯，你是對的。從 <strong>2026.8</strong> 版開始，新安裝的 HAOS 預設改用不帶通訊埠號的一般網址；既有的安裝則維持原樣不變，所以還是要打 <code>:8123</code>。兩種畫面都正常，差別只在你是什麼時候裝的。網路上大量教學是舊版時期寫的，看到不一致時<strong>以你自己瀏覽器網址列上實際跑出來的位址為準</strong>就好。</div>
+        <summary>The instructions on the Internet say that you need to call homeassistant.local:8123, but my machine can connect without calling the communication port. Did I install it wrong?</summary>
+        <div class="body">Yes, you are right. from <strong>2026.8</strong> Starting from the latest version, newly installed HAOS defaults to a normal URL without a communication port number; existing installations remain unchanged, so you still need to open the <code>:8123</code>. Both images are normal, the only difference is when you installed it. A large number of teachings on the Internet were written during the old version. When you see inconsistencies,<strong>Please refer to the actual address displayed on your browser's address bar.</strong>Just fine.</div>
       </details>
 
       <details class="faq">
-        <summary>我看到有人說 Supervised 安裝比較彈性，我要不要走那條路？</summary>
-        <div class="body">不要。官方在 2025 年 5 月公告棄用 <strong>Core</strong> 與 <strong>Supervised</strong> 兩種安裝方式（同時被砍的還有 i386、armhf、armv7 這些 32 位元架構），時程是從 2025.6 開始跳提醒、<strong>2025.12 版正式終止支援</strong>，之後官方不再為這些方式建置發行版、也不受理問題回報。官方給的搬家建議是：Supervised 改用 HAOS（實體機或虛擬機皆可）、Core 改用 Container。你現在看到的「Supervised 教學」多半是那之前寫的。</div>
+        <summary>I saw someone saying Supervised installation is more flexible, should I go that route?</summary>
+        <div class="body">Don't. Official announcement of deprecation in May 2025 <strong>Core</strong> with <strong>Supervised</strong> There are two installation methods (32-bit architectures such as i386, armhf, and armv7 have been cut at the same time), and the schedule will start from 2025.6.<strong>Version 2025.12 officially ends support</strong>, then the official will no longer build distributions for these methods, and will not accept problem reports. The official relocation advice is: Supervised should use HAOS (either physical machine or virtual machine), and Core should use Container. Most of the "Supervised Tutorials" you see now were written before that time.</div>
       </details>
 
       <details class="faq">
-        <summary>首次設定時那個「分享分析資料」，送出去會不會有隱私問題？</summary>
-        <div class="body">官方文件說得很清楚：這項<strong>預設是關閉的</strong>，是否開啟完全由你決定，不影響任何功能。送出去的是匿名的統計資料，官方用它來判斷該優先支援哪些裝置與整合。想支持專案就打開，介意就維持關閉，兩種都沒問題。這個選項之後在系統設定裡也還能改，不是一次性的決定。</div>
+        <summary>Will there be any privacy issues when sending the "shared analysis data" when setting it up for the first time?</summary>
+        <div class="body">The official documents make it very clear: this<strong>Default is off</strong>, it is entirely up to you to decide whether to turn it on or not, and it does not affect any functions. What is sent out is anonymous statistical data, which the official uses to determine which devices and integrations should be prioritized for support. If you want to support the project, open it. If you don't mind, keep it closed. Either way is fine. This option can also be changed later in the system settings, so it is not a one-time decision.</div>
       </details>
 
       <details class="faq">
-        <summary>那個「擁有者」帳號可以之後改掉或多開幾個嗎？</summary>
-        <div class="body">官方文件講明的是這幾件事：擁有者（Owner）是<strong>第一次啟動時建立</strong>的那個帳號、<strong>永遠同時是管理員</strong>、擁有最高權限，而且<strong>擁有者帳號不能被刪除</strong>（你也不能刪掉自己正在登入的帳號）。至於「能不能把擁有者身分轉給別人」「能不能有第二個擁有者」，官方文件沒有明講，介面上也沒有現成的開關，所以實務上請<strong>把第一個帳號當成永久的</strong>來對待：帳密記牢、密碼認真設。萬一擁有者密碼真的忘了，官方的救援程序是把系統打回可以重新 onboarding 的狀態，代價不小。你之後當然可以在系統裡新增其他使用者（含管理員權限）。使用者、權限、以及跟「人（Person）」的關係，<a href="ch5_users.html">第 5 章</a>講得很完整。</div>
+        <summary>Can the "owner" account be changed or open more accounts later?</summary>
+        <div class="body">The official documents explain these things: The owner (Owner) is<strong>Created on first startup</strong>That account,<strong>Always an administrator at the same time</strong>, has the highest authority, and<strong>The owner account cannot be deleted</strong>(You also cannot delete the account you are logged in to). As for "whether the owner's identity can be transferred to others" and "whether there can be a second owner", the official document does not clearly explain it, and there is no ready-made switch on the interface, so in practice, please<strong>Treat the first account as permanent</strong>To deal with this: remember the account number and set the password carefully. If the owner really forgets his password, the official rescue procedure is to return the system to a state where it can be onboarded again, which is costly. You can of course add other users to the system later (including administrator rights). Users, permissions, and relationships with "Person",<a href="ch5_users.html">Chapter 5</a>Very complete.</div>
       </details>
     </section>
 
     <div class="pager">
       <a class="prev" href="appendix_scenes_helpers_groups.html">
         <span class="label">← Appendix B</span>
-        <span class="title">B · 場景/輔助元件/群組</span>
+        <span class="title">B · Scene/auxiliary component/group</span>
       </a>
       <a class="next" href="tutorial.html">
         <span class="label">Contents →</span>
@@ -583,8 +583,8 @@
     </div>
 
     <footer class="site-footer">
-      <p>Home Assistant 新居入住指南 is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
-      <p class="footer-meta">截圖取自 Home Assistant 官方介面。Home Assistant 為 Open Home Foundation 的商標，本站與其無隸屬關係。 · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
+      <p>Home Assistant New Home Move-In Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
+      <p class="footer-meta">Screenshot taken from Home Assistant official interface. Home Assistant is a trademark of the Open Home Foundation, and this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
   </main>
 </div>

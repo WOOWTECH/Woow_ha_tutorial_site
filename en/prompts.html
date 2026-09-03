@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HA API/MCP 控制提示詞庫 · 43 條可複製 · WoowTech</title>
-  <meta name="description" content="用 AI／Claude／MCP 控制 Home Assistant 的提示詞庫：43 條分 8 類——燈光場景、氣候空調、能源監控、通知推播、自動化編寫、感測器查詢、日常語音、故障排除。每條可直接複製給 ha-mcp-woow 之類的 HA MCP server 呼叫對應 service。" />
+  <title>HA API/MCP control prompt dictionary · 43 items can be copied · WoowTech</title>
+  <meta name="description" content="Use AI/Claude/MCP to control Home Assistant's prompt vocabulary: 43 items divided into 8 categories - lighting scenes, climate air conditioning, energy monitoring, notification push, automated writing, sensor query, daily voice, and troubleshooting. Each message can be copied directly to an HA MCP server such as ha-mcp-woow to call the corresponding service." />
   <meta name="author" content="WoowTech" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/prompts.html" />
@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
   <style>
-/* HA 提示詞庫 — Woow_ha_tutorial_site 版型 × woowtech Brand Prompt Library v2 */
+/* HA Prompt Library — Woow_ha_tutorial_site Pattern × woowtech Brand Prompt Library v2 */
 :root {
   --ww-blue: #6183FC; --ww-blue-600: #4A6DE8; --ww-blue-700: #3A57C4;
   --ww-blue-050: #EEF2FF; --ww-blue-100: #DCE4FF;
@@ -110,7 +110,7 @@ pre.code-block { background: var(--surface-alt); color: var(--ink-900); padding:
 code { font-family: var(--font-mono); font-size: 13px; background: var(--surface-alt); padding: 2px 8px; border-radius: var(--radius-xs); color: var(--ww-blue-700); }
 pre.code-block code { background: none; padding: 0; color: inherit; }
 
-/* —— 提示詞卡 —— */
+/* — Prompt Word Card — */
 .prompt-card { position: relative; background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius-sm); padding: 16px 96px 16px 18px; margin: 10px 0; box-shadow: var(--shadow-sm); max-width: var(--max-content); }
 .prompt-card .ptext { margin: 0; font-size: 14.5px; color: var(--ink-900); }
 .prompt-card .pnote, .pnote { margin: 8px 0 0; font-size: 13px; color: var(--ink-500); }
@@ -155,333 +155,335 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
 <body>
 <div class="layout">
   <aside class="sidebar" id="sidebar">
-    <a class="brand" href="#top">HA 提示詞庫</a>
-    <div class="brand-sub">WoowTech · 給 AI／MCP 用的 43 條</div>
+    <a class="brand" href="#top">HA Prompt Dictionary</a>
+    <div class="brand-sub">WoowTech · 43 items for AI/MCP</div>
     <!-- i18n:switch --><nav class="lang-switch" aria-label="Language"><a href="../prompts.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="prompts.html" lang="en" aria-current="page">EN</a></nav><!-- /i18n:switch -->
-    <a class="hub-link" href="index.html">◂ HA 資源總覽</a>
-    <button class="nav-toggle" id="navToggle" type="button">本冊內容<span class="nav-toggle-caret"></span></button>
+    <a class="hub-link" href="index.html">◂ HA Resource Hub</a>
+    <button class="nav-toggle" id="navToggle" type="button">Contents of this volume<span class="nav-toggle-caret"></span></button>
     <div class="toc-in-chapter">
-      <h2>本冊內容</h2>
-      <a href="#why">這本是什麼</a>
-      <a href="#howto">怎麼用</a>
-      <a href="#cat-light">燈光與場景</a>
-      <a href="#cat-climate">氣候與空調</a>
-      <a href="#cat-energy">能源與省電</a>
-      <a href="#cat-notify">通知與推播</a>
-      <a href="#cat-auto">寫自動化</a>
-      <a href="#cat-sensor">感測器與裝置</a>
-      <a href="#cat-voice">日常語音對話</a>
-      <a href="#cat-ops">故障排除與維運</a>
-      <a href="#tips">寫法小抄</a>
-      <a href="#faq">常見問題</a>
-      <a href="#download">下載</a>
+      <h2>Contents of this volume</h2>
+      <a href="#why">what is this</a>
+      <a href="#howto">How to use</a>
+      <a href="#cat-light">Lights and Scenes</a>
+      <a href="#cat-climate">Climate and air conditioning</a>
+      <a href="#cat-energy">Energy and power saving</a>
+      <a href="#cat-notify">Notifications and push notifications</a>
+      <a href="#cat-auto">Write automation
+​​</a>
+      <a href="#cat-sensor">Sensors and Devices</a>
+      <a href="#cat-voice">Daily voice conversations</a>
+      <a href="#cat-ops">Troubleshooting and maintenance</a>
+      <a href="#tips">Writing Cheat Sheet</a>
+      <a href="#faq">FAQ</a>
+      <a href="#download">Download</a>
     </div>
   </aside>
 
   <main class="content" id="top">
     <div class="chapter-header">
       <span class="kicker-script">just tell your AI</span>
-      <div class="kicker">WoowTech 提示詞庫</div>
-      <h1>43 條給 AI 用的 HA 指令，直接複製就能用</h1>
-      <p class="lead">把 Home Assistant 接上 Claude／ChatGPT／Gemini + <code>ha-mcp-woow</code> 之類的 HA MCP server，就能用中文對話控制整間屋子。這本收 43 條真實家庭場景的提示詞，分 8 類，每一條都寫給 LLM agent 用——你複製、貼進對話框、把「客廳」換成你家實際的區域就能送出。</p>
+      <div class="kicker">WoowTech Prompt Database</div>
+      <h1>43 HA instructions for AI, just copy them and use them</h1>
+      <p class="lead">Connect Home Assistant to Claude/ChatGPT/Gemini + <code>ha-mcp-woow</code> With a HA MCP server like this, you can control your home with natural-language conversations. This book contains 43 prompts for real home scenes, divided into 8 categories, and each one is written for the LLM agent - you copy and paste it into the dialog box, and replace the "living room" with the actual area of ​​your home to send it out.</p>
     </div>
 
-    <section id="why" data-nav="這本是什麼">
-      <h2 data-icon="why">這本是什麼</h2>
-      <p>Home Assistant 的 REST API、WebSocket API 與新版的 <a href="https://developers.home-assistant.io/docs/api/rest/" rel="noopener">MCP server</a> 讓 LLM agent 能呼叫任何 service、讀任何實體狀態、跑任何模板。搭配 <code>ha-mcp-woow</code> 或官方的 <a href="https://www.home-assistant.io/integrations/mcp_server/" rel="noopener">MCP Server integration</a>，你的 AI 就能：</p>
+    <section id="why" data-nav="what is this">
+      <h2 data-icon="why">what is this</h2>
+      <p>Home Assistant’s REST API, WebSocket API and new version <a href="https://developers.home-assistant.io/docs/api/rest/" rel="noopener">MCP server</a> Let the LLM agent call any service, read any entity status, and run any template. match <code>ha-mcp-woow</code> or official <a href="https://www.home-assistant.io/integrations/mcp_server/" rel="noopener">MCP Server integration</a>, your AI will be able to:</p>
       <ul>
-        <li><strong>控制</strong>：呼叫 <code>light.turn_on</code>、<code>climate.set_temperature</code>、<code>cover.open_cover</code> 等所有 service</li>
-        <li><strong>查詢</strong>：讀實體狀態、屬性、歷史數據，回答「客廳現在幾度」「上週用電多少」</li>
-        <li><strong>編輯</strong>：新增／改／刪自動化、腳本、場景、儀表板</li>
-        <li><strong>管理</strong>：裝／移除 add-ons、HACS 套件、integration，跑備份與升級</li>
+        <li><strong>control</strong>: call <code>light.turn_on</code>, <code>climate.set_temperature</code>, <code>cover.open_cover</code> Wait for all services</li>
+        <li><strong>Query</strong>: Read entity status, attributes, and historical data, and answer "What's the current temperature in the living room?" "How much electricity was used last week?"</li>
+        <li><strong>Edit</strong>: Add/modify/delete automation, scripts, scenes, dashboards</li>
+        <li><strong>management</strong>: Install/remove add-ons, HACS packages, integration, run backups and upgrades</li>
       </ul>
-      <p>這本收的每一條，都是<strong>寫給 AI agent 讀</strong>的自然語言提示——不是給 Voice Assistant 的短指令，而是能讓 AI 主動翻譯成一或多個 service 呼叫、跟你來回確認、留下操作紀錄的完整需求描述。</p>
+      <p>Every item included in this book is<strong>Written for AI agent to read</strong>Natural language prompts - not short commands for Voice Assistant, but complete demand descriptions that allow AI to actively translate into one or more service calls, confirm back and forth with you, and leave operation records.</p>
     </section>
 
-    <section id="howto" data-nav="怎麼用">
-      <h2 data-icon="steps">怎麼開始用</h2>
+    <section id="howto" data-nav="How to use">
+      <h2 data-icon="steps">How to start using it</h2>
       <ol class="steps">
         <li>
-          <h3>把 HA 接上 MCP server</h3>
-          <p>方案一：官方 <a href="https://www.home-assistant.io/integrations/mcp_server/" rel="noopener">MCP Server integration</a>（HA 2025.7+）→ Claude Desktop／VS Code Copilot 之類的 client 直連。方案二：<code>ha-mcp-woow</code>（WoowTech 出的加強版，含更完整 config／HACS／備份工具，見 <a href="ch19_voice_ai.html">第 19 章</a> 與 <a href="ch20_addons_docker.html">第 20 章</a>）。</p>
+          <h3>Connect HA to MCP server</h3>
+          <p>Option 1: Official <a href="https://www.home-assistant.io/integrations/mcp_server/" rel="noopener">MCP Server integration</a>(HA 2025.7+) → Direct connection to clients such as Claude Desktop/VS Code Copilot. Option two:<code>ha-mcp-woow</code>(Enhanced version from WoowTech, including more complete config/HACS/backup tools, see <a href="ch19_voice_ai.html">Chapter 19</a> with <a href="ch20_addons_docker.html">Chapter 20</a>).</p>
         </li>
         <li>
-          <h3>暴露實體給 LLM</h3>
-          <p>Settings → Voice Assistants → Expose：勾要讓 AI 動的區域與實體。<strong>安全建議</strong>：先只暴露「無害」的（燈、感測器），驗證行為對了再放行安全類（門鎖、警報）。</p>
+          <h3>Expose entities to LLM</h3>
+          <p>Settings → Voice Assistants → Expose: Check the areas and entities you want the AI to move.<strong>Security advice</strong>: Expose only the "harmless" ones (lights, sensors) first, verify that the behavior is correct, and then release the safe ones (door locks, alarms).</p>
         </li>
         <li>
-          <h3>複製這本裡對應場景的提示詞</h3>
-          <p>把「客廳」「主臥」「26 度」這種括號感的字換成你家實際的區域／裝置／參數，貼進 Claude／ChatGPT／Gemini 的對話框。</p>
+          <h3>Copy the prompt words corresponding to the scene in this book</h3>
+          <p>Replace bracket-like words like "living room", "master bedroom" and "26 degrees" with the actual areas/devices/parameters of your home, and paste them into the dialog box of Claude/ChatGPT/Gemini.</p>
         </li>
         <li>
-          <h3>養成「先報告再動手」的習慣</h3>
-          <p>會改設定的提示詞都保留「做完先給我摘要、我確認再套用」——重要改動先看再放行，是最便宜的保險。</p>
+          <h3>Develop the habit of “reporting first and then taking action”</h3>
+          <p>For all prompts that will change the settings, keep the words "give me a summary first, and I will confirm and then apply" - important changes should be reviewed before being approved, which is the cheapest insurance.</p>
         </li>
       </ol>
-      <div class="callout tip"><strong>提示：</strong>沒接 MCP、只想語音講話？改用內建 <a href="ch19_voice_ai.html">Assist 對話代理</a>（Settings → Voice Assistants），效果差一截但也能用。這本的提示詞在 Assist 下多半太長，會被截斷。</div>
+      <div class="callout tip"><strong>Tip:</strong>Didn't answer the MCP and just want to talk via voice? Use built-in instead <a href="ch19_voice_ai.html">Assist conversational agent</a>(Settings → Voice Assistants), the effect is not as good but it can still be used. The prompt words in this book are probably too long under Assist and will be truncated.</div>
     </section>
 
-    <section id="cat-light" data-nav="燈光與場景">
-      <h2 data-icon="light">燈光與場景控制</h2>
-      <p>最基本、最常呼叫的一類。都會走 <code>light.turn_on</code>／<code>light.turn_off</code>／<code>scene.turn_on</code>／<code>light.toggle</code>。</p>
+    <section id="cat-light" data-nav="Lights and Scenes">
+      <h2 data-icon="light">Lighting and Scene Control</h2>
+      <p>The most basic and most commonly called category. Will all go <code>light.turn_on</code>/<code>light.turn_off</code>/<code>scene.turn_on</code>/<code>light.toggle</code>.</p>
 
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">把客廳所有的燈開到 60% 亮度、色溫調成 3000K 暖白。</p>
-        <p class="pnote">走 <code>light.turn_on</code> 帶 <code>brightness_pct</code>＋<code>kelvin</code>；若燈不支援色溫會自動 fallback。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Turn on all the lights in the living room to 60% brightness and adjust the color temperature to 3000K warm white. Respond in English.</p>
+        <p class="pnote">go <code>light.turn_on</code> bring <code>brightness_pct</code>＋<code>kelvin</code>; If the light does not support color temperature, it will automatically fallback.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">列出目前所有還亮著的燈，順便告訴我每一盞在哪個區域。</p>
-        <p class="pnote">走 <code>light</code> domain 的 state 查詢＋<code>area_registry</code> 交叉比對。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">List all the lights that are currently on and tell me which area each one is in. Respond in English.</p>
+        <p class="pnote">go <code>light</code> domain state query +<code>area_registry</code> Cross comparison.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">觸發「電影模式」場景：客廳主燈關、氣氛燈調暗紅、電視背光開。如果沒有這個場景就先幫我建，用 <code>scene.create</code> 動態場景。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Trigger the "movie mode" scene: the main light in the living room is turned off, the atmosphere light is dimmed to red, and the TV backlight is turned on. If you don’t have this scene, help me create it first, using <code>scene.create</code> Dynamic scenes. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">把主臥燈調成日出模擬效果：從 5% 慢慢升到 100%、色溫從 2200K 拉到 5000K，持續 20 分鐘。用 script transition 做，別用一堆 turn_on 硬幹。</p>
-        <p class="pnote">建議走 <code>light.turn_on</code> 帶 <code>transition</code>，或呼叫已有的 <code>script.wake_up</code>。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Set the master bedroom light to a sunrise simulation effect: slowly increase it from 5% to 100%, and pull the color temperature from 2200K to 5000K for 20 minutes. Use script transition instead of a bunch of turn_on. Respond in English.</p>
+        <p class="pnote">It is recommended to go <code>light.turn_on</code> bring <code>transition</code>, or call an existing <code>script.wake_up</code>.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">關掉家裡所有燈，除了小夜燈（entity_id 開頭 <code>light.nightlight_</code> 的都保留）。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Turn off all the lights in the house except the night light (entity_id starts with <code>light.nightlight_</code> are retained). Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">幫我把玄關的燈色變成迎賓效果：紫色→藍色→白色循環三次，然後停在正常白光。用可支援 RGB 的燈就好，色溫燈跳過。</p>
-      </div>
-    </section>
-
-    <section id="cat-climate" data-nav="氣候與空調">
-      <h2 data-icon="climate">氣候與空調控制</h2>
-      <p>走 <code>climate.set_temperature</code>／<code>climate.set_hvac_mode</code>／<code>climate.set_fan_mode</code>。回答時常需要交叉查詢 <code>sensor.*_temperature</code> 與 <code>weather.*</code>。</p>
-
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">現在家裡各區域的溫濕度是多少？如果室內比室外冷氣還冷，關掉那一區的空調並告訴我。</p>
-        <p class="pnote">state 查詢＋<code>weather.*</code> 對照＋條件呼叫 <code>climate.turn_off</code>。</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">把所有冷氣改成睡眠模式：主臥 25 度／風速低，其他房間 26 度／自動風。做之前先列出你要改哪些 entity，我確認再執行。</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">如果外面下雨（<code>weather.forecast_home</code> 有 rainy）且家裡濕度超過 70%，開全屋的除濕機並設 55%。半小時後回頭看濕度，還沒降就通知我。</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">依現在的氣象預報與明天早上 8 點的溫度預測，判斷主臥冷氣今晚是設「睡眠 26 度」還是「省電模式」比較舒服。做出建議，我同意再改。</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">列出所有 climate 實體目前的 hvac_mode、target_temperature、current_temperature，用表格排好。順便標出「設定溫度跟當前溫度差超過 3 度」的異常項。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Help me change the lighting color of the entrance to a welcoming effect: purple → blue → white, cycle three times, and then stop at normal white light. Just use a light that supports RGB, skip the color temperature light. Respond in English.</p>
       </div>
     </section>
 
-    <section id="cat-energy" data-nav="能源與省電">
-      <h2 data-icon="energy">能源監控與省電分析</h2>
-      <p>走 <code>history</code>／<code>recorder</code> 查詢＋<code>sensor.*_energy</code> 分析。大型分析建議搭配推理較強的模型（Claude Opus／GPT-5）。</p>
+    <section id="cat-climate" data-nav="Climate and air conditioning">
+      <h2 data-icon="climate">Climate and air conditioning control</h2>
+      <p>go <code>climate.set_temperature</code>/<code>climate.set_hvac_mode</code>/<code>climate.set_fan_mode</code>. Answers often require cross-checking <code>sensor.*_temperature</code> with <code>weather.*</code>.</p>
 
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">用 <code>ha_get_history</code> 抓過去 7 天所有 <code>sensor.*_energy</code>，算出今日、昨日、過去 7 天的平均日耗電。列前 5 名吃電怪獸並猜是什麼設備。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">What is the temperature and humidity in each area of the home now? If it's colder inside than outside, turn off the air conditioner in that area and tell me. Respond in English.</p>
+        <p class="pnote">state query +<code>weather.*</code> Control + conditional call <code>climate.turn_off</code>.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">看過去 30 天客廳冷氣的用電曲線，跟外溫做關聯分析：設 25 度 vs 26 度耗電差多少？依我家的使用時段給省電建議。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Change all air conditioners to sleep mode: 25 degrees/low fan speed in the master bedroom, 26 degrees/automatic fan in other rooms. Before doing it, list which entities you want to change, and I will confirm before executing. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">現在的即時總功率是多少？（<code>sensor.total_power</code>）如果超過 5000W 持續 3 分鐘，把可延後的高耗電設備（除濕機、洗碗機、烘乾機）暫停 30 分鐘，避開契約用電上限。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">If it rains outside (<code>weather.forecast_home</code> If it rains) and the humidity in your home exceeds 70%, turn on the whole house dehumidifier and set it to 55%. Half an hour later, I looked back at the humidity and notified me if it hadn't dropped yet. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">我家用台電時間電價。找出過去一週在尖峰時段（週一到週五 16:00–22:00）用電最多的設備，估算全部移到離峰一個月能省多少。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Based on the current weather forecast and the temperature forecast at 8 o'clock tomorrow morning, it is judged whether the air conditioner in the master bedroom should be set to "sleep 26 degrees" or "power saving mode" tonight, which is more comfortable. Make suggestions and I agree to make changes. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">生成本週能源週報：對比上週的總耗電、Top 5 高耗電設備變化、平均室內溫度、太陽能發電量（如果有 <code>sensor.solar_*</code>）。用 <code>notify.mobile_app_*</code> 推到我手機。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">List the current hvac_mode, target_temperature, and current_temperature of all climate entities, arranged in a table. By the way, the abnormal item "the difference between the set temperature and the current temperature exceeds 3 degrees" is marked. Respond in English.</p>
       </div>
     </section>
 
-    <section id="cat-notify" data-nav="通知與推播">
-      <h2 data-icon="notify">通知與推播</h2>
-      <p>走 <code>notify.mobile_app_*</code>／<code>notify.persistent_notification</code>／<code>notify.notify</code>。actionable notification 要帶 <code>data.actions</code>。</p>
+    <section id="cat-energy" data-nav="Energy and power saving">
+      <h2 data-icon="energy">Energy monitoring and power saving analysis</h2>
+      <p>go <code>history</code>/<code>recorder</code> Query +<code>sensor.*_energy</code> Analysis. For large-scale analysis, it is recommended to use a model with strong inference (Claude Opus/GPT-5).</p>
 
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">用 <code>notify.mobile_app_myphone</code> 推一則測試通知，標題「HA 通知測試」，訊息帶當下時間戳。順便檢查有沒有其他 mobile_app service 也能發，列給我。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">use <code>ha_get_history</code> Catch everything from the past 7 days <code>sensor.*_energy</code>, calculate the average daily power consumption today, yesterday, and the past 7 days. Make a list of the top 5 power-eating monsters and guess what device they are. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">洗衣機（<code>switch.washer</code>）從 on 變 off 且功率沒動超過 3 分鐘 → 推 actionable notification 給我，帶「已收好」跟「延後 30 分鐘」兩顆按鈕。按下後對應改自動化狀態。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Look at the power consumption curve of the living room air conditioner in the past 30 days, and do a correlation analysis with the outside temperature: What is the difference in power consumption if 25 degrees vs 26 degrees? I will give you power saving suggestions based on the usage period of my home. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">把所有電池低於 20% 的裝置整理成一則通知：一次列出來，附上區域、實體名稱、目前電量。用 <code>label.battery</code> 的 label 快篩，找不到 label 就從 <code>*_battery</code> 命名撈。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">What is the instantaneous total power now? (<code>sensor.total_power</code>) If the power exceeds 5000W for 3 minutes, pause the deferrable high-power consumption equipment (dehumidifier, dishwasher, dryer) for 30 minutes to avoid the contract power limit. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">當漏水感測器（<code>binary_sensor.*_leak</code>）任何一顆觸發 → 立刻推最高優先級通知，訊息帶「哪一顆」＋「該區域的水閥 entity_id」，並自動呼叫 <code>switch.turn_off</code> 關那顆閥。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Use my utility’s time-of-use tariff. Find out the devices that used the most electricity during peak hours (Monday to Friday 16:00–22:00) in the past week, and estimate how much you can save by moving them all off-peak for a month. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">今晚 22:00 檢查所有門窗感測器，有沒關的就用手機通知我，告訴我在哪、關了多久。全部關好就不用通知。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Generate this week's energy weekly report: compare last week's total electricity consumption, changes in the Top 5 power-consuming equipment, average indoor temperature, solar power generation (if any <code>sensor.solar_*</code>). use <code>notify.mobile_app_*</code> Pushed to my phone. Respond in English.</p>
       </div>
     </section>
 
-    <section id="cat-auto" data-nav="寫自動化">
-      <h2 data-icon="auto">寫／改自動化與腳本</h2>
-      <p>走 <code>ha_config_set_automation</code>／<code>ha_config_set_script</code>／<code>ha_config_set_scene</code>。這一類最需要 AI 有「先計畫再動手」的紀律——每一條都寫明「先給摘要」。</p>
+    <section id="cat-notify" data-nav="Notifications and push notifications">
+      <h2 data-icon="notify">Notifications and push notifications</h2>
+      <p>go <code>notify.mobile_app_*</code>/<code>notify.persistent_notification</code>/<code>notify.notify</code>. actionable notification to bring <code>data.actions</code>.</p>
 
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">幫我寫一個「回家模式」自動化：所有家人的手機 device_tracker 從 not_home 變 home，任一觸發就開玄關燈（<code>light.entrance</code>）、把冷氣設 26 度、播我常用的音樂 playlist。做好先給我 YAML 摘要，我確認再啟用。</p>
-        <p class="pnote">重要：AI 別用 device_id 寫死，一律用 entity_id（見 <a href="ch8_first_automation.html">第 8 章</a>）。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">use <code>notify.mobile_app_myphone</code> Push a test notification with the title "HA Notifications Test" and the message with the current timestamp. By the way, check if there are other mobile_app services that can also be sent, please list them for me. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">改「晚安模式」：加一條——如果隔天早上有 8 點前的 <code>calendar.family</code> 事件，把早晨情境提早 30 分鐘啟動。先讀現有 automation 的 YAML 給我看，再說你要怎麼加。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">washing machine (<code>switch.washer</code>) changes from on to off and the power has not been activated for more than 3 minutes → push actionable notification to me, with two buttons "Collected" and "Delay 30 minutes". After pressing, the corresponding automation state will be changed. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">把「客廳冷氣自動開關」這個 automation 拆成兩個：一個負責「超過 28 度開」，一個負責「25 度以下關」。用 <code>mode: restart</code>，避免動作打架。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Organize all devices with batteries below 20% into one notification: list them all at once, along with the region, entity name, and current battery level. use <code>label.battery</code> Quickly filter the label. If you can’t find the label, just use <code>*_battery</code> Name it. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">寫一個 script <code>script.movie_night</code>：關全屋主燈、開客廳氣氛燈紅色 30% 亮度、電視開機、切到 Netflix。做完可以在儀表板上放一顆按鈕跑它。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">When the water leakage sensor (<code>binary_sensor.*_leak</code>) Any one triggers → Immediately push the highest priority notification, the message contains "which one" + "the water valve entity_id of the area", and automatically calls <code>switch.turn_off</code> Close that valve. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">列出我目前所有 automation，找出「用了 device_id」「用了 wait_for_trigger 但沒有 timeout」「trigger 只有一個時間但沒條件」這三種可能出包的寫法，一個個列出來並建議怎麼改。</p>
-      </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">用 <code>blueprint</code> 匯入這一顆：<code>https://community.home-assistant.io/t/motion-activated-light/262970</code>，然後用主臥的動作感測器（<code>binary_sensor.master_motion</code>）跟主臥燈（<code>light.master_bedroom</code>）產一個 automation instance。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Tonight at 22:00, check all door and window sensors. If any are closed, notify me on your mobile phone and tell me where they are and how long they have been closed. If everything is closed, no notification is required. Respond in English.</p>
       </div>
     </section>
 
-    <section id="cat-sensor" data-nav="感測器與裝置">
-      <h2 data-icon="sensor">感測器與裝置查詢</h2>
-      <p>走 <code>ha_get_state</code>／<code>ha_get_history</code>／<code>ha_search</code>／<code>ha_get_device</code>／<code>ha_list_floors_areas</code>。</p>
+    <section id="cat-auto" data-nav="Write automation
+​​">
+      <h2 data-icon="auto">Write/modify automation and scripts</h2>
+      <p>go <code>ha_config_set_automation</code>/<code>ha_config_set_script</code>/<code>ha_config_set_scene</code>. This category most requires AI to have the discipline of "plan first and then act" - each item states "give summary first".</p>
 
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">列出家裡所有的區域（Floor→Area），每個區域下有哪些裝置。表格排版，方便我看有沒有還沒歸位的實體。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Help me write a "home mode" automation: all family members' mobile phone device_tracker changes from not_home to home, and any trigger will turn on the entrance light (<code>light.entrance</code>), set the air conditioner to 26 degrees, and play my favorite music playlist. Please give me the YAML summary first, and I will confirm and enable it. Respond in English.</p>
+        <p class="pnote">Important: Don’t hardcode AI with device_id, always use entity_id (see <a href="ch8_first_automation.html">Chapter 8</a>).</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">現在客廳的溫度、濕度、CO2、PM2.5 是多少？跟外面差多少？如果 CO2 超過 1000ppm 就建議我開新風系統或開窗。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Change the "good night mode": add one - if there is a message before 8 o'clock the next morning <code>calendar.family</code> event to start the morning situation 30 minutes earlier. Read the YAML of the existing automation for me first, and then tell me how you want to add it. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">用 <code>ha_get_history</code> 撈過去 24 小時 <code>binary_sensor.front_door</code> 的所有變化，統計「開了幾次、平均開多久、最長開多久」，判斷有沒有異常。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Split the automation "living room air conditioner automatic switch" into two: one is responsible for "turning on when it exceeds 28 degrees", and the other is responsible for "turning off when it is below 25 degrees". use <code>mode: restart</code>, avoid action fights. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">找出所有「7 天沒回報狀態」的實體（可能是感測器沒電或斷線），一次列出來——這是最容易被忽略的隱患。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">write a script <code>script.movie_night</code>: Turn off the main lights in the whole house, turn on the red 30% brightness of the living room atmosphere light, turn on the TV, and switch to Netflix. Once you're done, you can put a button on the dashboard to run it. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">我要把「客廳感測器」（entity_id <code>sensor.living_temp</code>）改名成 <code>sensor.living_room_temperature</code>。<strong>先列出所有引用到它的 automation、script、scene、dashboard</strong>，我確認後你一起改，不要漏。</p>
-        <p class="pnote">HA 有 <code>ha_get_entity</code> 帶 references，記得用。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">List all my current automations, find out the three possible ways of writing packages, "use device_id", "use wait_for_trigger but no timeout", "trigger only has one time but no conditions", list them one by one and suggest how to change them. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">列出目前所有 <code>device_class: motion</code> 的實體，看過去 24 小時哪些從沒觸發過——多半是壞了或位置擋住了。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">use <code>blueprint</code> Import this one:<code>https://community.home-assistant.io/t/motion-activated-light/262970</code>, and then use the motion sensor in the master bedroom (<code>binary_sensor.master_motion</code>) and the master bedroom lamp (<code>light.master_bedroom</code>) produces an automation instance. Respond in English.</p>
       </div>
     </section>
 
-    <section id="cat-voice" data-nav="日常語音對話">
-      <h2 data-icon="voice">日常語音對話（簡短版）</h2>
-      <p>下面這些適合<strong>語音助理與 chat 兩用</strong>——短、口語、能觸發正確的 service。搭配 <a href="ch19_voice_ai.html">第 19 章</a> 的 Assist 用最直接。</p>
+    <section id="cat-sensor" data-nav="Sensors and Devices">
+      <h2 data-icon="sensor">Sensor and device query</h2>
+      <p>go <code>ha_get_state</code>/<code>ha_get_history</code>/<code>ha_search</code>/<code>ha_get_device</code>/<code>ha_list_floors_areas</code>.</p>
 
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">開客廳燈。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">List all the areas in your home (Floor→Area) and what devices are under each area. The table layout makes it easier for me to see if there are any entities that have not yet been returned to their positions. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">我要出門，關掉所有的燈，鎖大門，冷氣改成離家模式。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">What are the temperature, humidity, CO2, and PM2.5 in the living room now? How different is it from outside? If the CO2 exceeds 1000ppm, it is recommended that I turn on the fresh air system or open the windows. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">冷氣 26 度，睡眠風速。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">use <code>ha_get_history</code> Get past 24 hours <code>binary_sensor.front_door</code> For all changes, count "how many times it has been opened, how long it has been open on average, and how long it has been open for the longest time" to determine whether there are any abnormalities. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">明天 7 點提醒我倒垃圾。用 <code>todo.family</code> 加一項，並設 due date。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Find all entities that have "no report status for 7 days" (perhaps the sensor is out of power or disconnected) and list them all at once - this is the most easily overlooked hidden danger. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">現在家裡幾度？外面幾度？下午會下雨嗎？</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">I want the "living room sensor" (entity_id <code>sensor.living_temp</code>) was renamed to <code>sensor.living_room_temperature</code>.<strong>First list all automation, script, scene, and dashboard that reference it.</strong>, you can change it together after I confirm it, don’t miss anything. Respond in English.</p>
+        <p class="pnote">HA has <code>ha_get_entity</code> Remember to use references.</p>
+      </div>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">List all current <code>device_class: motion</code> Entities, see which ones have never triggered in the past 24 hours - most likely broken or blocked by location. Respond in English.</p>
       </div>
     </section>
 
-    <section id="cat-ops" data-nav="故障排除與維運">
-      <h2 data-icon="ops">故障排除與維運</h2>
-      <p>走 <code>ha_get_logs</code>／<code>ha_get_automation_traces</code>／<code>ha_get_system_health</code>／<code>ha_manage_backup</code>。這些是 HA 出狀況時最有價值的一批。</p>
+    <section id="cat-voice" data-nav="Daily voice conversations">
+      <h2 data-icon="voice">Daily voice conversations (short version)</h2>
+      <p>The following are suitable<strong>Voice assistant and chat dual use</strong>—Short, spoken, and able to trigger the correct service. match <a href="ch19_voice_ai.html">Chapter 19</a> Assist is the most straightforward to use.</p>
 
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">「日落開燈」這個 automation 今天早上沒觸發，用 <code>ha_get_automation_traces</code> 撈最近 5 次執行紀錄，找出失敗原因。有 fix 就先給我摘要，我確認再改。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Turn on the living room lights. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">用 <code>ha_get_logs</code> 抓過去 24 小時 log_level=ERROR 以上的紀錄，分組整理：哪個 integration／哪個 entity 出現最多錯誤？給我 3 條最需要處理的建議。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">I want to go out, turn off all the lights, lock the door, and switch the air conditioner to leaving mode. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">跑一次 <code>ha_get_system_health</code>，看 recorder、supervisor、network 三大塊有沒有 unhealthy。有的話依 HA 官方文件建議修復步驟。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Air conditioning 26 degrees, sleeping fan speed. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">列出過去 7 天的自動備份紀錄，確認每天都有跑、每個檔都 &gt; 100MB（太小可能有問題）。超過 24 小時沒新備份就<strong>先幫我跑一次完整備份</strong>再回報。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Remind me to take out the trash tomorrow at 7 o'clock. use <code>todo.family</code> Add an item and set due date. Respond in English.</p>
       </div>
-      <div class="prompt-card"><button class="copy" type="button">複製</button>
-        <p class="ptext">Repairs 中心（<code>ha_report_issue</code> 對應的區塊）目前有多少個未解決的問題？一個個列出來、依嚴重性排序，告訴我哪些可以忽略、哪些一定要處理。</p>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">How many times are you at home now? How cold is it outside? Will it rain in the afternoon? Respond in English.</p>
       </div>
     </section>
 
-    <section id="tips" data-nav="寫法小抄">
-      <h2 data-icon="ai">給 AI 用的提示詞寫法小抄</h2>
-      <p>看完 43 條，套路其實只有五招。給 AI agent 寫指令跟給人寫指令不太一樣：</p>
+    <section id="cat-ops" data-nav="Troubleshooting and maintenance">
+      <h2 data-icon="ops">Troubleshooting and maintenance</h2>
+      <p>go <code>ha_get_logs</code>/<code>ha_get_automation_traces</code>/<code>ha_get_system_health</code>/<code>ha_manage_backup</code>. These are the most valuable batches when something goes wrong with HA.</p>
+
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">The automation "Turn on the lights at sunset" was not triggered this morning. Use <code>ha_get_automation_traces</code> Get the last 5 execution records to find out the reason for the failure. If you have a fix, give me a summary first, and I'll confirm it before making changes. Respond in English.</p>
+      </div>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">use <code>ha_get_logs</code> Capture the records with log_level=ERROR and above in the past 24 hours, and sort them into groups: Which integration/which entity has the most errors? Give me 3 top tips that need to be addressed. Respond in English.</p>
+      </div>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">run once <code>ha_get_system_health</code>, check whether the three major components of recorder, supervisor, and network are unhealthy. If so, follow the recommended repair steps in HA official documents. Respond in English.</p>
+      </div>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">List the automatic backup records of the past 7 days, confirm that they are run every day, and each file is &gt; 100MB (too small may cause problems). If there is no new backup for more than 24 hours,<strong>Run a full backup for me first</strong>Give back again. Respond in English.</p>
+      </div>
+      <div class="prompt-card"><button class="copy" type="button">Copy</button>
+        <p class="ptext">Repairs Center (<code>ha_report_issue</code> How many open issues are there currently in the corresponding block)? List them one by one, sort them by severity, and tell me which ones can be ignored and which ones must be dealt with. Respond in English.</p>
+      </div>
+    </section>
+
+    <section id="tips" data-nav="Writing Cheat Sheet">
+      <h2 data-icon="ai">Cheat sheet for writing prompt words for AI</h2>
+      <p>After reading 43 items, the routine actually only has five moves. Writing instructions to an AI agent is different from writing instructions to a human being:</p>
       <table class="data-table">
         <thead>
-          <tr><th>這樣講</th><th>不要這樣講</th><th>為什麼</th></tr>
+          <tr><th>Put it this way</th><th>Don't say that</th><th>why</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>用 entity_id 講：「開 <code>light.living</code>」或用 friendly name「開客廳主燈」</td>
-            <td>「開那個燈」「開亮一點」</td>
-            <td>AI agent 需要具體的 entity_id 或明確名稱才能呼叫 service。</td>
+            <td>Use entity_id to say: "Open <code>light.living</code>” or use the friendly name “Turn on the main light in the living room”</td>
+            <td>"Turn on that light" "Turn on that light"</td>
+            <td>The AI agent requires a specific entity_id or an explicit name to call the service.</td>
           </tr>
           <tr>
-            <td>指定要用哪個 service：「用 <code>climate.set_temperature</code> 設 26」</td>
-            <td>「調成 26 度」（讓 AI 亂猜）</td>
-            <td>複雜控制講明工具，AI 不會用錯 service。簡單指令可以口語。</td>
+            <td>Specify which service to use: "Use <code>climate.set_temperature</code> Assume 26"</td>
+            <td>"Turn it to 26 degrees" (let the AI guess randomly)</td>
+            <td>Complex control explanation tool, AI will not use the wrong service. Simple instructions can be spoken.</td>
           </tr>
           <tr>
-            <td>先讀後寫：「先讀現有 automation YAML 給我看，再說你要怎麼改」</td>
-            <td>「幫我改 xxx automation」</td>
-            <td>不看原文就改，多半改壞。這是保住現有設定的鐵律。</td>
+            <td>Read first, then write: "Read the existing automation YAML for me first, and then tell me how you want to change it."</td>
+            <td>"Help me change xxx automation"</td>
+            <td>If you change it without reading the original text, it will most likely be bad. This is the iron rule to preserve the existing settings.</td>
           </tr>
           <tr>
-            <td>先摘要再套用：「做好給我 YAML 摘要，我確認再啟用」</td>
-            <td>「幫我加一條自動化」</td>
-            <td>會動 config 的一律加這句，最便宜的保險。</td>
+            <td>Summary first and then apply: "Give me the YAML summary and I will confirm and then enable it"</td>
+            <td>"Help me add an automation"</td>
+            <td>Anyone who knows how to use config should add this sentence, the cheapest insurance.</td>
           </tr>
           <tr>
-            <td>用 entity_id 而非 device_id：「觸發 <code>binary_sensor.front_door</code>」</td>
-            <td>用 device_id UUID</td>
-            <td>device_id 改設備會斷連結，entity_id 穩定；這也是 <a href="ch8_first_automation.html">第 8 章</a>的鐵律。</td>
+            <td>Use entity_id instead of device_id: "Trigger <code>binary_sensor.front_door</code>”</td>
+            <td>Use device_id UUID</td>
+            <td>If device_id changes the device, the connection will be broken, but entity_id is stable; this is also <a href="ch8_first_automation.html">Chapter 8</a>iron law.</td>
           </tr>
         </tbody>
       </table>
-      <div class="callout warn"><strong>安全提醒：</strong>把 HA 接上 LLM＝讓 AI 有能力改你家的設定與觸發實體。<strong>Expose 實體時先只放「無害」的（燈、感測器），驗證幾週後再開放安全類（門鎖、警報、電源總開關）。</strong>Actionable prompts 保留「先摘要再套用」這句。</div>
+      <div class="callout warn"><strong>Safety reminder:</strong>Connect HA to LLM = give AI the ability to change your home's settings and trigger entities.<strong>When Exposing entities, only the "harmless" ones (lights, sensors) will be placed first, and after a few weeks of verification, the security categories (door locks, alarms, main power switches) will be opened.</strong>Actionable prompts retain the phrase "summary first and then apply".</div>
     </section>
 
-    <section id="faq" data-nav="常見問題">
-      <h2 data-icon="faq">常見問題</h2>
+    <section id="faq" data-nav="FAQ">
+      <h2 data-icon="faq">FAQ</h2>
       <details class="faq">
-        <summary>MCP server 跟 REST API、Voice Assistant 差在哪？</summary>
-        <div class="body">Voice Assistant（Assist）走 intent，短指令、預先定義；REST API 是 HTTP 呼叫 service，適合寫程式；MCP server 是給 LLM agent 用的「工具目錄」——AI 可以動態發現有哪些 service 可以呼叫、讀哪些狀態、修改哪些設定，不需要事先寫死意圖。這本的提示詞全部是給 MCP／API 用的，長度與複雜度都超出 Assist 的能力範圍。</div>
+        <summary>What is the difference between MCP server and REST API and Voice Assistant?</summary>
+        <div class="body">Voice Assistant (Assist) uses intent, short commands, and is pre-defined; REST API is an HTTP call service, suitable for writing programs; MCP server is a "tool directory" for LLM agent - AI can dynamically discover which services can be called, which states can be read, and which settings can be modified, without the need to hard-code intentions in advance. The prompt words in this book are all for MCP/API, and the length and complexity are beyond the capabilities of Assist.</div>
       </details>
       <details class="faq">
-        <summary>要用 ha-mcp-woow 還是官方 MCP Server integration？</summary>
-        <div class="body">官方 integration（HA 2025.7+）夠用了，涵蓋 state 查詢＋service 呼叫；<code>ha-mcp-woow</code> 是 WoowTech 的加強版，多出 config 編輯、HACS 管理、備份工具、log／trace 查詢等（本冊很多提示詞用到的 <code>ha_config_set_*</code>、<code>ha_get_automation_traces</code>、<code>ha_manage_backup</code> 就是它出的）。想要完整體驗選 <code>ha-mcp-woow</code>，只想安全嘗鮮選官方。</div>
+        <summary>Should I use ha-mcp-woow or official MCP Server integration?</summary>
+        <div class="body">The official integration (HA 2025.7+) is enough, covering state query + service call;<code>ha-mcp-woow</code> It is an enhanced version of WoowTech, with additional config editing, HACS management, backup tools, log/trace query, etc. (many prompt words used in this book <code>ha_config_set_*</code>, <code>ha_get_automation_traces</code>, <code>ha_manage_backup</code> That’s what it comes from). If you want a complete experience, choose <code>ha-mcp-woow</code>, I just want to try it safely and choose the official one.</div>
       </details>
       <details class="faq">
-        <summary>AI 常呼叫錯 service 或給錯 entity_id 怎麼辦？</summary>
-        <div class="body">三個常見原因：(1) entity 沒暴露給 LLM（Settings → Voice Assistants → Expose），(2) 命名太模糊，AI 猜不到（<code>sensor.abc123</code> 比 <code>sensor.living_temperature</code> 難用），(3) LLM 上下文塞太多，重要的實體被截掉。修法：先命名（<a href="ch4_naming_labels.html">第 4 章</a>）、再暴露、最後只暴露相關區域。</div>
+        <summary>What should I do if AI often calls the wrong service or gives the wrong entity_id?</summary>
+        <div class="body">Three common reasons: (1) The entity is not exposed to LLM (Settings → Voice Assistants → Expose), (2) The naming is too vague and AI cannot guess it (<code>sensor.abc123</code> Than <code>sensor.living_temperature</code> Difficult to use), (3) The LLM context is too stuffed, and important entities are truncated. Correction: Name first (<a href="ch4_naming_labels.html">Chapter 4</a>), then expose, and finally only expose relevant areas.</div>
       </details>
       <details class="faq">
-        <summary>會不會很花 token／很貴？</summary>
-        <div class="body">日常控制（開燈、查溫度、單一 automation）幾乎不花錢；能源分析、log 抓 7 天全域、大範圍重構 automation 就會吃 token。省錢：只暴露相關實體、大分析用便宜模型跑（Claude Haiku、GPT-4o mini），複雜規劃再切到強模型。</div>
+        <summary>Will it cost a lot of tokens/expensive?</summary>
+        <div class="body">Daily control (turning on lights, checking temperature, single automation) costs almost no money; energy analysis, log capture of the entire domain for 7 days, and large-scale reconstruction of automation will cost tokens. Save money: only expose relevant entities, use cheap models (Claude Haiku, GPT-4o mini) for large analysis, and switch to strong models for complex planning.</div>
       </details>
       <details class="faq">
-        <summary>可以自動觸發、不用每次手動貼提示詞嗎？</summary>
-        <div class="body">可以。把這本裡的提示詞包成 skill（見 <a href="skills.html">Skill 手冊</a>），或做成 HA <code>script</code> 帶 <code>service: conversation.process</code> 送給 LLM。進階做法：用 HA 自動化在特定 event（漏水、電池低）觸發 LLM 分析並執行對應動作——但這時要格外注意安全，別讓 AI 有能力做無法回復的操作。</div>
+        <summary>Can it be triggered automatically instead of manually posting prompt words every time?</summary>
+        <div class="body">Yes. Wrap the prompt words in this book into skills (see <a href="skills.html">Skill Manual</a>), or made into HA <code>script</code> bring <code>service: conversation.process</code> To LLM. Advanced approach: Use HA automation to trigger LLM analysis and perform corresponding actions on specific events (water leakage, low battery) - but pay special attention to safety at this time, and do not allow the AI ​​to do unrecoverable operations.</div>
       </details>
       <details class="faq">
-        <summary>提示詞可以直接給家人用嗎？</summary>
-        <div class="body">可以。把這一頁下載成單檔 HTML 傳到家庭群組，每個人挑自己場景直接複製貼上。搭配「日常語音對話」那一節，非技術家人也能上手。</div>
+        <summary>Can prompt words be used directly with family members?</summary>
+        <div class="body">Yes. Download this page as a single HTML file and send it to the family group. Everyone can choose their own scene and copy and paste it directly. With the "Daily Voice Conversation" section, even non-technical family members can get started.</div>
       </details>
     </section>
 
-    <section id="download" data-nav="下載">
-      <h2 data-icon="download">把這本帶走</h2>
-      <p>整本是自包含單檔 HTML，圖示全部內嵌，下載後離線可開、可直接轉寄家人與同事。</p>
+    <section id="download" data-nav="Download">
+      <h2 data-icon="download">take this book away</h2>
+      <p>The entire book is a self-contained single-file HTML, with all icons embedded. After downloading, it can be opened offline and forwarded directly to family members and colleagues.</p>
       <p>
-        <a class="btn-pill" href="prompts.html" download="ha-提示詞庫.html">下載本冊 HTML</a>
-        <a class="btn-ghost" href="index.html">回資源總覽</a>
+        <a class="btn-pill" href="prompts.html" download="ha-prompt-library.html">Download this booklet HTML</a>
+        <a class="btn-ghost" href="index.html">Return to Resource Hub</a>
       </p>
     </section>
 
     <footer class="site-footer">
-      <p>《HA API/MCP 控制提示詞庫》由 <strong>WoowTech 渥屋科技</strong> 製作，以 <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> 授權釋出。</p>
-      <p class="footer-meta">The Smart Space Solution · <a href="index.html">HA 資源總覽</a> · MCP tool 名稱以 <code>ha-mcp-woow</code> v2026-08 為準，官方 MCP integration 名稱可能略有不同。</p>
+      <p>"HA API/MCP Control Prompt Dictionary" by <strong>WoowTech Wowu Technology</strong> make, to <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> Authorized release.</p>
+      <p class="footer-meta">The Smart Space Solution · <a href="index.html">HA Resource Hub</a> · MCP tool name starts with <code>ha-mcp-woow</code> v2026-08 is valid, the official MCP integration name may be slightly different.</p>
     </footer>
   </main>
 </div>
@@ -518,7 +520,7 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
   onScroll();
 })();
 
-// 複製按鈕
+// copy button
 (function () {
   function fallbackCopy(text, done) {
     var ta = document.createElement('textarea');
@@ -532,8 +534,8 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
     btn.addEventListener('click', function () {
       var text = card.querySelector('.ptext').innerText;
       var done = function () {
-        btn.textContent = '已複製'; btn.classList.add('ok');
-        setTimeout(function () { btn.textContent = '複製'; btn.classList.remove('ok'); }, 1600);
+        btn.textContent = 'Copied'; btn.classList.add('ok');
+        setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('ok'); }, 1600);
       };
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text, done); });

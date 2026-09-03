@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chapter 3 · 樓層與區域 · Home Assistant 新居入住指南</title>
-  <meta name="description" content="在 Home Assistant 建立樓層（Floor）與區域（Area）並把裝置歸位，讓儀表板、語音助理與自動化都能用「客廳的燈」這種說法操作。" />
+  <title>Chapter 3 · Floors and Areas · Home Assistant Onboarding Guide</title>
+  <meta name="description" content="Create floors and areas in Home Assistant and put the devices in place so that dashboards, voice assistants, and automation can all be operated using "living room lights."" />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch3_floors_areas.html" />
   <meta name="robots" content="noindex, follow" />
   <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Home Assistant 新居入住指南" />
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Chapter 3 · 樓層與區域 · Home Assistant 新居入住指南" />
-  <meta property="og:description" content="在 Home Assistant 建立樓層（Floor）與區域（Area）並把裝置歸位，讓儀表板、語音助理與自動化都能用「客廳的燈」這種說法操作。" />
+  <meta property="og:title" content="Chapter 3 · Floors and Areas · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Create floors and areas in Home Assistant and put the devices in place so that dashboards, voice assistants, and automation can all be operated using "living room lights."" />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch3_floors_areas.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch3/01_areas_page.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chapter 3 · 樓層與區域 · Home Assistant 新居入住指南" />
-  <meta name="twitter:description" content="在 Home Assistant 建立樓層（Floor）與區域（Area）並把裝置歸位，讓儀表板、語音助理與自動化都能用「客廳的燈」這種說法操作。" />
+  <meta name="twitter:title" content="Chapter 3 · Floors and Areas · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Create floors and areas in Home Assistant and put the devices in place so that dashboards, voice assistants, and automation can all be operated using "living room lights."" />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch3/01_areas_page.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -32,55 +32,55 @@
 <body>
 <div class="layout">
   <aside class="sidebar">
-    <a class="brand" href="tutorial.html">HA 新居入住指南</a>
-    <div class="brand-sub">從零到能用</div>
+    <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
+    <div class="brand-sub">From scratch to functional</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch3_floors_areas.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch3_floors_areas.html" lang="en" aria-current="page">EN</a></nav>
-    <a class="hub-link" href="index.html">◂ 資源總覽</a>
+    <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">基礎：從零到能用</li>
-      <li data-i18n="pending"><a href="ch1_login.html">登入 HA</a></li>
-      <li data-i18n="pending"><a href="ch2_system_settings.html">系統設定</a></li>
-      <li data-i18n="pending"><a href="ch3_floors_areas.html" class="active">樓層與區域</a></li>
-      <li data-i18n="pending"><a href="ch4_naming_labels.html">命名與標籤</a></li>
-      <li data-i18n="pending"><a href="ch5_users.html">用戶管理</a></li>
-      <li data-i18n="pending"><a href="ch6_dashboard.html">儀表板</a></li>
-      <li data-i18n="pending"><a href="ch7_notifications.html">通知</a></li>
-      <li data-i18n="pending"><a href="ch8_first_automation.html">第一個自動化</a></li>
-      <li data-i18n="pending"><a href="ch9_backups.html">備份</a></li>
-      <li data-i18n="pending"><a href="ch10_scripts.html">腳本 Scripts</a></li>
-      <li data-i18n="pending"><a href="ch11_devices.html">裝置詳細設定</a></li>
-      <li data-i18n="pending"><a href="ch12_domains.html">Domain 控制圖鑑</a></li>
-      <li class="part-label">擴充：接上更多裝置</li>
-      <li data-i18n="pending"><a href="ch13_themes.html">主題與外觀</a></li>
-      <li data-i18n="pending"><a href="ch14_integrations.html">整合服務串接</a></li>
-      <li data-i18n="pending"><a href="ch15_protocols.html">通訊協定大百科</a></li>
-      <li data-i18n="pending"><a href="ch16_todo_calendar.html">待辦與行事曆</a></li>
-      <li class="part-label">數據、能源與 AI</li>
-      <li data-i18n="pending"><a href="ch17_energy.html">能源儀表板</a></li>
-      <li data-i18n="pending"><a href="ch18_history_data.html">歷史數據與導出</a></li>
-      <li data-i18n="pending"><a href="ch19_voice_ai.html">語音助理與 AI</a></li>
-      <li class="part-label">進階架構與應用</li>
-      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on 與 Docker</a></li>
-      <li data-i18n="pending"><a href="ch21_network_remote.html">網路與遠端連線</a></li>
-      <li data-i18n="pending"><a href="ch22_life_logs.html">生活紀錄應用</a></li>
+      <li class="part-label">Basics: from scratch to functional</li>
+      <li data-i18n="pending"><a href="ch1_login.html">Login to HA</a></li>
+      <li data-i18n="pending"><a href="ch2_system_settings.html">System settings</a></li>
+      <li data-i18n="pending"><a href="ch3_floors_areas.html" class="active">Floors and areas</a></li>
+      <li data-i18n="pending"><a href="ch4_naming_labels.html">Naming and labeling</a></li>
+      <li data-i18n="pending"><a href="ch5_users.html">User management</a></li>
+      <li data-i18n="pending"><a href="ch6_dashboard.html">Dashboard</a></li>
+      <li data-i18n="pending"><a href="ch7_notifications.html">Notifications</a></li>
+      <li data-i18n="pending"><a href="ch8_first_automation.html">First automation</a></li>
+      <li data-i18n="pending"><a href="ch9_backups.html">backup</a></li>
+      <li data-i18n="pending"><a href="ch10_scripts.html">Scripts</a></li>
+      <li data-i18n="pending"><a href="ch11_devices.html">Device details</a></li>
+      <li data-i18n="pending"><a href="ch12_domains.html">Domain reference</a></li>
+      <li class="part-label">Expansion: connect more devices</li>
+      <li data-i18n="pending"><a href="ch13_themes.html">Themes and appearance</a></li>
+      <li data-i18n="pending"><a href="ch14_integrations.html">Integrations</a></li>
+      <li data-i18n="pending"><a href="ch15_protocols.html">Communication protocols</a></li>
+      <li data-i18n="pending"><a href="ch16_todo_calendar.html">To-do and calendar</a></li>
+      <li class="part-label">Data, energy and AI</li>
+      <li data-i18n="pending"><a href="ch17_energy.html">Energy dashboard</a></li>
+      <li data-i18n="pending"><a href="ch18_history_data.html">History and data export</a></li>
+      <li data-i18n="pending"><a href="ch19_voice_ai.html">Voice assistants and AI</a></li>
+      <li class="part-label">Advanced architecture and applications</li>
+      <li data-i18n="pending"><a href="ch20_addons_docker.html">Add-on and Docker</a></li>
+      <li data-i18n="pending"><a href="ch21_network_remote.html">Network and remote connections</a></li>
+      <li data-i18n="pending"><a href="ch22_life_logs.html">Life logging</a></li>
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">為什麼要畫房子</a>
-      <a href="#now">現況檢查</a>
-      <a href="#plan">先想好結構</a>
-      <a href="#steps">動手建立</a>
-      <a href="#assign">把設備放進區域</a>
-      <a href="#done">完成對照</a>
-      <a href="#faq">常見問題</a>
-      <a href="#troubleshoot">常見卡關</a>
+      <a href="#why">Why paint a house?</a>
+      <a href="#now">Current status inspection</a>
+      <a href="#plan">Think about the structure first</a>
+      <a href="#steps">Build it yourself</a>
+      <a href="#assign">Put the device into the zone</a>
+      <a href="#done">Completion of comparison</a>
+      <a href="#faq">FAQ</a>
+      <a href="#troubleshoot">Common stuck levels</a>
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · 生態圈：HACS/Add-ons/遠端</a>
-      <a href="appendix_scenes_helpers_groups.html">B · 場景/輔助元件/群組</a>
-      <a href="appendix_hardware_install.html">C · 裝機前傳：硬體與 HAOS</a>
+      <a href="appendix_hacs_addons.html">A · Ecosystem: HACS/Add-ons/remote</a>
+      <a href="appendix_scenes_helpers_groups.html">B · Scene/auxiliary component/group</a>
+      <a href="appendix_hardware_install.html">C · Pre-installation: Hardware and HAOS</a>
     </div>
   </aside>
 
@@ -88,179 +88,179 @@
     <div class="callout i18n-pending"><strong>This chapter has not been translated yet.</strong> You are reading the original Chinese text. <a href="../ch3_floors_areas.html" hreflang="zh-Hant">Open the Chinese version</a></div>
     <div class="chapter-header">
       <div class="kicker">Chapter 3</div>
-      <h1>樓層與區域</h1>
-      <p class="lead">先在 HA 裡「畫出」你家有幾層樓、每層有哪些房間。畫好之後，控制、儀表板、語音助理才會知道「開一樓客廳燈」是哪些燈。</p>
+      <h1>Floors and areas</h1>
+      <p class="lead">First "draw" in HA how many floors your home has and what rooms are on each floor. After the drawing is completed, the control, dashboard, and voice assistant will know which lights are "turning on the lights in the living room on the first floor."</p>
     </div>
 
-    <section id="why" data-nav="為什麼要畫房子">
-      <h2 data-icon="why">為什麼要畫房子</h2>
-      <p>HA 用三個層級來描述你家的物理空間：</p>
+    <section id="why" data-nav="Why paint a house?">
+      <h2 data-icon="why">Why paint a house?</h2>
+      <p>HA uses three levels to describe the physical space of your home:</p>
       <ul>
-        <li><strong>樓層（Floor）</strong>：一樓、二樓、地下室、頂樓。</li>
-        <li><strong>區域（Area）</strong>：客廳、主臥、廚房、車庫。</li>
-        <li><strong>設備／實體</strong>：具體的燈泡、開關、感應器，放進區域裡。</li>
+        <li><strong>Floor</strong>: First floor, second floor, basement, top floor.</li>
+        <li><strong>Area</strong>: Living room, master bedroom, kitchen, garage.</li>
+        <li><strong>Device/Entity</strong>: Specific light bulbs, switches, and sensors are placed in the area.</li>
       </ul>
-      <p>畫好樓層與區域後，你會馬上得到這些能力：</p>
+      <p>After drawing the floors and areas, you will immediately get these abilities:</p>
       <ul>
-        <li>語音：「Hey Google，關掉一樓所有燈」— HA 知道哪些燈屬於一樓。</li>
-        <li>儀表板：自動生成「以區域分頁」的視圖。</li>
-        <li>自動化：「主臥室有人動作」的條件寫得出來。</li>
+        <li>Voice: "Hey Google, turn off all the lights on the first floor" - HA knows which lights belong to the first floor.</li>
+        <li>Dashboard: Automatically generate a "paged by region" view.</li>
+        <li>Automation: The conditions for "there is movement in the master bedroom" can be written out.</li>
       </ul>
-      <p><strong>四層階梯（記住這個結構）</strong>：</p>
+      <p><strong>Four levels of stairs (remember this structure)</strong>: </p>
       <ul>
-        <li><strong>樓層 (Floor)</strong>：只能裝區域，不能直接裝設備。例：1 樓、2 樓。</li>
-        <li><strong>區域 (Area)</strong>：房間單位，屬於一個樓層。例：客廳、主臥。</li>
-        <li><strong>設備 (Device)</strong>：屬於一個區域（可覆寫）。例：小米燈泡。</li>
-        <li><strong>實體 (Entity)</strong>：設備能被操作的一個角度，也只屬於一個區域（預設跟著設備走）。例：<code>light.living_room_main</code>。</li>
+        <li><strong>Floor</strong>: Only regions can be installed, equipment cannot be installed directly. Example: 1st floor, 2nd floor.</li>
+        <li><strong>Area</strong>: Room unit, belonging to one floor. Example: living room, master bedroom.</li>
+        <li><strong>Device</strong>: Belongs to a region (can be overwritten). Example: Xiaomi light bulb.</li>
+        <li><strong>Entity</strong>: An angle at which the device can be operated, and it only belongs to one area (default follows the device). Example:<code>light.living_room_main</code>.</li>
       </ul>
-      <p>一個設備／實體<strong>只能屬於一個區域</strong>，一個區域<strong>只能屬於一個樓層</strong>。</p>
+      <p>a device/entity<strong>Can only belong to one area</strong>, an area<strong>Can only belong to one floor</strong>.</p>
     </section>
 
-    <section id="now" data-nav="現況檢查">
-      <h2 data-icon="now">現況檢查</h2>
-      <p>先進「設定 → 區域、標籤和區塊」看目前的狀態。你可能會看到三種情況：</p>
+    <section id="now" data-nav="Current status inspection">
+      <h2 data-icon="now">Current status inspection</h2>
+      <p>Go to "Settings → Regions, Labels and Blocks" to see the current status. You may see three situations:</p>
       <ol>
-        <li><strong>全空</strong> — 全新安裝，最單純，跟著本章從頭做。</li>
-        <li><strong>只有區域沒有樓層</strong> — 舊版 HA 沒樓層概念，跟著本章補上樓層。</li>
-        <li><strong>有樓層但混亂</strong> — 之前試過但沒整理，考慮先刪掉重來。</li>
+        <li><strong>All empty</strong> — A new installation is the easiest, just follow this chapter and start from scratch.</li>
+        <li><strong>Only areas without floors</strong> — The old version of HA does not have the concept of floors. Follow this chapter to add floors.</li>
+        <li><strong>There are floors but it’s confusing</strong> — I tried it before but didn’t organize it. Consider deleting it and starting over.</li>
       </ol>
-      <div class="callout"><strong>頁面名稱：</strong>樓層與區域都在「設定 → 區域、標籤和區塊」（Settings → Areas, labels &amp; zones）這一頁設定；2024.4 之前的舊版還沒有樓層與標籤，這頁只列得出區域。把裝置放進區域走的是「設定 → 裝置與服務 → 裝置」，這個路徑到目前為止都沒有改名。另外側欄的預設儀表板從 2026.2 起叫「首頁（Home）」，舊版叫「總覽（Overview）」。</div>
+      <div class="callout"><strong>Page name:</strong>Floors and zones are set on the page "Settings → Areas, labels &amp; zones"; the old version before 2024.4 did not have floors and labels, and this page only listed the zones. To put the device into the area, go to "Settings → Devices and Services → Devices". This path has not been renamed so far. In addition, the default dashboard in the sidebar is called "Home" starting from 2026.2, and the old version is called "Overview".</div>
       <figure class="shot">
-        <img src="../assets/screenshots/ch3/01_areas_page.png" alt="區域與樓層頁面" />
-        <figcaption><strong>圖 3-1</strong>「區域、標籤和區塊」頁面 — 左側是樓層，右側是每個樓層下的區域。</figcaption>
+        <img src="../assets/screenshots/ch3/01_areas_page.png" alt="Area and floor page" />
+        <figcaption><strong>Figure 3-1</strong>"Regions, Tags, and Blocks" page—the floors on the left and the regions under each floor on the right.</figcaption>
       </figure>
     </section>
 
-    <section id="plan" data-nav="先想好結構">
-      <h2 data-icon="plan">先想好結構（花 5 分鐘就好）</h2>
-      <p>建議先在紙上或腦袋裡列出：</p>
+    <section id="plan" data-nav="Think about the structure first">
+      <h2 data-icon="plan">Think about the structure first (just take 5 minutes)</h2>
+      <p>It is recommended to list on paper or in your head first:</p>
       <ul>
-        <li>有幾層樓？地下室算不算？</li>
-        <li>每層樓有哪些「你會用語音或自動化提到的空間」？</li>
-        <li>「陽台」「玄關」「走廊」要不要獨立成一個區域？</li>
+        <li>How many floors are there? Does the basement count?</li>
+        <li>What “spaces would you mention using voice or automation” on each floor?</li>
+        <li>Should the "balcony", "porch" and "corridor" be separate areas?</li>
       </ul>
-      <div class="callout"><strong>命名建議：</strong>用<strong>你日常會講的名字</strong>。你會說「打開主臥燈」就叫「主臥」，不要叫「Bedroom_M」。中文對語音助理沒問題。</div>
-      <div class="callout warn"><strong>命名反例：</strong>不要用縮寫（<code>LR</code>）、代號（<code>Zone_A</code>）、複數（<code>Bedrooms</code>）— 之後你自己也會忘記哪個是哪個。</div>
+      <div class="callout"><strong>Naming suggestions:</strong>use<strong>Names you say every day</strong>. If you say "turn on the master bedroom light", call it "Master Bedroom", not "Bedroom_M". Chinese is no problem for the voice assistant.</div>
+      <div class="callout warn"><strong>Named counterexample:</strong>Do not use abbreviations (<code>LR</code>), code name (<code>Zone_A</code>), plural (<code>Bedrooms</code>) — and you yourself will forget which is which later.</div>
     </section>
 
-    <section id="steps" data-nav="動手建立">
-      <h2 data-icon="steps">動手建立</h2>
+    <section id="steps" data-nav="Build it yourself">
+      <h2 data-icon="steps">Build it yourself</h2>
       <ol class="steps">
         <li>
-          <h3>新增樓層</h3>
-          <p>頁面右上角「＋ 建立樓層」→ 輸入「一樓」→ 點圖示欄，會跳出圖示選擇器，搜尋 <code>floor</code> 就可以看到樓層相關圖示 → 儲存。重複建立「二樓」「地下室」等。</p>
+          <h3>Add new floor</h3>
+          <p>"+ Create Floor" in the upper right corner of the page → enter "First Floor" → click on the icon bar, the icon selector will pop up, search <code>floor</code> You can see the floor related icon → Save. Repeatedly create "second floor", "basement", etc.</p>
           <figure class="shot">
-            <img src="../assets/screenshots/ch3/02_create_floor_dialog.png" alt="新增樓層對話框" />
-            <figcaption><strong>圖 3-2</strong>新增樓層對話框 — 名稱、圖示、樓層編號。</figcaption>
+            <img src="../assets/screenshots/ch3/02_create_floor_dialog.png" alt="Add floor dialog box" />
+            <figcaption><strong>Figure 3-2</strong>New floor dialog box - name, icon, floor number.</figcaption>
           </figure>
         </li>
         <li>
-          <h3>樓層編號的用途</h3>
-          <p>樓層編號用來排序：地下室 <code>-1</code>、一樓 <code>1</code>、二樓 <code>2</code>、頂樓 <code>10</code>。之後在儀表板、卡片上會照這個順序顯示。</p>
+          <h3>The purpose of floor number</h3>
+          <p>Floor number used for sorting: Basement <code>-1</code>, first floor <code>1</code>, second floor <code>2</code>, top floor <code>10</code>. It will then be displayed on the dashboard and cards in this order.</p>
         </li>
         <li>
-          <h3>新增區域</h3>
-          <p>點某個樓層底下的「＋ 建立區域」→ 輸入「客廳」→ 選圖示（<code>mdi:sofa</code>）→ 儲存。</p>
+          <h3>Add new area</h3>
+          <p>Click "+ Create Area" under a certain floor → enter "living room" → select the icon (<code>mdi:sofa</code>) → Save.</p>
           <figure class="shot">
-            <img src="../assets/screenshots/ch3/03_create_area_dialog.png" alt="新增區域對話框" />
-            <figcaption><strong>圖 3-3</strong>新增區域對話框 — 名稱、圖示、所屬樓層。</figcaption>
+            <img src="../assets/screenshots/ch3/03_create_area_dialog.png" alt="New area dialog box" />
+            <figcaption><strong>Figure 3-3</strong>Added new area dialog box - name, icon, and floor to which it belongs.</figcaption>
           </figure>
         </li>
         <li>
-          <h3>常見區域清單（可直接抄）</h3>
-          <p><strong>一樓</strong>：玄關、客廳、餐廳、廚房、客用衛浴、後陽台。</p>
-          <p><strong>二樓</strong>：主臥、主浴、小孩房、書房、走廊。</p>
-          <p><strong>戶外</strong>：庭院、車庫、大門口。</p>
-          <div class="callout tip"><strong>提示：</strong>「戶外」建成一個沒有指定樓層的區域也可以，或是自己開一個「戶外」樓層。</div>
+          <h3>List of common areas (can be copied directly)</h3>
+          <p><strong>first floor</strong>: Entrance, living room, dining room, kitchen, guest bathroom, back balcony.</p>
+          <p><strong>second floor</strong>: Master bedroom, master bath, children's room, study room, corridor.</p>
+          <p><strong>outdoor</strong>: Yard, garage, gate.</p>
+          <div class="callout tip"><strong>Tip:</strong>You can also build an "outdoor" area without a designated floor, or you can open an "outdoor" floor yourself.</div>
         </li>
       </ol>
-      <div class="callout tip"><strong>驗證</strong>：回到「設定 → 區域、標籤和區塊」，你應該看到剛建的樓層／區域出現在左側篩選；隨便點一個區域，右邊會列出這個區域的設備數量。</div>
+      <div class="callout tip"><strong>Verify</strong>: Go back to "Settings → Areas, Labels and Blocks", you should see the newly created floors/areas filtered on the left; click on any area, and the number of devices in this area will be listed on the right.</div>
     </section>
 
-    <section id="assign" data-nav="把設備放進區域">
-      <h2 data-icon="assign">把設備放進區域</h2>
-      <p>光有空框還不夠，要把設備放進去：</p>
+    <section id="assign" data-nav="Put the device into the zone">
+      <h2 data-icon="assign">Put the device into the zone</h2>
+      <p>It’s not enough to have an empty frame, you have to put the device in it:</p>
       <ol class="steps">
         <li>
-          <h3>進「設定 → 裝置與服務 → 裝置」</h3>
-          <p>看到所有已配對的裝置列表。</p>
+          <h3>Go to "Settings → Devices and Services → Devices"</h3>
+          <p>See a list of all paired devices.</p>
           <figure class="shot">
-            <img src="../assets/screenshots/ch3/04_devices_list.png" alt="裝置列表" />
-            <figcaption><strong>圖 3-4</strong>裝置列表 — 每個裝置右邊會顯示所屬區域，未指定的是空白。</figcaption>
+            <img src="../assets/screenshots/ch3/04_devices_list.png" alt="Device list" />
+            <figcaption><strong>Figure 3-4</strong>Device list - The area to which each device belongs will be displayed to the right, and any unspecified ones will be blank.</figcaption>
           </figure>
         </li>
         <li>
-          <h3>點一個裝置 → 右上角編輯（鉛筆）→ 選區域</h3>
-          <p>下拉選單會列出你剛才建的所有區域，選一個儲存。</p>
+          <h3>Click on a device → Edit (pencil) in the upper right corner → Select area</h3>
+          <p>The drop-down menu will list all the areas you just created, select one to save.</p>
           <figure class="shot">
-            <img src="../assets/screenshots/ch3/05_assign_area.png" alt="指定裝置所屬區域" />
-            <figcaption><strong>圖 3-5</strong>把裝置指定給區域。</figcaption>
+            <img src="../assets/screenshots/ch3/05_assign_area.png" alt="Specify the region to which the device belongs" />
+            <figcaption><strong>Figure 3-5</strong>Assign devices to zones.</figcaption>
           </figure>
         </li>
         <li>
-          <h3>批次指定（多個裝置一起）</h3>
-          <p>裝置列表右上角有「批次選取」— 勾多個之後可以一次「移到區域」。剛裝完一整個房間的燈，這功能很省時間。</p>
+          <h3>Batch designation (multiple devices together)</h3>
+          <p>There is "Batch Selection" in the upper right corner of the device list - you can "move to area" at once after checking multiple ones. I just installed an entire room of lights and this feature is a great time saver.</p>
         </li>
       </ol>
-      <div class="callout tip"><strong>下一步</strong>：區域指派好後，第 4 章教你把每個設備從 <code>switch.0x00abc123</code> 改成看得懂的名字，並用標籤（Label）跨區域群組。</div>
+      <div class="callout tip"><strong>Next step</strong>: After the area is assigned, Chapter 4 teaches you how to move each device from <code>switch.0x00abc123</code> Change the name to something understandable and use labels to group across regions.</div>
     </section>
 
-    <section id="done" data-nav="完成對照">
-      <h2 data-icon="done">完成對照</h2>
-      <p>做完之後，回到「區域、標籤和區塊」頁應該長這樣：</p>
+    <section id="done" data-nav="Completion of comparison">
+      <h2 data-icon="done">Completion of comparison</h2>
+      <p>After you're done, when you return to the "Regions, Labels and Blocks" page, it should look like this:</p>
       <figure class="shot">
-        <img src="../assets/screenshots/ch3/06_done.png" alt="完成的樓層區域佈局" />
-        <figcaption><strong>圖 3-6</strong>完成的樓層區域佈局 — 每個區域下方顯示「N 個裝置」。</figcaption>
+        <img src="../assets/screenshots/ch3/06_done.png" alt="Completed floor area layout" />
+        <figcaption><strong>Figure 3-6</strong>Completed floor zone layout - "N devices" shown below each zone.</figcaption>
       </figure>
-      <p>接下來到左側選單的「首頁（Home）」（舊版叫「總覽 Overview」），切到「以區域為分頁」的檢視，你會看到 HA 自動幫每個區域生成一張卡片。</p>
+      <p>Next, go to "Home" on the left menu (the old version was called "Overview"), switch to the "Pagination by Region" view, and you will see that HA automatically generates a card for each region.</p>
     </section>
 
-    <section id="faq" data-nav="常見問題">
-      <h2 data-icon="faq">常見問題</h2>
+    <section id="faq" data-nav="FAQ">
+      <h2 data-icon="faq">FAQ</h2>
       <details class="faq">
-        <summary>可以之後再改樓層／區域名稱嗎？</summary>
-        <div class="body">可以。改名字不會影響設備連結，也不會弄壞自動化（自動化用的是內部 ID）。但顯示名稱會全站同步變更。</div>
+        <summary>Can I change the floor/area name later?</summary>
+        <div class="body">Yes. Changing the name will not affect the device connection, nor will it break the automation (automation uses the internal ID). However, the display name will be changed simultaneously throughout the site.</div>
       </details>
       <details class="faq">
-        <summary>一個裝置能不能同時屬於兩個區域？</summary>
-        <div class="body">不能。裝置只能屬於一個區域。如果一個燈同時在「客廳」和「餐廳」開放式空間，選最主要的那個。</div>
+        <summary>Can a device belong to two areas at the same time?</summary>
+        <div class="body">No. A device can only belong to one zone. If a lamp is in both the "living room" and "dining room" open spaces, choose the most important one.</div>
       </details>
       <details class="faq">
-        <summary>刪掉一個區域，裡面的設備會不見嗎？</summary>
-        <div class="body">不會，設備還在，只是變成「未指定區域」。可以隨時再指定回去。</div>
+        <summary>If I delete an area, will the devices in it disappear?</summary>
+        <div class="body">No, the device is still there, but it has become an "unspecified area". You can specify it back at any time.</div>
       </details>
       <details class="faq">
-        <summary>不是每個房間都要建區域嗎？</summary>
-        <div class="body">不是。只有你會「用到」的房間才需要。儲藏室裡沒有任何智慧設備就不必建。之後有新設備要放時再補。</div>
+        <summary>Doesn’t every room need to have a zone?</summary>
+        <div class="body">No. Only the rooms you will "use" are needed. There is no need to build any smart devices in the storage room. It will be added later when new equipment needs to be installed.</div>
       </details>
     </section>
 
-    <section id="troubleshoot" data-nav="常見卡關">
-      <h2 data-icon="advanced">常見卡關</h2>
+    <section id="troubleshoot" data-nav="Common stuck levels">
+      <h2 data-icon="advanced">Common stuck levels</h2>
       <details class="faq">
-        <summary>不小心把設備放錯區域怎麼辦？</summary>
-        <div class="body">回「設定 → 裝置與服務 → 裝置」找到那個設備，點進去右上角有「區域」下拉可以改。實體也可以個別覆寫（覆寫後就跟設備分家了）。</div>
+        <summary>What should I do if I accidentally put my device in the wrong area?</summary>
+        <div class="body">Go back to "Settings → Devices and Services → Devices" to find the device, click on it and there is a "Region" drop-down in the upper right corner to change it. Entities can also be overwritten individually (after overwriting, they will be separated from the device).</div>
       </details>
       <details class="faq">
-        <summary>已經有一堆設備，重新規劃區域來得及嗎？</summary>
-        <div class="body">來得及，區域分類不會影響自動化（只要自動化寫的是 entity_id，不是 device_id）。ch4 會講命名，ch8 會講為什麼用 entity_id 才安全。</div>
+        <summary>There is already a bunch of equipment, is it too late to re-plan the area?</summary>
+        <div class="body">In time, regional classification will not affect automation (as long as automation writes entity_id, not device_id). Ch4 will talk about naming, and ch8 will talk about why it is safe to use entity_id.</div>
       </details>
     </section>
 
     <div class="pager">
       <a class="prev" href="ch2_system_settings.html">
         <span class="label">← Previous</span>
-        <span class="title">02 · 系統設定</span>
+        <span class="title">02 · System settings</span>
       </a>
       <a class="next" href="ch4_naming_labels.html">
         <span class="label">Next →</span>
-        <span class="title">04 · 命名與標籤</span>
+        <span class="title">04 · Naming and Labeling</span>
       </a>
     </div>
 
     <footer class="site-footer">
-      <p>Home Assistant 新居入住指南 is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
-      <p class="footer-meta">截圖取自 Home Assistant 官方介面。Home Assistant 為 Open Home Foundation 的商標，本站與其無隸屬關係。 · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
+      <p>Home Assistant New Home Move-In Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
+      <p class="footer-meta">Screenshot taken from Home Assistant official interface. Home Assistant is a trademark of the Open Home Foundation, and this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
   </main>
 </div>
