@@ -105,7 +105,7 @@
 
  <section id="what" data-nav="What does a backup contain?">
  <h2 data-icon="what">What does a backup contain?</h2>
- <div class="callout"><strong>Name changed:</strong> Starting from version 2026.2, HA has officially renamed "Add-on" to "Apps", and the installation entrance has also changed from the old version of "Settings → Add-ons" to "Settings → Applications". The Add-on you see in the old version is the same thing as the new version of Apps, and will use the new name after this chapter. The backup page itself has not been moved, the old and new versions are both in "Settings → System → backup".</div>
+ <div class="callout"><strong>Name changed:</strong> Starting from version 2026.2, HA has officially renamed "Add-on" to "Apps", and the installation entrance has also changed from the old version of "Settings → Add-ons" to "Settings → Apps". The Add-on you see in the old version is the same thing as the new version of Apps, and will use the new name after this chapter. The backup page itself has not been moved, the old and new versions are both in "Settings → System → Backups".</div>
  <p>A full backup of HA is a <code>.tar</code> The compressed file has two main parts after expansion:</p>
  <ul>
  <li><strong>Home Assistant core settings</strong>
@@ -116,7 +116,7 @@
  <li>Lovelace dashboard configuration.</li>
  </ul>
  </li>
- <li><strong>Applications (Apps, called add-ons in the old version) data</strong>
+ <li><strong>Apps (called add-ons in older versions) data</strong>
  <ul>
  <li>Pairing list for Zigbee2MQTT.</li>
  <li>Node-RED’s process.</li>
@@ -132,7 +132,7 @@
  <ol class="steps">
  <li>
  <h3>Open backup page</h3>
- <p>Go to "Settings → System → backup". The list will be empty the first time you enter.</p>
+ <p>Go to "Settings → System → Backups". The list will be empty the first time you enter.</p>
  <figure class="shot">
  <img src="../assets/screenshots/ch9/01_step.png" alt="backup page" />
  <figcaption><strong>Figure 9-1</strong> On the main backup page, there is a "backup now" button in the lower right corner.</figcaption>
@@ -163,13 +163,13 @@
  </figure>
  </li>
  </ol>
- <div class="callout tip"><strong>Verify:</strong> After the backup is completed, there will be one more entry in the "Settings → System → backup" list, with the timestamp being now. Click to download to your computer once as an off-machine backup.</div>
+ <div class="callout tip"><strong>Verify:</strong> After the backup is completed, there will be one more entry in the "Settings → System → Backups" list, with the timestamp being now. Click to download to your computer once as an off-machine backup.</div>
  </section>
 
  <section id="auto" data-nav="Automatic backup schedule">
  <h2 data-icon="auto">Enable automatic backup schedule</h2>
  <p>HA OS 2024.10 and later has a complete automatic backup scheduling function built-in, and there is no need to install additional automatic backup apps.</p>
- <p>Go to "Settings → System → backup → Automatic backup (upper right corner)" and you can set:</p>
+ <p>Go to "Settings → System → Backups → Automatic backup (upper right corner)" and you can set:</p>
  <ul>
  <li><strong>Frequency</strong>: Daily, weekly, monthly, and execution time (3-5am recommended).</li>
  <li><strong>Keep copies</strong>: For example, "Keep the latest 7 daily backups + 4 weekly backups", and the excess will be automatically deleted.</li>
@@ -189,7 +189,7 @@
  <section id="restore" data-nav="Restore backup">
  <h2 data-icon="restore">Two scenes for restoring backups</h2>
  <p><strong>Scenario 1: Selective restore of an item on the same HA</strong></p>
- <p>An automation was accidentally deleted, or an integration was broken. Go to "Settings → System → backup → Select a backup → Restore", you can check <em>Only restore this part</em> (For example, only restore the Zigbee2MQTT configuration and leave the others unchanged). This is the most common firefighting scenario.</p>
+ <p>An automation was accidentally deleted, or an integration was broken. Go to "Settings → System → Backups → Select a backup → Restore", you can check <em>Only restore this part</em> (For example, only restore the Zigbee2MQTT configuration and leave the others unchanged). This is the most common firefighting scenario.</p>
  <p><strong>Scenario 2: Restoring from backup on fresh installation</strong></p>
  <p>Replace the SD card with a new one, get a new host, or the original system is too damaged to start. After refreshing and installing HA OS, when you go to the first page of "Start Settings", there will be an option to "Restore from backup". upload <code>.tar</code> file (or connect to Google Drive), enter the encryption password, and wait 5 to 15 minutes to completely return to the previous state.</p>
  <div class="callout warn"><strong>Reminder:</strong> After restoration, <a href="ch5_users.html">Chapter 5</a> The set user password may become invalid (depending on the HA version). Please prepare the administrator's password or SSH to reset it. When logging into the restored system for the first time, it is recommended that each family member test login first.</div>

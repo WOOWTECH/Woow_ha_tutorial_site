@@ -99,7 +99,7 @@
 
  <section id="why" data-nav="Why should we learn">
  <h2 data-icon="why">Why should you learn this?</h2>
- <p>you are already <a href="ch6_dashboard.html">Chapter 6</a> Make a good dashboard and <a href="ch8_first_automation.html">Chapter 8</a> I have written about automation. But there’s one situation in life that a dashboard can’t save: you walk into the kitchen with a pot of soup in your hands, or you’re lying flat on your bed and your phone has fallen under the bed. What you need at this time is to shout and someone will take care of you.</p>
+ <p>you are already <a href="ch6_dashboard.html">Chapter 6</a> Make a good dashboard and <a href="ch8_first_automation.html">Chapter 8</a> I have written about automation. But there’s one situation in life that a dashboard can’t save: you walk into the kitchen with a pot of soup in your hands, or you’re lying flat on your bed and your phone has fallen under the bed. In that situation, voice control is more practical than reaching for a dashboard.</p>
  <p>Home Assistant’s built-in voice assistant calls <strong>Assist</strong>, it is completely free, built-in, and can be used without installing anything. And its biggest difference from Google Assistant and Alexa is: <strong>You can decide whether each segment of it should run in your home or on someone else's cloud.</strong></p>
  <p>After reading this chapter you will have these abilities:</p>
  <ul>
@@ -372,7 +372,7 @@
  <tr><td>direction</td><td>AI from outside to control your home</td><td>Use external tools for your conversational agent</td></tr>
  <tr><td>Integration name</td><td><strong>Model Context Protocol Server</strong></td><td><strong>Model Context Protocol</strong></td></tr>
  <tr><td>typical situation</td><td>Use an external app like Claude or ChatGPT to directly ask it to turn off the lights at home for you</td><td>Let your Assist dialogue agent have additional capabilities such as "memory" and "network search" that it does not have before.</td></tr>
- <tr><td>How to set</td><td>Settings → Devices and Services → New Integration → Model Context Protocol Server, the setting process will ask you whether you want to allow the client to control Home Assistant</td><td>Settings → Devices and Services → Add Integration → Model Context Protocol, fill in the SSE server URL, and if verification is required, fill in the OAuth client ID and key</td></tr>
+ <tr><td>How to set</td><td>Settings → Devices &amp; Services → New Integration → Model Context Protocol Server, the setting process will ask you whether you want to allow the client to control Home Assistant</td><td>Settings → Devices &amp; Services → Add Integration → Model Context Protocol, fill in the SSE server URL, and if verification is required, fill in the OAuth client ID and key</td></tr>
  <tr><td>Endpoint/Authentication</td><td>Open to the outside world <code>/api/mcp</code>(To specify a certain set of LLM APIs, it is <code>/api/mcp/&lt;api_id&gt;</code>, the built-in group is <code>/api/mcp/assist</code>); Authentication supports OAuth (with IndieAuth, the client ID is the URL of the App, for example <code>https://claude.ai</code>, Client Secret is not used, you can fill it in casually or leave it blank). Clients that do not support OAuth use long-term access tokens.</td><td>Currently, only MCP Tools are supported, prompts, resources, sampling, and notifications are not supported.</td></tr>
  </tbody>
  </table>

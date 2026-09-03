@@ -183,7 +183,7 @@
  <ol class="steps">
  <li>
  <h3>Make sure your location is set first</h3>
- <p>Weather integration will directly eat the HA's home coordinates. left column <strong>Settings → System → Home information</strong> If the latitude and longitude in are still the default values, the weather captured will be that of another country. This page used to be called "General", but Home Assistant documentation has been renamed "Family Information", and the old name is written on the old instructions. this matter <a href="ch2_system_settings.html">Chapter 2</a> I’ve already done it, and if I haven’t done it, go back and make up for it first.</p>
+ <p>A weather integration uses Home Assistant’s home coordinates. left column <strong>Settings → System → Home information</strong> If the latitude and longitude in are still the default values, the weather captured will be that of another country. This page used to be called "General", but Home Assistant documentation has been renamed "Family Information", and the old name is written on the old instructions. this matter <a href="ch2_system_settings.html">Chapter 2</a> I’ve already done it, and if I haven’t done it, go back and make up for it first.</p>
  </li>
  <li>
  <h3>Open integration page</h3>
@@ -255,51 +255,51 @@
 
  <section id="weather" data-nav="Weather integration">
  <h2 data-icon="integration">Weather: Met.no, Open-Meteo, and national weather services</h2>
- <p>The weather is the most worthy category to pick up first, because it feeds a lot of automation: close the balcony windows when it rains, turn on the air conditioner in advance when the temperature exceeds 30 degrees, and remind you to wear a hat when ultraviolet rays are high.</p>
+ <p>Weather entities can support useful automations: close a window when rain is forecast, cool a room before the temperature exceeds 30 degrees, or remind someone to take sun protection when the UV index is high.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Integrate</th><th>Do you want a key?</th><th>Setting content</th><th>Suitable for whom</th></tr>
+ <tr><th>Integration</th><th>API key?</th><th>Configuration</th><th>Best fit</th></tr>
  </thead>
  <tbody>
- <tr><td><strong>Met.no</strong> (Norwegian Meteorological Office)</td><td>No need</td><td>name, latitude, longitude, altitude</td><td>People who want to just install it without thinking; there are many people who have built-in HA and use it.</td></tr>
- <tr><td><strong>Open-Meteo</strong></td><td>No need</td><td>Choose a Zone</td><td>People who want to use Zone to connect locations (such as companies)</td></tr>
- <tr><td><strong>Central Weather Agency CWA</strong></td><td>Required (free application)</td><td>See instructions below</td><td>Readers who need official local terminology and fine-grained regional data</td></tr>
+ <tr><td><strong>Met.no</strong> (Norwegian Meteorological Institute)</td><td>No</td><td>Name, latitude, longitude, and elevation</td><td>A straightforward default that creates standard Home Assistant weather entities</td></tr>
+ <tr><td><strong>Open-Meteo</strong></td><td>No</td><td>Select a zone</td><td>Forecasts tied to Home Assistant zones, such as a workplace</td></tr>
+ <tr><td><strong>Your national weather service</strong></td><td>Depends on the provider</td><td>Follow the provider's API documentation</td><td>Official terminology or more detailed data for your region</td></tr>
  </tbody>
  </table>
 
  <h3>Two details about Met.no</h3>
  <ul>
- <li>It has an "Elevation" field. Official documentation say that this will affect the accuracy of temperature forecasts, especially in mountainous areas. If you live on a mountain, fill in the actual altitude, and on flat land, fill in 0 to 50, which is about the same.</li>
- <li>The update frequency is not something you can adjust. Home Assistant documentation states that it is updated every 55 to 65 minutes, and is deliberately randomized to spread the API load. So don't expect it to be as instant as a room thermometer and hygrometer.</li>
+ <li>The integration includes an "Elevation" field. The official documentation notes that elevation affects forecast temperature, especially in mountainous areas. Enter your actual elevation when you know it; for low-lying locations, a value from 0 to 50 is generally sufficient.</li>
+ <li>You cannot configure the update interval. The Home Assistant documentation specifies an update every 55 to 65 minutes, randomized to spread API load. Do not expect updates as frequently as those from an indoor temperature sensor.</li>
  </ul>
 
- <h3>Using a national weather service: Taiwan’s CWA as a worked example</h3>
- <p>Let’s make it clear here: <strong>As of this writing, there is no Central Weather Service integration on Home Assistant’s official list of core integrations.</strong> If you want to eat CWA information, there are only two ways:</p>
+ <h3>Using a national weather service</h3>
+ <p>Availability varies by country. <strong>Check the official Home Assistant integrations first.</strong> If your national provider is not listed, use one of these approaches:</p>
  <ol class="steps">
  <li>
- <h3>First apply for an authorization code</h3>
- <p>Go to the meteorological data open platform <code>opendata.cwa.gov.tw</code> Register as a general member and get your API Key on the "Get Authorization Code" page in the member area. General membership is free.</p>
+ <h3>Check access requirements</h3>
+ <p>Consult <code>your-national-weather-service.example</code> for registration, API credentials, data licensing, and regional availability. Do not assume that access is free or available in every country.</p>
  </li>
  <li>
- <h3>Route A: Install community custom integration</h3>
- <p>Communities have custom integrations based on CWA open data (e.g. <code>tsunglung/OpenCWB</code>), add it through HACS using the "custom repository" method. The setup process will ask you for the API Key and location name. <strong>But this is something the community maintains</strong>, there is no guarantee that the update speed and CWA API revision can keep up. Please check first to see if the item has been moved recently.</p>
+ <h3>Route A: use a maintained community integration</h3>
+ <p>Search <code>HACS</code> for an integration for your provider. <strong>Community integrations are not maintained or reviewed by the Home Assistant project</strong>, so check recent releases, open issues, and compatibility with your Home Assistant version before installing one.</p>
  </li>
  <li>
- <h3>Route B: Use RESTful sensor to connect</h3>
- <p>The CWA open platform is a standard REST API. You can use HA's built-in RESTful sensor to directly hit it and split the JSON into the fields you want. The method is relatively hard, but it is completely in your own hands. You are not afraid that one day the custom integration will be unmaintained.</p>
+ <h3>Route B: use a RESTful sensor</h3>
+ <p>If the provider offers a REST API, Home Assistant's RESTful integration can retrieve its JSON response and expose selected fields as sensors. This requires more configuration, but avoids depending on a provider-specific custom integration.</p>
  </li>
  </ol>
- <div class="callout tip"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. A pragmatic combination is "Met.no or Open-Meteo as the main force (stable, no key, and standard weather entities for cards) + CWA as the supplement (check only when you need town forecast text or rainfall probability)." Don't bet the entire automation on a community integration just for one country’s data.</div>
+ <div class="callout tip"><strong>Note:</strong> The zh-TW edition uses Taiwan's Central Weather Administration as its worked example. This international edition uses a provider-neutral pattern. Use Met.no or Open-Meteo for a standard weather entity, and add a national source only when you need data that the general provider does not offer.</div>
  </section>
 
  <section id="media" data-nav="music and media">
  <h2 data-icon="app">Music &amp; Media: Spotify, Apple TV, Chromecast</h2>
- <p>All three will be born <code>media_player</code> Entity, use <a href="ch12_domains.html">Chapter 12</a> The set of domain actions you have learned can be controlled. The difference lies in how they are connected.</p>
+ <p>All three create <code>media_player</code> entities, use <a href="ch12_domains.html">Chapter 12</a> The set of domain actions you have learned can be controlled. The difference lies in how they are connected.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Integrate</th><th>Connection method</th><th>born entity</th><th>The biggest pit</th></tr>
+ <tr><th>Integrate</th><th>Connection method</th><th>Created entities</th><th>The biggest pit</th></tr>
  </thead>
  <tbody>
  <tr><td>Spotify</td><td>Cloud OAuth</td><td><code>media_player</code></td><td>If you want Premium, you need to apply for Client ID/Secret yourself.</td></tr>
@@ -353,7 +353,7 @@
  <h3>Companion App (strongly recommended to take this option)</h3>
  <p>Install Home Assistant App on your phone and log in. It will create an app for the first time you start it. <code>device_tracker.&lt;your_device_name&gt;</code> Entity, whose attributes include GPS coordinates, battery level, accuracy, altitude, and speed.</p>
  <p>Report timing (according to official documentation): Entering or leaving the Zone you defined in HA, when the App is started, when the background is captured, when notifications are received, and "major location changes" on iOS. iOS will automatically establish geofences for all set Zones upon startup; Android requires you to turn on Zone tracking in the App settings.</p>
- <div class="callout warn"><strong>Warning:</strong> Home Assistant documentation clearly states that on iOS, "If you turn off positioning permissions, all sensors will not operate" - not only the positioning will fail, but the battery and step count will also die. Some Android sensors can be moved without location permissions. After setting up, I found multiple entities <code>unavailable</code>, first go back and check the permissions of your phone.</div>
+ <div class="callout warn"><strong>Warning:</strong> Home Assistant documentation clearly states that on iOS, "If you turn off positioning permissions, all sensors will not operate" - location tracking fails, and battery and step-count sensors also stop updating. Some Android sensors can be moved without location permissions. After setting up, I found multiple entities <code>unavailable</code>, first go back and check the permissions of your phone.</div>
  <p>App Notifications and Sensor Details <a href="ch7_notifications.html">Chapter 7</a> I have already mentioned it and will not repeat it here.</p>
 
  <h3>iCloud</h3>
@@ -372,43 +372,41 @@
  </section>
 
  <section id="calendar_notify" data-nav="Calendar and notifications">
- <h2 data-icon="todo">Calendar and messaging software notifications</h2>
+ <h2 data-icon="todo">Calendars and notifications</h2>
 
  <h3>Google Calendar</h3>
- <p>After joining, each calendar in your "My Calendar" will become a <code>calendar</code> Entities (such as a calendar called "Personal" become <code>calendar.personal</code>). It also provides an action <code>google.create_event</code>, you can let automation in turn help you add new itineraries.</p>
- <p>The strongest point of the calendar entity is that it can be used as an automation trigger condition: when the trip starts, ends, or <strong>N minutes before start</strong>. This can create something like "I have to take out the trash tomorrow → my phone vibrated at 9 o'clock the night before."</p>
- <p>The setup cost is relatively high: you need to create a Google Cloud project yourself, enable the Google Calendar API, set up the OAuth consent screen, create a "web application" client, and authorize the redirect URL to be filled in. <code>https://my.home-assistant.io/redirect/oauth</code>. It takes about 15 minutes to do it for the first time, follow Home Assistant documentation step by step.</p>
+ <p>After setup, every calendar under "My calendars" becomes a <code>calendar</code> entity. For example, a calendar named "Personal" becomes <code>calendar.personal</code>. The integration also provides the <code>google.create_event</code> action, allowing an automation to create an event.</p>
+ <p>A calendar entity can trigger an automation when an event starts, ends, or <strong>a specified number of minutes before it starts</strong>. For example, an event for tomorrow's trash collection can trigger a phone reminder at 9:00 p.m. the previous evening.</p>
+ <p>Setup requires a Google Cloud project, the Google Calendar API, an OAuth consent screen, and a web-application client. Set the authorized redirect URL to <code>https://my.home-assistant.io/redirect/oauth</code>. The initial setup takes about 15 minutes; follow the current Home Assistant documentation step by step.</p>
 
- <h3>CalDAV (Nextcloud, iCloud, Synology)</h3>
- <p>If you don’t want to touch Google Cloud, CalDAV is a good choice, and it <strong>Can be set directly using UI</strong>: Settings → Devices and Services → Add new integration → Search for CalDAV and fill in the server URL (for example <code>https://caldav.icloud.com/</code>) and account password.</p>
- <p>Home Assistant document lists the servers that have been tested: Baikal, iCloud Calendar, Nextcloud, Owncloud, Synology Calendar, and other servers that comply with the RFC4791 specification can theoretically work. When using iCloud, you must use an App-specific password. Do not give your Apple ID master password to HA.</p>
- <div class="callout warn"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. CalDAV's YAML writing method does not support to-do lists. To use the to-do function, please go to UI settings.</div>
+ <h3>CalDAV (Nextcloud, iCloud, and Synology)</h3>
+ <p>If you prefer not to configure Google Cloud, CalDAV can be set up <strong>entirely in the UI</strong>: Settings → Devices &amp; Services → Add integration, search for CalDAV, and enter the server URL, such as <code>https://caldav.icloud.com/</code>, and your credentials.</p>
+ <p>The Home Assistant documentation lists Baikal, iCloud Calendar, Nextcloud, ownCloud, and Synology Calendar as tested servers. Other RFC 4791-compliant servers may also work. For iCloud, create an app-specific password; do not give Home Assistant your Apple ID password.</p>
+ <div class="callout warn"><strong>Note:</strong> The CalDAV YAML configuration does not support to-do lists. Use the UI setup flow if you need CalDAV to-do entities.</div>
 
- <h3>LINE: Let me talk about something very important first.</h3>
- <div class="callout danger"><strong>Danger:</strong> There are a lot of Chinese HA tutorials on the Internet still teaching you how to use them <strong>LINE Notify</strong>, <strong>That service has officially ended on March 31, 2025</strong>, LINE officials have also announced that please use the Messaging API of official accounts instead. Following the old teaching will only waste an afternoon. I saw it appear in the teaching <code>notify-api.line.me</code> Or use the words "issuance scepter", just turn it off and change it.</div>
- <p>Now to let HA send LINE, the feasible way is <strong>Create a LINE Official Account and enable Messaging API</strong>, after getting the Channel Access Token, use the HA built-in <code>rest_command</code> Directly call LINE’s push endpoint.</p>
- <p>The push endpoint recorded in LINE official documentation is <code>POST https://api.line.me/v2/bot/message/push</code>, bring <code>Authorization: Bearer {channel access token}</code> with <code>Content-Type: application/json</code>, put the recipient in the body <code>to</code> with <code>messages</code> array. corresponding to <code>configuration.yaml</code> It probably looks like this:</p>
- <pre class="code-block"><code>rest_command:
-  line_push:
-    url: "https://api.line.me/v2/bot/message/push"
-    method: post
-    content_type: "application/json"
-    headers:
-      Authorization: "Bearer your_CHANNEL_ACCESS_TOKEN"
-    payload: &gt;-
-      {"to": "your_USER_ID",
-       "messages": [{"type": "text", "text": "{{ msg }}"}]}</code></pre>
- <p>It is called this in automation:</p>
+ <h3>Telegram or Slack: protect credentials before you start</h3>
+ <div class="callout danger"><strong>Danger:</strong> Treat every bot token and webhook URL as a password. <strong>Never paste one into a forum, issue, chat, or screenshot.</strong> If a credential is exposed, revoke it at the provider immediately and create a replacement. <strong>Avoid examples that expose a real token.</strong> Store credentials outside <code>configuration.yaml</code>.</div>
+ <p>For Telegram, create a bot with BotFather, obtain the chat ID, and configure the official <strong>Telegram bot integration</strong>. For Slack, create an incoming webhook or app according to Slack's current documentation. In either case, store the credential in <code>secrets.yaml</code> rather than in the main configuration.</p>
+ <p>Once the provider is configured, call <code>notify.send_message</code>. In the action editor, set <code>action</code> to the notification action, use <code>target</code> with <code>entity_id</code>, and replace <code>notify.family</code> and <code>message</code> with values from your installation.</p>
  <pre class="code-block"><code>actions:
-  - action: rest_command.line_push
+  - action: notify.send_message
+    target:
+      entity_id: notify.family
     data:
-      msg: "The washing cycle has finished. Remember to hang up the laundry."</code></pre>
- <div class="callout warn"><strong>Warning:</strong> The free quota and billing method of Messaging API are determined by LINE and will change. Before using it to make high-frequency notifications (such as push notifications every time the door sensor moves), first go to the LINE Official Account Manager to confirm the upper limit of the number of messages in your current plan, otherwise it will be stopped in the middle of the month.</div>
+      message: "{{ msg }}"</code></pre>
+ <p>For example, an automation can send this message when a washing cycle finishes:</p>
+ <pre class="code-block"><code>actions:
+  - action: notify.send_message
+    target:
+      entity_id: notify.family
+    data:
+      message: "The washing cycle has finished. Remember to hang the laundry."</code></pre>
+ <div class="callout warn"><strong>Warning:</strong> Provider limits, pricing, and feature availability can change. Check the provider's current documentation before using a third-party channel for frequent or critical notifications. Do not treat a consumer messaging service as a guaranteed alert channel.</div>
 
- <h3>A less painful alternative: Telegram</h3>
- <p>If the notification target is yourself or a family member, and you don’t object to installing an additional app, Telegram integration will be much easier - it is now <strong>Support UI setting process</strong>, no need to write YAML. The process is: talk to BotFather to create a robot to get the API Token, then get your Chat ID, and add the Chat ID to the allowed list in the integration settings.</p>
- <p>It offers a very rich set of actions, in addition to <code>telegram_bot.send_message</code>, you can also send photos, videos, files, votes, stickers, and even <strong>Edit or delete sent messages</strong> (Make a "door open" reminder, and directly change the message to "closed" after closing the door. The plate will not be washed). You add several Chat IDs to the allowed list and it will generate several for you. <code>notify</code> Entity can be used directly <code>notify.send_message</code> Call; in addition, a set of old-style notify writing methods are retained to make it compatible with old settings.</p>
- <p>The most trouble-free solution is actually <strong>Companion App Push</strong>, that <a href="ch7_notifications.html">Chapter 7</a> Already taught, no need to apply for anything.</p>
+ <h3>The simplest option: Companion App notifications</h3>
+ <p>If the recipients use the Home Assistant Companion App, its <strong>push notification support is usually the shortest path</strong>: no separate messaging account, bot, or webhook is required.</p>
+ <p><code>telegram_bot.send_message</code> can send photos, videos, files, polls, and stickers, and can <strong>edit or delete previously sent messages</strong>. When multiple chat IDs are allowed, use the generated <code>notify</code> entities with <code>notify.send_message</code>. Verify the exact entity IDs and supported actions in your installation.</p>
+ <p>For household alerts, start with <strong>Companion App notifications</strong> from <a href="ch7_notifications.html">Chapter 7</a>, then add Telegram or Slack only when it solves a specific delivery requirement.</p>
  </section>
 
  <section id="cloud_vs_local" data-nav="Cloud vs. local">
@@ -450,7 +448,7 @@
  </li>
  <li>
  <h3>The third trick: Download diagnostics</h3>
- <p>The path is <strong>Settings → Devices and Services → Click on that integration → Three-dot menu in the upper right corner → Download diagnostics</strong>. A JSON file will be downloaded, which contains the current status, settings (sensitive data will be officially masked), and captured raw data. <strong>When you go to GitHub to open an issue or go to the forum to ask for help, attaching this file will have a much higher chance of getting a reply.</strong> Not every integration has this option, it will only appear if it is supported.</p>
+ <p>The path is <strong>Settings → Devices &amp; Services → Click on that integration → Three-dot menu in the upper right corner → Download diagnostics</strong>. A JSON file will be downloaded, which contains the current status, settings (sensitive data will be officially masked), and captured raw data. <strong>When you go to GitHub to open an issue or go to the forum to ask for help, attaching this file will have a much higher chance of getting a reply.</strong> Not every integration has this option, it will only appear if it is supported.</p>
  <p>The matching ones are in the same menu. <strong>Enable debug logging</strong>: Open it → Reproduce the problem → Come back and close it, HA will automatically download the log file for you.</p>
  </li>
  <li>
@@ -479,7 +477,7 @@
  <tr><td>Core</td><td>Switch to the HA user identity and execute the same line of commands</td></tr>
  </tbody>
  </table>
- <p>After downloading <strong>Restart HA</strong>, then go back to Settings → Devices and Services → New Integration, search for HACS and set it up. The process will require a <strong>GitHub account</strong> Do device authorization. Home Assistant FAQ of HACS explained the reason: it always uses the GitHub API to check whether there are new versions of each item, and GitHub has <strong>Not logged in</strong> The number of requests is only 60 times per hour, which is not enough; after logging in, the quota is much higher. The scepter it obtained does not require any special permissions and can only read information that is already public.</p>
+ <p>After downloading <strong>Restart HA</strong>, then go back to Settings → Devices &amp; Services → New Integration, search for HACS and set it up. The process will require a <strong>GitHub account</strong> Do device authorization. Home Assistant FAQ of HACS explained the reason: it always uses the GitHub API to check whether there are new versions of each item, and GitHub has <strong>Not logged in</strong> The number of requests is only 60 times per hour, which is not enough; after logging in, the quota is much higher. The scepter it obtained does not require any special permissions and can only read information that is already public.</p>
  <div class="callout tip"><strong>Tip:</strong> HA officially renamed "Add-ons" to "Apps" in version 2026.2, and the sidebar and settings page were changed accordingly. If the tutorial you see on the Internet still says "Supervisor → Add-on Store", that is the old version, and the things are still the same. See detailed differences <a href="appendix_hacs_addons.html">Appendix A</a>.</div>
  <div class="callout warn"><strong>Warning:</strong> Home Assistant HACS documentation makes it very clear: If you don’t know which installation method you have, it is not recommended to install HACS. Because not only will it not move if you install it the wrong way, it may also mess up your environment. If you're not sure, check it out first <a href="appendix_hacs_addons.html">Appendix A</a>.</div>
 
@@ -588,8 +586,8 @@
  </details>
 
  <details class="faq">
- <summary>I want to receive LINE notifications. The online teaching said to apply for a LINE Notify token, but I can’t find that page.</summary>
- <div class="body">Because LINE Notify is already in <strong>Termination of service on March 31, 2025</strong> For official announcement, please use LINE official account instead. <strong>Messaging API</strong>. The practice is <a href="#calendar_notify">Calendar and notification section</a>: Create an official account, obtain Channel Access Token, and then use it <code>rest_command</code> hit <code>https://api.line.me/v2/bot/message/push</code>. If you find it too troublesome, Telegram integration now supports UI settings, or you can push broadcasts directly using the Companion App (<a href="ch7_notifications.html">Chapter 7</a>), both are much less troublesome.</div>
+ <summary>Which notification method should I use for an international deployment?</summary>
+ <div class="body"><strong>Companion App notifications</strong> are the simplest option for Home Assistant users. Use <strong>Telegram or Slack</strong> when the household already relies on one of those services. The <a href="#calendar_notify">calendar and notifications section</a> shows the provider-neutral pattern: call <code>notify.send_message</code> with your actual <code>notify.family</code> entity. See <a href="ch7_notifications.html">Chapter 7</a> for Companion App setup.</div>
  </details>
 
  <details class="faq">
@@ -614,7 +612,7 @@
 
  <details class="faq">
  <summary>Which weather integration should I use?</summary>
- <div class="body">If you only need to judge the basic temperature, humidity and rainfall, <strong>Met.no or Open-Meteo is enough</strong>, neither need to apply for an API key. If you need official local forecast wording or official rainfall chances, come here <code>opendata.cwa.gov.tw</code> Apply for a free authorization code, and then use community custom integration or write your own RESTful sensor to connect. <strong>Don’t bet your main automation on social integration</strong>, it is safer to use official integration as the backbone and CWA as supplementary information.</div>
+ <div class="body">For basic temperature, humidity, and precipitation forecasts, <strong>start with Met.no or Open-Meteo</strong>; neither requires an API key. If you need official local terminology or finer regional data, check <code>your-national-weather-service.example</code> for an API or a maintained integration. <strong>Do not make a critical automation depend only on an unreviewed community integration</strong>; keep a standard integration as the primary source.</div>
  </details>
  </section>
 

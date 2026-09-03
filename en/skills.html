@@ -9,6 +9,17 @@
  <meta name="theme-color" content="#6183FC" />
  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/skills.html" />
  <meta name="robots" content="noindex, follow" />
+ <meta property="og:type" content="website" />
+ <meta property="og:title" content="Home Assistant AI Agent Skill Handbook · WoowTech" />
+ <meta property="og:description" content="A practical handbook for selecting, installing, reviewing, and safely using Home Assistant skills with AI coding agents." />
+ <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/skills.html" />
+ <meta property="og:locale" content="en_US" />
+ <!-- i18n:oglocale --><meta property="og:locale:alternate" content="zh_TW" /><!-- /i18n:oglocale -->
+ <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
+ <meta name="twitter:card" content="summary_large_image" />
+ <meta name="twitter:title" content="Home Assistant AI Agent Skill Handbook · WoowTech" />
+ <meta name="twitter:description" content="A practical handbook for selecting, installing, reviewing, and safely using Home Assistant skills with AI coding agents." />
+ <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
  <link rel="preconnect" href="https://fonts.googleapis.com" />
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
@@ -174,26 +185,26 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
  <div class="kicker">WoowTech Skill Manual</div>
  <h1>Install a skill to teach your AI agent about Home Assistant</h1>
  <p class="lead">A skill is an operating manual for an AI agent: a folder containing <code>SKILL.md</code> and optional references. This handbook surveys 10 Home Assistant-related skills and 6 catalogs, then covers installation, compatibility, authoring, and safety.</p>
- <div class="callout"><strong>Survey baseline:</strong> The collection size, number of stars and maintenance status of this volume are: <strong>2026-08-20 GitHub public snapshot</strong>, will change over time; it is recommended to click on the original repo to confirm again before installation.</div>
+ <div class="callout"><strong>Survey baseline:</strong> Collection sizes, star counts, and maintenance status reflect a <strong>public GitHub snapshot from 2026-08-20</strong>. These values change; inspect the original repository before installing anything.</div>
  </div>
 
  <section id="why" data-nav="What is Skill">
- <h2 data-icon="why">What is Skill and why should it be installed?</h2>
- <p>Think of AI agents such as Claude/Codex/Gemini/OpenClaw/Hermes as very smart interns: any home system can talk, but it will definitely not be able to understand "your HA's entity naming, area planning, existing blueprint, and Zigbee topology." Skill is <strong>Handover file thrown to AI</strong>—Write "What scenario should you encounter HA, what steps should you follow?" in Markdown, and put it in the skill folder. When the AI encounters it, it will translate it and follow it.</p>
+ <h2 data-icon="why">What is a Skill, and why install one?</h2>
+ <p>An AI agent such as Claude, Codex, Gemini, OpenClaw, or Hermes does not automatically know your entity names, areas, Blueprints, or Zigbee topology. A Skill is a <strong>handover document for an AI agent</strong>. It describes, in Markdown, when to use Home Assistant and which steps to follow.</p>
  <ul>
- <li><strong>Pretending to be written by someone else</strong>: HA management, ESPHome firmware, Dashboard design, Blueprint import, custom integration development - the community has already written a lot.</li>
- <li><strong>Then write your own</strong>: Unique processes at home (washing machine reminders, weekly energy reports) can also be packaged as skills. See this handbooklet for how to write them. <a href="#spec">SKILL.md Specifications</a> One section.</li>
+ <li><strong>Start with an existing Skill</strong>: Community projects cover Home Assistant management, ESPHome firmware, dashboard design, Blueprint imports, and custom integration development.</li>
+ <li><strong>Then write your own</strong>: Package household-specific workflows, such as laundry reminders or weekly energy reports. See <a href="#spec">SKILL.md specifications</a> for the required structure.</li>
  </ul>
- <p>Skill follows <a href="ch19_voice_ai.html">Assist voice assistant</a>, <a href="ch14_integrations.html">Integration</a>, <a href="appendix_scenes_helpers_groups.html">Blueprint</a> is something completely different - it is added to <strong>Which side of the AI agent do you use?</strong>, not on the HA side. HA You may not move a line.</p>
+ <p>A Skill is different from an <a href="ch19_voice_ai.html">Assist voice assistant</a>, a Home Assistant <a href="ch14_integrations.html">integration</a>, or a <a href="appendix_scenes_helpers_groups.html">Blueprint</a>. Install it <strong>in your AI agent environment</strong>, not in Home Assistant. Installing a Skill does not itself modify Home Assistant.</p>
  </section>
 
  <section id="install" data-nav="How to install">
  <h2 data-icon="steps">How to install (3-minute version)</h2>
- <p>SKILL.md This specification is sponsored by Anthropic (<a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a>), has been adopted by mainstream agent harnesses such as Claude Code, Codex, Gemini CLI, Cursor, OpenCode, OpenClaw, and Hermes. The installation method varies slightly depending on the harness. The common steps are:</p>
+ <p>The SKILL.md convention is documented by Anthropic in <a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a> and is supported by several agent harnesses. Installation differs by product, but the general process is:</p>
  <ol class="steps">
  <li>
  <h3>Open the Skills/Plugins panel of your agent harness</h3>
- <p>Claude Code: Settings → Skills; OpenClaw / Hermes: Skills panel; Codex:<code>~/.codex/skills/</code> Directory.</p>
+ <p>Claude Code: Settings → Skills; OpenClaw or Hermes: Skills panel; Codex: the <code>~/.codex/skills/</code> directory.</p>
  </li>
  <li>
  <h3>Paste the package spec and press Install</h3>
@@ -286,7 +297,7 @@ npm:@scope/some-skill
 
  <section id="collections" data-nav="Six collection catalogs">
  <h2 data-icon="collections">Six popular collection catalogs</h2>
- <p>If you want to pack a whole bag at once, or shop around and choose by yourself, start from these six entrances:</p>
+ <p>If you want to install a collection or compare several options, start from these six entrances:</p>
  <div class="feature-grid">
 
  <div class="feature-card">
@@ -357,7 +368,7 @@ https://github.com/hesreallyhim/awesome-claude-code</code></pre>
  <div class="callout warn"><strong>Warning:</strong> The essence of Skill is "instructions fed to the agent". Install third-party skill=<strong>Let a strange text instruct your AI to move your HA</strong>.</div>
  <ul>
  <li><strong>Read first and install later</strong>: Open SKILL.md and read it before installation, or ask AI to read it to you first: "Read the content of SKILL.md of this skill first, tell me what it will do, and whether there is any risk of touching my HA config. I agree to install it again."</li>
- <li><strong>If you know how to move HA config, make a complete backup first.</strong>: like <code>claude-skill-homeassistant</code>, <code>aurora-smart-home</code> This type will directly change automation/dashboard/configuration.yaml. <strong>First press Settings → backups to perform manual backup</strong>—If you mess up, you can still recover.</li>
+ <li><strong>If you know how to move HA config, make a complete backup first.</strong>: like <code>claude-skill-homeassistant</code>, <code>aurora-smart-home</code> This type will directly change automation/dashboard/configuration.yaml. <strong>First press Settings → System → Backups to perform manual backup</strong>—If you mess up, you can still recover.</li>
  <li><strong>First test the HA instance verification</strong>: If the HA at home is already very complex, it is strongly recommended to open another clean HA container as a test machine, and then put it into Home Assistant machine after verifying the skill action.</li>
  <li><strong>Formal environment nail version</strong>: use <code>@tag</code> or <code>@commit</code> Pin it to avoid upstream changes and you won’t feel the need to upgrade.</li>
  <li><strong>Entities exposed to AI should be selected</strong>: Settings → Voice Assistants → Expose Check only the necessary areas/entities. Don't give it to door locks, alarms, and power switches that "cannot be restored".</li>
@@ -422,7 +433,7 @@ Show the user a YAML summary and obtain approval before applying it.</code></pre
  </details>
  <details class="faq">
  <summary>What is the difference between Skill and HA’s Blueprint, Integration, and Assist?</summary>
- <div class="body">The location is different: Skill is added to the end of the AI agent you use (Claude Code/OpenClaw/...), and HA does not move a line. Blueprint/Integration/Assist are all added on the HA side. Skill teaches "AI how to deal with HA", and Blueprint teaches "how HA handles events on its own" - the two do not conflict and can be overlapped.</div>
+ <div class="body">The location is different: Skill is added to the end of the AI agent you use (Claude Code/OpenClaw/...), and Home Assistant itself is not modified. Blueprint/Integration/Assist are all added on the HA side. Skill teaches "AI how to deal with HA", and Blueprint teaches "how HA handles events on its own" - the two do not conflict and can be overlapped.</div>
  </details>
  <details class="faq">
  <summary>What happens if you install too many Skills?</summary>
@@ -434,7 +445,7 @@ Show the user a YAML summary and obtain approval before applying it.</code></pre
  </details>
  <details class="faq">
  <summary>Will skill damage my HA? How to save?</summary>
- <div class="body">Yes, especially if <code>ha_config_set_*</code> Permission skill. So the 2nd safety rule says "make a full backup first" - if you mess up, go back to Settings → backups → Restore. If there is no backup or Home Assistant machine has been modified, see <code>configuration.yaml</code> git/snapshot version; HA Green/Yellow factory WoowTech models have daily automatic snapshots.</div>
+ <div class="body">Yes, especially if <code>ha_config_set_*</code> Permission skill. So the 2nd safety rule says "make a full backup first" - if you mess up, go back to Settings → System → Backups → Restore. If there is no backup or Home Assistant machine has been modified, see <code>configuration.yaml</code> git/snapshot version; HA Green/Yellow factory WoowTech models have daily automatic snapshots.</div>
  </details>
  <details class="faq">
  <summary>How to write a HA skill yourself?</summary>

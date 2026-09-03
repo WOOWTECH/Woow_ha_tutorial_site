@@ -132,7 +132,7 @@
  <div class="callout"><strong>The name has been changed:</strong> The former "Service" is now called " <strong>Action</strong> "—"Call Service" on the interface becomes "Execute Action", and the "Call Service" in YAML <code>service:</code> to be written as <code>action:</code>(HA 2024.8 onwards). In addition, "Developer Tools" will be moved from the sidebar in 2026.2 <strong>Settings → Tools</strong>, 2026.8 simplified Developer Tools into <strong>Tools</strong>, the original "Service" tab inside is now called " <strong>action</strong>”. The old way of writing HA is still understandable, but the old name can no longer be found on the interface.</div>
  <ol class="steps">
  <li>
- <h3>Settings → Automations & Sceness & Scenes → Script tab</h3>
+ <h3>Settings → Automations & Scenes → Script tab</h3>
  <p>"+ Add Script" in the lower right corner → select "Create New Script". (You can also choose "From Blueprint", but start with a blank first.)</p>
  <figure class="shot">
  <img src="../assets/screenshots/ch10/01_scripts_page.png" alt="script page" />
@@ -333,7 +333,7 @@ sequence:
  </li>
  <li>
  <h3>Card from dashboard</h3>
- <p>Add a Button card → Click on the action and select "Execute Action" → <code>script.turn_on</code> → Target selection script. Want to use it more fancyly <strong>Tile card</strong> + Custom icon.</p>
+ <p>Add a Button card → Click on the action and select "Execute Action" → <code>script.turn_on</code> → Target selection script. For more display options, use a <strong>Tile card</strong> + Custom icon.</p>
  </li>
  <li>
  <h3>From Zigbee remote/scene panel</h3>
@@ -364,7 +364,7 @@ sequence:
  </details>
  <details class="faq">
  <summary>Nothing happens when I press "Execute Script"?</summary>
- <div class="body">Go to "Settings → System → Log" to see if there is anything wrong. Common script failures include: misspelled entity ID, offline target device, insufficient permissions (non-administrator account running administrator script).</div>
+ <div class="body">Go to "Settings → System → Logs" to see if there is anything wrong. Common script failures include: misspelled entity ID, offline target device, insufficient permissions (non-administrator account running administrator script).</div>
  </details>
  <details class="faq">
  <summary>in the script <code>{{ variable }}</code> Not replaced?</summary>

@@ -87,7 +87,7 @@
  <main class="content">
  <div class="chapter-header">
  <div class="kicker">Chapter 11</div>
- <h1>Device details</h1>
+ <h1>Device settings</h1>
  <p class="lead">A Home Assistant device page is the record for one piece of hardware. Learn to read each section, rename devices and entities, disable unneeded entities, update firmware, download diagnostics, and remove a device cleanly.</p>
  </div>
 
@@ -202,7 +202,7 @@
  <p>The "Updates" card of the overview will be displayed together. Or go to "Settings → System → Updates" to see them all. Updates for a single device are at the bottom of the device page <code>update.*</code> entity.</p>
  <figure class="shot">
  <img src="../assets/screenshots/ch11/04_updates.png" alt="update page" />
- <figcaption><strong>Figure 11-4</strong> Settings → System → Update — HA Core, Applications (Apps, called Add-ons in the old version), Integration, and Device Firmware are concentrated here.</figcaption>
+ <figcaption><strong>Figure 11-4</strong> Settings → System → Updates — HA Core, Apps (called add-ons in older versions), integrations, and device firmware are concentrated here.</figcaption>
  </figure>
  </li>
  <li>
@@ -223,7 +223,7 @@
 
  <section id="diagnostics" data-nav="Diagnosis &amp; Repairs">
  <h2 data-icon="advanced">Diagnosis &amp; Repairs</h2>
- <div class="callout"><strong>Version differences:</strong> The fixed location of the Repairs is now <strong>Settings → System → Repairs</strong>, a digital badge will be used next to "Settings" in the sidebar to remind you how many items you still have to deal with. In addition, starting from 2026.2, "Add-on" will be officially renamed as "Apps", and the store path will become <strong>Settings → Applications</strong>; Where Add-on is written on the old version of the screen, application is written in the new version.</div>
+ <div class="callout"><strong>Version differences:</strong> The fixed location of the Repairs is now <strong>Settings → System → Repairs</strong>, a digital badge will be used next to "Settings" in the sidebar to remind you how many items you still have to deal with. In addition, starting from 2026.2, "Add-on" will be officially renamed as "Apps", and the store path will become <strong>Settings → Apps</strong>; Where Add-on is written on the old version of the screen, application is written in the new version.</div>
  <p>There are two tools for HA when the device is weird:</p>
  <h3>1. Download Diagnostics</h3>
  <p>Device page → "⋮" in the upper right corner → "Download Diagnostics" will download a JSON file containing all status, attributes, and integrated raw data of the device (sensitive information has been masked). It is helpful to attach it to GitHub issues or when asking for help in the community.</p>
@@ -242,9 +242,9 @@
  <p>If integrated support is available, go to "⋮" → "Reset" on the device page to change the connection method (change IP, change key, change API token) without deleting and re-adding. ZHA/Zigbee2MQTT devices can also be "re-identified" (interviewed) from here and repair the remaining damaged entities.</p>
  <h3>Remove a single device</h3>
  <p>Device page → "⋮" → "Delete". This only deletes the record in HA; if it is Zigbee, it will notify the coordinator to kick it off the network; if it is cloud integration (Xiaomi, Tuya), it may be pulled back the next time the account is synchronized.</p>
- <div class="callout warn"><strong>No "Delete" option?</strong> This means that this integration does not support deleting devices individually (for example, HomeKit Bridge can be used as a whole package). In this case, you need to go to "Settings → Devices and Services → Integration" to remove the entire integration or change the settings.</div>
+ <div class="callout warn"><strong>No "Delete" option?</strong> This means that this integration does not support deleting devices individually (for example, HomeKit Bridge can be used as a whole package). In this case, you need to go to "Settings → Devices &amp; Services → Integration" to remove the entire integration or change the settings.</div>
  <h3>Remove entire integration</h3>
- <p>Settings → Devices and Services → Find the integration → Three dots → "Delete". It will warn "All devices and entities integrated with this will be deleted." Back up first!</p>
+ <p>Settings → Devices &amp; Services → Find the integration → Three dots → "Delete". It will warn "All devices and entities integrated with this will be deleted." Back up first!</p>
  </section>
 
  <section id="faq" data-nav="FAQ">
@@ -263,7 +263,7 @@
  </details>
  <details class="faq">
  <summary>A device seems to be recognized by two integrations at the same time (for example: Xiaomi official + HACS version), what should I do?</summary>
- <div class="body">Two sets of entities will be generated with conflicting behaviors. Select one to keep and the other to "Settings → Devices and Services → Integration" to remove them all. In practice: Home Assistant brand integration is stable but has few functions; the HACS community version has many functions but frequent updates. It’s up to you to weigh the balance. Don’t keep both.</div>
+ <div class="body">Two sets of entities will be generated with conflicting behaviors. Select one to keep and the other to "Settings → Devices &amp; Services → Integration" to remove them all. In practice: Home Assistant brand integration is stable but has few functions; the HACS community version has many functions but frequent updates. It’s up to you to weigh the balance. Don’t keep both.</div>
  </details>
  <details class="faq">
  <summary>Can the device page URL be shared directly?</summary>

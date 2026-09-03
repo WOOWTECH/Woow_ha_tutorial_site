@@ -53,7 +53,7 @@
   "en:ch1_login.html#faq": {
    "status": "complete",
    "sourceHash": "15c653db4127f1e8",
-   "targetHash": "f12f5941723e67b1",
+   "targetHash": "7760cb4d3e5d86c7",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -88,7 +88,7 @@
   "en:ch2_system_settings.html#steps": {
    "status": "complete",
    "sourceHash": "71c608779be59a66",
-   "targetHash": "0b06ba8090ea9e80",
+   "targetHash": "027ad0cbde77abc2",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -130,7 +130,7 @@
   "en:ch3_floors_areas.html#now": {
    "status": "complete",
    "sourceHash": "a939b2f1944adfce",
-   "targetHash": "3c98b550fbd5f9f4",
+   "targetHash": "771033f9896fd935",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -144,21 +144,21 @@
   "en:ch3_floors_areas.html#steps": {
    "status": "complete",
    "sourceHash": "2f247c83c631cd3c",
-   "targetHash": "00780f138bca75d2",
+   "targetHash": "f4f0e1287067c9ec",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch3_floors_areas.html#assign": {
    "status": "complete",
    "sourceHash": "3c0e2e329b2c7985",
-   "targetHash": "5874b6622205b443",
+   "targetHash": "f32a4d0a967b45b8",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch3_floors_areas.html#done": {
    "status": "complete",
    "sourceHash": "8109f7eee222e158",
-   "targetHash": "c06141316d24fea4",
+   "targetHash": "f54d7a7a92b4f158",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -172,7 +172,7 @@
   "en:ch3_floors_areas.html#troubleshoot": {
    "status": "complete",
    "sourceHash": "f8a5023624d087fa",
-   "targetHash": "8d5f0a71fab08717",
+   "targetHash": "a2d44bd295b069a7",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -200,7 +200,7 @@
   "en:ch4_naming_labels.html#rename": {
    "status": "complete",
    "sourceHash": "62487d61f0149f68",
-   "targetHash": "57fe27a95fadbc2a",
+   "targetHash": "72acb672744b1797",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -256,21 +256,21 @@
   "en:ch5_users.html#concept": {
    "status": "complete",
    "sourceHash": "9e1a22973512aea1",
-   "targetHash": "eb0bd16e24e70f94",
+   "targetHash": "3f46e340d57e2557",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch5_users.html#steps": {
    "status": "complete",
    "sourceHash": "58dd9babaf10e666",
-   "targetHash": "800606f2d54d0d97",
+   "targetHash": "457b5d69fcd5b762",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch5_users.html#persons": {
    "status": "complete",
    "sourceHash": "678d7d915a845303",
-   "targetHash": "32a2237c24afea81",
+   "targetHash": "6595423d41f0af75",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -298,14 +298,14 @@
   "en:ch5_users.html#companion_flow": {
    "status": "complete",
    "sourceHash": "76a24c60b5e23b4d",
-   "targetHash": "0f86eb06d271707d",
+   "targetHash": "cfc8b98b2b340f90",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch5_users.html#zone_tune": {
    "status": "complete",
    "sourceHash": "02c2a1c5105112b3",
-   "targetHash": "0d22218e02a2127a",
+   "targetHash": "5268cc613cfbf789",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -333,7 +333,7 @@
   "en:ch6_dashboard.html#steps": {
    "status": "complete",
    "sourceHash": "168921a548502fb6",
-   "targetHash": "012b05c5f2d7f967",
+   "targetHash": "f5dbfa876247d99c",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -396,7 +396,7 @@
   "en:ch7_notifications.html#login": {
    "status": "complete",
    "sourceHash": "3c7caa965bff0a14",
-   "targetHash": "7d12d454d86c6ed9",
+   "targetHash": "687346062869f908",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -473,7 +473,7 @@
   "en:ch8_first_automation.html#blueprints": {
    "status": "complete",
    "sourceHash": "54cab22cd18dbd36",
-   "targetHash": "81987019e286e9da",
+   "targetHash": "bc264aef0acaee64",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -508,28 +508,28 @@
   "en:ch9_backups.html#what": {
    "status": "complete",
    "sourceHash": "f58469cf42ed31c6",
-   "targetHash": "ea292bce3c61219b",
+   "targetHash": "2f9c2ae911f0d983",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch9_backups.html#steps": {
    "status": "complete",
    "sourceHash": "74bc11662cb2bfd1",
-   "targetHash": "a689fb2bea442671",
+   "targetHash": "78ec6f8844eae1cb",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch9_backups.html#auto": {
    "status": "complete",
    "sourceHash": "abf09b9f756a92da",
-   "targetHash": "5ea19ffdfca079d0",
+   "targetHash": "8cae491edb079af9",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch9_backups.html#restore": {
    "status": "complete",
    "sourceHash": "6152cdd39f0ce2e9",
-   "targetHash": "362ef8d9481d6482",
+   "targetHash": "ae7318d64490f3b7",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -578,7 +578,7 @@
   "en:ch10_scripts.html#steps": {
    "status": "complete",
    "sourceHash": "7cf753a3cfed86d6",
-   "targetHash": "86809c39dcb9dfa6",
+   "targetHash": "8c5343c8522ac5ad",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -606,14 +606,14 @@
   "en:ch10_scripts.html#call": {
    "status": "complete",
    "sourceHash": "11782e96010c950d",
-   "targetHash": "7ae34e87704296ee",
+   "targetHash": "4adad747e076a551",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch10_scripts.html#troubleshoot": {
    "status": "complete",
    "sourceHash": "5cbc55bc924cb5cb",
-   "targetHash": "11559c60cca58593",
+   "targetHash": "2f368a2202c973c8",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -627,7 +627,7 @@
   "en:ch11_devices.html#header": {
    "status": "complete",
    "sourceHash": "07708f0be0d0e1f3",
-   "targetHash": "16ffdf97514c1ca6",
+   "targetHash": "45f4775cdc8384b9",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -662,28 +662,28 @@
   "en:ch11_devices.html#firmware": {
    "status": "complete",
    "sourceHash": "78bd83d1f80515db",
-   "targetHash": "f97ad41b74d4661a",
+   "targetHash": "cc80ef75213526ef",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch11_devices.html#diagnostics": {
    "status": "complete",
    "sourceHash": "4dc393d5641f169f",
-   "targetHash": "a65fc1f68d3aea1b",
+   "targetHash": "bd9b5a6a7346af67",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch11_devices.html#reconfigure": {
    "status": "complete",
    "sourceHash": "e5927c1f4b5a5cea",
-   "targetHash": "fdde71084af377fe",
+   "targetHash": "358ca44ef51fbee7",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch11_devices.html#faq": {
    "status": "complete",
    "sourceHash": "a6e79f9377e21ee2",
-   "targetHash": "0c6377363d0f2370",
+   "targetHash": "faabb56a20aa31b9",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -697,7 +697,7 @@
   "en:ch12_domains.html#concept": {
    "status": "complete",
    "sourceHash": "7af746adeb48f821",
-   "targetHash": "92733be8e3600f5f",
+   "targetHash": "fe6662332399226a",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -725,7 +725,7 @@
   "en:ch12_domains.html#cover": {
    "status": "complete",
    "sourceHash": "856ed459b34d0dec",
-   "targetHash": "2f729e3234f31245",
+   "targetHash": "115a143407ff9ea4",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -767,7 +767,7 @@
   "en:ch12_domains.html#sensor": {
    "status": "complete",
    "sourceHash": "0e03d4c7fbc5d8b8",
-   "targetHash": "8bc0761f187de960",
+   "targetHash": "0f68e30afff49a5e",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -795,7 +795,7 @@
   "en:ch12_domains.html#faq": {
    "status": "complete",
    "sourceHash": "0503ea15b1f95607",
-   "targetHash": "141892c1f0a3ca3d",
+   "targetHash": "6a805292e8a413fe",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -823,7 +823,7 @@
   "en:ch13_themes.html#where": {
    "status": "complete",
    "sourceHash": "7d5f53fda67b19a6",
-   "targetHash": "d40914fc4b336f10",
+   "targetHash": "8229dcfaef04f1c5",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -865,7 +865,7 @@
   "en:ch13_themes.html#cardmod": {
    "status": "complete",
    "sourceHash": "3d6c65bd4256b578",
-   "targetHash": "972ad8dc6cc4d4b4",
+   "targetHash": "a8c67aff0b2bb84b",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -893,7 +893,7 @@
   "en:ch13_themes.html#troubleshoot": {
    "status": "complete",
    "sourceHash": "668fef57b9e237a2",
-   "targetHash": "ca15055de5c969f0",
+   "targetHash": "6bfac8c0b1587efb",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -928,7 +928,7 @@
   "en:ch14_integrations.html#steps": {
    "status": "complete",
    "sourceHash": "0c25d212ca043aed",
-   "targetHash": "3deb1dd00731b889",
+   "targetHash": "028812b224fcbbb9",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -942,28 +942,28 @@
   "en:ch14_integrations.html#weather": {
    "status": "complete",
    "sourceHash": "cfe48822da0ecb41",
-   "targetHash": "32ad3a910ddb75b7",
+   "targetHash": "609326996acbc7eb",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch14_integrations.html#media": {
    "status": "complete",
    "sourceHash": "d4d71494aed880b9",
-   "targetHash": "fdc7204b68f78df7",
+   "targetHash": "bf76514de3abd3c8",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch14_integrations.html#location": {
    "status": "complete",
    "sourceHash": "ede91b08a5ab0332",
-   "targetHash": "792b6076c5a722bc",
+   "targetHash": "c08ca782e950aed5",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch14_integrations.html#calendar_notify": {
    "status": "complete",
    "sourceHash": "b46ba837928fa262",
-   "targetHash": "bb3cbd92d47f77f1",
+   "targetHash": "bc18b27a4ee0bb88",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -977,14 +977,14 @@
   "en:ch14_integrations.html#manage": {
    "status": "complete",
    "sourceHash": "2b0ea0a5216511a0",
-   "targetHash": "9dce9608a27ab92f",
+   "targetHash": "93b131047ab2bd5a",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch14_integrations.html#hacs": {
    "status": "complete",
    "sourceHash": "8501e418533461fc",
-   "targetHash": "c069bc1cb4683fe2",
+   "targetHash": "f77b8c17931543a0",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1005,7 +1005,7 @@
   "en:ch14_integrations.html#faq": {
    "status": "complete",
    "sourceHash": "bef4ef8c231277d0",
-   "targetHash": "82687994fa639f13",
+   "targetHash": "ce92d4f144ec7811",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1026,7 +1026,7 @@
   "en:ch15_protocols.html#layers": {
    "status": "complete",
    "sourceHash": "74bf8c54d996effe",
-   "targetHash": "6d616db667909842",
+   "targetHash": "d3c4ec8fcada3bdd",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1068,7 +1068,7 @@
   "en:ch15_protocols.html#matter": {
    "status": "complete",
    "sourceHash": "d898113ab41c8b51",
-   "targetHash": "4b65d89d6f524779",
+   "targetHash": "ebc62512e0f2c3c8",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1103,7 +1103,7 @@
   "en:ch15_protocols.html#troubleshoot": {
    "status": "complete",
    "sourceHash": "311d620812dcdad8",
-   "targetHash": "c0d10603f34fb7f0",
+   "targetHash": "ed323955fa184673",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1138,7 +1138,7 @@
   "en:ch16_todo_calendar.html#local_todo": {
    "status": "complete",
    "sourceHash": "2a48d4eed15701b7",
-   "targetHash": "d1bdf28053f592e6",
+   "targetHash": "d116cf6169af536a",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1152,7 +1152,7 @@
   "en:ch16_todo_calendar.html#todo_actions": {
    "status": "complete",
    "sourceHash": "6a4f563c07f905e4",
-   "targetHash": "82de65162d2cabf4",
+   "targetHash": "5ccfcfe1e22de85b",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1194,7 +1194,7 @@
   "en:ch16_todo_calendar.html#recipes": {
    "status": "complete",
    "sourceHash": "446437f09546a2f5",
-   "targetHash": "ca182fb27062839f",
+   "targetHash": "af23d0c9274f68ca",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1229,7 +1229,7 @@
   "en:ch17_energy.html#why": {
    "status": "complete",
    "sourceHash": "bb8e52a980d054bb",
-   "targetHash": "a212807e4cc8c0e7",
+   "targetHash": "010a7b01a01ff548",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1250,7 +1250,7 @@
   "en:ch17_energy.html#where_data": {
    "status": "complete",
    "sourceHash": "0316dee4679edc25",
-   "targetHash": "b941c72572bbdd6c",
+   "targetHash": "15aea76a56818a67",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1271,7 +1271,7 @@
   "en:ch17_energy.html#utility_meter": {
    "status": "complete",
    "sourceHash": "d2e78057d3b4fd08",
-   "targetHash": "48eb3c09cd2d31e4",
+   "targetHash": "1ccea952f20449b9",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1292,14 +1292,14 @@
   "en:ch17_energy.html#esg": {
    "status": "complete",
    "sourceHash": "67bebaf094dfbe1a",
-   "targetHash": "888ed4e45cd09509",
+   "targetHash": "d77154815e78559c",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch17_energy.html#advanced": {
    "status": "complete",
    "sourceHash": "fab876fecce6138b",
-   "targetHash": "7418f91caa80c1cf",
+   "targetHash": "db0eefc064733075",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1383,7 +1383,7 @@
   "en:ch18_history_data.html#backup_db": {
    "status": "complete",
    "sourceHash": "0b5cf09cb74bf02a",
-   "targetHash": "4a05162f992497bb",
+   "targetHash": "c2c74a960dd042d4",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1432,7 +1432,7 @@
   "en:ch19_voice_ai.html#why": {
    "status": "complete",
    "sourceHash": "89c90808b83857ed",
-   "targetHash": "d32bedc3f7716e79",
+   "targetHash": "dd52e5d56ebb13d5",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1488,7 +1488,7 @@
   "en:ch19_voice_ai.html#mcp": {
    "status": "complete",
    "sourceHash": "15846cfe7817594b",
-   "targetHash": "496d84f5686796ed",
+   "targetHash": "182864723c703ecc",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1537,7 +1537,7 @@
   "en:ch20_addons_docker.html#why": {
    "status": "complete",
    "sourceHash": "790bc386c974daff",
-   "targetHash": "f05a8cc8f8e7369c",
+   "targetHash": "bc43228d482aeed3",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1551,14 +1551,14 @@
   "en:ch20_addons_docker.html#what_is_addon": {
    "status": "complete",
    "sourceHash": "957559306867a3b1",
-   "targetHash": "9c36fcb00c1ac808",
+   "targetHash": "57839227046797e5",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch20_addons_docker.html#docker_basics": {
    "status": "complete",
    "sourceHash": "cc5f47d3a2081785",
-   "targetHash": "8502bbb432bb6251",
+   "targetHash": "321db9d98741344f",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1579,7 +1579,7 @@
   "en:ch20_addons_docker.html#read_log": {
    "status": "complete",
    "sourceHash": "f9f91a02fb35d9b1",
-   "targetHash": "954b81de75d63ebf",
+   "targetHash": "ba55e4af14177df2",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1593,21 +1593,21 @@
   "en:ch20_addons_docker.html#repositories": {
    "status": "complete",
    "sourceHash": "efe272da955a59bf",
-   "targetHash": "a238917f1804e942",
+   "targetHash": "a520a0fe00849462",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch20_addons_docker.html#cloud_backup": {
    "status": "complete",
    "sourceHash": "00620dc206fdba9b",
-   "targetHash": "90f077eb9ef6f205",
+   "targetHash": "8977ba6fd57eec4c",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:ch20_addons_docker.html#performance": {
    "status": "complete",
    "sourceHash": "51002ea87e7fe51c",
-   "targetHash": "ac22bb889f84af1a",
+   "targetHash": "25d3db19c8a52f8b",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1621,7 +1621,7 @@
   "en:ch20_addons_docker.html#faq": {
    "status": "complete",
    "sourceHash": "22fcc3b469dbc9fa",
-   "targetHash": "263e45592f610b68",
+   "targetHash": "31b5900c7c404790",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1747,7 +1747,7 @@
   "en:ch22_life_logs.html#helper_types": {
    "status": "complete",
    "sourceHash": "26145c86280c0f0d",
-   "targetHash": "6e2704c6e63bf740",
+   "targetHash": "2d862d2c600edcdb",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1789,7 +1789,7 @@
   "en:ch22_life_logs.html#charts": {
    "status": "complete",
    "sourceHash": "54519d5aa0e45145",
-   "targetHash": "574893b31c5bf41d",
+   "targetHash": "1f54320a507eb360",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1803,7 +1803,7 @@
   "en:ch22_life_logs.html#dashboard": {
    "status": "complete",
    "sourceHash": "8ee06c0f0dd0e16c",
-   "targetHash": "0c365de8d305ec12",
+   "targetHash": "a9c49aa2845fb704",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1845,21 +1845,21 @@
   "en:appendix_hacs_addons.html#addons": {
    "status": "complete",
    "sourceHash": "1d671e1d04eb18bb",
-   "targetHash": "1a4148a7e497eda7",
+   "targetHash": "ba7a44bc8430c13a",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:appendix_hacs_addons.html#hacs": {
    "status": "complete",
    "sourceHash": "2b4a3784324b8dad",
-   "targetHash": "28a66a559f3ba737",
+   "targetHash": "c6d422be18f9fe2b",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:appendix_hacs_addons.html#remote": {
    "status": "complete",
    "sourceHash": "0f24204f2543ef8f",
-   "targetHash": "7ed012f2f5473e9e",
+   "targetHash": "6a95621e149660a9",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1873,14 +1873,14 @@
   "en:appendix_hacs_addons.html#faq": {
    "status": "complete",
    "sourceHash": "eaa257996869d454",
-   "targetHash": "64a984371a09639a",
+   "targetHash": "0ede62a2b13ce529",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:appendix_scenes_helpers_groups.html#scenes": {
    "status": "complete",
    "sourceHash": "584f8d1f97b8b8d0",
-   "targetHash": "bd4b0ea001b61748",
+   "targetHash": "547b534fdaeca64e",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1936,7 +1936,7 @@
   "en:appendix_hardware_install.html#install_types": {
    "status": "complete",
    "sourceHash": "e713d60a47644473",
-   "targetHash": "cc025902cc6ed821",
+   "targetHash": "5aad067ad7e93ed0",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -1964,7 +1964,7 @@
   "en:appendix_hardware_install.html#flash": {
    "status": "complete",
    "sourceHash": "fa983f3e3adb3a5f",
-   "targetHash": "5884be5ef0941431",
+   "targetHash": "acd98e979f789aab",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -2013,77 +2013,77 @@
   "en:sales.html#header": {
    "status": "complete",
    "sourceHash": "50dcec0dc5a272cb",
-   "targetHash": "13bead7daffeb41d",
+   "targetHash": "f2bd35b30e96e9c4",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:sales.html#why": {
    "status": "complete",
    "sourceHash": "db3e69a937a734b7",
-   "targetHash": "250ec86d0677031a",
+   "targetHash": "c678dc2923329c55",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:sales.html#paths": {
    "status": "complete",
    "sourceHash": "00ae698246838273",
-   "targetHash": "5fbcc43f6b554575",
+   "targetHash": "ae774a3a256cca3b",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:sales.html#onprem": {
    "status": "complete",
    "sourceHash": "ec55b2103f3ff001",
-   "targetHash": "7b29d01903826eb0",
+   "targetHash": "0cf98836f99bb97c",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:sales.html#cloud": {
    "status": "complete",
    "sourceHash": "6ab3bb8efe01d0d7",
-   "targetHash": "aa0db9df0e659de6",
+   "targetHash": "1df28872d9605fd2",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:sales.html#included": {
    "status": "complete",
    "sourceHash": "a118c07fa50213b0",
-   "targetHash": "ffd1ad6f093ae940",
+   "targetHash": "6148b4fe1e045861",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:sales.html#day": {
    "status": "complete",
    "sourceHash": "2505f9d5daef599b",
-   "targetHash": "ffeb4929b842f484",
+   "targetHash": "4adb0babdd5c98a6",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:sales.html#compare": {
    "status": "complete",
    "sourceHash": "2516f957f263fe72",
-   "targetHash": "f52fc049dec67f13",
+   "targetHash": "95db166efa71b456",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:sales.html#security": {
    "status": "complete",
    "sourceHash": "7b8079e7750fb40a",
-   "targetHash": "7acc42ddc5b4733e",
+   "targetHash": "aa7c5fe13fb5df82",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:sales.html#faq": {
    "status": "complete",
    "sourceHash": "1725b957bd32c468",
-   "targetHash": "29b6dca9a1ec3e9a",
+   "targetHash": "58d2554b1e29f51a",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:sales.html#cta": {
    "status": "complete",
    "sourceHash": "6d95535b52889183",
-   "targetHash": "8702f8919a25a528",
+   "targetHash": "177fe894667686a0",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -2139,7 +2139,7 @@
   "en:prompts.html#cat-auto": {
    "status": "complete",
    "sourceHash": "f1988320c4005e34",
-   "targetHash": "3e0d6505ae7d5310",
+   "targetHash": "35d240aede76dac5",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -2188,21 +2188,21 @@
   "en:skills.html#header": {
    "status": "complete",
    "sourceHash": "332ed4bbb2110488",
-   "targetHash": "54668112272933e7",
+   "targetHash": "31bd955143ce8062",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:skills.html#why": {
    "status": "complete",
    "sourceHash": "6245a1a2bbdbee31",
-   "targetHash": "3ebfa28cb4b88d4a",
+   "targetHash": "9d444af6b967e937",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
   "en:skills.html#install": {
    "status": "complete",
    "sourceHash": "050862fa02f585bd",
-   "targetHash": "2db7aca9eeb18688",
+   "targetHash": "df75f870d6e0b779",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -2216,7 +2216,7 @@
   "en:skills.html#collections": {
    "status": "complete",
    "sourceHash": "340e62f46d0c21dd",
-   "targetHash": "89da6ee728341b0c",
+   "targetHash": "8899cd92fb9ae0b8",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -2230,7 +2230,7 @@
   "en:skills.html#safety": {
    "status": "complete",
    "sourceHash": "11b523159a7d0d03",
-   "targetHash": "57e1f475b5270cc0",
+   "targetHash": "b9362bde644f7d29",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },
@@ -2244,7 +2244,7 @@
   "en:skills.html#faq": {
    "status": "complete",
    "sourceHash": "9513c7c4f8246428",
-   "targetHash": "f583e53e41b6e3d3",
+   "targetHash": "34ac507daf565928",
    "registeredAt": "2026-09-02",
    "translatedAt": "2026-09-03"
   },

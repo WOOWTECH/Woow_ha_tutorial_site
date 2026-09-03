@@ -107,7 +107,7 @@
  <li><code>sensor.outdoor_temperature</code> → domain is <code>sensor</code></li>
  </ul>
  <p><strong>Why is it important?</strong> Because the "execution action" of HA (called "call service" in the old version) is based on domain.<code>light.turn_on</code> can be opened <em>Any brand of lamps of any agreement</em>—Philips Hue, IKEA Tradfri, Xiaomi Yeelight, Zigbee universal lights, DIY WLED light strips—all eating the same thing. This is the power of HA abstraction.</p>
- <div class="callout tip"><strong>Mental method:</strong> Before buying a new device, check which domain it will be recognized by HA. If recognized <code>light</code>, you will know that all existing lamp automation can eat it directly without rewriting. recognize <code>switch</code> There is no brightness or color temperature adjustment.</div>
+ <div class="callout tip"><strong>Mental method:</strong> Before buying a new device, check which domain it will be recognized by HA. If recognized <code>light</code>, existing light automations can control it without being rewritten. If it is recognized as <code>switch</code> There is no brightness or color temperature adjustment.</div>
  </section>
 
  <!-- ================ LIGHT ================ -->
@@ -196,7 +196,7 @@
  <ul>
  <li><strong>The direction is reversed</strong>: Some motors “turn on” contrary to your intuition. Go to the device page "Reconfigure" or calibrate directly in the device App. Do not use it in HA. <code>position: 100 - x</code> Write backwards.</li>
  <li><strong>No position support</strong>: Cheap curtain motors only have three stages: open/close/stop. <code>set_cover_position</code> It will fail directly. Check the device page to see supported_features.</li>
- <li><strong>Garage door to <code>lock</code> insurance</strong>: <code>cover.open_cover</code> If you are not foolproof, you may open the garage in the middle of the night if you write the wrong automation. use <code>input_boolean</code> When switch + condition is checked.</li>
+ <li><strong>Add <code>lock</code> safeguards for a garage door</strong>: An automation that calls <code>cover.open_cover</code> without adequate conditions may open the garage in the middle of the night if you write the wrong automation. use <code>input_boolean</code> When switch + condition is checked.</li>
  </ul>
  </section>
 
@@ -327,7 +327,7 @@
  <div class="callout tip"><strong>Skill:</strong> If a sensor determines that the device_class is wrong (for example, opening is determined as door), the entity settings page can overwrite the device_class, and the dashboard icon will change accordingly.</div>
  <h3>Common pitfalls</h3>
  <ul>
- <li><strong>Binary sensor jitter</strong>: The motion sensor is always "on → off in seconds → on", and automatically writing "on → turn on the light" and "off → turn off the light" will shake to the point of dizziness. Use the "for: 5 minutes" condition instead, and it will take action after 5 minutes of stable status.</li>
+ <li><strong>Binary sensor jitter</strong>: The motion sensor is always "on → off in seconds → on", and automatically writing "on → turn on the light" and "off → turn off the light" can repeatedly toggle the light. Use the "for: 5 minutes" condition instead, and it will take action after 5 minutes of stable status.</li>
  <li><strong>battery is sensor not binary_sensor</strong>: Want to use "Battery lower than 20% reminder" <code>sensor.*_battery</code> + numeric_state trigger.</li>
  </ul>
  </section>
@@ -440,7 +440,7 @@ data:
  <details class="faq">
  <summary>The opening and closing direction of the curtain is reversed. Press "Open" to close it. The positions 0 and 100 are also reversed. How to fix it?</summary>
  <div class="body">
- <p>First remember that the definition of HA is dead:<code>position: 0</code> Yes <strong>Completely closed</strong>, <code>position: 100</code> Yes <strong>Fully open</strong>. This rule doesn't change based on your motor setup.</p>
+ <p>First remember that the definition of HA is dead:<code>position: 0</code> means <strong>Completely closed</strong>, <code>position: 100</code> means <strong>Fully open</strong>. This rule doesn't change based on your motor setup.</p>
  <p>The correct approach is <strong>Go to the installation end and adjust it</strong>, do not write in HA automation <code>100 - x</code> This kind of math problem - you'll completely forget why this line is there in half a year, and the slider on the dashboard will still be backwards. According to your method:</p>
  <ol class="steps">
  <li>
@@ -468,10 +468,10 @@ data:
  <div class="body">
  <p>Checking in this order, 90% are the first two items:</p>
  <ul>
- <li><strong>The air conditioner is off.</strong> Assume that the target temperature is not equal to power on.<code>climate.set_temperature</code> Eat by itself <code>hvac_mode</code> This field is the safest to write at once:<code>hvac_mode: cool</code> add <code>temperature: 26</code>.</li>
+ <li><strong>The air conditioner is off.</strong> Assume that the target temperature is not equal to power on.<code>climate.set_temperature</code> can also accept <code>hvac_mode</code>. Set both fields together:<code>hvac_mode: cool</code> add <code>temperature: 26</code>.</li>
  <li><strong>Trapped by preset.</strong> When switching to manufacturer-preset modes such as "eco" and "sleep", the target temperature is often determined by the manufacturer. first <code>climate.set_preset_mode</code> Set back <code>none</code>, and then set the temperature.</li>
  <li><strong>Out of settable range.</strong> Each machine has its own <code>min_temp</code> / <code>max_temp</code>(default for HA side is 7 to 35 degrees), and <code>target_temp_step</code>(Some machines can only adjust a few degrees. If you send 25.5, it will be ignored). You can see these properties in Settings → Tools → States.</li>
- <li><strong>It is actually a zone thermostat.</strong> Use this kind <code>target_temp_high</code> / <code>target_temp_low</code>, get a single <code>temperature</code> will be eaten.</li>
+ <li><strong>It is actually a zone thermostat.</strong> Use <code>target_temp_high</code> and <code>target_temp_low</code>; the integration may ignore a single <code>temperature</code> value.</li>
  <li><strong>Infrared air conditioner.</strong> As mentioned earlier in this article, HA only sends commands, and no one knows whether there are any hits when sent out - is the air conditioner facing the remote control? Is there any obstruction in the middle?</li>
  </ul>
  <p>The quickest way to determine what happened is to <strong>Settings → Tools → Actions</strong> Execute it directly and see if it reports success or skips an error message.</p>
@@ -547,7 +547,7 @@ data:
  <tr><th>practice</th><th>how to do</th><th>when to use</th></tr>
  </thead>
  <tbody>
- <tr><td><strong>designated area</strong></td><td>Select "Area" as the target of the action, and all the lights in the living room will eat together.</td><td>The most recommended default approach. In the future, if you buy an extra lamp in the living room and hang it in the area, it will be automatically included and automated. <em>No need to change a word</em></td></tr>
+ <tr><td><strong>designated area</strong></td><td>Select "Area" as the target of the action, and all lights assigned to the living room are included.</td><td>The most recommended default approach. In the future, if you buy an extra lamp in the living room and hang it in the area, it will be automatically included and automated. <em>No need to change a word</em></td></tr>
  <tr><td><strong>Group helper</strong></td><td>Settings → Devices & Services → Helpers → Create helper → Group, you can create various groups such as lights, switches, curtains, fans, sensors, etc.</td><td>This set of lights needs to be <strong>Use it as a star on the dashboard</strong> to display and operate. It is a real entity that can be placed in cards and used as conditions.</td></tr>
  <tr><td><strong>Label</strong></td><td>Label the entity with a label such as "Night Light" and select the label for the action target.</td><td>this set of things <em>Cross-region</em> (FamilyMart’s night lights, FamilyMart’s curtains), when the area cannot be accommodated</td></tr>
  <tr><td><strong>List entities one by one</strong></td><td>Target one point at a time</td><td>The combination is one-off, and certain items are deliberately excluded (for example, "all lights in the living room are turned off except for the fish tank lights")</td></tr>

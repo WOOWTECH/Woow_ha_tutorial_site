@@ -106,8 +106,8 @@
  <ul>
  <li>You installed Home Assistant on your laptop, but you can’t find the Add-on store in the menu on the left - it’s not that you’re handicapped, it’s <strong>Wrong installation method</strong>.</li>
  <li>You installed Zigbee2MQTT, but it never starts, and the page only says "stopped". You don't know where to look to see what it's complaining about.</li>
- <li>If you install Node-RED and another web tool at the same time, the second one will not work - both are trying to grab the same house number.</li>
- <li>You reinstalled the entire machine, only to find that the backups were all stored in the dead machine.</li>
+ <li>If you install Node-RED and another web tool at the same time, the second one will not work - both are trying to use the same port.</li>
+ <li>You reinstalled the entire machine, only to find that the backups were all stored only on the failed machine.</li>
  </ul>
 
  <p>The solutions to these four things are all hidden in the same layer of knowledge: Add-on is a container, and the container has an image file, a data volume, a connection port, and a record file. After reading this chapter, if you encounter any of the above situations, you will know where to click as the first step.</p>
@@ -177,8 +177,8 @@
 
  <ol class="steps">
  <li>
- <h3>Supervisor goes to the Internet to grab the image file</h3>
- <p>It looks at the Add-on configuration file and knows which URL to go to, which version to grab, and which one corresponds to your CPU architecture (arm64 or amd64). This step takes the most time and is also the most likely to fail due to network failure.</p>
+ <h3>Supervisor downloads the image</h3>
+ <p>It looks at the Add-on configuration file and knows which URL to go to, which version to download, and which one corresponds to your CPU architecture (arm64 or amd64). This step takes the most time and is also the most likely to fail due to network failure.</p>
  </li>
  <li>
  <h3>Supervisor opens a container using that image file</h3>
@@ -200,44 +200,44 @@
  </section>
 
  <section id="docker_basics" data-nav="Docker plain-language version">
- <h2 data-icon="concept">Docker plain-language version: a convenience store</h2>
+ <h2 data-icon="concept">Docker in plain English: a restaurant kitchen</h2>
 
- <p>The term Docker sounds hard, but in fact each one corresponds to daily life. We think of it like a chain bento shop.</p>
+ <p>Docker terminology becomes easier when you compare it with a restaurant kitchen. Each technical component has a distinct role.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Docker noun</th><th>convenience store metaphor</th><th>What actually happens in Home Assistant</th></tr>
+ <tr><th>Docker term</th><th>Restaurant metaphor</th><th>What it means for Home Assistant</th></tr>
  </thead>
  <tbody>
  <tr>
- <td><strong>image file<br>Image</strong></td>
- <td>"Recipe + Preparation Kit" from the central kitchen. It's not edible on its own, but if you follow it, every branch will make exactly the same bento. The conditioning package itself is read-only and you will not change it.</td>
- <td>The package of programs grabbed from the Internet. The same version of the Mosquitto image file installed in your home has exactly the same content as that installed in someone else's home.</td>
+ <td><strong>Image<br>Image</strong></td>
+ <td>A read-only recipe and ingredient kit. Every kitchen using the same version starts with the same contents.</td>
+ <td>The application package downloaded from a registry. The same Mosquitto image version contains the same files on every compatible host.</td>
  </tr>
  <tr>
- <td><strong>container<br>Container</strong></td>
- <td>care package <em>The freshly made bento</em>. You can throw it away after eating, and just make another batch after throwing it away. Anyway, the cooking bag is still there.</td>
- <td>The Add-on that is running. When you press "Restart", you throw away the lunch and make a new one.</td>
+ <td><strong>Container<br>Container</strong></td>
+ <td>A meal <em>prepared from that recipe</em>. You can discard it and prepare another from the unchanged recipe.</td>
+ <td>A running App instance. Restarting or recreating it starts another instance from the image.</td>
  </tr>
  <tr>
- <td><strong>data volume<br>Volume</strong></td>
- <td>Bring your own crisper. The lunch box was lost, but the contents of the crisper were still there.</td>
- <td>Your settings, database, Zigbee pairing list. So updating the Add-on won’t take your device completely off the Internet—the data isn’t in the container, it’s in the crisper.</td>
+ <td><strong>Data volume<br>Volume</strong></td>
+ <td>A separate pantry. Replacing a meal does not discard what is stored in the pantry.</td>
+ <td>Persistent settings and data, such as the database and Zigbee pairing records. Recreating a container does not remove a correctly mounted volume.</td>
  </tr>
  <tr>
- <td><strong>port<br>Port</strong></td>
- <td>The order pick-up window number at the entrance of the store. The same number window can only be used by one store at the same time.</td>
- <td>Home Assistant itself is 8123, Mosquitto is 1883, and Node-RED has its own number. Two Add-ons grab the same number → the second one cannot get up.</td>
+ <td><strong>Port<br>Port</strong></td>
+ <td>A numbered pickup window. Two services cannot operate the same host window at the same time.</td>
+ <td>Home Assistant normally uses 8123, Mosquitto uses 1883, and Node-RED has its own port. A conflicting port prevents the second service from starting.</td>
  </tr>
  <tr>
- <td><strong>Restart strategy<br>Restart policy</strong></td>
- <td>"No matter how we close, we will automatically open the store the next day."</td>
- <td>"Start at boot" and "Watchdog" switches on the Add-on page. Home Assistant Docker command for Container installation uses <code>--restart=unless-stopped</code>, meaning "unless you turn it off yourself, you will get up by yourself if something goes wrong."</td>
+ <td><strong>Restart policy<br>Restart policy</strong></td>
+ <td>A rule that tells the kitchen when to reopen after it stops.</td>
+ <td>The "Start on boot" and "Watchdog" switches on an App page serve a similar purpose. A Container installation uses <code>--restart=unless-stopped</code>, which restarts the container unless you deliberately stopped it.</td>
  </tr>
  </tbody>
  </table>
 
- <p>If you are a user of Container installation, the Docker Compose example given in Home Assistant documentation looks like this, which just strings together all the above terms:</p>
+ <p>For a Container installation, the Docker Compose example in the Home Assistant documentation combines these terms as follows:</p>
 
  <pre class="code-block"><code>services:
   homeassistant:
@@ -253,9 +253,9 @@
     environment:
       TZ: Etc/UTC</code></pre>
 
- <p>Compare it:<code>image</code> It’s a conditioning bag,<code>volumes</code> It’s the crisper (the left is the folder on your computer, the right is the path you see in the container),<code>restart</code> It’s the rules for opening a store,<code>TZ</code> It’s the time zone (the time zone setting in Chapter 2 must be correct here as well).<code>network_mode: host</code> It means that it directly uses the host's network, so port 8123 is opened directly on your machine.</p>
+ <p>Compare it:<code>image</code> selects the container image. <code>volumes</code> maps a folder on your computer (left) to a path inside the container (right). <code>restart</code> defines the restart policy. <code>TZ</code> sets the time zone, which should match Chapter 2. <code>network_mode: host</code> gives the container direct access to the host network, so port 8123 is exposed directly on that machine.</p>
 
- <div class="callout tip"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. HAOS users do not need to enter the above commands at all, Supervisor does it for you. I put this paragraph so that you can "understand" it and won't be scared when you look up information on the Internet in the future.</div>
+ <div class="callout tip"><strong>Note:</strong> The zh-TW edition uses a local boxed-meal metaphor; this edition uses a general restaurant metaphor. HAOS users do not enter these commands because Supervisor manages the containers. The example is included so you can recognize the terms when troubleshooting.</div>
  </section>
 
  <section id="steps" data-nav="Install the first one">
@@ -381,7 +381,7 @@
  </tbody>
  </table>
 
- <div class="callout"><strong>Concept:</strong> The log file of the Add-on and the log file of the Home Assistant body are <strong>separate</strong>. The Add-on is in the "Log" tab of its own page; the Home Assistant's is in the "Logs" tab of its own page; <strong>Settings → System → Log files</strong>. If you look in the wrong place, you won't see anything.</div>
+ <div class="callout"><strong>Concept:</strong> The log file of the Add-on and the log file of the Home Assistant body are <strong>separate</strong>. The Add-on is in the "Log" tab of its own page; the Home Assistant's is in the "Logs" tab of its own page; <strong>Settings → System → Logs</strong>. If you look in the wrong place, you won't see anything.</div>
  </section>
 
  <section id="must_have" data-nav="Must-have outfit for tour">
@@ -470,7 +470,7 @@
  </li>
  <li>
  <h3>Paste the URL, click Add, and then refresh</h3>
- <p>After adding stores, there will be several more areas. If you can't find something new, press <kbd>Ctrl</kbd> + <kbd>F5</kbd> Force a refresh. If the reorganization still doesn't show up, go <strong>Settings → System → Log files</strong>, cut to the upper right corner of <strong>Supervisor</strong>, the URL will be written there, is it a typo?</p>
+ <p>After adding stores, there will be several more areas. If you can't find something new, press <kbd>Ctrl</kbd> + <kbd>F5</kbd> Force a refresh. If the reorganization still doesn't show up, go <strong>Settings → System → Logs</strong>, cut to the upper right corner of <strong>Supervisor</strong>, the URL will be written there, is it a typo?</p>
  </li>
  </ol>
 
@@ -527,7 +527,7 @@
  </li>
  <li>
  <h3>Go back to the backup page and hook it up</h3>
- <p><strong>Settings → System → backup</strong>, in the "Locations" of the automatic backup settings, open the destination you just connected. Schedule and retain copies of photos <a href="ch9_backups.html">Chapter 9</a> Just set it up. <strong>local machine <code>/backup</code> Remember to keep it too</strong>: When restoring, the local machine is much faster. The cloud is a life saver when the entire machine dies.</p>
+ <p><strong>Settings → System → Backups</strong>, in the "Locations" of the automatic backup settings, open the destination you just connected. Schedule and retain copies of photos <a href="ch9_backups.html">Chapter 9</a> Just set it up. <strong>local machine <code>/backup</code> Remember to keep it too</strong>: When restoring, the local machine is much faster. The remote copy is available if the entire host fails.</p>
  </li>
  <li>
  <h3>Run it manually, and then go to the cloud to see if the file is there.</h3>
@@ -539,7 +539,7 @@
 
  <div class="callout warn"><strong>Warning:</strong> Many old tutorials on the Internet will ask you to install the third-party Add-on "Home Assistant Google Drive backup". It was an artifact before built-in cloud backup came out, but now it’s great for newbies <strong>Built-in Google Drive integration is a better place to start</strong>:Officially maintained, no need to run an extra container. Third-party Add-ons still have their advantages (such as day/week/month/year generation retention policies), but if you just want "the backup doesn't die on the local machine", the built-in one is enough. In the same way, the need to dump backups to Samba network disks can now be achieved using the built-in "Network Storage" without having to install Samba backup.</div>
 
- <div class="callout danger"><strong>Danger:</strong> backups are encrypted, <strong>Be sure to have the encryption key when restoring</strong>. The first time you set up automatic backup, the screen will ask you to download a copy. <strong>backup emergency kit</strong>—That's a file that contains your encryption key. <strong>Save it now outside of Home Assistant</strong> (Password manager, cloud drive, printing it out and putting it in a folder will all work). Home Assistant statement is very clear: without the key, there is no way to restore the encrypted backup. Lost the key = the backup in the cloud is just multiple gibberish that cannot be opened. I want to take it again later and go back to <strong>Settings → System → backup</strong> The backup settings page can re-download the current set of keys.</div>
+ <div class="callout danger"><strong>Danger:</strong> backups are encrypted, <strong>Be sure to have the encryption key when restoring</strong>. The first time you set up automatic backup, the screen will ask you to download a copy. <strong>backup emergency kit</strong>—That's a file that contains your encryption key. <strong>Save it now outside of Home Assistant</strong> (Password manager, cloud drive, printing it out and putting it in a folder will all work). Home Assistant statement is very clear: without the key, there is no way to restore the encrypted backup. Lost the key = the backup in the cloud is just multiple gibberish that cannot be opened. I want to take it again later and go back to <strong>Settings → System → Backups</strong> The backup settings page can re-download the current set of keys.</div>
  </section>
 
  <section id="performance" data-nav="Resources and Effectiveness">
@@ -571,7 +571,7 @@
  <li><strong>Let’s first see if the built-in function can solve the problem.</strong> Many people install Node-RED just to do a "turn on the lights at sunset", which can be done with three lines of built-in automation (see <a href="ch8_first_automation.html">Chapter 8</a>).</li>
  </ul>
 
- <div class="callout tip"><strong>Tip:</strong> If you want to know how crowded it is now, go <strong>Settings → System → Storage</strong> Look at the hard disk; if you want to see system information such as version and installation method, go to <strong>Settings → System → Repair</strong> The three-dot menu in the upper right corner <strong>System information</strong>.If you find that the hard drive is used more than 80%, it’s time to clean things up.</div>
+ <div class="callout tip"><strong>Tip:</strong> If you want to know how crowded it is now, go <strong>Settings → System → Storage</strong> Look at the hard disk; if you want to see system information such as version and installation method, go to <strong>Settings → System → Repairs</strong> The three-dot menu in the upper right corner <strong>System information</strong>.If you find that the hard drive is used more than 80%, it’s time to clean things up.</div>
  </section>
 
  <section id="troubleshoot" data-nav="Common problems">
@@ -628,7 +628,7 @@
 
  <details class="faq">
  <summary>Will updating the Add-on lose my settings?</summary>
- <div class="body">Normally not. The settings and data are stored in the "Volume", and what is updated is the "image file". The two are separate - just like changing the cooking bag will not touch your crisper. but update <strong>It is possible to change the format of the setting</strong>, causing the old settings to no longer be valid and the startup to fail. So the rules are: <strong>Important Add-on Do not turn on automatic updates</strong>, confirm that the backup has been run before updating, and take a look at the log file after updating. Lightweight and harmless ones (File editor, Samba) have no problem turning on automatic updates.</div>
+ <div class="body">Normally not. Settings and data are stored in a volume, while an update replaces the image. The two are separate. but update <strong>It is possible to change the format of the setting</strong>, causing the old settings to no longer be valid and the startup to fail. So the rules are: <strong>Important Add-on Do not turn on automatic updates</strong>, confirm that the backup has been run before updating, and take a look at the log file after updating. Lightweight and harmless ones (File editor, Samba) have no problem turning on automatic updates.</div>
  </details>
 
  <details class="faq">

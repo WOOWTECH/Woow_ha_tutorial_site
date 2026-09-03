@@ -108,7 +108,7 @@
  <ul>
  <li><strong>at home</strong>: You suspect that the old refrigerator consumes a lot of electricity, but there is no evidence. Install a smart socket with power monitoring. After two weeks, you will see how many degrees it consumes steadily every day. It will be clear at a glance whether it is worth replacing it with a new one.</li>
  <li><strong>room</strong>: I forgot to turn off the dehumidifier and it ran all day. With the daily electricity consumption chart, you will immediately find out "Why is there an increase of 3 degrees today?"</li>
- <li><strong>Office pantry</strong>: A water dispenser that stays hot 24 hours a day may seem like a few hundred watts, but it may add up to more than a photocopier in a month. This "low-power but all-weather" monster can only be caught by accumulating data.</li>
+ <li><strong>Office pantry</strong>: A water dispenser that stays hot 24 hours a day may seem like a few hundred watts, but it may add up to more than a photocopier in a month. This low-power, continuously running load can only be caught by accumulating data.</li>
  <li><strong>ESG reporting</strong>: When a small office needs to submit an energy-saving or sustainability statement, "We have installed smart sockets and changed the water heater in the pantry to keep it warm during working hours, and the monthly electricity consumption has been reduced by X degrees" is much more capable than "We have a propaganda to turn off the lights."</li>
  </ul>
 
@@ -196,7 +196,7 @@
  <tr><th>Source</th><th>What is measured</th><th>difficulty</th><th>Suitable for whom</th></tr>
  </thead>
  <tbody>
- <tr><td>Smart socket/smart switch</td><td>The power of a single electrical appliance, some models include cumulative power</td><td>low</td><td>This is my first time playing and I want to catch a single monster.</td></tr>
+ <tr><td>Smart socket/smart switch</td><td>The power of a single electrical appliance, some models include cumulative power</td><td>low</td><td>This is my first time playing and I want to measure one appliance.</td></tr>
  <tr><td>CT clip-on current sensor</td><td>The power of the entire circuit or the whole household</td><td>in</td><td>I want to see the total amount of the whole house</td></tr>
  <tr><td>solar inverter</td><td>Power generation and feed capacity</td><td>in</td><td>Installed solar panels</td></tr>
  <tr><td>Energy storage battery system</td><td>Charge capacity, discharge capacity</td><td>in</td><td>Installed household batteries</td></tr>
@@ -398,7 +398,7 @@
  </tbody>
  </table>
 
- <p>After setting up, these sensors are <strong>Save across reboots</strong> Yes, HA restart will not eat up your monthly accumulation, so you can rest assured.</p>
+ <p>After setting up, these sensors are <strong>Save across reboots</strong> Yes, a Home Assistant restart does not erase the monthly total, so you can rest assured.</p>
  </section>
 
  <section id="cost" data-nav="Electricity prices and costs">
@@ -525,13 +525,13 @@ mode: single</code></pre>
 
  <div class="callout warn"><strong>Warning:</strong> baseline period <strong>Do not take any energy-saving measures</strong>. Many people start to check this level and that level as soon as they install it. As a result, there is no clean control group, and it is unclear how much they have saved later. Hold it in.</div>
 
- <h3>Step 2: Find the electricity-eating monster</h3>
+ <h3>Step 2: Find the largest energy load</h3>
 
  <p>No need for advanced skills, just look at three places:</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Where to look</th><th>What to look for</th><th>common murderer</th></tr>
+ <tr><th>Where to look</th><th>What to look for</th><th>common cause</th></tr>
  </thead>
  <tbody>
  <tr><td>Individual device rankings</td><td>Who has the greatest total degree</td><td>Air conditioner, dehumidifier, electric water heater</td></tr>
@@ -586,7 +586,7 @@ mode: single</code></pre>
 
  <h3>Power consumption ranking of individual devices</h3>
 
- <p>Add the kWh sensor of each socket to the "Individual Device" section of the energy settings, and the dashboard will automatically help you sort out who eats the most.</p>
+ <p>Add the kWh sensor of each socket to the "Individual Device" section of the energy settings, and the dashboard will automatically help you sort out which device uses the most energy.</p>
 
  <p>If there are both master meters and sub-devices on the same loop, it will happen <strong>double counting</strong>—The total table already contains the usage of sub-devices. Home Assistant provides an "upstream device" setting to handle this: you can designate a device as the upstream of another device to form a hierarchy.</p>
 

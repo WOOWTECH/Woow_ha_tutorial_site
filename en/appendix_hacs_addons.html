@@ -89,50 +89,50 @@
  </div>
 
  <section id="addons" data-nav="Official App Store">
- <h2 data-icon="addons">Official App store</h2>
- <div class="callout"><strong>Note on name change:</strong> Starting from version 2026.2, Home Assistant name of "Add-on" has been officially changed to "Apps", the store is called "App store", and the menu path has also changed from "Settings → Add-ons" to "Settings → Applications". Nothing has changed at all, just the name has been changed. If you still have a version before 2026.2 and see "Add-on / Add-on / Add-on Store", it refers to the application discussed in this section.</div>
- <p>Applications (Apps, called add-ons in the old version) run on HA OS <strong>standalone container program</strong>, can be thought of as a small server that the HA host helps you open. <em>Only HA OS and HA Supervised have app stores</em>, HA Container / HA Core no.</p>
- <p>Path: "Settings → Apps → Install app" (Settings → Apps → Install app).</p>
- <p>When the app will be used:</p>
+ <h2 data-icon="addons">Official app store</h2>
+ <div class="callout"><strong>Version note:</strong> Starting with Home Assistant 2026.2, the UI calls add-ons "Apps," the store is the "App store," and the path is Settings → Apps. Older versions use "Add-ons" and "Add-on store" for the same feature.</div>
+ <p>Apps (called add-ons in older versions) are <strong>stand-alone containerized services</strong> managed alongside Home Assistant. <em>The App store is available on Home Assistant OS and the former Supervised installation type</em>; it is not available in Home Assistant Container or Core.</p>
+ <p>Path: Settings → Apps → Install app.</p>
+ <p>Use an App when you need to:</p>
  <ul>
  <li>To run local services such as Zigbee2MQTT / ESPHome.</li>
  <li>SSH into the host to debug.</li>
- <li>Use Node-RED, a visual process tool.</li>
+ <li>Run Node-RED for visual automation flows.</li>
  </ul>
  <p>Some of the most commonly installed official applications:</p>
  <ul>
- <li><strong>File editor</strong>—Change YAML files directly in the browser, suitable for light editing.</li>
- <li><strong>Studio Code Server</strong>—The complete VS Code web version, the first choice for writing large amounts of YAML or templates.</li>
- <li><strong>Samba share</strong>—Put HA’s <code>/config</code> KaiChengWangFang allows you to operate using your computer's file manager.</li>
+ <li><strong>File editor</strong>—Edit YAML files in the browser; suitable for small changes.</li>
+ <li><strong>Studio Code Server</strong>—A browser-based VS Code environment; better suited to extensive YAML or template work.</li>
+ <li><strong>Samba share</strong>—Exposes HA’s <code>/config</code> folder so you can manage it from your computer’s file manager.</li>
  <li><strong>Terminal &amp; SSH</strong>—SSH into HA OS for advanced troubleshooting.</li>
- <li><strong>Node-RED</strong>—Drag-and-drop visual automation tool, complex processes are easier to maintain than UI.</li>
- <li><strong>ESPHome</strong>—Burning ESP32 / ESP8266 firmware, a must for DIY sensors.</li>
+ <li><strong>Node-RED</strong>—A drag-and-drop automation tool that can make complex flows easier to inspect.</li>
+ <li><strong>ESPHome</strong>—Build and flash firmware for ESP32 or ESP8266 devices.</li>
  <li><strong>Zigbee2MQTT</strong>—Supports more Zigbee devices than ZHA, and the community updates quickly.</li>
- <li><strong>Mosquitto broker</strong>—MQTT message broker, the communication underlying layer of Z2M/many DIY devices.</li>
+ <li><strong>Mosquitto broker</strong>—An MQTT broker used by Zigbee2MQTT and many DIY devices.</li>
  </ul>
  <div class="callout tip"><strong>Recommended practices:</strong> Make sure you have clear needs before installing. Every time you install an application, there is one more service that needs to be maintained, updated, and takes up resources.</div>
  </section>
 
  <section id="hacs" data-nav="HACS community store">
  <h2 data-icon="hacs">HACS (Home Assistant Community Store)</h2>
- <p>HACS is <strong>Community maintenance</strong> third-party package store, which is the same as Home Assistant App store (App store) <em>two different things</em>: </p>
+ <p>HACS is a <strong>community-maintained</strong> store for third-party packages. It is <em>different from the Home Assistant App store</em>:</p>
  <ul>
- <li><strong>Official App Store</strong>: It deals with "independent container programs running on HA OS" and is officially reviewed.</li>
- <li><strong>HACS</strong>: It is in charge of "things that are plugged into the HA ontology" - custom integrations, custom dashboard cards (Lovelace cards), themes, python_script, and AppDaemon applications. There is no official review, and the author is responsible for the quality.</li>
+ <li><strong>Official App store</strong>: Installs independent containerized services on HAOS and distributes packages reviewed through the official project.</li>
+ <li><strong>HACS</strong>: Installs custom integrations, dashboard cards, themes, python_script packages, and AppDaemon apps. These community packages do not receive official Home Assistant review; assess each project before installation.</li>
  </ul>
- <p><strong>When should I install HACS?</strong> When you find that "my device is not included in Home Assistant integration" or "the built-in cards are not pretty/capable enough", 80% of the time HACS has a solution. There is no need to rush before installing. First confirm that there is no official support before considering.</p>
+ <p><strong>When should you install HACS?</strong> Consider it when Home Assistant has no official integration for a device or when a built-in dashboard card cannot meet a requirement. Check official support first, then evaluate the maintenance and security implications of a community package.</p>
  <p><strong>Key points of the installation process (see official documentation for details):</strong></p>
  <ol>
  <li>Installing HACS itself requires SSH/Studio Code Server to enter HA and execute an installation script (recent versions also support one-click processing using the application "HACS Bootstrap").</li>
  <li>Then add a new integration "HACS" to HA, which will display a set of GitHub device codes and URLs; open the URL in a browser, log in to GitHub, and paste the device code for authorization (no need to manually generate a personal access token).</li>
  <li>After completion, there will be a HACS icon on the left menu, which is the community package market.</li>
  </ol>
- <p>Official installation files: <a href="https://hacs.xyz" target="_blank" rel="noopener">https://hacs.xyz</a>. The steps will change with the version, please refer to Home Assistant version.</p>
+ <p>Official HACS installation instructions: <a href="https://hacs.xyz" target="_blank" rel="noopener">https://hacs.xyz</a>. Follow the instructions for your Home Assistant installation type and version.</p>
  <p><strong>Directions for installing common kits:</strong></p>
  <ul>
  <li><strong>Customize dashboard cards</strong>: <code>mushroom-cards</code>(Modern simplicity),<code>button-card</code>(Customized to the extreme),<code>mini-graph-card</code>(beautiful historical curve),<code>swipe-card</code>(Swipe left and right on your phone).</li>
  <li><strong>community integration</strong>: Xiaomi/Aqara localized, Tuya localized (avoiding the international version of the cloud), SwitchBot API, your utility bill and national weather service forecast.</li>
- <li><strong>Topic</strong>: Google Home, Graphite, Noctis and other community themes.</li>
+ <li><strong>Theme</strong>: Google Home, Graphite, Noctis and other community themes.</li>
  </ul>
  <div class="callout warn"><strong>Reminder:</strong> The HACS suite is <em>No review</em> For third-party code, select authors with a large number of stars and recent updates (within 3 months). Do not install a large number of them at once, as they may all break when updating HA.</div>
  </section>
@@ -170,7 +170,7 @@
  <td>Free (individual)</td>
  <td>highest</td>
  <td>low</td>
- <td>Technical gamer, concerned about privacy, no need to share with non-family members</td>
+ <td>Technically confident users who value privacy and do not need public sharing</td>
  </tr>
  <tr>
  <td><strong>Cloudflare Tunnel</strong></td>
@@ -233,7 +233,7 @@
  <p><strong>Settings → System → "Restart Home Assistant" in the upper right corner → select "Restart in Safe Mode"</strong>. This will load the HA core, but not any custom integrations, custom cards, or custom themes, so you can at least get into the interface.</p>
  </li>
  <li>
- <h3>Look at the records to find the murderer</h3>
+ <h3>Inspect the logs to identify the cause</h3>
  <p><strong>Settings → System → Records</strong>. Broken custom integrations often leave a whole section of errors, with the first line saying which <code>custom_components</code> Something happened.</p>
  </li>
  <li>
@@ -262,7 +262,7 @@
  <tr><th>what you want</th><th>Where to find</th></tr>
  </thead>
  <tbody>
- <tr><td>An independent server program: MQTT broker, Zigbee2MQTT, ESPHome, Node-RED, database, SSH</td><td>Applications (formerly known as Add-on)</td></tr>
+ <tr><td>An independent server program: MQTT broker, Zigbee2MQTT, ESPHome, Node-RED, database, SSH</td><td>Apps (formerly called add-ons)</td></tr>
  <tr><td>Let HA recognize a device or service that is not officially supported</td><td>Custom integration for HACS</td></tr>
  <tr><td>The dashboard should look better, have more special cards, and change the theme</td><td>HACS Cards/Topics</td></tr>
  </tbody>
@@ -329,7 +329,7 @@
  <tr><td>I just want remote connection, I don’t have a voice assistant at home, and I don’t mind if everyone installs the app.</td><td>Tailscale is free and that’s enough</td></tr>
  <tr><td>Want to connect to Google/Alexa, or someone at home doesn’t want to install VPN App</td><td>Nabu Casa, the time saved far exceeds the money</td></tr>
  <tr><td>Often looking at the camera at home outside</td><td>Nabu Casa, the relay server is difficult to fix on your own</td></tr>
- <tr><td>You just want to learn these Internet technologies</td><td>Fight it yourself, but be sure to follow the security warning section</td></tr>
+ <tr><td>You just want to learn these Internet technologies</td><td>Build it yourself, but follow the security warnings above</td></tr>
  </tbody>
  </table>
  <div class="callout tip"><strong>Honestly:</strong> If you even want to Google what "port forward" is, then what you pay for is not the function, but the insurance that "your home camera will not be exposed to the Internet due to incorrect settings." Use the free trial for a month first, and the answer will appear by itself.</div>

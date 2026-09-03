@@ -89,6 +89,23 @@ function codeBlocks(html) {
   return list;
 }
 
+// The navigation generator intentionally has no HTML parser. Reject malformed
+// section attributes here so a quote inside data-nav cannot be silently
+// truncated into a broken navigation label.
+function malformedSectionTags(html) {
+  const bad = [];
+  for (const m of html.matchAll(/<section\b[^>]*>/g)) {
+    const rest = m[0]
+      .replace(/^<section\b/, '')
+      .replace(/>$/, '')
+      .replace(/\s+[A-Za-z_:][\w:.-]*(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'=<>`]+))?/g, '')
+      .trim();
+    const dataNav = (m[0].match(/\bdata-nav="([^"]*)"/) || [])[1];
+    if (rest || (dataNav != null && (dataNav !== dataNav.trim() || /[\r\n\u200B-\u200D\uFEFF]/.test(dataNav)))) bad.push(m[0]);
+  }
+  return bad;
+}
+
 function stripForCjk(html) {
   return html
     .replace(/<!--[\s\S]*?-->/g, '')
@@ -177,6 +194,11 @@ for (const [code, loc] of Object.entries(locales)) {
     const enUnits = i18n.extractUnits(en);
     const status = i18n.pageStatus(ledger, code, f);
     const isChapter = PAGES.includes(f);
+
+    /* A0. HTML attributes used by generated navigation must be well formed. */
+    for (const tag of malformedSectionTags(en)) {
+      err(`${code}/${f}: [A] malformed <section> attributes: ${tag.slice(0, 160)}`);
+    }
 
     /* A. 結構 parity */
     const zhKeys = zhUnits.map((u) => u.key).join(' ');

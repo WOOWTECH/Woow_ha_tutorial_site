@@ -83,13 +83,13 @@
       "file": "ch14_integrations.html",
       "unit": "#calendar_notify",
       "zh": "<pre class=\"code-block\"><code>rest_command:\n  line_push:\n    url: \"https://api.line.me/v2/bot/message/push\"\n    method: post\n    content_type: \"application/json\"\n    headers:\n      Authorization: \"Bearer 你的_CHANNEL_ACCESS_TOKEN\"\n    payload: &gt;-\n      {\"to\": \"你的_USER_ID\",\n       \"messages\": [{\"type\": \"text\", \"text\": \"{{ msg }}\"}]}</code></pre>",
-      "en": "<pre class=\"code-block\"><code>rest_command:\n  line_push:\n    url: \"https://api.line.me/v2/bot/message/push\"\n    method: post\n    content_type: \"application/json\"\n    headers:\n      Authorization: \"Bearer your_CHANNEL_ACCESS_TOKEN\"\n    payload: &gt;-\n      {\"to\": \"your_USER_ID\",\n       \"messages\": [{\"type\": \"text\", \"text\": \"{{ msg }}\"}]}</code></pre>"
+      "en": "<pre class=\"code-block\"><code>actions:\n  - action: notify.send_message\n    target:\n      entity_id: notify.family\n    data:\n      message: \"{{ msg }}\"</code></pre>"
     },
     {
       "file": "ch14_integrations.html",
       "unit": "#calendar_notify",
       "zh": "<pre class=\"code-block\"><code>actions:\n  - action: rest_command.line_push\n    data:\n      msg: \"洗衣機洗好了，記得去晾\"</code></pre>",
-      "en": "<pre class=\"code-block\"><code>actions:\n  - action: rest_command.line_push\n    data:\n      msg: \"The washing cycle has finished. Remember to hang up the laundry.\"</code></pre>"
+      "en": "<pre class=\"code-block\"><code>actions:\n  - action: notify.send_message\n    target:\n      entity_id: notify.family\n    data:\n      message: \"The washing cycle has finished. Remember to hang the laundry.\"</code></pre>"
     },
     {
       "file": "ch14_integrations.html",
@@ -167,7 +167,7 @@
       "file": "ch16_todo_calendar.html",
       "unit": "#recipes",
       "zh": "<pre class=\"code-block\"><code>alias: 今天到期的待辦提醒\ntriggers:\n  - trigger: time\n    at: \"08:00:00\"\nactions:\n  - action: todo.get_items\n    target:\n      entity_id: todo.family_chores\n    data:\n      status: needs_action\n    response_variable: result\n  - variables:\n      today: \"{{ now().date() | string }}\"\n      due_today: >-\n        {{ result['todo.family_chores']['items']\n           | selectattr('due', 'defined')\n           | rejectattr('due', 'none')\n           | selectattr('due', 'search', today)\n           | map(attribute='summary') | list }}\n  - if:\n      - condition: template\n        value_template: \"{{ due_today | count > 0 }}\"\n    then:\n      - action: notify.mobile_app_my_phone\n        data:\n          title: 今天有 {{ due_today | count }} 件事到期\n          message: \"{{ due_today | join('、') }}\"\nmode: single</code></pre>",
-      "en": "<pre class=\"code-block\"><code>alias: Items due today\ntriggers:\n  - trigger: time\n    at: \"08:00:00\"\nactions:\n  - action: todo.get_items\n    target:\n      entity_id: todo.family_chores\n    data:\n      status: needs_action\n    response_variable: result\n  - variables:\n      today: \"{{ now().date() | string }}\"\n      due_today: >-\n        {{ result['todo.family_chores']['items']\n           | selectattr('due', 'defined')\n           | rejectattr('due', 'none')\n           | selectattr('due', 'search', today)\n           | map(attribute='summary') | list }}\n  - if:\n      - condition: template\n        value_template: \"{{ due_today | count > 0 }}\"\n    then:\n      - action: notify.mobile_app_my_phone\n        data:\n          title: {{ due_today | count }} items are due today\n          message: \"{{ due_today | join(', ') }}\"\nmode: single</code></pre>"
+      "en": "<pre class=\"code-block\"><code>alias: Items due today\ntriggers:\n  - trigger: time\n    at: \"08:00:00\"\nactions:\n  - action: todo.get_items\n    target:\n      entity_id: todo.family_chores\n    data:\n      status: needs_action\n    response_variable: result\n  - variables:\n      today: \"{{ now().date() | string }}\"\n      due_today: >-\n        {{ result['todo.family_chores']['items']\n           | selectattr('due', 'defined')\n           | rejectattr('due', 'none')\n           | selectattr('due', 'search', today)\n           | map(attribute='summary') | list }}\n  - if:\n      - condition: template\n        value_template: \"{{ due_today | count > 0 }}\"\n    then:\n      - action: notify.mobile_app_my_phone\n        data:\n          title: \"{{ due_today | count }} items are due today\"\n          message: \"{{ due_today | join(', ') }}\"\nmode: single</code></pre>"
     },
     {
       "file": "ch16_todo_calendar.html",
@@ -618,6 +618,84 @@
       "unit": "#docker_basics",
       "zh": "<pre class=\"code-block\"><code>services:\n  homeassistant:\n    container_name: homeassistant\n    image: \"ghcr.io/home-assistant/home-assistant:stable\"\n    volumes:\n      - /PATH_TO_YOUR_CONFIG:/config\n      - /etc/localtime:/etc/localtime:ro\n      - /run/dbus:/run/dbus:ro\n    restart: unless-stopped\n    privileged: true\n    network_mode: host\n    environment:\n      TZ: Asia/Taipei</code></pre>",
       "en": "<pre class=\"code-block\"><code>services:\n  homeassistant:\n    container_name: homeassistant\n    image: \"ghcr.io/home-assistant/home-assistant:stable\"\n    volumes:\n      - /PATH_TO_YOUR_CONFIG:/config\n      - /etc/localtime:/etc/localtime:ro\n      - /run/dbus:/run/dbus:ro\n    restart: unless-stopped\n    privileged: true\n    network_mode: host\n    environment:\n      TZ: Etc/UTC</code></pre>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#weather",
+      "zh": "<code>tsunglung/OpenCWB</code>",
+      "en": "<code>HACS</code>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#calendar_notify",
+      "zh": "<code>notify-api.line.me</code>",
+      "en": "<code>configuration.yaml</code>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#calendar_notify",
+      "zh": "<code>POST https://api.line.me/v2/bot/message/push</code>",
+      "en": "<code>notify.send_message</code>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#calendar_notify",
+      "zh": "<code>Authorization: Bearer {channel access token}</code>",
+      "en": "<code>action</code>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#calendar_notify",
+      "zh": "<code>Content-Type: application/json</code>",
+      "en": "<code>target</code>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#calendar_notify",
+      "zh": "<code>to</code>",
+      "en": "<code>entity_id</code>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#calendar_notify",
+      "zh": "<code>messages</code>",
+      "en": "<code>notify.family</code>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#weather",
+      "zh": "<code>opendata.cwa.gov.tw</code>",
+      "en": "<code>your-national-weather-service.example</code>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#calendar_notify",
+      "zh": "<code>rest_command</code>",
+      "en": "<code>secrets.yaml</code>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#calendar_notify",
+      "zh": "<code>configuration.yaml</code>",
+      "en": "<code>message</code>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#faq",
+      "zh": "<code>https://api.line.me/v2/bot/message/push</code>",
+      "en": "<code>notify.family</code>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#faq",
+      "zh": "<code>opendata.cwa.gov.tw</code>",
+      "en": "<code>your-national-weather-service.example</code>"
+    },
+    {
+      "file": "ch14_integrations.html",
+      "unit": "#faq",
+      "zh": "<code>rest_command</code>",
+      "en": "<code>notify.send_message</code>"
     }
   ]
 }

@@ -70,7 +70,7 @@
       <a href="#why">Why create multiple accounts</a>
       <a href="#concept">Two nouns: Users vs. Persons</a>
       <a href="#steps">Steps to create an account</a>
-      <a href="#persons">Create </a>
+      <a href="#persons">Create a person</a>
       <a href="#faq">FAQ</a>
       <a href="#mfa">MFA two-stage verification</a>
       <a href="#troubleshoot">Common problems</a>
@@ -108,7 +108,7 @@
  <ul style="margin:8px 0 0 20px;">
  <li><strong>User</strong>: An account that can "log in to the HA backend". Have a password and permissions (administrator or general).</li>
  <li><strong>Person</strong>: A "human" entity. You can connect multiple device_trackers (phone, Bluetooth, GPS) to detect "whether this person is at home now".</li>
- <li><strong>Device Traces</strong>: A source of location detection, such as Companion App’s cell phone tracker.</li>
+ <li><strong>Device trackers</strong>: A source of location detection, such as Companion App’s cell phone tracker.</li>
  </ul>
  A User can be tied to a Person (allowing him to both log in and be tracked); or he can have only Person but no User (for example, a child does not need to log in but needs to be detected at home); and vice versa (a neighbor who helps look after the house only needs to log in and does not need to be tracked).</div>
  <p>The two can be bound: for example, "user Alice" corresponds to "person Alice". After Alice installs the app on her phone and logs in, she can feed the location to that "person".</p>
@@ -151,17 +151,17 @@
  <p>Non-administrator role + Turn on "Local only", so that the account can only be used under home WiFi, and even if the password is leaked, it cannot access the external network. This is the guest account combination officially recommended by HA.</p>
  </li>
  </ol>
- <div class="callout"><strong>Verify</strong>: After logging out, log in with a new account to confirm that you can enter the homepage; go to "Settings → Personnel → Users" to see the newly created user. If it is a guest account, try logging in using a 4G phone (with WiFi turned off) and it should be blocked.</div>
+ <div class="callout"><strong>Verify</strong>: After logging out, log in with a new account to confirm that you can enter the homepage; go to "Settings → People → Users" to see the newly created user. If it is a guest account, try logging in using a 4G phone (with WiFi turned off) and it should be blocked.</div>
  </section>
 
- <section id="persons" data-nav="Create "people"">
+ <section id="persons" data-nav="Create a person">
  <h2 data-icon="persons">Create a "person" and connect it</h2>
  <ol class="steps">
  <li>
  <h3>Settings → People</h3>
  <figure class="shot">
- <img src="../assets/screenshots/ch5/03_persons_page.png" alt="Personnel page" />
- <figcaption><strong>Figure 5-3</strong> Personnel management page—Each person can be bound to one user and multiple positioning devices.</figcaption>
+ <img src="../assets/screenshots/ch5/03_persons_page.png" alt="People page" />
+ <figcaption><strong>Figure 5-3</strong> People management page—Each person can be bound to one user and multiple positioning devices.</figcaption>
  </figure>
  </li>
  <li>
@@ -264,7 +264,7 @@
  </li>
  <li>
  <h3>Verification: Is the location returned?</h3>
- <p>Go back to HA "Settings → Devices and Services → Mobile App" to see that phone, click on it and there will be multiple <code>sensor.mobile_battery / sensor.mobile_geocoded_location</code> and other entities. The device page map should show <em>present</em> location. If blank, go back and check location permissions.</p>
+ <p>Go back to HA "Settings → Devices &amp; Services → Mobile App" to see that phone, click on it and there will be multiple <code>sensor.mobile_battery / sensor.mobile_geocoded_location</code> and other entities. The device page map should show <em>present</em> location. If blank, go back and check location permissions.</p>
  </li>
  <li>
  <h3>Send the first test notification</h3>
@@ -279,7 +279,7 @@
  <p><code>zone.home</code> It is a circular range for judging "at home/away from home", with a default radius of 100 meters. 100m is often too small to see through thick walls or large apartments, resulting in people being home but being judged as leaving home (GPS drifting out of the circle).</p>
  <ol class="steps">
  <li>
- <h3>Settings → Zones, Labels and Zone → Zones tab</h3>
+ <h3>Settings → Areas, labels &amp; zones → Zones tab</h3>
  <p><strong>Note</strong>: Zone and Area are <em>different things</em>. Area is a room at home; Zone is a circle on the map (home, company, school). The latter is what I ordered here.</p>
  </li>
  <li>

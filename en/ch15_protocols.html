@@ -132,7 +132,7 @@
  </thead>
  <tbody>
  <tr><td>Local control (Local)</td><td>Commands are sent directly from Home Assistant to your device without leaving your home</td><td>It’s fast, stable, can be used even if the internet is disconnected, and you’re not afraid of the original factory going bankrupt.</td></tr>
- <tr><td>Cloud control (Cloud)</td><td>The command must first go online to the manufacturer's server and then loop back to your home.</td><td>If you slow down a beat, you will die if you are disconnected from the Internet, and if the vendor closes the stall, you will become a brick.</td></tr>
+ <tr><td>Cloud control (Cloud)</td><td>The command must first go online to the manufacturer's server and then loop back to your home.</td><td>Responses are slower; control stops during an internet outage, and a discontinued vendor service can make the device unusable.</td></tr>
  <tr><td>Mesh</td><td>Devices will help each other forward signals, one to another</td><td>Signals can go around the walls and grow outwards. The bigger the house, the more important it is.</td></tr>
  <tr><td>Gateway/Hub</td><td>A middle box that translates a certain protocol into network signals</td><td>One more thing to plug in, and one more point of failure</td></tr>
  </tbody>
@@ -352,7 +352,7 @@
  </li>
  </ol>
 
- <div class="callout warn"><strong>Warning:</strong> Matter eats local network broadcast packets such as mDNS/multicast. Official documentation require that this type of traffic must be able to pass freely through your network. If your home has VLAN network switching, or the router has "AP isolation" enabled, Matter will almost certainly fail to pair. In addition, when pairing the Wi-Fi version of Matter device, the phone and the device must be on the same 2.4GHz network.</div>
+ <div class="callout warn"><strong>Warning:</strong> Matter relies on local network discovery packets such as mDNS/multicast. Official documentation require that this type of traffic must be able to pass freely through your network. If your home has VLAN network switching, or the router has "AP isolation" enabled, Matter will almost certainly fail to pair. In addition, when pairing the Wi-Fi version of Matter device, the phone and the device must be on the same 2.4GHz network.</div>
 
  <div class="callout"><strong>Concept:</strong> The device types Matter supports are constantly expanding. Currently, official documentation lists lights, switches, locks, curtains, fans, air conditioners, water heaters, sensors, binary sensors, buttons, alarms, valves, sweeping robots, electric vehicles, and some general types (values, options, updates). But in practice, "support" does not mean "every function can be used" - many devices have no problem with basic switches, but some fancy functions that are only available in original apps are just not available. Before buying, it is recommended to search the actual returns of that model in the community.</div>
  </section>
@@ -571,7 +571,7 @@ bluetooth_proxy:
  <p>The symptoms are: Although it is a Zigbee device, the universal coordinator cannot be paired, or after pairing, it can only perform the most basic switch, and all advanced functions disappear. This is the result of the manufacturer using proprietary instructions. There are two remedies that can be done: one is to check whether there is a corresponding support file for Zigbee2MQTT (the community often reverses it); the other is to buy its original gateway at a loss to see if there is a local API that can be connected. There is only one long-term solution - search the community for feedback before buying next time.</p>
  </li>
  <li>
- <h3>When the Internet goes down, half of the devices die.</h3>
+ <h3>When the Internet goes down, half of the devices stop working.</h3>
  <p>This is a classic symptom of cloud dependence. use <a href="#steps">The previous network disconnection exercise</a> Find out which ones they are and label them. What can be done in the short term is to change important automation (security, lighting) to be triggered by local devices; in the long term, it can be gradually replaced. Pay special attention to things like "door locks" and "alarms" and never let them rely on the cloud.</p>
  </li>
  <li>

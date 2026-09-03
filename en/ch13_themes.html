@@ -140,13 +140,13 @@
  <section id="where" data-nav="Set where to live">
  <h2 data-icon="profile">The theme setting is where you live (the location has been changed recently, note)</h2>
  <p>This is the easiest section to miss, because Home Assistant has been undercut in version 2026.2.</p>
- <p><strong>Current location: Profile page.</strong> Click on the sidebar <strong>Your own name at the bottom</strong>, the profile page is divided into two pages: "General" and "Security". The topic selector is in <strong>Average</strong> In the "User preferences" section of the page, Home Assistant description is "What does Home Assistant look like?"</p>
+ <p><strong>Current location: Profile page.</strong> Click on the sidebar <strong>Your own name at the bottom</strong>, the profile page is divided into two pages: "General" and "Security". The theme selector is in the <strong>General</strong> page’s “User preferences” section, Home Assistant description is "What does Home Assistant look like?"</p>
  <p>Home Assistant revision description of 2026.2 is very straightforward: "The theme has been moved! You can now find and switch your favorite appearance directly in your user profile, so that you can apply the same theme on any device you log in to."</p>
  <div class="callout warn"><strong>Warning:</strong> The second half of this sentence is an important behavioral change. <strong>The theme now follows the "account" instead of "this browser".</strong> In the past, you could use dark colors for tablets in the living room and light colors for computers; after the revision, the same account will be the same on all devices. There has been a debate about this in the community, and the current official answer is that they do not plan to change it back. If you really need one device to look the same, the only way to make steel is to open a separate user account for that device (<a href="ch5_users.html">Chapter 5</a> Taught how to open it).</div>
  <p>The topic section of the profile page usually has two levels of choices:</p>
  <ol class="steps">
  <li>
- <h3>Choose a topic</h3>
+ <h3>Choose a theme</h3>
  <p>There will be at least "Default" in the drop-down menu, plus any community themes you install later. The newly installed system will only have the default one, which is normal.</p>
  </li>
  <li>
@@ -407,8 +407,8 @@ card_mod:
  <tr><th>demand</th><th>Should I use themes or card-mod?</th></tr>
  </thead>
  <tbody>
- <tr><td>Change colors across the site</td><td>Topic</td></tr>
- <tr><td>Change all cards to rounded corners together</td><td>Topic (<code>ha-card-border-radius</code>)</td></tr>
+ <tr><td>Change colors across the site</td><td>Theme</td></tr>
+ <tr><td>Change all cards to rounded corners together</td><td>Theme (<code>ha-card-border-radius</code>)</td></tr>
  <tr><td>Only this card is different</td><td>card-mod</td></tr>
  <tr><td>Changes color according to sensor value</td><td>card-mod (to write a template)</td></tr>
  <tr><td>Hide a line of text on the card</td><td>card-mod</td></tr>
@@ -520,7 +520,7 @@ card_mod:
  </li>
  <li>
  <h3>Profile check sprays YAML errors</h3>
- <p>Check these four things in order of appearance: whether Tab is used for indentation (YAML only eats white space), whether there is a space after the colon,<code>#</code> Are there quotation marks for the color at the beginning? Are there two by accident? <code>frontend:</code>. The fourth one is the most insidious because the error message often refers to another line number.</p>
+ <p>Check these four things in order of appearance: whether Tab is used for indentation (YAML is sensitive to whitespace), whether there is a space after the colon,<code>#</code> Are there quotation marks for the color at the beginning? Are there two by accident? <code>frontend:</code>. The fourth one is the most insidious because the error message often refers to another line number.</p>
  </li>
  <li>
  <h3>There is no response after selecting a theme, or the entire screen turns black.</h3>

@@ -156,7 +156,7 @@
  <p>lower right corner <strong>"+ New integration"</strong> Press the button, type "Local" or "To Do" in the search box, and select <strong>Local to-do</strong> (Local to-do list). This integration was added in Home Assistant 2023.11. If the version is too old, it will not be found.</p>
  <figure class="shot">
  <img src="../assets/screenshots/ch16/03_add_local_todo.png" alt="Add Local To-do from integration page" />
- <figcaption><strong>Figure 16-1</strong> Settings → Devices and Services → "Add Integration" in the lower right corner and search for Local To-do.</figcaption>
+ <figcaption><strong>Figure 16-1</strong> Settings → Devices &amp; Services → "Add Integration" in the lower right corner and search for Local To-do.</figcaption>
  </figure>
  </li>
  <li>
@@ -263,7 +263,7 @@ data:
   item: Replace the living-room AC filter
   status: completed</code></pre>
 
- <p><code>status</code> Eat only two values:<code>needs_action</code>(not done yet) and <code>completed</code>(done). If you want to "regret" what you have done and change it back to unfinished, just <code>status</code> Change to <code>needs_action</code>.</p>
+ <p><code>status</code> accepts only two values:<code>needs_action</code>(not done yet) and <code>completed</code>(done). If you want to "regret" what you have done and change it back to unfinished, just set <code>status</code> to <code>needs_action</code>.</p>
 
  <div class="callout warn"><strong>Warning:</strong><code>item</code> is used <strong>Name</strong> Go find it. If there are two items in your list called "buy milk" that are exactly the same, HA doesn't know which one you want to change. At this time, you need to switch to the item <strong>UID</strong> (A long string of garbled unique numbers), UID can be used as follows <code>todo.get_items</code> retrieve it.</div>
 
@@ -635,7 +635,7 @@ actions:
     then:
       - action: notify.mobile_app_my_phone
         data:
-          title: {{ due_today | count }} items are due today
+          title: "{{ due_today | count }} items are due today"
           message: "{{ due_today | join(', ') }}"
 mode: single</code></pre>
 
@@ -732,7 +732,7 @@ actions:
 mode: queued
 max: 10</code></pre>
 
- <p>Here is a good practice: <strong>An automated <code>id</code> Distinguish multiple triggers before using <code>choose</code> Bifurcation</strong>, which is easier to maintain than splitting it into two separate parts. If you don’t want to eat the air conditioner <code>climate.turn_on</code>, use <code>climate.set_hvac_mode</code>, look at the control methods of each domain <a href="ch12_domains.html">Chapter 12</a>.</p>
+ <p>Here is a good practice: <strong>An automated <code>id</code> Distinguish multiple triggers before using <code>choose</code> Bifurcation</strong>, which is easier to maintain than splitting it into two separate parts. If the climate integration does not support <code>climate.turn_on</code>, use <code>climate.set_hvac_mode</code>, look at the control methods of each domain <a href="ch12_domains.html">Chapter 12</a>.</p>
 
  <h3>6. Clear the boxes every week</h3>
 
