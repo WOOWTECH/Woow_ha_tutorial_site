@@ -8,7 +8,7 @@
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch21_network_remote.html" />
   <meta name="robots" content="noindex, follow" />
-  <meta property="og:attempt" content="article" />
+  <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
@@ -33,12 +33,12 @@
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to working</div>
+    <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch21_network_remote.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch21_network_remote.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to working</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -68,17 +68,17 @@
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
       <a href="#why">Why this matters</a>
-      <a href="#lan_basics">Local network basics</a>
-      <a href="#steps">Hands-on fixed IP</a>
-      <a href="#mdns_port">Local URL and port</a>
-      <a href="#decision">Which one suits you</a>
+      <a href="#lan_basics">LAN basics</a>
+      <a href="#steps">Reserve an IP</a>
+      <a href="#mdns_port">URL and port</a>
+      <a href="#decision">Choose a path</a>
       <a href="#nabu_casa">Nabu Casa</a>
       <a href="#cloudflare">CF Tunnel</a>
       <a href="#vpn">VPN plan</a>
       <a href="#ddns_proxy">DDNS and proxy</a>
-      <a href="#proxy_config">Trust proxy settings</a>
-      <a href="#hardening">Hard rules for security</a>
-      <a href="#site_grade">Site network design</a>
+      <a href="#proxy_config">Trusted proxies</a>
+      <a href="#hardening">Security rules</a>
+      <a href="#site_grade">Site networks</a>
       <a href="#troubleshoot">Troubleshooting</a>
       <a href="#faq">FAQ</a>
     </div>
@@ -217,7 +217,7 @@
 
  <p>During installation, you may have opened <code>homeassistant.local:8123</code> without configuring a local DNS server. mDNS is what resolves that name.</p>
 
- <p><strong>mDNS (Multicast DNS)</strong> asks every device on the local network whether it owns a requested name:</p>
+ <p><strong>mDNS (Multicast DNS)</strong> <strong>asks every device on the local network whether it owns a requested name</strong>:</p>
 
  <ol class="steps">
  <li>
@@ -265,7 +265,7 @@
  <tr><th>Your situation</th><th>Default port</th><th>How long is the URL?</th></tr>
  </thead>
  <tbody>
- <tr><td>Fresh Home Assistant OS installation after 2026.8</td><td><code>80</code></td><td><code>http://homeassistant.local</code> (no port number required)</td></tr>
+ <tr><td><strong>Fresh</strong> Home Assistant OS installation after 2026.8</td><td><code>80</code></td><td><code>http://homeassistant.local</code> (no port number required)</td></tr>
  <tr><td>The system that was running before 2026.8 was upgraded.</td><td>maintain <code>8123</code></td><td><code>http://homeassistant.local:8123</code></td></tr>
  <tr><td>Container/Docker installation</td><td><code>8123</code></td><td><code>http://192.168.1.10:8123</code></td></tr>
  </tbody>
@@ -832,7 +832,7 @@
 
  <details class="faq">
  <summary>You only want to check whether the lights at home are on outside. Do I really need to make it so complicated?</summary>
- <div class="body">No. Home Assistant Cloud provides managed remote access without changing router settings, and the documentation describes it as the simplest secure option for most people. The other paths serve readers who prefer a self-managed option, want to learn networking, or have a more complex network. Consider whether the subscription costs less than the time you would spend configuring and maintaining an alternative; its revenue supports Home Assistant development.</div>
+ <div class="body">No. Home Assistant Cloud provides managed remote access without changing router settings, and the documentation describes it as the simplest secure option for most people. The other paths serve readers who prefer a self-managed option, want to learn networking, or have a more complex network. <strong>Consider whether the subscription costs less than the time you would spend configuring and maintaining an alternative</strong>; its revenue supports Home Assistant development.</div>
  </details>
 
  <details class="faq">
@@ -898,7 +898,7 @@
     </footer>
  </main>
 </div>
-<script id="ui-strings" attempt="application/json">{"tocToggle":"Contents","tocExpand":"Expand chapter navigation","tocCollapse":"Collapse chapter navigation"}</script>
+<script id="ui-strings" type="application/json">{"tocToggle":"Contents","tocExpand":"Expand chapter navigation","tocCollapse":"Collapse chapter navigation"}</script>
 <script src="../assets/js/toc.js"></script>
 </body>
 </html>

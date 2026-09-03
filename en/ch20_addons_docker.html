@@ -33,12 +33,12 @@
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to working</div>
+    <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch20_addons_docker.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch20_addons_docker.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to working</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -68,16 +68,16 @@
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
       <a href="#why">Why this matters</a>
-      <a href="#install_types">Four installation methods</a>
-      <a href="#what_is_addon">What is Add-on</a>
-      <a href="#docker_basics">Docker plain-language version</a>
-      <a href="#steps">Install the first one</a>
-      <a href="#addon_page">Page tabs</a>
+      <a href="#install_types">Install types</a>
+      <a href="#what_is_addon">Add-on model</a>
+      <a href="#docker_basics">Docker basics</a>
+      <a href="#steps">Install an add-on</a>
+      <a href="#addon_page">Add-on tabs</a>
       <a href="#read_log">Read logs</a>
-      <a href="#must_have">Must-have outfit for tour</a>
-      <a href="#repositories">Add third-party repository</a>
-      <a href="#cloud_backup">Back up to the cloud</a>
-      <a href="#performance">Resources and Effectiveness</a>
+      <a href="#must_have">Useful add-ons</a>
+      <a href="#repositories">Repositories</a>
+      <a href="#cloud_backup">Remote backups</a>
+      <a href="#performance">Resource use</a>
       <a href="#troubleshoot">Troubleshooting</a>
       <a href="#faq">FAQ</a>
     </div>
@@ -445,7 +445,7 @@
  </tbody>
  </table>
 
- <div class="callout warn"><strong>Warning:</strong> The way Mosquitto accounts are set up is different from many old tutorials. <strong>Don't</strong> Create a user in the settings tab of Mosquitto. Home Assistant documentation clearly states that you need to do this. <strong>Settings → People → Users</strong> Also open a Home Assistant user specifically for MQTT, and then fill in this set of accounts and passwords on Zigbee2MQTT. After launching Mosquitto, go to <strong>Settings → Devices &amp; Services</strong>, MQTT will appear in the "Explored" section at the top, click to complete the setting.</div>
+ <div class="callout warn"><strong>Warning:</strong> The way Mosquitto accounts are set up is different from many old tutorials. <strong>Don't</strong> Create a user in the settings tab of Mosquitto. Home Assistant documentation clearly states that you need to do this. <strong>Settings → People → Users</strong> Also open a Home Assistant user specifically for MQTT, and then fill in this set of accounts and passwords on Zigbee2MQTT. After launching Mosquitto, go to <strong>Settings → Devices &amp; services</strong>, MQTT will appear in the "Explored" section at the top, click to complete the setting.</div>
 
  <div class="callout tip"><strong>Tip:</strong> The name of the shared folder of Samba share has also been renamed: old <code>addons</code> and <code>addon_configs</code> Call now <code>local_apps</code> and <code>app_configs</code>, the old name remains compatible. Do not worry when you see two ways of writing.</div>
  </section>
@@ -499,13 +499,13 @@
  </tr>
  <tr>
  <td><strong>Google Drive</strong></td>
- <td>Settings → Devices &amp; Services → Add integration → Google Drive</td>
+ <td>Settings → Devices &amp; services → Add integration → Google Drive</td>
  <td>Free (use your own Drive space)</td>
  <td>You have to go to the Google Developer Console to apply for a set of OAuth credentials. The steps are a bit long.</td>
  </tr>
  <tr>
  <td><strong>Microsoft OneDrive</strong></td>
- <td>Settings → Devices &amp; Services → Add integration → OneDrive</td>
+ <td>Settings → Devices &amp; services → Add integration → OneDrive</td>
  <td>Free (use your own OneDrive space)</td>
  <td>Requires a personal OneDrive account; needs to be enabled when using default credentials <code>my</code> with <code>cloud</code> Integrate</td>
  </tr>
@@ -523,7 +523,7 @@
  <ol class="steps">
  <li>
  <h3>Configure the destination</h3>
- <p>With a Nabu Casa subscription you do not have to do anything, it is already there. If not, go to <strong>Settings → Devices &amp; Services → Add integration</strong>, install Google Drive or OneDrive, follow the screen to authorize the account. To use a home NAS, take another route: <strong>Settings → System → Storage</strong> Add a network storage and mark it for backup.</p>
+ <p>With a Nabu Casa subscription you do not have to do anything, it is already there. If not, go to <strong>Settings → Devices &amp; services → Add integration</strong>, install Google Drive or OneDrive, follow the screen to authorize the account. To use a home NAS, take another route: <strong>Settings → System → Storage</strong> Add a network storage and mark it for backup.</p>
  </li>
  <li>
  <h3>Enable the destination for backups</h3>
@@ -608,7 +608,7 @@
  </li>
  <li>
  <h3>Zigbee2MQTT cannot find the USB adapter</h3>
- <p>The log commonly shows <code>No such file or directory</code>. Go to <strong>Settings → System → Hardware</strong>, then select <strong>Three-dot menu → All Hardware</strong>. Find the connected adapter and copy its path into the Zigbee2MQTT settings. <strong>Do not copy a path from an online tutorial</strong>; every host is different. Prefer the stable long path beginning with <code>/dev/serial/by-id/</code> instead of a short path such as <code>/dev/ttyUSB0</code>. A short path can change after devices are reconnected or the host restarts, while the by-id path identifies the adapter itself.</p>
+ <p>The log commonly shows <code>No such file or directory</code>. Go to <strong>Settings → System → Hardware</strong>, then select <strong>Three-dot menu → All Hardware</strong>. Find the connected adapter and copy its path into the Zigbee2MQTT settings. <strong>Do not copy a path from an online tutorial</strong>; every host is different. Prefer <strong>the stable long path beginning with <code>/dev/serial/by-id/</code></strong> instead of a short path such as <code>/dev/ttyUSB0</code>. A short path can change after devices are reconnected or the host restarts, while the by-id path identifies the adapter itself.</p>
  </li>
  </ol>
  </section>
@@ -633,7 +633,7 @@
 
  <details class="faq">
  <summary>The backup has been uploaded to Google Drive. Do I still want to keep the local copy?</summary>
- <div class="body">Yes. The copies serve different purposes: <strong>a local copy provides a fast recovery from a configuration mistake</strong>, while <strong>a remote copy remains available if the host fails</strong>. Select multiple backup locations rather than choosing only one. Set an appropriate retention policy so local backups do not fill the storage drive.</div>
+ <div class="body">Yes. The copies serve different purposes: <strong>a local copy provides a fast recovery from a configuration mistake</strong>, while <strong>a remote copy remains available if the host fails</strong>. Select multiple backup locations rather than choosing only one. Set an appropriate <strong>retention policy</strong> so local backups do not fill the storage drive.</div>
  </details>
 
  <details class="faq">

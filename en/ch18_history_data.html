@@ -1,44 +1,44 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 18 · History, Recorder, and data export · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Understand History, Logbook, Recorder retention, and long-term statistics; export CSV data and evaluate MariaDB, InfluxDB, and Grafana options.">
-  <meta name="author" content="WoowTech">
-  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch18_history_data.html">
-  <meta name="robots" content="noindex, follow">
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Home Assistant Onboarding Guide">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:locale:alternate" content="zh_TW">
-  <meta property="og:title" content="Chapter 18 · History, Recorder, and data export · Home Assistant Onboarding Guide">
-  <meta property="og:description" content="Understand History, Logbook, Recorder retention, and long-term statistics; export CSV data and evaluate MariaDB, InfluxDB, and Grafana options.">
-  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch18_history_data.html">
-  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch18/01_history.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Chapter 18 · History, Recorder, and data export · Home Assistant Onboarding Guide">
-  <meta name="twitter:description" content="Understand History, Logbook, Recorder retention, and long-term statistics; export CSV data and evaluate MariaDB, InfluxDB, and Grafana options.">
-  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch18/01_history.png">
-  <meta name="theme-color" content="#6183FC">
-  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;family=Yellowtail&amp;display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/i18n.css">
+  <meta name="description" content="Understand History, Logbook, Recorder retention, and long-term statistics; export CSV data and evaluate MariaDB, InfluxDB, and Grafana options." />
+  <meta name="author" content="WoowTech" />
+  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch18_history_data.html" />
+  <meta name="robots" content="noindex, follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:title" content="Chapter 18 · History, Recorder, and data export · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Understand History, Logbook, Recorder retention, and long-term statistics; export CSV data and evaluate MariaDB, InfluxDB, and Grafana options." />
+  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch18_history_data.html" />
+  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch18/01_history.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chapter 18 · History, Recorder, and data export · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Understand History, Logbook, Recorder retention, and long-term statistics; export CSV data and evaluate MariaDB, InfluxDB, and Grafana options." />
+  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch18/01_history.png" />
+  <meta name="theme-color" content="#6183FC" />
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/i18n.css" />
 </head>
 <body>
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to working</div>
+    <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch18_history_data.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch18_history_data.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to working</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -67,17 +67,17 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why this matters</a>
+      <a href="#why">Why history</a>
       <a href="#history_vs_activity">History vs Activity</a>
       <a href="#recorder_concept">What is Recorder</a>
       <a href="#statistics">long term statistics</a>
       <a href="#export_steps">Download CSV</a>
       <a href="#dev_statistics">Statistics debugging page</a>
       <a href="#slim_recorder">Streamline record scope</a>
-      <a href="#purge">Clean up and lose weight</a>
+      <a href="#purge">Database cleanup</a>
       <a href="#backup_db">backup and rescue</a>
       <a href="#mariadb">Change to MariaDB</a>
-      <a href="#influx_grafana">Long term storage and drawing</a>
+      <a href="#influx_grafana">Long-term storage</a>
       <a href="#sql_sensor">SQL integration</a>
       <a href="#troubleshoot">Common problems</a>
       <a href="#faq">FAQ</a>
@@ -97,7 +97,7 @@
  <p class="lead">Home Assistant records state changes in the background. Learn where that history is stored, how long it is retained, how to export it to CSV, and how to keep the database from filling your storage.</p>
  </div>
 
- <section id="why" data-nav="Why should we learn">
+ <section id="why" data-nav="Why history">
  <h2 data-icon="why">Why this matters</h2>
 
  <p>Once your devices and automations are running, you will almost certainly encounter two situations:</p>
@@ -378,7 +378,7 @@
  <div class="callout">
 <strong>Concept:</strong> Home Assistant creates short-term statistics every 5 minutes, then compiles them into hourly long-term statistics. Short-term data is purged regularly; hourly long-term statistics remain.</div>
 
- <p>This also explains why older History charts can look smoother and lose brief peaks. <strong>Within the detailed-history window, the chart us</strong>es full-resolution Recorder data; beyond it, the chart uses hourly long-term statistics. An hourly average will not exactly match any single reading. Home Assistant displays higher-resolution lines in a darker shade.</p>
+ <p>This also explains why older History charts can look smoother and lose brief peaks. <strong>Within the detailed-history window, the chart uses</strong> full-resolution Recorder data; beyond it, the chart uses hourly long-term statistics. An hourly average will not exactly match any single reading. Home Assistant displays higher-resolution lines in a darker shade.</p>
 
  <div class="callout tip">
 <strong>Tip:</strong> For values you need to retain for years, such as water or gas readings, do not simply increase <code>purge_keep_days</code>. Confirm that each entity has the correct state class and unit so Home Assistant can generate long-term statistics.</div>
@@ -575,7 +575,7 @@
     entity_globs:
       - sensor.weather_*</code></pre>
 
- <p>You can combine the two: use <code>include</code> for a broad set, then <code>exclude</code> for exceptions. The complete precedence rules are in the Home Assistant documentation. In general, more specific rules take priority: e<strong></strong>xplicit <code>entities</code> outrank globs, and globs outrank domains.</p>
+ <p>You can combine the two: use <code>include</code> for a broad set, then <code>exclude</code> for exceptions. The complete precedence rules are in the Home Assistant documentation. In general, more specific rules take priority: <strong>in precedence order, </strong>explicit <code>entities</code> outrank globs, and globs outrank domains.</p>
 
  <h3>Four filter conditions</h3>
 
@@ -663,7 +663,7 @@
 <strong>Danger:</strong> Excluding an entity removes it from History, Activity, the Energy dashboard, and future long-term statistics. Do not exclude energy meters used by the Energy dashboard. <strong>M</strong>issing energy data cannot be reconstructed later.</div>
  </section>
 
- <section id="purge" data-nav="Clean up and lose weight">
+ <section id="purge" data-nav="Database cleanup">
  <h2 data-icon="todo">Purge stored data safely</h2>
 
  <p>Filtering reduces future growth but does not shrink existing data. Recorder provides these actions (formerly called services):</p>
@@ -869,7 +869,7 @@ postgresql://user:password@SERVER_IP/DB_NAME</code></pre>
 <strong>Concept:</strong> MariaDB can improve write and query performance for larger datasets, but it does not change retention automatically. <code>purge_keep_days</code> still controls detailed history. For several years of high-resolution time-series data, consider the InfluxDB approach in the next section.</div>
  </section>
 
- <section id="influx_grafana" data-nav="Long term storage and drawing">
+ <section id="influx_grafana" data-nav="Long-term storage">
  <h2 data-icon="advanced">Advanced 2: InfluxDB and Grafana for long-term data</h2>
 
  <p>This architecture separates control, time-series storage, and visualization:</p>
@@ -929,7 +929,7 @@ postgresql://user:password@SERVER_IP/DB_NAME</code></pre>
 
  <ol class="steps">
  <li>
- <h3>Settings → Devices &amp; Services → Add integration</h3>
+ <h3>Settings → Devices &amp; services → Add integration</h3>
  <p>Select the button in the lower-right corner and search for SQL.</p>
  </li>
  <li>
@@ -987,7 +987,7 @@ mode: single</code></pre>
  </li>
  <li>
  <h3>The memory card is broken and the system cannot be started.</h3>
- <p>Recorder writes at each commit_interval, and sustained database growth places a heavy write load on consumer microSD cards. There is no universal lifespan figure. Reduce unnecessary writes by increasing <code><code>commit_interval</code></code> cautiously and excluding noisy entities; for long-term reliability, migrate the installation to suitable SSD or high-endurance storage.</p>
+ <p>Recorder writes at each <code>commit_interval</code>, and sustained database growth places a heavy write load on consumer microSD cards. There is no universal lifespan figure. Reduce unnecessary writes by increasing <code>commit_interval</code> cautiously and excluding noisy entities; for long-term reliability, migrate the installation to suitable SSD or high-endurance storage.</p>
  </li>
  <li>
  <h3>After rebooting, all the history is gone.</h3>
@@ -1036,7 +1036,7 @@ mode: single</code></pre>
 
  <details class="faq">
  <summary>After switching to MariaDB, will the previous history be transferred with it?</summary>
- <div class="body">No. Home Assistant warns that changing Recorder databases can make existing history unavailable, and <strong>database migration is not officially supported. Unofficial migr</strong>ation scripts are unsupported and can damage data.<br><br>Switch early i<strong>f you intend to change databases. Before changin</strong>g a mature installation, export important History data to CSV and preserve a tested backup. Treat the new database as a new history baseline.</div>
+ <div class="body">No. Home Assistant warns that changing Recorder databases can make existing history unavailable, and <strong>database migration is not officially supported</strong>. Unofficial migration scripts are unsupported and can damage data.<br><br>Switch early <strong>if you intend to change databases. Before changing</strong> a mature installation, export important History data to CSV and preserve a tested backup. Treat the new database as a new history baseline.</div>
  </details>
 
  <details class="faq">

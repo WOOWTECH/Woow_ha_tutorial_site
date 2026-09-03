@@ -1,44 +1,44 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 17 · Energy dashboard and ESG practices · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Select suitable sensors, configure the Energy dashboard, integrate power into energy, track local tariffs and costs, and analyze efficiency improvements.">
-  <meta name="author" content="WoowTech">
-  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch17_energy.html">
-  <meta name="robots" content="noindex, follow">
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Home Assistant Onboarding Guide">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:locale:alternate" content="zh_TW">
-  <meta property="og:title" content="Chapter 17 · Energy dashboard and ESG practices · Home Assistant Onboarding Guide">
-  <meta property="og:description" content="Select suitable sensors, configure the Energy dashboard, integrate power into energy, track local tariffs and costs, and analyze efficiency improvements.">
-  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch17_energy.html">
-  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Chapter 17 · Energy dashboard and ESG practices · Home Assistant Onboarding Guide">
-  <meta name="twitter:description" content="Select suitable sensors, configure the Energy dashboard, integrate power into energy, track local tariffs and costs, and analyze efficiency improvements.">
-  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png">
-  <meta name="theme-color" content="#6183FC">
-  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;family=Yellowtail&amp;display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/i18n.css">
+  <meta name="description" content="Select suitable sensors, configure the Energy dashboard, integrate power into energy, track local tariffs and costs, and analyze efficiency improvements." />
+  <meta name="author" content="WoowTech" />
+  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch17_energy.html" />
+  <meta name="robots" content="noindex, follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:title" content="Chapter 17 · Energy dashboard and ESG practices · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Select suitable sensors, configure the Energy dashboard, integrate power into energy, track local tariffs and costs, and analyze efficiency improvements." />
+  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch17_energy.html" />
+  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chapter 17 · Energy dashboard and ESG practices · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Select suitable sensors, configure the Energy dashboard, integrate power into energy, track local tariffs and costs, and analyze efficiency improvements." />
+  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
+  <meta name="theme-color" content="#6183FC" />
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/i18n.css" />
 </head>
 <body>
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to working</div>
+    <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch17_energy.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch17_energy.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to working</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -67,14 +67,14 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why should we learn</a>
-      <a href="#power_vs_energy">Power and electricity usage</a>
+      <a href="#why">Why energy</a>
+      <a href="#power_vs_energy">Power vs energy</a>
       <a href="#sensor_rules">Qualified sensor</a>
-      <a href="#where_data">Where does the data come from?</a>
+      <a href="#where_data">Data sources</a>
       <a href="#steps">Hands-on setup</a>
       <a href="#integral">W becomes kWh</a>
-      <a href="#utility_meter">cut sun and moon cycle</a>
-      <a href="#cost">Electricity prices and costs</a>
+      <a href="#utility_meter">Billing cycles</a>
+      <a href="#cost">Energy costs</a>
       <a href="#gas_water">gas and water</a>
       <a href="#esg">ESG narrative</a>
       <a href="#advanced">Advanced gameplay</a>
@@ -96,7 +96,7 @@
  <p class="lead">Turn power and energy readings into understandable charts. Select suitable sensors, configure the Energy dashboard, convert watts to kilowatt-hours, track local costs, and produce an evidence-based efficiency report.</p>
  </div>
 
- <section id="why" data-nav="Why should we learn">
+ <section id="why" data-nav="Why energy">
  <h2 data-icon="why">Why this matters: replace guesses with measurements</h2>
 
  <p>A utility bill gives you a total, but it does not show how much each appliance contributed. Without measurements, “Why is the bill so high?” remains a guess.</p>
@@ -122,7 +122,7 @@
  <p>This chapter uses helpers from <a href="appendix_scenes_helpers_groups.html">Appendix B</a> and entity naming from <a href="ch4_naming_labels.html">Chapter 4</a>. See <a href="ch11_devices.html">Chapter 11</a> for adding devices and <a href="ch12_domains.html">Chapter 12</a> for the <code>sensor</code> domain.</p>
  </section>
 
- <section id="power_vs_energy" data-nav="Power and electricity usage">
+ <section id="power_vs_energy" data-nav="Power vs energy">
  <h2 data-icon="concept">Power (W) and energy (kWh) are different</h2>
 
  <p>This distinction is essential: <strong>power is like speed; energy is like distance</strong>.</p>
@@ -248,7 +248,7 @@
 <strong>Warning:</strong> This area was named Developer tools and appeared in the sidebar before moving under Settings. In <strong></strong>Home Assistant 2026.8 it became Tools. Older tutorials refer to the same seven tabs: YAML, States, Actions, Templates, Events, Statistics, and Assist.</div>
  </section>
 
- <section id="where_data" data-nav="Where does the data come from?">
+ <section id="where_data" data-nav="Data sources">
  <h2 data-icon="hardware">Five sources of energy data</h2>
 
  <p>Energy data must come from a meter or sensor. These are common sources, from simpler to more involved.</p>
@@ -456,7 +456,7 @@
 <strong>Tip:</strong> An Integral sensor has <code>state_class</code> set to <code>total</code>, not <code>total_increasing</code>. Both <code>total</code> and <code>total_increasing</code> are valid for Energy dashboard energy sources; do not change it merely because it is not <code>total_increasing</code>. It also derives <code>device_class</code> by changing the source class from <code>power</code> to <code>energy</code>.</div>
  </section>
 
- <section id="utility_meter" data-nav="cut sun and moon cycle">
+ <section id="utility_meter" data-nav="Billing cycles">
  <h2 data-icon="history">Utility Meter: divide cumulative totals into billing cycles</h2>
 
  <p>An energy sensor may increase continuously from installation, while reports need totals for <strong>today</strong>, <strong>this month</strong>, or another cycle. The <strong>Utility Meter</strong> helper creates cycle-based totals that reset automatically.</p>
@@ -466,7 +466,7 @@
  <ol class="steps">
  <li>
  <h3>Open the helper again</h3>
- <p><strong>Settings → Devices &amp; Services → Helpers → Create helper → Utility Meter</strong>.</p>
+ <p><strong>Settings → Devices &amp; services → Helpers → Create helper → Utility Meter</strong>.</p>
  </li>
  <li>
  <h3>Select input sensor</h3>
@@ -533,7 +533,7 @@
  <p>Utility Meter values are <strong>restored across restarts</strong>; restarting Home Assistant does not erase a monthly total.</p>
  </section>
 
- <section id="cost" data-nav="Electricity prices and costs">
+ <section id="cost" data-nav="Energy costs">
  <h2 data-icon="cost">Electricity prices and cost tracking</h2>
 
  <p>Multiply kWh by the applicable tariff to estimate cost. A statement such as “standby loads cost approximately [local-currency amount] per year” may be more actionable than “standby loads used 200 kWh,” provided that the tariff and calculation period are documented.</p>
@@ -698,7 +698,7 @@ mode: single</code></pre>
  <section id="esg" data-nav="ESG narrative">
  <h2 data-icon="records">Turn energy data into an evidence-based report</h2>
 
- <p>A credible report needs both measured data and a comparison baseline. <strong>Us</strong>e this structure to turn dashboard charts into a concise account of what changed.</p>
+ <p>A credible report needs both measured data and a comparison baseline. <strong>Use</strong> this structure to turn dashboard charts into a concise account of what changed.</p>
 
  <h3>Step 1: Establish a baseline (Baseline)</h3>
 
@@ -875,7 +875,7 @@ mode: single</code></pre>
  <h3>One day, electricity consumption suddenly surged to several thousand kilowatt hours.</h3>
  <p>Typical symptoms are that after the source sensor is reset to zero, it is regarded as "continuous accumulation", or <code>state_class</code> selected <code>total</code> But the device actually resets to zero, and HA counts "jumping from 0 back to a big number" as a huge increment.<br>
  <strong>Treat the root cause</strong>: put the sensor <code>state_class</code> Change to <code>total_increasing</code>; If using Utility Meter, make sure "Periodic Zeroing" is turned on.<br>
- <strong>Treat the symptoms</strong>: to <strong>Settings → Tools → Statistics</strong>, find the entity, use the date and time field to search for the exploded data point, and directly change the value back to a reasonable number. This page is where the Home Assistant UI fixes statistics. When there is an issue with the entity, a "Fix issue" link will appear next to it.</p>
+ <strong>Correct the bad statistic</strong>: Open <strong>Settings → Tools → Statistics</strong>, find the entity, use the date and time field to search for the exploded data point, and directly change the value back to a reasonable number. This page is where the Home Assistant UI fixes statistics. When there is an issue with the entity, a "Fix issue" link will appear next to it.</p>
  </li>
  <li>
  <h3>Set it up but the dashboard remains blank</h3>

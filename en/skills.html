@@ -380,36 +380,39 @@ https://github.com/hesreallyhim/awesome-claude-code</code></pre>
  <h2 data-icon="what">SKILL.md format at a glance</h2>
  <p>The frozen example below shows a minimal Skill. See <a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a> for the source specification. A proposed editorial correction is recorded separately because code blocks are not edited directly.</p>
  <pre class="code-block"><code>washer-notify/
-├── SKILL.md          ← The only required file
-└── references/       ← Optional supporting files (read by the AI only when needed)
+├── SKILL.md          ← Required
+└── references/       ← Optional supporting files (load only when needed)
     └── ha-service-map.md
 
-# SKILL.md content
+# SKILL.md
 ---
 name: washer-notify
 description: |
-  Use this skill when the user asks whether the washing machine has finished,
-  whether it is time to collect the laundry, or requests an automated laundry
-  reminder. Read sensor.washer_power through the HA API to determine whether
-  the machine is running, idle, or finished.
+  Use this Skill when the user asks whether the washing machine has finished,
+  whether it is time to collect the laundry, or how to automate a laundry
+  reminder. Read sensor.washer_power through the Home Assistant API to
+  determine whether the machine is running, idle, or finished.
 license: MIT
 compatibility:
   agents: [claude-code, opencode, openclaw, hermes]
   mcp: [ha-mcp-woow, home-assistant/mcp-server]
-allowed-tools: [ha_get_state, ha_get_history, notify_send]
+allowed-tools: [ha_get_state, ha_get_history, ha_config_set_automation, notify_send]
 ---
 
-# Laundry reminder skill
+# Laundry reminder Skill
 
-When the user mentions the washing machine, first read the past 15 minutes of
-history for sensor.washer_power. If power falls from &gt;100W to &lt;5W and remains
-there for at least 3 minutes, reply that the cycle is complete. If the machine
-is still running, estimate the time remaining from an average 45-minute cycle.
+When the user asks about the washing machine, first read the past 15 minutes of
+history for sensor.washer_power. If power fell from &gt;100W to &lt;5W and remained
+there for at least 3 minutes, report that the cycle is complete. If the machine
+is still running, estimate the remaining time using the stated 45-minute
+average and clearly label the result as an estimate. Respond in English.
 
-If the user requests an automatic reminder, use ha_config_set_automation to create one:
-trigger: sensor.washer_power &lt; 5W for 3 minutes
-action: notify.mobile_app_myphone
-Show the user a YAML summary and obtain approval before applying it.</code></pre>
+If the user requests an automatic reminder, use ha_config_set_automation to
+create an automation based on this logic:
+- Trigger when sensor.washer_power remains below 5W for 3 minutes.
+- Send a notification through notify.mobile_app_myphone.
+Use entity_id references and current Home Assistant automation syntax. Show the
+user a YAML summary and obtain approval before applying it. Respond in English.</code></pre>
  <table class="data-table">
  <thead>
  <tr><th>Field</th><th>Required</th><th>Description</th></tr>

@@ -1,44 +1,44 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 15 · Communication protocols · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices.">
-  <meta name="author" content="WoowTech">
-  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch15_protocols.html">
-  <meta name="robots" content="noindex, follow">
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Home Assistant Onboarding Guide">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:locale:alternate" content="zh_TW">
-  <meta property="og:title" content="Chapter 15 · Communication protocols · Home Assistant Onboarding Guide">
-  <meta property="og:description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices.">
-  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch15_protocols.html">
-  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Chapter 15 · Communication protocols · Home Assistant Onboarding Guide">
-  <meta name="twitter:description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices.">
-  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png">
-  <meta name="theme-color" content="#6183FC">
-  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;family=Yellowtail&amp;display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/i18n.css">
+  <meta name="description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices." />
+  <meta name="author" content="WoowTech" />
+  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch15_protocols.html" />
+  <meta name="robots" content="noindex, follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:title" content="Chapter 15 · Communication protocols · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices." />
+  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch15_protocols.html" />
+  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chapter 15 · Communication protocols · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices." />
+  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
+  <meta name="theme-color" content="#6183FC" />
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/i18n.css" />
 </head>
 <body>
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to working</div>
+    <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch15_protocols.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch15_protocols.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to working</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -67,10 +67,10 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why this matters</a>
-      <a href="#layers">What does the agreement govern?</a>
+      <a href="#why">Why protocols</a>
+      <a href="#layers">Protocol roles</a>
       <a href="#master">master lookup table</a>
-      <a href="#steps">Take stock of your family agreements</a>
+      <a href="#steps">Protocol inventory</a>
       <a href="#zigbee">Zigbee in depth</a>
       <a href="#zha_z2m">ZHA or Z2M</a>
       <a href="#zwave">Z-Wave</a>
@@ -78,7 +78,7 @@
       <a href="#mqtt">MQTT and HTTP</a>
       <a href="#bluetooth">Bluetooth and Proxy</a>
       <a href="#knx_modbus">KNX and Modbus</a>
-      <a href="#buying">Five checks before buying</a>
+      <a href="#buying">Buying checks</a>
       <a href="#troubleshoot">Common problems</a>
       <a href="#faq">FAQ</a>
     </div>
@@ -97,7 +97,7 @@
  <p class="lead">Compare Wi-Fi, Zigbee, Z-Wave, Thread, Matter, Bluetooth, KNX, Modbus, and MQTT before you buy devices. You will leave with a practical protocol map and a pre-purchase checklist.</p>
  </div>
 
- <section id="why" data-nav="Why should we learn">
+ <section id="why" data-nav="Why protocols">
  <h2 data-icon="why">Why this matters</h2>
  <p><a href="ch14_integrations.html">Chapter 14</a> explained how to add integrations. This chapter looks beneath that software layer: how does a command travel from Home Assistant to a light?</p>
  <p>The choice matters for three practical reasons:</p>
@@ -114,7 +114,7 @@
  <p>Use this chapter to assess Home Assistant compatibility from a product page, choose a primary protocol, and identify the correct layer when diagnosing an offline device.</p>
  </section>
 
- <section id="layers" data-nav="What does the agreement govern?">
+ <section id="layers" data-nav="Protocol roles">
  <h2 data-icon="concept">Separate a protocol stack into three layers</h2>
  <p>Confusion often comes from combining three different layers. Separate the transport, data format, and Home Assistant connection:</p>
 
@@ -327,7 +327,7 @@
 <strong>Warning:</strong> The same brand often sells both Wi-Fi and Zigbee versions, which look almost the same and differ by one or two letters in the model number. Before placing an order, read the entire product title, not just the display.</div>
  </section>
 
- <section id="steps" data-nav="Take stock of your family agreements">
+ <section id="steps" data-nav="Protocol inventory">
  <h2 data-icon="steps">Hands-on: inventory the protocols in your home</h2>
  <p>Before buying something new, figure out what you already have. These five steps can be completed in about ten minutes.</p>
 
@@ -426,7 +426,7 @@
 
  <section id="zha_z2m" data-nav="ZHA or Z2M">
  <h2 data-icon="compare">ZHA or Zigbee2MQTT?</h2>
- <p>With the same coordinator and the same batch of Zigbee devices, you have two ways to access Home Assistant. This is the most common multiple-choice question that newbies struggle with.</p>
+ <p>With the same coordinator and the same batch of Zigbee devices, you have two ways to access Home Assistant. This is a common decision for new installations.</p>
 
  <table class="data-table">
  <thead>
@@ -493,7 +493,7 @@
 
  <h3>Find out the frequency band before buying</h3>
  <div class="callout danger">
-<strong>D</strong>anger: Z-Wave uses different sub-GHz frequency plans by region. Devices and <strong>coordinators for different regions are not inte</strong>roperable and may not be legal to operate where you live. Before importing equipment, verify that every component matches the locally authorized region and frequency.</div>
+<strong>Danger</strong>: Z-Wave uses different sub-GHz frequency plans by region. Devices and <strong>coordinators for different regions are not interoperable</strong> and may not be legal to operate where you live. Before importing equipment, verify that every component matches the locally authorized region and frequency.</div>
 
  <h3>How to run in Home Assistant</h3>
  <p>Home Assistant’s Z-Wave integration uses Z-Wave JS. Manage it under <strong>Settings &gt; Z-Wave</strong> or <strong>Settings &gt; Devices &amp; Services &gt; Z-Wave</strong>. On Home Assistant OS, Z-Wave JS runs as an App, the name used for Add-ons since 2026.2. <strong>Se</strong>e <a href="appendix_hacs_addons.html">Appendix A</a>.</p>
@@ -546,7 +546,7 @@
  <p>The good news is: If you already have a HomePod mini or Nest Hub at home, you actually already have a border router and don’t need to buy another one. To check the Thread network status at home, the path is <strong>Settings &gt; Devices &amp; Services &gt; Thread &gt; Settings</strong>.</p>
 
  <h3>Add Matter devices to Home Assistant</h3>
- <p>P<strong>air Matter devices through the Home Assistant Companion App, not a desktop browser.</strong> See <a href="ch7_notifications.html">Chapter 7</a> for Companion App installation.</p>
+ <p><strong>Pair Matter devices through the Home Assistant Companion App, not a desktop browser.</strong> See <a href="ch7_notifications.html">Chapter 7</a> for Companion App installation.</p>
 
  <ol class="steps">
  <li>
@@ -779,7 +779,7 @@ bluetooth_proxy:
 <strong>Danger:</strong> Modbus supports writes. Writing an incorrect register can change safety-critical settings, stop equipment, or create hazardous operation. Start with read-only <code>sensors:</code>. Before any write, obtain the authoritative register map, confirm address offsets and data types, and obtain approval from the equipment owner or qualified controls professional.</div>
  </section>
 
- <section id="buying" data-nav="Five checks before buying">
+ <section id="buying" data-nav="Buying checks">
  <h2 data-icon="cost">Five checks before buying a device</h2>
  <p>This section is the most practical part of the entire chapter. Save it as a bookmark and run it every time before placing an order.</p>
 
@@ -915,7 +915,7 @@ bluetooth_proxy:
 
  <details class="faq">
  <summary>Do I have to use a Home Assistant-branded Zigbee coordinator?</summary>
- <div class="body">It doesn’t have to be official. Home Assistant's ZHA document has a clear list of recommendations, including Silicon Labs' EmberZNet series (such as Connect ZBT-2, ZBT-1, SONOFF ZBDongle-E, SMLIGHT SLZB-07), Texas Instruments' CC2652/CC1352 series, and ConBee III. All models on the list can be purchased with confidence. What to avoid are older models that are listed as no longer recommended in the documentation, such as ConBee II, RaspBee II, SONOFF ZBBridge, HUSBZB-1, ZiGate series, etc. The ones that are especially cheap on online auctions are often these old models.</div>
+ <div class="body">It doesn’t have to be official. Home Assistant's ZHA document has a clear list of recommendations, including Silicon Labs' EmberZNet series (such as Connect ZBT-2, ZBT-1, SONOFF ZBDongle-E, SMLIGHT SLZB-07), Texas Instruments' CC2652/CC1352 series, and ConBee III. Use a model from the current recommendation list, then confirm its firmware and host compatibility. What to avoid are older models that are listed as no longer recommended in the documentation, such as ConBee II, RaspBee II, SONOFF ZBBridge, HUSBZB-1, ZiGate series, etc. Very inexpensive secondhand listings often contain these older models.</div>
  </details>
 
  <details class="faq">

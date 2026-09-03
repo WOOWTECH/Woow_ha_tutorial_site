@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Appendix B · Scenes, helpers, and groups · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Learn how scenes, ten types of helper, and groups work together to build understandable, maintainable smart-home logic." />
+  <meta name="description" content="Learn how scenes, 10 types of helper, and groups work together as reusable building blocks for smart-home logic." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/appendix_scenes_helpers_groups.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Appendix B · Scenes, helpers, and groups · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Learn how scenes, ten types of helper, and groups work together to build understandable, maintainable smart-home logic." />
+  <meta property="og:description" content="Learn how scenes, 10 types of helper, and groups work together as reusable building blocks for smart-home logic." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/appendix_scenes_helpers_groups.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/appx_b/01_scene_create.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Appendix B · Scenes, helpers, and groups · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Learn how scenes, ten types of helper, and groups work together to build understandable, maintainable smart-home logic." />
+  <meta name="twitter:description" content="Learn how scenes, 10 types of helper, and groups work together as reusable building blocks for smart-home logic." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/appx_b/01_scene_create.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -33,12 +33,12 @@
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to working</div>
+    <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../appendix_scenes_helpers_groups.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="appendix_scenes_helpers_groups.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to working</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -69,7 +69,7 @@
       <h2>This chapter</h2>
       <a href="#scenes">Scenes</a>
       <a href="#helpers">Helpers</a>
-      <a href="#helper_types">Helper type quick check</a>
+      <a href="#helper_types">Helper types</a>
       <a href="#groups">Groups</a>
       <a href="#combined">Combined example</a>
       <a href="#faq">FAQ</a>
@@ -101,7 +101,7 @@
  <p>For example: main light 40%, atmosphere light purple, air conditioner 26°C, curtains 30%, and Bluetooth on the speaker.</p>
  </li>
  <li>
- <h3>Settings → Automations &amp; Scenes → Scenes tab → + Add new scene</h3>
+ <h3>Settings → Automations &amp; scenes → Scenes tab → + Add new scene</h3>
  <p>Select "Create from current state" → select which entities to include → save. HA treats the current value as a scene snapshot.</p>
  <figure class="shot">
  <img src="../assets/screenshots/appx_b/01_scene_create.png" alt="Create a scene" />
@@ -137,7 +137,7 @@ data:
  <h2 data-icon="concept">Helpers: give automations memory</h2>
  <p>A helper is a virtual entity built into HA - it has no physical hardware, but behaves like an entity, has state, can be displayed by the dashboard, and can be used as a trigger/condition.</p>
  <p><strong>Why is it needed?</strong> An automation does not retain shared state by itself: each trigger is independent. If you want to share state across automations (e.g. "Is guest mode on?"), you need helpers as shared variables.</p>
- <p>Path: <strong>Settings → Devices &amp; Services → Helpers</strong> Tab → "+ Create helpers".</p>
+ <p>Path: <strong>Settings → Devices &amp; services → Helpers</strong> Tab → "+ Create helpers".</p>
  <figure class="shot">
  <img src="../assets/screenshots/appx_b/02_helpers_page.png" alt="Helpers page" />
  <figcaption><strong>Figure B-2</strong> Helper page - just select the type and fill in the name to create it, quickly.</figcaption>
@@ -219,7 +219,7 @@ data:
  <li><strong>Person group</strong>: <code>group.family</code> = 4 persons, "Is anyone at home" = home</li>
  </ul>
  <h3>How to build</h3>
- <p>Settings → Devices &amp; Services → Helpers → "+ Create helper" → Select "Group" → Select the type (Light / Switch / Cover / Binary sensor / Media player / Fan / Lock / Sensor) → Select members.</p>
+ <p>Settings → Devices &amp; services → Helpers → "+ Create helper" → Select "Group" → Select the type (Light / Switch / Cover / Binary sensor / Media player / Fan / Lock / Sensor) → Select members.</p>
  <figure class="shot">
  <img src="../assets/screenshots/appx_b/03_group_create.png" alt="Create group" />
  <figcaption><strong>Figure B-3</strong> Create a group—select multiple members after selecting the type, which is faster than YAML.</figcaption>

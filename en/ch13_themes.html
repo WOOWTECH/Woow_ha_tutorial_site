@@ -1,44 +1,44 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 13 · Themes and appearance · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Configure light and dark modes, install community themes through HACS, apply themes per user or view, and customize theme variables and branding.">
-  <meta name="author" content="WoowTech">
-  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch13_themes.html">
-  <meta name="robots" content="noindex, follow">
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Home Assistant Onboarding Guide">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:locale:alternate" content="zh_TW">
-  <meta property="og:title" content="Chapter 13 · Themes and appearance · Home Assistant Onboarding Guide">
-  <meta property="og:description" content="Configure light and dark modes, install community themes through HACS, apply themes per user or view, and customize theme variables and branding.">
-  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch13_themes.html">
-  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch13/01_profile_theme.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Chapter 13 · Themes and appearance · Home Assistant Onboarding Guide">
-  <meta name="twitter:description" content="Configure light and dark modes, install community themes through HACS, apply themes per user or view, and customize theme variables and branding.">
-  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch13/01_profile_theme.png">
-  <meta name="theme-color" content="#6183FC">
-  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;family=Yellowtail&amp;display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/i18n.css">
+  <meta name="description" content="Configure light and dark modes, install community themes through HACS, apply themes per user or view, and customize theme variables and branding." />
+  <meta name="author" content="WoowTech" />
+  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch13_themes.html" />
+  <meta name="robots" content="noindex, follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:title" content="Chapter 13 · Themes and appearance · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Configure light and dark modes, install community themes through HACS, apply themes per user or view, and customize theme variables and branding." />
+  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch13_themes.html" />
+  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch13/01_profile_theme.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chapter 13 · Themes and appearance · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Configure light and dark modes, install community themes through HACS, apply themes per user or view, and customize theme variables and branding." />
+  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch13/01_profile_theme.png" />
+  <meta name="theme-color" content="#6183FC" />
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/i18n.css" />
 </head>
 <body>
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to working</div>
+    <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch13_themes.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch13_themes.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to working</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -67,18 +67,18 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why this matters</a>
+      <a href="#why">Why themes</a>
       <a href="#concept">Theme basics</a>
-      <a href="#where">Theme settings</a>
-      <a href="#routes">Choose a style</a>
+      <a href="#where">Apply themes</a>
+      <a href="#routes">two style lines</a>
       <a href="#compare">Built-in and community</a>
-      <a href="#steps">Install a theme</a>
-      <a href="#handwrite">Write your own theme</a>
-      <a href="#scope">Views and defaults</a>
+      <a href="#steps">DIY theme</a>
+      <a href="#handwrite">Custom themes</a>
+      <a href="#scope">Automatic switching</a>
       <a href="#cardmod">Single card fine-tuning</a>
-      <a href="#rebrand">Change name and icon</a>
+      <a href="#rebrand">Brand details</a>
       <a href="#lang">Language and fonts</a>
-      <a href="#a11y">Accessibility</a>
+      <a href="#a11y">Contrast and Accessibility</a>
       <a href="#troubleshoot">Common problems</a>
       <a href="#faq">FAQ</a>
     </div>
@@ -97,7 +97,7 @@
  <p class="lead">Home Assistant can look like a control room or a clean, quiet dashboard. Configure light and dark modes, install a community theme, customize theme YAML and individual views, and keep text readable on every display.</p>
  </div>
 
- <section id="why" data-nav="Why should we learn">
+ <section id="why" data-nav="Why themes">
  <h2 data-icon="why">Why this matters</h2>
  <p>After the first 12 chapters, your devices are named, areas are assigned to floors, dashboards have views, and automations run on their own. The interface, however, may still look unchanged from the initial installation.</p>
  <p>Appearance affects usability. An interface that is comfortable in your lighting, readable on your devices, and suitable at night is easier for everyone to keep using.</p>
@@ -106,7 +106,7 @@
  <li>
 <strong>Glare at night</strong>: A bright white interface is uncomfortable in a dark room. Use automatic dark mode.</li>
  <li>
-<strong>Different user needs: One person may prefer a dark, high-contrast dis</strong>play while another needs larger, lighter text. Each user can select a theme.</li>
+<strong>Different user needs: One person may prefer a dark, high-contrast display</strong> while another needs larger, lighter text. Each user can select a theme.</li>
  <li>
 <strong>An unfinished wall display</strong>: Default styling may not suit a permanently mounted tablet or shared workspace.</li>
  </ul>
@@ -115,7 +115,7 @@
  <p>Community-theme steps require HACS; install it as described in <a href="appendix_hacs_addons.html">Appendix A</a>. See <a href="ch6_dashboard.html">Chapter 6</a> for dashboard editing.</p>
  </section>
 
- <section id="concept" data-nav="what is the theme">
+ <section id="concept" data-nav="Theme basics">
  <h2 data-icon="concept">What exactly is a theme?</h2>
  <p>A Home Assistant theme does not redraw the interface. It supplies a<strong> set of visual values</strong>, primarily through CSS variables.</p>
  <p>Imagine there is a row of labels on your wall:</p>
@@ -158,7 +158,7 @@
  <p>Changing the theme will not change your cards, and changing the cards will not change the theme. The two things are separate.</p>
  </section>
 
- <section id="where" data-nav="Set where to live">
+ <section id="where" data-nav="Apply themes">
  <h2 data-icon="profile">Where to find theme settings</h2>
  <p>Home Assistant 2026.2 changed the location and behavior of this setting.</p>
  <p><strong>Current location: Profile.</strong> Select y<strong>our name at the bottom</strong> of the sidebar. Under General → User preferences, find the theme selector <strong></strong>described as “What does Home Assistant look like?”</p>
@@ -325,7 +325,7 @@
 <strong>Tip:</strong> Make a backup before installing. The theme is unlikely to break the system, but <code>configuration.yaml</code> Changes are possible, and backups take three minutes.</div>
  </section>
 
- <section id="handwrite" data-nav="Write your own theme">
+ <section id="handwrite" data-nav="Custom themes">
  <h2 data-icon="theme">Write a theme: YAML structure and variables</h2>
  <p>Once you understand other people's theme files, you can fine-tune it or write one from scratch. The minimum example given by Home Assistant frontend document looks like this:</p>
  <pre class="code-block"><code>frontend:
@@ -531,7 +531,7 @@
 <strong>Tip:</strong> If you don’t know which variables a certain component uses, use the browser’s inspection tool (right-click on the screen → Inspect) to click on that component, and the CSS variables applied to it will be listed on the right. This is the most accurate way to look up variable names and is ten times faster than looking through lists on the Internet.</div>
  </section>
 
- <section id="scope" data-nav="tab and automatic switching">
+ <section id="scope" data-nav="Automatic switching">
  <h2 data-icon="tabs">Apply themes to views and system defaults</h2>
  <h3>Single View specified theme</h3>
  <p>This is how to do the "coexisting situation room and blank space" mentioned earlier. Each view on the dashboard can specify its own theme. The setting variable listed in Home Assistant View document reads "theme: string (optional), apply the theme to this view and the cards in it."</p>
@@ -644,7 +644,7 @@ card_mod:
 <strong>Warning:</strong> card-mod depends on internal frontend structure. A Home Assistant update can invalidate selectors or misalign a<strong> card. Use stand</strong>ard theme variables whenever possible to reduce upgrade maintenance.</div>
  </section>
 
- <section id="rebrand" data-nav="Change name and icon">
+ <section id="rebrand" data-nav="Brand details">
  <h2 data-icon="app">Rebrand: Replace the words “Home Assistant”</h2>
  <p>When using a tablet on the wall or in the office for colleagues, many people will want to change the browser's page titles, icons, and names added to the home screen to those of their home or company. Let’s talk about the conclusion first. This paragraph should be stated honestly and clearly:</p>
  <div class="callout warn">
@@ -761,7 +761,7 @@ card_mod:
 
  <section id="a11y" data-nav="Contrast and Accessibility">
  <h2 data-icon="warning">Dark-mode contrast and accessibility</h2>
- <p>The most serious dark-theme failure is not appearance but <strong>readability. Test with different dis</strong>plays, room lighting, viewing distances, and users rather than relying on the designer’s screen.</p>
+ <p>The most serious dark-theme failure is not appearance but <strong>readability. Test with different displays</strong>, room lighting, viewing distances, and users rather than relying on the designer’s screen.</p>
  <p>A few rules to follow directly:</p>
  <table class="data-table">
  <thead>
@@ -883,7 +883,7 @@ card_mod:
 
  <details class="faq">
  <summary>What is the difference between theme and card-mod? Which one should I learn?</summary>
- <div class="body">Learn themes first, and that’s enough for most people. The theme is an officially supported mechanism, and the changed color is shared by the entire site. It will almost not break after upgrading. card-mod directly inserts CSS into a single card, which can do things that themes cannot (for example, only this card should be different and change color according to the value), but it relies on poking into the internal operation of official components. Once the front end is revised, the entire section may become invalid. It is recommended not to use card-mod if it can be solved with themes.</div>
+ <div class="body">Start with themes; they cover most needs. The theme is an officially supported mechanism, and the changed color is shared by the entire site. It uses a supported mechanism and is less likely to break after a frontend update. card-mod directly inserts CSS into a single card, which can target individual cards in ways themes cannot (for example, only this card should be different and change color according to the value), but it relies on poking into the internal operation of official components. Once the front end is revised, the entire section may become invalid. Prefer themes when they can meet the requirement.</div>
  </details>
 
  <details class="faq">

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 19 · Voice assistants and LLM integration · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Configure Assist, wake words, speech-to-text and text-to-speech, connect an LLM conversation agent, and control which entities AI can access." />
+  <meta name="description" content="Configure Assist, wake words, speech-to-text and text-to-speech, connect an LLM conversation agent, and compare local and cloud options for privacy and cost." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch19_voice_ai.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Chapter 19 · Voice assistants and LLM integration · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Configure Assist, wake words, speech-to-text and text-to-speech, connect an LLM conversation agent, and control which entities AI can access." />
+  <meta property="og:description" content="Configure Assist, wake words, speech-to-text and text-to-speech, connect an LLM conversation agent, and compare local and cloud options for privacy and cost." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch19_voice_ai.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chapter 19 · Voice assistants and LLM integration · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Configure Assist, wake words, speech-to-text and text-to-speech, connect an LLM conversation agent, and control which entities AI can access." />
+  <meta name="twitter:description" content="Configure Assist, wake words, speech-to-text and text-to-speech, connect an LLM conversation agent, and compare local and cloud options for privacy and cost." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -33,12 +33,12 @@
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to working</div>
+    <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch19_voice_ai.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch19_voice_ai.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to working</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -68,15 +68,15 @@
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
       <a href="#why">Why this matters</a>
-      <a href="#assist_basics">three nouns</a>
-      <a href="#pipeline">Four-stage pipeline</a>
-      <a href="#expose">exposed entity</a>
+      <a href="#assist_basics">Core terms</a>
+      <a href="#pipeline">Voice pipeline</a>
+      <a href="#expose">Entity exposure</a>
       <a href="#steps_local">Local setup</a>
       <a href="#cloud">Cloud options</a>
-      <a href="#llm">Connect with LLM</a>
+      <a href="#llm">Connect an LLM</a>
       <a href="#llm_control">Enable control</a>
       <a href="#mcp">MCP status</a>
-      <a href="#webpanel">Embed an external page</a>
+      <a href="#webpanel">Embed a page</a>
       <a href="#hardware">Voice hardware</a>
       <a href="#tradeoffs">Trade-offs</a>
       <a href="#troubleshoot">Troubleshooting</a>
@@ -323,7 +323,7 @@
  </li>
  <li>
  <h3>Test by typing first</h3>
- <p>Select <strong>Start conversation</strong> from the agent menu and test with typed requests first. Add speech-to-text and text-to-speech only after the conversation agent works, so you can isolate any later audio failure.</p>
+ <p>Select Start conversation from the agent menu and test with typed requests first. Add speech-to-text and text-to-speech only after the conversation agent works, so you can isolate any later audio failure.</p>
  </li>
  </ol>
 
@@ -372,7 +372,7 @@
  <tr><td>Direction</td><td>An external AI client accesses Home Assistant</td><td>Use external tools for your conversation agent</td></tr>
  <tr><td>Integration name</td><td><strong>Model Context Protocol Server</strong></td><td><strong>Model Context Protocol</strong></td></tr>
  <tr><td>Typical use</td><td>Use an external app like Claude or ChatGPT to directly ask it to turn off the lights at home for you</td><td>Let your Assist dialogue agent have additional capabilities such as "memory" and "network search" that it does not have before.</td></tr>
- <tr><td>Setup</td><td>Settings → Devices &amp; Services → New Integration → Model Context Protocol Server, the setting process will ask you whether you want to allow the client to control Home Assistant</td><td>Settings → Devices &amp; Services → Add Integration → Model Context Protocol, fill in the SSE server URL, and if verification is required, fill in the OAuth client ID and key</td></tr>
+ <tr><td>Setup</td><td>Settings → Devices &amp; services → New Integration → Model Context Protocol Server, the setting process will ask you whether you want to allow the client to control Home Assistant</td><td>Settings → Devices &amp; services → Add Integration → Model Context Protocol, fill in the SSE server URL, and if verification is required, fill in the OAuth client ID and key</td></tr>
  <tr><td>Endpoint/Authentication</td><td>Open to the internet <code>/api/mcp</code>(To specify a certain set of LLM APIs, it is <code>/api/mcp/&lt;api_id&gt;</code>, the built-in group is <code>/api/mcp/assist</code>); Authentication supports OAuth (with IndieAuth, the client ID is the URL of the App, for example <code>https://claude.ai</code>, Client Secret is not used, you can fill it in casually or leave it blank). Clients that do not support OAuth use long-term access tokens.</td><td>Currently, only MCP Tools are supported, prompts, resources, sampling, and notifications are not supported.</td></tr>
  </tbody>
  </table>
@@ -454,7 +454,7 @@
  <h3>Official hardware: Voice Preview Edition</h3>
  <p>If you are too lazy to bother, this is the easiest one. Inside is ESP32-S3 (16MB flash, 8MB PSRAM) plus XMOS XU316 audio chip, which is responsible for echo cancellation, noise reduction and automatic gain - in plain language, "the TV can still hear you when it is playing sound." It has a dual microphone array and a built-in speaker with a 3.5mm output hole. The body has a physical mute switch, volume knob, LED light ring, and a Grove expansion port for connecting sensors. Dimensions: 84×84×21mm, 96 grams. <strong>It does not require Home Assistant Cloud to work</strong>, can be run fully locally, but Home Assistant reminder is that a complete full local experience requires a relatively capable host (approximately Intel N100 level starting).</p>
 
- <div class="callout tip"><strong>Tip:</strong> Starting with version 2025.10, each Assist voice satellite can be configured <strong>Up to two sets of wake words, corresponding to two different pipelines</strong>. This is super easy to use: for example, "Okay Nabu" uses a local quick light-off pipeline, and "Hey Jarvis" uses LLM's cloud pipeline. One machine has two personalities. Whichever name it says, it will take whichever path it takes. Multilingual families can also use one wake word per language.</div>
+ <div class="callout tip"><strong>Tip:</strong> Starting with version 2025.10, each Assist voice satellite can be configured <strong>Up to two sets of wake words, corresponding to two different pipelines</strong>. For example, assign “Okay Nabu” to a fast local pipeline and “Hey Jarvis” to a cloud LLM pipeline. The wake word selects the corresponding path. Multilingual families can also use one wake word per language.</div>
 
  <h3>By the way: Voice satellites can actively talk to you</h3>
  <p>Voice devices do not just passively wait for you to shout.<code>assist_satellite</code> This domain (Domain) provides three actions that can be written into automation:</p>
@@ -559,7 +559,7 @@
 
  <details class="faq">
  <summary>What is the difference between built-in Assist and ChatGPT? Do I have to take LLM?</summary>
- <div class="body">Built-in Assist matches supported sentence patterns. It is fast, free, local, and predictable, but it is not designed for open-ended conversation. An LLM understands more flexible phrasing and supports ongoing conversations, but adds latency, usage cost, and the possibility of hallucination. A practical setup is to <strong>use both</strong>: select the LLM as the conversation agent and enable <strong>Prefer handling commands locally</strong>. Simple commands stay local, while unmatched requests go to the LLM.</div>
+ <div class="body">Built-in Assist matches supported sentence patterns. It is fast, free, local, and predictable, but it is not designed for open-ended conversation. An LLM understands more flexible phrasing and supports ongoing conversations, but adds latency, usage cost, and the possibility of hallucination. A practical setup is to <strong>use both</strong>: select the LLM as the conversation agent and enable Prefer handling commands locally. Simple commands stay local, while unmatched requests go to the LLM.</div>
  </details>
 
  <details class="faq">
@@ -579,7 +579,7 @@
 
  <details class="faq">
  <summary>Assist doesn't understand a specific teaching method of mine, can I teach it myself?</summary>
- <div class="body">Yes, and there are two ways. <strong>If you do not want to touch YAML, go this way:</strong> Go to <strong>Settings</strong> → <strong>Automation and scenes</strong> → <strong>Build automation</strong>, select from the drop-down menu of Trigger <strong>Sentence</strong>, fill in the sentence you want to say, and pick up what you want to do on the action side. This is equivalent to using automation to teach it a new line, just click the whole process. <strong>If you want to write a configuration file, go this way:</strong> in <code>configuration.yaml</code> To extend an existing intent:<pre class="code-block"><code>conversation:
+ <div class="body">Yes, and there are two ways. <strong>For a UI workflow:</strong> Open <strong>Settings</strong> → <strong>Automations &amp; scenes</strong> → <strong>Create automation</strong>, add a <strong>Sentence</strong> trigger, enter the phrase, and add the intended action. <strong>For a configuration-file workflow:</strong> in <code>configuration.yaml</code> To extend an existing intent:<pre class="code-block"><code>conversation:
   intents:
     HassTurnOn:
       - "activate [the] {name}"</code></pre>A more complete approach is to open it in the settings folder <code>config/custom_sentences/&lt;language_code&gt;/</code> Table of contents (English is <code>config/custom_sentences/en/</code>) into a YAML file, you can define your own intentions, lists, value ranges, and even change it back to your sentences (put one in the same directory <code>responses.yaml</code>). It is safest to restart Home Assistant after making changes.</div>

@@ -33,12 +33,12 @@
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to working</div>
+    <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../appendix_hardware_install.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="appendix_hardware_install.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to working</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -67,16 +67,16 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">What is this article going to solve?</a>
-      <a href="#install_types">Four installation methods</a>
-      <a href="#hardware">How to choose hardware</a>
-      <a href="#storage">storage media</a>
-      <a href="#checklist">Pre-unpacking checklist</a>
-      <a href="#flash">Imaging and booting</a>
-      <a href="#onboarding">First time setup</a>
+      <a href="#why">Why this matters</a>
+      <a href="#install_types">Install types</a>
+      <a href="#hardware">Choose hardware</a>
+      <a href="#storage">Storage media</a>
+      <a href="#checklist">Hardware checklist</a>
+      <a href="#flash">Image and boot</a>
+      <a href="#onboarding">Initial setup</a>
       <a href="#network">Network</a>
       <a href="#power">Power and cooling</a>
-      <a href="#after">What to do after installing it</a>
+      <a href="#after">After installation</a>
       <a href="#troubleshoot">Troubleshooting</a>
       <a href="#faq">FAQ</a>
     </div>
@@ -244,7 +244,7 @@
 
  <ul>
  <li><strong>The database receives frequent writes.</strong> Every change in the sensor value and every time the light is turned on and off will be written into the database by the recorder. If you have a temperature and humidity sensor at home, this is happening every minute.</li>
- <li><strong>The system log is updated continuously.</strong> Integration errors, device offline reconnection, all will be recorded.</li>
+ <li><strong>The system log is updated continuously.</strong> Integration errors and device reconnection attempts are recorded here.</li>
  <li><strong>It runs continuously.</strong> Multiply the amount you write in a day by 365.</li>
  </ul>
 
@@ -364,7 +364,7 @@
 
  <p>Official disk image formats corresponding to various platforms are provided:<code>.vdi</code> (VirtualBox), <code>.qcow2</code> (KVM/Proxmox), <code>.ova</code>(VMware ESXi/vSphere), the documentation also covers Unraid. Home Assistant minimum configuration of virtual machine resources is <strong>2GB memory, 2 vCPUs</strong>, if it is not enough, add more.</p>
 
- <div class="callout warn"><strong>Warning:</strong> Home Assistant documentation of Synology and QNAP follow the Docker route, which is what is shown in the previous table. <strong>Container</strong> installation, <strong>Not HAOS</strong>, so an entire functionality of Apps will be lost. If you want to get a complete experience on the NAS, the best way is to "open a VM and run HAOS in the NAS hypervisor" instead of directly installing a Docker container. These two things are often conflated.</div>
+ <div class="callout warn"><strong>Warning:</strong> Home Assistant documentation for Synology and QNAP follows the Docker route shown in the previous table. <strong>Container</strong> installation is <strong>Not HAOS</strong>, so Supervisor-managed apps are unavailable. If you want to get a complete experience on the NAS, run HAOS in a supported virtual machine on the NAS hypervisor instead of directly installing a Docker container. These two things are often conflated.</div>
  </section>
 
  <section id="onboarding" data-nav="Initial setup">
@@ -503,7 +503,7 @@
  <p>Confirm first <strong>Imaging the wrong model</strong> No - a Raspberry Pi 4 image put into a Pi 5, or vice versa, will silently boot, which is why it's #1. The second reason is that the imaging tool fails to write (especially when using a cheap storage reader), so image the card again. Third, connect an HDMI screen to see if there is any picture: if there is no signal at all, it is usually a problem with the media being turned on. If text is running but stops, it is another problem. For x86 machines, you need to go back and check whether the BIOS is set to UEFI and whether Secure Boot is turned off.</p>
  </li>
  <li>
- <h3>After startup, it is stuck in "Preparing Home Assistant" for a long time.</h3>
+ <h3>First startup remains on “Preparing Home Assistant” for a long time</h3>
  <p>This page is normal, it is downloading the latest version. Home Assistant documentation does not specify how long this step will take, only saying that "it may take some time"; <strong>Allow sufficient time for the download to complete.</strong>, using an SD card is even slower. Never unplug the power adapter at this time. But if it continues to transfer for more than an hour, check whether the Ethernet cable is actually connected, whether the router has given it an IP, and whether the internet is normal - this step must be connected to the Internet.</p>
  </li>
  <li>

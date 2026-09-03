@@ -33,12 +33,12 @@
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to working</div>
+    <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../appendix_hacs_addons.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="appendix_hacs_addons.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to working</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -67,9 +67,9 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#addons">Official App Store</a>
-      <a href="#hacs">HACS community store</a>
-      <a href="#remote">Four remote-access options</a>
+      <a href="#addons">Add-on store</a>
+      <a href="#hacs">HACS</a>
+      <a href="#remote">Remote access</a>
       <a href="#warning">Security warning</a>
       <a href="#faq">FAQ</a>
     </div>
@@ -182,11 +182,11 @@
  </tbody>
  </table>
 
- <p><strong>1. Nabu Casa (Home Assistant Cloud)</strong>—The official paid service. Enable remote access without changing router settings. The subscription also includes Google Assistant/Alexa integration and cloud text-to-speech (TTS), and its revenue supports Home Assistant development.</p>
+ <p><strong>1. Nabu Casa (Home Assistant Cloud)</strong>—The official paid service. Enable remote access without changing router settings. The subscription also includes Google Assistant/Alexa integration and cloud text-to-speech (TTS), and its <em>revenue supports Home Assistant development</em>.</p>
 
  <p><strong>2. DuckDNS + Let's Encrypt</strong>—Use free dynamic DNS service to connect the floating IP at home to a URL (such as <code>myhome.duckdns.org</code>), then use Let's Encrypt to get a free SSL certificate. Need to do port forward on the router. The disadvantage is that it exposes HA to the public internet, which is the solution with the largest attack surface.</p>
 
- <p><strong>3. Tailscale / ZeroTier</strong>—A VPN connects your phone to the home network. Install the VPN client on your phone and Home Assistant host, then use a private address while away. This creates very little public exposure, but every authorized user needs the client and access cannot be shared as a simple public URL.</p>
+ <p><strong>3. Tailscale / ZeroTier</strong>—A VPN connects your phone to the home network. Install the VPN client on your phone and Home Assistant host, then use a private address while away. This creates <strong>very little public exposure</strong>, but every authorized user needs the client and access cannot be shared as a simple public URL.</p>
 
  <p><strong>4. Cloudflare Tunnel</strong>—Cloudflare establishes an encrypted tunnel between Home Assistant and its network. You do not need a public IP address or an inbound router port. This option works behind carrier-grade NAT (CGNAT), and you can apply Cloudflare access controls in front of Home Assistant.</p>
  </section>
@@ -196,7 +196,7 @@
  <div class="callout danger">
  <strong>Danger:</strong> Never forward HA's 8123 port to the public internet without applying HTTPS credentials.
  Do not rely on default settings alone to protect an internet-facing Home Assistant instance. Crawlers on the Internet scan port 8123 every day, and as long as it is exposed, it will be attacked.
- If you use DDNS, you must (1) place an NGINX reverse proxy in front to provide HTTPS, (2) enable Home Assistant multi-factor authentication (MFA), (3) use strong passwords, and (4) consider an additional control such as Cloudflare or fail2ban to reduce brute-force attempts.
+ If you use DDNS, you <em>must</em> (1) place an NGINX reverse proxy in front to provide HTTPS, (2) enable Home Assistant multi-factor authentication (MFA), (3) use strong passwords, and (4) consider an additional control such as Cloudflare or fail2ban to reduce brute-force attempts.
  </div>
  <p>If you don't know what the above are, please use Nabu Casa or Tailscale directly instead of opening the port yourself. An incorrect configuration can expose sensitive smart-home data and controls to the internet.</p>
  </section>

@@ -33,12 +33,12 @@
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to working</div>
+    <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch22_life_logs.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch22_life_logs.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to working</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -68,17 +68,17 @@
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
       <a href="#why">Why this matters</a>
-      <a href="#helper_types">Five recording elements</a>
-      <a href="#first_helper">Be the first one</a>
-      <a href="#case_habit">Living habits record</a>
-      <a href="#case_money">Income and expenditure and water and electricity</a>
-      <a href="#case_maintain">Device maintenance records</a>
-      <a href="#case_notes">Notes and message boards</a>
-      <a href="#charts">Let the records grow into charts</a>
-      <a href="#derived">Process the numbers</a>
-      <a href="#dashboard">Customized dashboard</a>
+      <a href="#helper_types">Recording helpers</a>
+      <a href="#first_helper">First helper</a>
+      <a href="#case_habit">Habit tracking</a>
+      <a href="#case_money">Manual meters</a>
+      <a href="#case_maintain">Maintenance records</a>
+      <a href="#case_notes">Notes and lists</a>
+      <a href="#charts">Charts</a>
+      <a href="#derived">Derived values</a>
+      <a href="#dashboard">Dashboard layout</a>
       <a href="#community_cards">Community cards</a>
-      <a href="#export">Export and save</a>
+      <a href="#export">Export data</a>
       <a href="#troubleshoot">Troubleshooting</a>
       <a href="#faq">FAQ</a>
     </div>
@@ -138,11 +138,11 @@
  <section id="helper_types" data-nav="Recording helpers">
  <h2 data-icon="concept">Five helpers, what should be remembered for each?</h2>
 
- <p>The position of creating the helper is fixed at: <strong>Settings → Devices &amp; Services → Helpers</strong> (Settings → Devices &amp; services → Helpers), lower right corner <kbd>Create helper</kbd>. The following five are the most commonly used for record keeping.</p>
+ <p>The position of creating the helper is fixed at: <strong>Settings → Devices &amp; services → Helpers</strong> (Settings → Devices &amp; services → Helpers), lower right corner <kbd>Create helper</kbd>. The following five are the most commonly used for record keeping.</p>
 
  <figure class="shot">
  <img src="../assets/screenshots/ch22/01_helpers.png" alt="Helpers page" />
- <figcaption><strong>Figure 22-1</strong> Settings → Devices &amp; Services → Auxiliary Tools: All helpers such as counters, input Boolean, numbers, dates, drop-downs, etc. are listed here. The lower right corner is the creation entrance.</figcaption>
+ <figcaption><strong>Figure 22-1</strong> Settings → Devices &amp; services → Helpers lists counters, toggles, numbers, dates, selections, and other helpers. Use Create helper to add one.</figcaption>
  </figure>
 
  <table class="data-table">
@@ -208,7 +208,7 @@
  <ol class="steps">
  <li>
  <h3>Create counter</h3>
- <p>Go to <strong>Settings → Devices &amp; Services → Helpers</strong>, press <kbd>Create helper</kbd>, choose <strong>Counter</strong>. Type "Number of glasses of water to drink today" in the name, and the icon can be filled in <code>mdi:cup-water</code>, fill in 0 for the minimum value, 1 for the step value, and leave the others as default. press <kbd>Create</kbd>.</p>
+ <p>Go to <strong>Settings → Devices &amp; services → Helpers</strong>, press <kbd>Create helper</kbd>, choose <strong>Counter</strong>. Type "Number of glasses of water to drink today" in the name, and the icon can be filled in <code>mdi:cup-water</code>, fill in 0 for the minimum value, 1 for the step value, and leave the others as default. press <kbd>Create</kbd>.</p>
  </li>
  <li>
  <h3>Confirm its entity ID</h3>
@@ -220,7 +220,7 @@
  </li>
  <li>
  <h3>Make an automation that automatically returns to zero in the middle of the night</h3>
- <p>Go to <strong>Settings → Automations & Scenes &amp; Scenes → Create Automation</strong>, switch to YAML mode and paste the following paragraph. If you are not familiar with the automated three-stage structure, look back <a href="ch8_first_automation.html">Chapter 8</a>.</p>
+ <p>Go to <strong>Settings → Automations &amp; scenes → Create Automation</strong>, switch to YAML mode and paste the following paragraph. If you are not familiar with the automation’s trigger-condition-action structure, look back <a href="ch8_first_automation.html">Chapter 8</a>.</p>
  </li>
  <li>
  <h3>Test</h3>
@@ -317,7 +317,7 @@ segments:
 
  <h3>Want to see long-term trends? See the next step first</h3>
 
- <p>Now you may be thinking, "Then I want to see the chart of changes in weight over the past three months." Here is a pitfall that many people get stuck in: <strong>The helper does not produce long-term statistics</strong>, so take <code>input_number.weight</code> When trying to put the statistics-graph card, it will show that the statistics cannot be found. The solution is in the section "Processing Numbers" at the end, so remember to read on.</p>
+ <p>To chart a value over three months, account for this limitation: <strong>The helper does not produce long-term statistics</strong>, so using <code>input_number.weight</code>in a statistics-graph card reports that statistics are unavailable. The “Processing numbers” section shows the required sensor pattern.</p>
  </section>
 
  <section id="case_money" data-nav="Manual meters">
@@ -334,7 +334,7 @@ segments:
  </li>
  <li>
  <h3>Create a script to add the value</h3>
- <p>Go to <strong>Settings → Automations & Scenes &amp; Scenes → Scripts</strong>, create a new script, cut the YAML pattern and paste the following content. Details of the script (fields, execution mode) are in <a href="ch10_scripts.html">Chapter 10</a>.</p>
+ <p>Go to <strong>Settings → Automations &amp; scenes → Scripts</strong>, create a new script, cut the YAML pattern and paste the following content. Details of the script (fields, execution mode) are in <a href="ch10_scripts.html">Chapter 10</a>.</p>
  </li>
  <li>
  <h3>Add the script to a card</h3>
@@ -412,11 +412,11 @@ mode: single</code></pre>
  <ol class="steps">
  <li>
  <h3>Create a date helper component</h3>
- <p>Go to <strong>Settings → Devices &amp; Services → Helpers → Create helper → Date/Time</strong>. Name it “Filter last changed,” select only <strong>Date</strong>, and leave Time clear. The suggested entity ID is <code>input_datetime.filter_last_change</code>.</p>
+ <p>Go to <strong>Settings → Devices &amp; services → Helpers → Create helper → Date/Time</strong>. Name it “Filter last changed,” select only <strong>Date</strong>, and leave Time clear. The suggested entity ID is <code>input_datetime.filter_last_change</code>.</p>
  </li>
  <li>
  <h3>Build a template sensor that counts days</h3>
- <p>Go to <strong>Settings → Devices &amp; Services → Helpers</strong>, select <kbd>Create helper</kbd>, choose <strong>Template</strong>, then <strong>Sensor</strong>. Name it “Days since filter change,” paste the template below into the state template, and set the unit of measurement to <code>days</code>. After creating it, change the entity ID to <code>sensor.filter_days_since</code> for the later automation.</p>
+ <p>Go to <strong>Settings → Devices &amp; services → Helpers</strong>, select <kbd>Create helper</kbd>, choose <strong>Template</strong>, then <strong>Sensor</strong>. Name it “Days since filter change,” paste the template below into the state template, and set the unit of measurement to <code>days</code>. After creating it, change the entity ID to <code>sensor.filter_days_since</code> for the later automation.</p>
  </li>
  <li>
  <h3>Create a “Changed today” button</h3>
@@ -502,7 +502,7 @@ mode: single</code></pre>
  <ol class="steps">
  <li>
  <h3>Join the integration</h3>
- <p><strong>Settings → Devices &amp; Services → Add integration</strong>, search <strong>Local to-do</strong>, follow the on-screen instructions to create a list, such as "Shopping list".</p>
+ <p><strong>Settings → Devices &amp; services → Add integration</strong>, search <strong>Local to-do</strong>, follow the on-screen instructions to create a list, such as "Shopping list".</p>
  </li>
  <li>
  <h3>Build a few more copies</h3>
@@ -641,7 +641,7 @@ content: |-
         state_class: total_increasing
         state: "{{ states('input_number.meter_electricity') | float(0) }}"</code></pre>
 
- <p>Then come <strong>Settings → Devices &amp; Services → Helpers → Create helper → Utility Meter</strong>, set the focus:</p>
+ <p>Then come <strong>Settings → Devices &amp; services → Helpers → Create helper → Utility Meter</strong>, set the focus:</p>
 
  <table class="data-table">
  <thead>
@@ -797,7 +797,7 @@ card:
  </thead>
  <tbody>
  <tr><td>Mushroom</td><td>A set of visually lighter cards</td><td>Arrange a row of counters neatly and easily, especially on phones.</td></tr>
- <tr><td>ApexCharts Card</td><td>Very complete chart card</td><td>When you want to stack multiple lines, customize the Y-axis, and make weekly comparisons, it can do things that the built-in charts cannot.</td></tr>
+ <tr><td>ApexCharts Card</td><td>Detailed chart card</td><td>When you want to stack multiple lines, customize the Y-axis, and make weekly comparisons, when the built-in charts do not provide those controls.</td></tr>
  <tr><td>Bubble Card</td><td>Mobile-first cards and pop-ups</td><td>Put the accounting and recording input interface into a pop-up window, and keep the main screen clean</td></tr>
  <tr><td>Mini Graph Card</td><td>Compact line chart</td><td>Show a small trend graph without using much dashboard space</td></tr>
  <tr><td>card-mod</td><td>Change the card style (color, font, spacing)</td><td>Pure appearance fine-tuning, no impact on data</td></tr>
@@ -875,7 +875,7 @@ card:
  </li>
  <li>
  <h3>The template sensor is built but the entity cannot be found.</h3>
- <p>Changed <code>configuration.yaml</code> Be sure to reload. to the sidebar <strong>Tools</strong> (Before 2026.8, it was called “Developer Tools”)→ <strong>YAML</strong> tab and click "Template Entity" to reload. If it still does not work after reloading, it is probably because the YAML indentation is wrong. First use the “Check Settings” on the same page to check. There is also a common low-level error:<code>configuration.yaml</code> There is already one in <code>template:</code> block, and you posted a second one, YAML will only recognize the last one, and the sensors must be merged under the same block.</p>
+ <p>After changing <code>configuration.yaml</code>, open <strong>Tools</strong> (Before 2026.8, it was called “Developer Tools”)→ <strong>YAML</strong>and use the YAML tab to reload Template entities. If it still fails, run Check configuration and inspect indentation. Another common error is defining<code>configuration.yaml</code>when there is already a <code>template:</code>block. Merge sensors under one top-level key instead of adding a duplicate.</p>
  </li>
  <li>
  <h3>Condition cards never show up</h3>

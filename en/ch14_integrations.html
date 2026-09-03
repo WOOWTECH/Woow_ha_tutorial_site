@@ -1,44 +1,44 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 14 · Integrations · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Follow the complete integration setup flow, connect cloud and local services, understand OAuth, and diagnose, reload, reauthenticate, or remove integrations.">
-  <meta name="author" content="WoowTech">
-  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch14_integrations.html">
-  <meta name="robots" content="noindex, follow">
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Home Assistant Onboarding Guide">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:locale:alternate" content="zh_TW">
-  <meta property="og:title" content="Chapter 14 · Integrations · Home Assistant Onboarding Guide">
-  <meta property="og:description" content="Follow the complete integration setup flow, connect cloud and local services, understand OAuth, and diagnose, reload, reauthenticate, or remove integrations.">
-  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch14_integrations.html">
-  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch14/03_devices.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Chapter 14 · Integrations · Home Assistant Onboarding Guide">
-  <meta name="twitter:description" content="Follow the complete integration setup flow, connect cloud and local services, understand OAuth, and diagnose, reload, reauthenticate, or remove integrations.">
-  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch14/03_devices.png">
-  <meta name="theme-color" content="#6183FC">
-  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;family=Yellowtail&amp;display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/i18n.css">
+  <meta name="description" content="Follow the integration setup process, connect services such as weather, music, location, and calendars, compare local and cloud integrations, and diagnose or remove an integration." />
+  <meta name="author" content="WoowTech" />
+  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch14_integrations.html" />
+  <meta name="robots" content="noindex, follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:title" content="Chapter 14 · Integrations · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Follow the integration setup process, connect services such as weather, music, location, and calendars, compare local and cloud integrations, and diagnose or remove an integration." />
+  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch14_integrations.html" />
+  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch14/03_devices.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chapter 14 · Integrations · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Follow the integration setup process, connect services such as weather, music, location, and calendars, compare local and cloud integrations, and diagnose or remove an integration." />
+  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch14/03_devices.png" />
+  <meta name="theme-color" content="#6183FC" />
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/i18n.css" />
 </head>
 <body>
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to working</div>
+    <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch14_integrations.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch14_integrations.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to working</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -67,13 +67,13 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why this matters</a>
+      <a href="#why">Why integrations</a>
       <a href="#concept">Three-tier relationship</a>
-      <a href="#steps">Add an integration</a>
+      <a href="#steps">Hands-on new integration</a>
       <a href="#oauth">OAuth and URLs</a>
       <a href="#weather">Weather integration</a>
-      <a href="#media">Music and media</a>
-      <a href="#location">Location tracking</a>
+      <a href="#media">music and media</a>
+      <a href="#location">Positioning integration</a>
       <a href="#calendar_notify">Calendar and notifications</a>
       <a href="#cloud_vs_local">Cloud vs. local</a>
       <a href="#manage">Maintenance</a>
@@ -97,7 +97,7 @@
  <p class="lead">Integrations connect Home Assistant to weather, media, calendars, phone location, messaging, and physical devices. Learn the complete setup flow, then diagnose and recover an integration when it fails.</p>
  </div>
 
- <section id="why" data-nav="Why should we learn">
+ <section id="why" data-nav="Why integrations">
  <h2 data-icon="why">Why this matters</h2>
  <p>The previous chapters organized what was already in Home Assistant: areas, names, dashboards, automations, and scripts. Integrations bring external devices and services into that system.</p>
  <p><strong>An integration is Home Assist</strong>ant’s connection to a device or service. A sunset automation needs sun data; arrival music needs location and media entities; a washing-cycle alert needs a notification channel.</p>
@@ -324,7 +324,7 @@
  <li>
 <strong>Google Calendar</strong>: Create a project in Google Cloud Console, enable the Google Calendar API, set up the OAuth consent screen, and create a "web application" type client.</li>
  </ul>
- <p>The obtained ID and key will be required to be posted when running Config Flow. If you want to replace or delete it later, the path is <strong>Settings → Devices &amp; Services</strong>, upper right corner <strong>Three-dot menu → Application credentials</strong>.</p>
+ <p>The obtained ID and key will be required to be posted when running Config Flow. If you want to replace or delete it later, the path is <strong>Settings → Devices &amp; services</strong>, upper right corner <strong>Three-dot menu → Application credentials</strong>.</p>
 
  <div class="callout danger">
 <strong>Danger:</strong> Treat a Client Secret as a credential. Never include it in a forum post, chat, log, or screenshot. Backups also contain credentials; protect them as described in <a href="ch9_backups.html">Chapter 9</a>.</div>
@@ -534,7 +534,7 @@
  <p>Setup requires a Google Cloud project, the Google Calendar API, an OAuth consent screen, and a web-application client. Set the authorized redirect URL to <code>https://my.home-assistant.io/redirect/oauth</code>. The initial setup takes about 15 minutes; follow the current Home Assistant documentation step by step.</p>
 
  <h3>CalDAV (Nextcloud, iCloud, and Synology)</h3>
- <p>If you prefer not to configure Google Cloud, CalDAV can be set up <strong>entirely in the UI</strong>: Settings → Devices &amp; Services → Add integration, search for CalDAV, and enter the server URL, such as <code>https://caldav.icloud.com/</code>, and your credentials.</p>
+ <p>If you prefer not to configure Google Cloud, CalDAV can be set up <strong>entirely in the UI</strong>: Settings → Devices &amp; services → Add integration, search for CalDAV, and enter the server URL, such as <code>https://caldav.icloud.com/</code>, and your credentials.</p>
  <p>The Home Assistant documentation lists Baikal, iCloud Calendar, Nextcloud, ownCloud, and Synology Calendar as tested servers. Other RFC 4791-compliant servers may also work. For iCloud, create an app-specific password; do not give Home Assistant your Apple ID password.</p>
  <div class="callout warn">
 <strong>Note:</strong> The CalDAV YAML configuration does not support to-do lists. Use the UI setup flow if you need CalDAV to-do entities.</div>
@@ -624,7 +624,7 @@
 <strong>Warning:</strong> Some integrations control locally but require a cloud-issued token for initial setup or reauthentication. They may respond quickly yet fail to initialize after an outage. Check the integration’s documented IoT class, such as Local push or Local polling, and read its authentication requirements.</div>
  </section>
 
- <section id="manage" data-nav="Integrated operation and maintenance">
+ <section id="manage" data-nav="Maintenance">
  <h2 data-icon="records">Integration maintenance: diagnose, reauthenticate, reload, or remove</h2>
  <p>Credentials expire, provider APIs change, and devices become unavailable. Use these recovery steps from least to most disruptive.</p>
 
@@ -639,7 +639,7 @@
  </li>
  <li>
  <h3>3. Download diagnostics</h3>
- <p>The path is <strong>Settings → Devices &amp; Services → Click on that integration → Three-dot menu in the upper right corner → Download diagnostics</strong>. A JSON file will be downloaded, which contains the current status, settings (sensitive data will be officially masked), and captured raw data. <strong>When you go to GitHub to open an issue or go to the forum to ask for help, attaching this file will have a much higher chance of getting a reply.</strong> Not every integration has this option, it will only appear if it is supported.</p>
+ <p>The path is <strong>Settings → Devices &amp; services → Click on that integration → Three-dot menu in the upper right corner → Download diagnostics</strong>. A JSON file will be downloaded, which contains the current status, settings (sensitive data will be officially masked), and captured raw data. <strong>When you go to GitHub to open an issue or go to the forum to ask for help, attaching this file will have a much higher chance of getting a reply.</strong> Not every integration has this option, it will only appear if it is supported.</p>
  <p>The matching ones are in the same menu. <strong>Enable debug logging</strong>: Open it → Reproduce the problem → Come back and close it, HA will automatically download the log file for you.</p>
  </li>
  <li>
@@ -683,9 +683,9 @@
 </tr>
  </tbody>
  </table>
- <p>After downloading <strong>Restart HA</strong>, then go back to Settings → Devices &amp; Services → New Integration, search for HACS and set it up. The process will require a <strong>GitHub account</strong> Do device authorization. Home Assistant FAQ of HACS explained the reason: it always uses the GitHub API to check whether there are new versions of each item, and GitHub has <strong>Not logged in</strong> The number of requests is only 60 times per hour, which is not enough; after logging in, the quota is much higher. The scepter it obtained does not require any special permissions and can only read information that is already public.</p>
+ <p>After installation, <strong>restart Home Assistant</strong>. Then open Settings → Devices &amp; services → Add integration, search for HACS, and follow its setup flow. HACS requires a <strong>GitHub account</strong> for device authorization because it uses the GitHub API to check repositories. The unauthenticated API quota is <strong>limited</strong>; authorization provides a higher quota. Review the requested scope before approving access.</p>
  <div class="callout tip">
-<strong>Tip:</strong> HA officially renamed "Add-ons" to "Apps" in version 2026.2, and the sidebar and settings page were changed accordingly. If the tutorial you see on the Internet still says "Supervisor → Add-on Store", that is the old version, and the things are still the same. See detailed differences <a href="appendix_hacs_addons.html">Appendix A</a>.</div>
+<strong>Tip:</strong> HA officially renamed "Add-ons" to "Apps" in version 2026.2, and the sidebar and settings page were changed accordingly. If the tutorial you see on the Internet still says "Supervisor → Add-on Store", that is the old version, and the underlying feature is the same. See detailed differences <a href="appendix_hacs_addons.html">Appendix A</a>.</div>
  <div class="callout warn">
 <strong>Warning:</strong> Home Assistant HACS documentation makes it very clear: If you don’t know which installation method you have, it is not recommended to install HACS. Because not only will it not move if you install it the wrong way, it may also mess up your environment. If you're not sure, check it out first <a href="appendix_hacs_addons.html">Appendix A</a>.</div>
 

@@ -33,12 +33,12 @@
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to working</div>
+    <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch10_scripts.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch10_scripts.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to working</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -67,13 +67,13 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why do you need a script?</a>
-      <a href="#vs">Scripting vs Automation vs Scenes</a>
+      <a href="#why">Why scripts</a>
+      <a href="#vs">Compare tools</a>
       <a href="#steps">Hands-on: First Script</a>
-      <a href="#fields">Add parameters (Fields)</a>
+      <a href="#fields">Script fields</a>
       <a href="#modes">execution mode</a>
-      <a href="#patterns">Collection of practical examples</a>
-      <a href="#call">How to call a script</a>
+      <a href="#patterns">Useful patterns</a>
+      <a href="#call">Call a script</a>
       <a href="#troubleshoot">Common problems</a>
       <a href="#faq">FAQ</a>
     </div>
@@ -92,47 +92,47 @@
  <p class="lead">Package a sequence of actions under one name so automations, dashboard buttons, and voice assistants can reuse it. An automation decides when to run; a script is a reusable action sequence that something else calls.</p>
  </div>
 
- <section id="why" data-nav="Why do you need a script?">
- <h2 data-icon="why">Why do you need a script?</h2>
- <p>When you find yourself repeating the same action in many automations, for example:</p>
+ <section id="why" data-nav="Why scripts">
+ <h2 data-icon="why">Why scripts matter</h2>
+ <p>Use a script when several automations repeat the same sequence, for example:</p>
  <ul>
- <li>"Turn off the lights in the whole house + turn off the air conditioner + start the sweeper + delay turning off the entrance light for 30 seconds" - going out situation</li>
- <li>"All curtains are drawn + main lights 20% + sound playing good morning playlist" - wake-up situation</li>
- <li>"The light in the master bedroom slowly fades to 5% and then turns off" - Fade out for sleep</li>
+ <li>“Turn off every light, turn off climate devices, start the vacuum, then turn off the entryway light after 30 seconds” — leaving home</li>
+ <li>“Open the covers, set the main lights to 20%, and play a morning playlist” — waking up</li>
+ <li>“Fade the bedroom light to 5%, then turn it off” — going to sleep</li>
  </ul>
- <p>Directly wrap this entire paragraph into a script, for example <code>script.leaving_home</code>, after:</p>
+ <p>Put that sequence in a script such as <code>script.leaving_home</code>. You can then reuse it from:</p>
  <ul>
- <li>Automation away from home → Just "call <code>script.leaving_home</code>"One line</li>
- <li>Entrance Zigbee button long press → also call <code>script.leaving_home</code></li>
- <li>The voice assistant says "I'm going out" → also calls <code>script.leaving_home</code></li>
- <li>Put a big button on the dashboard → also call <code>script.leaving_home</code></li>
+ <li>A departure automation → call <code>script.leaving_home</code></li>
+ <li>A long press on an entryway Zigbee button → call <code>script.leaving_home</code></li>
+ <li>An Assist command such as “I’m leaving” → call <code>script.leaving_home</code></li>
+ <li>A dashboard button → call <code>script.leaving_home</code></li>
  </ul>
- <p>Later, if you want to change "Should you turn off the water dispenser when you go out?", you only need to change the script, and all four entrances will be synchronized. <strong>This is the value of centralizing logic.</strong></p>
+ <p>If you later decide to turn off another appliance when leaving, edit the script once. Every caller receives the change. <strong>Centralized logic is easier to maintain.</strong></p>
  </section>
 
- <section id="vs" data-nav="Scripting vs Automation vs Scenes">
- <h2 data-icon="concept">Scripting vs Automation vs Scenes</h2>
- <p>There are three nouns that are often confused by novices. Let’s first distinguish them:</p>
+ <section id="vs" data-nav="Compare tools">
+ <h2 data-icon="concept">Scripts vs. automations vs. scenes</h2>
+ <p>These three Home Assistant features solve different problems:</p>
  <ul>
- <li><strong>Automation Automation</strong>: Three-stage (trigger/condition/action), it will "start by itself". Example: Triggered at sunset.</li>
- <li><strong>Script Script</strong>: It only has action segments and will not start by itself. <em>to be called</em>. It can have delays, loops, and conditional branches, which is much more capable than scenes.</li>
- <li><strong>Scene</strong>: A group of entity "status snapshots" (lights 60%/air conditioner 26°C/curtains 100%). When called, all entities are instantly switched to the specified state. <em>No delays or logic</em>.</li>
+ <li><strong>Automation</strong>: Has triggers, optional conditions, and actions. It starts when a trigger fires.</li>
+ <li><strong>Script</strong>: Contains actions and must <em>be called</em>. It can include delays, loops, and conditional branches.</li>
+ <li><strong>Scene</strong>: Captures target states, such as lights at 60%, climate at 26°C, and covers open. It has <em>no delays or branching logic</em>.</li>
  </ul>
  <div class="callout"><strong>Simple decision tree:</strong>
  <ul style="margin:8px 0 0 20px;">
- <li>"Adjust 5 lights to a fixed brightness at a time" → <strong>scene</strong> (the simplest)</li>
- <li>"Do A first, wait 3 seconds, then do B, and only do C if X" → <strong>script</strong> (logical)</li>
- <li>"Automatically do X at 7 a.m." → <strong>Automation</strong> (with trigger)</li>
+ <li>“Set five lights to fixed levels” → <strong>scene</strong></li>
+ <li>“Do A, wait three seconds, do B, and do C only if X is true” → <strong>script</strong></li>
+ <li>“Run X automatically at 7:00 AM” → <strong>automation</strong></li>
  </ul>
- The scene is often "called" by the script - the scene is the bricks and the script is the method for building the wall.</div>
+ A script often activates a scene: the scene defines a target state, while the script defines the sequence.</div>
  </section>
 
  <section id="steps" data-nav="Hands-on: First Script">
  <h2 data-icon="steps">Hands-on: The first script "Leaving Home Mode"</h2>
- <div class="callout"><strong>The name has been changed:</strong> The former "Service" is now called " <strong>Action</strong> "—"Call Service" on the interface becomes "Execute Action", and the "Call Service" in YAML <code>service:</code> to be written as <code>action:</code>(HA 2024.8 onwards). In addition, "Developer Tools" will be moved from the sidebar in 2026.2 <strong>Settings → Tools</strong>, 2026.8 simplified Developer Tools into <strong>Tools</strong>, the original "Service" tab inside is now called " <strong>action</strong>”. The old way of writing HA is still understandable, but the old name can no longer be found on the interface.</div>
+ <div class="callout"><strong>Terminology update:</strong> Home Assistant now calls a service call an <strong>Action</strong>; the interface uses “Perform action,” and current YAML uses <code>service:</code> instead of <code>action:</code>. Tools moved under <strong>Settings → Tools</strong>; in 2026.8 the name became <strong>Tools</strong>, and its former Services tab is now called <strong>action</strong>.</div>
  <ol class="steps">
  <li>
- <h3>Settings → Automations & Scenes → Script tab</h3>
+ <h3>Settings → Automations &amp; scenes → Script tab</h3>
  <p>"+ Add Script" in the lower right corner → select "Create New Script". (You can also choose "From Blueprint", but start with a blank first.)</p>
  <figure class="shot">
  <img src="../assets/screenshots/ch10/01_scripts_page.png" alt="script page" />
@@ -141,11 +141,11 @@
  </li>
  <li>
  <h3>Fill in the name and icon</h3>
- <p><strong>Name</strong>: "Leaving Home Mode"<br><strong>Icon</strong>: <code>mdi:door-open</code>(Available from <a href="https://pictogrammers.com/library/mdi/" target="_blank" rel="noopener">pictogrammers.com</a> find)<br>The entity_id will be automatically generated at the bottom of the page:<code>script.leaving_home</code>. This ID is then used to make calls and give it a memorable name.</p>
+ <p><strong>Name</strong>: "Leaving Home Mode"<br><strong>Icon</strong>: <code>mdi:door-open</code>(Browse <a href="https://pictogrammers.com/library/mdi/" target="_blank" rel="noopener">pictogrammers.com</a>)<br>Home Assistant generates an entity ID such as <code>script.leaving_home</code>. Keep it stable because callers reference it.</p>
  </li>
  <li>
  <h3>Add action: turn off all lights</h3>
- <p>"+ New Action" → "Execute Action" (the old version was called "Call Service") → Select <code>light.turn_off</code>.<br><strong>target</strong>: Don't select one by one; use "Area" to select "All", or use "Tag" (taught in Chapter 4) to select "Lights". In this way, newly added lights will be automatically covered.</p>
+ <p>"+ New Action" → "Execute Action" (the old version was called "Call Service") → Select <code>light.turn_off</code>.<br><strong>target</strong>: Use an area or “Lights” label when membership should update automatically. Select entities individually only for deliberate exceptions.</p>
  <figure class="shot">
  <img src="../assets/screenshots/ch10/02_add_action.png" alt="Add action" />
  <figcaption><strong>Figure 10-2</strong> Using "area" or "label" as the target is more stable than selecting one target at a time.</figcaption>
@@ -153,7 +153,7 @@
  </li>
  <li>
  <h3>Add action: turn off the air conditioner</h3>
- <p>“＋New action”→ <code>climate.turn_off</code> → Target all climate entities or use the "air conditioning" tag.</p>
+ <p>Select Add action → <code>climate.turn_off</code> → Target all climate entities or use the "air conditioning" tag.</p>
  </li>
  <li>
  <h3>Add action: wait 30 seconds</h3>
@@ -161,27 +161,27 @@
  </li>
  <li>
  <h3>Add action: Entrance light</h3>
- <p>“＋New action”→ <code>light.turn_off</code> → Target selection <em>Entrance light</em> Single entity. <strong>Intention</strong>: The lights in the whole house have been turned off in the front, and the entrance light will be turned off with a delay of 30 seconds, giving you time to put on your shoes and go out.</p>
+ <p>Select Add action → <code>light.turn_off</code> → Target selection <em>Entrance light</em> Single entity. <strong>Intention</strong>: The lights in the whole house have been turned off in the front, and the entrance light will be turned off with a delay of 30 seconds, giving you time to put on your shoes and go out.</p>
  </li>
  <li>
  <h3>Add action: push notification</h3>
- <p>“＋New action”→ <code>notify.mobile_app_your_phone</code>(See Chapter 7) → Message: "Away from home mode activated ✅". In this way, even if you press the wrong button, your phone will prompt you.</p>
+ <p>Select Add action → <code>notify.mobile_app_your_phone</code>(see Chapter 7), then enter “Leaving-home mode activated.” This confirmation helps you catch an accidental press.</p>
  </li>
  <li>
  <h3>"Save" in the upper right corner → click Test Run (▶)</h3>
- <p>After saving, the orange "Save" will appear above and turn green → click "Execute Script" to test. If done correctly, your phone should receive a notification.</p>
- <div class="callout tip"><strong>Verify:</strong> Go to "Settings → Tools → Actions" to call <code>script.leaving_home</code>, should also be run completely. The same entry is equivalent from the script page, Settings → Tools, Dashboard, and Automation.</div>
+ <p>Save, then select Run script. Confirm that each target changes as intended and the phone receives the notification.</p>
+ <div class="callout tip"><strong>Verify:</strong> Call <code>script.leaving_home</code>from Settings → Tools → Actions. The script page, a dashboard, and an automation should run the same sequence.</div>
  </li>
  </ol>
  </section>
 
- <section id="fields" data-nav="Add parameters (Fields)">
- <h2 data-icon="steps">Add parameters (Fields) - make the script customizable</h2>
- <p>The "30-second delay" was written into the script just now. What if I think for 60 seconds at night and 15 seconds during the day? add one <strong>Field</strong>: </p>
+ <section id="fields" data-nav="Script fields">
+ <h2 data-icon="steps">Add fields to make the script reusable</h2>
+ <p>The delay is fixed at 30 seconds. Add a <strong>field</strong> if different callers need 60 seconds at night and 15 seconds during the day: </p>
  <ol class="steps">
  <li>
- <h3>Edit script → upper right "⋮" → "Edit YAML"</h3>
- <p>The UI can also add fields (in the "Fields" area at the bottom of the script page), but YAML can be seen clearly at once. Join:</p>
+ <h3>Open the script menu and select “Edit in YAML”</h3>
+ <p>You can also add fields in the visual editor. The YAML representation makes the complete definition easy to inspect:</p>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>fields:
   delay_seconds:
     name: Entryway light delay
@@ -194,22 +194,22 @@
         unit_of_measurement: seconds</code></pre>
  </li>
  <li>
- <h3>Change 30 in the action into a variable</h3>
+ <h3>Use the field in the delay action</h3>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>- delay:
     seconds: "{{ delay_seconds }}"</code></pre>
- <p>Then you can pass parameters when calling:<code>script.leaving_home</code> + <code>delay_seconds: 60</code>.</p>
+ <p>A caller can now invoke <code>script.leaving_home</code> with <code>delay_seconds: 60</code>.</p>
  </li>
  <li>
- <h3>UI calls can also fill in fields</h3>
- <p>After adding fields, when calling this script in the dashboard card, automated action, setting → tool, a field that can be filled with "delay seconds" will automatically appear, and non-engineers can also change it.</p>
+ <h3>Use fields from the UI</h3>
+ <p>Supported callers display the “Entryway light delay” input automatically, so users do not have to edit YAML.</p>
  </li>
  </ol>
- <div class="callout"><strong>Commonly used selectors:</strong> <code>number</code>(number),<code>text</code>(text),<code>boolean</code>(switch),<code>entity</code>(Select entity),<code>area</code>(select area),<code>time</code>(Select time). If there is a selector UI, it will be rendered into corresponding components, which is friendlier than pure text.</div>
+ <div class="callout"><strong>Common selectors:</strong> <code>number</code> (number), <code>text</code> (text), <code>boolean</code> (toggle), <code>entity</code> (entity picker), <code>area</code> (area picker), and <code>time</code> (time picker). A selector provides validation and a suitable UI control.</div>
  </section>
 
  <section id="modes" data-nav="execution mode">
  <h2 data-icon="steps">Execution mode Single / Restart / Queued / Parallel</h2>
- <p>What happens if the script is called again while the script is running? This is determined by the "mode", just like automation:</p>
+ <p>A run mode decides what happens when the script is called again before the current run ends:</p>
  <table class="data-table">
  <thead>
  <tr>
@@ -241,14 +241,14 @@
  </tr>
  </tbody>
  </table>
- <div class="callout warn"><strong>Pit:</strong> Leaving Home Script If You Stay <code>single</code>, if you accidentally click the button twice at the door, the second time will be discarded (correct); but if it is a script of "living room lights slowly fade out" <code>single</code>, if you press it a second time and think "fader it again", it won't move. Change this scenario to <code>restart</code>.</div>
+ <div class="callout warn"><strong>Choose deliberately:</strong> A leaving-home script can use <code>single</code>, so a second press is ignored. For a gradual light fade, <code>single</code> ignores a second press; use <code>restart</code>.</div>
  </section>
 
- <section id="patterns" data-nav="Collection of practical examples">
- <h2 data-icon="tips">Collection of practical examples</h2>
+ <section id="patterns" data-nav="Useful patterns">
+ <h2 data-icon="tips">Useful script patterns</h2>
 
  <h3>1. Sleep fade out (restart mode)</h3>
- <p>Fade to 1% within 30 seconds from the current brightness, then turn off after 5 seconds. Pressing it again in the middle will restart.</p>
+ <p>Fade from the current level to 1% over 30 seconds, wait 5 seconds, then turn off. Calling the script again restarts the sequence.</p>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>alias: bedroom_fade_out
 mode: restart
 sequence:
@@ -264,7 +264,7 @@ sequence:
       entity_id: light.bedroom_main</code></pre>
 
  <h3>2. Loop notification until someone responds (repeat until)</h3>
- <p>When the washing machine is finished washing, the broadcast will be pushed every 3 minutes until someone comes to the laundry room (Zigbee motion sensor triggers).</p>
+ <p>Send a reminder every three minutes after the washer finishes, stopping when a laundry-room motion sensor detects someone.</p>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>alias: nag_until_laundry_picked
 mode: restart
 sequence:
@@ -280,7 +280,7 @@ sequence:
         - delay: "00:03:00"</code></pre>
 
  <h3>3. Conditional branch (choose)</h3>
- <p>When you get home, do different things according to the time of day: only turn on the air conditioner during the day, turn on the lights + air conditioner at night, and only turn on the night light late at night.</p>
+ <p>Choose a different arrival sequence by time of day: climate before sunset, a night-light after 11:00 PM, or lights and climate during the evening.</p>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>alias: arriving_home
 sequence:
   - choose:
@@ -303,8 +303,8 @@ sequence:
       - action: climate.turn_on
         target: { entity_id: climate.livingroom }</code></pre>
 
- <h3>4. Parallel action (parallel) - the fastest version of fully open and fully closed</h3>
- <p>A normal series of actions is a sequence run, use <code>parallel</code> You can send them at the same time, which is much faster:</p>
+ <h3>4. Parallel actions</h3>
+ <p>Normal actions run in sequence. Use <code>parallel</code> only when these independent actions are safe to start together:</p>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>sequence:
   - parallel:
       - action: light.turn_off
@@ -321,27 +321,27 @@ sequence:
   - delay: "00:00:02"
   - action: script.turn_on
     target: { entity_id: script.close_all_curtains }</code></pre>
- <p><strong>difference</strong>: use <code>script.turn_on</code> The call is "fire and forget", the main script continues to run; write directly <code>action: script.other_script</code>(Without turn_on) it means "wait until it finishes running before continuing". If you want to synchronize and wait, use the latter.</p>
+ <p><strong>Difference</strong>: <code>script.turn_on</code> starts a script without waiting. A direct call such as <code>action: script.other_script</code> waits for that script to finish before continuing.</p>
  </section>
 
- <section id="call" data-nav="How to call a script">
- <h2 data-icon="steps">How to call a script (4 entries)</h2>
+ <section id="call" data-nav="Call a script">
+ <h2 data-icon="steps">Four ways to call a script</h2>
  <ol class="steps">
  <li>
  <h3>From an automation action</h3>
- <p>Automation → Action → Select "Execute Action" → <code>script.leaving_home</code>(Or directly select the script entity). Fields are displayed when fields are present.</p>
+ <p>Add an action, select <code>script.leaving_home</code>, and complete any fields it exposes.</p>
  </li>
  <li>
  <h3>Card from dashboard</h3>
- <p>Add a Button card → Click on the action and select "Execute Action" → <code>script.turn_on</code> → Target selection script. For more display options, use a <strong>Tile card</strong> + Custom icon.</p>
+ <p>Add a Button card, set its tap action to perform <code>script.turn_on</code>, and target the script. A <strong>Tile card</strong> provides another compact option.</p>
  </li>
  <li>
  <h3>From Zigbee remote/scene panel</h3>
- <p>Use the "MQTT event" or "ZHA event" mentioned in Chapter 8 to grab the button, and the action section calls this script. Long press, short press, and double-click can all be mapped to different scripts.</p>
+ <p>Map the remote event exposed by its integration to this script. Short press, long press, and double press can call different scripts when the device supports those events.</p>
  </li>
  <li>
  <h3>Assist from voice assistant</h3>
- <p>"Expose" to Assist (Settings → Voice Assistant → Expose Script), and then you can say "Hey, away from home mode" to call directly. This is a built-in function, no need to write any integration.</p>
+ <p>Expose the script to Assist through its entity settings, then use a clear voice phrase such as “Activate leaving-home mode.” Expose only scripts that are safe for voice control.</p>
  </li>
  </ol>
  </section>
@@ -352,19 +352,19 @@ sequence:
  <summary>The script stops in the middle of execution and does not continue?</summary>
  <div class="body">
  <ul>
- <li>Check if it is a <code>wait_template</code> or <code>wait_for_trigger</code> No timeout — add <code>timeout: "00:00:30"</code> + <code>continue_on_timeout: true</code>.</li>
+ <li>Check whether <code>wait_template</code> or <code>wait_for_trigger</code> has no timeout. Add <code>timeout: "00:00:30"</code> and <code>continue_on_timeout: true</code>.</li>
  <li>If an action fails to execute, an error will be thrown and aborted. <code>continue_on_error: true</code> Let it skip to continue.</li>
- <li>Go to "Settings → Tools → Actions" to test that action individually to see if the entity does not exist or the parameters are wrong.</li>
+ <li>Go to "Settings → Tools → Actions" to test the action by itself and identify a missing entity or invalid parameter.</li>
  </ul>
  </div>
  </details>
  <details class="faq">
  <summary>Fields are added, but the fill-in field does not appear on the dashboard button card?</summary>
- <div class="body">The button card defaults to "press and run" and does not ask for fields. If you want to pop up a dialog box, please use "Entity card" or set "hold_action → more-info", the fields will be displayed; or use <strong>Mushroom Template card</strong> (HACS) Draw it yourself.</div>
+ <div class="body">A Button card runs with predefined data and does not prompt for fields. Provide fixed values, use a supported dialog flow, or build a separate helper-based control. Do not assume <strong>Mushroom Template card</strong> adds script-field prompting.</div>
  </details>
  <details class="faq">
  <summary>Nothing happens when I press "Execute Script"?</summary>
- <div class="body">Go to "Settings → System → Logs" to see if there is anything wrong. Common script failures include: misspelled entity ID, offline target device, insufficient permissions (non-administrator account running administrator script).</div>
+ <div class="body">Open Settings → System → Logs and inspect the script trace. Common causes include a misspelled entity ID, unavailable target, or invalid action data.</div>
  </details>
  <details class="faq">
  <summary>in the script <code>{{ variable }}</code> Not replaced?</summary>
@@ -384,11 +384,11 @@ sequence:
  </details>
  <details class="faq">
  <summary>After the script is deleted, what happens to the automation that uses it?</summary>
- <div class="body">It will be broken and the action will fail when executing to that line. Before deleting the script, use "Settings → Automations & Scenes → three-dot menu → Traces" or go to "Settings → Tools → Events" to monitor <code>service_registered</code> Find out who is using it.</div>
+ <div class="body">It will be broken and the action will fail when executing to that line. Before deleting the script, use "Settings → Automations &amp; scenes → three-dot menu → Traces" or go to "Settings → Tools → Events" to monitor <code>service_registered</code>.</div>
  </details>
  <details class="faq">
- <summary>What is Blueprint? What does it have to do with the script?</summary>
- <div class="body">Blueprint is <em>Script or automated templates</em>, discussed in Chapter 8. Commonly used logic is made into a Blueprint. After importing it, anyone only needs to fill in a few parameters (which light, which sensor) to have a usable script, which is suitable for sharing and mass deployment.</div>
+ <summary>How does a Blueprint relate to a script?</summary>
+ <div class="body">Blueprint is <em>reusable script or automation template</em>, discussed in Chapter 8. After importing one, complete its exposed inputs, such as a light or sensor. See Chapter 8 for the automation workflow.</div>
  </details>
  </section>
 

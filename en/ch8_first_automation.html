@@ -33,12 +33,12 @@
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to working</div>
+    <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch8_first_automation.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch8_first_automation.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to working</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -67,12 +67,12 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why should you learn this?</a>
-      <a href="#concept">three-stage concept</a>
+      <a href="#why">Why automate</a>
+      <a href="#concept">Three-part model</a>
       <a href="#entity_id_trap">entity_id trap</a>
-      <a href="#steps">DIY: Turn on the lights at sunset</a>
+      <a href="#steps">Sunset lights</a>
       <a href="#modes">execution mode</a>
-      <a href="#blueprints">Blueprint Blueprint</a>
+      <a href="#blueprints">Blueprints</a>
       <a href="#troubleshoot">Common problems</a>
       <a href="#faq">FAQ</a>
     </div>
@@ -91,47 +91,47 @@
  <p class="lead">The previous chapters established your home structure, names, dashboard, and notifications. Now build an automation that makes Home Assistant act on its own.</p>
  </div>
 
- <section id="why" data-nav="Why should you learn this?">
- <h2 data-icon="why">Why should you learn this?</h2>
- <p>Automation is the core of HA, and it is also the biggest difference between it and ordinary smart socket apps.</p>
- <p>If you only think of HA as "a webpage that can turn lights on and off remotely", then it is actually no more useful than Xiaomi/Google Home. What really makes HA worth installing is that it can:</p>
+ <section id="why" data-nav="Why automate">
+ <h2 data-icon="why">Why automate?</h2>
+ <p>Automation is where Home Assistant goes beyond an ordinary smart-device app.</p>
+ <p>If you use Home Assistant only as a remote control, you miss its main advantage. It can act:</p>
  <ul>
- <li>According to <strong>time</strong> (sunset, seven o'clock every morning) do things.</li>
- <li>According to <strong>sensor</strong> (Someone comes in, the temperature is too high, the electricity bill exceeds a certain value) Do something.</li>
- <li>According to <strong>multiple conditions</strong> (Someone is at home + dark + mid-week) Decide whether to do it or not.</li>
+ <li>At a <strong>time</strong>, such as sunset or 7:00 every morning.</li>
+ <li>When a <strong>sensor</strong> changes, such as motion being detected or temperature rising above a threshold.</li>
+ <li>Only when <strong>multiple conditions</strong> match, such as someone being home after dark on a weekday.</li>
  </ul>
- <p>Without writing about automation, HA is just a relatively expensive remote control. Starting from this chapter, we let it become the automatic housekeeper of the home.</p>
+ <p>Without automations, Home Assistant is just another remote control. This chapter makes it respond to your home on its own.</p>
  </section>
 
- <section id="concept" data-nav="three-stage concept">
- <h2 data-icon="concept">Three-stage concept: trigger / condition / action</h2>
- <p>Every automation of HA is composed of three blocks. Remember these three words, and you will not get lost when you look at any examples in the future:</p>
+ <section id="concept" data-nav="Three-part model">
+ <h2 data-icon="concept">Three-part model: trigger, condition, action</h2>
+ <p>Every Home Assistant automation uses three building blocks:</p>
  <ul>
- <li><strong>Trigger</strong>: When to "start checking" this automation. For example: at sunset, a switch is pressed, the temperature exceeds 28 degrees.</li>
- <li><strong>Condition</strong>: After triggering, whether to actually execute it. For example: turn on the lights only when "someone is at home", and sound the alarm only when "it is not a holiday". The condition is <em>filter</em>.</li>
- <li><strong>Action</strong>: What to actually do. For example: turn on the lights, send tweets, play music, close the curtains.</li>
+ <li><strong>Trigger</strong>: What starts the automation, such as sunset, a button press, or temperature exceeding 28 degrees.</li>
+ <li><strong>Condition</strong>: A <em>filter</em> checked after the trigger, such as whether someone is home or today is a workday.</li>
+ <li><strong>Action</strong>: What Home Assistant does, such as turning on a light, sending a notification, playing music, or closing a cover.</li>
  </ul>
- <div class="callout tip"><strong>Mental method:</strong> The trigger is "when to ask", the condition is "do you want to do it", and the action is "what to do". If these three sections are clearly broken down, any complex automation can be spelled out.</div>
+ <div class="callout tip"><strong>Remember:</strong> A trigger asks “when?”, a condition asks “should it run?”, and an action answers “what should happen?” Breaking a complex idea into these parts makes it easier to build and debug.</div>
  </section>
 
  <section id="entity_id_trap" data-nav="entity_id trap">
  <h2 data-icon="entity_id_trap">The device_id trap and entity_id</h2>
- <p>This is the number one pitfall recognized by the HA community, and it is also the reason why many people's automation "breaks after a while."</p>
- <p>When building automation in the UI, HA defaults to using <strong>device</strong> As a trigger object, for example, "the device of the living room lamp is turned on." It seems intuitive, but writing automation like this is tied to <em>That physical piece of hardware</em> The identification code (device_id) on the. Once you replace the light, re-pair Zigbee, or the integration is removed and re-added, the device_id changes and the entire automation is broken, and there is no error message, it just <strong>Quietly and still</strong>.</p>
- <div class="callout danger"><strong>This teaching rule:</strong> All automated triggers and actions will be changed to <code>entity_id</code>(e.g. <code>light.livingroom_ceiling</code>) without device_id. The UI will show the "Entity" option instead of the "Device" option.</div>
- <p>entity_id is <strong>logical name</strong>, the string you named yourself in Chapter 4. If the device is changed or the integration is reinstalled, as long as you change the new device to the same entity_id, all automation will be automatically connected without any changes.</p>
- <p>This is why <a href="ch4_naming_labels.html">Chapter 4 Naming and Labeling</a> So important - a good entity_id is the foundation of maintainable automation.</p>
+ <p>A device-based automation can stop working after hardware is replaced or paired again.</p>
+ <p>A <strong>device</strong> trigger may look intuitive, but it ties the automation to <em>one physical device</em> through its device ID. Replacing a light, pairing it again, or removing and re-adding an integration can create a new device ID. The automation may then fail <strong>without an obvious warning</strong>.</p>
+ <div class="callout danger"><strong>Rule for this guide:</strong> Prefer <code>entity_id</code> references, such as <code>light.livingroom_ceiling</code>, when the same behavior is available. In the UI, choose an entity trigger or target instead of a device option.</div>
+ <p>An entity ID is a <strong>logical name</strong> that you control. If hardware changes, assigning the replacement the same entity ID can keep entity-based automations working.</p>
+ <p>This is why <a href="ch4_naming_labels.html">Chapter 4: Naming and labels</a> matters: clear, stable entity IDs are the foundation of maintainable automations.</p>
  <p>Further reading: <a href="https://community.home-assistant.io/t/why-and-how-to-avoid-device-ids-in-automations-and-scripts/605517" target="_blank" rel="noopener">HA community discussion: Why avoid device_id</a>.</p>
  </section>
 
- <section id="steps" data-nav="DIY: Turn on the lights at sunset">
+ <section id="steps" data-nav="Sunset lights">
  <h2 data-icon="steps">DIY: Turn on the living room lights when the sun sets</h2>
- <p>We use the most classic "turn on the lights at sunset" to implement it. Goal: 30 minutes after the sun goes down, turn on the main light in the living room and send a push notification on your phone.</p>
- <div class="callout"><strong>The name has been changed:</strong> Starting from HA 2024.8, "Service" will be officially renamed "Action", and "Call service" on the UI will become "Perform action". Starting from 2024.10, the outermost three keys of automation YAML will also be changed to plural numbers:<code>trigger:</code> → <code>triggers:</code>, <code>condition:</code> → <code>conditions:</code>, <code>action:</code> → <code>actions:</code>; in action <code>service:</code> Change to <code>action:</code>, <code>service_data:</code> Change to <code>data:</code>. The old writing method has not been officially abolished and is still used, so don’t be nervous when you see old examples on the Internet. Always use the new name in the following steps. The old name in brackets is the word you will see on the old version of the screen.</div>
+ <p>Goal: 30 minutes after sunset, turn on the main living-room light and send a push notification.</p>
+ <div class="callout"><strong>Current terminology:</strong> Home Assistant now calls a service call an action, and the UI uses “Perform action.” Current automation YAML uses the plural top-level keys<code>trigger:</code> → <code>triggers:</code>, <code>condition:</code> → <code>conditions:</code>, <code>action:</code> → <code>actions:</code> . Within an action, use <code>service:</code> instead of <code>action:</code>, <code>service_data:</code> instead of <code>data:</code>. Older examples may use the legacy keys. This guide follows the current terminology and syntax.</div>
  <ol class="steps">
  <li>
  <h3>Build new automation</h3>
- <p>Go to "Settings → Automations & Scenes &amp; Scenes → Create Automation" and select "Start from Blank". Give it a name that is easy to understand, such as "Sunset·Living room main light on".</p>
+ <p>Go to "Settings → Automations &amp; scenes → Create Automation" and select "Start from Blank". Give it a name that is easy to understand, such as "Sunset·Living room main light on".</p>
  <figure class="shot">
  <img src="../assets/screenshots/ch8/01_step.png" alt="Create new automation" />
  <figcaption><strong>Figure 8-1</strong> Start with a blank space, and the name must describe "what to do when."</figcaption>
@@ -147,7 +147,7 @@
  </li>
  <li>
  <h3>(Optional) Add condition: only execute when someone is home</h3>
- <p>Click "Add Condition", select "Status", and select the entity <code>zone.home</code>(or the home area you set in Chapter 3), the status is "Greater than 0". This way no electricity is wasted when no one is home.</p>
+ <p>Select Add condition → Numeric state, then choose <code>zone.home</code>and set Above to 0. The actions then run only when at least one tracked person is home.</p>
  <figure class="shot">
  <img src="../assets/screenshots/ch8/03_step.png" alt="Set conditions" />
  <figcaption><strong>Figure 8-3</strong> The condition is a filter and is judged only after it is triggered.</figcaption>
@@ -171,14 +171,14 @@
  </li>
  <li>
  <h3>Save and test</h3>
- <p>"Save" in the lower right corner. After confirming the name, go back to the automation list and you can see the one you just created. Click the "Execute" button next to it to manually trigger it once. The confirmation light will turn on and the phone will receive a notification.</p>
+ <p>Select Save, confirm the name, then open the automation and run its actions manually. The light should turn on and the phone should receive a notification.</p>
  <figure class="shot">
  <img src="../assets/screenshots/ch8/06_step.png" alt="Store and test" />
  <figcaption><strong>Figure 8-6</strong> Manual execution can skip the trigger conditions and directly verify the action.</figcaption>
  </figure>
  </li>
  </ol>
- <div class="callout tip"><strong>Verify:</strong> Set the time on your phone to 30 minutes just after sunset and the lights should come on. Or go to "Settings → Automations & Scenes → The one you just created → Execute" to trigger it manually. If the phone receives the push message "The living room lights have been turned on with sunset", it means that the entire path (trigger → condition → action → notification) has been passed.</div>
+ <div class="callout tip"><strong>Verify:</strong> Do not change your phone clock. Open the automation under Settings → Automations & scenes and run its actions for an immediate test. To test the full path, temporarily choose a safe trigger that will occur soon, then restore the sunset trigger.</div>
  </section>
 
  <section id="modes" data-nav="execution mode">
@@ -196,7 +196,7 @@
  <tr>
  <td><strong>single</strong> (Default)</td>
  <td>Ignore new triggers while still running last time</td>
- <td>"Just run it" automations like turning on the lights at sunset and making daily backups</td>
+ <td>One-shot tasks such as sunset lighting or a daily backup</td>
  </tr>
  <tr>
  <td><strong>restart</strong></td>
@@ -218,9 +218,9 @@
  <p>If you're not sure, stay <code>single</code>, which is the safest default.</p>
  </section>
 
- <section id="blueprints" data-nav="Blueprint Blueprint">
+ <section id="blueprints" data-nav="Blueprints">
  <h2 data-icon="blueprints">Blueprint: Import automation written by others with one click</h2>
- <p>Blueprint is HA’s official “automated template” mechanism. The author has written the logic and left the adjustable parts as form fields. You only need to fill in a few drop-down menus and there will be an available automation.</p>
+ <p>A Blueprint is a reusable automation template. Its author supplies the logic and exposes adjustable inputs as form fields.</p>
  <p>Common uses:</p>
  <ul>
  <li>Zigbee button connection (IKEA, Aqara, Hue remote control)</li>
@@ -231,27 +231,27 @@
  <p>Import process:</p>
  <ol>
  <li>Arrive <a href="https://community.home-assistant.io/c/blueprints-exchange/53" target="_blank" rel="noopener">HA Blueprint Exchange Forum</a> Or find the blueprint you want on GitHub and copy its URL.</li>
- <li>In HA "Settings → Automations & Scenes → Blueprints → Import Blueprint", paste the URL.</li>
- <li>Go back to "Automation", click "Create Automation with Blueprint", select the one you just imported, and fill in the device/entity parameters.</li>
+ <li>In HA "Settings → Automations &amp; scenes → Blueprints → Import Blueprint", paste the URL.</li>
+ <li>Return to Automations, create one from the imported Blueprint, and complete its device or entity inputs.</li>
  </ol>
- <div class="callout"><strong>Suggestions:</strong> First become familiar with handwriting automation once (that is, the example in this chapter), and then start using Blueprints. In this way, if there is a problem with the blueprint, you will know how to look at it and how to correct it.</div>
+ <div class="callout"><strong>Suggestions:</strong> Build the example in this chapter before relying on Blueprints. Understanding the editor helps you diagnose a Blueprint-based automation later.</div>
  </section>
 
  <section id="troubleshoot" data-nav="Common problems">
  <h2 data-icon="troubleshoot">Common problems</h2>
  <p><strong>Question 1: The automation is not running and there is no error message.</strong></p>
- <p>Go to the automation list and click on it. There is a "Trace" button in the upper right corner. The complete process of the last 5 triggers will be displayed here: which trigger is activated, whether the condition is passed or not, and which step the action reaches. Looking at the trace is the first step in troubleshooting, which is more direct than looking at the log.</p>
+ <p>Open the automation and inspect Traces. A trace shows which trigger fired, whether each condition passed, and how far the actions ran. Check it before searching the system log.</p>
  <p><strong>Problem 2: The trigger occurs, but the condition blocks it.</strong></p>
  <p>Trace will be marked with color: if the condition box turns gray/white, it means it failed, and moving the mouse up will display the actual value of the current entity. Common reasons:<code>zone.home</code> judged to be <code>0</code>(Everyone is not at home), the time conditions and time zone are not aligned.</p>
  <p><strong>Issue 3: Entity name is misspelled/renamed.</strong></p>
- <p>If you change the entity_id, the old automation will not automatically follow the change and will run silently. After the HA 2024 version, "Unused entities" and "Prompt for update when renaming" were added, but the old automation recommended manually running a verification using "Settings → Tools → YAML → Check Settings" (Settings → Tools → YAML; the old version of this page was called "Developer Tools", it was moved under "Settings" in 2026.2, and simplified to "Tools" in 2026.8).</p>
+ <p>A stale entity reference can make an action fail. Check each referenced entity in the editor, inspect the trace, and use Settings → Tools → YAML → Check configuration before restarting after YAML changes.</p>
  </section>
 
  <section id="faq" data-nav="FAQ">
  <h2 data-icon="faq">FAQ</h2>
  <details class="faq">
  <summary>Can I call another automation within an automation?</summary>
- <div class="body">Yes, but it is more recommended to use "Script". A script is a reusable sequence of actions that can be called by multiple automations or manually triggered by placing a button on the dashboard. Settings → Automations & Scenes &amp; Scenes → Script Creation.</div>
+ <div class="body">Yes, but it is more recommended to use "Script". A script is a reusable sequence of actions that can be called by multiple automations or manually triggered by placing a button on the dashboard. Settings → Automations &amp; scenes → Script Creation.</div>
  </details>
  <details class="faq">
  <summary>Is it better to write automation in UI or YAML?</summary>
@@ -263,7 +263,7 @@
  </details>
  <details class="faq">
  <summary>Is there a way to temporarily deactivate an automation (for example while traveling abroad)?</summary>
- <div class="body">There is a switch on the right side of the automation list that can be turned off directly. Or use "input_boolean" to create a "vacation mode" switch, reference it in the condition, and you can switch it on the dashboard with one click.</div>
+ <div class="body">Turn off the automation from its list row. For reusable control, create an input_boolean vacation-mode helper and check it in the conditions.</div>
  </details>
  </section>
 
