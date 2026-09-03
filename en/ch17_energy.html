@@ -1,33 +1,33 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Chapter 17 · Energy dashboard and ESG practices · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Select suitable sensors, configure the Energy dashboard, integrate power into energy, track local tariffs and costs, and analyze efficiency improvements." />
-  <meta name="author" content="WoowTech" />
-  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch17_energy.html" />
-  <meta name="robots" content="noindex, follow" />
-  <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Chapter 17 · Energy dashboard and ESG practices · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Select suitable sensors, configure the Energy dashboard, integrate power into energy, track local tariffs and costs, and analyze efficiency improvements." />
-  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch17_energy.html" />
-  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chapter 17 · Energy dashboard and ESG practices · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Select suitable sensors, configure the Energy dashboard, integrate power into energy, track local tariffs and costs, and analyze efficiency improvements." />
-  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
-  <meta name="theme-color" content="#6183FC" />
-  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <link rel="stylesheet" href="../assets/css/i18n.css" />
+  <meta name="description" content="Select suitable sensors, configure the Energy dashboard, integrate power into energy, track local tariffs and costs, and analyze efficiency improvements.">
+  <meta name="author" content="WoowTech">
+  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch17_energy.html">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_TW">
+  <meta property="og:title" content="Chapter 17 · Energy dashboard and ESG practices · Home Assistant Onboarding Guide">
+  <meta property="og:description" content="Select suitable sensors, configure the Energy dashboard, integrate power into energy, track local tariffs and costs, and analyze efficiency improvements.">
+  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch17_energy.html">
+  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Chapter 17 · Energy dashboard and ESG practices · Home Assistant Onboarding Guide">
+  <meta name="twitter:description" content="Select suitable sensors, configure the Energy dashboard, integrate power into energy, track local tariffs and costs, and analyze efficiency improvements.">
+  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png">
+  <meta name="theme-color" content="#6183FC">
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;family=Yellowtail&amp;display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/i18n.css">
 </head>
 <body>
 <div class="layout">
@@ -97,68 +97,111 @@
  </div>
 
  <section id="why" data-nav="Why should we learn">
- <h2 data-icon="why">Why you should learn this: From "It feels like a waste of electricity" to "I have numbers"</h2>
+ <h2 data-icon="why">Why this matters: replace guesses with measurements</h2>
 
- <p>When the electricity bill comes every month, everyone's reaction is usually "Why is it so much again?" and then nothing happens. Because the electricity bill only tells you a total, it will not tell you which machine contributed to the total.</p>
+ <p>A utility bill gives you a total, but it does not show how much each appliance contributed. Without measurements, “Why is the bill so high?” remains a guess.</p>
 
- <p>Energy dashboard solves this problem. It is a special dashboard built into Home Assistant. It will draw your electricity consumption data into "how many kilowatt hours you used today", "how does it look like every day this month" and "which device consumes the most". It can also be converted into money by multiplying the electricity price.</p>
+ <p>The built-in Energy dashboard turns consumption data into charts: kilowatt-hours used today, daily usage this month, and usage by device. It can also estimate cost from your configured tariff.</p>
 
- <p>Some very touching situations:</p>
+ <p>Common uses include:</p>
 
  <ul>
- <li><strong>at home</strong>: You suspect that the old refrigerator consumes a lot of electricity, but there is no evidence. Install a smart socket with power monitoring. After two weeks, you will see how many degrees it consumes steadily every day. It will be clear at a glance whether it is worth replacing it with a new one.</li>
- <li><strong>room</strong>: I forgot to turn off the dehumidifier and it ran all day. With the daily electricity consumption chart, you will immediately find out "Why is there an increase of 3 degrees today?"</li>
- <li><strong>Office pantry</strong>: A water dispenser that stays hot 24 hours a day may seem like a few hundred watts, but it may add up to more than a photocopier in a month. This low-power, continuously running load can only be caught by accumulating data.</li>
- <li><strong>ESG reporting</strong>: When a small office needs to submit an energy-saving or sustainability statement, "We have installed smart sockets and changed the water heater in the pantry to keep it warm during working hours, and the monthly electricity consumption has been reduced by X degrees" is much more capable than "We have a propaganda to turn off the lights."</li>
+ <li>
+<strong>Home</strong>: Measure an older refrigerator with an energy-monitoring smart plug. After two weeks, its daily kWh use provides evidence for a replacement decision.</li>
+ <li>
+<strong>Room</strong>: A dehumidifier left running all day appears as an unusual increase—such as 3 kWh—on the daily chart.</li>
+ <li>
+<strong>Office pantry</strong>: A hot-water dispenser drawing a few hundred watts continuously may use more energy in a month than a copier. Accumulated data reveals persistent loads.</li>
+ <li>
+<strong>ESG reporting</strong>: A small office can document a measured result: “After installing monitoring plugs and limiting pantry water heating to business hours, monthly consumption fell by X kWh.” That is stronger evidence than an awareness campaign alone.</li>
  </ul>
 
- <div class="callout"><strong>Concept:</strong> This chapter does not require you to be able to write programs, but it does require you to be patient. Energy data is different from automation. Automation responds immediately when pressed. Energy data has to "wait" - it takes at least several days to accumulate to see the trend, and it takes a complete cycle (such as a month) to have comparative value.</div>
+ <div class="callout">
+<strong>Concept:</strong> Energy analysis requires time, not programming. An automation responds immediately, but energy trends need several days of data and comparisons are most useful across a complete cycle, such as a month.</div>
 
- <p>Connection points: This chapter uses a lot of <a href="appendix_scenes_helpers_groups.html">Appendix B</a> The "Helper" mentioned above will also be mentioned all the time. <a href="ch4_naming_labels.html">Chapter 4</a> Entity ID and naming. How to add the device itself to HA, please see <a href="ch11_devices.html">Chapter 11</a>. If you are still not sure what sensor is, go back first <a href="ch12_domains.html">Chapter 12</a> look <code>sensor</code> That paragraph.</p>
+ <p>This chapter uses helpers from <a href="appendix_scenes_helpers_groups.html">Appendix B</a> and entity naming from <a href="ch4_naming_labels.html">Chapter 4</a>. See <a href="ch11_devices.html">Chapter 11</a> for adding devices and <a href="ch12_domains.html">Chapter 12</a> for the <code>sensor</code> domain.</p>
  </section>
 
  <section id="power_vs_energy" data-nav="Power and electricity usage">
- <h2 data-icon="concept">Let’s first distinguish between two words: power (W) and electricity consumption (kWh)</h2>
+ <h2 data-icon="concept">Power (W) and energy (kWh) are different</h2>
 
- <p>This is the most important and most confused concept in the entire chapter. Remember one sentence: <strong>Power is like speed, power consumption is like distance</strong>.</p>
+ <p>This distinction is essential: <strong>power is like speed; energy is like distance</strong>.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Name</th><th>unit</th><th>what is it answering</th><th>Metaphor</th></tr>
+ <tr>
+<th>Quantity</th>
+<th>Unit</th>
+<th>Question answered</th>
+<th>Analogy</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>Power</td><td>W, kW</td><td>"Now" how much electricity is consumed in this second?</td><td>60 kilometers per hour</td></tr>
- <tr><td>Energy</td><td>Wh, kWh (degree)</td><td>How much electricity is used in total "over a period of time"</td><td>Driving 120 kilometers today</td></tr>
+ <tr>
+<td>Power</td>
+<td>W, kW</td>
+<td>How quickly is energy being used now?</td>
+<td>60 kilometers per hour</td>
+</tr>
+ <tr>
+<td>Energy</td>
+<td>Wh, kWh</td>
+<td>How much energy was used over a period?</td>
+<td>Driving 120 kilometers today</td>
+</tr>
  </tbody>
  </table>
 
- <p>Your utility bills you in <strong>degree</strong> (1 degree = 1 kWh), not in watts. So:</p>
+ <p>Your utility bills for kilowatt-hou<strong>rs</strong> (kWh), not watts. Therefore:</p>
 
  <ul>
- <li>A 1000 W electric heater on for 1 hour = 1 degree.</li>
- <li>A 100 W water dispenser running for 24 hours = 2.4 degrees. <strong>More than electric heaters.</strong></li>
+ <li>A 1000 W electric heater running for 1 hour uses 1 kWh.</li>
+ <li>A 100 W hot-water dispenser running for 24 hours uses 2.4 kWh—<strong>more than the heater in the example above.</strong>
+</li>
  </ul>
 
- <p>Many cheap smart sockets will only report "the current number of watts" (power), but will not report the "accumulated number of kilowatt hours" (power consumption). <strong>What an energy dashboard wants most is electricity usage</strong>—All the charts of “how many degrees did you use today” and “how much did you spend this month” are based on degrees. This is why you often encounter "I obviously have power monitoring, but my socket cannot be selected on the dashboard."</p>
+ <p>Some smart plugs report only current watts, not accumulated kilowatt-hours. <strong>The Energy dashboard primarily needs energy data for daily use an</strong>d cost charts. This is why a plug can report power yet remain unavailable in an energy-source selector.</p>
 
- <div class="callout"><strong>Concept:</strong> The power sensor is not completely useless. Home Assistant document says "If the attributes are correct, you can add the power sensor directly" - it will feed the "Now" page, allowing you to see who is drawing power at the moment. But to do daily/monthly statistics and costs, you still need to have a degree. Therefore, the main official advice given on the individual device page is still <strong>Convert wattage to degrees using Riemann sum integral</strong>. The method is later <a href="#integral">W becomes kWh</a> That section.</div>
+ <div class="callout">
+<strong>Concept:</strong> A correctly classified power sensor can feed the Now view and show current demand. Daily and monthly consumption and cost still require energy in kWh. <strong>Convert watts to kWh with an Integral</strong> helper as described under <a href="#integral">W becomes kWh</a>.</div>
 
- <div class="callout tip"><strong>Tip:</strong> Before buying a smart socket, check whether the specifications or reviews mention "energy / kWh / accumulated electricity consumption." If so, it will save you a lot of setup work.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> Before buying a smart socket, check whether the specifications or reviews mention "energy / kWh / accumulated electricity consumption." If so, it will save you a lot of setup work.</div>
  </section>
 
  <section id="sensor_rules" data-nav="Qualified sensor">
- <h2 data-icon="entity_id_trap">What does the sensor that can be selected on the energy dashboard look like?</h2>
+ <h2 data-icon="entity_id_trap">Requirements for Energy dashboard sensors</h2>
 
- <p>The energy dashboard does not allow you to choose any sensor. It will filter to only list entities with the correct attributes. For a sensor to be selected, three things must be right:</p>
+ <p>The Energy dashboard lists only entities with compatible attributes. Verify these three fields:</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Properties</th><th>What to set to</th><th>plain-language explanation</th></tr>
+ <tr>
+<th>Attribute</th>
+<th>Required value</th>
+<th>Purpose</th>
+</tr>
  </thead>
  <tbody>
- <tr><td><code>device_class</code></td><td><code>energy</code> / <code>power</code> / <code>gas</code> / <code>water</code> / <code>monetary</code></td><td>Tell HA "What kind of thing is this number?"</td></tr>
- <tr><td><code>state_class</code></td><td>For accumulation type <code>total_increasing</code> or <code>total</code>;For instantaneous type (power) <code>measurement</code></td><td>Tell HA "How will this number be counted?"</td></tr>
- <tr><td><code>unit_of_measurement</code></td><td>To be on the legal list, e.g. <code>kWh</code>, <code>Wh</code>, <code>W</code>, <code>kW</code></td><td>Capitalization, superscripts and subscripts must be completely correct.</td></tr>
+ <tr>
+<td><code>device_class</code></td>
+<td>
+<code>energy</code> / <code>power</code> / <code>gas</code> / <code>water</code> / <code>monetary</code>
+</td>
+<td>Tell HA "What kind of thing is this number?"</td>
+</tr>
+ <tr>
+<td><code>state_class</code></td>
+<td>
+<code>total_increasing</code> or <code>total</code> for cumulative values; <code>measurement</code> for instantaneous power</td>
+<td>Tells Home Assistant how to aggregate the value.</td>
+</tr>
+ <tr>
+<td><code>unit_of_measurement</code></td>
+<td>A supported unit, such as <code>kWh</code>, <code>Wh</code>, <code>W</code>, or <code>kW</code>
+</td>
+<td>Spelling and capitalization must be exact.</td>
+</tr>
  </tbody>
  </table>
 
@@ -166,41 +209,90 @@
 
  <table class="data-table">
  <thead>
- <tr><th>state_class</th><th>meaning</th><th>Typical example</th></tr>
+ <tr>
+<th>state_class</th>
+<th>meaning</th>
+<th>Typical example</th>
+</tr>
  </thead>
  <tbody>
- <tr><td><code>measurement</code></td><td>The current measured value is not cumulative</td><td>Current power is 850 W, room temperature is 26 degrees</td></tr>
- <tr><td><code>total</code></td><td>Cumulative value that increases and decreases</td><td>The net electricity consumption of a two-way meter (it will become smaller when the electricity is sold back)</td></tr>
- <tr><td><code>total_increasing</code></td><td>The cumulative value will only increase upwards and occasionally reset to zero.</td><td>Accumulated power consumption of smart sockets (starts from 0 after power outage)</td></tr>
+ <tr>
+<td><code>measurement</code></td>
+<td>A current, noncumulative measurement</td>
+<td>Current power is 850 W; room temperature is 26°C</td>
+</tr>
+ <tr>
+<td><code>total</code></td>
+<td>Cumulative value that increases and decreases</td>
+<td>The net electricity consumption of a two-way meter (it will become smaller when the electricity is sold back)</td>
+</tr>
+ <tr>
+<td><code>total_increasing</code></td>
+<td>A cumulative value that normally increases and may reset to zero</td>
+<td>Smart-plug energy total that resets after a power failure</td>
+</tr>
  </tbody>
  </table>
 
- <div class="callout"><strong>Concept:</strong> official <code>total_increasing</code> The definition is: when the value drops, HA will "interpret it as the beginning of a new counting cycle, or the meter has been replaced." So cutting out the power to the outlet and resetting it to zero won't blow up your chart - HA knows how to deal with that. In addition, it has a built-in tolerance. If the value drops less than 10% between two times, it will not be regarded as zero, thus avoiding misjudgment of decimal point noise.</div>
+ <div class="callout">
+<strong>Concept:</strong> With <code>total_increasing</code>, Home Assistant interprets a decrease as a new meter cycle or meter replacement. A plug that resets to zero after losing power should not create an extreme chart value. A built-in 10% tolerance prevents small decreases from being mistaken for resets.</div>
 
- <div class="callout warn"><strong>Warning:</strong> Never put <code>device_class: power</code>(Watt) with <code>state_class: total_increasing</code>. Power is not a cumulative value, this combination is not logically valid, and HA will issue a warning in Repairs. Power is <code>measurement</code>.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> Never combine <code>device_class: power</code> (watts) with <code>state_class: total_increasing</code>. Power is instantaneous, not cumulative, and must use <code>measurement</code>. Repairs will flag the invalid combination.</div>
 
  <h3>How to check if your sensor attributes are correct?</h3>
 
- <p>go <strong>Settings → Tools → States</strong>, search for your sensor, and all its attributes will be displayed on the right. See three key fields clearly at once. There is another one in the same area <strong>Statistics</strong> Tab will list all entities with long-term statistics; when the statistics of an entity are broken, a "Fix issue" link will appear there.</p>
+ <p>Open <strong>Settings → Tools → States</strong>, search for the sensor, and inspect its attributes. The <strong>Statistics</strong> tab lists entities with long-term statistics and shows Fix issue when a statistics problem is detected.</p>
 
- <div class="callout warn"><strong>Warning:</strong> This place has recently changed its name and location twice. It used to be called "Developer tools" and hung at the bottom of the sidebar; later it was moved to the settings area. In the August 2026 version, "Developer" was removed from the name and it was called <strong>Tools</strong>—Home Assistant statement is that they don’t want non-engineers to be afraid to click when they see “Developer”. Old tutorials on the Internet about "Developer Tools" all talk about the same place. There are seven tabs: YAML, States, Actions, Templates, event, statistics, and Assist. This chapter will keep coming back to them.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> This area was named Developer tools and appeared in the sidebar before moving under Settings. In <strong></strong>Home Assistant 2026.8 it became Tools. Older tutorials refer to the same seven tabs: YAML, States, Actions, Templates, Events, Statistics, and Assist.</div>
  </section>
 
  <section id="where_data" data-nav="Where does the data come from?">
- <h2 data-icon="hardware">Where electricity usage data comes from: five sources</h2>
+ <h2 data-icon="hardware">Five sources of energy data</h2>
 
- <p>Without hardware there is no data. The following are common ways to obtain them, from simple to difficult.</p>
+ <p>Energy data must come from a meter or sensor. These are common sources, from simpler to more involved.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Source</th><th>What is measured</th><th>difficulty</th><th>Suitable for whom</th></tr>
+ <tr>
+<th>Source</th>
+<th>What is measured</th>
+<th>difficulty</th>
+<th>Suitable for whom</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>Smart socket/smart switch</td><td>The power of a single electrical appliance, some models include cumulative power</td><td>low</td><td>This is my first time playing and I want to measure one appliance.</td></tr>
- <tr><td>CT clip-on current sensor</td><td>The power of the entire circuit or the whole household</td><td>in</td><td>I want to see the total amount of the whole house</td></tr>
- <tr><td>solar inverter</td><td>Power generation and feed capacity</td><td>in</td><td>Installed solar panels</td></tr>
- <tr><td>Energy storage battery system</td><td>Charge capacity, discharge capacity</td><td>in</td><td>Installed household batteries</td></tr>
- <tr><td>Gas/water meter</td><td>Dosage (m³, L)</td><td>high</td><td>Do a complete ESG inventory</td></tr>
+ <tr>
+<td>Smart plug/smart switch</td>
+<td>Power for one appliance; some models also report cumulative energy</td>
+<td>Low</td>
+<td>First measurement of a single appliance</td>
+</tr>
+ <tr>
+<td>Clamp-on CT sensor</td>
+<td>Power for a circuit or the whole home</td>
+<td>Medium</td>
+<td>Whole-home or circuit monitoring</td>
+</tr>
+ <tr>
+<td>Solar inverter</td>
+<td>Generation and grid export</td>
+<td>Medium</td>
+<td>Sites with solar panels</td>
+</tr>
+ <tr>
+<td>Battery storage system</td>
+<td>Energy charged and discharged</td>
+<td>Medium</td>
+<td>Sites with battery storage</td>
+</tr>
+ <tr>
+<td>Gas/water meter</td>
+<td>Consumption (m³, L)</td>
+<td>High</td>
+<td>Broader sustainability reporting</td>
+</tr>
  </tbody>
  </table>
 
@@ -208,62 +300,88 @@
 
  <table class="data-table">
  <thead>
- <tr><th>Ecology</th><th>HA integration</th><th>What to pay attention to</th></tr>
+ <tr>
+<th>Ecology</th>
+<th>HA integration</th>
+<th>What to pay attention to</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>Shelly</td><td>official <code>Shelly</code> Integration, local push, quality rating is the highest platinum level</td><td>All four generations of models are supported, but each generation has a minimum firmware requirement: the first generation requires 1.9 or above (a few models require 1.11 or above), the second generation requires 1.0 or above, and the third generation requires 1.2.0 or above. If you buy old stock, update the firmware first. In addition, the first generation Shelly 4Pro and Shelly Sense do not support</td></tr>
- <tr><td>Tasmota (device with firmware flashed)</td><td>official <code>Tasmota</code> Integrate</td><td><strong>Must</strong> First, there is MQTT broker and MQTT integration. The device firmware must be 9.2 or above, and native automatic exploration must be enabled.<code>tasmota-lite.bin</code> Not supported</td></tr>
- <tr><td>ESPHome do it yourself</td><td>official <code>ESPHome</code> Integrate</td><td>It has the greatest elasticity and can be directly connected to the CT clamp. You need to be able to burn, suitable for those who are patient.</td></tr>
- <tr><td>Xiaomi/Aqara</td><td>Xiaomi Home (<code>xiaomi_miio</code>) or go to Zigbee (ZHA, Zigbee2MQTT)</td><td><strong>Not every socket has power monitoring</strong>, different versions of the same model may also differ greatly. Be sure to check the model number before buying</td></tr>
+ <tr>
+<td>Shelly</td>
+<td>Official <code>Shelly</code> integration; local push; Platinum quality rating</td>
+<td>All four generations of models are supported, but each generation has a minimum firmware requirement: the first generation requires 1.9 or above (a few models require 1.11 or above), the second generation requires 1.0 or above, and the third generation requires 1.2.0 or above. If you buy old stock, update the firmware first. In addition, the first generation Shelly 4Pro and Shelly Sense do not support</td>
+</tr>
+ <tr>
+<td>Tasmota (device with firmware flashed)</td>
+<td>Official <code>Tasmota</code> integration</td>
+<td>
+<strong>Requires</strong> an MQTT broker and the MQTT integration. Firmware must be 9.2 or later with native discovery enabled. <code>tasmota-lite.bin</code> is not supported</td>
+</tr>
+ <tr>
+<td>Custom ESPHome device</td>
+<td>Official <code>ESPHome</code> integration</td>
+<td>Highly flexible and can connect directly to a CT sensor, but requires device-flashing and configuration experience.</td>
+</tr>
+ <tr>
+<td>Xiaomi/Aqara</td>
+<td>Xiaomi Home (<code>xiaomi_miio</code>) or go to Zigbee (ZHA, Zigbee2MQTT)</td>
+<td>
+<strong>Not every socket has power monitoring</strong>, different versions of the same model may also differ greatly. Be sure to check the model number before buying</td>
+</tr>
  </tbody>
  </table>
 
- <div class="callout warn"><strong>Warning:</strong> Cloud-based sockets (which need to be connected to the original server to read) will lose the entire data when the network is disconnected, and holes will appear on the chart. When conducting ESG checks, it is recommended to give priority to the local connection (Local Push / Local Polling) solution.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> Cloud-dependent plugs cannot report data while the internet or provider is unavailable, leaving gaps in charts. For auditable reporting, prefer local push or local polling where available.</div>
 
  <h3>Household electricity meter layer</h3>
 
- <p>If you want to look at the "entire household" rather than "single appliances", you have to measure at the electrical box level. The method is to clip the CT clip-on current sensor to the main guide, and then connect it to a module that can report back to the HA (such as the Shelly series that supports power monitoring, or you can use ESPHome to do it yourself).</p>
+ <p>Whole-home monitoring requires measurement at the electrical panel. A clamp-on CT sensor surrounds a main conductor and connects to a module that reports to Home Assistant, such as a compatible Shelly device or an ESPHome system.</p>
 
- <div class="callout danger"><strong>Danger:</strong> Working on electrical boxes carries risks of electric shock and fire. Although the CT clamp is non-intrusive (clamping it outside does not require disconnection), please leave the opening of the electrical box and fixing the wires to qualified electrical technicians. Renters should also ask their landlord before turning on the main switch. This is not something you can just "try".</div>
+ <div class="callout danger">
+<strong>Danger:</strong> Work inside an electrical panel can cause electric shock, arc flash, or fire. A CT clamp is noninvasive, but opening the panel and routing or securing wiring must be left to a qualified electrician under local rules. Renters must also obtain the required property approval.</div>
 
  <h3>Solar energy and energy storage</h3>
 
  <p>Most brands of solar inverters have their own API or local interface, and HA has corresponding integrations that can read "current power generation" and "accumulated power generation". Energy storage batteries usually give you two numbers: "accumulated charge" and "accumulated discharge." When setting up the energy dashboard, solar energy and battery are two separate blocks, each feeding different sensors.</p>
 
- <div class="callout tip"><strong>Tip:</strong> The new version of the energy setting is more tolerant to sensor formats - now you can directly use "a sensor with a positive and negative sign" to represent the two-way flow of mains power or battery, or you can use "two sensors with positive signs" to represent buying/selling electricity or charging/discharging respectively. You no longer need to write a template (Template) to flip the positive and negative signs. In addition, the new version can also help each source <strong>Custom name</strong>, you don’t have to endure canned words like “grid electricity consumption”, change it to “main meter”, “rooftop solar energy”, etc. It’s much easier to recognize when there are multiple sources.</div>
- <div class="callout tip"><strong>Tip:</strong> If you have more than two household batteries, the new version can fill in the "capacity" for each battery, and the combined battery percentage will be weighted according to the capacity. Otherwise, if a small battery is full and a large battery is empty, the average would be a very deceptive 50%.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> The new version of the energy setting is more tolerant to sensor formats - now you can directly use "a sensor with a positive and negative sign" to represent the two-way flow of mains power or battery, or you can use "two sensors with positive signs" to represent buying/selling electricity or charging/discharging respectively. You no longer need to write a template (Template) to flip the positive and negative signs. In addition, the new version can also help each source <strong>Custom name</strong>, you don’t have to endure canned words like “grid electricity consumption”, change it to “main meter”, “rooftop solar energy”, etc. It’s much easier to recognize when there are multiple sources.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> If you have more than two household batteries, the new version can fill in the "capacity" for each battery, and the combined battery percentage will be weighted according to the capacity. Otherwise, if a small battery is full and a large battery is empty, the average would be a very deceptive 50%.</div>
  </section>
 
  <section id="steps" data-nav="Hands-on setup">
  <h2 data-icon="steps">DIY: Turn on the energy dashboard</h2>
 
- <p>Assuming you already have a socket that reports accumulated degrees (such as the one for the air conditioner in the living room), let's turn it into a graph.</p>
+ <p>Assume you have a plug that reports cumulative energy in kWh. Use these steps to add it to the dashboard.</p>
 
  <ol class="steps">
  <li>
  <h3>Confirm that the sensor is qualified</h3>
- <p>Go to <strong>Settings → Tools → States</strong>, search for your socket sensor. Which unit is it? <code>kWh</code>, the one whose numbers will only go up (not the one <code>W</code> ). Click on it and confirm that the properties are <code>device_class: energy</code>, <code>state_class: total_increasing</code>, <code>unit_of_measurement: kWh</code>. If all three are correct, you pass.</p>
+ <p>Open <strong>Settings → Tools → States</strong> and select the plug’s cumulative <code>kWh</code> sensor, not its <code>W</code> sensor. Confirm <code>device_class: energy</code>, <code>state_class: total_increasing</code>, and <code>unit_of_measurement: kWh</code>.</p>
  </li>
  <li>
  <h3>Open the energy settings page</h3>
  <p>go <strong>Settings → Dashboards → Energy → Edit dashboard</strong>. There are a total of six sources that can be set here: Electricity grid, Solar, Battery storage, Gas, Water, and Individual devices.</p>
- <p><strong>Version difference reminder:</strong> Starting from March 2026, this settings page will be split into <strong>Three tabs: Electricity, Gas, and Water</strong>, the six sources are scattered in each page, no longer a long list. The old version is all squeezed into the same page. Don’t panic if the display you see is different from here, the things to be set up are exactly the same, just the placement has been changed.</p>
+ <p><strong>Version note:</strong> Starting in March 2026, the settings are divided amon<strong>g Electricity, Gas, and Water</strong> tabs instead of one long page. The available sources are unchanged.</p>
  </li>
  <li>
- <h3>Power on the grid first</h3>
+ <h3>Add grid consumption first</h3>
  <p>Select "Add consumption" in the "Power Grid" section, and then select your sensor from the drop-down menu. <strong>If your sensor does not appear in the drop-down menu</strong>, 80% of the time one of the three attributes in the previous step is wrong. Go back and look. <a href="#sensor_rules">Qualified sensor</a> That section.</p>
  </li>
  <li>
  <h3>Set electricity price (can be skipped first)</h3>
- <p>After adding the sensor, the same dialog box will ask you how to calculate the money. If you want to see the degree first, choose not to track the cost, and you can come back and make up for it at any time later. The complete approach to electricity pricing is in <a href="#cost">Electricity prices and costs</a> That section.</p>
+ <p>The dialog also asks how to calculate cost. You can skip cost tracking and add it later. See <a href="#cost">Electricity prices and costs</a> for the available methods.</p>
  </li>
  <li>
  <h3>Add a single appliance to "Individual Devices"</h3>
- <p>If you want to see "what percentage of the entire household is accounted for by air conditioning", in addition to the general meter for the power grid, add the air conditioning sensor to the "Individual Devices" section. In this way, a comparison of the power consumption of each device will appear below the dashboard.</p>
+ <p>To compare an air conditioner with total household use, configure the grid meter and add the air conditioner’s kWh sensor under Individual devices.</p>
  </li>
  <li>
- <h3>Save it and go do something else</h3>
- <p>After the settings are completed, the "Energy" item will appear in the sidebar. <strong>It will be empty when you open it after setting it. This is normal.</strong> Statistics are accumulated on an hourly basis, wait at least an hour or two before you see the first bar, and a full day for a decent daily chart.</p>
+ <h3>Save and allow statistics to accumulate</h3>
+ <p>After setup, Energy appears in the sidebar. <strong>An initially empty dashboard is normal.</strong> Statistics are aggregated hourly, so allow at least one or two hours for the first bar and a full day for a useful daily chart.</p>
  </li>
  <li>
  <h3>Come back the next day to adjust the layout</h3>
@@ -272,17 +390,19 @@
  </li>
  </ol>
 
- <div class="callout warn"><strong>Warning:</strong> If there is no "Energy" item in the sidebar at all, confirm first <code>configuration.yaml</code> inside <code>default_config:</code> Still there. Some people followed the online teaching and deleted it. As a result, all the built-in functions disappeared.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> If Energy is absent from the sidebar, confirm that <code>configuration.yaml</code> still contains <code>default_config:</code>. Removing it disables multiple built-in integrations.</div>
  </section>
 
  <section id="integral" data-nav="W becomes kWh">
- <h2 data-icon="energy">What to do with only wattage: integrate into degrees using Riemann sum</h2>
+ <h2 data-icon="energy">Convert watts to kWh with a Riemann-sum integral</h2>
 
- <p>This is the most common situation: the socket is only for you <code>sensor.xxx_power</code>(unit W), not kWh. It cannot be selected on the energy dashboard.</p>
+ <p>A common case is a plug that provides only <code>sensor.xxx_power</code> in W, not cumulative kWh. That sensor cannot serve as a cumulative energy source.</p>
 
- <p>Solution is built in <strong>Integral / Riemann sum integral</strong> Helpers. It will constantly check your power sensor and add up "how many watts × how long it lasts" period by period to become a new cumulative power sensor.</p>
+ <p>Use the built-in <strong>Integral helper. It integra</strong>tes power over time—watts multiplied by elapsed time—to create a cumulative energy sensor.</p>
 
- <div class="callout"><strong>Concept:</strong> Why is it called "Riemann sum"? Because what HA gets is not a continuous curve, but discrete sampling points. It can only approximate the real integral by "cutting the curve into many small pieces, calculating the area of ​​each piece, and then summing them up." The more frequent the sampling, the more accurate the estimate.</div>
+ <div class="callout">
+<strong>Concept:</strong> Home Assistant receives discrete samples rather than a continuous power curve. A Riemann sum estimates the integral by calculating and adding the area between samples. More frequent, representative samples generally improve the estimate.</div>
 
  <h3>Create using interface (recommended)</h3>
 
@@ -292,8 +412,8 @@
  <p><strong>Settings → Devices &amp; services → Helpers tab → Create helper</strong>.</p>
  </li>
  <li>
- <h3>Select "Points / Integral"</h3>
- <p>The list is a bit long, use the search box <code>integ</code> fastest. A localized interface may use a translated label such as “Integral sensor.”</p>
+ <h3>Select Integral</h3>
+ <p>Search for <code>integ</code> if needed. A localized interface may use a translated label such as “Integral sensor.”</p>
  </li>
  <li>
  <h3>Fill in the input sensor</h3>
@@ -301,15 +421,15 @@
  </li>
  <li>
  <h3>Set metric prefix and time unit</h3>
- <p><strong>These two are key.</strong> Metric prefix selection <code>k</code>, select Integration time <code>h</code>(hours). W × h ÷ 1000 = kWh, so the unit will be <code>kWh</code>. Prefix selection <code>none</code> If you would get Wh, the number would be 1000 times larger.</p>
+ <p><strong>These settings are critical.</strong> Set metric prefix to <code>k</code> and integration time to <code>h</code>. W × h ÷ 1000 = <code>kWh</code>. With prefix <code>none</code>, the result is Wh and its numeric value is 1000 times the kWh value.</p>
  </li>
  <li>
  <h3>Leave the integration method as default</h3>
- <p>There are three methods: Trapezoidal, Left, and Right. <strong>The default is trapezoidal</strong>, officials say it is currently the most accurate when the source updates frequently. Unless you know exactly what you are doing, don't change it.</p>
+ <p>The available methods ar<strong>e trapezoidal</strong>, left, and right. Trapezoidal is the default and is generally suitable when the source updates frequently. Change it only when the source’s reporting behavior requires another method.</p>
  </li>
  <li>
  <h3>Set "maximum subinterval"</h3>
- <p>"Max sub-interval" is used for devices that "will not report if the value does not change". After setting a value (for example, 60 seconds), the points will advance forward according to time even if the source has not been updated. Set <code>0</code> Indicates that this function is turned off. For appliances such as air conditioners and dehumidifiers that maintain a fixed power for a long time, it is recommended to set a value.</p>
+ <p>Max sub-interval handles sources that do not report unchanged values. A value such as 60 seconds advances the integral even without a new sample; <code>0</code> disables the feature. Consider a value for loads that can remain at constant power for long periods.</p>
  </li>
  </ol>
 
@@ -327,36 +447,38 @@
     max_sub_interval: "00:01:00"
     round: 3</code></pre>
 
- <p>The meaning of setting variables:<code>source</code> is the source entity (required),<code>unit_prefix</code> is the metric prefix,<code>unit_time</code> is the unit of time,<code>method</code> It is the integration method,<code>round</code> is the number of decimal places,<code>max_sub_interval</code> It is the forced advancement interval mentioned above.</p>
+ <p><code>source</code> is the required source entity; <code>unit_prefix</code> and <code>unit_time</code> determine the output unit; <code>method</code> selects the integration method; <code>round</code> sets decimal places; and <code>max_sub_interval</code> limits time between integration updates.</p>
 
- <div class="callout warn"><strong>Warning:</strong> The integrated sensor starts from 0. <strong>It doesn’t know how much you have used before</strong>. Therefore, it can never be compared to an electricity bill, and can only be used to see trends and comparisons. To reconcile, please use hardware that actually has accumulated readings.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> An Integral sensor starts at 0<strong></strong> and cannot reconstruct earlier consumption. It can support trends from its creation time, but cannot reconcile a billing period that began earlier. For billing reconciliation, use a meter with an authoritative cumulative reading.</div>
 
- <div class="callout tip"><strong>Tip:</strong> points sensor <code>state_class</code> Fixed is <code>total</code>, no <code>total_increasing</code>. This is as legal as energy dashboards (Home Assistant FAQ says "<code>total</code> or <code>total_increasing</code> "Everything is fine"), so don't see that it's not <code>total_increasing</code> Just nervous. In addition, it will automatically help you <code>device_class</code> from source <code>power</code> Replace with <code>energy</code>, you don’t need to set this yourself.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> An Integral sensor has <code>state_class</code> set to <code>total</code>, not <code>total_increasing</code>. Both <code>total</code> and <code>total_increasing</code> are valid for Energy dashboard energy sources; do not change it merely because it is not <code>total_increasing</code>. It also derives <code>device_class</code> by changing the source class from <code>power</code> to <code>energy</code>.</div>
  </section>
 
  <section id="utility_meter" data-nav="cut sun and moon cycle">
- <h2 data-icon="history">Utility Meter: Divide accumulated numbers into days/months/quarters</h2>
+ <h2 data-icon="history">Utility Meter: divide cumulative totals into billing cycles</h2>
 
- <p>After you accumulate points, you will get a number that has been increasing since installation. But what you really want to know is " <strong>today</strong> How many times did it take?" <strong>this month</strong> More than last month, but less." this is <strong>Utility Meter</strong> What the helper is doing: It's like a stopwatch that automatically resets to zero.</p>
+ <p>An energy sensor may increase continuously from installation, while reports need totals for <strong>today</strong>, <strong>this month</strong>, or another cycle. The <strong>Utility Meter</strong> helper creates cycle-based totals that reset automatically.</p>
 
  <h3>Create using interface</h3>
 
  <ol class="steps">
  <li>
  <h3>Open the helper again</h3>
- <p><strong>Settings → Devices & Services → Helpers → Create helper → Utility Meter</strong>.</p>
+ <p><strong>Settings → Devices &amp; Services → Helpers → Create helper → Utility Meter</strong>.</p>
  </li>
  <li>
  <h3>Select input sensor</h3>
  <p>Select the kWh sensor that was just accumulated (or the accumulated sensor that is already in the hardware).</p>
  </li>
  <li>
- <h3>Select zero cycle</h3>
- <p>"Meter reset period" can be selected every fifteen minutes, every hour, every day, every week, every month, every two months, every quarter, or every year. <strong>It is recommended to build three at a time</strong>: The day, month, and year are clearly named.</p>
+ <h3>Select a reset cycle</h3>
+ <p>Meter reset period can be every 15 minutes, hourly, daily, weekly, monthly, bimonthly, quarterly, or yearly. <strong>Consider separate</strong>, clearly named daily, monthly, and yearly meters.</p>
  </li>
  <li>
- <h3>Turn on "Periodic Zeroing" as appropriate</h3>
- <p>If the source sensor resets itself (for example, a smart socket restarts after a power outage), make sure "Periodically resetting" is turned on so that the Utility Meter knows how to deal with the dropped number. this option <strong>The default is on</strong> of.</p>
+ <h3>Configure periodic resetting</h3>
+ <p>If the source can reset, such as after a smart plug loses power, keep Periodically resetting enabled so Utility Meter handles the decrease correctly. This option <strong>is enabled by default</strong>.</p>
  </li>
  <li>
  <h3>Set offset if necessary</h3>
@@ -380,9 +502,10 @@
     name: Living-room AC energy this year
     cycle: yearly</code></pre>
 
- <p>Available setting variables include <code>source</code>, <code>name</code>, <code>unique_id</code>, <code>cycle</code>, <code>offset</code>, <code>cron</code>, <code>delta_values</code>, <code>net_consumption</code>, <code>tariffs</code>, <code>periodically_resetting</code>, <code>always_available</code>. Among them <code>delta_values</code> Default <code>false</code>(The source is absolute reading not incremental),<code>net_consumption</code> Default <code>false</code>(only counting forward),<code>periodically_resetting</code> Default <code>true</code>.</p>
+ <p>Available configuration keys include <code>source</code>, <code>name</code>, <code>unique_id</code>, <code>cycle</code>, <code>offset</code>, <code>cron</code>, <code>delta_values</code>, <code>net_consumption</code>, <code>tariffs</code>, <code>periodically_resetting</code>, <code>always_available</code>. <code>delta_values</code> defaults to <code>false</code>(the source reports an absolute reading rather than increments),<code>net_consumption</code> defaults to <code>false</code>(only counting forward),<code>periodically_resetting</code> defaults to <code>true</code>.</p>
 
- <div class="callout warn"><strong>Warning:</strong> Home Assistant documentation states that "the first cycle of each sensor is incomplete." If you create "Electricity Usage for the Week" on Wednesday at noon, the numbers for that week are meaningless. The data will only be complete starting from next Monday. Remember to skip the first cycle when making reports.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> The first Utility Meter cycle is incomplete. A weekly meter created at noon on Wednesday covers only part of that week. Exclude the first partial cycle from reports and begin comparisons with the next full cycle.</div>
 
  <h3>Utility Meter also generates actions</h3>
 
@@ -390,21 +513,30 @@
 
  <table class="data-table">
  <thead>
- <tr><th>action</th><th>Purpose</th></tr>
+ <tr>
+<th>action</th>
+<th>Purpose</th>
+</tr>
  </thead>
  <tbody>
- <tr><td><code>utility_meter.calibrate</code></td><td>Calibrate the meter to the specified value</td></tr>
- <tr><td><code>utility_meter.reset</code></td><td>reset the meter to zero</td></tr>
+ <tr>
+<td><code>utility_meter.calibrate</code></td>
+<td>Calibrate the meter to the specified value</td>
+</tr>
+ <tr>
+<td><code>utility_meter.reset</code></td>
+<td>reset the meter to zero</td>
+</tr>
  </tbody>
  </table>
 
- <p>After setting up, these sensors are <strong>Save across reboots</strong> Yes, a Home Assistant restart does not erase the monthly total, so you can rest assured.</p>
+ <p>Utility Meter values are <strong>restored across restarts</strong>; restarting Home Assistant does not erase a monthly total.</p>
  </section>
 
  <section id="cost" data-nav="Electricity prices and costs">
- <h2 data-icon="cost">Electricity Price and Cost Tracking</h2>
+ <h2 data-icon="cost">Electricity prices and cost tracking</h2>
 
- <p>With the degree, it becomes money when multiplied by the electricity price. Money is much more persuasive than kilowatt-hours - telling your boss, "We spent over 8,000 yuan a year on standby power" is more effective than telling your boss, "We used 200 kilowatt-hours more."</p>
+ <p>Multiply kWh by the applicable tariff to estimate cost. A statement such as “standby loads cost approximately [local-currency amount] per year” may be more actionable than “standby loads used 200 kWh,” provided that the tariff and calculation period are documented.</p>
 
  <h3>Three ways to count money</h3>
 
@@ -412,33 +544,54 @@
 
  <table class="data-table">
  <thead>
- <tr><th>way</th><th>How it works</th><th>Suitable for whom</th></tr>
+ <tr>
+<th>way</th>
+<th>How it works</th>
+<th>Suitable for whom</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>Fixed unit price</td><td>You just fill in a number of "How much does it cost per kilowatt hour", and HA will use it to multiply the whole process.</td><td>The vast majority of people. If you want to quickly see approximate numbers, choose this</td></tr>
- <tr><td>Use an entity to represent the current unit price</td><td>Specify a sensor, and its value is "How much does it cost per kilowatt hour now?" If the unit price changes, the cost will also change.</td><td>People who have time-of-use electricity prices or electricity prices that fluctuate over time</td></tr>
- <tr><td>Use one entity to represent the total amount</td><td>You calculate the accumulated amount yourself and HA uses it directly.</td><td>Advanced players who already have a ready amount of sensors</td></tr>
+ <tr>
+<td>Fixed unit price</td>
+<td>Enter one local-currency amount per kWh; Home Assistant applies it throughout.</td>
+<td>Most users who need an approximate cost</td>
+</tr>
+ <tr>
+<td>Entity for current unit price</td>
+<td>Select a sensor whose value is the current local-currency amount per kWh.</td>
+<td>Time-of-use or otherwise variable tariffs</td>
+</tr>
+ <tr>
+<td>Use one entity to represent the total amount</td>
+<td>You calculate the accumulated amount yourself and HA uses it directly.</td>
+<td>Advanced players who already have a ready amount of sensors</td>
+</tr>
  </tbody>
  </table>
 
- <div class="callout"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. After selecting cost tracking, HA will automatically generate a corresponding "cost" statistic for that energy source, so you don't have to build it yourself. The energy use and cost will then be displayed on the dashboard at the same time.</div>
+ <div class="callout">
+<strong>Note:</strong> This edition uses provider-neutral, local-currency examples. Check tariffs and availability for your utility and region. After you enable cost tracking, Home Assistant creates the corresponding cost statistic for that energy source and displays energy and cost together.</div>
 
  <h3>How regional electricity tariffs affect cost tracking</h3>
 
  <p>Many residential tariffs have two characteristics that make "a fixed unit price" inaccurate:</p>
 
  <ul>
- <li><strong>Progressive step</strong>: The more you use, the higher the unit price will be for the excess. Your average unit price will rise based on your monthly usage.</li>
- <li><strong>Summer month/non-summer month</strong>: Rates during summer months are different from other months.</li>
+ <li>
+<strong>Tiered rates: Usage above a threshold may be charged at</strong> a higher unit price, increasing the average rate as consumption rises.</li>
+ <li>
+<strong>Seasonal rates: Some utilities charge different r</strong>ates during defined seasons.</li>
  </ul>
 
- <div class="callout warn"><strong>Warning:</strong> Rate range, summer month definition and unit price at each level <strong>Will adjust</strong>, this chapter deliberately does not write any specific numbers, because the numbers printed in the teaching will definitely expire. Please check the latest electricity price list directly on the Home Assistant UI of your utility provider, or look at the back of your own electricity bill. Use the number you found when filling in the HA.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> Rate tiers, seasonal definitions, taxes, and unit prices can change. <strong>T</strong>his guide intentionally provides no tariff amounts. Use your utility’s current tariff or your latest bill, and enter values in the Home Assistant currency configured for your location.</div>
 
- <div class="callout tip"><strong>Tip:</strong> The pragmatic approach is: <strong>Take the "total amount ÷ total kWh" of your most recent electricity bill, get an average unit price, and fill it in as a fixed unit price.</strong> This number is not precise, but it reflects your own actual electricity consumption structure. It is completely sufficient for comparison of "how much money you saved this month compared to last month." Just update it every few months.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> For an estimate, divi<strong>de the total charge on a recent bill by its billed kWh and use the result as an average local-currency unit price.</strong> Document what the bill total includes, because taxes and fixed charges may make this differ from the energy tariff. Update the estimate when rates or usage patterns change.</div>
 
- <h3>How to do time-of-use electricity price (time-of-use electricity price)</h3>
+ <h3>Configure a time-of-use tariff</h3>
 
- <p>If you apply for time electricity prices, the peak and off-peak unit prices are different. The method is to use Utility Meter. <strong>Tariffs</strong> Function:</p>
+ <p>For a time-of-use tariff, use the Utility Meter <strong>Tariffs</strong> Function:</p>
 
  <pre class="code-block"><code>utility_meter:
   home_daily:
@@ -456,9 +609,10 @@
       - peak
       - offpeak</code></pre>
 
- <p>This will produce <code>sensor.home_daily_peak</code>, <code>sensor.home_daily_offpeak</code>, <code>sensor.home_monthly_peak</code>, <code>sensor.home_monthly_offpeak</code> Four sensors, plus <code>select.home_daily</code> and <code>select.home_monthly</code> Two selector (Select) entities are used to switch "which rate is calculated now".</p>
+ <p>This creates four sensors—<code>sensor.home_daily_peak</code>, <code>sensor.home_daily_offpeak</code>, <code>sensor.home_monthly_peak</code>, and <code>sensor.home_monthly_offpeak</code>—plus <code>select.home_daily</code> and <code>select.home_monthly</code> entities that select the active tariff.</p>
 
- <div class="callout warn"><strong>Warning:</strong> Note <code>home_daily</code> this <strong>The top key</strong> is the source of the entity ID,<code>name</code> Only affects the name displayed on the screen. Therefore, keys must always use English and numeral underline (like <code>home_daily</code>), use only ASCII letters, digits, and underscores; non-ASCII keys make entity IDs difficult to enter and reference later. this is <a href="ch4_naming_labels.html">Chapter 4</a> It says "The display name can be in Chinese, but the entity ID must be in English."</div>
+ <div class="callout warn">
+<strong>Warning:</strong> The top-level key <code>home_daily</code> determines<strong></strong> the entity ID; <code>name</code> affects only the display name. Use ASCII letters, digits, and underscores for keys, such as <code>home_daily</code>, so entity IDs remain easy to type and reference. See <a href="ch4_naming_labels.html">Chapter 4</a>.</div>
 
  <p>Then write an automation to change the select at the switching time point:</p>
 
@@ -482,73 +636,122 @@ actions:
       option: peak
 mode: single</code></pre>
 
- <p>Just write a corresponding "switch back to off-peak" automation. Please refer to the electricity price plan you applied for for switching time and weekday and holiday rules.</p>
+ <p>Create a corresponding automation to select offpeak. Use the exact times, weekdays, holidays, and seasonal rules in your utility tariff.</p>
 
- <div class="callout warn"><strong>Warning:</strong> If you have multiple Utility Meters with rates set, remember to switch each select. Miss one and the segmented data for that meter will be wrong. can be used in the same automated <code>entity_id</code> List multiple entities at once.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> If several Utility Meters use tariffs, switch each select entity. Omitting one produces incorrect tariff totals for that meter. Target multiple select entities in one automation by listing them under <code>entity_id</code>.</div>
  </section>
 
  <section id="gas_water" data-nav="gas and water">
- <h2 data-icon="integration">Gas and tap water: the other two legs of the ESG audit</h2>
+ <h2 data-icon="integration">Gas and water data</h2>
 
  <p>If you just want to save money on electricity bills, this is enough. But for a complete ESG or sustainability inventory, electricity is only one component, gas and water also count.</p>
 
- <p>The energy dashboard itself has independent "gas" and "tap water" sections. The setting logic is exactly the same as that of electricity: a cumulative sensor is required.<code>device_class</code> Set to <code>gas</code> or <code>water</code>, <code>state_class</code> use <code>total_increasing</code> or <code>total</code>, the unit is in volume units. After adding it, you can also set the unit price to convert it into money.</p>
+ <p>The Energy dashboard has separate gas and water sections. Each requires a cumulative sensor with <code>device_class</code> set to <code>gas</code> or <code>water</code>, <code>state_class</code> set to <code>total_increasing</code> or <code>total</code>, and a supported volume unit. You may also configure a local-currency unit price.</p>
 
- <p>The difficulty is <strong>Hardware</strong>. Many residential gas and water meters do not have ready-made smart interfaces. Several common methods listed in official documentation is:</p>
+ <p>The challenge is <strong>hardware</strong>. Many residential gas and water meters provide no ready-made smart interface. Common external reading methods include:</p>
 
  <table class="data-table">
  <thead>
- <tr><th>practice</th><th>Principle</th><th>difficulty</th></tr>
+ <tr>
+<th>practice</th>
+<th>Principle</th>
+<th>difficulty</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>Image recognition module</td><td>Use a small lens to take a chart of the surface, and run recognition on the device to read out the numbers.</td><td>, the lens and light source must be fixed</td></tr>
- <tr><td>Magnetic sensor</td><td>There is a rotating magnet inside the membrane gas meter, and a magnetometer is used to detect the number of rotations.</td><td>Medium to high, you have to find the right position</td></tr>
- <tr><td>Reed switch</td><td>The magnet in the detection meter is triggered once every revolution, which is converted into dosage.</td><td>, not every watch has this magnetic point</td></tr>
- <tr><td>Radio reception (RTL-SDR)</td><td>Some electricity, gas, and water meters regularly broadcast readings using wireless protocols, which can be received with a cheap USB TV stick.</td><td>High, it depends on whether your local watch is broadcasting</td></tr>
- <tr><td>Smart meter communication port (P1)</td><td>Electric meters in some countries have standardized data output ports that can be read directly, and the gas consumption is also spit out.</td><td>Low, but this is the specification in the Netherlands, Belgium, and Luxembourg. Availability elsewhere depends on the local meter standard.</td></tr>
+ <tr>
+<td>Image recognition module</td>
+<td>Use a small lens to take a chart of the surface, and run recognition on the device to read out the numbers.</td>
+<td>, the lens and light source must be fixed</td>
+</tr>
+ <tr>
+<td>Magnetic sensor</td>
+<td>There is a rotating magnet inside the membrane gas meter, and a magnetometer is used to detect the number of rotations.</td>
+<td>Medium to high, you have to find the right position</td>
+</tr>
+ <tr>
+<td>Reed switch</td>
+<td>The magnet in the detection meter is triggered once every revolution, which is converted into dosage.</td>
+<td>, not every watch has this magnetic point</td>
+</tr>
+ <tr>
+<td>Radio reception (RTL-SDR)</td>
+<td>Some electricity, gas, and water meters regularly broadcast readings using wireless protocols, which can be received with a cheap USB TV stick.</td>
+<td>High, it depends on whether your local watch is broadcasting</td>
+</tr>
+ <tr>
+<td>Smart meter communication port (P1)</td>
+<td>Electric meters in some countries have standardized data output ports that can be read directly, and the gas consumption is also spit out.</td>
+<td>Low, but this is the specification in the Netherlands, Belgium, and Luxembourg. Availability elsewhere depends on the local meter standard.</td>
+</tr>
  </tbody>
  </table>
 
- <div class="callout danger"><strong>Danger:</strong> gas meter <strong>Never dismantle it, don't touch the inside, and don't do anything around it that will produce sparks.</strong>. All possible approaches are to "observe from the outside" without touching the pipeline itself. If you have any doubts, don’t do it and instead use manual monthly meter reading to fill in the HA.</div>
+ <div class="callout danger">
+<strong>Danger:</strong> Never open or modify a gas meter<strong>, touch its internal components, or create sparks nearby</strong>. Use only external, noncontact observation methods permitted by your utility and local rules. If uncertain, record the monthly reading manually instead.</div>
 
- <div class="callout tip"><strong>Tip:</strong> It doesn't matter if automatic meter reading is not possible. Create a "Number" helper and fill in the meter reading on the bill every month. After a year, there will be twelve data points, enough to draw trend charts and write reports. There is no shame in having manual data, there is shame in not having data.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> If automatic reading is unavailable, create a Number helper and enter the meter reading each month. Twelve monthly points can support a basic annual trend, provided that dates, units, and reading methods remain consistent.</div>
  </section>
 
  <section id="esg" data-nav="ESG narrative">
- <h2 data-icon="records">ESG Narrative: Turning Data into a Speakable Report</h2>
+ <h2 data-icon="records">Turn energy data into an evidence-based report</h2>
 
- <p>Data alone will not convince; <strong>control</strong> Only then. This section talks about how to turn the graph on the dashboard into a story with a beginning and an end.</p>
+ <p>A credible report needs both measured data and a comparison baseline. <strong>Us</strong>e this structure to turn dashboard charts into a concise account of what changed.</p>
 
  <h3>Step 1: Establish a baseline (Baseline)</h3>
 
- <p>Don't change anything yet, and let the system run for a full cycle - at least two weeks, preferably one month. The number during this period is your "baseline" against which all subsequent improvements will be compared.</p>
+ <p>Before making changes, measure a complete baseline period: at least two weeks and preferably one month. Compare later results with the same duration and similar operating conditions.</p>
 
- <div class="callout warn"><strong>Warning:</strong> baseline period <strong>Do not take any energy-saving measures</strong>. Many people start to check this level and that level as soon as they install it. As a result, there is no clean control group, and it is unclear how much they have saved later. Hold it in.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> Keep operating practices consistent during the baseline period. <strong>If you implement measures</strong> while collecting the baseline, you cannot attribute later differences reliably.</div>
 
  <h3>Step 2: Find the largest energy load</h3>
 
- <p>No need for advanced skills, just look at three places:</p>
+ <p>Start with three views:</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Where to look</th><th>What to look for</th><th>common cause</th></tr>
+ <tr>
+<th>Where to look</th>
+<th>What to look for</th>
+<th>common cause</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>Individual device rankings</td><td>Who has the greatest total degree</td><td>Air conditioner, dehumidifier, electric water heater</td></tr>
- <tr><td>Electricity consumption in the early morning hours</td><td>What is it that is still running when everyone is asleep?</td><td>Water dispenser insulation, set-top box, NAS, old refrigerator</td></tr>
- <tr><td>The shape of the daily curve</td><td>Is there a platform that should be lowered or not?</td><td>Dehumidifiers and devices with high standby power consumption that you forgot to turn off</td></tr>
+ <tr>
+<td>Individual-device ranking</td>
+<td>Which device has the highest total kWh</td>
+<td>Air conditioner, dehumidifier, electric water heater</td>
+</tr>
+ <tr>
+<td>Electricity consumption in the early morning hours</td>
+<td>What is it that is still running when everyone is asleep?</td>
+<td>Water dispenser insulation, set-top box, NAS, old refrigerator</td>
+</tr>
+ <tr>
+<td>The shape of the daily curve</td>
+<td>Is there a platform that should be lowered or not?</td>
+<td>Dehumidifiers and devices with high standby power consumption that you forgot to turn off</td>
+</tr>
  </tbody>
  </table>
 
- <div class="callout"><strong>Concept:</strong> "Use electricity in the early morning" is the best trick. The electricity consumption at three o'clock in the middle of the night is almost that of your home. <strong>Standby base load</strong>. Multiply that number by 24 hours by 30 days and you’d be shocked – that’s how much you’re paying for doing nothing. Lowering it usually has the best return on investment.</div>
+ <div class="callout">
+<strong>Concept:</strong> Overnight demand, such as at 3:00 a.m., is a useful estimate of s<strong>tandby base load</strong>. Multiplying a stable kW demand by 24 hours and 30 days estimates its monthly kWh impact. Reducing persistent loads can offer a strong return.</div>
 
  <h3>Step Three: Common Office Improvement Measures</h3>
 
  <ul>
- <li><strong>Pantry water heater schedule</strong>: use <a href="ch8_first_automation.html">Chapter 8</a> Learn the automation so that the water heater is only powered on during working hours. The insulation electricity for two to three days on weekends and consecutive holidays is directly saved.</li>
- <li><strong>Automatic power off after work</strong>: Photocopiers, screens, and desktop devices are connected to smart sockets and turned off at 10 p.m.</li>
- <li><strong>Air conditioner setting temperature control</strong>: There is no need to actually change the air conditioner, just measure it first. By looking at "air conditioning electricity consumption" and "outdoor temperature" together, you can calculate how much you will save by increasing the temperature by one degree.</li>
- <li><strong>Abnormal power usage notification</strong>: Set up an automation that will push a notification when the total power during non-working hours exceeds a certain threshold (see how to do it) <a href="ch7_notifications.html">Chapter 7</a>). This trick often catches "someone forgets to close".</li>
+ <li>
+<strong>Pantry water heater schedule</strong>: use <a href="ch8_first_automation.html">Chapter 8</a> Learn the automation so that the water heater is only powered on during working hours. The insulation electricity for two to three days on weekends and consecutive holidays is directly saved.</li>
+ <li>
+<strong>Automatic power off after work</strong>: Photocopiers, screens, and desktop devices are connected to smart sockets and turned off at 10 p.m.</li>
+ <li>
+<strong>Air conditioner setting temperature control</strong>: There is no need to actually change the air conditioner, just measure it first. By looking at "air conditioning electricity consumption" and "outdoor temperature" together, you can calculate how much you will save by increasing the temperature by one degree.</li>
+ <li>
+<strong>Abnormal power usage notification</strong>: Set up an automation that will push a notification when the total power during non-working hours exceeds a certain threshold (see how to do it) <a href="ch7_notifications.html">Chapter 7</a>). This trick often catches "someone forgets to close".</li>
  </ul>
 
  <h3>Step 4: Write a report</h3>
@@ -570,7 +773,7 @@ mode: single</code></pre>
  </li>
  <li>
  <h3>Improved data and comparison</h3>
- <p>Electricity usage for the same period length, side by side with the baseline. It is written in two ways: absolute value (how many degrees saved) and percentage (how many percent saved), and the amount conversion is attached.</p>
+ <p>Compare energy use over equal-length periods. Report both absolute change in kWh and percentage change, then add a local-currency estimate using the documented tariff.</p>
  </li>
  <li>
  <h3>Honest labeling of distractions</h3>
@@ -578,27 +781,30 @@ mode: single</code></pre>
  </li>
  </ol>
 
- <div class="callout tip"><strong>Tip:</strong> To export raw numbers, the energy dashboard chart can be switched to different time ranges and read one by one, or the corresponding Utility Meter sensor can be queried on the History page. If you need to export in large quantities, the community has some custom components for statistics export, but that is beyond the scope of this chapter.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> To export raw numbers, the energy dashboard chart can be switched to different time ranges and read one by one, or the corresponding Utility Meter sensor can be queried on the History page. If you need to export in large quantities, the community has some custom components for statistics export, but that is beyond the scope of this chapter.</div>
  </section>
 
  <section id="advanced" data-nav="Advanced gameplay">
- <h2 data-icon="advanced">Advanced: Device ranking and solar self-consumption rate</h2>
+ <h2 data-icon="advanced">Advanced: device ranking and solar self-consumption</h2>
 
  <h3>Power consumption ranking of individual devices</h3>
 
  <p>Add the kWh sensor of each socket to the "Individual Device" section of the energy settings, and the dashboard will automatically help you sort out which device uses the most energy.</p>
 
- <p>If there are both master meters and sub-devices on the same loop, it will happen <strong>double counting</strong>—The total table already contains the usage of sub-devices. Home Assistant provides an "upstream device" setting to handle this: you can designate a device as the upstream of another device to form a hierarchy.</p>
+ <p>If a main meter and its downstream devices are all listed, their values can be <strong>double-counted beca</strong>use the main meter already includes downstream consumption. Use Home Assistant’s upstream device setting to define the hierarchy.</p>
 
- <div class="callout warn"><strong>Warning:</strong> To establish hierarchies, <strong>All related entities must be added to the "Individual Device" list first</strong>. Only devices that are already on the list will appear in the "Upstream Devices" drop-down menu. If you reverse the order, you won't be able to find the options.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> To establish hierarchies, <strong>All related entities must be added to the "Individual Device" list first</strong>. Only devices that are already on the list will appear in the "Upstream Devices" drop-down menu. If you reverse the order, you won't be able to find the options.</div>
 
  <h3>Instantaneous power distribution</h3>
 
- <p>The new version adds a "Distribution card", which uses a horizontal proportional bar chart to display the numerical distribution between multiple entities. It also comes with an interactive legend - click on the item on the legend, and the percentage will be recalculated in real time. Use it to place a row of power sensors, and you can see at a glance <strong>now this moment</strong> Which circuit or appliance is consuming electricity. This is especially useful for finding out who caused the sudden power outage.</p>
+ <p>The newer Distribution card compares compatible entities with horizontal proportional bars. Its interactive legend recalculates percentages as you include or exclude items. Add power sensors to see c<strong>urrent</strong> demand by circuit or appliance and identify the source of a sudden load increase.</p>
 
- <div class="callout warn"><strong>Warning:</strong> This card will check whether the entity you put in is compatible with the unit and type. put <code>W</code> and <code>kWh</code> It won't let you pass if you mix them in the same card - either use all the power or all the power consumption, don't mix them.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> The card requires compatible entity types and units. Do not mix <code>W</code> and <code>kWh</code> on one card; compare either power or energy.</div>
 
- <p>The Energy dashboard’s own “Now” page has also been growing: now there’s <strong>badge</strong> It directly displays the current electrical power, gas flow, and water flow; water also has its own Sankey chart, which is the same as the electricity one. You can see where the water flows. If you want to quickly see "Who is running now", this page is faster than piecing together the cards yourself.</p>
+ <p>The Energy dashboard’s <strong>Now</strong> view includes badges for current electric power, gas flow, and water flow. Water also has a Sankey chart. Use this view for a quick picture of current demand before building custom cards.</p>
 
  <h3>Self-consumption rate of solar energy</h3>
 
@@ -612,34 +818,49 @@ mode: single</code></pre>
         unique_id: solar_self_consumption_ratio
         unit_of_measurement: "%"
         state_class: measurement
-        availability: >
+        availability: &gt;
           {{ is_number(states('sensor.solar_production_monthly'))
              and is_number(states('sensor.grid_export_monthly'))
-             and states('sensor.solar_production_monthly') | float(0) > 0 }}
-        state: >
+             and states('sensor.solar_production_monthly') | float(0) &gt; 0 }}
+        state: &gt;
           {% set gen = states('sensor.solar_production_monthly') | float(0) %}
           {% set exp = states('sensor.grid_export_monthly') | float(0) %}
           {{ ((gen - exp) / gen * 100) | round(1) }}</code></pre>
 
- <p>put <code>sensor.solar_production_monthly</code> and <code>sensor.grid_export_monthly</code> Replace it with your own monthly Utility Meter sensor.<code>availability</code> This section is for foolproofing to prevent the entire sensor from becoming an incorrect value when the source is not ready or the power generation is zero.</p>
+ <p>Replace <code>sensor.solar_production_monthly</code> and <code>sensor.grid_export_monthly</code> with your monthly Utility Meter sensors. The <code>availability</code> template suppresses calculation until both sources are numeric and generation is greater than zero.</p>
 
- <div class="callout tip"><strong>Tip:</strong> Do not set this percentage <code>device_class</code>. The percentage is not energy or power. Applying a device_class will make HA complain. only give <code>unit_of_measurement: "%"</code> and <code>state_class: measurement</code> Just fine.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> Do not assign a <code>device_class</code> to this percentage; it is neither energy nor power. Use only <code>unit_of_measurement: "%"</code> and <code>state_class: measurement</code>.</div>
 
  <h3>How long should the data be retained?</h3>
 
- <p>Many people worry about "will my database explode?" Two things need to be distinguished here:</p>
+ <p>To manage database growth, distinguish detailed Recorder history from long-term statistics:</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Type</th><th>What to save</th><th>How long to keep</th></tr>
+ <tr>
+<th>Type</th>
+<th>What to save</th>
+<th>How long to keep</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>Recorder history</td><td>A complete breakdown of every status change</td><td>by <code>purge_keep_days</code> control, <strong>Default 10 days</strong></td></tr>
- <tr><td>Long-term statistics</td><td>Aggregated statistical values (this is what the energy dashboard uses)</td><td>It will not disappear with the general history clearing. You can view monthly reports from long ago.</td></tr>
+ <tr>
+<td>Recorder history</td>
+<td>A complete breakdown of every status change</td>
+<td>by <code>purge_keep_days</code> control, <strong>Default 10 days</strong>
+</td>
+</tr>
+ <tr>
+<td>Long-term statistics</td>
+<td>Aggregated statistical values (this is what the energy dashboard uses)</td>
+<td>It will not disappear with the general history clearing. You can view monthly reports from long ago.</td>
+</tr>
  </tbody>
  </table>
 
- <div class="callout"><strong>Concept:</strong> So "only ten days left on the history page" is normal, but your energy dashboard can still see the same month last year. The two origins are different. If you want to adjust the number of days that details are retained, please check the settings of the Recorder, but do not adjust it to a large value just to view the energy report, as this will only make the database larger.</div>
+ <div class="callout">
+<strong>Concept:</strong> History may retain only 10 days of detail while the Energy dashboard still shows the same month last year because it uses long-term statistics. Adjust Recorder retention only when you need more detailed recent data; increasing it does not improve long-term energy reports and enlarges the database.</div>
  </section>
 
  <section id="troubleshoot" data-nav="Common problems">
@@ -648,7 +869,7 @@ mode: single</code></pre>
  <ol class="steps">
  <li>
  <h3>My sensor cannot be selected in the drop-down menu of energy settings.</h3>
- <p>Ninety percent of the time it's due to unqualified attributes. Go to <strong>Settings → Tools → States</strong> (The old version was called "Developer Tools") Check three things:<code>device_class</code> Isn't it <code>energy</code>(or gas/water),<code>state_class</code> Isn't it <code>total_increasing</code> or <code>total</code>, <code>unit_of_measurement</code> Is it a legal unit (<code>kWh</code> The capitalization of must be completely correct.<code>KWH</code>, <code>kwh</code> None of them count). In addition, the one you chose may be the one <code>W</code> The power sensor is not the power consumption sensor of kWh - the two names are often only one word different.</p>
+ <p>Open <strong>Settings → Tools → States</strong> and verify <code>device_class</code> is <code>energy</code> (or gas/water), <code>state_class</code> is <code>total_increasing</code> or <code>total</code>, and <code>unit_of_measurement</code> is supported. Capitalization matters: <code>kWh</code> is valid; <code>KWH</code> and <code>kwh</code> are not. Also confirm that you selected the cumulative energy sensor rather than the instantaneous <code>W</code> sensor.</p>
  </li>
  <li>
  <h3>One day, electricity consumption suddenly surged to several thousand kilowatt hours.</h3>
@@ -662,7 +883,7 @@ mode: single</code></pre>
  </li>
  <li>
  <h3>Repairs pops up "state class is incompatible with device class"</h3>
- <p>The most common is to <code>device_class: power</code> Served with <code>total_increasing</code>. Power is an instantaneous value and can only be used <code>measurement</code>. If the sensor is provided by an integration, go to the integration or device firmware report; if it is a template sensor you wrote yourself, directly change your YAML.</p>
+ <p>The common invalid combination is <code>device_class: power</code> with <code>total_increasing</code>. Power is instantaneous and must use <code>measurement</code>. If the sensor is provided by an integration, go to the integration or device firmware report; if it is a template sensor you wrote yourself, directly change your YAML.</p>
  </li>
  <li>
  <h3>The integrated number is 1000 times larger or 1000 times smaller.</h3>
@@ -693,12 +914,12 @@ mode: single</code></pre>
 
  <details class="faq">
  <summary>The numbers on the energy dashboard don’t match the utility bill. Did I set it wrong?</summary>
- <div class="body">In most cases it's not a misconfiguration. There are several reasons: first, what you measure is usually only part of the circuit or some electrical appliances, not the total meter of the whole household; second, Riemann sum is an approximation, and there will be errors if the sampling frequency is not high enough; third, the billing cycle is inconsistent - the source example uses a two-month utility cycle with its own meter-reading date, and the HA default is a natural month. The third point can be aligned using Utility Meter's "Offset".<br><br>Think of the energy dashboard as <strong>trend tools</strong> instead of <strong>Reconciliation tool</strong>, the mentality will be much healthier. Its value is "20% less this month than last month", not "exactly the same as the bill".</div>
+ <div class="body">A difference does not necessarily mean misconfiguration. Your sensors may cover only part of the site; a Riemann sum is an estimate affected by sampling; and Home Assistant’s calendar month may not match the utility’s meter-reading cycle. Align a Utility Meter with the billing cycle by using its offset.<br><br>Treat the dashboard as <strong>a trend tool unless</strong> you are using an authoritative whole-site meter and matching billing boundaries. <strong>Reconcil</strong>e against the bill only after accounting for meter scope, tariff, taxes, and fixed charges.</div>
  </details>
 
  <details class="faq">
  <summary>Which one should be used for "Points" or "Utility Meter"? Do I need to build both?</summary>
- <div class="body">They solve different problems, and in many cases both are needed.<br><br><strong>Integral</strong>: Change "watt (W)" into "degree (kWh)". only on your device <strong>No</strong> Accumulated power consumption, only required for instantaneous power.<br><strong>Utility Meter</strong>: Cut "the accumulated degrees" into "today/this month/this year". The input itself is already kWh.<br><br>So the process is: Power → (Integral) → Accumulated degree → (Utility Meter) → Day, month and year segments. If your socket is designed to accumulate degrees, skip the points and connect directly to the Utility Meter.</div>
+ <div class="body">They solve different problems, and you may need both.<br><br><strong>Integral</strong>: <strong></strong>converts instantaneous power in W into cumulative energy in kWh. Use it only when the device lacks a cumulative energy sensor.<br><strong>Utility Meter</strong>: divides an existing cumulative kWh total into daily, monthly, or yearly cycles.The flow is <br><br>power → Integral → cumulative energy → Utility Meter → cycle totals. If the plug already reports cumulative kWh, skip Integral.</div>
  </details>
 
  <details class="faq">

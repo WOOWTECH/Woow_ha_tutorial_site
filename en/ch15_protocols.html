@@ -1,33 +1,33 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Chapter 15 · Communication protocols · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices." />
-  <meta name="author" content="WoowTech" />
-  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch15_protocols.html" />
-  <meta name="robots" content="noindex, follow" />
-  <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Chapter 15 · Communication protocols · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices." />
-  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch15_protocols.html" />
-  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chapter 15 · Communication protocols · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices." />
-  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
-  <meta name="theme-color" content="#6183FC" />
-  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <link rel="stylesheet" href="../assets/css/i18n.css" />
+  <meta name="description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices.">
+  <meta name="author" content="WoowTech">
+  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch15_protocols.html">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_TW">
+  <meta property="og:title" content="Chapter 15 · Communication protocols · Home Assistant Onboarding Guide">
+  <meta property="og:description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices.">
+  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch15_protocols.html">
+  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Chapter 15 · Communication protocols · Home Assistant Onboarding Guide">
+  <meta name="twitter:description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices.">
+  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png">
+  <meta name="theme-color" content="#6183FC">
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;family=Yellowtail&amp;display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/i18n.css">
 </head>
 <body>
 <div class="layout">
@@ -67,7 +67,7 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why should we learn</a>
+      <a href="#why">Why this matters</a>
       <a href="#layers">What does the agreement govern?</a>
       <a href="#master">master lookup table</a>
       <a href="#steps">Take stock of your family agreements</a>
@@ -98,103 +98,247 @@
  </div>
 
  <section id="why" data-nav="Why should we learn">
- <h2 data-icon="why">Why should you learn this?</h2>
- <p>you are here <a href="ch14_integrations.html">Chapter 14</a> Learned how to add "Integration" in Home Assistant. But integration is a matter of the software layer. This chapter goes a step further: How does the signal fly from your phone to that light bulb?</p>
- <p>Why bother with such low-level things? Three painful reasons:</p>
+ <h2 data-icon="why">Why this matters</h2>
+ <p><a href="ch14_integrations.html">Chapter 14</a> explained how to add integrations. This chapter looks beneath that software layer: how does a command travel from Home Assistant to a light?</p>
+ <p>The choice matters for three practical reasons:</p>
  <ul>
- <li><strong>Buying wrong means buying in vain.</strong> A cheap "smart switch" sold online says it supports voice assistants, but when you buy it home you find that it only recognizes your own app's cloud account, and Home Assistant can't capture it at all. Money is thrown into the water.</li>
- <li><strong>If the Internet is disconnected, the whole family will be paralyzed.</strong> Some protocols are "local control", and the lights will still turn on even if the router is disconnected; some are "cloud control", and your entrance will turn completely black when Chunghwa Telecom has a draft.</li>
- <li><strong>It was only after installing the 20th device that I discovered there was an upper limit on the number of users.</strong> Typical scenario: The whole family buys Wi-Fi sockets, and the router starts to drop out when the tenth socket is installed, because the number of devices that a home router can connect to at the same time is limited. This pitfall should be avoided before buying your first one.</li>
+ <li>
+<strong>The wrong device may not work with Home Assistant.</strong> A smart switch can advertise voice-assistant support yet operate only through its vendor’s cloud app, with no supported Home Assistant connection.</li>
+ <li>
+<strong>An internet outage may disable essenti</strong>al controls. Locally controlled devices can continue operating on your home network; cloud-dependent devices cannot reach their service when the internet or provider is unavailable.</li>
+ <li>
+<strong>Network limits can appear as the installation grows. Adding man</strong>y Wi-Fi plugs can exceed the practical client capacity of some home routers. Choose the network architecture before buying dozens of devices.</li>
  </ul>
- <div class="callout"><strong>Concept:</strong> Protocol is "the language used to speak between devices + the method used to transmit the sound." Choosing a protocol is choosing your home’s communication infrastructure, which is the same level of decision as choosing whether to build a house or not.</div>
- <p>After reading this chapter, you will have the ability to do these three things: judge whether it can be used in Home Assistant when you see a product page, choose a main protocol for your home without regrets, and know which level to start checking when encountering "device offline".</p>
+ <div class="callout">
+<strong>Concept:</strong> A protocol defines how devices represent and transport information. Choosing one establishes part of your home’s communication infrastructure.</div>
+ <p>Use this chapter to assess Home Assistant compatibility from a product page, choose a primary protocol, and identify the correct layer when diagnosing an offline device.</p>
  </section>
 
  <section id="layers" data-nav="What does the agreement govern?">
- <h2 data-icon="concept">What does the agreement deal with: split it into three layers</h2>
- <p>Most of the confusion comes from talking about three different things together. Take it apart first and everything will be clear from the back. Imagine you are in the living room talking to your family in the kitchen:</p>
+ <h2 data-icon="concept">Separate a protocol stack into three layers</h2>
+ <p>Confusion often comes from combining three different layers. Separate the transport, data format, and Home Assistant connection:</p>
 
- <h3>The first layer: radio (what is used to send the sound out)</h3>
- <p>It means "by shouting, using a walkie-talkie, or using a telephone line." Wi-Fi, Zigbee, Thread, and Bluetooth all rely on radios in the 2.4GHz frequency band; Z-Wave uses another lower frequency band; KNX and Modbus RTU do not use radios at all and use physical lines.</p>
+ <h3>Layer 1: physical transport</h3>
+ <p>This is the physical path. Wi-Fi, Zigbee, Thread, and Bluetooth commonly use 2.4 GHz radios. Z-Wave uses region-specific sub-GHz bands. KNX and Modbus RTU use wired buses.</p>
 
- <h3>Second level: data format (which language is spoken)</h3>
- <p>Both of them used walkie-talkies, but one spoke Spanish and the other spoke French, so they still couldn't communicate. Zigbee devices understand each other, but Zigbee does not automatically understand Z-Wave. The reason why Matter is touted is because it wants to be the "common language that everyone can understand."</p>
+ <h3>Layer 2: data format</h3>
+ <p>Sharing a radio band does not make protocols interoperable. Zigbee and Thread can both use 2.4 GHz, yet they encode and exchange data differently. Matter provides a common application-layer standard over supported transports.</p>
 
- <h3>Layer 3: How does Home Assistant hear it (who can translate it for you)</h3>
- <p>Your Home Assistant console itself only has a network port and Wi-Fi, it doesn't have a Zigbee antenna or a Z-Wave antenna. So either plug in a USB receiver (Coordinator), or rely on the original gateway (Gateway/Hub) to convert the signal into a network packet and then send it out.</p>
+ <h3>Layer 3: the Home Assistant connection</h3>
+ <p>A Home Assistant host does not necessarily include Zigbee or Z-Wave hardware. Connect a compatible coordinator, or use a gateway that exposes the protocol over your local network or a supported service.</p>
 
- <div class="callout tip"><strong>Tip:</strong> When you see a new protocol, use these three questions to ask: "What is it used to transmit?" "Does Home Assistant have corresponding integration?" "Do I need to buy an extra box in the middle?" After answering these three questions, you will probably know whether it is worth buying.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> Ask three questions: What transport does it use? Does Home Assistant provide a compatible integration? Does it require a coordinator, border router, or vendor hub?</div>
 
  <h3>Two words that must be distinguished clearly</h3>
  <table class="data-table">
  <thead>
- <tr><th>noun</th><th>plain-language explanation</th><th>why do you care</th></tr>
+ <tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>Why it matters</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>Local control (Local)</td><td>Commands are sent directly from Home Assistant to your device without leaving your home</td><td>It’s fast, stable, can be used even if the internet is disconnected, and you’re not afraid of the original factory going bankrupt.</td></tr>
- <tr><td>Cloud control (Cloud)</td><td>The command must first go online to the manufacturer's server and then loop back to your home.</td><td>Responses are slower; control stops during an internet outage, and a discontinued vendor service can make the device unusable.</td></tr>
- <tr><td>Mesh</td><td>Devices will help each other forward signals, one to another</td><td>Signals can go around the walls and grow outwards. The bigger the house, the more important it is.</td></tr>
- <tr><td>Gateway/Hub</td><td>A middle box that translates a certain protocol into network signals</td><td>One more thing to plug in, and one more point of failure</td></tr>
+ <tr>
+<td>Local control</td>
+<td>Commands travel from Home Assistant to the device without relying on an external service.</td>
+<td>Control can continue during an internet or provider outage.</td>
+</tr>
+ <tr>
+<td>Cloud control (Cloud)</td>
+<td>The command must first go online to the manufacturer's server and then loop back to your home.</td>
+<td>Responses are slower; control stops during an internet outage, and a discontinued vendor service can make the device unusable.</td>
+</tr>
+ <tr>
+<td>Mesh</td>
+<td>Eligible nodes forward traffic for other nodes.</td>
+<td>Strategically placed routers can extend coverage around obstacles.</td>
+</tr>
+ <tr>
+<td>Gateway/Hub</td>
+<td>A middle box that translates a certain protocol into network signals</td>
+<td>Requires power and adds another component that can fail</td>
+</tr>
  </tbody>
  </table>
  </section>
 
  <section id="master" data-nav="master lookup table">
- <h2 data-icon="compare">Master Comparison Table: Compare nine agreements at once</h2>
- <p>This is the most collectable table in the entire chapter. Please treat the transmission distance column as a "rough feeling" rather than a specification number, because the actual distance is greatly affected by wall material, furniture, and interference. The same device placed in a wooden partition can be three times different than that in a reinforced concrete partition.</p>
+ <h2 data-icon="compare">Protocol comparison</h2>
+ <p>Treat the range column as a rough guide, not a specification. Building materials, furniture, antennas, placement, and interference can change effective range substantially.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Agreement</th><th>Transmission distance feeling</th><th>Power consumption</th><th>Do you want a gateway?</th><th>Can it be controlled locally?</th><th>Mesh</th></tr>
+ <tr>
+<th>Protocol</th>
+<th>Typical range</th>
+<th>Power consumption</th>
+<th>Do you want a gateway?</th>
+<th>Can it be controlled locally?</th>
+<th>Mesh</th>
+</tr>
  </thead>
  <tbody>
- <tr><td><strong>Wi-Fi</strong></td><td>Generally, the coverage range of home routers is separated by one or two walls.</td><td>High, almost all have to be connected to electricity</td><td>No, the router is</td><td>Depending on the manufacturer, many are cloud-based</td><td>No</td></tr>
- <tr><td><strong>Zigbee</strong></td><td>Single jump over ten meters indoors, reliable mesh relay extension</td><td>Very low, the battery model can last from several months to more than a year</td><td>Yes, USB coordinator or factory gateway</td><td>Yes</td><td>Yes</td></tr>
- <tr><td><strong>Z-Wave</strong></td><td>Slightly farther than Zigbee, usually better through walls</td><td>very low</td><td>Yes, USB coordinator</td><td>Yes</td><td>Yes</td></tr>
- <tr><td><strong>Thread + Matter</strong></td><td>Similar to Zigbee, rely on border router to connect to home network</td><td>very low</td><td>Requires a border router (many devices have it built-in)</td><td>Yes</td><td>Yes</td></tr>
- <tr><td><strong>Bluetooth BLE</strong></td><td>In the same room, the partition walls started to fall off</td><td>Extremely low, button battery can last a long time</td><td>The host has built-in Bluetooth or uses BLE proxy</td><td>Yes</td><td>No (relying on multiple proxies)</td></tr>
- <tr><td><strong>KNX</strong></td><td>With wiring, the whole building can be used</td><td>Not applicable (wired power supply)</td><td>Requires KNX IP interface/router</td><td>Yes</td><td>No (bus architecture)</td></tr>
- <tr><td><strong>Modbus RTU</strong></td><td>RS-485 cables can be stretched very long</td><td>Not applicable</td><td>Requires USB to RS-485 converter</td><td>Yes</td><td>No</td></tr>
- <tr><td><strong>Modbus TCP</strong></td><td>Network line/local network range</td><td>Not applicable</td><td>No, just use the local network</td><td>Yes</td><td>No</td></tr>
- <tr><td><strong>MQTT</strong></td><td>Local network range (it is not a radio itself)</td><td>Not applicable</td><td>A broker is required (can be installed on the HA host)</td><td>Yes</td><td>No</td></tr>
- <tr><td><strong>Local HTTP</strong></td><td>Local network scope</td><td>Not applicable</td><td>No need</td><td>Yes</td><td>No</td></tr>
+ <tr>
+<td><strong>Wi-Fi</strong></td>
+<td>Generally, the coverage range of home routers is separated by one or two walls.</td>
+<td>High, almost all have to be connected to electricity</td>
+<td>No, the router is</td>
+<td>Depending on the manufacturer, many are cloud-based</td>
+<td>No</td>
+</tr>
+ <tr>
+<td><strong>Zigbee</strong></td>
+<td>Single jump over ten meters indoors, reliable mesh relay extension</td>
+<td>Very low, the battery model can last from several months to more than a year</td>
+<td>Yes, USB coordinator or factory gateway</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+ <tr>
+<td><strong>Z-Wave</strong></td>
+<td>Slightly farther than Zigbee, usually better through walls</td>
+<td>very low</td>
+<td>Yes, USB coordinator</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+ <tr>
+<td><strong>Thread + Matter</strong></td>
+<td>Similar to Zigbee, rely on border router to connect to home network</td>
+<td>very low</td>
+<td>Requires a border router (many devices have it built-in)</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+ <tr>
+<td><strong>Bluetooth LE</strong></td>
+<td>Best within a room; walls reduce range significantly</td>
+<td>Extremely low, button battery can last a long time</td>
+<td>The host has built-in Bluetooth or uses BLE proxy</td>
+<td>Yes</td>
+<td>No (relying on multiple proxies)</td>
+</tr>
+ <tr>
+<td><strong>KNX</strong></td>
+<td>With wiring, the whole building can be used</td>
+<td>Not applicable (wired power supply)</td>
+<td>Requires KNX IP interface/router</td>
+<td>Yes</td>
+<td>No (bus architecture)</td>
+</tr>
+ <tr>
+<td><strong>Modbus RTU</strong></td>
+<td>RS-485 cables can be stretched very long</td>
+<td>Not applicable</td>
+<td>Requires USB to RS-485 converter</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+ <tr>
+<td><strong>Modbus TCP</strong></td>
+<td>Network line/local network range</td>
+<td>Not applicable</td>
+<td>No, just use the local network</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+ <tr>
+<td><strong>MQTT</strong></td>
+<td>Local network range (it is not a radio itself)</td>
+<td>Not applicable</td>
+<td>A broker is required (can be installed on the HA host)</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+ <tr>
+<td><strong>Local HTTP</strong></td>
+<td>Local network scope</td>
+<td>Not applicable</td>
+<td>No need</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
  </tbody>
  </table>
 
- <p>Next, this table answers "So how do I connect it to Home Assistant?":</p>
+ <p>The next table shows the corresponding Home Assistant connection:</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Agreement</th><th>Common brands/devices</th><th>How to connect in HA</th></tr>
+ <tr>
+<th>Protocol</th>
+<th>Common brands/devices</th>
+<th>How to connect in HA</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>Wi-Fi</td><td>Tuya/Tuya series, Shelly, TP-Link, Xiaomi series, various sweepers</td><td>Most of them have their own integration, in <strong>Settings &gt; Devices &amp; Services &gt; Add Integration</strong> Search for a brand name. Homemade devices that flash ESPHome or Tasmota firmware can also use this method.</td></tr>
- <tr><td>Zigbee</td><td>IKEA, Aqara, Philips Hue, SONOFF, Tuya Zigbee models</td><td>Plug in a Zigbee coordinator, use ZHA integration or Zigbee2MQTT</td></tr>
- <tr><td>Z-Wave</td><td>Aeotec, Fibaro, Zooz, Heltun</td><td>Plug in the Z-Wave coordinator and integrate with Z-Wave (running Z-Wave JS behind it)</td></tr>
- <tr><td>Thread / Matter</td><td>Nanoleaf, Eve, Aqara new models, some SwitchBot models</td><td>Install Matter integration and Matter Server, pair with mobile app</td></tr>
- <tr><td>Bluetooth BLE</td><td>Xiaomi temperature and humidity meter, SwitchBot, various Bluetooth scales and plant sensors</td><td>Bluetooth integration + built-in Bluetooth on the host, or add ESPHome Bluetooth Proxy</td></tr>
- <tr><td>KNX</td><td>ABB, Gira, Jung, Schneider (mostly construction projects/commercial offices)</td><td>KNX integration, connection via KNX IP interface</td></tr>
- <tr><td>Modbus</td><td>Electric meters, frequency converters, PLCs, industrial air conditioning controllers, some solar inverters</td><td>Modbus integration, written in <code>configuration.yaml</code></td></tr>
- <tr><td>MQTT</td><td>Zigbee2MQTT, Tasmota, ESPHome are also available, and various DIY devices</td><td>Install Mosquitto broker and add MQTT integration</td></tr>
- <tr><td>Local HTTP</td><td>Some NAS, printers, open source firmware devices, self-hosted services</td><td>Official integration, or use <code>rest_command</code> Make the API yourself</td></tr>
+ <tr>
+<td>Wi-Fi</td>
+<td>Tuya-based products, Shelly, TP-Link, Xiaomi products, and robot vacuums</td>
+<td>Search for the brand or platform under <strong>Settings &gt; Devices &amp; Services &gt; Add integration</strong>. Devices running ESPHome or Tasmota use their corresponding integrations.</td>
+</tr>
+ <tr>
+<td>Zigbee</td>
+<td>IKEA, Aqara, Philips Hue, SONOFF, Tuya Zigbee models</td>
+<td>Plug in a Zigbee coordinator, use ZHA integration or Zigbee2MQTT</td>
+</tr>
+ <tr>
+<td>Z-Wave</td>
+<td>Aeotec, Fibaro, Zooz, Heltun</td>
+<td>Plug in the Z-Wave coordinator and integrate with Z-Wave (running Z-Wave JS behind it)</td>
+</tr>
+ <tr>
+<td>Thread / Matter</td>
+<td>Nanoleaf, Eve, Aqara new models, some SwitchBot models</td>
+<td>Install Matter integration and Matter Server, pair with mobile app</td>
+</tr>
+ <tr>
+<td>Bluetooth BLE</td>
+<td>Xiaomi temperature and humidity meter, SwitchBot, various Bluetooth scales and plant sensors</td>
+<td>Bluetooth integration + built-in Bluetooth on the host, or add ESPHome Bluetooth Proxy</td>
+</tr>
+ <tr>
+<td>KNX</td>
+<td>ABB, Gira, Jung, Schneider (mostly construction projects/commercial offices)</td>
+<td>KNX integration, connection via KNX IP interface</td>
+</tr>
+ <tr>
+<td>Modbus</td>
+<td>Electric meters, frequency converters, PLCs, industrial air conditioning controllers, some solar inverters</td>
+<td>Modbus integration, written in <code>configuration.yaml</code>
+</td>
+</tr>
+ <tr>
+<td>MQTT</td>
+<td>Zigbee2MQTT, Tasmota, ESPHome are also available, and various DIY devices</td>
+<td>Install Mosquitto broker and add MQTT integration</td>
+</tr>
+ <tr>
+<td>Local HTTP</td>
+<td>Some NAS, printers, open source firmware devices, self-hosted services</td>
+<td>Use an official integration, or call the API with <code>rest_command</code></td>
+</tr>
  </tbody>
  </table>
 
- <div class="callout warn"><strong>Warning:</strong> The same brand often sells both Wi-Fi and Zigbee versions, which look almost the same and differ by one or two letters in the model number. Before placing an order, read the entire product title, not just the display.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> The same brand often sells both Wi-Fi and Zigbee versions, which look almost the same and differ by one or two letters in the model number. Before placing an order, read the entire product title, not just the display.</div>
  </section>
 
  <section id="steps" data-nav="Take stock of your family agreements">
- <h2 data-icon="steps">Do it yourself: Take stock of which agreements your home currently runs</h2>
+ <h2 data-icon="steps">Hands-on: inventory the protocols in your home</h2>
  <p>Before buying something new, figure out what you already have. These five steps can be completed in about ten minutes.</p>
 
  <ol class="steps">
  <li>
  <h3>Open the list of integrations and see what's already there</h3>
- <p>Left menu point <strong>Settings</strong>, enter <strong>Devices and Services</strong>. This page lists all connected integrations. Copy the names that appear in it. For example, if you see "MQTT", "Zigbee Home Automation" and "Bluetooth", it means that your home is already running these protocols.</p>
+ <p>Open <strong>Settings</strong> → <strong>Devices &amp; Services</strong>. Record the relevant integrations. For example, MQTT, Zigbee Home Automation, and Bluetooth indicate those technologies are already in use.</p>
  </li>
  <li>
  <h3>Check if there is a dedicated Zigbee or Z-Wave page</h3>
- <p>If you have plugged in the Zigbee coordinator and set up ZHA, <strong>Settings</strong> There will be one more in the menu <strong>Zigbee</strong> Item; this will also appear after Z-Wave is set up <strong>Z-Wave</strong> item. The presence of these two entrances is the fastest way to determine "whether my home has this network." The menu position of different versions may be slightly adjusted, whichever you see on the screen.</p>
+ <p>After configuring ZHA, look for <strong>Settings</strong> → <strong>Zigbee</strong>. A configured Z-Wave network similarly provides Settings → <strong>Z-Wave</strong>. Menu placement can vary by version; follow the labels shown in your installation.</p>
  </li>
  <li>
  <h3>Count how many Wi-Fi devices there are</h3>
@@ -202,11 +346,11 @@
  </li>
  <li>
  <h3>Mark each device as "local" or "cloud"</h3>
- <p>return to <strong>Settings &gt; Devices &amp; Services</strong>, integrate point by point. The judgment method is very simple: if you are required to enter the account and password of the manufacturer's App during the initial setting, or jump out of the webpage and go to the manufacturer's official website for authorization, then it is most likely the cloud; if you are only asked to fill in a local network IP or it is automatically found directly, then it is the local one.</p>
+ <p>Return to <strong>Settings &gt; Devices &amp; Services</strong> and inspect each integration. An integration that requests a vendor account or redirects to vendor authorization is generally cloud-dependent. One configured by local IP or local discovery may be local; confirm its documented IoT class.</p>
  </li>
  <li>
  <h3>Do a drill to disconnect from the internet</h3>
- <p>Unplug the router's external network cable (not turn off Wi-Fi, but unplug the external one) to maintain your home's internal local network. Then try turning each device on and off with Home Assistant. What moves is true local, what spins around and then fails is cloud dependence. Remember to plug the cord back in after the exercise.</p>
+ <p>During a planned maintenance window, disconnect only the router’s WAN connection while leaving the local network running. Test each noncritical device from Home Assistant, record which integrations still respond, then restore the WAN connection. Do not run this test when safety, access, or essential services depend on connectivity.</p>
  </li>
  <li>
  <h3>Record the result</h3>
@@ -217,43 +361,66 @@
 
  <section id="zigbee" data-nav="Zigbee in depth">
  <h2 data-icon="protocol">Zigbee in depth: Coordinators, routers, channel jamming</h2>
- <p>Zigbee devices are widely available in many markets, often inexpensive, and commonly battery-efficient. But it has a few landmines. Stepping on them will make you think "Zigbee sucks", but in fact it's just that the layout is not done right.</p>
+ <p>Zigbee devices are widely available and often battery-efficient. Reliability depends heavily on coordinator placement, powered router nodes, and radio interference.</p>
 
- <h3>Three roles: coordinator, router, terminal device</h3>
+ <h3>Three roles: coordinator, router, and end device</h3>
  <table class="data-table">
  <thead>
- <tr><th>role</th><th>what is</th><th>Typical example</th><th>Pay attention to</th></tr>
+ <tr>
+<th>role</th>
+<th>what is</th>
+<th>Typical example</th>
+<th>Pay attention to</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>Coordinator Coordinator</td><td>There can only be one brain for the entire network in the whole family.</td><td>USB receiver plugged into HA host</td><td>It hangs down the entire Zigbee network and shuts down</td></tr>
- <tr><td>Router Router</td><td>A relay station that helps forward signals</td><td>Zigbee light bulbs, sockets, and switches with always-on power</td><td>A device must be "always powered" to function as a router</td></tr>
- <tr><td>End Device End Device</td><td>Only responsible for repaying, not forwarding for others</td><td>Battery door and window sensors, thermometer and hygrometer, buttons</td><td>It won't extend your network coverage</td></tr>
+ <tr>
+<td>Coordinator</td>
+<td>Creates and manages one Zigbee network</td>
+<td>USB or network coordinator used by Home Assistant</td>
+<td>If unavailable, Home Assistant cannot communicate with that network</td>
+</tr>
+ <tr>
+<td>Router Router</td>
+<td>A relay station that helps forward signals</td>
+<td>Zigbee light bulbs, sockets, and switches with always-on power</td>
+<td>A device must be "always powered" to function as a router</td>
+</tr>
+ <tr>
+<td>End device</td>
+<td>Sends and receives its own data but does not route for other nodes</td>
+<td>Battery contact sensors, temperature/humidity sensors, and buttons</td>
+<td>Does not extend network coverage</td>
+</tr>
  </tbody>
  </table>
 
- <div class="callout"><strong>Concept:</strong> Home Assistant documentation states that Zigbee router devices "must remain available at all times." Therefore, the correct solution to expand Zigbee coverage is not to buy a stronger coordinator, but to install a few more plugged-in Zigbee sockets or light bulbs in the middle corridors and stairwells so that the signal has a place to be relayed.</div>
+ <div class="callout">
+<strong>Concept:</strong> Home Assistant documentation states that Zigbee router devices "must remain available at all times." Therefore, the correct solution to expand Zigbee coverage is not to buy a stronger coordinator, but to install a few more plugged-in Zigbee sockets or light bulbs in the middle corridors and stairwells so that the signal has a place to be relayed.</div>
 
  <h3>How to choose a coordinator</h3>
  <p>Home Assistant official documentation currently list several series of recommended coordinators: Silicon Labs EmberZNet chip models (such as Home Assistant Home Assistant Connect ZBT-2, Connect ZBT-1, Home Assistant Yellow, SONOFF ZBDongle-E, SMLIGHT SLZB-07), Texas Instruments' CC2652 and CC1352 series USB sticks, and dresden elektronik's ConBee III.</p>
  <p>The document also lists a number of old models as no longer recommended, including ConBee II, RaspBee II, SONOFF ZBBridge, Nortek HUSBZB-1, Elelabs series, Digi XBee series, ZiGate series, and TI's CC2530/CC2531/CC2538. There are many of these on online auctions and second-hand markets, and the price is often only one-third of the recommended model. If you see a particularly cheap model, check to see if the model is on the "not recommended" list before placing an order.</p>
- <p>Home Assistant specification of Connect ZBT-2 is Silicon Labs MG24 chip with ESP32-S3 responsible for USB connection. The transmission rate is 460800 (the previous generation ZBT-1 is 115200). It uses an external antenna instead. Home Assistant recommended price is US$49/€45. The box comes with a 1.5-meter USB-C cable.</p>
+ <p>The documented Connect ZBT-2 specifications include a Silicon Labs MG24 radio, an ESP32-S3 for USB connectivity, a 460800 baud rate (compared with 115200 for ZBT-1), an external antenna, and a 1.5-meter USB-C cable. Check current regional pricing and availability before purchase.</p>
 
- <div class="callout warn"><strong>Warning:</strong> ZBT-2 can only run one protocol at a time. Home Assistant documentation is very clear: it cannot function as a Zigbee coordinator and Thread border router at the same time. Either use it to run Zigbee or use it to run Thread. If you want both, be prepared to buy two.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> ZBT-2 can only run one protocol at a time. Home Assistant documentation is very clear: it cannot function as a Zigbee coordinator and Thread border router at the same time. Either use it to run Zigbee or use it to run Thread. If you want both, be prepared to buy two.</div>
 
  <h3>Channel interference: Don’t rush to change the Zigbee channel</h3>
  <p>Zigbee and Wi-Fi are both squeezed into 2.4GHz, so interference with each other is the norm. However, the suggestions in Home Assistant ZHA document are contrary to many online teachings. It says: <strong>Best practice is not to change the Zigbee channel</strong>. ZHA's "Smart" option will scan all channels when establishing a network, giving priority to 15, 20, and 25. This is a one-time action.</p>
  <p>If there is really constant interference, the order suggested by the document is: first place the coordinator away from Wi-Fi base stations and other Wi-Fi signal sources. If that still doesn't work, change it. <strong>Your router’s Wi-Fi channel</strong>, instead of changing the Zigbee channel. The reason is practical: changing the Zigbee channel usually means re-pairing all the devices, an afternoon's work.</p>
 
  <h3>USB 3.0 is the invisible killer</h3>
- <div class="callout danger"><strong>Danger:</strong> Home Assistant documentation clearly warns: Zigbee USB receivers can only be plugged into USB 2.0 ports, not USB 3.x ports. USB 3.0 will generate a lot of noise in the 2.4GHz band, which will directly destroy your Zigbee network. If your host only has USB 3 ports, buy a powered USB 2.0 hub to convert them.</div>
+ <div class="callout danger">
+<strong>Warning:</strong> Home Assistant documentation warns that USB 3.x equipment can create 2.4 GHz interference. Connect a Zigbee adapter through a shielded USB extension cable and, where recommended for the adapter, a USB 2.0 port or hub to move it away from the host.</div>
  <p>In addition, it is strongly recommended to use a USB extension cable to pull the receiver away from the host body, because the host, hard disk, and SSD themselves are all sources of interference. The document reminds you to choose extension cords that are well shielded. Generally, the thicker the wire, the better the shielding.</p>
 
  <h3>Suggestions for placement</h3>
  <ul>
- <li>The coordinator is placed in the house <strong>central location</strong>, do not stuff it into the innermost part of the TV cabinet or the metal cabinet.</li>
+ <li>Place the coordinator in a <strong>central location</strong>, not inside a media console or metal cabinet.</li>
  <li>Stay away from electrical appliances and lots of wires. Refrigerators, microwaves, and power supplies are all bad places.</li>
  <li>For large square footage or long layout, first install a plug-in Zigbee device in the middle as a relay point, and then expand outward.</li>
- <li>ZHA users can <strong>Settings &gt; Zigbee</strong> Select "Show map" to see the network topology. The RSSI and LQI values above can help you find which section of the connection is particularly weak.</li>
+ <li>ZHA users can open <strong>Settings &gt; Zigbee</strong> and select Show map. RSSI and LQI can help identify weak links.</li>
  </ul>
  </section>
 
@@ -263,27 +430,61 @@
 
  <table class="data-table">
  <thead>
- <tr><th>Compare items</th><th>ZHA (Zigbee Home Automation)</th><th>Zigbee2MQTT</th></tr>
+ <tr>
+<th>Compare items</th>
+<th>ZHA (Zigbee Home Automation)</th>
+<th>Zigbee2MQTT</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>essence</td><td>Home Assistant built-in integration</td><td>Independent software, communicates with HA through MQTT</td></tr>
- <tr><td>Installation difficulty</td><td>low. Plugging in the receiver will usually be automatically detected and the settings can be completed in Devices and Services.</td><td>in. You need to install MQTT broker first, then install Zigbee2MQTT, and set the connection port.</td></tr>
- <tr><td>How many components are needed</td><td>a (integration itself)</td><td>Three (broker, Zigbee2MQTT, MQTT integration)</td></tr>
- <tr><td>Setting interface</td><td>Directly in HA, there is <strong>Settings &gt; Zigbee</strong> Exclusive page</td><td>Another independent web interface</td></tr>
- <tr><td>Unpopular device support</td><td>Relying on the zigpy library, most common devices will have no problem</td><td>The community updates quickly, and unpopular or newly launched devices are often supported here first.</td></tr>
- <tr><td>When HA stops</td><td>Zigbee network stops</td><td>Zigbee2MQTT is still running, and the message will be left in the broker</td></tr>
- <tr><td>Suitable for whom</td><td>This is my first time playing, I want to avoid pitfalls, and the devices is from mainstream brands.</td><td>The devices are complicated, there are unpopular brands, and I want more detailed adjustments.</td></tr>
+ <tr>
+<td>essence</td>
+<td>Home Assistant built-in integration</td>
+<td>Independent software, communicates with HA through MQTT</td>
+</tr>
+ <tr>
+<td>Installation difficulty</td>
+<td>Low. A supported coordinator is often discovered automatically and configured under Devices &amp; Services.</td>
+<td>Medium. Install an MQTT broker and Zigbee2MQTT, then configure their connections.</td>
+</tr>
+ <tr>
+<td>Components</td>
+<td>One Home Assistant integration</td>
+<td>MQTT broker, Zigbee2MQTT, and MQTT integration</td>
+</tr>
+ <tr>
+<td>Setting interface</td>
+<td>Directly in HA, there is <strong>Settings &gt; Zigbee</strong> Exclusive page</td>
+<td>Another independent web interface</td>
+</tr>
+ <tr>
+<td>Unpopular device support</td>
+<td>Relying on the zigpy library, most common devices will have no problem</td>
+<td>The community updates quickly, and unpopular or newly launched devices are often supported here first.</td>
+</tr>
+ <tr>
+<td>When HA stops</td>
+<td>Zigbee network stops</td>
+<td>Zigbee2MQTT is still running, and the message will be left in the broker</td>
+</tr>
+ <tr>
+<td>Suitable for whom</td>
+<td>First Zigbee network with mainstream devices</td>
+<td>A diverse device set that needs broader support or detailed controls</td>
+</tr>
  </tbody>
  </table>
 
- <div class="callout tip"><strong>Tip:</strong> The choice suggestion is simple - choose ZHA for the first time, because it has two less things that can break. Wait until one day you encounter "ZHA cannot recognize this sensor", then consider moving to Zigbee2MQTT. Both sides use the same coordinator, and the main cost of replacing it is that all devices need to be re-paired.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> ZHA has fewer components and is a practical starting point. Consider Zigbee2MQTT when you need its device support or advanced controls. Moving between them generally requires pairing devices again.</div>
 
- <div class="callout warn"><strong>Warning:</strong> Never open ZHA and Zigbee2MQTT at the same time to grab the same USB receiver. One coordinator can only be used by one software at the same time. If two are opened at the same time, neither side can use it.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> Never open ZHA and Zigbee2MQTT at the same time to grab the same USB receiver. One coordinator can only be used by one software at the same time. If two are opened at the same time, neither side can use it.</div>
 
  <p>The Zigbee2MQTT official document currently lists two types of receivers, zStack (Texas Instruments) and EmberZNet (Silicon Labs), as recommended - there is a high degree of overlap with ZHA's recommended list, so if you buy a good coordinator, both paths will work. In terms of installation, Zigbee2MQTT is installed as an App (formerly called add-on) on Home Assistant. In addition, a MQTT broker is required. Mosquitto is officially recommended.</p>
 
  <h3>What should I do if I change the coordinator?</h3>
- <p>ZHA has built-in migration capabilities in <strong>Settings &gt; Zigbee</strong> There is a "Migrate" item, and official documentation describe support for migration between models using Silicon Labs, Texas Instruments, and ConBee/RaspBee chips. This means that when you switch from an old receiver to a new one, you have the opportunity to not have to reconfigure your entire home's sensors. Please follow the wizard on the screen of your version for the actual process.</p>
+ <p>ZHA provides Migrate under <strong>Settings &gt; Zigbee</strong>. The documentation describes migrations among supported Silicon Labs, Texas Instruments, and ConBee/RaspBee coordinators. Follow the wizard in your installed version and make a backup first.</p>
  </section>
 
  <section id="zwave" data-nav="Z-Wave">
@@ -291,48 +492,66 @@
  <p>Z-Wave availability and pricing vary by market. It is a mainstream choice in Europe and the United States because it does not squeeze 2.4GHz with Wi-Fi, and the interference problem is naturally reduced by more than half.</p>
 
  <h3>Find out the frequency band before buying</h3>
- <div class="callout danger"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. Z-Wave uses frequency bands below 1GHz, and <strong>Different regions use different frequencies</strong>. European, American, and Australian devices cannot communicate with each other at all. Before placing an order from a foreign website, be sure to confirm that the coordinator and device you buy are the same regional version. The wrong purchase is not "less effective" but "completely unable to connect". Regional versions vary by market, so confirm the exact frequency with the seller.</div>
+ <div class="callout danger">
+<strong>D</strong>anger: Z-Wave uses different sub-GHz frequency plans by region. Devices and <strong>coordinators for different regions are not inte</strong>roperable and may not be legal to operate where you live. Before importing equipment, verify that every component matches the locally authorized region and frequency.</div>
 
  <h3>How to run in Home Assistant</h3>
- <p>Behind Home Assistant’s Z-Wave integration is Z-Wave JS. After setting it up, Home Assistant documentation says you can <strong>Settings &gt; Z-Wave</strong> or <strong>Settings &gt; Devices &amp; Services &gt; Z-Wave</strong> Enter the management page. It will use the "App" of Z-Wave JS - this thing was formerly called "Add-on". Home Assistant officially renamed Add-on to App in version 2026.2, and the menu path becomes <strong>Settings &gt; Apps</strong> (The English interface is Settings &gt; Apps; the translation of the Chinese interface may be slightly adjusted, and you will see "App" or "App" in the same place). This part is in <a href="appendix_hacs_addons.html">Appendix A</a> There are more complete instructions.</p>
+ <p>Home Assistant’s Z-Wave integration uses Z-Wave JS. Manage it under <strong>Settings &gt; Z-Wave</strong> or <strong>Settings &gt; Devices &amp; Services &gt; Z-Wave</strong>. On Home Assistant OS, Z-Wave JS runs as an App, the name used for Add-ons since 2026.2. <strong>Se</strong>e <a href="appendix_hacs_addons.html">Appendix A</a>.</p>
 
- <h3>Hardware and add-on devices</h3>
- <p>Home Assistant document recommends that people who are just getting started buy it directly. <strong>800 series</strong> receiver and update the firmware to <code>7.23.2</code> Above; Home Assistant Home Assistant Connect ZWA-2 is also named in the document. In addition, old models such as Aeotec Z-Stick Gen5+, Zooz ZST10, and Nortek HUSBZB-1 are also on the usable list, but they are "still running" and not "recommended to buy new".</p>
+ <h3>Coordinator hardware</h3>
+ <p>Home Assistant recommends an <strong>800-series</strong> adapter for a new installation, with firmware <code>7.23.2</code> or later, and lists Home Assistant Connect ZWA-2. Older adapters such as Aeotec Z-Stick Gen5+, Zooz ZST10, and Nortek HUSBZB-1 may remain usable but are not recommended for new purchases.</p>
  <p>There are two ways to add a device to the network (termed "inclusion"):</p>
  <ul>
- <li><strong>SmartStart</strong>: Scan the QR code on the device, and as soon as the device is powered on, Home Assistant documentation says it will automatically join within 10 minutes.</li>
- <li><strong>tradition incorporated</strong>: Switch both the host and the device to inclusion mode. For how to enter the inclusion mode on the device, you must check the instruction manual of the device. Each manufacturer's method is different.</li>
+ <li>
+<strong>SmartStart</strong>: Scan the QR code on the device, and as soon as the device is powered on, Home Assistant documentation says it will automatically join within 10 minutes.</li>
+ <li>
+<strong>Traditional inclusion</strong>: Put the controller and device into inclusion mode. Follow the device manufacturer’s instructions for its required sequence.</li>
  </ul>
  <p>In terms of security, Z-Wave supports S2 encryption. Official documentation mention that S2 will not cause additional network traffic burden and can bring additional benefits. Security keys are automatically generated when creating a new network. There is also Z-Wave Long Range, a long-distance network type that can be used with supported devices.</p>
  </section>
 
  <section id="matter" data-nav="Matter/Thread">
- <h2 data-icon="integration">Matter and Thread: One is language and the other is road</h2>
- <p>These two words are most often confused, but they can be clearly distinguished in one sentence: <strong>How does Thread transmit (the radio layer), and what does Matter talk about (the data format layer)</strong>. Therefore, there are "Matter over Thread" devices and "Matter over Wi-Fi" devices in the world, and both are Matter.</p>
+ <h2 data-icon="integration">Matter and Thread: application layer and network transport</h2>
+ <p><strong>Thread provides an IPv6 mesh network; Matter defines how compatible devices communicate at the application layer</strong>. Matter can run over Thread or Wi-Fi.</p>
 
  <h3>What is Thread border router?</h3>
- <p>Thread devices form a low-power mesh network by themselves, but they talk about IPv6. You need something to help connect the Thread network to your home Wi-Fi/wired network. That thing is called a border router.</p>
+ <p>Thread devices form a low-power IPv6 mesh. A Thread border router connects that mesh to the rest of your IP network.</p>
  <p>Home Assistant Thread integration documentation currently lists border routers as:</p>
  <table class="data-table">
  <thead>
- <tr><th>camp</th><th>device</th></tr>
+ <tr>
+<th>camp</th>
+<th>device</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>Home Assistant Official</td><td>Home Assistant Yellow, Connect ZBT-1, Connect ZBT-2 (with OpenThread Border Router App)</td></tr>
- <tr><td>Google</td><td>Nest Hub 2nd Gen, Nest Hub Max, Nest Wifi Pro, Nest Wifi, Google TV Streamer (4K)</td></tr>
- <tr><td>Apple</td><td>HomePod 2nd generation, HomePod mini, Apple TV 4K 2nd/3rd generation</td></tr>
- <tr><td>Others</td><td>Some devices from Nanoleaf and Amazon</td></tr>
+ <tr>
+<td>Home Assistant Official</td>
+<td>Home Assistant Yellow, Connect ZBT-1, Connect ZBT-2 (with OpenThread Border Router App)</td>
+</tr>
+ <tr>
+<td>Google</td>
+<td>Nest Hub 2nd Gen, Nest Hub Max, Nest Wifi Pro, Nest Wifi, Google TV Streamer (4K)</td>
+</tr>
+ <tr>
+<td>Apple</td>
+<td>HomePod 2nd generation, HomePod mini, Apple TV 4K 2nd/3rd generation</td>
+</tr>
+ <tr>
+<td>Others</td>
+<td>Some devices from Nanoleaf and Amazon</td>
+</tr>
  </tbody>
  </table>
  <p>The good news is: If you already have a HomePod mini or Nest Hub at home, you actually already have a border router and don’t need to buy another one. To check the Thread network status at home, the path is <strong>Settings &gt; Devices &amp; Services &gt; Thread &gt; Settings</strong>.</p>
 
  <h3>Add Matter devices to Home Assistant</h3>
- <p>Let me first talk about a premise that many people get stuck on: <strong>To pair Matter devices, you must use your phone’s Companion App, which cannot be done using a browser.</strong>. Home Assistant documentation makes it clear that Home Assistant’s Matter controller is paired through the Companion App. Companion App is installed in <a href="ch7_notifications.html">Chapter 7</a> There is talk.</p>
+ <p>P<strong>air Matter devices through the Home Assistant Companion App, not a desktop browser.</strong> See <a href="ch7_notifications.html">Chapter 7</a> for Companion App installation.</p>
 
  <ol class="steps">
  <li>
  <h3>Install Matter integration first</h3>
- <p>Go to <strong>Settings &gt; Devices &amp; Services</strong>, added Matter integration. If you are running Home Assistant OS, you will be asked if you want to install Home Assistant Matter Server. Click <strong>Submit</strong> Just let it install itself. This Matter Server is a stand-alone program that is responsible for connecting your Matter network (termed Fabric) with Home Assistant.</p>
+ <p>Open <strong>Settings &gt; Devices &amp; Services</strong> and add the Matter integration. On Home Assistant OS, accept the prompt to install Home Assistant Matter Server. <strong></strong>The server connects the Matter fabric to Home Assistant.</p>
  </li>
  <li>
  <h3>Make sure IPv6 is turned on</h3>
@@ -352,17 +571,19 @@
  </li>
  </ol>
 
- <div class="callout warn"><strong>Warning:</strong> Matter relies on local network discovery packets such as mDNS/multicast. Official documentation require that this type of traffic must be able to pass freely through your network. If your home has VLAN network switching, or the router has "AP isolation" enabled, Matter will almost certainly fail to pair. In addition, when pairing the Wi-Fi version of Matter device, the phone and the device must be on the same 2.4GHz network.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> Matter relies on local network discovery packets such as mDNS/multicast. The documentation requires this traffic to pass through the local network. If your home has VLAN network switching, or the router has "AP isolation" enabled, Matter will almost certainly fail to pair. In addition, when pairing the Wi-Fi version of Matter device, the phone and the device must be on the same 2.4GHz network.</div>
 
- <div class="callout"><strong>Concept:</strong> The device types Matter supports are constantly expanding. Currently, official documentation lists lights, switches, locks, curtains, fans, air conditioners, water heaters, sensors, binary sensors, buttons, alarms, valves, sweeping robots, electric vehicles, and some general types (values, options, updates). But in practice, "support" does not mean "every function can be used" - many devices have no problem with basic switches, but some fancy functions that are only available in original apps are just not available. Before buying, it is recommended to search the actual returns of that model in the community.</div>
+ <div class="callout">
+<strong>Concept:</strong> The device types Matter supports are constantly expanding. Currently, official documentation lists lights, switches, locks, curtains, fans, air conditioners, water heaters, sensors, binary sensors, buttons, alarms, valves, sweeping robots, electric vehicles, and some general types (values, options, updates). But in practice, "support" does not mean "every function can be used" - many devices have no problem with basic switches, but some fancy functions that are only available in original apps are just not available. Before buying, it is recommended to search the actual returns of that model in the community.</div>
  </section>
 
  <section id="mqtt" data-nav="MQTT and HTTP">
  <h2 data-icon="network">MQTT and local HTTP: two versatile paths for DIY</h2>
- <p>What I talked about earlier was "some kind of radio". MQTT is different from HTTP, they run on your home network <strong>Message format</strong>, regardless of whether it’s a Wi-Fi or network cable underneath. These two paths are your lifeline when there is no dedicated integration for a device.</p>
+ <p>MQTT and HTTP are application-layer protocols carried over an IP network<strong></strong>, whether the underlying link is Wi-Fi or Ethernet. They are useful when a device has no dedicated integration.</p>
 
  <h3>What is MQTT: A community bulletin board</h3>
- <p>Imagine that there is a bulletin board in a community hall with many grids (the term is called "topic"). Every five minutes on the thermometer and hygrometer, go to the "living room/temperature" box and put a piece of paper on it and write 26.5. Home Assistant only needs to say "I want to subscribe to the living room/temperature grid" in advance, and it will know as soon as someone posts it. This bulletin board is <strong>broker (message proxy server)</strong>.</p>
+ <p>Think of MQTT as a bulletin board divided into named topics. A temperature sensor publishes 26.5 to a topic such as living_room/temperature; Home Assistant subscribes to that topic. The server that receives and distributes messages is the <strong>broker</strong>.</p>
  <p>The advantage of this design is that the person posting the sticker does not need to know who is reading it, and the person views it does not need to know who is posting it. So you can add unlimited devices and unlimited subscribers without knowing each other.</p>
 
  <h3>Install a broker</h3>
@@ -370,50 +591,67 @@
  <p>The path to add MQTT integration is <strong>Settings &gt; Devices &amp; Services</strong>, lower right corner <strong>New integration</strong>, select from the list <strong>MQTT</strong>.</p>
 
  <h3>Automatic discovery: The most fascinating part</h3>
- <div class="callout"><strong>Concept:</strong> Official documentation describing MQTT automatic exploration <strong>It is on by default</strong>, the default prefix for exploring topics is <code>homeassistant</code>. This means that the device only needs to follow the agreed format and go to <code>homeassistant/...</code> Drop a self-introduction message into the opening topic, and Home Assistant will automatically create an entity for it, so you don’t have to set it manually at all.</div>
+ <div class="callout">
+<strong>Concept:</strong> MQTT discovery <strong>is enabled by default</strong>, with the topic prefix <code>homeassistant</code>. A device that publishes a correctly formatted discovery message under <code>homeassistant/...</code> can have its entity created automatically.</div>
  <p>This is why Zigbee2MQTT and Tasmota are so smooth to use - you pair a new sensor with them, and Home Assistant will appear on its own in a few seconds.</p>
  <p>After setting it up, you need to go back and change things. Home Assistant documentation divides it into two things:</p>
  <ul>
- <li><strong>Change the broker’s connection information</strong> (Change IP, change account password): <strong>Settings &gt; Devices &amp; Services</strong>, select MQTT integration, click the three-dot menu, and select <strong>reset</strong> (Reconfigure).</li>
- <li><strong>Change options like automatic exploration</strong>: On the same MQTT integration page, click <strong>Set MQTT options</strong> (Configure MQTT Options) button.</li>
+ <li>
+<strong>Change the broker’s connection information</strong> (Change IP, change account password): <strong>Settings &gt; Devices &amp; Services</strong>, select MQTT integration, click the three-dot menu, and select <strong>reset</strong> (Reconfigure).</li>
+ <li>
+<strong>Change options like automatic exploration</strong>: On the same MQTT integration page, click <strong>Set MQTT options</strong> (Configure MQTT Options) button.</li>
  </ul>
  <p>The actual button text will vary depending on the version and language. It should be based on what you see on the screen - look for the "three-dot menu" and "button on the integrated page" to avoid getting lost.</p>
 
  <h3>Local HTTP: last resort, but useful</h3>
- <p>Some devices do not support any protocols, but they have a web interface or provide a URL for you to call. It can be used at this time <code>rest_command</code> This integration creates its own API. It can currently only be written in <code>configuration.yaml</code> Here:</p>
+ <p>Some devices expose only a web API. Use <code>rest_command</code> to call an endpoint. Configure it in <code>configuration.yaml</code>:</p>
  <pre class="code-block"><code>rest_command:
   open_gate:
     url: "http://192.168.1.50/api/open"
     method: post
     verify_ssl: false</code></pre>
- <p>The parameters listed in Home Assistant documentation include <code>url</code>(Required, support template),<code>method</code>(Default <code>get</code>, available get/patch/post/put/delete),<code>headers</code>, <code>payload</code>, <code>verify_ssl</code>(Default <code>true</code>), <code>timeout</code>(Default 10 seconds). The example above <code>verify_ssl</code> Turn it off because most small devices in the local network do not have formal credentials; if you are calling an external network service, do not turn it off. After setting it up, call it like this in automation or script:</p>
+ <p>Documented parameters include required <code>url</code> with template support; <code>method</code>, which defaults to <code>get</code> and supports get/patch/post/put/delete; <code>headers</code>; <code>payload</code>; <code>verify_ssl</code>, which defaults to <code>true</code>; and <code>timeout</code>, which defaults to 10 seconds. The local HTTP example sets <code>verify_ssl</code> to false because it uses plain HTTP on a private address. For HTTPS, keep certificate verification enabled unless you understand and accept the security implications. Call the command from an automation or script as follows:</p>
  <pre class="code-block"><code>actions:
   - action: rest_command.open_gate</code></pre>
- <div class="callout tip"><strong>Tip:</strong> Note that what is used here is <code>action:</code> rather than the old way of writing <code>service:</code>. Home Assistant has renamed "Service" to "Action". YAML <code>triggers:</code> / <code>conditions:</code> / <code>actions:</code> They are also in the plural form. <a href="ch8_first_automation.html">Chapter 8</a> There are full instructions.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> Note that what is used here is <code>action:</code> rather than the old way of writing <code>service:</code>. Home Assistant has renamed "Service" to "Action". YAML <code>triggers:</code> / <code>conditions:</code> / <code>actions:</code> They are also in the plural form. <a href="ch8_first_automation.html">Chapter 8</a> There are full instructions.</div>
  </section>
 
  <section id="bluetooth" data-nav="Bluetooth and Proxy">
- <h2 data-icon="advanced">Bluetooth BLE: cheap, power-saving, but not far-reaching</h2>
+ <h2 data-icon="advanced">Bluetooth LE: low power, short range</h2>
  <p>Bluetooth Low Energy (BLE) devices are usually the cheapest, and a button battery can last a long time. The disadvantages are also very direct: <strong>it barely penetrates walls</strong>, and it does not mesh, so the signal in one room cannot be transmitted to the next room.</p>
 
  <h3>Two ways of operation</h3>
  <table class="data-table">
  <thead>
- <tr><th>mode</th><th>How it works</th><th>suitable for</th></tr>
+ <tr>
+<th>mode</th>
+<th>How it works</th>
+<th>suitable for</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>Passive reception (broadcast)</td><td>The device itself keeps shouting values into the air, and HA writes them down when he hears them.</td><td>Devices that only report, such as thermohygrometers and plant sensors,</td></tr>
- <tr><td>Active connection</td><td>HA actively establishes a connection with the device to ask or issue commands.</td><td>Bluetooth locks, curtain machines that require commands, and thermostats</td></tr>
+ <tr>
+<td>Passive reception (broadcast)</td>
+<td>The device broadcasts values; Home Assistant records broadcasts it receives.</td>
+<td>Reporting devices such as temperature/humidity and plant sensors</td>
+</tr>
+ <tr>
+<td>Active connection</td>
+<td>HA actively establishes a connection with the device to ask or issue commands.</td>
+<td>Bluetooth locks, curtain machines that require commands, and thermostats</td>
+</tr>
  </tbody>
  </table>
- <p>Home Assistant's Bluetooth integration offers three scanning modes: <strong>Auto</strong> (Mainly passive listening, interspersed with short active scanning), <strong>Active</strong> (continuous and proactive inquiry, the fastest update but more battery consumption of the device), <strong>Passive</strong> (Listen only, minimal impact on battery). Official documentation say that Auto mode can reduce scanning power consumption by about 95% compared to always turning on active scanning, so unless you have a special reason, just keep it in Auto.</p>
+ <p>The Bluetooth integration offers three scan modes: <strong>Auto</strong> primarily listens passively with brief active scans; <strong>Active</strong> scans continuously for faster updates with greater power use; and <strong>Passive</strong> only listens. The documentation states that Auto can reduce scan power by about 95% compared with continuous active scanning. Keep Auto unless your device requires another mode.</p>
  <p>The new path is <strong>Settings &gt; Devices &amp; Services &gt; Add integration &gt; Bluetooth</strong>.</p>
 
  <h3>BLE Proxy: Put ears in every room</h3>
  <p>Since Bluetooth can’t transmit far, the solution is not to rely solely on the host’s Bluetooth. You can place a cheap little device in each room as a "collector," which listens to the signal using Bluetooth and forwards the data to Home Assistant via Wi-Fi or a network cable. This is Bluetooth Proxy.</p>
  <p>Home Assistant Bluetooth documentation states that the integration can receive broadcast data from external repeaters, and names ESPHome's ESP32 devices, Shelly Gen2 and above devices, and SMLIGHT SLZB-U.</p>
 
- <div class="callout tip"><strong>Tip:</strong> If your home already has several Shelly Gen2 or above smart switches hidden in the wall, they can be used as Bluetooth collectors, which is a free upgrade. This is a hidden feature that many people don’t know about.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> If your home already has several Shelly Gen2 or above smart switches hidden in the wall, they can be used as Bluetooth collectors, which is a free upgrade. This is a hidden feature that many people don’t know about.</div>
 
  <h3>Make your own ESPHome Bluetooth Proxy</h3>
  <p>Buy an ESP32 development board (a low-cost board) and run ESPHome. The core of the configuration file only has these lines:</p>
@@ -423,43 +661,61 @@ bluetooth_proxy:
   active: true</code></pre>
  <p>Home Assistant ESPHome document explains the key points of this component:</p>
  <ul>
- <li>Use ESP32 series boards. The document recommends setting the ESP32 platform to <code>esp-idf</code> frame because another <code>arduino</code> The framework consumes much more memory and runs poorly.</li>
- <li><code>active</code> What is turned on is the ability of "agent active connection". Different versions of the document have inconsistent explanations of the default value of this option, so as above <strong>clearly written <code>active: true</code></strong> The safest thing is that you know what you are prescribing.</li>
- <li><code>connection_slots</code> is the number of active connections that can be maintained at the same time, <strong>Default 3</strong>. The document recommends not exceeding <code>5</code>, to avoid problems caused by insufficient memory; in <code>esp-idf</code> Under the framework, you can reach up to <code>9</code>. Each slot consumes approximately 1KB of memory, and this number cannot exceed <code>esp32_ble_tracker</code> It's set there <code>max_connections</code>.</li>
+ <li>Use an ESP32-series board. The documentation recommends the <code>esp-idf</code> framework because the <code>arduino</code> framework uses substantially more memory for this purpose.</li>
+ <li>
+<code>active</code> enables active connections through the proxy. Because documentation across versions describes the default differently, <strong>clearly written <code>active: true</code></strong> makes the intended behavior explicit.</li>
+ <li>
+<code>connection_slots</code> is the number of active connections that can be maintained at the same time, <strong>Default 3</strong>. The document recommends not exceeding <code>5</code>, to avoid problems caused by insufficient memory; in <code>esp-idf</code> Under the framework, you can reach up to <code>9</code>. Each slot consumes approximately 1KB of memory, and this number cannot exceed <code>esp32_ble_tracker</code> It's set there <code>max_connections</code>.</li>
  <li>Boards that use network cables (such as Olimex ESP32-PoE-ISO) are usually more stable because they don't have to compete with Wi-Fi for the 2.4GHz antenna.</li>
  </ul>
- <div class="callout warn"><strong>Warning:</strong> The connection slot will be used up. A proxy has 3 slots, which means it can maintain up to 3 "actively connected" devices at the same time. If you have five Bluetooth locks in your home, you need to put a few more proxies to share them. It’s just that the thermometer and hygrometer that passively listens to the radio does not occupy a slot. It doesn’t matter if you put dozens of them.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> Active connections consume slots. With the default 3 slots, one proxy can maintain up to 3 active device connections. More active devices require additional capacity. Passive broadcasts from sensors do not consume an active connection slot.</div>
  </section>
 
  <section id="knx_modbus" data-nav="KNX and Modbus">
  <h2 data-icon="records">KNX and Modbus: the world of construction and offices</h2>
- <p>These two are "adults' agreement". You can’t buy them much at online auctions, but if your home is a newly-built house with smart features, or you are responsible for the devices of a company’s office, it is very likely that these two sets are running under the entire building. Their common characteristics are: wired, extremely stable, not broken for decades, but with high thresholds.</p>
+ <p>KNX and Modbus are common in professionally installed homes and commercial buildings. Both are wired and can be long-lived, but configuration requires authoritative project information and specialist knowledge.</p>
 
  <h3>KNX: Busbar in the wall</h3>
- <p>KNX is the European standard for building automation. It uses a dedicated bus line (bus), and all switches, curtains, and air conditioning controllers are hung on this line. Its biggest feature is <strong>Can function without a central brain</strong>—You set the "button on the wall in the living room" and the "light in the living room" to the same group address. When you press them, the light will turn on, even if the host is hung up.</p>
+ <p>KNX is the European standard for building automation. It uses a dedicated bus line (bus), and all switches, curtains, and air conditioning controllers are hung on this line. Its key feature is that it <strong>can function without a central controller</strong>—You set the "button on the wall in the living room" and the "light in the living room" to the same group address. When you press them, the light will turn on, even if Home Assistant is unavailable.</p>
  <p><strong>Group Address</strong> It is the core concept of KNX. it looks like <code>1/2/3</code> Such a three-segment number. You can think of it like the grid numbers on a bulletin board: press the button to go <code>1/2/3</code> If you drop an "on" in this grid, all the lights subscribed to this grid will light up together. Home Assistant KNX integration document explains that the group address is set with a string or integer, and the three-layer structure is <code>1/2/3</code> this format.</p>
- <p>In Home Assistant, KNX integration can be accessed from the UI settings: to <strong>Settings &gt; Devices &amp; Services &gt; Add Integration</strong> Choose KNX. Official documentation list three connection methods:</p>
+ <p>In Home Assistant, KNX integration can be accessed from the UI settings: to <strong>Settings &gt; Devices &amp; Services &gt; Add Integration</strong> Choose KNX. Official documentation lists three connection methods:</p>
  <table class="data-table">
  <thead>
- <tr><th>Connection method</th><th>what to do</th></tr>
+ <tr>
+<th>Connection method</th>
+<th>what to do</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>Automatic</td><td>Scan by itself at startup to find the KNX IP interface on the network</td></tr>
- <tr><td>Tunneling</td><td>Designate to connect to a specific KNX IP interface</td></tr>
- <tr><td>Routing</td><td>Communicate with KNX IP router using Multicast</td></tr>
+ <tr>
+<td>Automatic</td>
+<td>Scan by itself at startup to find the KNX IP interface on the network</td>
+</tr>
+ <tr>
+<td>Tunneling</td>
+<td>Designate to connect to a specific KNX IP interface</td>
+</tr>
+ <tr>
+<td>Routing</td>
+<td>Communicate with KNX IP router using Multicast</td>
+</tr>
  </tbody>
  </table>
  <p>There are also encrypted versions of Secure Tunneling and KNX IP Secure Routing. The document also mentions a KNX panel that can create entities, configure devices, and expose content directly from the front end without having to write YAML by hand.</p>
- <div class="callout"><strong>Concept:</strong> KNX item settings are usually done using a set of professional software called ETS, which is a tool for utility/system vendors. If your home was installed by a builder, ask the builder for an ETS project file or at least a group address list. This will save you dozens of hours of guesswork. As for the encryption settings, Home Assistant documentation states that you can export the Keyring file from ETS and then import it into Home Assistant. The path is the three-click radio button integrated in KNX. <strong>reset</strong>, and then select Import KNX Keyring.</div>
+ <div class="callout">
+<strong>Concept:</strong> KNX item settings are usually done using a set of professional software called ETS, which is a tool for utility/system vendors. If your home was installed by a builder, ask the builder for an ETS project file or at least a group address list. This will save you dozens of hours of guesswork. As for the encryption settings, Home Assistant documentation states that you can export the Keyring file from ETS and then import it into Home Assistant. The path is the three-click radio button integrated in KNX. <strong>reset</strong>, and then select Import KNX Keyring.</div>
 
  <h3>Modbus: the lingua franca of industrial devices</h3>
- <p>Modbus is the grandfather agreement in the industry. It has been around since 1979. It is still used in electricity meters, frequency converters, PLCs, large air conditioning hosts, and solar inverters. It is extremely simple: there are multiple numbered cells (registers) in the device. You read a numbered cell and get a number, and then you have to know what that number represents.</p>
+ <p>Modbus is an industrial protocol dating to 1979. It remains common in meters, variable-frequency drives, PLCs, commercial HVAC equipment, and solar inverters. A client reads numbered registers; the manufacturer’s register map defines what each value means.</p>
  <p>Modbus has two common connection methods:</p>
  <ul>
- <li><strong>Modbus RTU</strong>: To use the RS-485 physical cable, you usually need to buy a USB to RS-485 converter and plug it into the host computer. The wire can be stretched very long and has good anti-interference.</li>
- <li><strong>Modbus TCP</strong>: Take the network route, the device has its own IP. The setup is much simpler.</li>
+ <li>
+<strong>Modbus RTU</strong>: To use the RS-485 physical cable, you usually need to buy a USB to RS-485 converter and plug it into the host computer. The wire can be stretched very long and has good anti-interference.</li>
+ <li>
+<strong>Modbus TCP</strong>: Take the network route, the device has its own IP. The setup is much simpler.</li>
  </ul>
- <p>Home Assistant Modbus integration documentation is currently <strong>Can only write YAML</strong>, you need to restart Home Assistant after making the changes to take effect. Supported connection types are <code>tcp</code>, <code>udp</code>, <code>rtuovertcp</code>, <code>serial</code> Four kinds. The minimum settings are like this:</p>
+ <p>The Modbus integration is currently configured <strong>only through YAML</strong>. Run a configuration check and restart Home Assistant after changes. Supported connection types are <code>tcp</code>, <code>udp</code>, <code>rtuovertcp</code>, <code>serial</code> The following is a minimal TCP example:</p>
  <pre class="code-block"><code>modbus:
   - name: modbus_hub
     type: tcp
@@ -483,29 +739,55 @@ bluetooth_proxy:
  <p>Key parameters and default values listed in several files:</p>
  <table class="data-table">
  <thead>
- <tr><th>parameters</th><th>meaning</th><th>Default value</th></tr>
+ <tr>
+<th>parameters</th>
+<th>meaning</th>
+<th>Default value</th>
+</tr>
  </thead>
  <tbody>
- <tr><td><code>address</code></td><td>The register or coil address to be read can be expressed in hexadecimal, such as <code>0x789A</code></td><td>Required</td></tr>
- <tr><td><code>input_type</code></td><td>Read type:<code>discrete_input</code>, <code>coil</code>, <code>holding</code>, <code>input</code></td><td>Depends on platform</td></tr>
- <tr><td><code>slave</code> / <code>device_address</code></td><td>The number of the device on the bus</td><td><code>1</code></td></tr>
- <tr><td><code>scan_interval</code></td><td>How often to read (seconds)</td><td><code>15</code></td></tr>
+ <tr>
+<td><code>address</code></td>
+<td>The register or coil address to be read can be expressed in hexadecimal, such as <code>0x789A</code>
+</td>
+<td>Required</td>
+</tr>
+ <tr>
+<td><code>input_type</code></td>
+<td>Read type:<code>discrete_input</code>, <code>coil</code>, <code>holding</code>, <code>input</code>
+</td>
+<td>Depends on platform</td>
+</tr>
+ <tr>
+<td>
+<code>slave</code> / <code>device_address</code>
+</td>
+<td>The number of the device on the bus</td>
+<td><code>1</code></td>
+</tr>
+ <tr>
+<td><code>scan_interval</code></td>
+<td>How often to read (seconds)</td>
+<td><code>15</code></td>
+</tr>
  </tbody>
  </table>
- <p>Currently, official documentation say that seven types of physical platforms are supported: sensors, switches, binary sensors, air conditioners, curtains, fans, and lights.</p>
- <div class="callout warn"><strong>Warning:</strong> Home Assistant document has a rule that is easy to step on: <strong>At least one entity must be defined under each modbus device, otherwise the entire integration will not be loaded.</strong>. So don't write an empty connection setting first and then add it later, otherwise the connection will not be established at all.</div>
- <div class="callout danger"><strong>Danger:</strong> Modbus can be "written". If you write the wrong temporary register to industrial devices, the parameters may be lost, or the devices may be damaged or dangerous. Please only do reading for first time contact (<code>sensors:</code>), you must obtain the device's temporary register lookup table before writing, and confirm it with the device manager.</div>
+ <p>Currently, official documentation says that seven types of physical platforms are supported: sensors, switches, binary sensors, air conditioners, curtains, fans, and lights.</p>
+ <div class="callout warn">
+<strong>Warning:</strong> The Home Assistant documentation requires that <strong>At least one entity must be defined under each modbus device, otherwise the entire integration will not be loaded.</strong>. Do not create an empty connection block and expect it to load before entities are defined.</div>
+ <div class="callout danger">
+<strong>Danger:</strong> Modbus supports writes. Writing an incorrect register can change safety-critical settings, stop equipment, or create hazardous operation. Start with read-only <code>sensors:</code>. Before any write, obtain the authoritative register map, confirm address offsets and data types, and obtain approval from the equipment owner or qualified controls professional.</div>
  </section>
 
  <section id="buying" data-nav="Five checks before buying">
- <h2 data-icon="cost">Five inspections and purchase decision-making process before buying devices</h2>
+ <h2 data-icon="cost">Five checks before buying a device</h2>
  <p>This section is the most practical part of the entire chapter. Save it as a bookmark and run it every time before placing an order.</p>
 
  <h3>Five checks</h3>
  <ol class="steps">
  <li>
- <h3>Which agreement is it?</h3>
- <p>Look in the product title and specification sheet. I can't find the words "Zigbee", "Z-Wave", "Matter", "Thread" and "Bluetooth". I only write "smart", "WiFi connection" and "phone remote", so I assume it is a Wi-Fi cloud device. When there are different agreement versions of the same model, the letter at the end of the model is usually the key.</p>
+ <h3>Which protocol does it use?</h3>
+ <p>Read the complete product title, model number, and specifications. If they mention only “smart,” Wi-Fi, and app control—not Zigbee, Z-Wave, Matter, Thread, Bluetooth, or a local API—assume cloud dependence until the documentation proves otherwise. A model-number suffix may distinguish protocol variants.</p>
  </li>
  <li>
  <h3>Can it operate without relying on the cloud?</h3>
@@ -516,34 +798,71 @@ bluetooth_proxy:
  <p>First come before ordering <code>home-assistant.io/integrations/</code> Search the brand name. It is best to have official integration; if there is only HACS community integration, check to see if that item has been updated recently. Be careful if it has not been updated in half a year.</p>
  </li>
  <li>
- <h3>Should I buy another gateway?</h3>
+ <h3>Does it require another gateway?</h3>
  <p>Some brands of Zigbee devices will tie their own gateways. If you already have a universal Zigbee coordinator, in most cases you can pair it directly without buying its gateway; however, some brands will use private instructions to make the universal coordinator only perform basic switching. Before buying, search "Brand Name + ZHA" or "Brand Name + Zigbee2MQTT" to see community feedback.</p>
  </li>
  <li>
- <h3>Can I buy it after it breaks?</h3>
+ <h3>Can I replace or expand it later?</h3>
  <p>It is better to choose a model that is available in your region and highly discussed in the community than to choose a model with beautiful specifications but only sold by one overseas store. You'll thank yourself three years from now when you add a second one.</p>
  </li>
  </ol>
 
  <h3>Purchase decision process</h3>
- <p>Ask yourself in this order and the answer will come out:</p>
+ <p>Use these scenarios as a starting point:</p>
  <table class="data-table">
  <thead>
- <tr><th>situation</th><th>Which way to go?</th><th>Reason</th></tr>
+ <tr>
+<th>situation</th>
+<th>Which way to go?</th>
+<th>Reason</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>The device requires batteries and requires many sensors (sensors and buttons).</td><td>Zigbee or Thread</td><td>Wi-Fi consumes too much power, and the battery model cannot be made at all or will not last long.</td></tr>
- <tr><td>Just install one or two, and the location is right next to the router</td><td>Wi-Fi is also available</td><td>No need to buy more coordinators, the easiest thing to do</td></tr>
- <tr><td>You already have a Zigbee coordinator</td><td>Keep buying Zigbee</td><td>The marginal cost is the lowest, and every additional plug-in device mesh is more stable</td></tr>
- <tr><td>You already have a HomePod mini or Nest Hub at home</td><td>Consider Thread + Matter</td><td>I already have a border router, which is equivalent to saving money.</td></tr>
- <tr><td>You need to be cross-platform (family uses iPhone, you use Android)</td><td>Matter</td><td>The same device can be controlled by multiple platforms at the same time</td></tr>
- <tr><td>To connect electricity meters, inverters, and industrial devices</td><td>Modbus</td><td>That world is all about Modbus</td></tr>
- <tr><td>The construction project has been pre-installed in KNX</td><td>KNX</td><td>It's not cost-effective to tear it down and rebuild it, so just reconnect it.</td></tr>
- <tr><td>I just want to know the room temperature and humidity, and my budget is super low.</td><td>Bluetooth BLE + proxy</td><td>The sensor is the cheapest, and a proxy ESP32 is all it takes.</td></tr>
+ <tr>
+<td>The device requires batteries and requires many sensors (sensors and buttons).</td>
+<td>Zigbee or Thread</td>
+<td>Wi-Fi consumes too much power, and the battery model cannot be made at all or will not last long.</td>
+</tr>
+ <tr>
+<td>Just install one or two, and the location is right next to the router</td>
+<td>Wi-Fi is also available</td>
+<td>No need to buy more coordinators, the easiest thing to do</td>
+</tr>
+ <tr>
+<td>You already have a Zigbee coordinator</td>
+<td>Keep buying Zigbee</td>
+<td>The marginal cost is the lowest, and every additional plug-in device mesh is more stable</td>
+</tr>
+ <tr>
+<td>You already have a HomePod mini or Nest Hub at home</td>
+<td>Consider Thread + Matter</td>
+<td>I already have a border router, which is equivalent to saving money.</td>
+</tr>
+ <tr>
+<td>You need to be cross-platform (family uses iPhone, you use Android)</td>
+<td>Matter</td>
+<td>The same device can be controlled by multiple platforms at the same time</td>
+</tr>
+ <tr>
+<td>To connect electricity meters, inverters, and industrial devices</td>
+<td>Modbus</td>
+<td>That world is all about Modbus</td>
+</tr>
+ <tr>
+<td>The construction project has been pre-installed in KNX</td>
+<td>KNX</td>
+<td>It's not cost-effective to tear it down and rebuild it, so just reconnect it.</td>
+</tr>
+ <tr>
+<td>I just want to know the room temperature and humidity, and my budget is super low.</td>
+<td>Bluetooth BLE + proxy</td>
+<td>The sensor is the cheapest, and a proxy ESP32 is all it takes.</td>
+</tr>
  </tbody>
  </table>
 
- <div class="callout tip"><strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. Lazy advice for those who are planning for the first time: Choose a set of Zigbee for the main purpose (buy a coordinator on Home Assistant or recommended list), Wi-Fi is only used for a few things that are fixedly connected to power and consume a lot of data (cameras, sweepers), and Bluetooth is used to supplement temperature and humidity sensing. This combination is cheap, local, and easy to maintain, and there will be no conflict if Thread is added in the future.</div>
+ <div class="callout tip">
+<strong>Note:</strong> Availability, radio rules, and pricing vary by region. For a first installation, a practical approach is to use Zigbee with a documented coordinator for many low-power sensors; reserve Wi-Fi for mains-powered, higher-bandwidth devices; and use Bluetooth LE with proxies for suitable sensors. Prefer Matter only after confirming the exact device features Home Assistant supports.</div>
  </section>
 
  <section id="troubleshoot" data-nav="Common problems">
@@ -595,7 +914,7 @@ bluetooth_proxy:
  </details>
 
  <details class="faq">
- <summary>Do I have to use Home Assistant Zigbee coordinator? Can I use cheap online photography?</summary>
+ <summary>Do I have to use a Home Assistant-branded Zigbee coordinator?</summary>
  <div class="body">It doesn’t have to be official. Home Assistant's ZHA document has a clear list of recommendations, including Silicon Labs' EmberZNet series (such as Connect ZBT-2, ZBT-1, SONOFF ZBDongle-E, SMLIGHT SLZB-07), Texas Instruments' CC2652/CC1352 series, and ConBee III. All models on the list can be purchased with confidence. What to avoid are older models that are listed as no longer recommended in the documentation, such as ConBee II, RaspBee II, SONOFF ZBBridge, HUSBZB-1, ZiGate series, etc. The ones that are especially cheap on online auctions are often these old models.</div>
  </details>
 

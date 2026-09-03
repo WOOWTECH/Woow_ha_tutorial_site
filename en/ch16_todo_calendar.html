@@ -1,33 +1,33 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Chapter 16 · To-do lists and calendars · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Create local to-do lists and calendars, connect Google Calendar or CalDAV, add dashboard cards, and trigger automations from tasks and events." />
-  <meta name="author" content="WoowTech" />
-  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch16_todo_calendar.html" />
-  <meta name="robots" content="noindex, follow" />
-  <meta property="og:type" content="article" />
-  <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Chapter 16 · To-do lists and calendars · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Create local to-do lists and calendars, connect Google Calendar or CalDAV, add dashboard cards, and trigger automations from tasks and events." />
-  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch16_todo_calendar.html" />
-  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch16/03_add_local_todo.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chapter 16 · To-do lists and calendars · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Create local to-do lists and calendars, connect Google Calendar or CalDAV, add dashboard cards, and trigger automations from tasks and events." />
-  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch16/03_add_local_todo.png" />
-  <meta name="theme-color" content="#6183FC" />
-  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <link rel="stylesheet" href="../assets/css/i18n.css" />
+  <meta name="description" content="Create local to-do lists and calendars, connect Google Calendar or CalDAV, add dashboard cards, and trigger automations from tasks and events.">
+  <meta name="author" content="WoowTech">
+  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch16_todo_calendar.html">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Home Assistant Onboarding Guide">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="zh_TW">
+  <meta property="og:title" content="Chapter 16 · To-do lists and calendars · Home Assistant Onboarding Guide">
+  <meta property="og:description" content="Create local to-do lists and calendars, connect Google Calendar or CalDAV, add dashboard cards, and trigger automations from tasks and events.">
+  <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch16_todo_calendar.html">
+  <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch16/03_add_local_todo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Chapter 16 · To-do lists and calendars · Home Assistant Onboarding Guide">
+  <meta name="twitter:description" content="Create local to-do lists and calendars, connect Google Calendar or CalDAV, add dashboard cards, and trigger automations from tasks and events.">
+  <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch16/03_add_local_todo.png">
+  <meta name="theme-color" content="#6183FC">
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;family=Yellowtail&amp;display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/i18n.css">
 </head>
 <body>
 <div class="layout">
@@ -67,8 +67,8 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why should we learn</a>
-      <a href="#concept">The difference between two things</a>
+      <a href="#why">Why this matters</a>
+      <a href="#concept">Lists vs calendars</a>
       <a href="#local_todo">Create a to-do list</a>
       <a href="#shopping">shopping list</a>
       <a href="#todo_actions">To-do action quick check</a>
@@ -98,119 +98,179 @@
  </div>
 
  <section id="why" data-nav="Why should we learn">
- <h2 data-icon="why">Why should you learn this?</h2>
+ <h2 data-icon="why">Why this matters</h2>
 
- <p>The current situation in your family is probably like this: Mom puts sticky notes on the refrigerator door, you jot things down in the memo on your phone, and Dad stuffs the bill on the shoe cabinet. Three places, three pieces of information, all forgotten in the end.</p>
+ <p>Household reminders often end up scattered across sticky notes, phone apps, and paper bills. When information lives in separate places, tasks are easy to miss.</p>
 
  <p>Home Assistant has two built-in tools to cut through this mess:</p>
 
  <ul>
- <li><strong>To-do list</strong>—A bunch of "to-do-but-not-yet-to-do" things that can be checked and due dates can be set. A shopping list is one of them.</li>
- <li><strong>Calendar</strong>—An event with a clear time, what time does the garbage truck come, what time does the meeting start, and payment is due next Wednesday.</li>
+ <li>
+<strong>To-do list</strong>: a set of pending items that you can complete and, where supported, assign due dates. A shopping list is one example.</li>
+ <li>
+<strong>Calendar</strong>: events tied to dates or times, such as a collection schedule, meeting, or payment deadline.</li>
  </ul>
 
- <p>The biggest advantage of moving them into HA is not “visible”; <strong>They can be used as raw materials for automation</strong>. If you write "Take out the trash 19:30" on your calendar, HA can turn on the porch light at 19:10 and push the message to your phone; if someone adds something to the to-do list, HA can notify the whole family. This is something paper sticky notes can never do.</p>
+ <p>The main advantage is not merely visibility: lists and calend<strong>ars can drive automation</strong>s. A 7:30 p.m. collection event can turn on an entry light and notify a phone at 7:10 p.m. Adding a to-do item can notify the household.</p>
 
- <div class="callout"><strong>Concept:</strong> This chapter is <a href="ch7_notifications.html">Chapter 7 (Notice)</a> and <a href="ch8_first_automation.html">Chapter 8 (First Automation)</a> extension. Chapter 8 teaches you the three-stage formula of "trigger → condition → action". This chapter just changes the new trigger source (calendar event, to-do item change) and new action (todo domain). The mentality of the three-stage form remains completely unchanged. If you haven’t read it, I suggest you go back and read it first.</div>
+ <div class="callout">
+<strong>Concept:</strong> This chapter extends <a href="ch7_notifications.html">Chapter 7 (Notifications)</a> and <a href="ch8_first_automation.html">Chapter 8 (First automation)</a>. The trigger → condition → action model remains the same; only the triggers (calendar events and to-do changes) and actions (todo domain) are new.</div>
 
- <p>After reading this chapter, you will have: a shopping list shared by the whole family, a local calendar, at least three automations that "automate the calendar when the time is up", and a dashboard page where you can see what you want to do today.</p>
+ <p>By the end, you will have a shared shopping list, a local calendar, at least three calendar-driven automations, and a dashboard view of today’s tasks.</p>
  </section>
 
  <section id="concept" data-nav="The difference between two things">
- <h2 data-icon="concept">To-do list vs calendar: when to use which one</h2>
+ <h2 data-icon="concept">To-do lists vs. calendars</h2>
 
- <p>Many people confuse the two at first and put "take out the trash" on their to-do list, only to find that it won't remind them on their own. The judgment method is very simple: <strong>Is there a "what time" for this matter?</strong></p>
+ <p>A to-do item does not automatically act like a timed reminder. Choose based on one question: <strong>Does the task occur at a specific date or time?</strong></p>
 
  <table class="data-table">
  <thead>
- <tr><th>question</th><th>to-do list (todo)</th><th>calendar</th></tr>
+ <tr>
+<th>Aspect</th>
+<th>To-do list (todo)</th>
+<th>Calendar</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>core information</td><td>"Items" one by one, with or without ticks</td><td>Each "event" has a start and end time</td></tr>
- <tr><td>time</td><td>"Due date" can be set, but there is no concept of precise time</td><td>Time is the protagonist, accurate to the minute</td></tr>
- <tr><td>entity state</td><td>Number: Number of items not yet completed</td><td><code>on</code>(currently in an event) or <code>off</code></td></tr>
- <tr><td>typical content</td><td>Buy soy sauce, change filters, pay water bills</td><td>Trash removal 19:30, meeting 14:00–15:00, housework rotation</td></tr>
- <tr><td>How to trigger automation</td><td>When items are added/completed/removed</td><td>When the event starts or ends (can be earlier)</td></tr>
+ <tr>
+<td>Core information</td>
+<td>Items with completion status</td>
+<td>Events with start and end times</td>
+</tr>
+ <tr>
+<td>Time</td>
+<td>Can have a due date or date/time when the provider supports it</td>
+<td>Time is central and can be precise to the minute</td>
+</tr>
+ <tr>
+<td>entity state</td>
+<td>Number: Number of items not yet completed</td>
+<td>
+<code>on</code>(currently in an event) or <code>off</code>
+</td>
+</tr>
+ <tr>
+<td>typical content</td>
+<td>Buy soy sauce, change filters, pay water bills</td>
+<td>Trash removal 19:30, meeting 14:00–15:00, housework rotation</td>
+</tr>
+ <tr>
+<td>How to trigger automation</td>
+<td>When items are added/completed/removed</td>
+<td>When the event starts or ends (can be earlier)</td>
+</tr>
  </tbody>
  </table>
 
- <div class="callout tip"><strong>Tip:</strong> The two are most capable when used together. The calendar is responsible for "when to remind", and the to-do list is responsible for "the things that have not been completed are piled here." The air conditioning filter situation later in this chapter is set up like this: Calendar time is up → automatically add a to-do item to the list.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> Use both together: a calendar determines when something occurs, while a to-do list keeps the work visible until completion. A later example adds a filter-replacement task when its maintenance event begins.</div>
 
- <p>There is another term that needs to be explained clearly first: <strong>Domain</strong>. HA divides entities into <code>light</code>, <code>switch</code>, <code>sensor</code> These areas, the areas of the backlog are called <code>todo</code>, the calendar field is called <code>calendar</code>. So you will see later <code>todo.shopping_list</code>, <code>calendar.trash_day</code> This entity ID. The field map is in <a href="ch12_domains.html">Chapter 12</a>.</p>
+ <p>A d<strong>omain</strong> groups entities by function, such as <code>light</code>, <code>switch</code>, or <code>sensor</code>. To-do entities use <code>todo</code>; calendar entities use <code>calendar</code>. You will therefore see entity IDs such as <code>todo.shopping_list</code> and <code>calendar.trash_day</code>. See <a href="ch12_domains.html">Chapter 12</a>.</p>
 
- <div class="callout warn"><strong>Warning:</strong> Entity IDs for all examples below (like <code>todo.family_chores</code>) are <strong>examples</strong>. For lists you create yourself, the entity ID will be automatically generated based on the name you type. An ID generated from a non-Latin name may look very different. Before using an example, go to <strong>Settings → Tools → States (this area was called "Developer Tools" before 2026.8, in the sidebar)</strong> Copy the real ID. The rules for naming and entity_id are <a href="ch4_naming_labels.html">Chapter 4</a>.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> Entity IDs such as <code>todo.family_chores</code> are <strong>examples</strong>. Home Assistant generates the actual ID from your list name, and non-Latin names may produce unexpected IDs. Before using an example, copy the real ID from <strong>Settings → Tools → States. This area was named Developer tools before 2026.8</strong>. See <a href="ch4_naming_labels.html">Chapter 4</a>.</div>
  </section>
 
  <section id="local_todo" data-nav="Create a to-do list">
  <h2 data-icon="steps">Hands-on 1: Create your first local to-do list</h2>
 
- <p>The integration we are going to use is called <strong>Local To-do (local to-do list)</strong>. "Local" means that the data is completely stored in your own HA. It does not go to any cloud. It can be used even when the network is disconnected. It will also follow <a href="ch9_backups.html">Chapter 9</a> it is included in Home Assistant backups.</p>
+ <p>Use the <strong>Local To-do integration</strong>. Its data remains in your Home Assistant installation and does not depend on a cloud service or internet access. A full Home Assistant backup includes it; see <a href="ch9_backups.html">Chapter 9</a>.</p>
 
  <ol class="steps">
  <li>
  <h3>Open integration page</h3>
- <p>Click on the left sidebar <strong>Settings → Devices &amp; Services</strong>, confirm the one at the top <strong>"Integration"</strong> Tab.</p>
+ <p>Click on the left sidebar <strong>Settings → Devices &amp; Services</strong>, select the <strong>Integrations</strong> tab.</p>
  </li>
  <li>
- <h3>New integration</h3>
- <p>lower right corner <strong>"+ New integration"</strong> Press the button, type "Local" or "To Do" in the search box, and select <strong>Local to-do</strong> (Local to-do list). This integration was added in Home Assistant 2023.11. If the version is too old, it will not be found.</p>
+ <h3>Add the integration</h3>
+ <p><strong></strong>Select <strong>Ad</strong>d integration in the lower-right corner, search for “Local” or “To-do,” and choose Local to-do. The integration requires Home Assistant 2023.11 or later.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch16/03_add_local_todo.png" alt="Add Local To-do from integration page" />
+ <img src="../assets/screenshots/ch16/03_add_local_todo.png" alt="Add Local To-do from integration page">
  <figcaption><strong>Figure 16-1</strong> Settings → Devices &amp; Services → "Add Integration" in the lower right corner and search for Local To-do.</figcaption>
  </figure>
  </li>
  <li>
- <h3>Just fill in one field: list name</h3>
- <p>This integrated setting screen is very clean. I only ask you one thing -<strong>What should I call this list?</strong>. You can do "housework" or "shopping". Click send and the list will be generated.</p>
+ <h3>Name the list</h3>
+ <p>Enter a clear<strong> list</strong> name, such as “Household chores” or “Shopping,” then select Submit.</p>
  </li>
  <li>
- <h3>Make as many servings as you want</h3>
- <p>Local To-do only builds one list at a time. If you want three copies of "housework", "shopping" and "parents' instructions", repeat steps 2-3 three times. Each copy will become an independent <code>todo.</code> entity.</p>
+ <h3>Create additional lists as needed</h3>
+ <p>Local To-do creates one list per setup flow. Repeat the previous steps for separate lists such as household chores, shopping, and family requests. Each becomes an independent <code>todo.</code> entity.</p>
  </li>
  <li>
  <h3>Go to the sidebar to find the "To-Do List" panel</h3>
- <p>After it is built, there will be a <strong>to-do list</strong> exclusive panel. Click in and you can directly type in new items, check the box to complete, and set the due date. This panel is built into HA, so you don’t need to make your own dashboard.</p>
+ <p>The built-in T<strong>o-do list</strong>s panel lets you add items, mark them complete, and set supported due fields without building a custom dashboard.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch16/01_todo_panel.png" alt="To-do list panel" />
+ <img src="../assets/screenshots/ch16/01_todo_panel.png" alt="To-do list panel">
  <figcaption><strong>Figure 16-2</strong> "To-do list" panel in the side column: All lists are listed in the left column, and new items can be added directly by typing on the right and checked to complete.</figcaption>
  </figure>
  </li>
  <li>
  <h3>Confirm entity ID</h3>
- <p>Go to <strong>Settings → Tools → States</strong>, enter in the filter box <code>todo.</code>, you will see the list you just created. <strong>The number in the status bar is the number of items in this list that have not yet been completed.</strong> Copy the entity ID, which will be used later in automation.</p>
+ <p>Open <strong>Settings → Tools → States</strong> and filter for <code>todo.</code>. <strong>The entity state is the number of incomplete items.</strong> Copy the entity ID for later automations.</p>
  </li>
  </ol>
 
- <div class="callout"><strong>Concept:</strong> Each item in the list can bring up to four types of information: <strong>Name</strong> (required), <strong>due date</strong>, <strong>Description</strong> (Additional explanation longer than the name), <strong>Status</strong> (Unfinished/Completed). Not every integration supports all four, Local To-do support is considered complete.</div>
+ <div class="callout">
+<strong>Concept:</strong> A list item can provid<strong>e</strong> a required name, an optional <strong>due date</strong> or date/time, <strong>an optional description</strong>, and a s<strong>tatus</strong>. Provider support varies; Local To-do supports these fields.</div>
  </section>
 
  <section id="shopping" data-nav="shopping list">
  <h2 data-icon="todo">Which one to use for Shopping List?</h2>
 
- <p>HA There is another one called <strong>Shopping list</strong> The integration is much older than Local To-do. Newbies often ask: What is the difference between these two and which one should I use?</p>
+ <p>Home Assistant also provides the older <strong>Shopping list</strong> integration. Choose between them based on list count, due fields, and voice support.</p>
 
  <table class="data-table">
  <thead>
- <tr><th></th><th>Shopping list</th><th>Local to-do</th></tr>
+ <tr>
+<th></th>
+<th>Shopping list</th>
+<th>Local to-do</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>How many lists can I create?</td><td>Only one, fixed shopping list</td><td>How many copies do you need to build?</td></tr>
- <tr><td>due date</td><td>No</td><td>Yes</td></tr>
- <tr><td>voice assistant</td><td>Official documentation clearly states that you can use voice commands such as "Add eggs to my shopping list" to add items.</td><td>Voice support depends on your voice assistant settings</td></tr>
- <tr><td>Exclusive action</td><td>There is a whole group <code>shopping_list.*</code> old action</td><td>There are no exclusive actions, only general ones <code>todo.*</code></td></tr>
- <tr><td>Universal <code>todo.*</code> action</td><td>Can be used (it is also a todo entity)</td><td>available</td></tr>
+ <tr>
+<td>Number of lists</td>
+<td>One fixed shopping list</td>
+<td>Create as many separate lists as needed</td>
+</tr>
+ <tr>
+<td>due date</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+ <tr>
+<td>voice assistant</td>
+<td>Official documentation clearly states that you can use voice commands such as "Add eggs to my shopping list" to add items.</td>
+<td>Voice support depends on your voice assistant settings</td>
+</tr>
+ <tr>
+<td>Exclusive action</td>
+<td>There is a whole group <code>shopping_list.*</code> old action</td>
+<td>There are no exclusive actions, only general ones <code>todo.*</code>
+</td>
+</tr>
+ <tr>
+<td>Universal <code>todo.*</code> action</td>
+<td>Can be used (it is also a todo entity)</td>
+<td>available</td>
+</tr>
  </tbody>
  </table>
 
  <p>Two integrations <strong>They are still in Home Assistant documentation and have not been marked for elimination.</strong>. It is recommended to choose this:</p>
 
  <ul>
- <li><strong>You just want a grocery shopping list and you’re tempted to shout “Add soy sauce to the shopping list” with your voice</strong> → Install shopping list.</li>
- <li><strong>You want multiple lists, you want due dates, you want to write more complex automation</strong> → Use Local to-do.</li>
- <li><strong>It’s totally fine to install both.</strong>, they do not interfere with each other.</li>
+ <li>
+<strong>You need one grocery list with built-in voice</strong> support → use Shopping list.</li>
+ <li>
+<strong>You need multiple lists, due fields, or more general automation</strong>s → use Local To-do.</li>
+ <li>
+<strong>You can install both</strong>; they use separate entities and data.</li>
  </ul>
 
- <p>Shopping list has its own set of actions, listed here so you can understand other people's old teachings, but <strong>When writing new automation, please always use the one in the next section. <code>todo.*</code></strong>, because that set of actions is common to all to-do lists:</p>
+ <p>Shopping list retains a set of older, dedicated actions. For new automations, <strong>prefer the shared <code>todo.*</code> actions in the next section</strong>, because that set of actions is common to all to-do lists:</p>
 
  <pre class="code-block"><code>shopping_list.add_item
 shopping_list.complete_item
@@ -221,24 +281,55 @@ shopping_list.incomplete_all
 shopping_list.clear_completed_items
 shopping_list.sort</code></pre>
 
- <div class="callout tip"><strong>Tip:</strong> After the Shopping list is installed, it will also generate a <code>todo.</code> entity at the beginning, so you can put it into the to-do list card, or you can use <code>todo.add_item</code> Give it instructions. It "is" a to-do list, but with a dedicated set of old actions.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> Shopping list creates a <code>todo.</code> entity, so it works with the To-do list card and <code>todo.add_item</code>. Its dedicated legacy actions remain available.</div>
  </section>
 
  <section id="todo_actions" data-nav="To-do action quick check">
  <h2 data-icon="what">Action quick check for todo domain</h2>
 
- <p>Let’s talk about a very important wording update first: HA used to be called “Service”, and in YAML it was written <code>service:</code>, <strong>Now it is always called "Action" and written in YAML <code>action:</code></strong>. you see on the internet <code>service: todo.add_item</code> Teaching, that is the old way of writing.</p>
+ <p>Older documentation used the term service and the YAML key <code>service:</code>. <strong>Home Assistant now uses action and <code>action:</code></strong>. Older examples may therefore show <code>service: todo.add_item</code>.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>action</th><th>what to do</th><th>Main parameters</th></tr>
+ <tr>
+<th>action</th>
+<th>what to do</th>
+<th>Main parameters</th>
+</tr>
  </thead>
  <tbody>
- <tr><td><code>todo.add_item</code></td><td>Add a new item</td><td><code>item</code>(required),<code>due_date</code>, <code>due_datetime</code>, <code>description</code></td></tr>
- <tr><td><code>todo.update_item</code></td><td>Change an item: change name, check box, change due date</td><td><code>item</code>(required, name or UID),<code>rename</code>, <code>status</code>, <code>due_date</code>, <code>due_datetime</code>, <code>description</code></td></tr>
- <tr><td><code>todo.remove_item</code></td><td>Delete an entire item</td><td><code>item</code></td></tr>
- <tr><td><code>todo.get_items</code></td><td>Read out the contents of the list for subsequent steps</td><td><code>status</code>, match <code>response_variable</code></td></tr>
- <tr><td><code>todo.remove_completed_items</code></td><td>Clear all completed items at once</td><td>Just specify the list, no other parameters</td></tr>
+ <tr>
+<td><code>todo.add_item</code></td>
+<td>Add a new item</td>
+<td>
+<code>item</code>(required),<code>due_date</code>, <code>due_datetime</code>, <code>description</code>
+</td>
+</tr>
+ <tr>
+<td><code>todo.update_item</code></td>
+<td>Change an item: change name, check box, change due date</td>
+<td>
+<code>item</code>(required, name or UID),<code>rename</code>, <code>status</code>, <code>due_date</code>, <code>due_datetime</code>, <code>description</code>
+</td>
+</tr>
+ <tr>
+<td><code>todo.remove_item</code></td>
+<td>Delete an entire item</td>
+<td><code>item</code></td>
+</tr>
+ <tr>
+<td><code>todo.get_items</code></td>
+<td>Read out the contents of the list for subsequent steps</td>
+<td>
+<code>status</code>, match <code>response_variable</code>
+</td>
+</tr>
+ <tr>
+<td><code>todo.remove_completed_items</code></td>
+<td>Clear all completed items at once</td>
+<td>Just specify the list, no other parameters</td>
+</tr>
  </tbody>
  </table>
 
@@ -252,7 +343,8 @@ data:
   due_date: "2026-09-01"
   description: Remove it, rinse it with water, let it air-dry for a day, and reinstall it.</code></pre>
 
- <div class="callout warn"><strong>Warning:</strong><code>due_date</code>(Only date, e.g. <code>2026-09-01</code>) and <code>due_datetime</code>(Date plus time, such as <code>2026-09-01 23:00:00</code>) <strong>You can only choose one of the two, not both at the same time.</strong>, writing two will directly report an error. In addition, the due date and description fields are not supported by every list. Only supported lists can be used.</div>
+ <div class="callout warn">
+<strong>Warning:</strong><code>due_date</code>(Only date, e.g. <code>2026-09-01</code>) and <code>due_datetime</code>(Date plus time, such as <code>2026-09-01 23:00:00</code>) <strong>You can only choose one of the two, not both at the same time.</strong>, writing two will directly report an error. In addition, the due date and description fields are not supported by every list. Only supported lists can be used.</div>
 
  <h3>Tick the item (mark complete)</h3>
 
@@ -263,13 +355,14 @@ data:
   item: Replace the living-room AC filter
   status: completed</code></pre>
 
- <p><code>status</code> accepts only two values:<code>needs_action</code>(not done yet) and <code>completed</code>(done). If you want to "regret" what you have done and change it back to unfinished, just set <code>status</code> to <code>needs_action</code>.</p>
+ <p><code>status</code> accepts <code>needs_action</code> or <code>completed</code>. To reopen a completed item, set <code>status</code> to <code>needs_action</code>.</p>
 
- <div class="callout warn"><strong>Warning:</strong><code>item</code> is used <strong>Name</strong> Go find it. If there are two items in your list called "buy milk" that are exactly the same, HA doesn't know which one you want to change. At this time, you need to switch to the item <strong>UID</strong> (A long string of garbled unique numbers), UID can be used as follows <code>todo.get_items</code> retrieve it.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> <code>item</code> can identify an entry <strong>by name</strong>. If two entries have the same name, use the item<strong></strong>’s unique UID instead. Retrieve UIDs with <code>todo.get_items</code>.</div>
 
  <h3>Read list contents</h3>
 
- <p>This action is different from others; it will <strong>Return data</strong>, so it must match <code>response_variable</code> Store the result in a variable:</p>
+ <p>This action r<strong>eturns data</strong>. Use <code>response_variable</code> to store the response for later steps:</p>
 
  <pre class="code-block"><code>action: todo.get_items
 target:
@@ -278,7 +371,7 @@ data:
   status: needs_action
 response_variable: my_items</code></pre>
 
- <p><code>status</code> If not written, the default is <code>needs_action</code>; If you want to catch them all at once, write a list <code>[needs_action, completed]</code>. The returned data looks like this:</p>
+ <p>If omitted, <code>status</code> defaults to <code>needs_action</code>. To retrieve both states, use <code>[needs_action, completed]</code>. The response has this structure:</p>
 
  <pre class="code-block"><code>todo.family_chores:
   items:
@@ -293,22 +386,39 @@ response_variable: my_items</code></pre>
 
  <p>Note the field names for each item:<code>summary</code>(not <code>item</code>), <code>uid</code>, <code>status</code>, and there are two optional <code>due</code>(due date) and <code>description</code>.</p>
 
- <div class="callout warn"><strong>Warning:</strong> Look at the second item above -<strong>For items without due date and description, those two fields are completely missing, instead of leaving a blank value there.</strong>. This is the easiest place to explode when writing templates: you think every item has <code>due</code> You can get it, but as a result, there is no such field for a certain item, and the entire template fails. Therefore, the following example of the payment day must be used in the first pass. <code>selectattr('due', 'defined')</code> Select items that do not have this field.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> I<strong>tems without a due value or description omit those fields entirely</strong>. A template that assumes every item has <code>due</code> can fail. The payment example first uses <code>selectattr('due', 'defined')</code> to retain only items where the field exists.</div>
  </section>
 
  <section id="todo_trigger" data-nav="To-do when triggered">
  <h2 data-icon="auto">Triggered by changes in the to-do list</h2>
 
- <p>Help with the newer HA version <code>todo</code> Three exclusive triggers have been added, which can be found when selecting triggers in the automation editor:</p>
+ <p>Newer Home Assistant versions provide three <code>todo</code> triggers in the automation editor:</p>
 
  <table class="data-table">
  <thead>
- <tr><th>trigger</th><th>When does it trigger?</th><th>What to use it for?</th></tr>
+ <tr>
+<th>trigger</th>
+<th>When does it trigger?</th>
+<th>What to use it for?</th>
+</tr>
  </thead>
  <tbody>
- <tr><td><code>todo.item_added</code></td><td>New item added to list</td><td>When someone adds something to the shopping list, notify the whole family</td></tr>
- <tr><td><code>todo.item_completed</code></td><td>Item is ticked</td><td>The child checked "Take out the trash", notify parents</td></tr>
- <tr><td><code>todo.item_removed</code></td><td>Item was deleted</td><td>Used for auditing to see who deleted something</td></tr>
+ <tr>
+<td><code>todo.item_added</code></td>
+<td>New item added to list</td>
+<td>When someone adds something to the shopping list, notify the whole family</td>
+</tr>
+ <tr>
+<td><code>todo.item_completed</code></td>
+<td>Item is ticked</td>
+<td>The child checked "Take out the trash", notify parents</td>
+</tr>
+ <tr>
+<td><code>todo.item_removed</code></td>
+<td>Item was deleted</td>
+<td>Used for auditing to see who deleted something</td>
+</tr>
  </tbody>
  </table>
 
@@ -325,17 +435,19 @@ actions:
       title: Shopping list updated
       message: Someone added an item. Remember to check the list before you go out.</code></pre>
 
- <p>The information that can be obtained when triggered is <strong>list of <code>entity_id</code> and the affected item ID (<code>item_ids</code>)</strong>. If you want to know what name was added, you usually have to call it again in the action. <code>todo.get_items</code> Go check it out.</p>
+ <p>Trigger data includes the <strong>list <code>entity_id</code> and affected item IDs in <code>item_ids</code></strong>. To obtain item names, call <code>todo.get_items</code> in the actions.</p>
 
- <div class="callout warn"><strong>Warning:</strong> These three triggers are relatively new features. If you can't find them in your automation editor, it means your HA version is not available yet. Please upgrade first. If you don't want to upgrade, the next best thing is to use "State" trigger to monitor that <code>todo.</code> The numerical change of the entity - since the list status is the number of unfinished items, adding an item to the number is +1.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> These triggers require a recent Home Assistant version. If they are unavailable, either upgrade after reviewing release requirements or use a State trigger on the <code>todo.</code> entity. Remember that its numeric state is the count of incomplete items, so multiple changes can produce the same count.</div>
 
- <div class="callout tip"><strong>Tip:</strong> If you are not sure whether you have this version, the fastest way to verify is: add an automation → add a trigger → type "to-do" or "to-do" in the search box. If there is, it will pop out; if there is not, there is no. This is faster than checking the version number.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> To check support, add an automation trigger and search for “to-do.” If the trigger types do not appear, consult the documentation for your installed version.</div>
  </section>
 
  <section id="local_calendar" data-nav="Create a local calendar">
  <h2 data-icon="steps">Hands-on 2: Create a local calendar</h2>
 
- <p>Next, change the calendar. Like Local To-do, there is an official one that runs completely on the local side. <strong>Local Calendar</strong>, is an integration added to Home Assistant 2022.12. The data is stored in your own HA settings directory and does not require any account or any cloud.</p>
+ <p>The official <strong>Local Calendar</strong> integration, added in Home Assistant 2022.12, stores data in your installation and requires no external account or cloud service.</p>
 
  <ol class="steps">
  <li>
@@ -344,29 +456,30 @@ actions:
  </li>
  <li>
  <h3>Pick a calendar name</h3>
- <p>Follow the instructions on the screen to fill in the calendar name. Suggestions <strong>Separately built according to purpose</strong>, don’t stuff them all into one: build one each for “Trash Taking Out”, “Housework Rotation”, “Payment” and “Furniture Maintenance”. The reason is in the next step.</p>
+ <p>Enter a calendar name. S<strong>eparate calendars by purpose</strong>, such as collection, chore rotation, payments, and maintenance, to simplify triggers.</p>
  </li>
  <li>
  <h3>Why build it separately: Because the trigger is tied to the "entire calendar"</h3>
- <p>Calendar triggering cannot say "trigger only if the title contains a certain word" - it is this calendar <strong>any</strong> Triggers as soon as the event begins. So divide different uses into different calendars, and automation will be clean. (If you really want to distinguish within the same calendar, just add conditions to the automation to compare <code>trigger.calendar_event.summary</code>.)</p>
+ <p>A calendar trigger fires for <strong>any</strong> event in that calendar. Separate calendars by purpose to simplify automations. To share one calendar, add a condition that checks <code>trigger.calendar_event.summary</code>.</p>
  </li>
  <li>
  <h3>Go to the "Calendar" panel in the sidebar and add events</h3>
- <p>After it is built, there will be a sidebar on the left <strong>calendar</strong> panel. Click on a certain day to add new events. You can set all-day events, set start and end times, or set <strong>Repeat</strong> (weekly, monthly, etc.). If something like taking out the trash is fixed on a weekly basis, set it up as a recurring event, and set it up once for a whole year.</p>
+ <p>After setup, open the <strong>Calendar</strong> panel in the sidebar. Select a day to create an all-day or timed event, and optionally set <strong>Repeat</strong> (weekly, monthly, etc.). If something like taking out the trash is fixed on a weekly basis, set it up as a recurring event, and set it up once for a whole year.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch16/02_calendar_panel.png" alt="calendar panel" />
+ <img src="../assets/screenshots/ch16/02_calendar_panel.png" alt="calendar panel">
  <figcaption><strong>Figure 16-3</strong> "Calendar" panel in the side column: Check which calendars you want to display in the left column, and click on a day on the right to add/edit events.</figcaption>
  </figure>
  </li>
  <li>
  <h3>Confirm entity ID and status</h3>
- <p><strong>Settings → Tools → States</strong>, filter <code>calendar.</code>. There are only two states of calendar entities:<code>on</code> It means that an event is currently in progress.<code>off</code> means that no event is in progress.</p>
+ <p><strong>Settings → Tools → States</strong>, filter <code>calendar.</code>. A calendar entity has two states: <code>on</code> while an event is in progress and <code>off</code> otherwise.</p>
  </li>
  </ol>
 
- <div class="callout"><strong>Concept:</strong> Do not use "Calendar entity is not <code>on</code>” is used as a reminder because it can only express one event at a time and cannot be advanced in advance. If you want to be reminded, use the next section. <strong>calendar trigger</strong>, that only has the offset (how far in advance) that can be set.</div>
+ <div class="callout">
+<strong>Concept:</strong> Do not rely on the calendar entity changing to <code>on</code> for reminders. That state represents only whether an event is currently active and cannot provide advance notice. Use a <strong>calendar trigger</strong> with an offset.</div>
 
- <p>Calendar events can also be automatically generated by yourself, which is very useful in the situation of "just jotting down the calendar after booking a restaurant":</p>
+ <p>An automation can also create calendar events, for example after a reservation is confirmed:</p>
 
  <pre class="code-block"><code>action: calendar.create_event
 target:
@@ -381,12 +494,33 @@ data:
 
  <table class="data-table">
  <thead>
- <tr><th>Writing method</th><th>Where to use</th><th>Example</th></tr>
+ <tr>
+<th>Writing method</th>
+<th>Where to use</th>
+<th>Example</th>
+</tr>
  </thead>
  <tbody>
- <tr><td><code>start_date_time</code> + <code>end_date_time</code></td><td>event with definite moment</td><td><code>"2026-09-20 18:00:00"</code></td></tr>
- <tr><td><code>start_date</code> + <code>end_date</code></td><td>all day event</td><td><code>"2026-09-20"</code></td></tr>
- <tr><td><code>in</code>(Including <code>days</code> or <code>weeks</code>)</td><td>"In a few days/weeks", no need to count the date</td><td><code>in: {days: 90}</code></td></tr>
+ <tr>
+<td>
+<code>start_date_time</code> + <code>end_date_time</code>
+</td>
+<td>event with definite moment</td>
+<td><code>"2026-09-20 18:00:00"</code></td>
+</tr>
+ <tr>
+<td>
+<code>start_date</code> + <code>end_date</code>
+</td>
+<td>all day event</td>
+<td><code>"2026-09-20"</code></td>
+</tr>
+ <tr>
+<td>
+<code>in</code>(Including <code>days</code> or <code>weeks</code>)</td>
+<td>"In a few days/weeks", no need to count the date</td>
+<td><code>in: {days: 90}</code></td>
+</tr>
  </tbody>
  </table>
  </section>
@@ -394,48 +528,69 @@ data:
  <section id="cloud_calendar" data-nav="Connect to cloud calendar">
  <h2 data-icon="integration">Connect Google Calendar and CalDAV</h2>
 
- <p>The disadvantage of the local calendar is obvious: it cannot be seen on the phone. If your whole family is already using Google Calendar, it will be much more convenient to connect it to HA - add a new "Take out the Trash" space on the mobile Google Calendar, and HA will have it there.</p>
+ <p>Local Calendar is available only through Home Assistant. If your household already uses Google Calendar, connecting it lets events created in Google appear in Home Assistant.</p>
 
  <h3>Google Calendar</h3>
 
- <p>Honestly, this is the chapter <strong>The most troublesome step</strong>, and the trouble is not on HA's side, but on Google's side. HA official documentation clearly state: <strong>You must open a item in Google Cloud, enable the Google Calendar API, generate a set of OAuth client credentials (Client ID and Client Secret), and then paste this set of credentials back to HA</strong>. There is no shortcut, HA does not provide public credentials.</p>
+ <p>Google Calendar has the most involved setup in this chapter<strong></strong>. Create<strong> a Google Cloud project, enable the Google Calendar API, configure OAuth consent, create OAuth client credentials, and enter the Client ID and Client Secret in Home Assistant. Follow the current</strong> integration documentation.</p>
 
- <div class="callout danger"><strong>Danger:</strong> Client ID and Client Secret are the keys to your Google item. <strong>Absolutely not</strong> Post to forums, Discord, YouTube comments, or any screenshot. Once it is posted, go back to the Google Cloud Console immediately to delete the set of credentials and rebuild it.</div>
+ <div class="callout danger">
+<strong>Danger:</strong> Treat the Client Secret as a credential. Never publish it <strong>in </strong>a forum, chat, video comment, log, or screenshot. If exposed, revoke it in Google Cloud Console and create a replacement.</div>
 
- <div class="callout warn"><strong>Note: This is the most common pitfall.</strong> When setting up the "OAuth consent screen" in Google Cloud, if the publishing status is stuck at <strong>Testing</strong>, Home Assistant documentation clearly warns: <strong>Your OAuth token expires every 7 days</strong>, HA will disconnect once a week and ask you to reauthorize. The solution is to click on the consent screen <strong>Publish app</strong>, change the status.</div>
+ <div class="callout warn">
+<strong>Warning: If the </strong>OAuth consent screen remains in <strong>Testing</strong>, the documentation warns <strong>that the OAuth token expires every 7 days</strong>. If appropriate for your Google project and account type, use <strong>Publish app</strong> to change the publishing status, then authorize Home Assistant again.</div>
 
- <p>After connecting, every calendar under "My Calendar" in your Google account will become a <code>calendar.</code> entity. It also provides an exclusive action <code>google.create_event</code> Used to add new events.</p>
+ <p>After setup, each calendar under My calendars becomes a <code>calendar.</code> entity. Use <code>google.create_event</code> to add events through the integration.</p>
 
- <div class="callout tip"><strong>Tip:</strong> Because the “setting tax” paid by Google is not low, my suggestion is: <strong>First use Local Calendar to run through the entire chapter</strong>, write the automation well, make sure you can really use this set of things, and then go back and spend the 20 minutes searching Google. If the integration method is changed, the automation configuration does not need to be changed at all, because both sides are <code>calendar.</code> entity.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> Start with<strong> Local Calendar to test thes</strong>e automations before completing Google’s OAuth setup. Both integrations expose <code>calendar.</code> entities, so the automation structure remains the same when you replace an entity ID.</div>
 
  <h3>CalDAV (Nextcloud, iCloud, Synology…)</h3>
 
- <p>If you're using Nextcloud, Baikal, ownCloud, Synology Calendar or Apple iCloud, go <strong>CalDAV</strong> This standard agreement. Home Assistant document states that as long as the server complies with RFC 4791, it can basically be connected.</p>
+ <p>For Nextcloud, Baikal, ownCloud, Synology Calendar, or iCloud, use the <strong>CalDAV</strong> standard. The documentation lists tested servers; other RFC 4791-compliant servers may work.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Setting method</th><th>how to do</th><th>Can I get a to-do list?</th></tr>
+ <tr>
+<th>Setting method</th>
+<th>how to do</th>
+<th>Can I get a to-do list?</th>
+</tr>
  </thead>
  <tbody>
- <tr><td>Interface settings (recommended)</td><td>Settings → Devices &amp; Services → New integration → CalDAV</td><td>Yes, todo entities will be generated</td></tr>
- <tr><td>Manually write YAML</td><td>Edit <code>configuration.yaml</code></td><td><strong>No</strong>, Home Assistant documentation clearly states that YAML does not support to-do lists.</td></tr>
+ <tr>
+<td>Interface settings (recommended)</td>
+<td>Settings → Devices &amp; Services → New integration → CalDAV</td>
+<td>Yes, todo entities will be generated</td>
+</tr>
+ <tr>
+<td>Manually write YAML</td>
+<td>Edit <code>configuration.yaml</code>
+</td>
+<td>
+<strong>No</strong>, Home Assistant documentation clearly states that YAML does not support to-do lists.</td>
+</tr>
  </tbody>
  </table>
 
- <p>The main fields are <code>url</code>(your calendar’s full URL),<code>username</code>, <code>password</code>, in addition <code>calendars</code> / <code>custom_calendars</code> You can pick only specific calendars, and <code>verify_ssl</code>(Default <code>true</code>, only the self-hosted server with a self-signed certificate needs to be shut down). There is another <code>days</code>(Default <code>1</code>) decided to arrest the incident a few days later, <strong>it's only in <code>custom_calendars</code> Only useful at the bottom</strong>, many people write in the outer layer and wonder why it doesn't work.</p>
+ <p>The main fields are <code>url</code>, <code>username</code>, and <code>password</code>. Use <code>calendars</code> or <code>custom_calendars</code> to select calendars. <code>verify_ssl</code> defaults to <code>true</code>; disable verification only for a trusted self-hosted server when you understand the risk. <code>days</code> defaults to <code>1</code> and applie<strong>s only under <code>custom_calendars</code></strong>.</p>
 
- <div class="callout warn"><strong>Warning:</strong> If you want to connect to iCloud, official documentation suggests <strong>Use an app-specific password</strong>, do not give your Apple account master password to the HA. This is a security issue, and it’s also the reason why many people can’t connect to iCloud – the master password paired with two-step verification will be blocked in the first place.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> For iCloud, u<strong>se an app-specific password</strong>. Do not provide your primary Apple Account password to Home Assistant.</div>
 
  <h3>Google Tasks (to-do list, not calendar)</h3>
 
  <p>By the way, Google’s to-do list also has an official integration called <strong>Google Tasks</strong> (Added in Home Assistant 2023.11), will turn your Google to-do list into <code>todo.</code> entity. There are two limitations to be aware of first:</p>
 
  <ul>
- <li><strong>Only expiration "date" is supported, expiration "time" is not supported</strong>—This is a limitation of the Google Tasks API itself, not a problem with HA.</li>
- <li><strong>It is polling, and the update cycle for official documentation is every 30 minutes.</strong>. If you add an item to Google Tasks on your phone, HA will not see it immediately and will have to wait for the next crawl.</li>
+ <li>
+<strong>Only expiration "date" is supported, expiration "time" is not supported</strong>—This is a limitation of the Google Tasks API itself, not a problem with HA.</li>
+ <li>
+<strong>The integration polls every 30 minutes.</strong> A task created on a phone may not appear in Home Assistant until the next poll.</li>
  </ul>
 
- <div class="callout tip"><strong>Tip:</strong> This 30 minute delay <strong>Only the direction "Google → HA"</strong>. Home Assistant documentation clearly states that changes you make in HA will be immediately reflected in Google Tasks. Therefore, "use automation to add things to the list, and then view them on the phone" is immediate, while conversely "adding things to the phone and waiting for HA to trigger the automation" has to wait. Keep this in mind when writing automation, and you can avoid many pitfalls.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> The documented 30-minute polling interval ap<strong>plies to Google →</strong> Home Assistant updates. Changes made through Home Assistant are sent to Google Tasks immediately. Do not expect a phone-created task to trigger a Home Assistant automation immediately.</div>
 
  <p>The setting method is the same as that of Google Calendar. You need to create your own Google Cloud certificate, but you need to enable the Google Tasks API.</p>
  </section>
@@ -443,7 +598,7 @@ data:
  <section id="cards" data-nav="Dashboard cards">
  <h2 data-icon="tabs">Put lists and calendars on your dashboard</h2>
 
- <p>The built-in panels in the sidebar are already very useful, but if you want to make a dashboard that "you can get up in the morning and know what you are going to do today at a glance", you need to use cards. The basic operations of dashboard editing are in <a href="ch6_dashboard.html">Chapter 6</a>, here we only talk about these two cards.</p>
+ <p>The built-in panels are sufficient for direct use. To show today’s tasks on a dashboard, add To-do list and Calendar cards. See <a href="ch6_dashboard.html">Chapter 6</a> for dashboard editing.</p>
 
  <ol class="steps">
  <li>
@@ -456,7 +611,7 @@ data:
  </li>
  <li>
  <h3>Add calendar card</h3>
- <p>Add another one and look for it <strong>Calendar</strong>. This card can <strong>Select several calendars at once</strong> They are displayed stacked together, and different calendars are distinguished by different colors.</p>
+ <p>Add a <strong>Calendar</strong> card. It can <strong>display several calendars together</strong>, distinguished by color.</p>
  </li>
  <li>
  <h3>Fine-tuning with YAML</h3>
@@ -474,22 +629,70 @@ display_order: duedate_asc</code></pre>
 
  <table class="data-table">
  <thead>
- <tr><th>Options</th><th>Description</th><th>Fillable value</th></tr>
+ <tr>
+<th>Options</th>
+<th>Description</th>
+<th>Fillable value</th>
+</tr>
  </thead>
  <tbody>
- <tr><td><code>entity</code></td><td>Which list to display (required)</td><td>someone <code>todo.</code> Entity</td></tr>
- <tr><td><code>title</code></td><td>card title</td><td>any text</td></tr>
- <tr><td><code>hide_completed</code></td><td>Hide the completed area</td><td><code>true</code> / <code>false</code>(default false)</td></tr>
- <tr><td><code>hide_create</code></td><td>Hide the "New Item" input box at the top</td><td><code>true</code> / <code>false</code>(default false)</td></tr>
- <tr><td><code>hide_section_headers</code></td><td>Hide the two rows of subtitles "Unfinished/Completed"</td><td><code>true</code> / <code>false</code>(default false)</td></tr>
- <tr><td><code>display_order</code></td><td>Sort by</td><td><code>none</code>(Default),<code>alpha_asc</code>, <code>alpha_desc</code>, <code>duedate_asc</code>, <code>duedate_desc</code></td></tr>
- <tr><td><code>item_tap_action</code></td><td>What happens when you click on an item</td><td><code>edit</code>(Default, open the editing window),<code>toggle</code>(Tick/uncheck directly)</td></tr>
- <tr><td><code>due_date_period</code></td><td>Show only items due within a certain time range</td><td>For bottom use <code>calendar</code>, including <code>period</code> (<code>day</code>/<code>week</code>/<code>month</code>/<code>year</code>) and optional <code>offset</code></td></tr>
- <tr><td><code>theme</code></td><td>This card changes the scenery alone</td><td>Any loaded scene name</td></tr>
+ <tr>
+<td><code>entity</code></td>
+<td>Which list to display (required)</td>
+<td>A <code>todo.</code> entity</td>
+</tr>
+ <tr>
+<td><code>title</code></td>
+<td>card title</td>
+<td>any text</td>
+</tr>
+ <tr>
+<td><code>hide_completed</code></td>
+<td>Hide the completed area</td>
+<td>
+<code>true</code> / <code>false</code>(default false)</td>
+</tr>
+ <tr>
+<td><code>hide_create</code></td>
+<td>Hide the "New Item" input box at the top</td>
+<td>
+<code>true</code> / <code>false</code>(default false)</td>
+</tr>
+ <tr>
+<td><code>hide_section_headers</code></td>
+<td>Hide the two rows of subtitles "Unfinished/Completed"</td>
+<td>
+<code>true</code> / <code>false</code>(default false)</td>
+</tr>
+ <tr>
+<td><code>display_order</code></td>
+<td>Sort by</td>
+<td>
+<code>none</code>(Default),<code>alpha_asc</code>, <code>alpha_desc</code>, <code>duedate_asc</code>, <code>duedate_desc</code>
+</td>
+</tr>
+ <tr>
+<td><code>item_tap_action</code></td>
+<td>What happens when you click on an item</td>
+<td>
+<code>edit</code>(Default, open the editing window),<code>toggle</code>(Tick/uncheck directly)</td>
+</tr>
+ <tr>
+<td><code>due_date_period</code></td>
+<td>Show only items due within a certain time range</td>
+<td>For bottom use <code>calendar</code>, including <code>period</code> (<code>day</code>/<code>week</code>/<code>month</code>/<code>year</code>) and optional <code>offset</code>
+</td>
+</tr>
+ <tr>
+<td><code>theme</code></td>
+<td>Apply a theme to this card</td>
+<td>Any loaded theme name</td>
+</tr>
  </tbody>
  </table>
 
- <div class="callout tip"><strong>Tip:</strong> Make a wall flat panel display card that "can only be viewed but cannot be changed". <code>hide_create</code> Set <code>true</code>, <code>hide_completed</code> Set <code>true</code>, the display will be very refreshing. On the other hand, if you want to quickly check the box on your phone, put <code>item_tap_action</code> Set to <code>toggle</code>, click to check, no need to click twice to open the editing window.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> For a read-focused wall display, set <code>hide_create</code> to <code>true</code> and <code>hide_completed</code> to <code>true</code>. For quick completion on a phone, set <code>item_tap_action</code> to <code>toggle</code>.</div>
 
  <p>Another useful but often overlooked feature is <code>due_date_period</code>: It allows the card to only display items "due within this range". If you want to make a "things to do today" card, just write:</p>
 
@@ -501,7 +704,7 @@ due_date_period:
   calendar:
     period: day</code></pre>
 
- <p>put <code>period</code> Replace with <code>week</code> It becomes “things to do this week.”<code>offset</code> Is it to push forward or backward several cycles, for example <code>period: week</code> Match <code>offset: 1</code> That's next week.</p>
+ <p>Set <code>period</code> to <code>week</code> for the current week. <code>offset</code> shifts the period; <code>period: week</code> with <code>offset: 1</code> selects next week.</p>
 
  <h3>Calendar card</h3>
 
@@ -515,25 +718,48 @@ initial_view: listWeek</code></pre>
 
  <table class="data-table">
  <thead>
- <tr><th>Options</th><th>Description</th><th>Fillable value</th></tr>
+ <tr>
+<th>Options</th>
+<th>Description</th>
+<th>Fillable value</th>
+</tr>
  </thead>
  <tbody>
- <tr><td><code>entities</code></td><td>List of calendars to display (required)</td><td>more than one <code>calendar.</code> Entity</td></tr>
- <tr><td><code>title</code></td><td>card title</td><td>any text</td></tr>
- <tr><td><code>initial_view</code></td><td>Which view to display by default when loading</td><td><code>dayGridMonth</code>(monthly calendar grid),<code>dayGridDay</code>(single day),<code>listWeek</code>(Articles)</td></tr>
- <tr><td><code>theme</code></td><td>This card changes the scenery alone</td><td>Any loaded scene name</td></tr>
+ <tr>
+<td><code>entities</code></td>
+<td>List of calendars to display (required)</td>
+<td>One or more <code>calendar.</code> entities</td>
+</tr>
+ <tr>
+<td><code>title</code></td>
+<td>card title</td>
+<td>any text</td>
+</tr>
+ <tr>
+<td><code>initial_view</code></td>
+<td>Which view to display by default when loading</td>
+<td>
+<code>dayGridMonth</code>(monthly calendar grid),<code>dayGridDay</code>(single day),<code>listWeek</code>(Articles)</td>
+</tr>
+ <tr>
+<td><code>theme</code></td>
+<td>This card changes the scenery alone</td>
+<td>Any loaded scene name</td>
+</tr>
  </tbody>
  </table>
 
- <div class="callout tip"><strong>Tip:</strong> Watch it on your phone,<code>dayGridMonth</code>(Calendar grid) The characters will be too small to be seen clearly. Wall tablet for calendar and phone <code>listWeek</code> The body feeling is much different.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> <code>dayGridMonth</code> can be difficult to read on a phone. Test <code>listWeek</code> for small screens and reserve the month grid for larger displays.</div>
 
- <div class="callout warn"><strong>Warning:</strong><code>listWeek</code> The name is easily misunderstood. Home Assistant documentation states that it shows <strong>next 7 days</strong>, not "Monday to Sunday of this week". So when you open it on Friday, what you see is from Friday to next Thursday, and it doesn't suddenly clear on Sunday night. This is actually the behavior you want, but don't be nervous when you see "Why is it crossing to next week" for the first time.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> <code>listWeek</code> shows the <strong>next 7 days</strong>, not the current Monday-through-Sunday week. Opened on Friday, it covers Friday through the following Thursday.</div>
  </section>
 
  <section id="calendar_trigger" data-nav="calendar trigger">
  <h2 data-icon="auto">Trigger automation with calendar events</h2>
 
- <p>This is the most valuable section of the entire chapter. The complete writing method of calendar trigger is just these lines:</p>
+ <p>A calendar trigger requires only these fields:</p>
 
  <pre class="code-block"><code>triggers:
   - trigger: calendar
@@ -543,38 +769,75 @@ initial_view: listWeek</code></pre>
 
  <table class="data-table">
  <thead>
- <tr><th>field</th><th>meaning</th></tr>
+ <tr>
+<th>field</th>
+<th>meaning</th>
+</tr>
  </thead>
  <tbody>
- <tr><td><code>entity_id</code></td><td>Which calendar should I follow?</td></tr>
- <tr><td><code>event</code></td><td><code>start</code>(event starts) or <code>end</code>(event ends)</td></tr>
- <tr><td><code>offset</code></td><td>Time offset. The format is <code>"hour:minute:second"</code>. <strong>A negative sign in front means advance</strong>, without the negative sign means delay. The one above <code>-00:20:00</code> That's "20 minutes before the event starts"</td></tr>
+ <tr>
+<td><code>entity_id</code></td>
+<td>Calendar entity to monitor</td>
+</tr>
+ <tr>
+<td><code>event</code></td>
+<td>
+<code>start</code>(event starts) or <code>end</code>(event ends)</td>
+</tr>
+ <tr>
+<td><code>offset</code></td>
+<td>Time offset. The format is <code>"hour:minute:second"</code>. <strong>A negative sign in front means advance</strong>, without the negative sign means delay. The one above <code>-00:20:00</code> That's "20 minutes before the event starts"</td>
+</tr>
  </tbody>
  </table>
 
- <div class="callout warn"><strong>NOTE: Be sure to know the limitations.</strong> Home Assistant document is very clear: <strong>The calendar is read every 15 minutes</strong>. This means two things: (1) You have just added an event on your phone that will start in 5 minutes, and the trigger may not have time to trigger; (2) Don't set the offset to <code>-00:02:00</code> This kind of value that is too personal is difficult to grasp in practice. <strong>more than 10 minutes</strong> Relatively safe. To use it as an accurate alarm clock, please use "Time" to trigger it.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> Home Assistant read<strong>s calendar data every 15 minutes</strong>. A newly created event that starts in 5 minutes may not be retrieved before its trigger time. Very short offsets such as <code>-00:02:00</code> a<strong>re therefore unr</strong>eliable for newly added remote events; use a Time trigger when exact timing is required.</div>
 
  <h3>The content of the event can be used directly</h3>
 
- <p>After triggering, the data of that grid event will be placed in <code>trigger.calendar_event</code> Below, you can write the notification message directly:</p>
+ <p>When the trigger fires, event data is available under <code>trigger.calendar_event</code> for use in notifications and conditions:</p>
 
  <table class="data-table">
  <thead>
- <tr><th>variables</th><th>content</th></tr>
+ <tr>
+<th>variables</th>
+<th>content</th>
+</tr>
  </thead>
  <tbody>
- <tr><td><code>trigger.calendar_event.summary</code></td><td>event title</td></tr>
- <tr><td><code>trigger.calendar_event.description</code></td><td>Detailed description of the event (only available if filled in)</td></tr>
- <tr><td><code>trigger.calendar_event.location</code></td><td>Location (only available if filled in)</td></tr>
- <tr><td><code>trigger.calendar_event.start</code></td><td>Text for start time, e.g. <code>2026-04-10</code> or <code>2026-04-10 11:30:00-07:00</code></td></tr>
- <tr><td><code>trigger.calendar_event.end</code></td><td>end time text</td></tr>
- <tr><td><code>trigger.calendar_event.all_day</code></td><td>Is it an all-day event?</td></tr>
+ <tr>
+<td><code>trigger.calendar_event.summary</code></td>
+<td>event title</td>
+</tr>
+ <tr>
+<td><code>trigger.calendar_event.description</code></td>
+<td>Detailed description of the event (only available if filled in)</td>
+</tr>
+ <tr>
+<td><code>trigger.calendar_event.location</code></td>
+<td>Location (only available if filled in)</td>
+</tr>
+ <tr>
+<td><code>trigger.calendar_event.start</code></td>
+<td>Text for start time, e.g. <code>2026-04-10</code> or <code>2026-04-10 11:30:00-07:00</code>
+</td>
+</tr>
+ <tr>
+<td><code>trigger.calendar_event.end</code></td>
+<td>end time text</td>
+</tr>
+ <tr>
+<td><code>trigger.calendar_event.all_day</code></td>
+<td>Is it an all-day event?</td>
+</tr>
  </tbody>
  </table>
 
- <p>All day event <code>start</code> Only date without time, events with time will have time zone. If you want to extract the date part from it, the simplest way to write it is to cut the first 10 characters:<code>{{ trigger.calendar_event.start[:10] }}</code>.</p>
+ <p>For an all-day event, <code>start</code> contains a date only; timed events include time-zone information. Extract the date with <code>{{ trigger.calendar_event.start[:10] }}</code>.</p>
 
- <div class="callout tip"><strong>Tip:</strong> If you are not sure what words are written in the template, don't guess in the automation. go <strong>Settings → Tools → Templates</strong> Paste that page for a test run, and the results will be displayed immediately. This trick applies to the entire HA and can save you half of your debugging time.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> Test templates under <strong>Settings → Tools → Templates</strong> before adding them to an automation.</div>
  </section>
 
  <section id="recipes" data-nav="practical situation">
@@ -604,11 +867,11 @@ actions:
       brightness_pct: 80
 mode: single</code></pre>
 
- <p>Turning on the porch light is more useful than pushing the button - the push will be ignored, but if you walk over and see the light on, you will remember it.</p>
+ <p>The light provides an ambient reminder in addition to the phone notification.</p>
 
  <h3>2. Payment date: reminder as soon as the due date arrives</h3>
 
- <p>In this situation, use a to-do list instead of a calendar, because paying bills is somefeature that "will always exist before it is finished." The method is to scan the list at eight o'clock every morning to see if there is anything due today:</p>
+ <p>Use a to-do item for a bill because it remains pending until completed. This automation checks each morning at 8:00 for items due today:</p>
 
  <pre class="code-block"><code>alias: Items due today
 triggers:
@@ -623,7 +886,7 @@ actions:
     response_variable: result
   - variables:
       today: "{{ now().date() | string }}"
-      due_today: >-
+      due_today: &gt;-
         {{ result['todo.family_chores']['items']
            | selectattr('due', 'defined')
            | rejectattr('due', 'none')
@@ -631,7 +894,7 @@ actions:
            | map(attribute='summary') | list }}
   - if:
       - condition: template
-        value_template: "{{ due_today | count > 0 }}"
+        value_template: "{{ due_today | count &gt; 0 }}"
     then:
       - action: notify.mobile_app_my_phone
         data:
@@ -639,9 +902,10 @@ actions:
           message: "{{ due_today | join(', ') }}"
 mode: single</code></pre>
 
- <p>The three lines of filtering in the middle are the key to the entire paragraph. Each line has one task:<code>selectattr('due', 'defined')</code> First, connect " <code>due</code> Select items that do not exist in this field.<code>rejectattr('due', 'none')</code> Then select the fields that have fields but empty values, and finally <code>selectattr('due', 'search', today)</code> Only the due date string containing today's date is left. Without the first two levels, as long as an item in the list does not have an due date, the entire automation will report a template error.</p>
+ <p>The three filters are essential. <code>selectattr('due', 'defined')</code> keeps items that contain a <code>due</code> field. <code>rejectattr('due', 'none')</code> removes null values. Finally, <code>selectattr('due', 'search', today)</code> keeps due strings containing today’s date. Without the first two filters, an item without a due value can cause a template error.</p>
 
- <div class="callout warn"><strong>Warning:</strong> Lists from different sources,<code>due</code> The value returned may be pure text (<code>2026-09-01</code>), it may also be in the form of time, and the filtering writing method will be affected. <strong>First go to Settings → Tools → Templates and paste this paragraph for a test run to see if the printed name is the one you want, then paste it into the automation</strong>, don’t enable it in production.</div>
+ <div class="callout warn">
+<strong>Warning:</strong> Providers can return <code>due</code> as a date such as <code>2026-09-01</code> or as a date/time. Test this template under<strong> Settings → Tools → Templates with your provider’s actual response before enabling the automation</strong>.</div>
 
  <h3>3. Air conditioning filter replacement: Calendar creates to-do list</h3>
 
@@ -665,7 +929,8 @@ max: 10</code></pre>
 
  <p>Set up several full-day events in the "Maintenance" calendar that repeat every three months: "Clean the living room air conditioning filter," "Replace the water purifier filter element," and "Clean the washing machine." Set it up once and it will automatically appear on your to-do list every quarter.</p>
 
- <div class="callout tip"><strong>Tip:</strong><code>mode: queued</code> add <code>max: 10</code> This is to cope with the situation where "several maintenance events start at the same time on the same day". Use default <code>single</code>, the second event will be discarded directly. A complete description of execution modes is in <a href="ch10_scripts.html">Chapter 10</a>.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> <code>mode: queued</code> with <code>max: 10</code> allows multiple maintenance events that start together to run in sequence. With the default <code>single</code> mode, an overlapping run is rejected. See <a href="ch10_scripts.html">Chapter 10</a>.</div>
 
  <h3>4. Housework rotation</h3>
 
@@ -690,7 +955,7 @@ actions:
 mode: queued
 max: 10</code></pre>
 
- <p><code>notify.family_all</code> It is a method of packaging the whole family’s phones into a notification group. The setting method is <a href="ch7_notifications.html">Chapter 7</a>.</p>
+ <p><code>notify.family_all</code> is the example notification group configured in <a href="ch7_notifications.html">Chapter 7</a>.</p>
 
  <h3>5. Office conference room: one-panel event tube lights and air conditioning</h3>
 
@@ -732,7 +997,7 @@ actions:
 mode: queued
 max: 10</code></pre>
 
- <p>Here is a good practice: <strong>An automated <code>id</code> Distinguish multiple triggers before using <code>choose</code> Bifurcation</strong>, which is easier to maintain than splitting it into two separate parts. If the climate integration does not support <code>climate.turn_on</code>, use <code>climate.set_hvac_mode</code>, look at the control methods of each domain <a href="ch12_domains.html">Chapter 12</a>.</p>
+ <p>This example assigns each trigger an <strong><code>id</code>, then branches with <code>choose</code></strong>. This keeps related start and end behavior in one automation. If the climate integration does not support <code>climate.turn_on</code>, use <code>climate.set_hvac_mode</code>, see the domain actions in <a href="ch12_domains.html">Chapter 12</a>.</p>
 
  <h3>6. Clear the boxes every week</h3>
 
@@ -750,7 +1015,8 @@ actions:
       entity_id: todo.family_chores
 mode: single</code></pre>
 
- <div class="callout danger"><strong>Danger:</strong><code>todo.remove_completed_items</code> Yes <strong>If you really delete it, it won’t go into the recycling bin.</strong>. If you have the need to "look back and see what you did this month", don't schedule this automation yet, or change it to once a month.</div>
+ <div class="callout danger">
+<strong>Danger:</strong> <code>todo.remove_completed_items</code> pe<strong>rmanently deletes completed items; there is no recycle bin.</strong> Do not schedule it if you need an audit trail, or use a retention interval appropriate to your records.</div>
  </section>
 
  <section id="connect" data-nav="String notifications and voice">
@@ -758,12 +1024,15 @@ mode: single</code></pre>
 
  <h3>Notifications: Make reminders really visible</h3>
 
- <p>The last mile in all of the above scenes is notifications, and the complete setup of notifications (Companion App installation,<code>notify.mobile_app_*</code> How to check the entity name and notify the group) in <a href="ch7_notifications.html">Chapter 7</a>, not repeated here. Just three tips that work particularly well with to-do/calendar:</p>
+ <p>Companion App setup, <code>notify.mobile_app_*</code> entity IDs, and notification groups are covered in <a href="ch7_notifications.html">Chapter 7</a>. Apply these practices to lists and calendars:</p>
 
  <ul>
- <li><strong>Put the event title directly into the message</strong>—Use <code>{{ trigger.calendar_event.summary }}</code>, one automation can serve all events on the calendar, without writing one for each event.</li>
- <li><strong>Add conditions to avoid making noise in the middle of the night</strong>—In <code>conditions:</code> Add a time condition, or add a "someone is at home" condition. Receiving "The garbage truck is coming" when you're out all day just makes you want to turn off the notification.</li>
- <li><strong>Notifications are not just for phones</strong>—In a conference room situation, flashing the light twice or making a voice announcement is much more effective than pushing the announcement.</li>
+ <li>
+<strong>Put the event title directly into the message</strong>—Use <code>{{ trigger.calendar_event.summary }}</code>, one automation can serve all events on the calendar, without writing one for each event.</li>
+ <li>
+<strong>Use conditions to avoid irrelevant or overnight</strong> alerts. Add a time or occupancy condition under <code>conditions:</code>.</li>
+ <li>
+<strong>Choose the right output. </strong>In a meeting room, a visible light cue or authorized voice announcement may be more effective than a phone notification.</li>
  </ul>
 
  <h3>Voice: add shopping list by shouting</h3>
@@ -772,11 +1041,13 @@ mode: single</code></pre>
 
  <ul>
  <li>Home Assistant documentation for Shopping list integration clearly mentions <strong>You can add things using voice commands</strong>, an example sentence is "Add eggs to my shopping list" in English.</li>
- <li><strong>Sentence support varies by language</strong>. Home Assistant does not support every sentence pattern in every language. Your version and your voice assistant settings will affect the results. If you want to confirm whether your method will work, the fastest way is <strong>Open the Assist dialog box in the upper right corner of HA and type directly (no need to speak) to try a sentence</strong>, see if it reacts.</li>
+ <li>
+<strong>Sentence support varies by language</strong>. Home Assistant does not support every sentence pattern in every language. Your version and your voice assistant settings will affect the results. If you want to confirm whether your method will work, the fastest way is <strong>Open the Assist dialog box in the upper right corner of HA and type directly (no need to speak) to try a sentence</strong>, see if it reacts.</li>
  <li>If the built-in sentence pattern does not satisfy what you want to say, the fallback option is <strong>custom sentences</strong>, corresponding to the way you are used to speaking <code>todo.add_item</code>. Please see the chapter on voice assistant for how to set it up.</li>
  </ul>
 
- <div class="callout tip"><strong>Tip:</strong> There are often typos in the Chinese characters recognized by voice recognition. It is normal for "Soy Sauce" to be changed to " Jiang You". So shopping list automation <strong>Don't</strong> To make a judgment by comparing the item names, just think of the name as a "string of words that people can see", and leave the judgment to the quantity or status.</div>
+ <div class="callout tip">
+<strong>Tip:</strong> Speech recognition can mis-transcribe item names in any language. Avoid safety- or access-critical automation <strong>conditions based on an exact</strong> voice-created item name; use list state or explicit confirmation where appropriate.</div>
  </section>
 
  <section id="troubleshoot" data-nav="Common problems">
@@ -785,7 +1056,7 @@ mode: single</code></pre>
  <ol class="steps">
  <li>
  <h3>Google authorization expires every 7 days and keeps asking me to log in again</h3>
- <p>This is almost 100% the OAuth consent screen stops at <strong>Testing</strong>. Official documentation clearly warns that credentials expire every 7 days in this state. Return to the OAuth consent screen of the Google Cloud Console, click <strong>Publish app</strong> Change the publishing status and go back to HA to authorize again. After changing it, it won't fall off again.</p>
+ <p>The OAuth consent screen is probably still in <strong>Testing</strong>, where the documentation warns that tokens expire every 7 days. If appropriate for your Google project and account type, select <strong>Publish app</strong>, then authorize Home Assistant again.</p>
  </li>
  <li>
  <h3>Google authorization fails immediately, jumping "redirect_uri_mismatch" or similar error</h3>
@@ -793,25 +1064,26 @@ mode: single</code></pre>
  </li>
  <li>
  <h3>The event time differs by several hours (time zone misalignment)</h3>
- <p>This is the second most common pitfall, and there are <strong>three places</strong> Everything may go wrong, so please sort them one by one:<br>
- (1) <strong>HA's own time zone</strong>—Go <strong>Settings → System → Home Information</strong>, check whether the time zone in the “Region” area matches your location. The zh-TW source example is <code>Asia/Taipei</code>. If the field is gray and cannot be changed, it means that it is written in <code>configuration.yaml</code> Here, we need to remove that line first. This is <a href="ch2_system_settings.html">Chapter 2</a> Spoken.<br>
+ <p>Check <strong>three places</strong> in order:<br>
+ (1) <strong>Home Assistant time zone</strong>—Under <strong>Settings → System → Home information</strong>, confirm that Region uses your time zone. The zh-TW source uses <code>Asia/Taipei</code>; choose the value for your location. If the field is unavailable, check whether <code>configuration.yaml</code> defines it, as explained in <a href="ch2_system_settings.html">Chapter 2</a>.<br>
  (2) <strong>The time zone of the source calendar</strong>—Google Calendar itself has a calendar time zone setting. If it is another time zone, the entire set of events will be offset.<br>
- (3) <strong>all day event</strong>—There is no time in the whole day event.<code>all_day</code> will be true,<code>start</code> Only date. It would be weird to compare it with time, you have to judge first <code>all_day</code> Then decide how to deal with it.</p>
+ (3) <strong>All-day event</strong>—An all-day event has <code>all_day</code> set to true, and <code>start</code> contains only a date. Check <code>all_day</code> before applying time-based comparisons.</p>
  </li>
  <li>
  <h3>Calendar automation did not trigger when it should have</h3>
- <p>First think, "How long ago did I create this event?" Home Assistant document states <strong>Calendar is only read every 15 minutes</strong>. It will be triggered after 5 minutes as soon as it is built. It is normal to be too late. The second common reason is <code>offset</code> Wrong writing - there must be a negative sign in advance,<code>"-00:30:00"</code> It's half an hour in advance.<code>"00:30:00"</code> It's delayed by half an hour. Third, go <strong>Settings → Automations & Scenes &amp; Scenes</strong> Click on the automation, three dots in the upper right corner → <strong>Traces</strong>, to see if it has been triggered and at which step it is stuck.</p>
+ <p>First think, "How long ago did I create this event?" Home Assistant document states <strong>Calendar is only read every 15 minutes</strong>. It will be triggered after 5 minutes as soon as it is built. It is normal to be too late. The second common reason is <code>offset</code> Wrong writing - there must be a negative sign in advance,<code>"-00:30:00"</code> It's half an hour in advance.<code>"00:30:00"</code> It's delayed by half an hour. Third, go <strong>Settings → Automations &amp; Scenes &amp; Scenes</strong> Click on the automation, three dots in the upper right corner → <strong>Traces</strong>, to see if it has been triggered and at which step it is stuck.</p>
  </li>
  <li>
- <h3>The to-do list is not synchronized, and the things added on the phone cannot be seen by HA.</h3>
- <p>First figure out which one you are using: <strong>Local To-do has no synchronization issues</strong>, because it only exists in HA, and there is no other place to synchronize with it. There will be a synchronization gap from the cloud source - Home Assistant Google Tasks document says <strong>Poll every 30 minutes</strong>,CalDAV is also crawled regularly. Therefore, "HA is added to the phone but not seen" is usually not broken, but it is not the next crawl time yet. If you wait too long and still nothing, go <strong>Settings → Devices &amp; Services</strong> Find the integration, three points → <strong>Reload</strong>, forcing it to catch it once.</p>
+ <h3>A phone-created to-do item has not appeared in Home Assistant</h3>
+ <p><strong>Local To-do does not</strong> synchronize with an external service; its items exist only in Home Assistant. Cloud sources update on polling intervals: Google Tasks p<strong>olls every 30 minutes</strong>, and CalDAV also polls periodically. Wait for the documented interval, then reload the integration and if it still does not appear, open <strong>Settings → Devices &amp; Services</strong>, find the integration, and select <strong>Reload</strong> from its three-dot menu.</p>
  </li>
  <li>
- <h3><code>todo.update_item</code> Says the item cannot be found</h3>
+ <h3>
+<code>todo.update_item</code> Says the item cannot be found</h3>
  <p>Three directions: (1) name <strong>exactly the same</strong>, one more blank space, and different full-width and half-width forms are considered different; (2) There are two items with the same name in the list, and HA doesn’t know which one to change, so use <code>uid</code>—Use first <code>todo.get_items</code> Take out the UID and fill in the UID <code>item</code> Field; (3) You typed incorrectly <code>entity_id</code>, changed to another list.</p>
  </li>
  <li>
- <h3>When I add an item, I get an error saying that there is something wrong with the parameters of the due date.</h3>
+ <h3>Adding an item reports an invalid due-date parameter</h3>
  <p>The most common is <strong><code>due_date</code> and <code>due_datetime</code> Wrote at the same time</strong>, you can only choose one of the two. The second is that the list you are using does not support due dates or descriptions at all - not every integration supports all fields, for example Google Tasks only supports dates but not time. Remove that parameter and try again to see if this is the reason.</p>
  </li>
  <li>
