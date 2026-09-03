@@ -3,8 +3,8 @@
 <head>
  <meta charset="utf-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1" />
- <title>HA AI Agent Skill Manual · WoowTech</title>
- <meta name="description" content="Skill manual for using Home Assistant with AI LLM/agent: 10 selected HA-related skills (HA management, ESPHome, Dashboard, Blueprint), 6 popular collection catalogs, installation quick check, compatibility rules, security reminders, SKILL.md specifications and FAQ. Stars for 2026-08-20 GitHub public snapshot." />
+ <title>Home Assistant AI Agent Skill Handbook · WoowTech</title>
+ <meta name="description" content="A practical handbook covering 10 Home Assistant-related AI agent skills, 6 popular collections, installation, compatibility, security, the SKILL.md specification, and FAQ. Star counts reflect a public GitHub snapshot from 2026-08-20." />
  <meta name="author" content="WoowTech" />
  <meta name="theme-color" content="#6183FC" />
  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/skills.html" />
@@ -160,20 +160,20 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
 <body>
 <div class="layout">
  <aside class="sidebar" id="sidebar">
- <a class="brand" href="#top">HA AI Skill Manual</a>
- <div class="brand-sub">WoowTech · Catalog and Quick Reference</div>
+ <a class="brand" href="#top">HA AI Skill Handbook</a>
+ <div class="brand-sub">WoowTech · Catalog and quick reference</div>
  <!-- i18n:switch --><nav class="lang-switch" aria-label="Language"><a href="../skills.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="skills.html" lang="en" aria-current="page">EN</a></nav><!-- /i18n:switch -->
  <a class="hub-link" href="index.html">◂ HA Resource Hub</a>
  <button class="nav-toggle" id="navToggle" type="button">Contents <span class="nav-toggle-caret"></span></button>
  <div class="toc-in-chapter">
  <h2>Contents</h2>
- <a href="#why">What is Skill</a>
- <a href="#install">How to install</a>
- <a href="#picks">Selected ten HA skills</a>
- <a href="#collections">Six collection catalogs</a>
- <a href="#compat">Compatibility information</a>
- <a href="#safety">safety rules</a>
- <a href="#spec">SKILL.md Specifications</a>
+ <a href="#why">About Skills</a>
+ <a href="#install">Installation</a>
+ <a href="#picks">10 selected Skills</a>
+ <a href="#collections">6 collections</a>
+ <a href="#compat">Compatibility</a>
+ <a href="#safety">Safety</a>
+ <a href="#spec">SKILL.md format</a>
  <a href="#faq">FAQ</a>
  <a href="#download">Download</a>
  </div>
@@ -182,33 +182,33 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
  <main class="content" id="top">
  <div class="chapter-header">
  <span class="kicker-script">teach your AI home assistant</span>
- <div class="kicker">WoowTech Skill Manual</div>
+ <div class="kicker">WoowTech Skill Handbook</div>
  <h1>Install a skill to teach your AI agent about Home Assistant</h1>
  <p class="lead">A skill is an operating manual for an AI agent: a folder containing <code>SKILL.md</code> and optional references. This handbook surveys 10 Home Assistant-related skills and 6 catalogs, then covers installation, compatibility, authoring, and safety.</p>
  <div class="callout"><strong>Survey baseline:</strong> Collection sizes, star counts, and maintenance status reflect a <strong>public GitHub snapshot from 2026-08-20</strong>. These values change; inspect the original repository before installing anything.</div>
  </div>
 
- <section id="why" data-nav="What is Skill">
+ <section id="why" data-nav="About Skills">
  <h2 data-icon="why">What is a Skill, and why install one?</h2>
- <p>An AI agent such as Claude, Codex, Gemini, OpenClaw, or Hermes does not automatically know your entity names, areas, Blueprints, or Zigbee topology. A Skill is a <strong>handover document for an AI agent</strong>. It describes, in Markdown, when to use Home Assistant and which steps to follow.</p>
+ <p>An AI agent such as Claude, Codex, Gemini, OpenClaw, or Hermes does not automatically know your entity names, area structure, existing Blueprints, or Zigbee topology. A Skill is a <strong>handover document for an AI agent</strong>: Markdown instructions that explain when and how to perform a particular kind of work.</p>
  <ul>
- <li><strong>Start with an existing Skill</strong>: Community projects cover Home Assistant management, ESPHome firmware, dashboard design, Blueprint imports, and custom integration development.</li>
- <li><strong>Then write your own</strong>: Package household-specific workflows, such as laundry reminders or weekly energy reports. See <a href="#spec">SKILL.md specifications</a> for the required structure.</li>
+ <li><strong>Install an existing Skill</strong>: Community projects cover Home Assistant administration, ESPHome firmware, dashboard design, Blueprint imports, and custom integration development.</li>
+ <li><strong>Write your own</strong>: Package a household-specific workflow, such as a laundry reminder or weekly energy report. See the <a href="#spec">SKILL.md format</a> for a starting point.</li>
  </ul>
- <p>A Skill is different from an <a href="ch19_voice_ai.html">Assist voice assistant</a>, a Home Assistant <a href="ch14_integrations.html">integration</a>, or a <a href="appendix_scenes_helpers_groups.html">Blueprint</a>. Install it <strong>in your AI agent environment</strong>, not in Home Assistant. Installing a Skill does not itself modify Home Assistant.</p>
+ <p>A Skill is not an <a href="ch19_voice_ai.html">Assist voice assistant</a>, a Home Assistant <a href="ch14_integrations.html">integration</a>, or a <a href="appendix_scenes_helpers_groups.html">Blueprint</a>. Install it <strong>in the AI agent environment</strong>, not in Home Assistant. Installation alone does not modify Home Assistant, but the Skill may instruct an authorized agent to do so.</p>
  </section>
 
- <section id="install" data-nav="How to install">
- <h2 data-icon="steps">How to install (3-minute version)</h2>
- <p>The SKILL.md convention is documented by Anthropic in <a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a> and is supported by several agent harnesses. Installation differs by product, but the general process is:</p>
+ <section id="install" data-nav="Installation">
+ <h2 data-icon="steps">Install a Skill in 3 minutes</h2>
+ <p>Anthropic documents its SKILL.md convention in <a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a>. Support and installation methods vary by agent harness, so check your product’s current documentation. The general process is:</p>
  <ol class="steps">
  <li>
- <h3>Open the Skills/Plugins panel of your agent harness</h3>
- <p>Claude Code: Settings → Skills; OpenClaw or Hermes: Skills panel; Codex: the <code>~/.codex/skills/</code> directory.</p>
+ <h3>Open your agent’s Skills or Plugins interface</h3>
+ <p>Depending on the harness, this may be a settings panel or a local directory such as <code>~/.codex/skills/</code>.</p>
  </li>
  <li>
- <h3>Paste the package spec and press Install</h3>
- <p>Each harness supports slightly different writing methods, the most common ones are:</p>
+ <h3>Provide the package location</h3>
+ <p>Package syntax is not standardized. The following examples illustrate forms that a harness may support; confirm the required syntax in its documentation:</p>
  <pre class="code-block"><code># GitHub repository (most common)
 git:github.com/komal-SkyNET/claude-skill-homeassistant
 
@@ -222,163 +222,163 @@ npm:@scope/some-skill
 ~/skills/my-ha-skill</code></pre>
  </li>
  <li>
- <h3>Reload session verification</h3>
- <p>After installation, open a new session (skill is loaded at the beginning of the session) and ask it: "What skills are currently loaded?" Make sure it is in the list.</p>
+ <h3>Start a new session and verify the Skill</h3>
+ <p>Many harnesses load Skills when a session starts. Open a new session, ask which Skills are loaded, and confirm that the expected Skill appears.</p>
  </li>
  <li>
- <h3>Read first, then use: Ask AI what this skill will do</h3>
- <p>Don’t rush to let it run after installing it. First ask the AI to read the summary of SKILL.md to you - this is also <a href="#safety">safety rules</a> The first article.</p>
+ <h3>Review the Skill before using it</h3>
+ <p>Ask the agent to summarize SKILL.md and identify commands, network access, and Home Assistant changes before you let it run. This is the first <a href="#safety">safety rule</a>.</p>
  </li>
  </ol>
- <div class="callout tip"><strong>Tip:</strong> Monorepo (e.g. anthropics/skills, tonylofgren/aurora-smart-home) is included in the entire package, and most harnesses recursively scan all SKILL.md. When you only want one of them, clone it and use the local path to point to that subfolder - currently git spec does not have a standard "only install subdirectory" syntax.</div>
+ <div class="callout tip"><strong>Tip:</strong> A monorepo such as anthropics/skills or tonylofgren/aurora-smart-home may contain several SKILL.md files. If you need only one, clone the repository and point your harness to that Skill’s subdirectory. There is no universal Git package syntax for installing only a subdirectory.</div>
  </section>
 
- <section id="picks" data-nav="Selected ten HA skills">
- <h2 data-icon="ai">Selected ten (HA perspective)</h2>
- <p>Selected from popular collections and HA's dedicated repo, the most practical models are suitable for smart homes. Arranged from "most relevant/most recommended to get started":</p>
+ <section id="picks" data-nav="10 selected Skills">
+ <h2 data-icon="ai">10 selected Skills for Home Assistant</h2>
+ <p>These projects come from Home Assistant-specific repositories and broader collections. Review each repository, license, dependencies, and permissions before installation.</p>
  <table class="data-table">
  <thead>
- <tr><th>Skill</th><th>what does it do for you</th><th>Install spec</th></tr>
+ <tr><th>Skill</th><th>What it provides</th><th>Installation spec</th></tr>
  </thead>
  <tbody>
  <tr>
  <td><a href="https://github.com/komal-SkyNET/claude-skill-homeassistant" rel="noopener">claude-skill-homeassistant</a><br><span style="color:var(--ink-500);font-size:12px">≈791★</span></td>
- <td>The current king of HA-specific skills: writing/modifying automation, blueprint, dashboard, managing add-ons, reading logs, and running template tests. <strong>The most relevant and the highest risk</strong>—The online HA settings will be activated and verified first on the test machine/backup.</td>
+ <td>Covers automations, Blueprints, dashboards, add-ons, logs, and template tests. <strong>It can also make high-impact changes</strong>, so review it and test against a nonproduction instance or a current backup first.</td>
  <td><code>git:github.com/komal-SkyNET/claude-skill-homeassistant</code></td>
  </tr>
  <tr>
  <td><a href="https://github.com/dcb/homeassistant-claude-kit" rel="noopener">homeassistant-claude-kit</a><br><span style="color:var(--ink-500);font-size:12px">≈118★</span></td>
- <td>AI-guided full package: automation boilerplate, action-first React dashboard template, Claude Code skills management config. Suitable for users who want to have a "one-stop experience" instead of piecing it together by themselves.</td>
+ <td>Combines automation templates, a mobile-first React dashboard template, and Claude Code Skills for configuration work. It may suit users who prefer one integrated toolkit.</td>
  <td><code>git:github.com/dcb/homeassistant-claude-kit</code></td>
  </tr>
  <tr>
  <td><a href="https://github.com/tonylofgren/aurora-smart-home" rel="noopener">aurora-smart-home</a><br><span style="color:var(--ink-500);font-size:12px">≈102★</span></td>
- <td>A collection of skills for the entire smart home: Home Assistant, ESPHome, Node-RED, custom integration, dashboard, and even hardware PCB. <strong>A must-install if you want to manage HA + ESPHome firmware at the same time</strong>.</td>
+ <td>A smart-home collection covering Home Assistant, ESPHome, Node-RED, custom integrations, dashboards, and PCB design. <strong>Consider it if the same agent needs guidance for both Home Assistant and ESPHome.</strong></td>
  <td><code>git:github.com/tonylofgren/aurora-smart-home</code></td>
  </tr>
  <tr>
  <td><a href="https://github.com/anthropics/skills" rel="noopener">docx / pdf / pptx / xlsx</a><br><span style="color:var(--ink-500);font-size:12px">official</span></td>
- <td>Set of four official documentation. For HA families: energy analysis output in Excel, home appliance warranty list in PDF, household weekly report generation in Word, and community publication in PPTX.</td>
+ <td>Four document-focused Skills. Possible household uses include energy analysis in a spreadsheet, appliance warranties in a PDF, a weekly report in a document, or a presentation for a community meeting.</td>
  <td><code>git:github.com/anthropics/skills</code></td>
  </tr>
  <tr>
  <td><a href="https://github.com/anthropics/skills" rel="noopener">skill-creator</a><br><span style="color:var(--ink-500);font-size:12px">official</span></td>
- <td>Let AI help you package the unique processes at home (laundry reminder, weekly energy report, filter replacement alarm) into a new skill - AI teaches AI, which is much faster than reading the spec yourself.</td>
+ <td>Guides an agent through packaging a workflow—such as a laundry reminder, weekly energy report, or filter-replacement alert—as a new Skill.</td>
  <td><code>git:github.com/anthropics/skills</code></td>
  </tr>
  <tr>
  <td><a href="https://github.com/ESJavadex/claude-homeassistant-plugins" rel="noopener">claude-homeassistant-plugins</a><br><span style="color:var(--ink-500);font-size:12px">≈26★</span></td>
- <td>HA plugins / skills / agents marketplace, including MCP hooks and multiple corresponding skill directories, is suitable for use as "HA plugin development kit".</td>
+ <td>A collection of Home Assistant plugins, Skills, agents, and MCP hooks. Review the individual directories if you are building or extending an agent integration.</td>
  <td><code>git:github.com/ESJavadex/claude-homeassistant-plugins</code></td>
  </tr>
  <tr>
  <td><a href="https://github.com/markusleben/ha-nova" rel="noopener">ha-nova</a><br><span style="color:var(--ink-500);font-size:12px">≈21★</span></td>
- <td>Lean relay + LLM skills for Claude Code/Codex/OpenCode to abstract HA API calls into thin layers. If you want to share an HA skill across agents, choose this.</td>
+ <td>Provides a small relay and LLM Skills for Claude Code, Codex, and OpenCode, with a thin abstraction over Home Assistant API calls.</td>
  <td><code>git:github.com/markusleben/ha-nova</code></td>
  </tr>
  <tr>
  <td><a href="https://github.com/johnnyh1975/HA_Bubble_Skill" rel="noopener">HA_Bubble_Skill</a><br><span style="color:var(--ink-500);font-size:12px">≈13★</span></td>
- <td>Dashboard-specific: Bubble Card/Streamline Card/Sidebar Card/Mushroom construction skills, including WCAG color checking and a complete set of troubleshooting. <strong>A must-have for making a beautiful dashboard</strong>.</td>
+ <td>Focuses on dashboards built with Bubble Card, Streamline Card, Sidebar Card, and Mushroom. <strong>It also includes WCAG color checks and troubleshooting guidance.</strong></td>
  <td><code>git:github.com/johnnyh1975/HA_Bubble_Skill</code></td>
  </tr>
  <tr>
  <td><a href="https://github.com/mattpocock/skills" rel="noopener">grill-me</a><br><span style="color:var(--ink-500);font-size:12px">from mattpocock/skills</span></td>
- <td>Before starting the construction, I was tortured by the AI. I asked clearly about the requirements for a big item like "I want to rewrite the whole house automation" before starting the construction. Pure Markdown, universal across agents.</td>
+ <td>Prompts the user with detailed questions before a large task, such as rewriting a home’s automations. It is written in Markdown and can be adapted across agents.</td>
  <td><code>git:github.com/mattpocock/skills</code></td>
  </tr>
  <tr>
  <td><a href="https://github.com/kepano/obsidian-skills" rel="noopener">defuddle</a><br><span style="color:var(--ink-500);font-size:12px">from kepano/obsidian-skills · ≈47,000★</span></td>
- <td>Extract web pages into clean Markdown - necessary for storing home appliance manuals, HA community solutions, and YouTube verbatim transcripts into the family knowledge base. It saves tokens and is clean.</td>
+ <td>Extracts web pages as clean Markdown for a household knowledge base, including appliance manuals, Home Assistant community posts, and video transcripts.</td>
  <td><code>git:github.com/kepano/obsidian-skills</code></td>
  </tr>
  </tbody>
  </table>
  </section>
 
- <section id="collections" data-nav="Six collection catalogs">
- <h2 data-icon="collections">Six popular collection catalogs</h2>
- <p>If you want to install a collection or compare several options, start from these six entrances:</p>
+ <section id="collections" data-nav="6 collections">
+ <h2 data-icon="collections">6 Skill collections and catalogs</h2>
+ <p>Use these repositories to compare individual Skills or collections. Do not install a complete collection without reviewing its contents.</p>
  <div class="feature-grid">
 
  <div class="feature-card">
  <h3>anthropics/skills</h3>
- <div class="pnote">Official demonstration + specification location · ≈170,000★ · Extremely active</div>
- <p>Home of Agent Skills specifications and official templates. The 19 skills include a four-piece file set (docx/pdf/pptx/xlsx), canvas-design, mcp-builder, and skill-creator. <strong>HA This is the first pack in the family.</strong></p>
+ <div class="pnote">Official examples and specification · ≈170,000★ · Very active</div>
+ <p>Contains the Agent Skills specification and <strong>official templates</strong>. Its 19 Skills include document tools (docx/pdf/pptx/xlsx), canvas-design, mcp-builder, and skill-creator.</p>
  <pre class="code-block"><code>git:github.com/anthropics/skills</code></pre>
- <p class="pnote">Note: The four-piece set of files is source-available and non-open source; some skills with scripts require a Python/JS environment.</p>
+ <p class="pnote">Note: The four document Skills are source-available rather than open source. Some Skills include scripts that require Python or JavaScript.</p>
  </div>
 
  <div class="feature-card">
  <h3>tonylofgren/aurora-smart-home</h3>
- <div class="pnote">HA Smart Home Special Collection · ≈102★ · Correspondence</div>
- <p>Currently the most complete smart home multi-skill collection:<code>home-assistant</code>, <code>esphome</code>, <code>node-red</code>, <code>ha-dashboard-design</code>, <code>ha-integration-dev</code>, <code>hacs</code>, fab-ready hardware design.</p>
+ <div class="pnote">Home Assistant and smart-home collection · ≈102★</div>
+ <p>A multi-Skill smart-home collection covering <code>home-assistant</code>, <code>esphome</code>, <code>node-red</code>, <code>ha-dashboard-design</code>, <code>ha-integration-dev</code>, <code>hacs</code>, and fabrication-ready hardware design.</p>
  <pre class="code-block"><code>git:github.com/tonylofgren/aurora-smart-home</code></pre>
- <p class="pnote">Note: Fewer stars = fewer reviewers. It will instruct the agent to change your HA settings - read SKILL.md yourself before importing.</p>
+ <p class="pnote">Note: A smaller audience may mean less public review. This collection can instruct an agent to change Home Assistant settings, so read each SKILL.md before use.</p>
  </div>
 
  <div class="feature-card">
  <h3>komal-SkyNET/claude-skill-homeassistant</h3>
- <div class="pnote">HA dedicated single skill · ≈791★ · Extremely active</div>
- <p>A single skill but the most complete HA housekeeping agent. The README teaches how to directly change HA settings, pull logs, run template tests, and add automation by talking to Claude Code.</p>
+ <div class="pnote">Single Home Assistant Skill · ≈791★ · Very active</div>
+ <p>A broad Home Assistant Skill whose README covers changing configuration, retrieving logs, testing templates, and adding automations through Claude Code.</p>
  <pre class="code-block"><code>git:github.com/komal-SkyNET/claude-skill-homeassistant</code></pre>
- <p class="pnote">It is recommended to test HA or make a backup before using it; it is recommended to use it in Home Assistant environment. <code>@tag</code>.</p>
+ <p class="pnote">Use it first with a test instance or after creating a backup. Pin an <code>@tag</code> in a production environment.</p>
  </div>
 
  <div class="feature-card">
  <h3>kepano/obsidian-skills</h3>
- <div class="pnote">Notes/Family Knowledge Base · ≈47,000★ · Produced by Obsidian CEO</div>
- <p>5 pieces:<code>obsidian-markdown</code>, <code>bases</code>, <code>json-canvas</code>, <code>obsidian-cli</code>, <code>defuddle</code>. A must-have for using Obsidian as a family knowledge base;<code>defuddle</code> It’s super easy to use without Obsidian.</p>
+ <div class="pnote">Notes and household knowledge bases · ≈47,000★ · From Obsidian’s CEO</div>
+ <p>Includes 5 Skills: <code>obsidian-markdown</code>, <code>bases</code>, <code>json-canvas</code>, <code>obsidian-cli</code>, and <code>defuddle</code>. The first 4 support an Obsidian knowledge base; <code>defuddle</code> can also be used independently.</p>
  <pre class="code-block"><code>git:github.com/kepano/obsidian-skills</code></pre>
- <p class="pnote">obsidian-cli requires the CLI to be installed locally; the HA add-on container mainly operates on the vault folder.</p>
+ <p class="pnote">The obsidian-cli Skill requires a local CLI installation. In a Home Assistant add-on container, work is generally limited to an accessible vault directory.</p>
  </div>
 
  <div class="feature-card">
  <h3>mattpocock/skills</h3>
- <div class="pnote">Used by Real Engineers · ≈220,000★ · Very active</div>
- <p><code>grill-me</code>, <code>tdd</code>, <code>diagnosing-bugs</code>, <code>handoff</code>, <code>teach</code>—Engineering major, but <code>grill-me</code>/<code>handoff</code> It is very useful for planning tasks such as "rewriting the entire automation at home" and "configuring HA for a new home". Pure Markdown, available across agents.</p>
+ <div class="pnote">Engineering workflows · ≈220,000★ · Very active</div>
+ <p>Includes <code>grill-me</code>, <code>tdd</code>, <code>diagnosing-bugs</code>, <code>handoff</code>, and <code>teach</code>. Although aimed at software work, <code>grill-me</code> and <code>handoff</code> can help plan a full automation rewrite or a new-home Home Assistant setup. The Markdown instructions can be adapted across agents.</p>
  <pre class="code-block"><code>git:github.com/mattpocock/skills</code></pre>
  </div>
 
  <div class="feature-card">
  <h3>hesreallyhim/awesome-claude-code</h3>
- <div class="pnote">Curation entrance · ≈53,000★</div>
- <p>The awesome list of the Claude Code ecosystem includes skills, agents, status columns, developer tooling, and plugins. When browsing the directory, if you see something you like, click on it to install the original repo.</p>
+ <div class="pnote">Curated catalog · ≈53,000★</div>
+ <p>A curated list of Claude Code Skills, agents, status lines, developer tools, and plugins. Use it as a directory, then review and install from the original repository.</p>
  <pre class="code-block"><code># Use as a catalog; installing the entire collection is not recommended
 https://github.com/hesreallyhim/awesome-claude-code</code></pre>
- <p class="pnote">The quality varies, check each piece one by one before installing.</p>
+ <p class="pnote">Quality varies. Review each project before installing it.</p>
  </div>
 
  </div>
- <p class="pnote" style="margin-top:14px">For reference (HA related but small scope or low activity): <a href="https://github.com/nolte/claude-home-assistant" rel="noopener">nolte/claude-home-assistant</a> (HA development orientation, including Lovelace/blueprint/ESPHome/add-on skills), <a href="https://github.com/dallanwagz/untether" rel="noopener">dallanwagz/untether</a> (Reverse engineer cloud BLE device to local HA integration), <a href="https://github.com/yaniv-golan/smalltv-ultra-skill" rel="noopener">smalltv-ultra-skill</a> (GeekMagic SmallTV Ultra firmware development) - The number of stars is small, so it is suitable to watch when there are clear scenes.</p>
+ <p class="pnote" style="margin-top:14px">Other narrowly focused or less active Home Assistant projects include <a href="https://github.com/nolte/claude-home-assistant" rel="noopener">nolte/claude-home-assistant</a> (Lovelace, Blueprint, ESPHome, and add-on development), <a href="https://github.com/dallanwagz/untether" rel="noopener">dallanwagz/untether</a> (reverse-engineering cloud-dependent Bluetooth Low Energy devices for a local integration), and <a href="https://github.com/yaniv-golan/smalltv-ultra-skill" rel="noopener">smalltv-ultra-skill</a> (GeekMagic SmallTV Ultra firmware development). Consider them only when they match a specific task.</p>
  </section>
 
- <section id="compat" data-nav="Compatibility information">
- <h2 data-icon="integration">Compatibility information</h2>
- <p>The SKILL.md specification has been adopted by mainstream agent harnesses such as Claude Code, Codex, Gemini CLI, Cursor, OpenCode, OpenClaw, and Hermes; pure Markdown skills can run almost everywhere. There are only three situations that will "degenerate":</p>
+ <section id="compat" data-nav="Compatibility">
+ <h2 data-icon="integration">Compatibility</h2>
+ <p>Several agent harnesses use SKILL.md-style instructions, but their discovery rules, metadata, tools, and package installation are not identical. Plain Markdown is the most portable. Compatibility commonly breaks down when a Skill:</p>
  <ul>
- <li><strong>Rely on Claude Code exclusive mechanism</strong> (hooks, plugin commands, subagent dispatch) - skill This article is still readable, but the automatic triggering behavior may be incomplete.</li>
- <li><strong>Rely on specific MCP/SaaS account</strong>—For example, HA-related skills are mostly assumed to be equipped properly. <code>ha-mcp-woow</code> Or official MCP Server integration; if not connected, it is useless.</li>
- <li><strong><code>scripts/</code> Requires a runtime that is not available in the container</strong>—If you run the agent in the HA add-on container, the Python package and Node version must match. Pure Markdown skill has the best compatibility.</li>
+ <li><strong>Depends on harness-specific features</strong>, such as hooks, plugin commands, or subagent delegation. The text may remain readable while automatic behavior is unavailable.</li>
+ <li><strong>Requires a particular MCP server or SaaS account</strong>. A Home Assistant Skill that expects <code>ha-mcp-woow</code> or the official MCP Server integration cannot use those tools until the connection and permissions are configured.</li>
+ <li><strong>Uses a runtime missing from the environment, such as <code>scripts/</code></strong>. A script may require a particular Python package or Node version, especially inside an add-on container.</li>
  </ul>
- <div class="callout"><strong>Concept:</strong> The first criterion for choosing a skill is not the number of stars, but "do you have the environment it assumes?" Especially important for HA related skills - most assume you already have HA + MCP + corresponding integration.</div>
+ <div class="callout"><strong>Concept:</strong> Choose a Skill by its requirements, not its star count. Confirm that your Home Assistant, MCP server, integrations, tools, and runtime match the environment the Skill expects.</div>
  </section>
 
- <section id="safety" data-nav="safety rules">
+ <section id="safety" data-nav="Safety">
  <h2 data-icon="safety">Safety rules</h2>
- <div class="callout warn"><strong>Warning:</strong> The essence of Skill is "instructions fed to the agent". Install third-party skill=<strong>Let a strange text instruct your AI to move your HA</strong>.</div>
+ <div class="callout warn"><strong>Warning:</strong> A Skill contains instructions for an agent. Installing a third-party Skill means <strong>allowing untrusted text to influence an agent that may have access to your Home Assistant system</strong>.</div>
  <ul>
- <li><strong>Read first and install later</strong>: Open SKILL.md and read it before installation, or ask AI to read it to you first: "Read the content of SKILL.md of this skill first, tell me what it will do, and whether there is any risk of touching my HA config. I agree to install it again."</li>
- <li><strong>If you know how to move HA config, make a complete backup first.</strong>: like <code>claude-skill-homeassistant</code>, <code>aurora-smart-home</code> This type will directly change automation/dashboard/configuration.yaml. <strong>First press Settings → System → Backups to perform manual backup</strong>—If you mess up, you can still recover.</li>
- <li><strong>First test the HA instance verification</strong>: If the HA at home is already very complex, it is strongly recommended to open another clean HA container as a test machine, and then put it into Home Assistant machine after verifying the skill action.</li>
- <li><strong>Formal environment nail version</strong>: use <code>@tag</code> or <code>@commit</code> Pin it to avoid upstream changes and you won’t feel the need to upgrade.</li>
- <li><strong>Entities exposed to AI should be selected</strong>: Settings → Voice Assistants → Expose Check only the necessary areas/entities. Don't give it to door locks, alarms, and power switches that "cannot be restored".</li>
- <li><strong>Number of stars = popularity, not = safety</strong>: Popular collections also depend on what permissions they have and what they do - especially if there are <code>scripts/</code> skill.</li>
+ <li><strong>Read before installing</strong>: Open SKILL.md yourself, or ask the agent to summarize it without executing anything. Identify requested tools, commands, network access, secrets, and configuration changes.</li>
+ <li><strong>Back up before configuration changes</strong>: Skills such as <code>claude-skill-homeassistant</code> and <code>aurora-smart-home</code> may change automations, dashboards, or configuration.yaml. <strong>Create and verify a manual backup under Settings → System → Backups first.</strong></li>
+ <li><strong>Test with a separate Home Assistant instance</strong>: If your production system is complex, evaluate the Skill in a clean test container before granting it access to your household system.</li>
+ <li><strong>Pin production versions</strong>: Use an <code>@tag</code> or <code>@commit</code> when supported, and review upstream changes before upgrading.</li>
+ <li><strong>Limit exposed entities</strong>: Under Settings → Voice assistants → Expose, select only the areas and entities the agent needs. Withhold locks, alarms, and main power controls unless you have reviewed the risks and safeguards.</li>
+ <li><strong>Treat stars as popularity, not proof of safety</strong>: Review permissions and behavior even for popular collections, especially Skills that include <code>scripts/</code>.</li>
  </ul>
  </section>
 
- <section id="spec" data-nav="SKILL.md Specifications">
- <h2 data-icon="what">SKILL.md Quick Specs</h2>
- <p>The minimum skeleton of a skill (for detailed specifications, see <a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a>): </p>
+ <section id="spec" data-nav="SKILL.md format">
+ <h2 data-icon="what">SKILL.md format at a glance</h2>
+ <p>The frozen example below shows a minimal Skill. See <a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a> for the source specification. A proposed editorial correction is recorded separately because code blocks are not edited directly.</p>
  <pre class="code-block"><code>washer-notify/
 ├── SKILL.md          ← The only required file
 └── references/       ← Optional supporting files (read by the AI only when needed)
@@ -412,58 +412,58 @@ action: notify.mobile_app_myphone
 Show the user a YAML summary and obtain approval before applying it.</code></pre>
  <table class="data-table">
  <thead>
- <tr><th>field</th><th>Required</th><th>Description</th></tr>
+ <tr><th>Field</th><th>Required</th><th>Description</th></tr>
  </thead>
  <tbody>
- <tr><td><code>name</code></td><td>Yes</td><td>Lowercase numbers and hyphens, 1–64 characters.</td></tr>
- <tr><td><code>description</code></td><td>Yes</td><td>What to do + when to use. <strong>The AI relies on this line to decide whether to load</strong>—Write in what the user would say.</td></tr>
- <tr><td><code>license</code></td><td>No</td><td>I suggest you write it and let others know if it can be changed.</td></tr>
- <tr><td><code>compatibility</code></td><td>No</td><td>Mark supported agents/MCPs, which is useful when sharing across harnesses.</td></tr>
- <tr><td><code>allowed-tools</code></td><td>No</td><td>Limit which tools the skill can call, which is a line of security.</td></tr>
+ <tr><td><code>name</code></td><td>Yes</td><td>Use lowercase letters, numbers, and hyphens; 1–64 characters.</td></tr>
+ <tr><td><code>description</code></td><td>Yes</td><td>State what the Skill does and when to use it. <strong>The agent uses this description when deciding whether the Skill applies.</strong> Include phrases a user is likely to say.</td></tr>
+ <tr><td><code>license</code></td><td>No</td><td>State the license so others know whether they may modify and redistribute the Skill.</td></tr>
+ <tr><td><code>compatibility</code></td><td>No</td><td>Document supported agents and MCP servers when sharing across harnesses.</td></tr>
+ <tr><td><code>allowed-tools</code></td><td>No</td><td>List the tools the Skill may call as one layer of access control.</td></tr>
  </tbody>
  </table>
- <p>Convention: Keep SKILL.md simple and put attachments <code>references/</code>, <code>scripts/</code>, <code>assets/</code>, AI reads only when needed to avoid overloading the context. HA related skills are recommended in <code>references/</code> Put a "service comparison table" and check it before the AI calls.</p>
+ <p>Keep SKILL.md concise. Put supporting material under <code>references/</code>, <code>scripts/</code>, or <code>assets/</code> so the agent can load it only when needed. For a Home Assistant Skill, consider adding a map under <code>references/</code> that links common tasks to the correct actions and required permissions.</p>
  </section>
 
  <section id="faq" data-nav="FAQ">
  <h2 data-icon="faq">FAQ</h2>
  <details class="faq">
- <summary>Installed but no response at all?</summary>
- <div class="body">Open a new session first (skill is loaded when the session starts). Then ask the AI "What skills are currently loaded?" to confirm that they are in the list; if they are in the list but are not triggered, it is probably <code>description</code> Didn’t cover what you said – just name it: “Use <code>claude-skill-homeassistant</code> Help me do this".</div>
+ <summary>Why does an installed Skill not respond?</summary>
+ <div class="body">Start a new session because many harnesses load Skills only at session startup. Ask which Skills are loaded. If the Skill appears but does not activate, its <code>description</code> may not match your request. Name it explicitly: “Use <code>claude-skill-homeassistant</code> for this task.”</div>
  </details>
  <details class="faq">
- <summary>What is the difference between Skill and HA’s Blueprint, Integration, and Assist?</summary>
- <div class="body">The location is different: Skill is added to the end of the AI agent you use (Claude Code/OpenClaw/...), and Home Assistant itself is not modified. Blueprint/Integration/Assist are all added on the HA side. Skill teaches "AI how to deal with HA", and Blueprint teaches "how HA handles events on its own" - the two do not conflict and can be overlapped.</div>
+ <summary>How does a Skill differ from a Blueprint, integration, or Assist?</summary>
+ <div class="body">A Skill is installed in an AI agent environment such as Claude Code or OpenClaw. Blueprints, integrations, and Assist are Home Assistant features. A Skill guides an agent’s work; a Blueprint provides reusable Home Assistant automation logic. You can use both for different parts of the same workflow.</div>
  </details>
  <details class="faq">
- <summary>What happens if you install too many Skills?</summary>
- <div class="body">The name and description of each skill will occupy the context of the system prompt. Installing dozens of packages will distract the AI and become expensive. Principle: Keep the commonly used ones (3-5 related to HA + official document set), and remove the ones you don’t use after the trial.</div>
+ <summary>What happens if I install too many Skills?</summary>
+ <div class="body">A harness may include each Skill’s name and description in the agent context. A large catalog can make selection less reliable and may increase token use. As a starting point, keep 3–5 Home Assistant-related Skills plus the document tools you use, and remove the rest after testing.</div>
  </details>
  <details class="faq">
- <summary>Can I install only one of the monorepo? For example, only esphome in aurora-smart-home?</summary>
- <div class="body">git spec currently has no standard subdirectory syntax. Practical approach: Clone to the local machine and put the desired subfolder (including SKILL.md) into the skills directory of the harness (Claude Code is <code>~/.claude/skills/</code>), or install using a local path.</div>
+ <summary>Can I install only one Skill from a monorepo?</summary>
+ <div class="body">There is no universal Git package syntax for selecting a subdirectory. Clone the repository, then place the required subdirectory—including SKILL.md—in your harness’s Skills directory, such as <code>~/.claude/skills/</code> where applicable, or install it from a local path. Check your harness documentation for the exact location and method.</div>
  </details>
  <details class="faq">
- <summary>Will skill damage my HA? How to save?</summary>
- <div class="body">Yes, especially if <code>ha_config_set_*</code> Permission skill. So the 2nd safety rule says "make a full backup first" - if you mess up, go back to Settings → System → Backups → Restore. If there is no backup or Home Assistant machine has been modified, see <code>configuration.yaml</code> git/snapshot version; HA Green/Yellow factory WoowTech models have daily automatic snapshots.</div>
+ <summary>Can a Skill damage my Home Assistant configuration?</summary>
+ <div class="body">Yes. A Skill with access to <code>ha_config_set_*</code> tools can make harmful changes. Create and verify a backup first, test on a nonproduction instance, and require a preview before applying edits. If something goes wrong, use Settings → System → Backups → Restore with a known-good backup. Recovery without a backup may require a version-controlled <code>configuration.yaml</code> or another recovery mechanism you configured in advance.</div>
  </details>
  <details class="faq">
- <summary>How to write a HA skill yourself?</summary>
- <div class="body">Fastest: install <code>skill-creator</code> (<a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a> (within), call it "Help me write the "Family Weekly Report Production Process" as a skill." You can modify it as you describe it, and the prototype will be ready in 10 minutes. Or depend on <a href="#spec">SKILL.md Specifications</a> The types in the section start by themselves.</div>
+ <summary>How do I write a Home Assistant Skill?</summary>
+ <div class="body">You can install <code>skill-creator</code> from <a href="https://github.com/anthropics/skills" rel="noopener">anthropics/skills</a> and ask it to package a workflow such as a household weekly report. It can produce a first draft in about 10 minutes, but review the generated instructions and permissions carefully. You can also begin with the example in the <a href="#spec">SKILL.md format</a> section.</div>
  </details>
  </section>
 
  <section id="download" data-nav="Download">
  <h2 data-icon="download">Download this handbook</h2>
- <p>The entire book is a self-contained single file of HTML, with all images embedded, and can be opened offline after downloading. The collection information will expire, important decisions will be made before returning <a href="index.html">Resource Hub</a> Watch the online version.</p>
+ <p>This handbook is a self-contained HTML file with embedded icons. Download it for offline reading, but check the online <a href="index.html">Resource Hub</a> before making decisions based on time-sensitive catalog information.</p>
  <p>
- <a class="btn-pill" href="skills.html" download="ha-skill-handbook.html">Download this handbooklet HTML</a>
- <a class="btn-ghost" href="index.html">Return to Resource Hub</a>
+ <a class="btn-pill" href="skills.html" download="ha-skill-handbook.html">Download the HTML file</a>
+ <a class="btn-ghost" href="index.html">Back to Resource Hub</a>
  </p>
  </section>
 
  <footer class="site-footer">
- <p>"HA AI Agent Skill Manual" by <strong>WoowTech Wowu Technology</strong> make, to <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> Authorized release. Third-party skills are subject to their original authorization; the collection size is the 2026-08-20 GitHub public snapshot.</p>
+ <p>The <strong>Home Assistant AI Agent Skill Handbook</strong> is produced by WoowTech and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a>. Third-party Skills remain subject to their original licenses. Collection data reflects a public GitHub snapshot from 2026-08-20.</p>
  <p class="footer-meta">The Smart Space Solution · <a href="index.html">HA Resource Hub</a></p>
  </footer>
  </main>

@@ -3,8 +3,8 @@
 <head>
  <meta charset="utf-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1" />
- <title>HA API/MCP control prompt dictionary · 43 items can be copied · WoowTech</title>
- <meta name="description" content="Use AI/Claude/MCP to control Home Assistant's prompt vocabulary: 43 items divided into 8 categories - lighting scenes, climate air conditioning, energy monitoring, notification push, automated writing, sensor query, daily voice, and troubleshooting. Each message can be ready to copy to an HA MCP server such as ha-mcp-woow to call the corresponding service." />
+ <title>Home Assistant API and MCP Prompt Library · 43 copy-ready prompts · WoowTech</title>
+ <meta name="description" content="Use 43 English prompts in 8 categories to control, query, automate, and troubleshoot Home Assistant with an AI agent through an API or MCP server such as ha-mcp-woow." />
  <meta name="author" content="WoowTech" />
  <meta name="theme-color" content="#6183FC" />
  <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/prompts.html" />
@@ -166,25 +166,24 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
 <body>
 <div class="layout">
  <aside class="sidebar" id="sidebar">
- <a class="brand" href="#top">HA Prompt Dictionary</a>
- <div class="brand-sub">WoowTech · 43 items for AI/MCP</div>
+ <a class="brand" href="#top">HA Prompt Library</a>
+ <div class="brand-sub">WoowTech · 43 prompts for AI and MCP</div>
  <!-- i18n:switch --><nav class="lang-switch" aria-label="Language"><a href="../prompts.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="prompts.html" lang="en" aria-current="page">EN</a></nav><!-- /i18n:switch -->
  <a class="hub-link" href="index.html">◂ HA Resource Hub</a>
  <button class="nav-toggle" id="navToggle" type="button">Contents <span class="nav-toggle-caret"></span></button>
  <div class="toc-in-chapter">
  <h2>Contents</h2>
- <a href="#why">What this handbook covers</a>
- <a href="#howto">How to use</a>
- <a href="#cat-light">Lights and Scenes</a>
- <a href="#cat-climate">Climate and air conditioning</a>
- <a href="#cat-energy">Energy and power saving</a>
- <a href="#cat-notify">Notifications and push notifications</a>
- <a href="#cat-auto">Write automation
-​​</a>
- <a href="#cat-sensor">Sensors and Devices</a>
- <a href="#cat-voice">Daily voice conversations</a>
- <a href="#cat-ops">Troubleshooting and maintenance</a>
- <a href="#tips">Writing Cheat Sheet</a>
+ <a href="#why">About this library</a>
+ <a href="#howto">Get started</a>
+ <a href="#cat-light">Lights and scenes</a>
+ <a href="#cat-climate">Climate</a>
+ <a href="#cat-energy">Energy</a>
+ <a href="#cat-notify">Notifications</a>
+ <a href="#cat-auto">Automations</a>
+ <a href="#cat-sensor">Sensors</a>
+ <a href="#cat-voice">Everyday requests</a>
+ <a href="#cat-ops">Troubleshooting</a>
+ <a href="#tips">Prompt tips</a>
  <a href="#faq">FAQ</a>
  <a href="#download">Download</a>
  </div>
@@ -193,64 +192,64 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
  <main class="content" id="top">
  <div class="chapter-header">
  <span class="kicker-script">just tell your AI</span>
- <div class="kicker">WoowTech Prompt Database</div>
+ <div class="kicker">WoowTech Prompt Library</div>
  <h1>43 Home Assistant prompts for AI</h1>
  <p class="lead">Connect Home Assistant to Claude, ChatGPT, or Gemini through an HA MCP server such as <code>ha-mcp-woow</code>. These 43 English prompts cover eight practical categories; copy one, then replace example areas and entity IDs with those in your home.</p>
  </div>
 
- <section id="why" data-nav="What this handbook covers">
- <h2 data-icon="why">What this handbook covers</h2>
- <p>Home Assistant’s REST API, WebSocket API and new version <a href="https://developers.home-assistant.io/docs/api/rest/" rel="noopener">MCP server</a> Let the LLM agent call any service, read any entity status, and run any template. match <code>ha-mcp-woow</code> or official <a href="https://www.home-assistant.io/integrations/mcp_server/" rel="noopener">MCP Server integration</a>, your AI can:</p>
+ <section id="why" data-nav="About this library">
+ <h2 data-icon="why">What this library is for</h2>
+ <p>Home Assistant provides a REST API, a WebSocket API, and an official <a href="https://developers.home-assistant.io/docs/api/rest/" rel="noopener">REST API reference</a>. With <code>ha-mcp-woow</code> or the official <a href="https://www.home-assistant.io/integrations/mcp_server/" rel="noopener">MCP Server integration</a>, an LLM agent can use the tools you authorize to:</p>
  <ul>
- <li><strong>control</strong>: call <code>light.turn_on</code>, <code>climate.set_temperature</code>, <code>cover.open_cover</code> Wait for all services</li>
- <li><strong>Query</strong>: Read entity status, attributes, and historical data, and answer "What's the current temperature in the living room?" "How much electricity was used last week?"</li>
- <li><strong>Edit</strong>: Add/modify/delete automation, scripts, scenes, dashboards</li>
- <li><strong>management</strong>: Install/remove add-ons, HACS packages, integration, run backups and upgrades</li>
+ <li><strong>Control devices</strong>: Call actions such as <code>light.turn_on</code>, <code>climate.set_temperature</code>, and <code>cover.open_cover</code>.</li>
+ <li><strong>Query data</strong>: Read entity states, attributes, and available history to answer questions such as “What is the living-room temperature?”</li>
+ <li><strong>Edit configuration</strong>: Create or change automations, scripts, scenes, and dashboards when the connected tools support those operations.</li>
+ <li><strong>Manage the system</strong>: Work with add-ons, HACS packages, integrations, backups, and upgrades when explicitly authorized.</li>
  </ul>
- <p>Every item included in this handbook is <strong>Written for AI agent to read</strong> Natural language prompts - not short commands for Voice Assistant, but complete demand descriptions that allow AI to actively translate into one or more action calls, confirm back and forth with you, and leave operation records.</p>
+ <p>Each entry is a <strong>natural-language prompt for an AI agent</strong>. Unlike a short voice command, it can describe several actions, require a preview, and ask the agent to report what it did.</p>
  </section>
 
- <section id="howto" data-nav="How to use">
- <h2 data-icon="steps">How to start using it</h2>
+ <section id="howto" data-nav="Get started">
+ <h2 data-icon="steps">Get started</h2>
  <ol class="steps">
  <li>
- <h3>Connect HA to MCP server</h3>
- <p>Option 1: Official <a href="https://www.home-assistant.io/integrations/mcp_server/" rel="noopener">MCP Server integration</a> (HA 2025.7+) → Direct connection to clients such as Claude Desktop/VS Code Copilot. Option two:<code>ha-mcp-woow</code>(Enhanced version from WoowTech, including more complete config/HACS/backup tools, see <a href="ch19_voice_ai.html">Chapter 19</a> with <a href="ch20_addons_docker.html">Chapter 20</a>).</p>
+ <h3>Connect Home Assistant to an MCP server</h3>
+ <p>Option 1: Connect a compatible client through the official <a href="https://www.home-assistant.io/integrations/mcp_server/" rel="noopener">MCP Server integration</a> (HA 2025.7+). Option 2: Use <code>ha-mcp-woow</code>, a WoowTech version with additional configuration, HACS, backup, log, and trace tools. See <a href="ch19_voice_ai.html">Chapter 19</a> and <a href="ch20_addons_docker.html">Chapter 20</a>.</p>
  </li>
  <li>
- <h3>Expose entities to LLM</h3>
- <p>Settings → Voice Assistants → Expose: Check the areas and entities you want the AI to move. <strong>Security advice</strong>: Expose only the "harmless" ones (lights, sensors) first, verify that the behavior is correct, and then release the safe ones (door locks, alarms).</p>
+ <h3>Expose entities to the LLM</h3>
+ <p>Open Settings → Voice assistants → Expose, then select only the areas and entities the AI needs. <strong>Start safely</strong>: expose low-risk entities such as lights and sensors first. Verify the agent’s behavior before considering locks, alarms, or other security-sensitive controls.</p>
  </li>
  <li>
- <h3>Copy the prompts corresponding to the scenario in this handbook</h3>
- <p>Replace bracket-like words like "living room", "master bedroom" and "26 degrees" with the actual areas/devices/parameters of your home, and paste them into the dialog box of Claude/ChatGPT/Gemini.</p>
+ <h3>Copy a prompt for your task</h3>
+ <p>Replace example names such as “living room” and “main bedroom,” along with values such as “26 degrees,” with the areas, devices, and settings in your home. Then paste the prompt into Claude, ChatGPT, or Gemini.</p>
  </li>
  <li>
- <h3>Develop the habit of “reporting first and then taking action”</h3>
- <p>For all prompts that will change the settings, keep the words "give me a summary first, and I will confirm and then apply" - important changes should be reviewed before being approved, which is the cheapest insurance.</p>
+ <h3>Require a preview before important changes</h3>
+ <p>For prompts that change configuration, retain instructions such as “summarize the change and wait for my confirmation before applying it.” Review before approval to protect your existing setup.</p>
  </li>
  </ol>
- <div class="callout tip"><strong>Tip:</strong> Didn't answer the MCP and just want to talk via voice? Use built-in instead <a href="ch19_voice_ai.html">Assist conversational agent</a> (Settings → Voice Assistants), the effect is not as good but it can still be used. The prompts in this handbook are probably too long under Assist and will be truncated.</div>
+ <div class="callout tip"><strong>Tip:</strong> If you only need short voice commands, use an <a href="ch19_voice_ai.html">Assist conversation agent</a> instead. Many prompts in this library are too long or complex for a voice exchange.</div>
  </section>
 
- <section id="cat-light" data-nav="Lights and Scenes">
- <h2 data-icon="light">Lighting and Scene Control</h2>
- <p>The most basic and most commonly called category. Will all go <code>light.turn_on</code>/<code>light.turn_off</code>/<code>scene.turn_on</code>/<code>light.toggle</code>.</p>
+ <section id="cat-light" data-nav="Lights and scenes">
+ <h2 data-icon="light">Lights and scenes</h2>
+ <p>These common requests use actions such as <code>light.turn_on</code>, <code>light.turn_off</code>, <code>scene.turn_on</code>, and <code>light.toggle</code>.</p>
 
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">Turn on every living-room light at 60% brightness and set the color temperature to a warm white at 3000 K. Respond in English.</p>
- <p class="pnote">go <code>light.turn_on</code> bring <code>brightness_pct</code>＋<code>kelvin</code>; If the light does not support color temperature, it will automatically fallback.</p>
+ <p class="pnote">Uses <code>light.turn_on</code> with <code>brightness_pct</code> and <code>kelvin</code>. The agent should skip color-temperature settings for unsupported lights.</p>
  </div>
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">List every light that is currently on and identify the area containing each one. Respond in English.</p>
- <p class="pnote">go <code>light</code> domain state query +<code>area_registry</code> Cross comparison.</p>
+ <p class="pnote">Queries states in the <code>light</code> domain and matches them against the <code>area_registry</code>.</p>
  </div>
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">Turn on the “Movie mode” scene: switch off the main living-room light, dim the accent light to red, and turn on the TV backlight. If the scene does not exist, first help me create a dynamic scene with <code>scene.create</code>. Respond in English.</p>
  </div>
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">Create a sunrise effect for the main bedroom light: over 20 minutes, raise brightness gradually from 5% to 100% and color temperature from 2200 K to 5000 K. Use script transitions rather than multiple turn_on actions. Respond in English.</p>
- <p class="pnote">It is recommended to go <code>light.turn_on</code> bring <code>transition</code>, or call an existing <code>script.wake_up</code>.</p>
+ <p class="pnote">Use <code>light.turn_on</code> with <code>transition</code>, or call an existing <code>script.wake_up</code>.</p>
  </div>
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">Turn off every light in the home except night-lights whose entity IDs begin with <code>light.nightlight_</code>. Respond in English.</p>
@@ -260,13 +259,13 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
  </div>
  </section>
 
- <section id="cat-climate" data-nav="Climate and air conditioning">
- <h2 data-icon="climate">Climate and air conditioning control</h2>
- <p>go <code>climate.set_temperature</code>/<code>climate.set_hvac_mode</code>/<code>climate.set_fan_mode</code>. Answers often require cross-checking <code>sensor.*_temperature</code> with <code>weather.*</code>.</p>
+ <section id="cat-climate" data-nav="Climate">
+ <h2 data-icon="climate">Climate and air conditioning</h2>
+ <p>These requests use actions such as <code>climate.set_temperature</code>, <code>climate.set_hvac_mode</code>, and <code>climate.set_fan_mode</code>. Some also compare <code>sensor.*_temperature</code> entities with <code>weather.*</code> data.</p>
 
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">Report the current temperature and humidity in every area. If an area is cooler indoors than outside, turn off its air conditioner and tell me what you changed. Respond in English.</p>
- <p class="pnote">state query +<code>weather.*</code> Control + conditional call <code>climate.turn_off</code>.</p>
+ <p class="pnote">Compares entity states with <code>weather.*</code> data, then calls <code>climate.turn_off</code> only when the stated condition is true.</p>
  </div>
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">Prepare to put every air conditioner into sleep mode: 25 degrees with low fan speed in the main bedroom, and 26 degrees with automatic fan speed elsewhere. List the entities you intend to change and wait for my confirmation before acting. Respond in English.</p>
@@ -282,9 +281,9 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
  </div>
  </section>
 
- <section id="cat-energy" data-nav="Energy and power saving">
- <h2 data-icon="energy">Energy monitoring and power saving analysis</h2>
- <p>go <code>history</code>/<code>recorder</code> Query +<code>sensor.*_energy</code> Analysis. For large-scale analysis, it is recommended to use a model with strong inference (Claude Opus/GPT-5).</p>
+ <section id="cat-energy" data-nav="Energy">
+ <h2 data-icon="energy">Energy monitoring and analysis</h2>
+ <p>These requests combine <code>history</code> or <code>recorder</code> data with <code>sensor.*_energy</code> entities. Large data sets may require a model with sufficient context and analysis capability.</p>
 
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">Use <code>ha_get_history</code> to retrieve the past 7 days for every <code>sensor.*_energy</code> entity. Calculate energy use for today and yesterday and the 7-day daily average. Rank the five highest-consuming devices and identify what each sensor probably measures. Respond in English.</p>
@@ -303,15 +302,15 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
  </div>
  </section>
 
- <section id="cat-notify" data-nav="Notifications and push notifications">
- <h2 data-icon="notify">Notifications and push notifications</h2>
- <p>go <code>notify.mobile_app_*</code>/<code>notify.persistent_notification</code>/<code>notify.notify</code>. actionable notification to bring <code>data.actions</code>.</p>
+ <section id="cat-notify" data-nav="Notifications">
+ <h2 data-icon="notify">Notifications</h2>
+ <p>These requests use notification actions such as <code>notify.mobile_app_*</code>, <code>notify.persistent_notification</code>, and <code>notify.notify</code>. Actionable notifications include <code>data.actions</code>.</p>
 
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">Use <code>notify.mobile_app_myphone</code> to send a test notification titled “HA notification test” with the current timestamp as its message. Also list any other mobile_app notification actions available. Respond in English.</p>
  </div>
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
- <p class="ptext">Create an automation for when washing machine <code>switch.washer</code> changes from on to off and remains inactive for more than 3 minutes. Send an actionable notification with “Collected” and “Delay 30 minutes” buttons, and update the automation state according to the chosen action. Respond in English.</p>
+ <p class="ptext">Create an automation for when washing machine <code>switch.washer</code> changes from on to off and remains inactive for more than 3 minutes. Send an actionable notification with “Collected” and “Delay 30 minutes” buttons, and create handlers for both button actions. Summarize the automation and wait for my confirmation before enabling it. Respond in English.</p>
  </div>
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">Put every device below 20% battery into one notification, including its area, entity name, and current battery level. Filter with <code>label.battery</code> when available; otherwise find entities named <code>*_battery</code>. Respond in English.</p>
@@ -324,13 +323,13 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
  </div>
  </section>
 
- <section id="cat-auto" data-nav="Write automation">
- <h2 data-icon="auto">Write/modify automation and scripts</h2>
- <p>go <code>ha_config_set_automation</code>/<code>ha_config_set_script</code>/<code>ha_config_set_scene</code>. This category most requires AI to have the discipline of "plan first and then act" - each item states "give summary first".</p>
+ <section id="cat-auto" data-nav="Automations">
+ <h2 data-icon="auto">Write or modify automations and scripts</h2>
+ <p>These requests use <code>ha_config_set_automation</code>, <code>ha_config_set_script</code>, and <code>ha_config_set_scene</code>. Review the proposed configuration before allowing the agent to apply it.</p>
 
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">Help me write an arrival automation. When any household member’s phone device_tracker changes from not_home to home, turn on <code>light.entrance</code>, set the air conditioner to 26 degrees, and play my favorite playlist. Show me a YAML summary and wait for confirmation before enabling it. Respond in English.</p>
- <p class="pnote">Important: Don’t hardcode AI with device_id, always use entity_id (see <a href="ch8_first_automation.html">Chapter 8</a>).</p>
+ <p class="pnote">Important: Tell the agent to use entity_id rather than hard-coding device_id. See <a href="ch8_first_automation.html">Chapter 8</a>.</p>
  </div>
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">Modify the “Good night” automation so that, when <code>calendar.family</code> contains an event before 08:00 the next morning, the morning scene starts 30 minutes earlier. Read the existing automation YAML first, explain the proposed change, and wait for approval. Respond in English.</p>
@@ -349,9 +348,9 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
  </div>
  </section>
 
- <section id="cat-sensor" data-nav="Sensors and Devices">
- <h2 data-icon="sensor">Sensor and device query</h2>
- <p>go <code>ha_get_state</code>/<code>ha_get_history</code>/<code>ha_search</code>/<code>ha_get_device</code>/<code>ha_list_floors_areas</code>.</p>
+ <section id="cat-sensor" data-nav="Sensors">
+ <h2 data-icon="sensor">Query sensors and devices</h2>
+ <p>These requests use tools such as <code>ha_get_state</code>, <code>ha_get_history</code>, <code>ha_search</code>, <code>ha_get_device</code>, and <code>ha_list_floors_areas</code>.</p>
 
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">List every floor and area in the home and the devices assigned to each area. Use a table and identify any entities that have not been assigned to an area. Respond in English.</p>
@@ -367,16 +366,16 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
  </div>
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">Rename the living-room sensor from <code>sensor.living_temp</code> to <code>sensor.living_room_temperature</code>. <strong>First list every automation, script, scene, and dashboard that references it.</strong> Wait for my confirmation, then update all references together. Respond in English.</p>
- <p class="pnote">HA has <code>ha_get_entity</code> Remember to use references.</p>
+ <p class="pnote">Use the references returned by <code>ha_get_entity</code> before renaming the entity.</p>
  </div>
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">List every entity with <code>device_class: motion</code> and identify those that have not triggered during the past 24 hours; they may be faulty or poorly positioned. Respond in English.</p>
  </div>
  </section>
 
- <section id="cat-voice" data-nav="Daily voice conversations">
- <h2 data-icon="voice">Daily voice conversations (short version)</h2>
- <p>The following are suitable <strong>Voice assistant and chat dual use</strong>—Short, spoken, and able to trigger the correct service. match <a href="ch19_voice_ai.html">Chapter 19</a> Assist is the most straightforward to use.</p>
+ <section id="cat-voice" data-nav="Everyday requests">
+ <h2 data-icon="voice">Everyday voice and chat requests</h2>
+ <p>These short, conversational prompts work well for <strong>both voice and chat</strong>, including the Assist setup described in <a href="ch19_voice_ai.html">Chapter 19</a>.</p>
 
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">Turn on the living-room lights. Respond in English.</p>
@@ -388,19 +387,19 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
  <p class="ptext">Set the air conditioner to 26 degrees with sleep fan mode. Respond in English.</p>
  </div>
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
- <p class="ptext">Remind me to take out the trash tomorrow at 19:00. Add an item to <code>todo.family</code> and set its due date. Respond in English.</p>
+ <p class="ptext">Remind me to take out the trash tomorrow at 07:00. Add an item to <code>todo.family</code> and set its due date. Respond in English.</p>
  </div>
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
- <p class="ptext">How many people are home now? What is the outdoor temperature, and will it rain this afternoon? Respond in English.</p>
+ <p class="ptext">What is the current indoor temperature? What is the outdoor temperature, and will it rain this afternoon? Respond in English.</p>
  </div>
  </section>
 
- <section id="cat-ops" data-nav="Troubleshooting and maintenance">
+ <section id="cat-ops" data-nav="Troubleshooting">
  <h2 data-icon="ops">Troubleshooting and maintenance</h2>
- <p>go <code>ha_get_logs</code>/<code>ha_get_automation_traces</code>/<code>ha_get_system_health</code>/<code>ha_manage_backup</code>. These are the most valuable batches when something goes wrong with HA.</p>
+ <p>These requests use <code>ha_get_logs</code>, <code>ha_get_automation_traces</code>, <code>ha_get_system_health</code>, and <code>ha_manage_backup</code> to investigate Home Assistant problems.</p>
 
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
- <p class="ptext">The “Turn on the lights at sunset” automation did not trigger this morning. Use <code>ha_get_automation_traces</code> to retrieve its five most recent traces and identify the cause. If a fix is available, summarize it and wait for my confirmation before applying it. Respond in English.</p>
+ <p class="ptext">The “Turn on the lights at sunset” automation did not trigger as expected today. Use <code>ha_get_automation_traces</code> to retrieve its five most recent traces and identify the cause. If a fix is available, summarize it and wait for my confirmation before applying it. Respond in English.</p>
  </div>
  <div class="prompt-card"><button class="copy" type="button">Copy</button>
  <p class="ptext">Use <code>ha_get_logs</code> to retrieve entries at log_level=ERROR or higher from the past 24 hours. Group them by integration and entity, identify the groups with the most errors, and recommend the three highest-priority fixes. Respond in English.</p>
@@ -416,84 +415,84 @@ pre.code-block code { background: none; padding: 0; color: inherit; }
  </div>
  </section>
 
- <section id="tips" data-nav="Writing Cheat Sheet">
- <h2 data-icon="ai">Cheat sheet for writing prompts for AI</h2>
- <p>After reading 43 items, the routine actually only has five moves. Writing instructions to an AI agent is different from writing instructions to a human being:</p>
+ <section id="tips" data-nav="Prompt tips">
+ <h2 data-icon="ai">Five ways to write better agent prompts</h2>
+ <p>An AI agent needs more explicit instructions than a person. Use these patterns to reduce ambiguity and protect existing configuration:</p>
  <table class="data-table">
  <thead>
- <tr><th>Put it this way</th><th>Don't say that</th><th>why</th></tr>
+ <tr><th>Say this</th><th>Not this</th><th>Why</th></tr>
  </thead>
  <tbody>
  <tr>
- <td>Use entity_id to say: "Open <code>light.living</code>” or use the friendly name “Turn on the main light in the living room”</td>
- <td>"Turn on that light" "Turn on that light"</td>
- <td>The AI agent requires a specific entity_id or an explicit name to call the service.</td>
+ <td>Use entity_id: “Turn on <code>light.living</code>,” or use the clear friendly name “Turn on the main living-room light.”</td>
+ <td>“Turn on that light.”</td>
+ <td>The agent needs a specific entity_id or an unambiguous name.</td>
  </tr>
  <tr>
- <td>Specify which service to use: "Use <code>climate.set_temperature</code> Assume 26"</td>
- <td>"Turn it to 26 degrees" (let the AI guess randomly)</td>
- <td>Complex control explanation tool, AI will not use the wrong service. Simple instructions can be spoken.</td>
+ <td>Name the action for a complex request: “Use <code>climate.set_temperature</code> to set the target to 26 degrees.”</td>
+ <td>“Set it to 26.”</td>
+ <td>An explicit action and target reduce the chance that the agent will choose the wrong tool. Simple requests can remain conversational.</td>
  </tr>
  <tr>
- <td>Read first, then write: "Read the existing automation YAML for me first, and then tell me how you want to change it."</td>
- <td>"Help me change xxx automation"</td>
- <td>If you change it without reading the original text, it will most likely be bad. This is the iron rule to preserve the existing settings.</td>
+ <td>Read before writing: “Read the existing automation YAML, then explain how you propose to change it.”</td>
+ <td>“Change my automation.”</td>
+ <td>The agent must understand the current configuration before editing it.</td>
  </tr>
  <tr>
- <td>Summary first and then apply: "Give me the YAML summary and I will confirm and then enable it"</td>
- <td>"Help me add an automation"</td>
- <td>Anyone who knows how to use config should add this sentence, the cheapest insurance.</td>
+ <td>Preview before applying: “Show me a YAML summary and wait for my confirmation before enabling it.”</td>
+ <td>“Add an automation.”</td>
+ <td>A confirmation step helps prevent unintended configuration changes.</td>
  </tr>
  <tr>
- <td>Use entity_id instead of device_id: "Trigger <code>binary_sensor.front_door</code>”</td>
- <td>Use device_id UUID</td>
- <td>If device_id changes the device, the connection will be broken, but entity_id is stable; this is also <a href="ch8_first_automation.html">Chapter 8</a> iron law.</td>
+ <td>Use entity_id rather than device_id: “Trigger on <code>binary_sensor.front_door</code>.”</td>
+ <td>Use a device_id UUID.</td>
+ <td>An entity ID is easier to inspect and maintain. See <a href="ch8_first_automation.html">Chapter 8</a>.</td>
  </tr>
  </tbody>
  </table>
- <div class="callout warn"><strong>Safety reminder:</strong> Connect HA to LLM = give AI the ability to change your home's settings and trigger entities. <strong>When Exposing entities, only the "harmless" ones (lights, sensors) will be placed first, and after a few weeks of verification, the security categories (door locks, alarms, main power switches) will be opened.</strong> Actionable prompts retain the phrase "summary first and then apply".</div>
+ <div class="callout warn"><strong>Warning:</strong> Connecting Home Assistant to an LLM may allow the agent to change configuration and control entities. <strong>Expose only low-risk entities, such as lights and sensors, while you validate the setup. Do not expose locks, alarms, or main power controls without a deliberate security review.</strong> Require a preview and confirmation for prompts that change configuration.</div>
  </section>
 
  <section id="faq" data-nav="FAQ">
  <h2 data-icon="faq">FAQ</h2>
  <details class="faq">
- <summary>What is the difference between MCP server and REST API and Voice Assistant?</summary>
- <div class="body">Voice Assistant (Assist) uses intent, short commands, and is pre-defined; REST API is an HTTP call service, suitable for writing programs; MCP server is a "tool directory" for LLM agent - AI can dynamically discover which services can be called, which states can be read, and which settings can be modified, without the need to hard-code intentions in advance. The prompts in this handbook are all for MCP/API, and the length and complexity are beyond the capabilities of Assist.</div>
+ <summary>How do an MCP server, the REST API, and Assist differ?</summary>
+ <div class="body">Assist processes conversational intents and is best suited to concise requests. The REST API lets software read states and call actions over HTTP. An MCP server presents authorized tools to an LLM agent, which can discover and combine them for a task. Many prompts in this library are designed for API or MCP tools and are more complex than a typical Assist request.</div>
  </details>
  <details class="faq">
- <summary>Should I use ha-mcp-woow or official MCP Server integration?</summary>
- <div class="body">Home Assistant integration (HA 2025.7+) is enough, covering state query + action call;<code>ha-mcp-woow</code> It is an enhanced version of WoowTech, with additional config editing, HACS management, backup tools, log/trace query, etc. (many prompts used in this handbook <code>ha_config_set_*</code>, <code>ha_get_automation_traces</code>, <code>ha_manage_backup</code> That’s what it comes from). If you want a complete experience, choose <code>ha-mcp-woow</code>, I just want to try it safely and choose Home Assistant one.</div>
+ <summary>Should I use ha-mcp-woow or the official MCP Server integration?</summary>
+ <div class="body">The official integration (HA 2025.7+) supports Home Assistant control through exposed entities. <code>ha-mcp-woow</code> adds WoowTech tools for configuration editing, HACS management, backups, logs, and traces. Prompts that mention <code>ha_config_set_*</code>, <code>ha_get_automation_traces</code>, or <code>ha_manage_backup</code> require those additional tools. Choose <code>ha-mcp-woow</code> or the official integration according to the documented capabilities and permissions your task requires.</div>
  </details>
  <details class="faq">
- <summary>What should I do if AI often calls the wrong service or gives the wrong entity_id?</summary>
- <div class="body">Three common reasons: (1) The entity is not exposed to LLM (Settings → Voice Assistants → Expose), (2) The naming is too vague and AI cannot guess it (<code>sensor.abc123</code> Than <code>sensor.living_temperature</code> Difficult to use), (3) The LLM context is too stuffed, and important entities are truncated. Correction: Name first (<a href="ch4_naming_labels.html">Chapter 4</a>), then expose, and finally only expose relevant areas.</div>
+ <summary>Why does the AI call the wrong action or use the wrong entity_id?</summary>
+ <div class="body">Three common causes are: (1) the entity is not exposed under Settings → Voice assistants → Expose; (2) its name is ambiguous—<code>sensor.abc123</code> is harder to identify than <code>sensor.living_temperature</code>; or (3) too much context prevents the agent from seeing the relevant entity. Start with clear names (<a href="ch4_naming_labels.html">Chapter 4</a>), expose only what is needed, and state the intended entity ID in the prompt.</div>
  </details>
  <details class="faq">
- <summary>Will it cost a lot of tokens/expensive?</summary>
- <div class="body">Daily control (turning on lights, checking temperature, single automation) costs almost no money; energy analysis, log capture of the entire domain for 7 days, and large-scale reconstruction of automation will cost tokens. Save money: only expose relevant entities, use cheap models (Claude Haiku, GPT-4o mini) for large analysis, and switch to strong models for complex planning.</div>
+ <summary>How many tokens will these prompts use?</summary>
+ <div class="body">Usage depends on the model, provider, tool output, and task. A simple control request generally uses less context than a 7-day log analysis or a large automation refactor. Limit tool output and expose only relevant entities. Check your provider’s current pricing before choosing a model.</div>
  </details>
  <details class="faq">
- <summary>Can it be triggered automatically instead of manually posting prompts every time?</summary>
- <div class="body">Yes. Wrap the prompts in this handbook into skills (see <a href="skills.html">Skill Manual</a>), or made into HA <code>script</code> bring <code>service: conversation.process</code> To LLM. Advanced approach: Use HA automation to trigger LLM analysis and perform corresponding actions on specific events (water leakage, low battery) - but pay special attention to safety at this time, and do not allow the AI ​​to do unrecoverable operations.</div>
+ <summary>Can I trigger a prompt automatically?</summary>
+ <div class="body">Yes. You can package a workflow as a skill (see the <a href="skills.html">Skill Handbook</a>) or use a Home Assistant <code>script</code> with <code>service: conversation.process</code>. An automation can also ask an LLM to analyze an event such as a leak or low battery. Restrict its permissions and do not let an unattended agent perform irreversible or safety-critical actions.</div>
  </details>
  <details class="faq">
- <summary>Can prompts be used directly with family members?</summary>
- <div class="body">Yes. Download this page as a single HTML file and send it to the family group. Everyone can choose their own scene and copy and paste it directly. With the "Daily Voice Conversation" section, even non-technical family members can get started.</div>
+ <summary>Can household members use these prompts?</summary>
+ <div class="body">Yes. Share the downloaded HTML file, then have each person replace the examples with your actual area and entity names. The everyday requests are a simple place to start. Make sure each account and agent has only the permissions it needs.</div>
  </details>
  </section>
 
  <section id="download" data-nav="Download">
  <h2 data-icon="download">Download this handbook</h2>
- <p>The entire book is a self-contained single-file HTML, with all icons embedded. After downloading, it can be opened offline and forwarded directly to family members and colleagues.</p>
+ <p>This handbook is a self-contained HTML file with embedded icons. Download it to read offline or share with household members and colleagues.</p>
  <p>
- <a class="btn-pill" href="prompts.html" download="ha-prompt-library.html">Download this handbooklet HTML</a>
- <a class="btn-ghost" href="index.html">Return to Resource Hub</a>
+ <a class="btn-pill" href="prompts.html" download="ha-prompt-library.html">Download the HTML file</a>
+ <a class="btn-ghost" href="index.html">Back to Resource Hub</a>
  </p>
  </section>
 
  <footer class="site-footer">
- <p>"HA API/MCP Control Prompt Dictionary" by <strong>WoowTech Wowu Technology</strong> make, to <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> Authorized release.</p>
- <p class="footer-meta">The Smart Space Solution · <a href="index.html">HA Resource Hub</a> · MCP tool name starts with <code>ha-mcp-woow</code> v2026-08 is valid, Home Assistant MCP integration name may be slightly different.</p>
+ <p>The <strong>Home Assistant API and MCP Prompt Library</strong> is produced by WoowTech and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a>.</p>
+ <p class="footer-meta">The Smart Space Solution · <a href="index.html">HA Resource Hub</a> · Tool names reflect <code>ha-mcp-woow</code> v2026-08; names in the official MCP integration may differ.</p>
  </footer>
  </main>
 </div>

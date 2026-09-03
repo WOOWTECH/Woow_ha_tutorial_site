@@ -1,0 +1,10 @@
+{
+  "file": "prompts.html",
+  "entries": [
+    {
+      "unit": "#faq-conversation-action",
+      "zh": "<code>service: conversation.process</code>",
+      "en": "<code>action: conversation.process</code>"
+    }
+  ]
+}
