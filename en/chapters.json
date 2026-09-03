@@ -7,7 +7,7 @@
     "baseUrl": "https://woowtech.github.io/Woow_ha_tutorial_site/en",
     "repoUrl": "https://github.com/WOOWTECH/Woow_ha_tutorial_site",
     "locale": "en_US",
-    "description": "A 22-chapter Home Assistant guide with 3 appendices, covering login, system settings, floors and areas, dashboards, notifications, automations, protocols, integrations, energy monitoring, history, voice assistants and LLMs, Docker architecture, and remote access. Each chapter takes about 10 minutes.",
+    "description": "A 22-chapter Home Assistant guide with 3 appendices covering login, system settings, floors and areas, dashboards, notifications, automations, protocols, integrations, energy monitoring, history, voice assistants and LLMs, Docker architecture, and remote access. Allow about 10 minutes per chapter.",
     "footerMeta": "Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it.",
     "ogImage": "assets/og/woowtech.en.png",
     "license": {
@@ -41,7 +41,7 @@
       "navLabel": "Log in to HA",
       "title": "Log in to Home Assistant",
       "pagerTitle": "01 · Log in to HA",
-      "card": "Learn the login page, “Stay logged in,” and when to use the web interface or Companion App.",
+      "card": "Learn how the login page and “Stay logged in” work, and when to use the web interface or Companion App.",
       "description": "Learn three ways to find your Home Assistant URL, how Owner and Administrator accounts differ, when to use “Stay logged in,” and how the web interface compares with the Companion App.",
       "part": "Foundations: setup and everyday use"
     },
@@ -61,7 +61,7 @@
       "navLabel": "Floors and areas",
       "title": "Floors and areas",
       "pagerTitle": "03 · Floors and areas",
-      "card": "Map your home’s floors and rooms so dashboards, voice control, and automations understand where devices are.",
+      "card": "Map your home’s floors and rooms so you can organize devices for dashboards, voice control, and automations.",
       "description": "Create floors and areas in Home Assistant and assign devices to them, enabling natural controls such as “turn on the living-room lights.”",
       "part": "Foundations: setup and everyday use"
     },
@@ -81,8 +81,8 @@
       "navLabel": "User management",
       "title": "User management",
       "pagerTitle": "05 · User management",
-      "card": "Create accounts for household members, tenants, and guests, with appropriate permissions for each person.",
-      "description": "Understand the difference between users and persons, configure household and guest access, enable MFA, and calibrate mobile location tracking and zone radii.",
+      "card": "Create separate accounts for household members, tenants, and guests, and understand the access each role provides.",
+      "description": "Understand the difference between users and persons, set up household and guest access, enable MFA, and calibrate mobile location tracking and zone radii.",
       "part": "Foundations: setup and everyday use"
     },
     {
@@ -101,7 +101,7 @@
       "navLabel": "Notifications",
       "title": "Notifications",
       "pagerTitle": "07 · Notifications",
-      "card": "Install the Companion App, connect a phone, and send your first push notification.",
+      "card": "Install the Companion App, set it up on a phone, and send your first push notification.",
       "description": "Install the Home Assistant Companion App, connect a phone, send a test notification, and create actionable notifications with buttons.",
       "part": "Foundations: setup and everyday use"
     },
@@ -141,8 +141,8 @@
       "navLabel": "Device settings",
       "title": "Device settings",
       "pagerTitle": "11 · Device settings",
-      "card": "Read the device page, update firmware, manage entities, download diagnostics, and use Repairs.",
-      "description": "Understand the Home Assistant device page: rename devices and entities, disable or hide entities, update firmware, download diagnostics, and resolve Repairs.",
+      "card": "Use the device page to update firmware, manage entities, download diagnostics, and investigate issues in Repairs.",
+      "description": "Understand the Home Assistant device page: rename devices and entities, disable or hide entities, update firmware, download diagnostics, and investigate issues in Repairs.",
       "part": "Foundations: setup and everyday use"
     },
     {
@@ -152,7 +152,7 @@
       "title": "Domain reference",
       "pagerTitle": "12 · Domain reference",
       "card": "A practical reference to common domains, their actions, dashboard cards, and frequent pitfalls.",
-      "description": "Reference common actions, cards, and pitfalls for light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, and notify domains.",
+      "description": "Find common actions, cards, and pitfalls for the light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, and notify domains.",
       "part": "Foundations: setup and everyday use"
     },
     {
@@ -202,8 +202,8 @@
       "navLabel": "Energy dashboard",
       "title": "Energy dashboard and ESG practices",
       "pagerTitle": "17 · Energy dashboard",
-      "card": "Turn energy readings into useful charts, cost tracking, baselines, and defensible reports.",
-      "description": "Select suitable sensors, configure the Energy dashboard, integrate power into energy, track local tariffs and costs, and analyze efficiency improvements."
+      "card": "Turn energy readings into useful charts, cost tracking, baselines, and evidence-based reports.",
+      "description": "Select suitable sensors, configure the Energy dashboard, convert power readings into energy data, track local tariffs and costs, and analyze efficiency improvements."
     },
     {
       "file": "ch18_history_data.html",
@@ -232,7 +232,7 @@
       "navLabel": "Add-ons and Docker",
       "title": "Add-ons and Docker architecture",
       "pagerTitle": "20 · Add-ons and Docker",
-      "card": "Understand how Supervisor-managed Docker containers power add-ons and how to troubleshoot them.",
+      "card": "Learn how Supervisor manages add-on containers and how to troubleshoot them.",
       "description": "Compare Home Assistant installation types, understand Supervisor and Docker concepts, install useful add-ons, read logs, and automate off-device backups."
     },
     {
@@ -253,7 +253,7 @@
       "title": "Life logging and custom dashboards",
       "pagerTitle": "22 · Life logging",
       "card": "Track habits, household spending, maintenance, and notes, then turn those records into useful dashboards.",
-      "description": "Use Home Assistant helpers for habit tracking, household spending, maintenance reminders, and messages, then visualize the data with charts and Sections views."
+      "description": "Use Home Assistant helpers for habit tracking, household spending, maintenance reminders, and a household message board, then visualize the data with charts and Sections views."
     }
   ],
   "appendices": [
@@ -273,7 +273,7 @@
       "title": "Scenes, helpers, and groups",
       "pagerTitle": "B · Scenes, helpers, and groups",
       "card": "Use scenes, ten helper types, and groups as reusable building blocks for automations.",
-      "description": "Learn how scenes, 10 types of helper, and groups work together as reusable building blocks for smart-home logic."
+      "description": "Learn how scenes, 10 helper types, and groups work together as reusable building blocks for smart-home logic."
     },
     {
       "file": "appendix_hardware_install.html",
@@ -281,7 +281,7 @@
       "navLabel": "C · Hardware and HAOS",
       "title": "Before installation: hardware and HAOS",
       "pagerTitle": "C · Hardware and HAOS",
-      "card": "No host yet? Choose hardware and storage, install HAOS, and complete first-time setup.",
+      "card": "Choose suitable host hardware and storage, install HAOS, and complete the initial setup.",
       "description": "Compare HAOS, Supervised, Container, and Core; choose a Raspberry Pi or mini PC and suitable storage; flash the image and complete first boot."
     }
   ]
