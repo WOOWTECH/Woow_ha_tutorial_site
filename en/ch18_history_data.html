@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chapter 18 · History, Recorder, and data export · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Understand History, Logbook, Recorder retention, and long-term statistics; export CSV data and evaluate MariaDB, InfluxDB, and Grafana options." />
+  <title>Chapter 18 · History, Recorder, and Data Export · Home Assistant Onboarding Guide</title>
+  <meta name="description" content="Learn how History and Activity differ, how Recorder retention and long-term statistics work, how to export CSV data, and when to use MariaDB, InfluxDB, or Grafana." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch18_history_data.html" />
   <meta name="robots" content="noindex, follow" />
@@ -12,13 +12,13 @@
   <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Chapter 18 · History, Recorder, and data export · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Understand History, Logbook, Recorder retention, and long-term statistics; export CSV data and evaluate MariaDB, InfluxDB, and Grafana options." />
+  <meta property="og:title" content="Chapter 18 · History, Recorder, and Data Export · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Learn how History and Activity differ, how Recorder retention and long-term statistics work, how to export CSV data, and when to use MariaDB, InfluxDB, or Grafana." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch18_history_data.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch18/01_history.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chapter 18 · History, Recorder, and data export · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Understand History, Logbook, Recorder retention, and long-term statistics; export CSV data and evaluate MariaDB, InfluxDB, and Grafana options." />
+  <meta name="twitter:title" content="Chapter 18 · History, Recorder, and Data Export · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Learn how History and Activity differ, how Recorder retention and long-term statistics work, how to export CSV data, and when to use MariaDB, InfluxDB, or Grafana." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch18/01_history.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -70,13 +70,13 @@
       <a href="#why">Why history</a>
       <a href="#history_vs_activity">History vs Activity</a>
       <a href="#recorder_concept">What is Recorder</a>
-      <a href="#statistics">long term statistics</a>
+      <a href="#statistics">Long-term statistics</a>
       <a href="#export_steps">Download CSV</a>
       <a href="#dev_statistics">Statistics debugging page</a>
-      <a href="#slim_recorder">Streamline record scope</a>
+      <a href="#slim_recorder">Streamline Recorder data</a>
       <a href="#purge">Database cleanup</a>
-      <a href="#backup_db">backup and rescue</a>
-      <a href="#mariadb">Change to MariaDB</a>
+      <a href="#backup_db">Backups and recovery</a>
+      <a href="#mariadb">Switch to MariaDB</a>
       <a href="#influx_grafana">Long-term storage</a>
       <a href="#sql_sensor">SQL integration</a>
       <a href="#troubleshoot">Common problems</a>
@@ -93,8 +93,8 @@
  <main class="content">
  <div class="chapter-header">
  <div class="kicker">Chapter 18</div>
- <h1>History, Recorder, and data export</h1>
- <p class="lead">Home Assistant records state changes in the background. Learn where that history is stored, how long it is retained, how to export it to CSV, and how to keep the database from filling your storage.</p>
+ <h1>History, Recorder, and Data Export</h1>
+ <p class="lead">Home Assistant quietly records every light switched on, every unit of energy consumed, and every door opened. This chapter explains where that history is stored, how long it lasts, how to export it as CSV, and how to keep the database from filling your storage or wearing out a memory card.</p>
  </div>
 
  <section id="why" data-nav="Why history">
@@ -102,14 +102,14 @@
 
  <p>Once your devices and automations are running, you will almost certainly encounter two situations:</p>
 
- <p><strong>First</strong>: You want to know who left the porch light on last Wednesday night, or how much energy the air conditioner used this month. Data from three days ago is available, but data from three months ago is gone—even though last year’s energy use is still visible. This is intentional, and this chapter explains why.</p>
+ <p><strong>First</strong>: You want to know who left the balcony light on all night last Wednesday, or how much energy the air conditioner used this month. Data from three days ago is available, but data from three months ago is gone—even though last year’s energy use is still visible. This is intentional, and this chapter explains why.</p>
 
  <p><strong>Second</strong>: Home Assistant becomes unusually slow: a light takes three seconds to respond, and a restart takes ten minutes. An oversized database is a common cause. On a Raspberry Pi that uses a microSD card, sustained database writes can also shorten the card’s life.</p>
 
  <div class="callout">
 <strong>Concept:</strong> Home Assistant manages both current state and historical data. Managing that history well is essential to a stable system.</div>
 
- <p>After reading this chapter, you will have these abilities:</p>
+ <p>By the end of this chapter, you will be able to:</p>
 
  <ul>
  <li>Choose between History and Activity (formerly Logbook) for a given question.</li>
@@ -167,7 +167,7 @@
  </tbody>
  </table>
 
- <p><strong>Think of History as a chart in a medical record and Activity as a shift log. History sho</strong>ws how values changed; Activity shows who or what performed an action.</p>
+ <p>In everyday terms, <strong>History is the chart in a medical record; Activity is the nursing shift log.</strong> The former shows how values changed, while the latter shows who or what performed an action.</p>
 
  <p>One practical difference is that <strong>Activity omits sensors with units</strong> by default. Temperature, humidity, and power sensors can update every few seconds and would overwhelm the event list. View those sensors in History instead.</p>
 
@@ -184,7 +184,7 @@
 
  <h3>Which file stores the data?</h3>
 
- <p>By default, Home Assistant uses <strong>SQLite</strong>, the database is a file in the settings folder:</p>
+ <p>By default, Home Assistant uses <strong>SQLite</strong>. Its database is a single file in the configuration directory:</p>
 
  <pre class="code-block"><code>/config/home-assistant_v2.db</code></pre>
 
@@ -194,21 +194,21 @@
 
  <p>Recorder’s <code>purge_keep_days</code> setting <strong>defaults to 10 days</strong>. Detailed state changes older than that are deleted automatically.</p>
 
- <p>It is accompanied by two switches that are turned on by default:</p>
+ <p>Recorder also uses the following defaults:</p>
 
  <table class="data-table">
  <thead>
  <tr>
-<th>Options</th>
+<th>Option</th>
 <th>Default value</th>
-<th>what is it doing</th>
+<th>Purpose</th>
 </tr>
  </thead>
  <tbody>
  <tr>
 <td><code>purge_keep_days</code></td>
 <td><code>10</code></td>
-<td>How many days to keep transaction history</td>
+<td>Number of days to retain detailed history.</td>
 </tr>
  <tr>
 <td><code>auto_purge</code></td>
@@ -223,7 +223,7 @@
  <tr>
 <td><code>commit_interval</code></td>
 <td><code>5</code></td>
-<td>Write accumulated changes to the database every few seconds</td>
+<td>Number of seconds between writes of accumulated changes to the database.</td>
 </tr>
  </tbody>
  </table>
@@ -238,9 +238,9 @@
  <table class="data-table">
  <thead>
  <tr>
-<th>situation</th>
+<th>Scenario</th>
 <th>Approximate scale</th>
-<th>reasonable expectations</th>
+<th>Reasonable expectation</th>
 </tr>
  </thead>
  <tbody>
@@ -262,7 +262,7 @@
  </tbody>
  </table>
 
- <p>The key question is h<strong>ow many times each entity changes per day</strong>. A light may change 6 times, while a power sensor that reports every second can create tens of thousands of rows. One such sensor can generate more data than all other entities combined.</p>
+ <p>The key question is <strong>how many records each entity generates per day</strong>. A light may change 6 times, while a power sensor that reports every second can create tens of thousands of rows. One such sensor can generate more data than all other entities combined.</p>
 
  <p>Use these two views to check current storage use:</p>
 
@@ -270,8 +270,8 @@
  <thead>
  <tr>
 <th>What you want to see</th>
-<th>how to go</th>
-<th>see what</th>
+<th>Where to go</th>
+<th>What you will see</th>
 </tr>
  </thead>
  <tbody>
@@ -294,7 +294,7 @@
 <strong>Warning:</strong> Page locations and field names can vary by version. Follow the labels in your installation. If needed, search Settings for “storage” or “system.”</div>
  </section>
 
- <section id="statistics" data-nav="long term statistics">
+ <section id="statistics" data-nav="Long-term statistics">
  <h2 data-icon="concept">Long-term statistics: why energy lasts longer than switch history</h2>
 
  <p>Detailed history and long-term statistics have different retention rules.</p>
@@ -340,23 +340,23 @@
 
  <p>The states table records individual changes. Statistics compress those changes into fixed-interval summaries, producing only 24 hourly rows per day and making multi-year retention practical.</p>
 
- <h3>Which entities will have long-term statistics?</h3>
+ <h3>Which entities have long-term statistics?</h3>
 
  <p>Only entities with a supported <code>state_class</code> enter the statistics table. <a href="ch17_energy.html">Chapter 17</a> explains each state class; here the focus is retention:</p>
 
  <table class="data-table">
  <thead>
  <tr>
-<th>status category</th>
-<th>What can be saved in statistics for you?</th>
-<th>Example at home</th>
+<th>State class</th>
+<th>What the statistics store</th>
+<th>Household example</th>
 </tr>
  </thead>
  <tbody>
  <tr>
 <td><code>measurement</code></td>
 <td>Hourly minimum, maximum, average</td>
-<td>Living room temperature, room humidity, and current power of air conditioner</td>
+<td>Living-room temperature, bedroom humidity, and current air-conditioner power</td>
 </tr>
  <tr>
 <td>
@@ -366,48 +366,48 @@
 <td>Cumulative electricity or water-meter readings</td>
 </tr>
  <tr>
-<td>No status category</td>
-<td>Nothing is saved, only the transaction records of the past 10 days</td>
-<td>Turning on/off lights, opening/closing doors and windows, whether people are at home or not</td>
+<td>No state class</td>
+<td>No statistics; only the past 10 days of detailed history remain by default</td>
+<td>Lights on/off, doors and windows open/closed, and home/away presence</td>
 </tr>
  </tbody>
  </table>
 
- <p>An energ<strong>y meter with <code>total_increasing</code> retains long-term statistics. A light’s nonnumeric on/off state has no state class, so only its detailed history remains, for 10 days by default.</strong></p>
+ <p><strong>An energy meter with <code>total_increasing</code> retains long-term statistics, whereas a light’s nonnumeric on/off state has no state class and keeps only 10 days of detailed history by default.</strong></p>
 
  <div class="callout">
 <strong>Concept:</strong> Home Assistant creates short-term statistics every 5 minutes, then compiles them into hourly long-term statistics. Short-term data is purged regularly; hourly long-term statistics remain.</div>
 
- <p>This also explains why older History charts can look smoother and lose brief peaks. <strong>Within the detailed-history window, the chart uses</strong> full-resolution Recorder data; beyond it, the chart uses hourly long-term statistics. An hourly average will not exactly match any single reading. Home Assistant displays higher-resolution lines in a darker shade.</p>
+ <p>This also explains why older History charts can look smoother and lose brief peaks. <strong>Within the detailed-history window, the chart uses full-resolution Recorder data; beyond it, the chart uses hourly long-term statistics.</strong> An hourly average will not exactly match any single reading. Home Assistant distinguishes the higher-resolution portion with a darker line.</p>
 
  <div class="callout tip">
 <strong>Tip:</strong> For values you need to retain for years, such as water or gas readings, do not simply increase <code>purge_keep_days</code>. Confirm that each entity has the correct state class and unit so Home Assistant can generate long-term statistics.</div>
  </section>
 
  <section id="export_steps" data-nav="Download CSV">
- <h2 data-icon="steps">DIY: Download history to CSV</h2>
+ <h2 data-icon="steps">Hands-on: Download history as CSV</h2>
 
  <p>Home Assistant can export History data to CSV without additional software.</p>
 
  <ol class="steps">
  <li>
- <h3>Open "History" in the sidebar</h3>
- <p>If you can't see the sidebar, click your name at the bottom of the sidebar to enter the profile page and confirm whether it is hidden; or the fastest way - directly follow the address bar <code>/history</code> press <kbd>Enter</kbd>.</p>
+ <h3>Open History from the sidebar</h3>
+ <p>If History is not visible, select your name at the bottom of the sidebar, open your profile, and check whether the item is hidden. Alternatively, append <code>/history</code> to the Home Assistant URL and press <kbd>Enter</kbd>.</p>
  </li>
  <li>
- <h3>Select the area, device or entity you want</h3>
+ <h3>Select an area, device, or entity</h3>
  <p>Use the selector at the top to choose an area, device, or entity. Selecting an area shows the charts for its entities, provided that you assigned areas as described in <a href="ch3_floors_areas.html">Chapter 3</a>.</p>
  </li>
  <li>
- <h3>Set time range</h3>
- <p>Select Today, This week, or custom start and end dates. <strong>The selected range determines the amount of CSV data. Start with one day to confirm the export</strong> before requesting a large range.</p>
+ <h3>Set the time range</h3>
+ <p>Select Today, This week, or custom start and end dates. <strong>The selected range determines how many rows the CSV contains.</strong> Start with one day before requesting a large range.</p>
  </li>
  <li>
- <h3>Click "Download data" in the upper right corner</h3>
- <p>The button is in the upper right corner of the page, and the English interface says <strong>Download data</strong>, localized interfaces use the corresponding translated label. Click on the browser and it will save a CSV file directly to your download folder without any setting window popping up.</p>
+ <h3>Select Download data in the upper-right corner</h3>
+ <p>The English interface labels the button <strong>Download data</strong>; localized interfaces use the corresponding translation. Selecting it saves a CSV file directly to your browser’s download folder without opening a settings dialog.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch18/01_history.png" alt="Download entry for history page">
- <figcaption><strong>Figure 18-1</strong> "History" page in the sidebar: First add the area/device/entity to "Add target" on the left, and the "Download Data" button will appear in the upper right corner.</figcaption>
+ <img src="../assets/screenshots/ch18/01_history.png" alt="Download data button on the History page">
+ <figcaption><strong>Figure 18-1</strong> On the History page, use Add target on the left to add an area, device, or entity; Download data then appears in the upper-right corner.</figcaption>
  </figure>
  </li>
  <li>
@@ -420,7 +420,7 @@
 <strong>Warning:</strong> The download reflects the data available to History. Outside the detailed retention period, eligible sensors use hourly statistics. CSV export cannot recover second-by-second data that Recorder has already purged.</div>
 
  <div class="callout tip">
-<strong>Tip:</strong> If you are doing homework or reporting, this method is very useful: select a temperature sensor, capture the range for a week, download the CSV, and paste it into a spreadsheet to draw a "weekly room temperature change graph." If you want to grasp the long-term trend, choose a numerical sensor with statistics. If you extend the time for one year, you will get an hourly average, which will look better when drawn.</div>
+<strong>Tip:</strong> For an assignment or report, select a temperature sensor, choose a one-week range, download the CSV, and chart the week’s room-temperature changes in a spreadsheet. For a long-term trend, select a numeric sensor with statistics and extend the range to a year; the hourly averages usually produce a clearer chart.</div>
 
  <h3>Export Activity events</h3>
 
@@ -436,14 +436,14 @@
  </thead>
  <tbody>
  <tr>
-<td>Value change curve (temperature, electricity consumption, humidity)</td>
-<td>"Download data" in the upper right corner of the history page</td>
-<td>Time + value, suitable for drawing</td>
+<td>Numeric trends such as temperature, energy, or humidity</td>
+<td>Download data in the upper-right corner of History</td>
+<td>Timestamps and values, suitable for charts</td>
 </tr>
  <tr>
-<td>Event journal (who opened it, which automation ran it)</td>
-<td>CSV download of event page</td>
-<td>Event record one by one, suitable for tracing</td>
+<td>Event timeline: who acted and which automation ran</td>
+<td>CSV download on the Activity page</td>
+<td>Individual event records, suitable for investigations</td>
 </tr>
  </tbody>
  </table>
@@ -452,36 +452,36 @@
 <strong>Warning:</strong> The release notes mention Activity’s Clear and reset action without fully defining its scope. Read the confirmation prompt before proceeding. For controlled database cleanup, prefer <code>recorder.purge</code>, described later in this chapter.</div>
 
  <figure class="shot">
- <img src="../assets/screenshots/ch18/02_logbook.png" alt="Event log of activity page">
- <figcaption><strong>Figure 18-2</strong> The "Activity (Logbook)" page in the sidebar: a textual flow of events, including who, when, and what was triggered.</figcaption>
+ <img src="../assets/screenshots/ch18/02_logbook.png" alt="Event timeline on the Activity page">
+ <figcaption><strong>Figure 18-2</strong> The Activity (formerly Logbook) page presents a text timeline showing who or what triggered each event and when.</figcaption>
  </figure>
  </section>
 
  <section id="dev_statistics" data-nav="Statistics debugging page">
- <h2 data-icon="energy">Tools → Statistics: Fix those skewed numbers</h2>
+ <h2 data-icon="energy">Tools → Statistics: Correct invalid values</h2>
 
  <p>Open <strong>Settings → Tools</strong>. Its tabs include YAML, States, Actions, Templates, Events, <strong>Statistics</strong>, and Assist.</p>
 
  <div class="callout warn">
-<strong>Warning:</strong> This area was named Developer tools and appeared in the sidebar before Home Assistant 2026.2. It moved under <strong>Settings</strong>, then became Tools in 2026.8<strong></strong>. Older instructions refer to the same area.</div>
+<strong>Warning:</strong> This area was named Developer tools and appeared in the sidebar before Home Assistant 2026.2. It moved under <strong>Settings</strong>, then was renamed <strong>Tools</strong> in 2026.8. Older instructions refer to the same area.</div>
 
  <figure class="shot">
- <img src="../assets/screenshots/ch18/03_statistics.png" alt="Statistics tab under tools">
- <figcaption><strong>Figure 18-3</strong> Settings → Tools → Statistics: Problematic long-term statistical entities will be listed directly, with a "Fix issue" link on the right side of each column.</figcaption>
+ <img src="../assets/screenshots/ch18/03_statistics.png" alt="Statistics tab under Settings and Tools">
+ <figcaption><strong>Figure 18-3</strong> Settings → Tools → Statistics lists entities with long-term-statistics problems and provides a Fix issue link at the right of each affected row.</figcaption>
  </figure>
 
- <p>The Statistics page only does two things, but both are critical.</p>
+ <p>The Statistics page has two essential functions.</p>
 
- <h3>1. It will list problematic statistical entities</h3>
+ <h3>1. Identify entities with statistics problems</h3>
 
- <p>The page will list all entities with "long-term statistics" and mark the "Fix issue" links on the ones with problems. Clicking on them will tell you what problems were detected. The two most common ones are:</p>
+ <p>The page lists entities with long-term statistics. Affected entries have a Fix issue link that explains the detected problem. Common cases include:</p>
 
  <table class="data-table">
  <thead>
  <tr>
-<th>Symptoms</th>
-<th>plain-language explanation</th>
-<th>How to usually deal with it</th>
+<th>Issue</th>
+<th>What it means</th>
+<th>Typical response</th>
 </tr>
  </thead>
  <tbody>
@@ -497,34 +497,34 @@
 </tr>
  <tr>
 <td>The entity no longer exists</td>
-<td>The device was dismantled and renamed, but the statistics remain</td>
-<td>Make sure you really don’t want it and then clear it.</td>
+<td>The device was removed or the entity was renamed, but its statistics remain.</td>
+<td>Confirm the data is no longer needed before deleting it.</td>
 </tr>
  </tbody>
  </table>
 
- <h3>2. It can directly change the value of a certain hour</h3>
+ <h3>2. Correct a value for a specific hour</h3>
 
  <p>This tool can correct an isolated, invalid reading. For example, a meter might jump to 999999 kWh and flatten the rest of the month’s Energy chart. See <a href="ch17_energy.html">Chapter 17</a> for energy statistics.</p>
 
- <p>The operation described in Home Assistant documentation is: click the icon next to the entity on the statistics page, use the date and time fields to find the data point, and then change the value.</p>
+ <p>Home Assistant’s documentation instructs you to select the icon beside the entity, locate the data point with the date and time fields, and edit its value.</p>
 
  <ol class="steps">
  <li>
- <h3>First find the point in time when the problem occurred on an energy or historical graph</h3>
- <p>Move your mouse over the unreasonable pillar and write down the date and hour.</p>
+ <h3>Find the affected time on the Energy or History chart</h3>
+ <p>Point to the implausible bar and note its date and hour.</p>
  </li>
  <li>
  <h3>Go to Settings → Tools → Statistics and find the entity</h3>
- <p>It is faster to type in the entity name using the search box above.</p>
+ <p>Use the search box to find the entity by name.</p>
  </li>
  <li>
- <h3>Open the adjustment interface and locate the record by date and time</h3>
+ <h3>Open the adjustment tool and locate the record by date and time</h3>
  <p>It displays the value recorded for that hour.</p>
  </li>
  <li>
- <h3>Change it to a reasonable value, save it and go back to look at the display.</h3>
- <p>Charts often require a page refresh to reflect.</p>
+ <h3>Enter a reasonable value, save it, and review the chart</h3>
+ <p>You may need to refresh the page before the chart reflects the change.</p>
  </li>
  </ol>
 
@@ -532,8 +532,8 @@
 <strong>Danger:</strong> This edits statistics already stored in the database, with no undo button. Make a backup first as described in <a href="ch9_backups.html">Chapter 9</a>. An adjustment to a cumulative sensor can affect later calculations, so review the complete curve afterward.</div>
  </section>
 
- <section id="slim_recorder" data-nav="Streamline record scope">
- <h2 data-icon="plan">Use include/exclude to streamline information</h2>
+ <section id="slim_recorder" data-nav="Streamline Recorder data">
+ <h2 data-icon="plan">Use include and exclude to streamline Recorder data</h2>
 
  <p>An oversized database is usually caused by high-frequency entities you never review, not by ordinary lights. Start by telling Recorder not to store unnecessary data.</p>
 
@@ -575,27 +575,27 @@
     entity_globs:
       - sensor.weather_*</code></pre>
 
- <p>You can combine the two: use <code>include</code> for a broad set, then <code>exclude</code> for exceptions. The complete precedence rules are in the Home Assistant documentation. In general, more specific rules take priority: <strong>in precedence order, </strong>explicit <code>entities</code> outrank globs, and globs outrank domains.</p>
+ <p>You can combine the two: use <code>include</code> for a broad set, then <code>exclude</code> for exceptions. The Home Assistant documentation gives the complete precedence rules. As a general guide, <strong>more specific rules take priority</strong>: explicit <code>entities</code> outrank globs, and globs outrank domains.</p>
 
- <h3>Four filter conditions</h3>
+ <h3>Four filter types</h3>
 
  <table class="data-table">
  <thead>
  <tr>
-<th>Conditions</th>
+<th>Filter</th>
 <th>Scope</th>
-<th>Writing examples</th>
+<th>Example</th>
 </tr>
  </thead>
  <tbody>
  <tr>
 <td><code>domains</code></td>
-<td>entire category</td>
+<td>Entire domain</td>
 <td><code>- automation</code></td>
 </tr>
  <tr>
 <td><code>entities</code></td>
-<td>Designate a single entity</td>
+<td>A specific entity</td>
 <td><code>- sensor.last_boot</code></td>
 </tr>
  <tr>
@@ -605,7 +605,7 @@
 </tr>
  <tr>
 <td><code>event_types</code></td>
-<td>Event (not entity)</td>
+<td>An event type, not an entity</td>
 <td><code>- call_service</code></td>
 </tr>
  </tbody>
@@ -617,13 +617,13 @@
  <thead>
  <tr>
 <th>Type</th>
-<th>why noisy</th>
-<th>Should we exclude</th>
+<th>Why it is noisy</th>
+<th>Recommendation</th>
 </tr>
  </thead>
  <tbody>
  <tr>
-<td>Mobile-app battery, bearing, and step sensors</td>
+<td>Mobile-app battery, location, and step sensors</td>
 <td>They can change frequently and may have little historical value</td>
 <td>Consider excluding sensors you do not review</td>
 </tr>
@@ -635,18 +635,18 @@
  <tr>
 <td>
 <code>update</code> domain (firmware update notices)</td>
-<td>No historical value</td>
+<td>Little historical value</td>
 <td>Recommended to exclude</td>
 </tr>
  <tr>
 <td>Sun azimuth, weather forecast details</td>
-<td>Continuous change, no need for history</td>
+<td>Changes continuously and is rarely useful in History</td>
 <td>Recommended to exclude</td>
 </tr>
  <tr>
-<td>The state of the automation entity itself</td>
-<td>What you want is "did you run?" That's in the activity</td>
-<td>can be excluded</td>
+<td>The automation entity’s own state</td>
+<td>Activity is the better place to confirm whether an automation ran</td>
+<td>Can be excluded</td>
 </tr>
  <tr>
 <td>Contact, occupancy, light, and lock entities</td>
@@ -657,10 +657,10 @@
  </table>
 
  <div class="callout warn">
-<strong>Warning:</strong> Exclusion rules affect only futur<strong>e writes. They do not delete existing database rows. To apply new filters to old data</strong>, use <code>recorder.purge</code> with <code>apply_filter</code> enabled as described next.</div>
+<strong>Warning:</strong> Exclusion rules affect only <strong>future writes; they do not delete existing database rows.</strong> To apply new filters to old data, use <code>recorder.purge</code> with <code>apply_filter</code> enabled, as described next.</div>
 
  <div class="callout danger">
-<strong>Danger:</strong> Excluding an entity removes it from History, Activity, the Energy dashboard, and future long-term statistics. Do not exclude energy meters used by the Energy dashboard. <strong>M</strong>issing energy data cannot be reconstructed later.</div>
+<strong>Danger:</strong> Excluding an entity removes it from History, Activity, the Energy dashboard, and future long-term statistics. <strong>Never exclude an energy meter used by the Energy dashboard.</strong> Missing energy data cannot be reconstructed later.</div>
  </section>
 
  <section id="purge" data-nav="Database cleanup">
@@ -671,18 +671,18 @@
  <table class="data-table">
  <thead>
  <tr>
-<th>action</th>
-<th>what to do</th>
+<th>Action</th>
+<th>Purpose</th>
 </tr>
  </thead>
  <tbody>
  <tr>
 <td><code>recorder.purge</code></td>
-<td>Clear old data older than a specified number of days</td>
+<td>Delete data older than the specified retention period</td>
 </tr>
  <tr>
 <td><code>recorder.purge_entities</code></td>
-<td>Only clear specified entities/categories/wildcards</td>
+<td>Delete data only for specified entities, domains, or globs</td>
 </tr>
  <tr>
 <td><code>recorder.disable</code></td>
@@ -694,19 +694,19 @@
 </tr>
  <tr>
 <td><code>recorder.get_statistics</code></td>
-<td>Read out long-term statistics</td>
+<td>Retrieve long-term statistics</td>
 </tr>
  </tbody>
  </table>
 
- <h3>Three parameters of recorder.purge</h3>
+ <h3>The three recorder.purge parameters</h3>
 
  <table class="data-table">
  <thead>
  <tr>
-<th>parameters</th>
+<th>Parameter</th>
 <th>Default</th>
-<th>meaning</th>
+<th>Meaning</th>
 </tr>
  </thead>
  <tbody>
@@ -718,12 +718,12 @@
  <tr>
 <td><code>repack</code></td>
 <td><code>false</code></td>
-<td>Rewrite the entire database and really return the space to the hard disk</td>
+<td>Rewrite the database so that storage space is returned to the operating system</td>
 </tr>
  <tr>
 <td><code>apply_filter</code></td>
 <td><code>false</code></td>
-<td>Apply to old data together with include / exclude in the configuration file</td>
+<td>Apply the configured include and exclude rules to existing data</td>
 </tr>
  </tbody>
  </table>
@@ -741,11 +741,11 @@ data:
  <div class="callout warn">
 <strong>Warning:</strong> <code>repack</code> is resource intensive. Home Assistant may slow down, and <strong>the process temporarily requires additional disk space</strong>. The documentation recommends free space at least equal to the database size. If storage is nearly full, remove unneeded backups or other files before repacking.</div>
 
- <h3>Only clear a certain entity that is noisy</h3>
+ <h3>Purge only one noisy entity</h3>
 
  <p>If one power sensor is causing the growth, do not purge unrelated history. <code>recorder.purge_entities</code> accepts <code>entity_id</code>, <code>domains</code>, or <code>entity_globs</code>. Its <code>keep_days</code> default is 0, which deletes all matching data.</p>
 
- <p>There is a very practical automation example in Home Assistant documentation: only the data of the socket for the last 5 days will be retained every morning.</p>
+ <p>The Home Assistant documentation provides a useful automation example that retains only the most recent 5 days of detailed data for this power sensor:</p>
 
  <pre class="code-block"><code>alias: Clear old data from noisy power sensors every day
 triggers:
@@ -758,34 +758,34 @@ actions:
       entity_id: sensor.power_sensor_0
 mode: single</code></pre>
 
- <p>The advantage of this way of writing is that you retain the ability to see the curve in recent days without letting it accumulate infinitely. And because long-term statistics are not affected, if this sensor has a status category, the annual trend can still be seen.</p>
+ <p>This preserves the recent detailed curve without allowing it to grow indefinitely. Long-term statistics are unaffected, so annual trends remain available if the sensor has a supported state class.</p>
 
  <div class="callout tip">
 <strong>Tip:</strong> Recorder actions require Administrator privileges. If you are signed in as a standard user created in <a href="ch5_users.html">Chapter 5</a>, switch to an Administrator account.</div>
 
- <p>The default <code>auto_purge</code> runs at 04:12 each morning, so <strong>manual purging is normally unnecessary. Use it after changing filters when you need t</strong>hem applied to old data, or when urgent database cleanup is required.</p>
+ <p>The default <code>auto_purge</code> runs at 04:12 each morning, so <strong>manual purging is normally unnecessary.</strong> Use it after changing filters when you need them applied to old data, or when urgent database cleanup is required.</p>
  </section>
 
- <section id="backup_db" data-nav="backup and rescue">
- <h2 data-icon="restore">Does the backup include the database? How to save the database if it is broken?</h2>
+ <section id="backup_db" data-nav="Backups and recovery">
+ <h2 data-icon="restore">Database backups and corruption recovery</h2>
 
  <h3>Full backups include the database</h3>
 
- <p>Because <code>home-assistant_v2.db</code> is in the configuration folder, a full backup normally includes it. A larg<strong>e database therefore increases every full backup.</strong> A 2 GB database included in three retained backups can consume about 6 GB, before accounting for other backup content or compression.</p>
+ <p>Because <code>home-assistant_v2.db</code> is in the configuration folder, a full backup normally includes it. <strong>A large database therefore makes every full backup larger.</strong> A 2 GB database included in three retained backups can consume about 6 GB before accounting for other backup content or compression.</p>
 
  <p>To reclaim storage, purge unneeded database rows, filter unnecessary Recorder data, and reduce <code>purge_keep_days</code> if appropriate. Also set backup-retention limits and keep an independent copy outside the Home Assistant host.</p>
 
  <div class="callout warn">
 <strong>Warning:</strong> Backup options for media, shared folders, and the database vary by Home Assistant version. Follow the options shown in your installation. Reducing unnecessary database growth remains effective regardless of those interface differences.</div>
 
- <p>Use this order: <strong>configure exclusions → restart Home Assistant → run <code>recorder.purge</code> with repack → create a n</strong>ew backup.</p>
+ <p>Use this order: <strong>configure exclusions → restart Home Assistant → run <code>recorder.purge</code> with repack → create a new backup.</strong></p>
 
  <h3>Changing databases does not migrate existing history</h3>
 
  <div class="callout danger">
 <strong>Danger:</strong> Home Assistant warns that changing Recorder databases can make existing history unavailable, and <strong>database migration is not officially supported</strong>. Plan a switch from SQLite to MariaDB as a new history baseline. If you intend to switch, do it before accumulating years of data.</div>
 
- <h3>Symptoms and treatment of database corruption</h3>
+ <h3>Symptoms of database corruption and how to respond</h3>
 
  <p>Common causes of SQLite corruption include a power failure during a write and failing storage. Home Assistant may still open, while History and Activity are empty and the logs contain database errors.</p>
 
@@ -795,7 +795,7 @@ mode: single</code></pre>
  <p>Open <strong>Settings → System → Logs</strong> and look for errors containing <code>sqlite</code> or <code>database</code>.</p>
  </li>
  <li>
- <h3>Know that Home Assistant will save itself</h3>
+ <h3>Understand Home Assistant’s automatic recovery</h3>
  <p>If SQLite is irreparably damaged, Home Assistant moves the damaged database aside and creates a new one. Your settings, automations, and devices <strong>remain intact</strong>; the unavailable data is history.</p>
  </li>
  <li>
@@ -803,7 +803,7 @@ mode: single</code></pre>
  <p>Home Assistant recommends free space of about 2.5 times the database size when recovering a damaged SQLite database. Recovery may fail without enough space.</p>
  </li>
  <li>
- <h3>Accept historical losses and find root causes</h3>
+ <h3>Address the history loss and its root cause</h3>
  <p>Follow the linked SQLite recovery guidance if the history is important. Otherwise, preserve the damaged <code>.db</code> file for later analysis, allow Home Assistant to start a new database, and address the cause: failing storage or unsafe power removal.</p>
  </li>
  </ol>
@@ -812,41 +812,41 @@ mode: single</code></pre>
 <strong>Tip:</strong> Recorder database corruption generally affects history, not device control or automations. Confirm system behavior and logs before taking destructive action.</div>
  </section>
 
- <section id="mariadb" data-nav="Change to MariaDB">
+ <section id="mariadb" data-nav="Switch to MariaDB">
  <h2 data-icon="hardware">Advanced 1: Switch from SQLite to MariaDB</h2>
 
  <p>SQLite is a simple, zero-configuration, single-file database. With many entities and frequent writes, a database server may offer better performance.</p>
 
- <p>Home Assistant document lists the minimum supported version:</p>
+ <p>Home Assistant documents the following minimum supported versions:</p>
 
  <table class="data-table">
  <thead>
  <tr>
 <th>Database</th>
 <th>Minimum version</th>
-<th>Suitable for whom</th>
+<th>Best suited to</th>
 </tr>
  </thead>
  <tbody>
  <tr>
 <td>SQLite</td>
 <td>3.40.1</td>
-<td>By default, most people don’t need to touch it</td>
+<td>The default; sufficient for most installations</td>
 </tr>
  <tr>
 <td>MariaDB</td>
 <td>10.3</td>
-<td>The most common upgrade route is to install it on the same machine</td>
+<td>A common database-server upgrade on the same host</td>
 </tr>
  <tr>
 <td>MySQL</td>
 <td>8.0</td>
-<td>If you already have a MySQL server at home</td>
+<td>Installations that already have a MySQL server</td>
 </tr>
  <tr>
 <td>PostgreSQL</td>
 <td>12</td>
-<td>People who prefer PostgreSQL</td>
+<td>Installations that standardize on PostgreSQL</td>
 </tr>
  </tbody>
  </table>
@@ -877,21 +877,21 @@ postgresql://user:password@SERVER_IP/DB_NAME</code></pre>
  <table class="data-table">
  <thead>
  <tr>
-<th>role</th>
-<th>Responsible for what</th>
+<th>Role</th>
+<th>Responsibility</th>
 <th>Metaphor</th>
 </tr>
  </thead>
  <tbody>
  <tr>
 <td>Home Assistant</td>
-<td>Control your home and generate data</td>
-<td>command center</td>
+<td>Controls the home and generates data</td>
+<td>Command center</td>
 </tr>
  <tr>
 <td>InfluxDB</td>
 <td>Stores time-series data for long-term analysis</td>
-<td>Warehouse</td>
+<td>Data warehouse</td>
 </tr>
  <tr>
 <td>Grafana</td>
@@ -901,31 +901,31 @@ postgresql://user:password@SERVER_IP/DB_NAME</code></pre>
  </tbody>
  </table>
 
- <p>The official InfluxDB integration writes an additional copy of selected stat<strong></strong>e data to InfluxDB. Local Recorder continues to run independently. You can therefore keep 7 days of detailed Recorder history while applying a separate 3-year policy in InfluxDB.</p>
+ <p>The official InfluxDB integration writes an <strong>additional</strong> copy of selected state data to InfluxDB. Local Recorder continues to run independently. You can therefore keep 7 days of detailed Recorder history while applying a separate 3-year retention policy in InfluxDB.</p>
 
- <p>Key points in setting:</p>
+ <p>Key configuration points:</p>
 
  <ul>
- <li>InfluxDB 1.x uses the combination of URL, account password, and database name, and authentication is optional (not enabled by default).</li>
+ <li>InfluxDB 1.x uses a host URL, username, password, and database name. Authentication is optional and disabled by default.</li>
  <li>InfluxDB 2.x and 3.x use an organization, bucket, and access token. Authentication is required, and <code>api_version: 2</code> selects the newer API. The integration documentation covers 1.x, 2.x, and 3.x.</li>
- <li>For every version, <strong>configure filter</strong>s. The integration supports include/exclude rules for <code>domains</code>, <code>entities</code>, and <code>entity_globs</code>. Sending every entity to InfluxDB merely moves uncontrolled growth to another database.</li>
+ <li>For every version, <strong>configure filters</strong>. The integration supports include and exclude rules for <code>domains</code>, <code>entities</code>, and <code>entity_globs</code>. Sending every entity to InfluxDB merely moves uncontrolled growth to another database.</li>
  </ul>
 
  <div class="callout warn">
 <strong>Warning:</strong> InfluxDB configuration and query languages differ substantially between major versions. Many online examples target older releases. Confirm your installed version, then follow the matching parameters in the current Home Assistant integration documentation.</div>
 
- <p>InfluxDB and Grafana are available as community-maintained Apps from the <code>hassio-addons</code> Home Assistant Community Apps repository; they are n<strong>ot official Home</strong> Assistant Apps. Add that repository before installation as described in <a href="ch20_addons_docker.html">Chapter 20</a> and <a href="appendix_hacs_addons.html">Appendix A</a>. Apps are available only on Home Assistant OS; Container and Core installations require separate InfluxDB and Grafana deployments.</p>
+ <p>InfluxDB and Grafana are available as community-maintained Apps from the <code>hassio-addons</code> Home Assistant Community Apps repository; <strong>they are not official Home Assistant Apps.</strong> Add that repository before installation, as described in <a href="ch20_addons_docker.html">Chapter 20</a> and <a href="appendix_hacs_addons.html">Appendix A</a>. Apps are available only on Home Assistant OS; Container and Core installations require separate InfluxDB and Grafana deployments.</p>
 
  <div class="callout tip">
-<strong>Tip:</strong> This route requires configuring three separate applications. If you just want to see last year's electricity usage, the built-in long-term statistics plus energy dashboard will suffice. The situations where InfluxDB is really needed are usually: you want to make very customized charts, you want to mix them with non-Home Assistant data sources, or you want to retain high-resolution raw data for several years.</div>
+<strong>Tip:</strong> This route requires configuring three separate applications. If you only want to see last year’s energy use, the built-in long-term statistics and Energy dashboard are sufficient. InfluxDB is most useful for highly customized charts, combining Home Assistant data with other sources, or retaining high-resolution raw data for several years.</div>
  </section>
 
  <section id="sql_sensor" data-nav="SQL integration">
- <h2 data-icon="integration">Advanced 3: Use SQL integration to turn queries into sensors</h2>
+ <h2 data-icon="integration">Advanced 3: Turn a SQL query into a sensor</h2>
 
- <p>SQL integration allows you to write a SQL query and turn the result into an entity, which can then be placed on a dashboard and used to trigger automation. Home Assistant documentation states that it can be added through the configuration process (UI) or written in YAML.</p>
+ <p>The SQL integration turns the result of a SQL query into an entity that you can display on a dashboard or use to trigger an automation. You can add it through the UI configuration flow or YAML.</p>
 
- <p>There is only one most classic use: <strong>Make the database size a sensor and display it directly on the dashboard.</strong></p>
+ <p>A classic use is to <strong>expose database size as a sensor and monitor it directly on a dashboard.</strong></p>
 
  <ol class="steps">
  <li>
@@ -933,22 +933,22 @@ postgresql://user:password@SERVER_IP/DB_NAME</code></pre>
  <p>Select the button in the lower-right corner and search for SQL.</p>
  </li>
  <li>
- <h3>Database URL left blank</h3>
+ <h3>Leave the database URL blank</h3>
  <p><code>db_url</code> is optional. Leave it blank to query the database currently used by Recorder.</p>
  </li>
  <li>
  <h3>Paste the query statement</h3>
- <p>Home Assistant example given by the SQLite version is this sentence:</p>
+ <p>For SQLite, Home Assistant provides this example query:</p>
  <pre class="code-block"><code>SELECT ROUND(page_count * page_size / 1024 / 1024, 1) as size
 FROM pragma_page_count(), pragma_page_size();</code></pre>
  </li>
  <li>
- <h3>Fill in the field size</h3>
- <p>Enter size, matching <code>as size</code> in the query. The query must return a single result column.</p>
+ <h3>Enter size as the result column</h3>
+ <p>Enter size, matching <code>as size</code> in the query. The query must return only one row.</p>
  </li>
  <li>
- <h3>Set name and unit</h3>
- <p>The name can be "database size", and the unit of the result is MiB. Home Assistant mentioned that you can set the device type to Data size and let the interface automatically convert units for you.</p>
+ <h3>Set the name and unit</h3>
+ <p>Name the entity “Database size” and set its unit to MiB. You can also set the device class to Data size so that the interface converts units automatically.</p>
  </li>
  </ol>
 
@@ -974,7 +974,7 @@ mode: single</code></pre>
 <strong>Warning:</strong> The query above is specific to SQLite. Do not use it with MariaDB or PostgreSQL; consult the documentation for an equivalent query in your database engine.</div>
 
  <div class="callout danger">
-<strong>Danger:</strong> SQL integration sends queries directly to the database. Use read-only <code>SELECT</code> queries. Never enter <code>DELETE</code>, <code>UPDATE</code>, or <code>DROP</code>. Delete Recorder data only through <code>recorder.purge</code> or recorder.purge_entities.</div>
+<strong>Danger:</strong> The SQL integration sends queries directly to the database. Use read-only <code>SELECT</code> queries. Never enter <code>DELETE</code>, <code>UPDATE</code>, or <code>DROP</code>. Delete Recorder data only through <code>recorder.purge</code> or recorder.purge_entities.</div>
  </section>
 
  <section id="troubleshoot" data-nav="Common problems">
@@ -986,19 +986,19 @@ mode: single</code></pre>
  <p>Check Settings → System → Storage for free space, then view the estimated database size in Repairs. If the database is several GB, identify high-frequency sources, add appropriate <code>exclude</code> rules, restart, then run <code>recorder.purge</code> with <code>repack: true</code> and <code>apply_filter: true</code>. Confirm adequate free space before repacking.</p>
  </li>
  <li>
- <h3>The memory card is broken and the system cannot be started.</h3>
+ <h3>The memory card has failed and the system will not start</h3>
  <p>Recorder writes at each <code>commit_interval</code>, and sustained database growth places a heavy write load on consumer microSD cards. There is no universal lifespan figure. Reduce unnecessary writes by increasing <code>commit_interval</code> cautiously and excluding noisy entities; for long-term reliability, migrate the installation to suitable SSD or high-endurance storage.</p>
  </li>
  <li>
- <h3>After rebooting, all the history is gone.</h3>
+ <h3>All history disappeared after a restart</h3>
  <p>Check the logs. A damaged database may have been moved aside while Home Assistant created a new one; database errors will identify this case. Alternatively, you may have switched from SQLite to MariaDB. Existing-history migration is not officially supported, so a new database begins empty by design.</p>
  </li>
  <li>
- <h3>An entity cannot be found in history at all</h3>
+ <h3>An entity is completely absent from History</h3>
  <p>Check whether an <code>exclude</code> rule removed it or an <code>include</code> rule omitted it. Then confirm that the entity is enabled as described in <a href="ch11_devices.html">Chapter 11</a>. If it appears in History but not Activity, that can be normal because Activity omits sensors with units by default.</p>
  </li>
  <li>
- <h3>The cleanup is finished, but the hard disk space has not increased.</h3>
+ <h3>Cleanup finished, but free disk space did not increase</h3>
  <p>This is normal. Purging rows does not immediately return space to the operating system. <code>repack</code> rewrites the database to reclaim that space. The default <code>auto_repack</code> runs every second Sunday; if space is urgently needed and sufficient working space is available, run a purge with <code>repack: true</code>.</p>
  </li>
  <li>
@@ -1006,12 +1006,12 @@ mode: single</code></pre>
  <p>Open Settings → Tools → Statistics, locate the entity and timestamp, and correct the invalid value. Make a backup first and follow the detailed procedure in this chapter’s Tools → Statistics section.</p>
  </li>
  <li>
- <h3>The downloaded CSV is garbled when opened.</h3>
- <p>Do not open directly by double-clicking. In Excel, use "Data → From Text/CSV" to import, and select UTF-8 for encoding; in Google Spreadsheet, use "File → Import", which usually automatically determines the correctness.</p>
+ <h3>The downloaded CSV contains garbled text</h3>
+ <p>Do not open the file by double-clicking it. In Excel, use Data → From Text/CSV and select UTF-8. In Google Sheets, use File → Import; it usually detects the encoding automatically.</p>
  </li>
  <li>
- <h3>The recorder action cannot be found, or there is no response after pressing it.</h3>
- <p>First make sure you are on the right track: now <strong>Settings → Tools → Actions</strong>, not the "Developer Tools" on the sidebar (that location no longer exists after 2026.2). Furthermore, the actions of the recorder require administrator privileges to be executed. When logging in with a standard user account, the entire setting area cannot be entered. Switch back to the administrator account and try again.</p>
+ <h3>A Recorder action is missing or does not run</h3>
+ <p>Use <strong>Settings → Tools → Actions</strong>, not Developer tools in the sidebar; that location was removed in 2026.2. Recorder actions also require Administrator privileges. Switch from a standard account to an Administrator account and try again.</p>
  </li>
  </ol>
  </section>
@@ -1020,8 +1020,8 @@ mode: single</code></pre>
  <h2 data-icon="faq">FAQ</h2>
 
  <details class="faq">
- <summary>By changing purge_keep_days to 365, will all history be saved permanently?</summary>
- <div class="body">It is technically possible but usually impractical. Retaining 365 days instead of 10 can produce roughly 36 times as much detailed-state history, slowing queries, enlarging backups, and increasing storage writes.<br><br>Use<strong> long-term statistics</strong> for eligible numeric data, and <strong>send selected high-resolution data to a dedicated time-series database when required. Set </strong><code>purge_keep_days</code> according to how much detailed recent history you actually need; the source recommends 7 to 14 days for most installations.</div>
+ <summary>Will setting purge_keep_days to 365 preserve all history permanently?</summary>
+ <div class="body">It is technically possible but usually impractical. Retaining 365 days instead of 10 can produce roughly 36 times as much detailed state history, slowing queries, enlarging backups, and increasing storage writes.<br><br>Use <strong>long-term statistics for eligible numeric data</strong>, and <strong>send selected high-resolution data to a dedicated time-series database when required.</strong> Set <code>purge_keep_days</code> according to how much detailed recent history you actually need; 7 to 14 days is sufficient for most installations.</div>
  </details>
 
  <details class="faq">
@@ -1030,33 +1030,33 @@ mode: single</code></pre>
  </details>
 
  <details class="faq">
- <summary>I added an entity to exclude, why is the old data still there?</summary>
- <div class="body">Because the filtering rules only care about "whether you want to write from now on" and will not go back and delete things. There are two ways to clear existing old data:<br><br>One is execution <code>recorder.purge</code> and put <code>apply_filter</code> Set to <code>true</code>, it will apply the filtering rules in the profile to the old data. The second is to use <code>recorder.purge_entities</code> Just name that one <code>entity_id</code>, its <code>keep_days</code> The default is 0, which means that all data that meets the conditions will be deleted immediately.<br><br>Please note that after changing the profile, you must restart Home Assistant first for the new filtering rules to take effect.<code>apply_filter</code> Only then can the correct rules be applied.</div>
+ <summary>I added an entity to exclude. Why is its old data still there?</summary>
+ <div class="body">Filtering rules govern only future writes; they do not remove existing data. There are two ways to clear old rows:<br><br>Run <code>recorder.purge</code> with <code>apply_filter</code>: <code>true</code> to apply the configured filters to existing data, or run <code>recorder.purge_entities</code> for a specific <code>entity_id</code>. Its default <code>keep_days</code> value is 0, which immediately deletes all matching data.<br><br>After editing the configuration, restart Home Assistant before using <code>apply_filter</code> so that the new filtering rules are active.</div>
  </details>
 
  <details class="faq">
- <summary>After switching to MariaDB, will the previous history be transferred with it?</summary>
- <div class="body">No. Home Assistant warns that changing Recorder databases can make existing history unavailable, and <strong>database migration is not officially supported</strong>. Unofficial migration scripts are unsupported and can damage data.<br><br>Switch early <strong>if you intend to change databases. Before changing</strong> a mature installation, export important History data to CSV and preserve a tested backup. Treat the new database as a new history baseline.</div>
+ <summary>Will my existing history move with me when I switch to MariaDB?</summary>
+ <div class="body">No. Home Assistant warns that changing Recorder databases can make existing history unavailable, and <strong>database migration is not officially supported</strong>. Unofficial migration scripts are unsupported and may damage data.<br><br><strong>If you intend to switch, do it early.</strong> Before changing a mature installation, export important History data to CSV and preserve a tested backup. Treat the new database as a fresh history baseline.</div>
  </details>
 
  <details class="faq">
- <summary>I just want to pour the data from a certain sensor into Excel to do my homework. What is the fastest way?</summary>
- <div class="body">"History" in the sidebar → select the entity → set the time range → "Download data" in the upper right corner → get the CSV. The entire process does not require installing anything or writing any programs.<br><br>Two small reminders: Don’t expand the range too much at once. Use a day to test how long the file is before making a decision; also remember that what you get beyond 10 days will be the hourly average, not the original tick-by-tick data. If you want to make "detailed changes within a day", choose the last few days. If you want to make "long-term trend", just stretch it. Anyway, what you get is the summary value.</div>
+ <summary>What is the fastest way to export one sensor’s data to Excel?</summary>
+ <div class="body">Open History from the sidebar → select the entity → set the time range → select Download data in the upper-right corner. You will receive a CSV without installing software or writing code.<br><br>Start with a one-day range to inspect the file before exporting more data. Beyond the 10-day default detailed-history window, eligible sensors export hourly statistics rather than individual state changes. Use recent days for fine-grained changes and a longer range for trends.</div>
  </details>
 
  <details class="faq">
- <summary>The backup files are getting bigger and bigger. Is it because of the database? Can I back up only the settings but not the history?</summary>
- <div class="body">Yes, the database file is in the settings folder, and a full backup will include it. Home Assistant advice on backups on the "Clear Space" page is: set rules for how many copies to keep to prevent backups from accumulating, and try to save backups in a place other than Home Assistant.<br><br>The built-in backup interface allows you to choose whether to include media, shared folders and other items. However, the status of the "Exclude databases individually" option is different in different versions. Please refer to the actual check box that appears on your screen.<br><br>With or without that option, the most effective approach is the same: <strong>Let the database shrink first, and the backup will naturally be smaller.</strong> The sequence is to set exclude → reboot → run purge with repack → then create a backup.</div>
+ <summary>Are my backups growing because of the database, and can I exclude history?</summary>
+ <div class="body">Yes. The database file is in the configuration folder, and a full backup normally includes it. Home Assistant recommends limiting the number of retained backups and storing copies away from the Home Assistant host.<br><br>The built-in backup interface can include or exclude media, shared folders, and other items, but database-specific options vary by version. Follow the choices shown in your installation.<br><br>Regardless of those options, the most effective approach is to <strong>reduce the database first so that subsequent backups are smaller.</strong> Configure exclusions → restart → purge with repack → create a new backup.</div>
  </details>
 
  <details class="faq">
- <summary>Can "History" and "Activities" be removed from the sidebar? I can't use it.</summary>
- <div class="body">Existing items on the sidebar can be individually hidden or reordered by long-pressing (on a phone) or pressing and holding on the sidebar to enter edit mode. This setting follows the user account. You can hide it without affecting other people at home. The operation details of different versions are slightly different, please refer to the prompts on your screen.<br><br>By the way, this editing mode can only organize "things already on the sidebar", and there is no way to pull the tools (Tools) moved into the settings in 2026.2 back to the sidebar - Home Assistant said that complete sidebar customization is still under planning.<br><br>But one thing to note: <strong>Hiding the sidebar items is just out of sight, but the data is still being recorded.</strong>, how big or how big should the database be? If you want to save space, you have to rely on exclude and purge in this chapter. Hiding the sidebar does not help at all. And when something really happens and you need to find out "who opened the door last night", you will miss them very much.</div>
+ <summary>Can I remove History and Activity from the sidebar if I do not use them?</summary>
+ <div class="body">You can hide or reorder existing sidebar items by entering sidebar edit mode; on a phone, touch and hold an item. This preference is stored per user, so it does not affect anyone else. Follow the prompts in your version.<br><br>Edit mode can organize only items already in the sidebar. It cannot restore Tools, moved under Settings in 2026.2, to the sidebar; Home Assistant says fuller sidebar customization is still planned.<br><br><strong>Hiding an item does not stop Recorder.</strong> The same data continues to be stored, so hiding History or Activity does not save space. Use the include, exclude, and purge controls described in this chapter instead.</div>
  </details>
 
  <details class="faq">
  <summary>How do I know which entity is flooding the database?</summary>
- <div class="body">The most intuitive way to judge: <strong>Go to the history page and see who has the densest curves one by one.</strong> High update frequency and continuous changes in values must be the main suspect. Usually, these categories cannot be escaped - the power and position returned by the mobile app, the power/current socket reported second by second, the sun azimuth angle, and the network speed test.<br><br>If you want more accurate figures, the community has various SQL queries that directly count the number of entities in the database, which can be run with the SQL integration in this chapter. However, those query writing methods will become invalid as the database structure is adjusted. The old syntax found on the Internet may not still be usable. If you are not sure, you will fall back to the crude but always effective method of "seeing who has the densest curves."</div>
+ <div class="body">The simplest approach is to <strong>inspect entities in History and look for the densest curves.</strong> Frequently updating, continuously changing values are the main suspects—typically mobile-app battery and location sensors, power or current sensors reporting every second, sun azimuth, and network speed tests.<br><br>For exact counts, community SQL queries can tally rows by entity. Database schemas change, however, so old queries found online may no longer work. When in doubt, visually checking update density in History remains a reliable starting point.</div>
  </details>
  </section>
 
