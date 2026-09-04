@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chapter 12 · Domain reference · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Reference common actions, cards, and pitfalls for light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, and notify domains." />
+  <title>Chapter 12 · Domain Control Reference · Home Assistant Onboarding Guide</title>
+  <meta name="description" content="A practical reference to common actions, dashboard cards, and pitfalls for Home Assistant’s light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, and notify domains." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch12_domains.html" />
   <meta name="robots" content="noindex, follow" />
@@ -12,13 +12,13 @@
   <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Chapter 12 · Domain reference · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Reference common actions, cards, and pitfalls for light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, and notify domains." />
+  <meta property="og:title" content="Chapter 12 · Domain Control Reference · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="A practical reference to common actions, dashboard cards, and pitfalls for Home Assistant’s light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, and notify domains." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch12_domains.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch12/01_dev_services.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chapter 12 · Domain reference · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Reference common actions, cards, and pitfalls for light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, and notify domains." />
+  <meta name="twitter:title" content="Chapter 12 · Domain Control Reference · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="A practical reference to common actions, dashboard cards, and pitfalls for Home Assistant’s light, switch, climate, cover, media_player, lock, vacuum, fan, camera, sensor, and notify domains." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch12/01_dev_services.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -50,7 +50,7 @@
       <li><a href="ch9_backups.html">Backups</a></li>
       <li><a href="ch10_scripts.html">Scripts</a></li>
       <li><a href="ch11_devices.html">Device settings</a></li>
-      <li><a href="ch12_domains.html" class="active">Domain reference</a></li>
+      <li><a href="ch12_domains.html" class="active">Domain control reference</a></li>
       <li class="part-label">Extensions: connect more devices</li>
       <li><a href="ch13_themes.html">Themes and appearance</a></li>
       <li><a href="ch14_integrations.html">Integrations</a></li>
@@ -71,16 +71,16 @@
       <a href="#light">Lights</a>
       <a href="#switch">Switches</a>
       <a href="#climate">Climate</a>
-      <a href="#cover">cover · curtain/garage</a>
+      <a href="#cover">Covers</a>
       <a href="#media">Media players</a>
       <a href="#lock">Locks</a>
       <a href="#vacuum">Vacuums</a>
       <a href="#fan">Fans</a>
-      <a href="#camera">camera · camera</a>
+      <a href="#camera">Cameras</a>
       <a href="#sensor">Sensors</a>
       <a href="#notify">Notifications</a>
       <a href="#input">Helpers</a>
-      <a href="#tools">Domain tools</a>
+      <a href="#tools">Tools and best practices</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="toc-in-chapter">
@@ -94,66 +94,66 @@
  <main class="content">
  <div class="chapter-header">
  <div class="kicker">Chapter 12</div>
- <h1>Domain reference</h1>
- <p class="lead">Home Assistant groups entities by domain: lights use <code>light</code>, climate systems use <code>climate</code>, and covers use <code>cover</code>. Entities in the same domain <em>share the same actions and behavior</em>, so learning a domain gives you a reusable control model.</p>
+ <h1>Domain Control Reference</h1>
+ <p class="lead">Home Assistant organizes everything by category, or “domain”: lights belong to <code>light</code>, air conditioners to <code>climate</code>, and curtains to <code>cover</code>. All devices in a domain <em>use the same set of actions (formerly called services)</em>. Learn to control one, and you can control them all. This chapter is a quick reference to the most common domains.</p>
  </div>
 
  <section id="concept" data-nav="Domain basics">
  <h2 data-icon="concept">What is a domain, and why does it matter?</h2>
  <p>Every entity ID follows <code>domain.name</code>. The part before the period is its domain:</p>
  <ul>
- <li><code>light.livingroom_main</code> → uses the <code>light</code></li>
- <li><code>climate.bedroom_ac</code> → uses the <code>climate</code></li>
- <li><code>sensor.outdoor_temperature</code> → uses the <code>sensor</code></li>
+ <li><code>light.livingroom_main</code> → the domain is <code>light</code></li>
+ <li><code>climate.bedroom_ac</code> → the domain is <code>climate</code></li>
+ <li><code>sensor.outdoor_temperature</code> → the domain is <code>sensor</code></li>
  </ul>
- <p><strong>Why is it important?</strong> Home Assistant actions are organized by domain.<code>light.turn_on</code> can control <em>supported lights across brands and protocols</em>—for example, Hue, IKEA, Yeelight, Zigbee lights, and WLED. This shared interface is the value of Home Assistant’s abstraction.</p>
- <div class="callout tip"><strong>Buying tip:</strong> Before purchasing a device, check which domain its integration exposes. If it becomes <code>light</code> , existing light automations can usually control it without changes. If it becomes <code>switch</code> , it offers only switch behavior, not brightness or color-temperature controls.</div>
+ <p><strong>Why does it matter?</strong> Home Assistant’s actions—formerly called service calls—are organized by domain. <code>light.turn_on</code> can turn on <em>any supported light, regardless of brand or protocol</em>: Philips Hue, IKEA TRÅDFRI, Xiaomi Yeelight, generic Zigbee lights, and DIY WLED strips all use the same action. That abstraction is one of Home Assistant’s greatest strengths.</p>
+ <div class="callout tip"><strong>Rule of thumb:</strong> Before buying a device, check which domain its integration exposes. If it appears as a <code>light</code>, your existing light automations can usually control it without being rewritten. If it appears as a <code>switch</code>, it will not offer brightness or color-temperature controls.</div>
  </section>
 
  <!-- ================ LIGHT ================ -->
  <section id="light" data-nav="Lights">
  <h2 data-icon="steps"><code>light</code> · Lights</h2>
- <p>Lighting entities may support brightness, color temperature, color, effects, or only on/off. Capabilities depend on the device and integration.</p>
+ <p>Lighting devices may support brightness, color temperature, and color. On/off-only devices may also be classified as lights, depending on the integration.</p>
  <h3>Common actions</h3>
  <ul>
- <li><code>light.turn_on</code>  — Common parameters include <code>brightness_pct: 60</code>, <code>color_temp_kelvin: 3000</code>, <code>rgb_color: [255, 100, 50]</code>, <code>transition: 5</code> (fade duration), <code>effect: "colorloop"</code></li>
- <li><code>light.turn_off</code>  — May also support  <code>transition</code> for fading</li>
- <li><code>light.toggle</code>  — Toggle between on and off</li>
+ <li><code>light.turn_on</code> — Common parameters include <code>brightness_pct: 60</code>, <code>color_temp_kelvin: 3000</code>, <code>rgb_color: [255, 100, 50]</code>, <code>transition: 5</code> (fade time in seconds), and <code>effect: "colorloop"</code></li>
+ <li><code>light.turn_off</code> — Also supports <code>transition</code> for a gradual fade-out</li>
+ <li><code>light.toggle</code> — Switch between on and off</li>
  </ul>
- <h3>Commonly used UI cards</h3>
+ <h3>Common dashboard cards</h3>
  <ul>
- <li><strong>Light card</strong>: Built in; provides brightness and available color controls</li>
- <li><strong>Tile card</strong>: Compact controls that work well in a grid</li>
- <li><strong>Mushroom Light card</strong> (HACS): Community card with compact sliders and color controls</li>
+ <li><strong>Light card</strong>: Built in, with a brightness slider and color controls</li>
+ <li><strong>Tile card</strong>: A compact tile that works well in a grid</li>
+ <li><strong>Mushroom Light card</strong> (HACS): A polished community card that combines sliders and color controls</li>
  </ul>
  <h3>Common pitfalls</h3>
  <ul>
- <li><strong>Power cut at the wall</strong>: A smart bulb goes unavailable when a wall switch removes power. Keep the bulb powered and use a <em>smart wall control</em>, or use a smart relay designed for the installation.</li>
- <li><strong>Color-temperature units</strong>: Current actions use <code>color_temp_kelvin</code> (3000 K warm white / 6500 K cool white). Older examples may use <code>color_temp</code> (mired). Use only parameters supported by the entity.</li>
- <li><strong>Transitions can be interrupted</strong>: <code>transition: 30</code> fades from the current state to the target over 30 seconds. Another command may interrupt it. A <code>restart</code> script can restart the sequence consistently.</li>
+ <li><strong>Cutting power at the wall</strong>: A Zigbee bulb goes offline when a physical switch cuts its power, so an automation cannot turn it back on. Use a <em>smart switch that keeps the bulb powered</em>, or prevent the wall switch from being turned off.</li>
+ <li><strong>Color-temperature units</strong>: Current Home Assistant actions use <code>color_temp_kelvin</code> (3000 K for warm white / 6500 K for cool white). Older examples use <code>color_temp</code> in mireds, where a lower number is cooler. Kelvin is generally more intuitive in YAML; use the parameter supported by your integration.</li>
+ <li><strong>Transitions can be interrupted</strong>: <code>transition: 30</code> fades from the current state to the target brightness over 30 seconds. Another turn_on call during that period interrupts the transition. Wrapping the sequence in a script set to <code>restart</code> mode can make the behavior more predictable.</li>
  </ul>
  </section>
 
  <!-- ================ SWITCH ================ -->
  <section id="switch" data-nav="Switches">
  <h2 data-icon="steps"><code>switch</code> · Switches and smart plugs</h2>
- <p>A switch exposes on/off power control. Smart plugs, relays, and simple wall switches commonly use this domain.</p>
+ <p>This domain provides simple power control. Smart plugs, relays, and basic wall switches all commonly appear as switches.</p>
  <h3>Common actions</h3>
  <ul>
- <li><code>switch.turn_on</code> / <code>switch.turn_off</code> / <code>switch.toggle</code>  — Basic on/off/toggle controls</li>
+ <li><code>switch.turn_on</code> / <code>switch.turn_off</code> / <code>switch.toggle</code> — No extra parameters; switch control is that simple.</li>
  </ul>
  <h3>Common uses</h3>
  <ul>
- <li>Control suitable non-smart appliances such as a dehumidifier, simple fan, or decorative lights</li>
- <li>Control appropriately rated relays; use dedicated safety-rated equipment for water, heating, or gas</li>
- <li>Control a simple motor, although an integration that exposes <code>cover</code> for a better cover interface.</li>
+ <li>Control non-smart appliances such as water dispensers, dehumidifiers, traditional fans, and holiday lights</li>
+ <li>Control solenoid valves for water heaters, irrigation systems, or gas—using appropriately rated, fail-safe equipment</li>
+ <li>Control a curtain motor, although exposing it as a <code>cover</code> is preferable</li>
  </ul>
  <h3>Common pitfalls</h3>
  <ul>
- <li><strong>Power-on behavior</strong>: A plug may remain off after an outage. Configure its supported power-on state deliberately; choosing On can be unsafe for heaters or motors.</li>
- <li><strong>Energy entities</strong>: Some smart plugs expose <code>sensor.*_power</code>, <code>sensor.*_energy</code>, which can feed the Energy dashboard or indicate that an appliance cycle has ended.</li>
+ <li><strong>Power-loss recovery</strong>: Many plugs remain off after an outage unless “Power-on state” is set to “Last” or “On” in the manufacturer’s app or Home Assistant. Choose this setting carefully; restoring power automatically may be unsafe for some appliances.</li>
+ <li><strong>Energy entities</strong>: Many smart plugs also expose <code>sensor.*_power</code> and <code>sensor.*_energy</code>. You can use them in the Energy dashboard or as a signal that a washing machine has finished its cycle.</li>
  </ul>
- <div class="callout tip"><strong>Example: Detect a completed washer or dryer cycle.</strong> Use a correctly rated smart plug to measure power. Trigger when <code>sensor.washer_power</code> remains below 5 W for three minutes after previously running, then send a notification. Tune the thresholds from actual history.</div>
+ <div class="callout tip"><strong>Useful example: detect when a washer or dryer finishes.</strong> Measure power with an appropriately rated smart plug, then create an automation that sends a push notification when <code>sensor.washer_power</code> drops from more than 10 W to less than 5 W and stays there for 3 minutes. It can be more useful than the manufacturer’s app.</div>
  </section>
 
  <!-- ================ CLIMATE ================ -->
@@ -162,41 +162,41 @@
  <h3>Common actions</h3>
  <ul>
  <li><code>climate.turn_on</code> / <code>climate.turn_off</code></li>
- <li><code>climate.set_temperature</code>  — Use <code>temperature: 26</code> for one target, or  <code>target_temp_high / target_temp_low</code> for a range</li>
- <li><code>climate.set_hvac_mode</code>  — Set <code>hvac_mode: cool / heat / auto / dry / fan_only / off</code></li>
+ <li><code>climate.set_temperature</code> — Use <code>temperature: 26</code> for a single target temperature, or <code>target_temp_high / target_temp_low</code> for a thermostat range</li>
+ <li><code>climate.set_hvac_mode</code> — Set <code>hvac_mode: cool / heat / auto / dry / fan_only / off</code></li>
  <li><code>climate.set_fan_mode</code> — <code>fan_mode: auto / low / medium / high / on / off</code> (values depend on the device)</li>
- <li><code>climate.set_preset_mode</code>  — Manufacturer presets such as eco, sleep, or away</li>
- <li><code>climate.set_swing_mode</code>  — Set a supported swing mode</li>
+ <li><code>climate.set_preset_mode</code> — Select a manufacturer-defined preset such as energy-saving, sleep, or away</li>
+ <li><code>climate.set_swing_mode</code> — Set the louver swing mode</li>
  </ul>
- <h3>UI card</h3>
+ <h3>Dashboard cards</h3>
  <ul>
- <li><strong>Thermostat card</strong>: Built-in thermostat control</li>
- <li><strong>Tile card</strong>: Compact control for several climate entities</li>
- <li><strong>simple-thermostat</strong> (HACS): Community card with additional layout options</li>
+ <li><strong>Thermostat card</strong>: A built-in circular temperature control</li>
+ <li><strong>Tile card</strong>: A compact option for displaying several climate devices side by side</li>
+ <li><strong>simple-thermostat</strong> (HACS): A community card with additional controls</li>
  </ul>
  <h3>Common pitfalls</h3>
  <ul>
- <li><strong>Infrared state can be optimistic</strong>: With an IR blaster, Home Assistant may know only which command it sent, not whether the appliance received it. Use an independent temperature sensor to verify the result.</li>
- <li><strong>Presets can override temperature</strong>: A manufacturer’s Eco or Sleep preset may control the setpoint. Return to <code>none</code> before changing temperature when the integration requires it.</li>
- <li><strong>Units</strong>: Confirm the unit system from Chapter 2 before sending a numeric setpoint. A value such as <code>temperature: 26</code> must match the entity’s configured temperature unit.</li>
+ <li><strong>Infrared air-conditioner state may be inaccurate</strong>: With an IR blaster such as BroadLink or SwitchBot Hub, Home Assistant knows only which command it sent—not whether the air conditioner received it. Add a separate temperature sensor to confirm that the room temperature is actually changing.</li>
+ <li><strong>Presets can override the temperature</strong>: A manufacturer’s “eco” preset will often force its own target temperature. Return the preset to <code>none</code> before setting the temperature manually.</li>
+ <li><strong>Units</strong>: Confirm that the unit system described in Chapter 2 is set to Celsius. Otherwise, <code>temperature: 26</code> may be interpreted as Fahrenheit—which would be extremely cold.</li>
  </ul>
  </section>
 
  <!-- ================ COVER ================ -->
- <section id="cover" data-nav="cover · curtain/garage">
- <h2 data-icon="steps"><code>cover</code> · Curtains / Garage Doors / Blinds</h2>
+ <section id="cover" data-nav="Covers">
+ <h2 data-icon="steps"><code>cover</code> · Curtains, garage doors, and blinds</h2>
  <h3>Common actions</h3>
  <ul>
  <li><code>cover.open_cover</code> / <code>cover.close_cover</code> / <code>cover.stop_cover</code> / <code>cover.toggle</code></li>
- <li><code>cover.set_cover_position</code> — Parameters <code>position: 50</code>(0 fully closed, 100 fully open)</li>
- <li><code>cover.set_cover_tilt_position</code> —Louvre blade angle</li>
+ <li><code>cover.set_cover_position</code> — Use <code>position: 50</code> (0 is fully closed; 100 is fully open)</li>
+ <li><code>cover.set_cover_tilt_position</code> — Set the angle of blind slats</li>
  <li><code>cover.open_cover_tilt</code> / <code>cover.close_cover_tilt</code></li>
  </ul>
  <h3>Common pitfalls</h3>
  <ul>
- <li><strong>The direction is reversed</strong>: Some motors “turn on” contrary to your intuition. Go to the device page "Reconfigure" or calibrate directly in the device App. Do not use it in HA. <code>position: 100 - x</code> Write backwards.</li>
- <li><strong>No position support</strong>: Cheap curtain motors only have three stages: open/close/stop. <code>set_cover_position</code> It will fail directly. Check the device page to see supported_features.</li>
- <li><strong>Add <code>lock</code> safeguards for a garage door</strong>: An automation that calls <code>cover.open_cover</code> without adequate conditions may open the garage in the middle of the night If you write the wrong automation. use <code>input_boolean</code> When switch + condition is checked.</li>
+ <li><strong>Direction is reversed</strong>: Some motors interpret “open” in the opposite direction from what you expect. Use “Reconfigure” on the device page or calibrate the motor in its manufacturer’s app. Do not work around it in Home Assistant by writing <code>position: 100 - x</code>.</li>
+ <li><strong>No position support</strong>: Inexpensive curtain motors may support only open, close, and stop. Calling <code>set_cover_position</code> will fail. Check supported_features on the device’s entity page first.</li>
+ <li><strong>Add <code>lock</code> safeguards for garage doors</strong>: <code>cover.open_cover</code> has no built-in confirmation, so a faulty automation could open the garage in the middle of the night. Use an <code>input_boolean</code> as an enable switch and add explicit conditions.</li>
  </ul>
  </section>
 
@@ -208,21 +208,21 @@
  <li><code>media_player.turn_on / turn_off / toggle</code></li>
  <li><code>media_player.volume_set</code> (<code>volume_level: 0.3</code>, 0-1), <code>volume_up / volume_down / volume_mute</code></li>
  <li><code>media_player.media_play / media_pause / media_stop / media_next_track / media_previous_track</code></li>
- <li><code>media_player.play_media</code>  — Play specific content (<code>media_content_id</code> plus <code>media_content_type</code>)</li>
- <li><code>media_player.select_source</code>  — Select an input or source (HDMI1, Netflix, Spotify)</li>
- <li><code>media_player.select_sound_mode</code>  — Select a supported sound mode</li>
+ <li><code>media_player.play_media</code> — Play specific content using <code>media_content_id</code> and <code>media_content_type</code></li>
+ <li><code>media_player.select_source</code> — Select an input or source such as HDMI1, Netflix, or Spotify</li>
+ <li><code>media_player.select_sound_mode</code> — Select a supported sound mode</li>
  </ul>
  <h3>Capabilities vary by integration</h3>
  <ul>
- <li><strong>Google Cast</strong>: Can play supported media on Cast targets</li>
- <li><strong>Apple TV / Sonos / HEOS</strong>: Capabilities may include playlists and groups</li>
- <li><strong>Samsung / LG TV</strong>: Power-on may require Wake-on-LAN or a vendor-specific setting</li>
- <li><strong>Spotify / Plex</strong>:May use <code>play_media</code> for supported playlists or videos</li>
+ <li><strong>Google Cast</strong>: Can cast a URL to a Nest Hub or Chromecast, making it useful for text-to-speech announcements such as “The washing machine has finished.”</li>
+ <li><strong>Apple TV / Sonos / HEOS</strong>: Offer extensive support, including playlists and speaker groups</li>
+ <li><strong>Samsung / LG TVs</strong>: Usually turn off reliably, but turning them on may require additional Wake-on-LAN configuration</li>
+ <li><strong>Spotify / Plex</strong>: Can use <code>play_media</code> to start a specific playlist or video</li>
  </ul>
  <h3>Common pitfalls</h3>
  <ul>
- <li>A TV may need several seconds after power-on before accepting another command. Add an appropriate <code>delay</code>.</li>
- <li>A Cast speaker group is a <em>separate</em> media-player entity, not an attribute of an individual speaker.</li>
+ <li>A TV may need 3–5 seconds after turning on before it accepts another command. Add a <code>delay</code> between “turn on” and “select source.”</li>
+ <li>A Cast speaker group is a <em>separate</em> media-player entity, not an attribute of one of its speakers.</li>
  </ul>
  </section>
 
@@ -232,15 +232,15 @@
  <h3>Common actions</h3>
  <ul>
  <li><code>lock.lock</code> / <code>lock.unlock</code></li>
- <li><code>lock.open</code> (opens a supported latch)</li>
+ <li><code>lock.open</code> — Physically unlatch or open the door when the hardware supports it</li>
  </ul>
  <h3>Common pitfalls</h3>
  <ul>
- <li><strong>Safety first</strong>: Lock automations need <em>independent safeguards</em>. Check door state and occupancy, and never use only a clock time to unlock an entry.</li>
- <li><strong>Cloud latency</strong>: Cloud integrations can respond more slowly or become unavailable during an outage. Prefer a supported local integration when reliability is critical.</li>
- <li><strong>Unavailable means no remote control</strong>: If Home Assistant cannot reach the lock, it cannot operate it. Always retain a local entry method.</li>
+ <li><strong>Safety first</strong>: Always give lock automations <em>two safeguards</em>. For example, an “auto-lock when leaving” automation should verify both that nobody is home and that the door has not opened in the past 5 minutes. Do not rely on a time trigger alone.</li>
+ <li><strong>Cloud latency</strong>: Cloud integrations for brands such as Yale, August, and Aqara often have a 5–15-second delay. For lower latency, use a supported local protocol such as Matter over Thread or Z-Wave.</li>
+ <li><strong>You cannot control an unavailable lock</strong>: If the lock loses its connection to Home Assistant, remote control will not work. Local protocols such as Matter, Zigbee, and Z-Wave are generally more resilient than cloud-only connections.</li>
  </ul>
- <div class="callout warn"><strong>Warning:</strong> Automatic locking can lock you out. Keep a tested mechanical key, keypad code, or other independent entry method.</div>
+ <div class="callout warn"><strong>Warning:</strong> If you enable automatic locking without a phone or spare key, you may lock yourself out. Always keep a mechanical key or backup PIN available.</div>
  </section>
 
  <!-- ================ VACUUM ================ -->
@@ -249,21 +249,21 @@
  <h3>Common actions</h3>
  <ul>
  <li><code>vacuum.start</code> / <code>vacuum.pause</code> / <code>vacuum.stop</code></li>
- <li><code>vacuum.return_to_base</code>  — Return to the dock</li>
- <li><code>vacuum.locate</code>  — Make the vacuum identify its location</li>
- <li><code>vacuum.set_fan_speed</code>  — Set a supported fan-speed value</li>
- <li><code>vacuum.send_command</code>  — Send vendor-specific commands; payloads vary by integration</li>
+ <li><code>vacuum.return_to_base</code> — Return to the charging dock</li>
+ <li><code>vacuum.locate</code> — Play a sound so you can find the vacuum</li>
+ <li><code>vacuum.set_fan_speed</code> — Set the suction level</li>
+ <li><code>vacuum.send_command</code> — Send a vendor-specific command, such as cleaning a particular Roborock room</li>
  </ul>
- <h3>Common usage</h3>
+ <h3>Common uses</h3>
  <ul>
  <li>Everyone has been away for 30 minutes → start cleaning</li>
- <li>No motion for 15 minutes on a weekday afternoon → start cleaning</li>
- <li>A calendar event says guests are coming → clean the living room beforehand</li>
+ <li>All Zigbee motion sensors have reported no motion for 15 minutes on a weekday afternoon → start cleaning</li>
+ <li>A Google Calendar event says guests are coming → clean the living room 30 minutes beforehand</li>
  </ul>
  <h3>Common pitfalls</h3>
  <ul>
- <li><strong>Cloud rate limits</strong>: Some vendor APIs limit calls. Rely on entity updates instead of polling from an automation every minute.</li>
- <li><strong>Room IDs are vendor-specific</strong>: Map rooms in the vendor app first, then follow the integration documentation before using <code>send_command</code> with a room identifier. Do not guess values.</li>
+ <li><strong>Cloud API rate limits</strong>: Some brands limit the number of daily API calls. Do not write an automation that polls the vacuum’s state every minute.</li>
+ <li><strong>Room IDs are hidden</strong>: To clean only the living room, first divide the map into rooms in the manufacturer’s app, then pass the room ID through <code>send_command</code>. The ID is usually available in the device attributes or integration logs.</li>
  </ul>
  </section>
 
@@ -273,70 +273,70 @@
  <h3>Common actions</h3>
  <ul>
  <li><code>fan.turn_on</code> / <code>fan.turn_off</code> / <code>fan.toggle</code></li>
- <li><code>fan.set_percentage</code> (0–100% speed)</li>
- <li><code>fan.set_preset_mode</code> (<code>auto / sleep / turbo</code>, depending on the device)</li>
- <li><code>fan.oscillate</code> (enable or disable oscillation)</li>
- <li><code>fan.set_direction</code> (set a supported direction)</li>
+ <li><code>fan.set_percentage</code> — Set the speed from 0–100%</li>
+ <li><code>fan.set_preset_mode</code> — Select <code>auto / sleep / turbo</code>, depending on the device</li>
+ <li><code>fan.oscillate</code> — Enable or disable side-to-side oscillation</li>
+ <li><code>fan.set_direction</code> — Set a ceiling fan to rotate clockwise or counterclockwise</li>
  </ul>
  <h3>Common pitfalls</h3>
  <ul>
- <li>An air purifier may expose <code>fan</code> (fan speed), <code>sensor</code> (air quality), and <code>switch</code> (an optional feature) as separate entities.</li>
- <li><code>set_percentage: 0</code> may turn some fans off. Call <code>turn_on</code>.</li>
+ <li>An air purifier may expose separate entities in three domains: <code>fan</code> for fan speed, <code>sensor</code> for PM2.5, and <code>switch</code> for features such as ionization.</li>
+ <li><code>set_percentage: 0</code> usually turns the fan off. Call <code>turn_on</code> before restoring its speed.</li>
  </ul>
  </section>
 
  <!-- ================ CAMERA ================ -->
- <section id="camera" data-nav="camera · camera">
- <h2 data-icon="steps"><code>camera</code> · Camera</h2>
+ <section id="camera" data-nav="Cameras">
+ <h2 data-icon="steps"><code>camera</code> · Cameras</h2>
  <h3>Common actions</h3>
  <ul>
- <li><code>camera.snapshot</code> — Take a chart and save it (parameters <code>filename: /media/snap_{{ now().timestamp() }}.jpg</code>)</li>
- <li><code>camera.turn_on / turn_off</code>(supported by some cameras)</li>
+ <li><code>camera.snapshot</code> — Save a still image using <code>filename: /media/snap_{{ now().timestamp() }}.jpg</code></li>
+ <li><code>camera.turn_on / turn_off</code> — Supported by some cameras</li>
  <li><code>camera.enable_motion_detection / disable_motion_detection</code></li>
- <li><code>camera.record</code> — Record a video</li>
+ <li><code>camera.record</code> — Record a video clip</li>
  </ul>
- <h3>UI card</h3>
+ <h3>Dashboard cards</h3>
  <ul>
- <li><strong>Picture entity</strong>: Built-in, the simplest</li>
- <li><strong>Picture glance</strong>: Image + small icon above to display related entities (door locks, lights)</li>
- <li><strong>WebRTC card</strong> (HACS): Low latency streaming, perfect for doorbells</li>
+ <li><strong>Picture entity</strong>: The simplest built-in option</li>
+ <li><strong>Picture glance</strong>: Shows a camera image with small icons for related entities such as locks and lights</li>
+ <li><strong>WebRTC card</strong> (HACS): Provides low-latency streaming suitable for doorbells</li>
  </ul>
  <h3>Common pitfalls</h3>
  <ul>
- <li><strong>Cloud camera (Ring, Wyze, TP-Link Kasa)</strong>: Picture delay of 5-30 seconds is normal. If you want to get real-time streaming, you need to use ONVIF/RTSP local streaming.</li>
- <li><strong>Snapshot file location</strong>:Default <code>/config/www/</code> can be read by the dashboard; save <code>/media/</code> To configure additional media_source.</li>
+ <li><strong>Cloud cameras such as Ring, Wyze, and TP-Link Kasa</strong>: A 5–30-second video delay is common. For real-time video, use a local ONVIF or RTSP stream.</li>
+ <li><strong>Snapshot file location</strong>: Files in <code>/config/www/</code> can be served to a dashboard by default. Files saved under <code>/media/</code> require additional media_source configuration.</li>
  </ul>
  </section>
 
  <!-- ================ SENSOR ================ -->
  <section id="sensor" data-nav="Sensors">
- <h2 data-icon="steps"><code>sensor</code> / <code>binary_sensor</code> · Sensor</h2>
- <p>A <code>sensor</code> reports a <em>value</em>, such as 25.3°C or 87%. A <code>binary_sensor</code> reports <em>one of two states</em>, such as open/closed or detected/clear.</p>
+ <h2 data-icon="steps"><code>sensor</code> / <code>binary_sensor</code> · Sensors</h2>
+ <p>A <code>sensor</code> reports a <em>numeric or textual value</em>, such as a temperature of 25.3 or a battery level of 87%. A <code>binary_sensor</code> reports <em>one of two states</em>, such as open/closed, occupied/clear, or raining/not raining.</p>
  <h3>They do not accept control actions</h3>
- <p>Sensors are read-only. You cannot turn on a temperature sensor. Use its value in a <strong>trigger or condition</strong>: </p>
+ <p>Sensors are read-only: you cannot “turn on” a temperature sensor. Their value lies in serving as <strong>triggers and conditions</strong>:</p>
  <ul>
- <li>Trigger: When <code>binary_sensor.motion_livingroom</code> turns on → turn on a light</li>
- <li>Condition: At sunset, continue only If <code>binary_sensor.someone_home</code> is on</li>
- <li>Value: When <code>sensor.pm25</code> exceeds 35 → turn on an air purifier</li>
+ <li>Trigger: when <code>binary_sensor.motion_livingroom</code> changes to on → turn on the light</li>
+ <li>Condition: at sunset, proceed only if <code>binary_sensor.someone_home</code> is on</li>
+ <li>Numeric trigger: when <code>sensor.pm25</code> exceeds 35 → turn on the air purifier</li>
  </ul>
- <h3>Common device classes (which influence names, icons, and behavior)</h3>
+ <h3>Common device classes, which determine icons and behavior</h3>
  <ul>
  <li><code>sensor</code>: <code>temperature / humidity / pressure / illuminance / power / energy / battery / co2 / pm25</code></li>
  <li><code>binary_sensor</code>: <code>motion / occupancy / door / window / smoke / moisture / opening / battery / connectivity</code></li>
  </ul>
- <div class="callout tip"><strong>Tip:</strong> If an integration assigns the wrong device class, the entity settings may let you override it. Choose only a class that matches the value’s actual meaning.</div>
+ <div class="callout tip"><strong>Tip:</strong> If Home Assistant assigns the wrong device_class—for example, treating an opening sensor as a door sensor—you can override it from the entity’s settings page. Its dashboard icon will update accordingly.</div>
  <h3>Common pitfalls</h3>
  <ul>
- <li><strong>Binary-sensor chatter</strong>: Rapid on/off changes can repeatedly toggle an automation. Require the off state to remain stable for five minutes before turning off a light.</li>
- <li><strong>Battery level is usually a sensor</strong>: A low-battery reminder uses <code>sensor.*_battery</code> with a numeric-state trigger.</li>
+ <li><strong>Binary-sensor chatter</strong>: A motion sensor may rapidly switch “on → off → on.” If your automations turn lights on for on and off for off, the lights will flicker. Require the state to remain stable with a “for: 5 minutes” condition before acting.</li>
+ <li><strong>Battery level is a sensor, not a binary sensor</strong>: To send a warning below 20%, use <code>sensor.*_battery</code> with a numeric-state trigger.</li>
  </ul>
  </section>
 
  <!-- ================ NOTIFY ================ -->
  <section id="notify" data-nav="Notifications">
  <h2 data-icon="steps"><code>notify</code> · Notifications</h2>
- <p>Chapter 7 introduces mobile notifications. This example shows common Companion App payload options.</p>
- <h3>Companion App pushes complete parameters</h3>
+ <p>Chapter 7 covers the basics; this section provides more detail about notification parameters.</p>
+ <h3>Full Companion App push-notification payload</h3>
 <pre style="background:var(--surface-alt);padding:12px;border-radius:8px;overflow:auto;font-size:13px;"><code>action: notify.mobile_app_iphone
 data:
   title: Washing cycle complete
@@ -354,54 +354,54 @@ data:
     tag: laundry                            # Replaces the previous notification with the same tag
     channel: laundry                        # Android notification channel
     ttl: 0                                  # Android high priority</code></pre>
- <h3>Other notification-related actions</h3>
+ <h3>Other commonly used notify.* actions</h3>
  <ul>
- <li><code>notify.persistent_notification</code>  — Create a notification in the Home Assistant interface; it does not push to a phone</li>
- <li><code>notify.notify</code>  — Call the configured default notification group</li>
- <li><code>tts.*</code>  — Text-to-speech actions use a <code>media_player</code>); see the voice chapter for details.</li>
+ <li><code>notify.persistent_notification</code> — Create an internal Home Assistant notification, shown under the bell icon; this does not send a phone notification</li>
+ <li><code>notify.notify</code> — Send to the default notification group across all configured channels</li>
+ <li><code>tts.*</code> — Read text aloud through a <code>media_player</code>; see the voice appendix to this chapter</li>
  </ul>
  </section>
 
  <!-- ================ INPUT ================ -->
  <section id="input" data-nav="Helpers">
  <h2 data-icon="steps"><code>input_*</code> · Helper entities</h2>
- <p>Helpers are Home Assistant entities you create to store user-controlled values or reusable state. See Appendix B for details.</p>
+ <p>Helpers are built-in Home Assistant “virtual entities” that give automations a value you can change or “flip.” See Appendix B for details. The table below maps each helper to its domain:</p>
  <table class="data-table">
  <thead>
  <tr>
  <th>Domain</th>
- <th>Purpose</th>
- <th>Example</th>
+ <th>What it stores</th>
+ <th>Common use</th>
  </tr>
  </thead>
  <tbody>
- <tr><td><code>input_boolean</code></td><td>Toggle</td><td>"Guest Mode" "Vacation Mode" switch</td></tr>
- <tr><td><code>input_number</code></td><td>Adjustable number</td><td>Use the slider to adjust the "illuminance threshold for automatically turning on the lights"</td></tr>
- <tr><td><code>input_select</code></td><td>Drop-down selection</td><td>"Home Mode" = at home/away from home/sleeping</td></tr>
- <tr><td><code>input_text</code></td><td>Text value</td><td>Record events and tags</td></tr>
- <tr><td><code>input_datetime</code></td><td>Date and/or time</td><td>"Wake up time" allows family members to change it on the dashboard</td></tr>
- <tr><td><code>timer</code></td><td>Countdown timer</td><td>"Light turns off automatically after 5 minutes"</td></tr>
- <tr><td><code>counter</code></td><td>Integer counter</td><td>"Number of openings today"</td></tr>
- <tr><td><code>schedule</code></td><td>Weekly schedule</td><td>"Working hours" draws a timetable in weekly units</td></tr>
+ <tr><td><code>input_boolean</code></td><td>On/off state</td><td>A “Guest mode” or “Vacation mode” switch</td></tr>
+ <tr><td><code>input_number</code></td><td>Adjustable number</td><td>A slider for the illuminance threshold that turns lights on automatically</td></tr>
+ <tr><td><code>input_select</code></td><td>Drop-down selection</td><td>A “Household mode” with Home, Away, and Sleep options</td></tr>
+ <tr><td><code>input_text</code></td><td>Text string</td><td>Record an event or store a label</td></tr>
+ <tr><td><code>input_datetime</code></td><td>Date and time</td><td>Let family members change the wake-up time from a dashboard</td></tr>
+ <tr><td><code>timer</code></td><td>Countdown timer</td><td>Turn off a light after 5 minutes</td></tr>
+ <tr><td><code>counter</code></td><td>Integer counter</td><td>Count how many times a door opened today</td></tr>
+ <tr><td><code>schedule</code></td><td>Weekly schedule</td><td>Draw a weekly timetable for working hours</td></tr>
  </tbody>
  </table>
- <p>Each domain provides relevant actions, for example <code>input_boolean.turn_on</code>, <code>input_number.set_value</code>, <code>timer.start</code>. See Appendix B for the complete walkthrough.</p>
+ <p>Each domain has corresponding actions, including <code>input_boolean.turn_on</code>, <code>input_number.set_value</code>, and <code>timer.start</code>. Appendix B provides a complete tutorial.</p>
  </section>
 
  <!-- ================ COMMON TOOLS ================ -->
- <section id="tools" data-nav="Domain tools">
- <h2 data-icon="tips">Domain tools</h2>
- <div class="callout"><strong>Concept:</strong> This area was formerly called Developer Tools. It moved under <strong>Settings</strong> and in 2026.8 became <strong>Tools</strong> . The current path is <strong>Settings → Tools</strong>. Its former Services tab is now called <strong>Actions</strong>. Older screenshots may show Developer Tools → Services for the equivalent controls.</div>
+ <section id="tools" data-nav="Tools and best practices">
+ <h2 data-icon="tips">Tools and best practices</h2>
+ <div class="callout"><strong>Terminology:</strong> This feature has been renamed twice. It was previously the standalone Developer Tools sidebar item, moved under <strong>Settings</strong> in Home Assistant 2026.2, and was shortened to <strong>Tools</strong> in 2026.8. The current path is <strong>Settings → Tools</strong>. Its “Services” tab was renamed <strong>Actions</strong> in 2024.8. If you use an older Home Assistant release, go to Developer Tools → Services; the functionality is the same.</div>
  <h3>Use Tools to test actions</h3>
- <p>Open Settings → Tools → Actions. Select an action, choose a safe target, provide valid parameters, and run it. This isolates an action from automation triggers and conditions.</p>
+ <p>Open the sidebar and select Settings → Tools → Actions. Choose any action, enter its parameters, and select Perform action. This is the fastest way to learn a new domain because you can test it directly without creating an automation.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch12/01_dev_services.png" alt="Developer Tools Services" />
- <figcaption><strong>Figure 12-1</strong> "Settings → Tools → Actions" - Learn a new domain and play here. (The screenshot shows the old version of the interface "Developer Tools → Services", the location and name have been changed as above)</figcaption>
+ <img src="../assets/screenshots/ch12/01_dev_services.png" alt="Home Assistant Developer Tools Services interface" />
+ <figcaption><strong>Figure 12-1</strong> Settings → Tools → Actions is the place to experiment with a new domain. This screenshot shows the former Developer Tools → Services interface; the location and labels have since changed as described above.</figcaption>
  </figure>
- <h3>Use States to inspect attributes</h3>
- <p>Settings → Tools → “States” tab → Paste entity ID → See what it has <code>attributes</code>. For example <code>light.livingroom</code> properties will have <code>supported_color_modes</code>, <code>min_color_temp_kelvin</code>, <code>max_color_temp_kelvin</code>, these determine what parameters you can set.</p>
- <h3>Choose integrations by capability</h3>
- <div class="callout"><strong>Check the domain before buying:</strong> Devices exposed as <code>light / switch / cover / climate</code> usually provide a consistent control model. A device exposed only as several <code>sensor</code> + <code>switch</code> may require more custom logic. Read the official integration page and confirm the exact model before buying.</div>
+ <h3>Use States to inspect entity attributes</h3>
+ <p>Go to Settings → Tools → States, enter an entity ID, and inspect its <code>attributes</code>. For example, <code>light.livingroom</code> may report <code>supported_color_modes</code>, <code>min_color_temp_kelvin</code>, and <code>max_color_temp_kelvin</code>. These attributes determine which parameters you can set.</p>
+ <h3>Key takeaway</h3>
+ <div class="callout"><strong>Check the domain before buying:</strong> Devices exposed under a purpose-built domain such as <code>light / switch / cover / climate</code> usually provide the best experience. A device exposed only as several <code>sensor</code> + <code>switch</code> entities—some generic Tuya curtain motors, for example—may require awkward custom logic. Before buying, search for the brand and model together with “Home Assistant integration.”</div>
  </section>
 
  <!-- ================ FAQ ================ -->
@@ -409,55 +409,55 @@ data:
  <h2 data-icon="faq">FAQ</h2>
 
  <details class="faq">
- <summary>Why does Home Assistant expose my lamp as a <code>switch</code>? Can I change it to <code>light</code> ?</summary>
+ <summary>Why does Home Assistant expose my lamp as a <code>switch</code>? Can I change it to a <code>light</code>?</summary>
  <div class="body">
- <p>The device reports only power on/off, as with a smart plug or relay. The integration cannot know whether the load is a lamp or another appliance, so it exposes a <code>switch</code>.</p>
- <p>Use Home Assistant’s built-in “Change device type of a switch” helper under <strong>Settings → Devices &amp; services → Helpers → Create helper</strong>. Select one <code>switch</code> entity and expose it as <code>light</code>, <code>cover</code>, <code>fan</code>, <code>lock</code>, <code>siren</code> or <code>valve</code> . Home Assistant creates a new entity such as <code>light.desk_lamp</code> and hides the original <code>switch</code> to avoid duplicate dashboard controls.</p>
- <div class="callout warn"><strong>Warning:</strong> Changing the domain does not create hardware capabilities. After conversion to <code>light</code>, you can call <code>light.turn_on</code>, but you still <em>Can't</em>adjust brightness or color temperature when the hardware lacks those features. Dimming requires a dimmable lamp or module.</div>
+ <p>The device reports only the ability to turn power on and off. This is common when a lamp is plugged into a smart plug, connected to a relay-based wall switch, or controlled by a single-channel Tuya module. The integration cannot know whether the load is a lamp or a water dispenser, so it exposes the device as a <code>switch</code>.</p>
+ <p>Home Assistant includes a helper that can present it differently. Go to <strong>Settings → Devices &amp; services → Helpers → Create helper</strong> and select “Change device type of a switch” (formerly “Switch as X”). Select a <code>switch</code> entity and expose it as a <code>light</code>, <code>cover</code>, <code>fan</code>, <code>lock</code>, <code>siren</code>, or <code>valve</code>. Home Assistant creates a new entity such as <code>light.desk_lamp</code> and automatically hides the original <code>switch</code>, preventing duplicate dashboard controls.</p>
+ <div class="callout warn"><strong>Warning:</strong> Changing the domain does not add capabilities the hardware lacks. After converting it to a <code>light</code>, you can call <code>light.turn_on</code>, but you still <em>cannot</em> adjust brightness or color temperature. Dimming requires a genuinely dimmable lamp or module.</div>
  </div>
  </details>
 
  <details class="faq">
- <summary>My light only has brightness and no color temperature and color options. Is it an HA problem?</summary>
+ <summary>My light has brightness controls but no color-temperature or color options. Is Home Assistant at fault?</summary>
  <div class="body">
- <p>Start by checking the entity’s actual capabilities under <strong>Settings → Tools → States</strong>. <code>supported_color_modes</code> lists the modes reported by the integration:</p>
+ <p>Probably not; the light itself most likely lacks those features. Go to <strong>Settings → Tools → States</strong>, enter the entity ID, and inspect <code>supported_color_modes</code>. This attribute reports exactly which color modes the light supports:</p>
  <table class="data-table">
  <thead>
- <tr><th>color mode</th><th>What you will see on the UI</th></tr>
+ <tr><th>Color mode</th><th>What appears in the interface</th></tr>
  </thead>
  <tbody>
- <tr><td><code>onoff</code></td><td>Only on/off, not even a brightness slider</td></tr>
- <tr><td><code>brightness</code></td><td>Brightness slider only (monotone light)</td></tr>
- <tr><td><code>color_temp</code></td><td>Brightness plus Color Temperature (warm white to cool white)</td></tr>
- <tr><td><code>hs</code> / <code>rgb</code> / <code>rgbw</code> / <code>rgbww</code></td><td>Brightness plus Color Wheel (<code>rgbww</code> This kind also has an additional white light channel)</td></tr>
+ <tr><td><code>onoff</code></td><td>On/off only, without even a brightness slider</td></tr>
+ <tr><td><code>brightness</code></td><td>A brightness slider only (single-color dimmable light)</td></tr>
+ <tr><td><code>color_temp</code></td><td>Brightness and color temperature, from warm white to cool white</td></tr>
+ <tr><td><code>hs</code> / <code>rgb</code> / <code>rgbw</code> / <code>rgbww</code></td><td>Brightness and a color wheel; modes such as <code>rgbww</code> also provide dedicated white-light channels</td></tr>
  </tbody>
  </table>
- <p>There is in the list <code>color_temp</code> lights will appear simultaneously in the properties <code>min_color_temp_kelvin</code> and <code>max_color_temp_kelvin</code>, that is, how warm or cold the color temperature of this lamp can be adjusted. If the hardware does not support it, no helpers or HACS cards can change the color temperature.</p>
- <p>If <code>supported_color_modes</code> Obviously less than what is written in the product specifications (for example, I bought a colored light bulb but only <code>brightness</code>), that is the key to integration: first update the bulb firmware, re-pair, or go to the integrated GitHub to see If there are reports of the same model.</p>
+ <p>A light that lists <code>color_temp</code> will also report <code>min_color_temp_kelvin</code> and <code>max_color_temp_kelvin</code>. These attributes define the warmest and coolest color temperatures the light supports. If the hardware lacks color-temperature support, no helper or HACS card can add it.</p>
+ <p>If <code>supported_color_modes</code> reports substantially fewer capabilities than the product specification—for example, a color bulb reports only <code>brightness</code>—the integration may be at fault. Update the bulb’s firmware, pair it again, or check the integration’s GitHub repository for reports about the same model.</p>
  </div>
  </details>
 
  <details class="faq">
- <summary>The opening and closing direction of the curtain is reversed. Press "Open" to close it. The positions 0 and 100 are also reversed. How to fix it?</summary>
+ <summary>My curtain moves in the wrong direction: “Open” closes it, and positions 0 and 100 are reversed. How do I fix it?</summary>
  <div class="body">
- <p>First remember that the definition of HA is dead:<code>position: 0</code> means <strong>Completely closed</strong>, <code>position: 100</code> means <strong>Fully open</strong>. This rule doesn't change based on your motor setup.</p>
- <p>Correct the direction at the motor or integration: <strong>Fix the motor calibration at its source</strong>. Avoid putting <code>100 - x</code> arithmetic into every automation because the dashboard slider will remain reversed. Use the appropriate setup method:</p>
+ <p>Home Assistant’s definitions are fixed: <code>position: 0</code> means <strong>fully closed</strong>, and <code>position: 100</code> means <strong>fully open</strong>. They do not change because a motor was installed in the opposite orientation.</p>
+ <p><strong>Correct the direction at the device</strong> rather than writing <code>100 - x</code> in your Home Assistant automations. That calculation is easy to forget, and it does not correct the reversed dashboard slider. Use the method that matches your installation:</p>
  <ol class="steps">
  <li>
  <h3>Zigbee2MQTT motor</h3>
- <p>Go to the settings area of the device page to find <code>motor_reversal</code>(Reverse the direction of the motor) or <code>invert_cover</code>(Reverse the position value, false is open=100 / close=0). Taking common curtain modules such as Tuya TS130F as an example, these two options are among the device's configurable items.</p>
+ <p>On the device page, look for <code>motor_reversal</code>, which reverses the motor direction, or <code>invert_cover</code>, which reverses the reported position. With invert_cover set to false, open=100 and close=0. Common curtain modules such as the Tuya TS130F expose both options in their device settings.</p>
  </li>
  <li>
- <h3>Motor paired with the original app</h3>
- <p>Most electric curtains have "motor direction" or "travel calibration" in the original app. Re-setting the upper and lower limits is usually correct. After calibrating the HA, there is no need to change anything.</p>
+ <h3>Motor paired through the manufacturer’s app</h3>
+ <p>Most motorized-curtain apps offer “Motor direction” or “Travel calibration.” Running the upper- and lower-limit calibration again usually corrects the direction. You should not need to change anything in Home Assistant afterward.</p>
  </li>
  <li>
- <h3>Device page reset</h3>
- <p>Some integrations provide "Reconfigure" on the device page to rerun the calibration process.</p>
+ <h3>Reconfigure from the device page</h3>
+ <p>Some integrations provide a “Reconfigure” option on the device page that reruns the calibration process.</p>
  </li>
  <li>
- <h3>There really is no choice, last resort</h3>
- <p>Use a template cover to reverse values only as a last resort, because it adds another layer to maintain.</p>
+ <h3>Last resort</h3>
+ <p>If none of those options is available, wrap the entity in a template cover that reverses the values. This is the hardest approach to maintain, so avoid it whenever possible.</p>
  </li>
  </ol>
  </div>
@@ -466,26 +466,26 @@ data:
  <details class="faq">
  <summary>I call <code>climate.set_temperature</code> with 26°C, but the climate device does not respond. Why?</summary>
  <div class="body">
- <p>Check these causes in order:</p>
+ <p>Check these causes in order; one of the first two is usually responsible:</p>
  <ul>
- <li><strong>The air conditioner is off.</strong> Assume that the target temperature is not equal to power on.<code>climate.set_temperature</code> can also accept <code>hvac_mode</code>. Set both fields together:<code>hvac_mode: cool</code> add <code>temperature: 26</code>.</li>
- <li><strong>Trapped by preset.</strong> When switching to manufacturer-preset modes such as "eco" and "sleep", the target temperature is often determined by the manufacturer. first <code>climate.set_preset_mode</code> Set back <code>none</code>, and then set the temperature.</li>
- <li><strong>Out of settable range.</strong> Each machine has its own <code>min_temp</code> / <code>max_temp</code>and <code>target_temp_step</code>. A device may accept only fixed increments. Inspect these attributes under Settings → Tools → States.</li>
- <li><strong>It is actually a zone thermostat.</strong> Use <code>target_temp_high</code> and <code>target_temp_low</code>; the integration may ignore a single <code>temperature</code> value.</li>
- <li><strong>Infrared air conditioner.</strong> As mentioned earlier in this article, HA only sends commands, and no one knows whether there are any hits when sent out - is the air conditioner facing the remote control? Is there any obstruction in the middle?</li>
+ <li><strong>The air conditioner is off.</strong> Setting a target temperature does not necessarily turn the unit on. <code>climate.set_temperature</code> also accepts <code>hvac_mode</code>, so the safest approach is to set <code>hvac_mode: cool</code> and <code>temperature: 26</code> together.</li>
+ <li><strong>A preset controls the setpoint.</strong> In manufacturer presets such as “eco” and “sleep,” the manufacturer often controls the target temperature. First use <code>climate.set_preset_mode</code> to return to <code>none</code>, then set the temperature.</li>
+ <li><strong>The value is outside the supported range.</strong> Every device has its own <code>min_temp</code> / <code>max_temp</code>—Home Assistant defaults to 7–35 degrees—and <code>target_temp_step</code>. Some units accept only whole degrees and ignore 25.5. Inspect these attributes under Settings → Tools → States.</li>
+ <li><strong>It is a range-based thermostat.</strong> Use <code>target_temp_high</code> and <code>target_temp_low</code>; the integration may ignore a single <code>temperature</code> value.</li>
+ <li><strong>It uses infrared control.</strong> As explained above, Home Assistant only knows that it sent the command. Make sure the IR blaster faces the air conditioner and that nothing blocks the signal.</li>
  </ul>
- <p>The quickest way to determine what happened is to <strong>Settings → Tools → Actions</strong> Execute it directly and see If it reports success or skips an error message.</p>
+ <p>For the quickest diagnosis, run the action directly under <strong>Settings → Tools → Actions</strong> and check whether it succeeds or returns an error.</p>
  </div>
  </details>
 
  <details class="faq">
  <summary>Why does <code>select_source</code> not list or select the source I want?</summary>
  <div class="body">
- <p><code>media_player.select_source</code> accepts only strings reported by the device, and <strong>The capitalization and spaces must be exactly the same.</strong>. In Settings → Tools → States, inspect the media player’s <code>source_list</code> attribute. Use an exact listed value; <code>HDMI 1</code> fails If the list says <code>HDMI1</code>.</p>
- <p>Two common situations:</p>
+ <p><code>media_player.select_source</code> accepts only strings reported by the device, and <strong>capitalization and spaces must match exactly</strong>. Under Settings → Tools → States, inspect the media player’s <code>source_list</code> attribute. Entering <code>HDMI 1</code> will fail if the list contains <code>HDMI1</code>.</p>
+ <p>Two situations are common:</p>
  <ul>
- <li><strong>The list is empty or has only one or two items.</strong> Many TVs will not report the complete source list to HA until they are turned on and connected to the Internet. When automatically writing "power on → change source", please leave a few seconds in between. <code>delay</code>, otherwise the list will not be generated at all when the command is sent out.</li>
- <li><strong>The integration does not support changing sources at all.</strong> Not every media_player has this capability (pure speakers and some streaming boxes do not). I can’t see the source drop-down menu on the device page, nor in the status. <code>source_list</code>, that is, no, use the brand's App macro or IR/HDMI-CEC bypass instead.</li>
+ <li><strong>The list is empty or contains only one or two items.</strong> Many TVs report their complete source list only after they have turned on and connected to the network. In an automation that turns on the TV and then changes its source, add a few seconds of <code>delay</code>; otherwise, the command may run before the list is available.</li>
+ <li><strong>The integration does not support source selection.</strong> Not every media_player has this capability; speakers and some streaming boxes do not. If the device page has no source selector and its state has no <code>source_list</code>, use the manufacturer’s app automation, infrared control, or HDMI-CEC instead.</li>
  </ul>
  </div>
  </details>
@@ -493,68 +493,68 @@ data:
  <details class="faq">
  <summary>Why is the camera slow on my dashboard?</summary>
  <div class="body">
- <p>Identify whether the delay comes from the camera source, stream format, or dashboard load:</p>
+ <p>First determine which part of the chain is causing the delay:</p>
  <ol class="steps">
  <li>
- <h3>First make sure it is not an inherent delay in cloud integration</h3>
- <p>Cloud-camera latency is determined largely by the provider. Use a supported local ONVIF or RTSP stream when low latency is required.</p>
+ <h3>Rule out unavoidable cloud latency</h3>
+ <p>Cameras accessed through a manufacturer’s cloud service can have several seconds of inherent delay. Settings cannot eliminate it; use a supported local ONVIF or RTSP stream when low latency matters.</p>
  </li>
  <li>
  <h3>Make sure you are using WebRTC</h3>
- <p>Home Assistant has built-in go2rtc starting from 2024.11, which provides WebRTC streaming for the camera, which is significantly more real-time than the old HLS. If you are running Home Assistant OS or Home Assistant container, it will be enabled by default after the update; cameras that do not support WebRTC will automatically fall back to the old method.</p>
+ <p>Since 2024.11, Home Assistant has included go2rtc to provide WebRTC camera streams, with substantially less delay than the older HLS approach. On Home Assistant OS or Home Assistant Container, it is enabled by default after updating. Cameras that cannot use WebRTC fall back automatically to the older method.</p>
  </li>
  <li>
- <h3>Use substream (substream)</h3>
- <p>Most IP cameras provide both a high-definition main stream and a low-resolution sub-stream. The small grid on the dashboard uses the sub-stream, and the main stream is used when you click to open it. The machine burden is much different.</p>
+ <h3>Use a substream</h3>
+ <p>Most IP cameras provide both a high-resolution main stream and a lower-resolution substream. Use the substream for small dashboard tiles and the main stream only when opening a full-size view. This substantially reduces the host’s workload.</p>
  </li>
  <li>
- <h3>Limit concurrent live streams</h3>
- <p>Each live stream consumes CPU and bandwidth. Put cameras on a dedicated view and load only the streams you need.</p>
+ <h3>Do not place eight cameras on one view</h3>
+ <p>Every live stream consumes CPU and bandwidth. Put cameras on a dedicated dashboard view and leave that view closed when it is not needed, so the streams do not slow down the rest of the dashboard.</p>
  </li>
  <li>
  <h3>Use “Preload stream” selectively</h3>
- <p>Preloading keeps a stream connected for faster opening but consumes resources continuously. Enable it only for priority cameras that the host can support.</p>
+ <p>The camera entity’s “Preload stream” setting keeps the connection open, making the video appear faster when selected, but it consumes resources continuously. Avoid enabling it for every camera on low-powered hardware such as an older Raspberry Pi.</p>
  </li>
  </ol>
  </div>
  </details>
 
  <details class="faq">
- <summary>Sensor display <code>unknown</code> and <code>unavailable</code>, what’s the difference between these two?</summary>
+ <summary>What is the difference between a sensor showing <code>unknown</code> and one showing <code>unavailable</code>?</summary>
  <div class="body">
- <p>The two states indicate different problems:</p>
+ <p>Home Assistant’s developer documentation draws a clear distinction between the two states:</p>
  <table class="data-table">
  <thead>
- <tr><th>Status</th><th>meaning</th><th>typical situation</th></tr>
+ <tr><th>State</th><th>Meaning</th><th>Typical situation</th></tr>
  </thead>
  <tbody>
- <tr><td><code>unavailable</code></td><td>The integration <strong>cannot provide a current state</strong>—for example, a disconnected device or unavailable cloud service.</td><td>The Zigbee sensor has no battery, the Wi-Fi socket is disconnected, and the host has just been restarted and is still not connected.</td></tr>
- <tr><td><code>unknown</code></td><td>The entity exists, but <strong>its current value is unknown</strong></td><td>The system has not received the first update, a field was omitted, or a new helper has no initial value.</td></tr>
+ <tr><td><code>unavailable</code></td><td>The integration <strong>cannot retrieve data</strong> because the connection is down, the device has no power, or a cloud service is offline</td><td>A Zigbee sensor has a flat battery, a Wi-Fi plug is disconnected, or the host has restarted and not yet reconnected</td></tr>
+ <tr><td><code>unknown</code></td><td>The entity is reachable, but <strong>its current value is empty or not yet known</strong></td><td>The system has not received its first update, a field was omitted from the latest response, or a new helper has never been assigned a value</td></tr>
  </tbody>
  </table>
- <p>In plain language, <code>unavailable</code> means “the integration cannot currently provide this entity”;<code>unknown</code> means “the entity exists, but its current value is not known.”</p>
- <p>Numeric-state triggers ignore both states. In templates, convert values safely and add availability checks so an invalid value does not stop the automation. Confirm that the state is neither <code>unknown</code>nor <code>unavailable</code>before calculating.</p>
- <div class="callout tip"><strong>Tip:</strong> If a sensor <em>often</em> change <code>unavailable</code>, that is a signal or battery problem, which cannot be solved by writing a program - go to the device page troubleshooting in Chapter 11, or add a Zigbee router (plugged-in device) relay for it.</div>
+ <p>In plain English, <code>unavailable</code> means “nobody is home”; <code>unknown</code> means “someone is home, but cannot answer.”</p>
+ <p>Protect automations against both states. Numeric-state triggers do not fire for either one, but using one of them in a calculation inside a condition or template can raise an error and stop the automation. Check that the state is neither <code>unknown</code> nor <code>unavailable</code> before performing the calculation.</p>
+ <div class="callout tip"><strong>Tip:</strong> If a sensor <em>frequently</em> becomes <code>unavailable</code>, the problem is its signal or battery—not something code can fix. Troubleshoot it from the device page described in Chapter 11, or add a mains-powered Zigbee router to extend the mesh.</div>
  </div>
  </details>
 
  <details class="faq">
- <summary>I want to control five lights in the living room at one time. Should I make a group or list them one by one in automation?</summary>
+ <summary>To control five living-room lights at once, should I create a group or list each one in the automation?</summary>
  <div class="body">
- <p>Choose based on whether this collection should remain meaningful in other contexts:</p>
+ <p>All four approaches work. Choose according to whether the same collection will be useful again:</p>
  <table class="data-table">
  <thead>
- <tr><th>practice</th><th>how to do</th><th>when to use</th></tr>
+ <tr><th>Approach</th><th>How it works</th><th>When to use it</th></tr>
  </thead>
  <tbody>
- <tr><td><strong>designated area</strong></td><td>Select "Area" as the target of the action, and all lights assigned to the living room are included.</td><td>The usual default. A future light assigned to the living room is included automatically. <em>No need to change a word</em></td></tr>
- <tr><td><strong>Group helper</strong></td><td>Settings → Devices & Services → Helpers → Create helper → Group, you can create various groups such as lights, switches, curtains, fans, sensors, etc.</td><td>This set of lights needs to be <strong>treat it as one entity</strong> to display and operate. It is a real entity that can be placed in cards and used as conditions.</td></tr>
- <tr><td><strong>Label</strong></td><td>Label the entity with a label such as "Night Light" and select the label for the action target.</td><td>Use this for entities that are <em>spread across areas</em> when one area cannot represent the collection</td></tr>
- <tr><td><strong>List entities one by one</strong></td><td>Target one point at a time</td><td>The combination is one-off, and certain items are deliberately excluded (for example, "all lights in the living room are turned off except for the fish tank lights")</td></tr>
+ <tr><td><strong>Target an area</strong></td><td>Select “Area” as the action target; every light assigned to the living room receives the action</td><td>The recommended default. A new light added to the living-room area is included automatically, so the automation <em>does not need to change at all</em></td></tr>
+ <tr><td><strong>Group helper</strong></td><td>Go to Settings → Devices &amp; services → Helpers → Create helper → Group; you can create groups of lights, switches, covers, fans, sensors, and more</td><td>Use this when the lights should <strong>appear and behave as one entity</strong> on the dashboard. The resulting entity can be placed on a card and used in conditions</td></tr>
+ <tr><td><strong>Label</strong></td><td>Assign a label such as “Night lights” to each entity, then select that label as the action target</td><td>Use this for a collection that <em>spans several areas</em>, such as every night-light or curtain in the home</td></tr>
+ <tr><td><strong>List each entity</strong></td><td>Select each target individually</td><td>Use this for a one-off combination or to exclude particular items—for example, “turn off every living-room light except the aquarium light”</td></tr>
  </tbody>
  </table>
- <p>Another benefit of the group helper: the state rule of the light group is <strong>As long as one of them is open, the group is open.</strong>, so the condition "Are the lights in the living room still on?" is particularly intuitive to write. When creating a group, you can also choose to hide member entities so that the dashboard does not have multiple duplicate things.</p>
- <div class="callout warn"><strong>Mistakes not to make:</strong> Do not create a group merely for a one-off action. Use a group when its members <em>Need to be treated as one thing</em> across dashboards, conditions, and actions. For simple targeting, an area or label avoids unnecessary entities. <code>light.group_xxx</code>.</div>
+ <p>A group helper offers another advantage: a light group is <strong>on whenever any member is on</strong>. This makes conditions such as “Are any living-room lights still on?” especially intuitive. You can also hide the member entities when creating the group to avoid duplicate dashboard controls.</p>
+ <div class="callout warn"><strong>Avoid this mistake:</strong> Do not create many groups solely to control several devices once. Groups are for members that <em>need to be treated as one entity</em>. For simple joint control, an area or label is easier and avoids filling the entity registry with inscrutable <code>light.group_xxx</code> entities.</div>
  </div>
  </details>
  </section>
@@ -571,7 +571,7 @@ data:
     </div>
 
  <footer class="site-footer">
-      <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
+      <p>The Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
       <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
  </main>
