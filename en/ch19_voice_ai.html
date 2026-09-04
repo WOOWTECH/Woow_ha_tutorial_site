@@ -94,7 +94,7 @@
  <div class="chapter-header">
  <div class="kicker">Chapter 19</div>
  <h1>Voice assistants and LLM integration</h1>
- <p class="lead">Move from tapping a phone to speaking naturally. Configure Home Assistant Assist, speech-to-text and synthesis, entity exposure, voice hardware, and optional LLM conversation agents that can control your home.</p>
+ <p class="lead">Move from tapping a phone to speaking naturally. Configure Assist, speech-to-text and text-to-speech, entity exposure, voice hardware, and optional LLM conversation agents that can control your home.</p>
  </div>
 
  <section id="why" data-nav="Why this matters">
@@ -107,7 +107,7 @@
  <li>Choose which entities voice assistants can control and which must remain private.</li>
  <li>Build an Assist pipeline and choose local or cloud processing for each of its four stages.</li>
  <li>Configure an OpenAI, Google, or Anthropic model as a conversation agent and allow it to control selected devices.</li>
- <li>Know the role of Model Context Protocol (MCP) in Home Assistant.</li>
+ <li>Explain the role of Model Context Protocol (MCP) in Home Assistant.</li>
  <li>Evaluate cost, latency, and privacy trade-offs.</li>
  </ul>
  <div class="callout"><strong>Concept:</strong> This chapter depends on your earlier setup. Assign devices to areas as described in <a href="ch3_floors_areas.html">Chapter 3</a>, and give them clear names as described in <a href="ch4_naming_labels.html">Chapter 4</a>. Unclear names make voice commands unreliable.</div>
@@ -115,77 +115,77 @@
 
  <section id="assist_basics" data-nav="Core terms">
  <h2 data-icon="concept">Assist: three terms to understand</h2>
- <p>Many people are confused by three words at the beginning. Let us cut it clean first.</p>
+ <p>Three related terms often cause confusion, so start by distinguishing them clearly.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Term</th><th>Plain-English explanation</th><th>Where you see it</th></tr>
+ <tr><th>Term</th><th>Plain-English explanation</th><th>Where it appears</th></tr>
  </thead>
  <tbody>
- <tr><td><strong>Assist</strong></td><td>Home Assistant’s name for its full set of voice features, including typed and spoken conversations.</td><td>The conversation icon in the upper-right corner and the three-dot menu of the mobile app</td></tr>
- <tr><td><strong>Conversation agent</strong></td><td>The component that interprets your request. Use the built-in agent or replace it with an LLM-based agent.</td><td>Settings → Voice assistants → an assistant’s settings</td></tr>
- <tr><td><strong>Voice pipeline (Assist pipeline)</strong></td><td>The complete processing chain: wake word → Speech-to-text → conversation agent → text-to-speech.</td><td>Each "Assistant" in Settings → Voice assistant is a pipeline</td></tr>
+ <tr><td><strong>Assist</strong></td><td>Home Assistant’s name for its complete set of voice features, including typed and spoken conversations.</td><td>The conversation icon in the upper-right corner and the three-dot menu in the mobile app</td></tr>
+ <tr><td><strong>Conversation agent</strong></td><td>The component that interprets your request. You can use the built-in agent or replace it with an LLM-based agent.</td><td>Settings → Voice assistants → the assistant’s settings</td></tr>
+ <tr><td><strong>Voice pipeline (Assist pipeline)</strong></td><td>The complete processing chain: wake word → speech-to-text → conversation agent → text-to-speech.</td><td>Each assistant under Settings → Voice assistants represents a pipeline</td></tr>
  </tbody>
  </table>
 
- <p>Most importantly, <strong>The conversation agent built into Home Assistant is not AI, it is a sentence comparer.</strong> It compares what you say with a large number of pre-written sentence templates, and triggers the corresponding intent when it finds a match, such as "turn on the lights in the living room". <code>HassTurnOn</code>.</p>
- <p>This creates two clear trade-offs:</p>
+ <p>The key point is that <strong>Home Assistant’s built-in conversation agent is a rule-based sentence matcher, not an LLM.</strong> It compares your request with predefined sentence patterns and triggers the corresponding intent when it finds a match. For example, “turn on the lights in the living room” can trigger <code>HassTurnOn</code>.</p>
+ <p>This design has two clear consequences:</p>
  <ul>
- <li><strong>Advantages</strong>: Extremely fast, completely local, zero cost, no hallucinated responses. You tell it to turn off the lights and it turns off the lights.</li>
- <li><strong>Disadvantages</strong>: A request that does not match a supported pattern may fail. For example, it may not understand “Could you make the living room darker?” It is also not designed for open-ended chat.</li>
+ <li><strong>Advantages:</strong> It is extremely fast, fully local, free to run, and does not invent responses. If you tell it to turn off a light, it turns off the light.</li>
+ <li><strong>Limitations:</strong> A request that does not match a supported pattern may fail. For example, it may not understand “Could you make the living room darker?” It is also not designed for open-ended conversation.</li>
  </ul>
- <p>The built-in agent has become more flexible. Version 2025.9 added a “fuzzy matcher,” which can recognize an intent despite extra words or different phrasing. Home Assistant documentation notes that <strong>this feature was implemented in English first</strong>, with other languages to follow. For other languages, clear names and aliases remain especially important.</p>
+ <p>The built-in agent has become more flexible. Version 2025.9 added a fuzzy matcher that can recognise an intent despite extra words or different phrasing. Home Assistant documentation notes that <strong>this feature was implemented in English first</strong>, with other languages to follow. Clear names and aliases therefore remain especially important in other languages.</p>
 
- <div class="callout tip"><strong>Tip:</strong> Make common commands work with the built-in agent before adding an LLM. The built-in agent provides a fast, local, predictable baseline; add an LLM only for requests that need more flexible language.</div>
+ <div class="callout tip"><strong>Tip:</strong> Make common commands work with the built-in agent before adding an LLM. The built-in agent provides a fast, local, and predictable baseline; add an LLM only for requests that require more flexible language.</div>
 
- <p>If you want to play it for a while without setting anything up: After logging in to Home Assistant, click the conversation icon (a speech bubble) in the upper-right corner and type "turn on the living room light" or speak a sentence in the language you set. This is the smallest usable form of Assist.</p>
+ <p>To try Assist without additional setup, sign in to Home Assistant, select the conversation icon in the upper-right corner, and type “turn on the living room light” or speak a sentence in your configured language. This is the simplest usable form of Assist.</p>
  </section>
 
  <section id="pipeline" data-nav="Voice pipeline">
  <h2 data-icon="protocol">A voice pipeline has four independently configurable stages</h2>
- <p>Think of a voice assistant as a factory conveyor belt. You speak a request; the pipeline produces an action and a reply. There are four stations in the middle, and each station can independently choose whether to use local or cloud.</p>
+ <p>Think of a voice assistant as a production line. You speak a request; the pipeline turns it into an action and a reply. The four stages can each use either local or cloud processing.</p>
 
  <table class="data-table">
  <thead>
  <tr><th>#</th><th>Stage</th><th>Purpose</th><th>Local options</th><th>Cloud options</th></tr>
  </thead>
  <tbody>
- <tr><td>1</td><td>wake word<br> (Wake word)</td><td>Listens locally for its activation phrase.</td><td>openWakeWord (running on the HA host), microWakeWord (running on the device chip)</td><td>None, the wake word is always local</td></tr>
+ <tr><td>1</td><td>Wake word<br> (activation phrase)</td><td>Listens for the phrase that activates the assistant.</td><td>openWakeWord (on the Home Assistant host), microWakeWord (on the device)</td><td>None; wake-word detection is always local</td></tr>
  <tr><td>2</td><td>Speech-to-text<br> (STT)</td><td>Converts speech into text.</td><td>Whisper, Speech-to-Phrase</td><td>Home Assistant Cloud, OpenAI, Google Gemini</td></tr>
- <tr><td>3</td><td>conversation agent</td><td>Interprets the text and selects an action.</td><td>Built-in Assist, Ollama (local LLM)</td><td>OpenAI, Google, Anthropic</td></tr>
- <tr><td>4</td><td>text-to-speech<br> (TTS)</td><td>Reads the reply aloud.</td><td>Piper</td><td>Home Assistant Cloud, OpenAI, Google Gemini</td></tr>
+ <tr><td>3</td><td>Conversation agent</td><td>Interprets the text and selects an action.</td><td>Built-in Assist, Ollama (local LLM)</td><td>OpenAI, Google, Anthropic</td></tr>
+ <tr><td>4</td><td>Text-to-speech<br> (TTS)</td><td>Reads the reply aloud.</td><td>Piper</td><td>Home Assistant Cloud, OpenAI, Google Gemini</td></tr>
  </tbody>
  </table>
 
- <div class="callout"><strong>Concept:</strong> Mix local and cloud stages to suit your hardware, language, privacy needs, and preferred voices. For example, use an on-device wake word, cloud speech-to-text, the built-in local conversation agent, and cloud text-to-speech. The pipeline does not have to be entirely local or entirely cloud-based.</div>
+ <div class="callout"><strong>Concept:</strong> Mix local and cloud stages to suit your hardware, language, privacy requirements, and preferred voices. For example, use an on-device wake word, cloud speech-to-text, the built-in local conversation agent, and cloud text-to-speech. A pipeline does not have to be entirely local or entirely cloud-based.</div>
 
- <p>If you only type and do not speak (for example, typing and asking Assist in a mobile app), stations 1, 2, and 4 will not start at all, and only the conversation agent will run. So "I want to chat via ChatGPT" and "I want to shout into the speaker" are two very different things.</p>
+ <p>For typed requests—for example, when using Assist from the mobile app—stages 1, 2, and 4 do not run; only the conversation agent is used. Connecting ChatGPT for typed conversation and speaking to a voice satellite therefore involve very different configurations.</p>
 
  <h3>Local processing options</h3>
  <ul>
- <li><strong>Whisper</strong>: General-purpose speech-to-text with broad language support, including Chinese. The Home Assistant add-on defaults to <code>auto</code>; it selects <code>tiny-int8</code> on ARM hardware such as a Raspberry Pi and <code>base-int8</code> elsewhere. Larger models such as <code>small</code> and <code>medium</code> can improve recognition but require more CPU resources.</li>
- <li><strong>Speech-to-Phrase</strong>: Fast speech-to-text for a limited set of phrases relevant to your Home Assistant configuration. It works on modest hardware but does not support unrestricted speech. <strong>Chinese is not in the language list described by the source</strong>, so use another engine when you need Chinese recognition.</li>
- <li><strong>Piper</strong>: text-to-speech, local reading, fast speed and low resource requirements.</li>
- <li><strong>openWakeWord</strong>: Wake word detection, running on the Home Assistant host. Home Assistant documentation is that a Raspberry Pi 4 can handle approximately 5 voice satellites (satellites) streaming audio at the same time. If there are more, the detection must be moved to another machine.</li>
+ <li><strong>Whisper:</strong> General-purpose speech-to-text with broad language support, including Chinese. The Home Assistant add-on defaults to <code>auto</code>; it selects <code>tiny-int8</code> on ARM hardware such as a Raspberry Pi and <code>base-int8</code> elsewhere. Larger models such as <code>small</code> and <code>medium</code> can improve recognition but require more CPU resources.</li>
+ <li><strong>Speech-to-Phrase:</strong> Fast speech-to-text for a limited set of phrases derived from your Home Assistant configuration. It works on modest hardware but does not support unrestricted speech. <strong>Chinese is not currently listed as a supported language</strong>, so choose another engine if you need Chinese recognition.</li>
+ <li><strong>Piper:</strong> Fast, resource-efficient local text-to-speech.</li>
+ <li><strong>openWakeWord:</strong> Wake-word detection on the Home Assistant host. Home Assistant documentation states that a Raspberry Pi 4 can handle approximately 5 voice satellites streaming audio simultaneously. For larger installations, move wake-word detection to another machine.</li>
  </ul>
 
- <div class="callout warn"><strong>Warning:</strong> Do not leave Whisper’s language settings in <code>auto</code>. Home Assistant documentation clearly states that automatic language detection will make every request <strong>much slower</strong>. Simply specify the language your home speaks.</div>
+ <div class="callout warn"><strong>Warning:</strong> Do not leave Whisper’s language setting at <code>auto</code>. Home Assistant documentation states that automatic language detection makes every request <strong>much slower</strong>. Specify the language spoken in your home.</div>
 
- <p>These four are official Add-ons. After installation, use <strong>Wyoming</strong> This protocol is discovered by Home Assistant. How to use the Add-on store is already in <a href="appendix_hacs_addons.html">Appendix A</a> covers this, so the details are not repeated here.</p>
+ <p>These are all official add-ons. Once installed, Home Assistant discovers them through the <strong>Wyoming Protocol</strong> integration. <a href="appendix_hacs_addons.html">Appendix A</a> explains how to use the Add-on Store.</p>
  </section>
 
  <section id="expose" data-nav="Entity exposure">
  <h2 data-icon="security">Entity exposure: decide what Assist can access</h2>
- <p>This is the most important setting in the entire chapter and the one that most people miss. <strong>Home Assistant does not hand over all of your entities to the voice assistant.</strong> You must explicitly "Expose" them for the voice assistant to see them. This is intentionally safe by design.</p>
+ <p>This is the most important—and most frequently missed—setting in this chapter. <strong>Home Assistant does not make every entity available to voice assistants.</strong> You must explicitly expose an entity before an assistant can access it. This is a deliberate safety measure.</p>
 
  <ol class="steps">
  <li>
  <h3>Open the exposure settings</h3>
- <p>sidebar <strong>Settings</strong> → <strong>Voice assistants</strong>, then switch to <strong>Expose</strong> Tab.</p>
+ <p>In the sidebar, select <strong>Settings</strong> → <strong>Voice assistants</strong>, then open the <strong>Expose</strong> tab.</p>
  </li>
  <li>
  <h3>Review current exposure</h3>
- <p>The list lists the entities that have been exposed, and the assistants to which it was exposed. The assistant here is not only Assist, if you have connected Google Assistant or Alexa, they will also appear on the same table.</p>
+ <p>The list shows exposed entities and the assistants to which each one is exposed. This can include not only Assist, but also Google Assistant or Alexa if you have connected them.</p>
  </li>
  <li>
  <h3>Expose only required entities</h3>
@@ -204,10 +204,10 @@
  <div class="callout danger"><strong>Danger:</strong> Exposing a door lock (<code>lock</code>) or alarm system (<code>alarm_control_panel</code>) may allow someone within microphone range to operate it. Keep these entities private unless you fully understand and accept the risk.</div>
 
  <h3>What happens if you expose too much?</h3>
- <p>Home Assistant best practices are very straightforward: <strong>Expose only the minimum necessary entities</strong>. There are two reasons, and both of them hurt:</p>
+ <p>Home Assistant’s guidance is straightforward: <strong>expose only the minimum necessary entities</strong>. Excessive exposure creates two problems:</p>
  <table class="data-table">
  <thead>
- <tr><th>When using the built-in conversation agent</th><th>When using LLM as a conversation agent</th></tr>
+ <tr><th>When using the built-in conversation agent</th><th>When using an LLM as a conversation agent</th></tr>
  </thead>
  <tbody>
  <tr><td>More names and aliases take longer to match, and similar names increase ambiguity. A request for the “room light” might select an air purifier’s indicator light.</td><td>Every exposed entity adds context and token cost to the model request. A longer list also increases the chance of selecting the wrong device. The Ollama documentation recommends testing local models with <strong>fewer than 25 exposed entities</strong>.</td></tr>
@@ -217,33 +217,33 @@
  <h3>Aliases for areas and floors</h3>
  <p>Entity exposure works with areas and floors. For “turn off all the lights in the living room” to work, those lights must belong to the living room area. You can also add aliases to areas and floors: go to <strong>Settings</strong> → <strong>Areas, labels &amp; zones</strong>, select the pencil on an area card, then <strong>Add alias</strong>. For a floor, use its three-dot menu → <strong>Edit floor</strong> → <strong>Add alias</strong>.</p>
 
- <div class="callout tip"><strong>Tip:</strong> Home Assistant recommended naming format is "Area + Description + Device Type", such as "Living Room Table Lamp". If there is only one light in that room, just call it "living room light". like <code>Tuya Light Controller 0E54B1 Light 1</code> With this kind of original name, the voice assistant will definitely not be able to call you. Please rename it. <a href="ch4_naming_labels.html">Chapter 4</a> Change name.</div>
+ <div class="callout tip"><strong>Tip:</strong> Home Assistant recommends the naming pattern “area + description + device type,” such as “Living Room Table Lamp.” If the room has only one light, “Living Room Light” is sufficient. Replace manufacturer-generated names such as <code>Tuya Light Controller 0E54B1 Light 1</code> with clear, speakable names. See <a href="ch4_naming_labels.html">Chapter 4</a>.</div>
  </section>
 
  <section id="steps_local" data-nav="Local setup">
  <h2 data-icon="steps">Hands-on: build a local voice pipeline</h2>
- <p>Build an assistant that can speak to the phone. The following uses "local Whisper + local Piper + built-in proxy" as an example. This is the cheapest and most private way to start.</p>
+ <p>Build an assistant that you can use from your phone. This example combines local Whisper, local Piper, and the built-in conversation agent. It is an inexpensive, privacy-conscious starting point.</p>
 
  <ol class="steps">
  <li>
- <h3>Install the Speech-to-Text Add-on</h3>
- <p>Go to <strong>Settings</strong> → <strong>Add-ons</strong> → <strong>add-on store</strong>, find <strong>Whisper</strong>, start after installation. Before starting, go to its Settings tab and put <code>language</code> Change it to the language you want to use, leave it blank <code>auto</code>.</p>
+ <h3>Install the speech-to-text add-on</h3>
+ <p>Go to <strong>Settings</strong> → <strong>Add-ons</strong> → <strong>Add-on Store</strong>, find <strong>Whisper</strong>, and install it. Before starting the add-on, open its Configuration tab and change <code>language</code> from <code>auto</code> to the language you intend to use.</p>
  </li>
  <li>
- <h3>Install the Text-to-Speech Add-on</h3>
- <p>Found in the same store <strong>Piper</strong>, start after installation.</p>
+ <h3>Install the text-to-speech add-on</h3>
+ <p>Find <strong>Piper</strong> in the same store, install it, and start it.</p>
  </li>
  <li>
- <h3>Accept Wyoming's automated exploration</h3>
- <p>Return to <strong>Settings</strong> → <strong>Devices &amp; services</strong>. The two Add-ons just started will be <strong>Wyoming Protocol</strong> Integrate automatic discovery, click once each <strong>Add</strong> to finish. If it does not pop up automatically, you can manually <strong>Add integration</strong> → Search Wyoming Protocol.</p>
+ <h3>Accept Wyoming Protocol discovery</h3>
+ <p>Return to <strong>Settings</strong> → <strong>Devices &amp; services</strong>. The <strong>Wyoming Protocol</strong> integration should automatically discover the two add-ons. Select <strong>Add</strong> for each one. If either is not discovered, select <strong>Add integration</strong> and search for Wyoming Protocol.</p>
  </li>
  <li>
- <h3>Create assistant</h3>
- <p>Go to <strong>Settings</strong> → <strong>Voice assistants</strong>, select <strong>Add assistant</strong>. Choose a name you can understand (for example, "Home Local Version") and choose a language.</p>
+ <h3>Create an assistant</h3>
+ <p>Go to <strong>Settings</strong> → <strong>Voice assistants</strong> and select <strong>Add assistant</strong>. Enter a descriptive name, such as “Local Home,” and choose a language.</p>
  </li>
  <li>
  <h3>Configure the pipeline stages</h3>
- <p>In the same screen: <strong>conversation agent</strong> choose <code>Home Assistant</code>; <strong>Speech-to-text</strong> Select the Whisper you just added and select the language; <strong>text-to-speech</strong> Select Piper and choose a voice variant. If you do not have a physical voice device yet in the wake word column, you can leave it alone for now.</p>
+ <p>On the same screen, set <strong>Conversation agent</strong> to <code>Home Assistant</code>. Under <strong>Speech-to-text</strong>, select the Whisper service you added and choose its language. Under <strong>Text-to-speech</strong>, select Piper and choose a voice. If you do not yet have a physical voice device, you can leave the wake-word setting unchanged.</p>
  </li>
  <li>
  <h3>Expose entities</h3>
@@ -251,31 +251,31 @@
  </li>
  <li>
  <h3>Test from your phone</h3>
- <p>Open the Companion App (<a href="ch7_notifications.html">Chapter 7</a> The installed one), three-dot menu in the upper-right corner → <strong>Assist</strong>. Test by typing first. After you can type and turn off the light, press the microphone to test.</p>
+ <p>Open the Companion app installed in <a href="ch7_notifications.html">Chapter 7</a>, then select the three-dot menu in the upper-right corner → <strong>Assist</strong>. Test with a typed request first. Once typed commands can control a light, select the microphone and test a spoken request.</p>
  </li>
  <li>
  <h3>Set as default assistant</h3>
- <p>After every stage works, Return to <strong>Settings</strong> → <strong>Voice assistants</strong>, set this assistant as the default. All Assist entrances will follow it.</p>
+ <p>After every stage works, return to <strong>Settings</strong> → <strong>Voice assistants</strong> and set this assistant as the default. All Assist entry points will then use it.</p>
  </li>
  </ol>
 
- <div class="callout warn"><strong>Warning:</strong> if <strong>Settings</strong> → <strong>Voice assistants</strong> You can't see the Assist block at all. Home Assistant solution is in <code>configuration.yaml</code> Add a line <code>assist_pipeline:</code> Reboot again. General use <code>default_config:</code> The installation will not encounter this problem.</div>
+ <div class="callout warn"><strong>Warning:</strong> If the Assist section does not appear under <strong>Settings</strong> → <strong>Voice assistants</strong>, edit <code>configuration.yaml</code>, add <code>assist_pipeline:</code>, and restart Home Assistant. Installations that use <code>default_config:</code> normally include this integration already.</div>
  </section>
 
  <section id="cloud" data-nav="Cloud options">
- <h2 data-icon="remote">Cloud options: What Home Assistant Cloud can do for you</h2>
- <p>Home Assistant Cloud (the company behind it is called Nabu Casa) is an official subscription service, and the money goes directly back into Home Assistant development. The voice-related part of it is two things: <strong>cloud speech-to-text</strong> and <strong>Cloud text-to-speech</strong>.</p>
+ <h2 data-icon="remote">Cloud options: what Home Assistant Cloud provides</h2>
+ <p>Home Assistant Cloud, operated by Nabu Casa, is the official subscription service; its revenue supports Home Assistant development. Its voice features include <strong>cloud speech-to-text</strong> and <strong>cloud text-to-speech</strong>.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Item</th><th>Content</th></tr>
+ <tr><th>Item</th><th>Details</th></tr>
  </thead>
  <tbody>
  <tr><td>Price</td><td>US$6.50/month, or US$65/year; EU: €7.50/month, or €75/year. The billed amount depends on your account region, payment method, and applicable taxes.</td></tr>
- <tr><td>trial</td><td>31-day trial listed by the provider</td></tr>
- <tr><td>Speech-to-text</td><td>It is in Home Assistant support list <strong>many languages</strong>; choose a language supported by your selected speech engine</td></tr>
- <tr><td>text-to-speech</td><td>Home Assistant list lists over a hundred language/accent variations, also including <strong>zh-TW</strong>, and a language often has several sounds to choose from.</td></tr>
- <tr><td>Other included features</td><td>Remote secure connection, cloud backup, Google Assistant and Alexa connection, etc.</td></tr>
+ <tr><td>Trial</td><td>31-day trial listed by the provider</td></tr>
+ <tr><td>Speech-to-text</td><td>Supports <strong>many languages</strong>; choose one supported by your selected speech engine</td></tr>
+ <tr><td>Text-to-speech</td><td>Home Assistant lists more than one hundred language and accent variants, including <strong>zh-TW</strong>. Many languages offer several voices.</td></tr>
+ <tr><td>Other included features</td><td>Secure remote access, cloud backups, and connections to Google Assistant and Alexa</td></tr>
  </tbody>
  </table>
 
@@ -283,12 +283,12 @@
 
  <p>After you subscribe and sign in, Home Assistant uses your language settings to <strong>create an assistant automatically</strong>. Go to <strong>Settings</strong> → <strong>Voice assistants</strong>, select the <strong>Home Assistant Cloud</strong> assistant, confirm the STT and TTS languages, and leave the conversation agent set to <code>Home Assistant</code>.</p>
 
- <div class="callout"><strong>Concept:</strong> Cloud's voice processing is "passed but not retained." Home Assistant documentation is that the audio <strong>Once converted to text, delete it.</strong>, the voice data is also <strong>It will not be used to train the model</strong>. But this is still "your voice leaves home", which is fundamentally different from the all-local solution. You have to weigh it yourself. In addition, official documentation currently do not include any usage caps or quotas, so do not listen to people saying “unlimited usage” – if it is not written, it is not written, so do not take it as a guarantee.</div>
+ <div class="callout"><strong>Concept:</strong> Home Assistant describes its cloud voice processing as transient: audio is <strong>deleted after it is converted to text</strong>, and voice data <strong>is not used to train models</strong>. Your voice still leaves your home, however, which is fundamentally different from an entirely local solution. The official documentation does not currently specify usage limits or quotas, so do not interpret that omission as a guarantee of unlimited use.</div>
  </section>
 
  <section id="llm" data-nav="Connect an LLM">
  <h2 data-icon="ai">Connect an LLM as the conversation agent</h2>
- <p>The built-in agent only recognizes sentence patterns. When you want a vague way of saying "It's a bit cold today, help me deal with it", or you want it to respond with personality, you should change the conversation agent to LLM.</p>
+ <p>The built-in agent recognises supported sentence patterns. If you want the assistant to interpret an indirect request such as “It’s a bit cold today; please do something about it,” or to respond in a particular style, consider using an LLM as the conversation agent.</p>
 
  <h3>Official integrations</h3>
  <table class="data-table">
@@ -296,10 +296,10 @@
  <tr><th>Integration name</th><th>Requirements</th><th>Features</th></tr>
  </thead>
  <tbody>
- <tr><td><strong>OpenAI Conversation</strong></td><td>OpenAI API key</td><td>The default model currently marked in Home Assistant documentation is <code>gpt-4o-mini</code>(There are usually newer models to choose from in the drop-down menu, and the model list changes quickly, whichever you see on the screen shall prevail). This integration will be divided into four subentries: Conversation, AI Task, speech-to-text, and text-to-speech.</td></tr>
- <tr><td><strong>Google Generative AI</strong></td><td>API key of Google AI Studio (there is a free quota, but there is a rate limit, and it must be in a supported region)</td><td>It also provides three entities: dialogue agent, speech-to-text, and text-to-speech. There is a "Recommended settings" switch, so I leave it on if I'm too lazy to adjust parameters.</td></tr>
- <tr><td><strong>Anthropic</strong></td><td>Anthropic Console API key (need to activate and pay first)</td><td>The options are more detailed: cache policy, budget thinking, code execution, network search, etc. can be turned on and off.</td></tr>
- <tr><td><strong>Ollama</strong></td><td>A machine that runs Ollama on its own</td><td>Completely local, no need to pay token. However, the control function is documented as <strong>Experimental</strong>, and only Tools-enabled models can control Home Assistant.</td></tr>
+ <tr><td><strong>OpenAI Conversation</strong></td><td>OpenAI API key</td><td>Home Assistant documentation currently identifies <code>gpt-4o-mini</code> as the default model. Newer models may appear in the menu; because the list changes frequently, use the options shown in your installation. The integration creates four subentries: Conversation, AI Task, speech-to-text, and text-to-speech.</td></tr>
+ <tr><td><strong>Google Generative AI</strong></td><td>Google AI Studio API key; a rate-limited free quota is available in supported regions</td><td>Provides a conversation agent, speech-to-text, and text-to-speech. Leave “Recommended settings” enabled unless you need to adjust the model parameters yourself.</td></tr>
+ <tr><td><strong>Anthropic</strong></td><td>Funded Anthropic Console account and API key</td><td>Offers detailed options for prompt caching, extended thinking budgets, code execution, web search, and other features.</td></tr>
+ <tr><td><strong>Ollama</strong></td><td>A separate machine running Ollama</td><td>Runs locally with no per-token charge. Home Assistant labels control as <strong>Experimental</strong>, and only models with tool support can control Home Assistant.</td></tr>
  </tbody>
  </table>
 
@@ -307,7 +307,7 @@
  <ol class="steps">
  <li>
  <h3>Add integration</h3>
- <p><strong>Settings</strong> → <strong>Devices and Services</strong> → <strong>Add integration</strong>, search for the one you want (OpenAI, Google Generative AI, Anthropic, Ollama), fill in the API key or local URL according to the screen.</p>
+ <p>Go to <strong>Settings</strong> → <strong>Devices &amp; services</strong> → <strong>Add integration</strong>. Search for OpenAI Conversation, Google Generative AI, Anthropic, or Ollama, then enter the API key or local URL requested on screen.</p>
  </li>
  <li>
  <h3>Create a new assistant</h3>
@@ -315,15 +315,15 @@
  </li>
  <li>
  <h3>Define its response style</h3>
- <p>Go into the gear next to the agent name and there will be a prompt template field. You can write "You are a butler who speaks very briefly and answers no more than two sentences", or you can write "You are Super Mario and your speech must be funny." This column supports Home Assistant's template syntax, so real-time information can be inserted.</p>
+ <p>Select the gear beside the agent name to open its prompt template. For example, enter “You are a concise butler. Answer in no more than two sentences,” or define another appropriate persona. The field supports Home Assistant template syntax, so you can include current information.</p>
  </li>
  <li>
  <h3>Enable control permissions</h3>
- <p>Find it in the same settings screen <strong>Control Home Assistant (Control Home Assistant)</strong>. This must be turned on, otherwise it will only chat with you and not turn off the light. See the next section for details.</p>
+ <p>On the same settings screen, enable <strong>Control Home Assistant</strong>. Without this permission, the model can converse but cannot operate devices. The next section explains the requirements in detail.</p>
  </li>
  <li>
  <h3>Test by typing first</h3>
- <p>Select Start conversation from the agent menu and test with typed requests first. Add speech-to-text and text-to-speech only after the conversation agent works, so you can isolate any later audio failure.</p>
+ <p>Select “Start conversation” from the agent menu and test with typed requests first. Add speech-to-text and text-to-speech only after the conversation agent works, so you can isolate any later audio failure.</p>
  </li>
  </ol>
 
@@ -336,25 +336,25 @@
 
  <h3>First: enable Home Assistant control</h3>
  <p>The OpenAI, Google Generative AI, and Anthropic integrations include a <strong>Control Home Assistant</strong> option. Enable it to give the model the Assist API as a tool. When it is disabled, the model is only a chatbot.</p>
- <p>If the version is older, the same position may not be a switch, but a drop-down menu with the options saying "No control" and "Assist" - select <strong>Assist</strong> It means turning on the control, which means the same thing.</p>
+ <p>In older versions, this setting may be a menu rather than a switch. Select <strong>Assist</strong> instead of “No control” to grant the same permission.</p>
 
  <h3>Second: expose the entity</h3>
  <p>This is the most common cause. The integration documentation states that a model <strong>can query or control only exposed entities</strong>. Enabling control without exposing any entities gives the model no available controls. Complete the earlier entity-exposure steps.</p>
 
  <h3>Third: verify that the model supports tool use</h3>
- <p>If you are using Ollama to run local small models, Home Assistant documentation is very honest: small models are more error-prone than large models, and <strong>After turning on the control function, small models may not be able to maintain dialogue stably.</strong>. Home Assistant even suggested a workaround: configure two Ollama settings, one with no control and dedicated to chatting, and the other with control and dedicated operation of the device.</p>
+ <p>If you use a small local model through Ollama, remember that smaller models make more errors than larger ones. Home Assistant warns that <strong>small models may struggle to maintain a conversation when control is enabled</strong>. Its suggested workaround is to create two Ollama configurations: one without control for conversation, and another with control for device operations.</p>
 
- <div class="callout"><strong>Concept:</strong> "Control Home Assistant" and "Exposed entity" are two independent gates that must be opened at the same time. This double-checking is intentional: You don't want a cloud-based model to turn on all your appliances on a whim one day.</div>
+ <div class="callout"><strong>Concept:</strong> “Control Home Assistant” and entity exposure are independent gates; both must be enabled. This deliberate separation prevents a model from receiving control over every device by default.</div>
 
- <h3>A combination that saves money and is safe: Prioritize local processing</h3>
- <p>There is one in the assistant's three-dot menu <strong>Prefer handling commands locally</strong> switch. After opening it, Home Assistant will first let the built-in sentence pattern comparer try it. If the comparison is found, it will be executed directly. If the comparison fails, it will be thrown to LLM.</p>
- <p>This trick solves three problems at the same time:</p>
+ <h3>Reduce cost and risk by preferring local handling</h3>
+ <p>The assistant’s three-dot menu includes a <strong>Prefer handling commands locally</strong> switch. When enabled, Home Assistant first tries to match the request with the built-in conversation agent. A matching command runs locally; only an unmatched request is sent to the LLM.</p>
+ <p>This approach provides three benefits:</p>
  <ul>
- <li><strong>Fast</strong>: A simple command like "turn on the living room lights" is sent locally with almost zero delay.</li>
- <li><strong>Lower cost</strong>: 80% of the daily commands do not call the API at all and do not burn tokens.</li>
- <li><strong>reliable</strong>: Turning off the lights is left to a comparator that does not think too much, which is more reliable than leaving it to a model.</li>
+ <li><strong>Speed:</strong> A simple command such as “turn on the living room lights” is handled locally with minimal delay.</li>
+ <li><strong>Lower cost:</strong> Approximately 80% of routine commands can be handled without calling the LLM API or incurring token charges.</li>
+ <li><strong>Reliability:</strong> Deterministic device commands are handled by the rule-based agent rather than delegated to a generative model.</li>
  </ul>
- <div class="callout tip"><strong>Tip:</strong> This switch should be on in almost all cases. Unless you just want LLM to completely take over all semantic understanding (for example, you are working in a multilingual family, or your speech rarely conforms to the built-in sentence patterns).</div>
+ <div class="callout tip"><strong>Tip:</strong> Enable this switch in most installations. Leave it disabled only when you specifically need the LLM to handle every request—for example, in a multilingual household or when your usual phrasing rarely matches built-in sentence patterns.</div>
 
  <h3>Expose scripts as controlled capabilities</h3>
  <p>Scripts created in <a href="ch10_scripts.html">Chapter 10</a> can also be exposed to voice assistants. Wrap a sequence of complex actions in a clearly named script, expose that script, and let the model call it as one controlled capability. This is more reliable than asking the model to assemble a long action sequence.</p>
@@ -362,7 +362,7 @@
 
  <section id="mcp" data-nav="MCP status">
  <h2 data-icon="protocol">Model Context Protocol (MCP): server and client roles</h2>
- <p>MCP is a set of open protocols that allow large language models to communicate with external tools. Home Assistant officially described it in the blog as "a very thin layer that allows LLM to connect to anything." Currently Home Assistant has <strong>Two directions, two different integrations</strong>, it is very easy to confuse, let us break it down.</p>
+ <p>Model Context Protocol (MCP) is an open protocol that allows large language models to communicate with external tools. Home Assistant has described it as “a very thin layer that allows LLMs to connect to anything.” Home Assistant supports <strong>two directions through two separate integrations</strong>, which are easy to confuse.</p>
 
  <table class="data-table">
  <thead>
@@ -371,24 +371,24 @@
  <tbody>
  <tr><td>Direction</td><td>An external AI client accesses Home Assistant</td><td>Use external tools for your conversation agent</td></tr>
  <tr><td>Integration name</td><td><strong>Model Context Protocol Server</strong></td><td><strong>Model Context Protocol</strong></td></tr>
- <tr><td>Typical use</td><td>Use an external app like Claude or ChatGPT to directly ask it to turn off the lights at home for you</td><td>Let your Assist dialogue agent have additional capabilities such as "memory" and "network search" that it does not have before.</td></tr>
- <tr><td>Setup</td><td>Settings → Devices &amp; services → New Integration → Model Context Protocol Server, the setting process will ask you whether you want to allow the client to control Home Assistant</td><td>Settings → Devices &amp; services → Add Integration → Model Context Protocol, fill in the SSE server URL, and if verification is required, fill in the OAuth client ID and key</td></tr>
- <tr><td>Endpoint/Authentication</td><td>Open to the internet <code>/api/mcp</code>(To specify a certain set of LLM APIs, it is <code>/api/mcp/&lt;api_id&gt;</code>, the built-in group is <code>/api/mcp/assist</code>); Authentication supports OAuth (with IndieAuth, the client ID is the URL of the App, for example <code>https://claude.ai</code>, Client Secret is not used, you can fill it in casually or leave it blank). Clients that do not support OAuth use long-term access tokens.</td><td>Currently, only MCP Tools are supported, prompts, resources, sampling, and notifications are not supported.</td></tr>
+ <tr><td>Typical use</td><td>Control Home Assistant from an external application such as Claude or ChatGPT</td><td>Give an Assist conversation agent additional capabilities, such as memory or web search</td></tr>
+ <tr><td>Setup</td><td>Settings → Devices &amp; services → Add integration → Model Context Protocol Server; during setup, choose whether the client may control Home Assistant</td><td>Settings → Devices &amp; services → Add integration → Model Context Protocol; enter the SSE server URL and, if required, the OAuth client ID and secret</td></tr>
+ <tr><td>Endpoint/authentication</td><td>The endpoint is <code>/api/mcp</code>. To select a particular LLM API, use <code>/api/mcp/&lt;api_id&gt;</code>; the built-in API is <code>/api/mcp/assist</code>. OAuth uses IndieAuth, with the application URL—for example, <code>https://claude.ai</code>—as the client ID. The client secret is not used and can be left blank. Clients without OAuth support use a long-lived access token.</td><td>Currently supports MCP tools only; prompts, resources, sampling, and notifications are not supported.</td></tr>
  </tbody>
  </table>
 
- <p>The client integration was added in version 2025.2. Once set up, the tools it grabs will be thrown to the conversation agent just like Home Assistant’s native Assist API—but you still have to <strong>Also go to the settings of the conversation agent</strong> Enable these tools.</p>
+ <p>The client integration was added in version 2025.2. Once configured, it makes external tools available to the conversation agent in the same way as Home Assistant’s native Assist API. You must still <strong>enable those tools in the conversation agent’s settings</strong>.</p>
 
- <div class="callout danger"><strong>Danger:</strong> An MCP Server grants an external service a path to Home Assistant controls. Expose only required entities, prefer OAuth to broadly distributed long-lived tokens, and never publish <code>/api/mcp</code> on the internet without protection. Review remote-access options in <a href="appendix_hacs_addons.html">Appendix A</a>.</div>
+ <div class="callout danger"><strong>Danger:</strong> An MCP server gives an external service a path to Home Assistant controls. Expose only required entities, prefer OAuth to sharing long-lived access tokens, and never publish <code>/api/mcp</code> on the internet without protection. Review remote-access options in <a href="appendix_hacs_addons.html">Appendix A</a>.</div>
 
- <div class="callout warn"><strong>Warning:</strong> MCP changes very quickly, and the support level of various AI Apps is also constantly changing. What is written above is the current statement of Home Assistant documentation. If the screen is not correct during your actual operation, your version of the screen and Home Assistant integration page shall prevail.</div>
+ <div class="callout warn"><strong>Warning:</strong> MCP and application support are evolving quickly. The information above reflects the current Home Assistant documentation. If your interface differs, follow the options in your installed version and the latest Home Assistant integration documentation.</div>
  </section>
 
  <section id="webpanel" data-nav="Embed a page">
  <h2 data-icon="url">Add an external page to the sidebar</h2>
  <p>You may only need quick access to an AI page, not an API integration. Add the page to the Home Assistant sidebar so it opens inside the interface, which can be useful on a wall-mounted tablet.</p>
 
- <div class="callout warn"><strong>Warning:</strong> Common in old teaching <code>panel_iframe:</code> YAML settings <strong>Has been replaced by the "Webpage" dashboard</strong>. The Home Assistant UI is very clear: the old iFrame panel settings will be automatically migrated to the new web dashboard during the upgrade. You do not have to change it manually, but do not copy the new settings. <code>panel_iframe</code>, the article on the Internet that teaches you how to post that YAML can be turned off directly.</div>
+ <div class="callout warn"><strong>Warning:</strong> The <code>panel_iframe:</code> YAML configuration found in older guides <strong>has been replaced by the Webpage dashboard</strong>. Home Assistant automatically migrates legacy iFrame panels during an upgrade. You do not need to convert an existing panel manually, but do not use <code>panel_iframe</code> for a new configuration.</div>
 
  <ol class="steps">
  <li>
@@ -396,68 +396,68 @@
  <p><strong>Settings</strong> → <strong>Dashboards</strong>.</p>
  </li>
  <li>
- <h3>Add new dashboard</h3>
- <p>select <strong>Add dashboard</strong>, select from the type list <strong>Webpage</strong>.</p>
+ <h3>Add a dashboard</h3>
+ <p>Select <strong>Add dashboard</strong>, then choose <strong>Webpage</strong> from the list of types.</p>
  </li>
  <li>
- <h3>Fill in your name, icon, and website address</h3>
- <p>Choose a name that is easy to read on the sidebar, choose an icon, and fill in the URL you want to embed.</p>
+ <h3>Enter a name, icon, and URL</h3>
+ <p>Choose a name that is easy to recognise in the sidebar, select an icon, and enter the URL that you want to embed.</p>
  </li>
  <li>
- <h3>Decide who can see</h3>
+ <h3>Choose who can see it</h3>
  <p>You can set whether only administrators can see it and whether it should be displayed in the sidebar. Use the administrator-only option when access should be restricted.</p>
  </li>
  <li>
  <h3>Create and test the dashboard</h3>
- <p>Return to the main screen, there should be one more item in the sidebar, click on it to see that page.</p>
+ <p>Return to the main screen and select the new sidebar item to confirm that the page loads.</p>
  </li>
  </ol>
 
- <div class="callout warn"><strong>Warning:</strong> Not every page can be embedded. Many websites (including many AI services) will use the browser's security header to explicitly prohibit being iframed by others. As a result, you will see a blank page. This is not because you set it wrong, but because the other party is blocking it. There is no solution. In addition, if your Home Assistant is HTTPS, the embedded page must also be HTTPS, otherwise the browser will block it.</div>
+ <div class="callout warn"><strong>Warning:</strong> Not every page can be embedded. Many websites, including AI services, send browser security headers that prohibit other sites from displaying them in an iframe. If such a site appears blank, the remote site—not your dashboard configuration—is blocking it. You cannot override that restriction. In addition, if Home Assistant uses HTTPS, the embedded page must also use HTTPS or the browser will block it as mixed content.</div>
 
- <p>If you just want to fit a small piece of webpage into a view, rather than the entire sidebar item, use <strong>Webpage card</strong> instead. The way to add cards is the same as <a href="ch6_dashboard.html">Chapter 6</a> Same.</p>
+ <p>To embed a page within one dashboard view rather than create a full sidebar item, use a <strong>Webpage card</strong>. Add it using the card workflow described in <a href="ch6_dashboard.html">Chapter 6</a>.</p>
  </section>
 
  <section id="hardware" data-nav="Voice hardware">
- <h2 data-icon="hardware">What to speak to: Voice hardware</h2>
- <p>The pipeline is set up, but you have to have something listening to you. From lowest cost to most convenient, here’s what the options look like.</p>
+ <h2 data-icon="hardware">Voice hardware: where to speak</h2>
+ <p>Once the pipeline is configured, you need a device that can capture your request. The options below range from low-cost testing tools to dedicated hardware.</p>
 
  <table class="data-table">
  <thead>
  <tr><th>Option</th><th>Cost</th><th>Wake word</th><th>Best use</th></tr>
  </thead>
  <tbody>
- <tr><td>Companion App (Android)</td><td>free</td><td>Support, optional Hey Nabu/Hey Jarvis/Hey Mycroft</td><td>Take it with you, go out, and test the pipeline</td></tr>
- <tr><td>Companion App (iPhone/iPad)</td><td>free</td><td>There is no built-in wake word; rely on shortcuts to trigger it, or use "voice control" to create one</td><td>Take it with you, but most of the time you have to press it with your hands</td></tr>
- <tr><td>Old flat wall hanging</td><td>Free if you have it on hand</td><td>See browser and app support</td><td>Entrance and kitchen fixed points</td></tr>
- <tr><td>DIY ESPHome voice device</td><td>Low (ESP32-S3 development-board level)</td><td>On-device microWakeWord</td><td>Custom hardware for a specific location</td></tr>
- <tr><td>Home Assistant Voice Preview Edition</td><td>Official suggested retail price: US$69/€59</td><td>Okay Nabu/Hey Jarvis/Hey Mycroft, run on the device using microWakeWord</td><td>If you want one, just keep it, no hassle</td></tr>
+ <tr><td>Companion app (Android)</td><td>Free</td><td>Supported; choose Hey Nabu, Hey Jarvis, or Hey Mycroft</td><td>Mobile use and pipeline testing</td></tr>
+ <tr><td>Companion app (iPhone/iPad)</td><td>Free</td><td>No built-in wake word; trigger Assist with Shortcuts or approximate a wake word with Voice Control</td><td>Mobile use when manual activation is acceptable</td></tr>
+ <tr><td>Repurposed wall-mounted tablet</td><td>Free if already available</td><td>Depends on browser and app support</td><td>Fixed locations such as an entrance or kitchen</td></tr>
+ <tr><td>DIY ESPHome voice device</td><td>Low (approximately the cost of an ESP32-S3 development board)</td><td>On-device microWakeWord</td><td>Custom hardware for a specific location</td></tr>
+ <tr><td>Home Assistant Voice Preview Edition</td><td>Official suggested retail price: US$69/€59</td><td>Okay Nabu, Hey Jarvis, or Hey Mycroft, using on-device microWakeWord</td><td>A convenient, ready-to-use dedicated device</td></tr>
  </tbody>
  </table>
 
  <h3>How to call Assist on Android</h3>
  <ul>
- <li>Three-dot menu in the upper-right corner of the App → <strong>Assist</strong>.</li>
- <li>After setting it as the system's default digital assistant, you can call it out with gestures (swipe up from the lower-left corner, long press the power button, and look at your phone). It can also be launched from the lock screen after being set as default.</li>
- <li>Add desktop gadgets: long press the desktop → Gadgets → Home Assistant → drag out Assist.</li>
- <li>The wake word is set in the App <strong>Settings</strong> → <strong>Companion app</strong> → <strong>Assist for Android</strong>.</li>
+ <li>In the app, open the three-dot menu in the upper-right corner and select <strong>Assist</strong>.</li>
+ <li>Set Home Assistant as the system’s default digital assistant, then launch it with the gesture configured by your device, such as swiping up from a lower corner or holding the power button. Once it is the default, you can also launch it from the lock screen.</li>
+ <li>Add a Home Assistant widget: touch and hold the Home screen → Widgets → Home Assistant, then drag the Assist widget into place.</li>
+ <li>Configure wake-word detection under <strong>Settings</strong> → <strong>Companion app</strong> → <strong>Assist for Android</strong>.</li>
  </ul>
 
  <h3>How to call Assist on iPhone</h3>
  <ul>
- <li>Three-dot menu in the upper-right corner of the App → <strong>Assist</strong>.</li>
- <li>Use the iOS "Shortcuts" app to create an Assist shortcut, and then connect it to your favorite trigger method: double tap on the back, long press on the action button, Control Center, lock screen widget.</li>
+ <li>In the app, open the three-dot menu in the upper-right corner and select <strong>Assist</strong>.</li>
+ <li>Use the iOS Shortcuts app to create an Assist shortcut, then assign your preferred trigger: Back Tap, the Action button, Control Centre, or a Lock Screen widget.</li>
  <li>Optional: iOS <strong>Voice Control</strong> can associate a custom phrase such as “Okay Nabu” with that shortcut. This is the closest iPhone equivalent to a wake word, but Home Assistant notes that it is <strong>slower than pressing a button or asking Siri</strong>. Voice Control also listens continuously, so assess that trade-off before enabling it.</li>
- <li>Note: Through shortcuts triggered by Siri, the language will follow Siri's language, not your pipeline settings. For manually triggered shortcuts, you can specify the language - for two languages, import the shortcut twice and assign one language to each copy.</li>
+ <li>Shortcuts triggered through Siri use Siri’s language rather than the pipeline language. For manually triggered shortcuts, you can select a language. To support two languages, import the shortcut twice and assign one language to each copy.</li>
  </ul>
 
  <h3>Official hardware: Voice Preview Edition</h3>
- <p>If you are too lazy to bother, this is the easiest one. Inside is ESP32-S3 (16MB flash, 8MB PSRAM) plus XMOS XU316 audio chip, which is responsible for echo cancellation, noise reduction and automatic gain - in plain language, "the TV can still hear you when it is playing sound." It has a dual microphone array and a built-in speaker with a 3.5mm output hole. The body has a physical mute switch, volume knob, LED light ring, and a Grove expansion port for connecting sensors. Dimensions: 84×84×21mm, 96 grams. <strong>It does not require Home Assistant Cloud to work</strong>, can be run fully locally, but Home Assistant reminder is that a complete full local experience requires a relatively capable host (approximately Intel N100 level starting).</p>
+ <p>The Voice Preview Edition is the most straightforward dedicated option. It combines an ESP32-S3 with 16MB of flash and 8MB of PSRAM, plus an XMOS XU316 audio processor for echo cancellation, noise reduction, and automatic gain control. Its dual-microphone array is designed to hear commands while other audio is playing. It includes a built-in speaker, a 3.5mm audio output, a physical mute switch, a volume dial, an LED ring, and a Grove expansion port for sensors. It measures 84×84×21mm and weighs 96 grams. <strong>It does not require Home Assistant Cloud</strong> and can run with an entirely local pipeline, although Home Assistant recommends a relatively capable host—approximately an Intel N100 or better—for the complete local experience.</p>
 
- <div class="callout tip"><strong>Tip:</strong> Starting with version 2025.10, each Assist voice satellite can be configured <strong>Up to two sets of wake words, corresponding to two different pipelines</strong>. For example, assign “Okay Nabu” to a fast local pipeline and “Hey Jarvis” to a cloud LLM pipeline. The wake word selects the corresponding path. Multilingual families can also use one wake word per language.</div>
+ <div class="callout tip"><strong>Tip:</strong> Starting with version 2025.10, each Assist voice satellite can use <strong>up to two wake words, each assigned to a different pipeline</strong>. For example, assign “Okay Nabu” to a fast local pipeline and “Hey Jarvis” to a cloud LLM pipeline. The wake word determines which pipeline runs. A multilingual household can also assign one wake word to each language.</div>
 
- <h3>By the way: Voice satellites can actively talk to you</h3>
- <p>Voice devices do not just passively wait for you to shout.<code>assist_satellite</code> This domain (Domain) provides three actions that can be written into automation:</p>
+ <h3>Voice satellites can initiate interactions</h3>
+ <p>Voice devices do not have to wait passively for a command. The <code>assist_satellite</code> domain provides three actions for use in automations:</p>
  <pre class="code-block"><code>actions:
   - action: assist_satellite.announce
     target:
@@ -465,40 +465,40 @@
     data:
       message: The washing machine is ready</code></pre>
  <p>The other actions are <code>assist_satellite.start_conversation</code> (start a conversation) and <code>assist_satellite.ask_question</code> (ask a question and capture the answer). For example, after a door opens, an entryway satellite can ask whether to turn on the living-room lights and act on the reply.</p>
- <p>It is easy to step into a pit when writing this kind of automation: <strong>When it is talking to people, you ask it to broadcast again</strong>, the two paragraphs will overshadow each other. Starting from 2026.2, there is an additional set of conditions specifically for voice satellites in the automation conditions (Condition), which can determine whether the device is now <strong>Idle, listening, processing, or answering</strong>. Before broadcasting, add a condition of "Broadcast only when idle", so that the family members will not be interrupted in the middle of speaking.</p>
- <div class="callout tip"><strong>Tip:</strong> Starting from 2025.10, there is also a very considerate behavior: when the command you give is executed in the area where the satellite is located (for example, you say "turn on the lights" to the speaker in the living room), it will use <strong>One short beep</strong> Instead of saying the entire sentence "I have turned on the living room light for you". Those two seconds saved make a huge difference in physical sensation.</div>
+ <p>Avoid starting an announcement <strong>while the satellite is already interacting with someone</strong>, because the two messages can overlap. Starting with version 2026.2, automation conditions can check whether a voice satellite is <strong>idle, listening, processing, or responding</strong>. Before an announcement, add a condition that requires the satellite to be idle so that it does not interrupt a household member.</p>
+ <div class="callout tip"><strong>Tip:</strong> Starting with version 2025.10, a command that affects the satellite’s own area—for example, saying “turn on the lights” to a living-room satellite—can be acknowledged with <strong>a short chime</strong> instead of a full spoken confirmation. The shorter response makes routine commands feel noticeably faster.</div>
  </section>
 
  <section id="tradeoffs" data-nav="Trade-offs">
- <h2 data-icon="compare">Privacy, cost, delay: it is impossible to get all three</h2>
- <p>There are no standard answers in this section, just a table for you to make a decision.</p>
+ <h2 data-icon="compare">Privacy, cost, and latency: balancing the trade-offs</h2>
+ <p>There is no single best configuration. Use this comparison to choose the balance that suits your household.</p>
 
  <table class="data-table">
  <thead>
  <tr><th>Combination</th><th>Privacy</th><th>Cost</th><th>Response speed</th><th>Language support</th></tr>
  </thead>
  <tbody>
- <tr><td>Full local (Whisper + built-in proxy + Piper)</td><td>It's best if your voice doesn't leave the house</td><td>Zero, but a capable host is required</td><td>Look at the CPU. It will obviously wait on the Raspberry Pi.</td><td>Whisper is ok in Chinese, but the small model will misunderstand it.</td></tr>
- <tr><td>Cloud Voice + Built-in Agent</td><td>The sound passed Nabu Casa, Home Assistant documentation does not store or train</td><td>About $6.5/month</td><td>Fast, usually within a second or two</td><td>OK, official support zh-TW</td></tr>
- <tr><td>Cloud Voice + Cloud LLM Agent</td><td>The sound and home device list will be sent to the AI provider</td><td>Subscription fee + token fee per conversation</td><td>The slowest, one more model round trip</td><td>Best, you can understand it even if you explain it vaguely</td></tr>
- <tr><td>Full local + Ollama local LLM</td><td>best</td><td>Zero token fee, but graphics card-level hardware is required</td><td>It depends on your machine, it is usually slow.</td><td>Look at the models, small models are often sold in Chinese packages</td></tr>
+ <tr><td>Entirely local (Whisper + built-in agent + Piper)</td><td>Highest; voice data stays at home</td><td>No service fee, but requires a capable host</td><td>Depends on the CPU; a Raspberry Pi may respond noticeably slowly</td><td>Whisper supports Chinese, but small models make more recognition errors</td></tr>
+ <tr><td>Cloud voice + built-in agent</td><td>Audio passes through Nabu Casa; Home Assistant states that it is neither retained nor used for training</td><td>About US$6.5/month</td><td>Fast; typically one or two seconds</td><td>Good; official support includes zh-TW</td></tr>
+ <tr><td>Cloud voice + cloud LLM agent</td><td>Audio and the exposed home-device list are sent to service providers</td><td>Subscription fee plus per-conversation token charges</td><td>Slowest because it adds a model round trip</td><td>Broadest; handles indirect phrasing well</td></tr>
+ <tr><td>Entirely local + Ollama local LLM</td><td>Highest</td><td>No token charge, but generally requires GPU-class hardware</td><td>Depends on the host and is often slower</td><td>Depends on the model; small models often perform poorly in Chinese</td></tr>
  </tbody>
  </table>
 
- <div class="callout tip"><strong>Tip:</strong> "It will definitely be slow after taking LLM" This matter has improved a lot after 2025.10. In the past, the model had to generate the entire answer before starting to read it; now the text-to-speech conversion has been changed to <strong>Reading while collecting</strong> (Streaming), Home Assistant improvement is that "the time for the response to start speaking is about ten times faster." So if you tried LLM last time and found it too slow to be useful, it is worth trying again.</div>
+ <div class="callout tip"><strong>Tip:</strong> LLM response times improved substantially in version 2025.10. Previously, the model had to generate its entire response before text-to-speech could begin. TTS can now <strong>synthesise text as it streams</strong>; Home Assistant reports that speech begins approximately ten times faster. If an earlier LLM setup felt unusably slow, it may be worth testing again.</div>
 
  <h3>Control token costs</h3>
- <p>Cloud LLM is billed based on usage, and each company's unit price is constantly changing. We do not list hard numbers here (it will expire soon after writing them down, so go to each company's official website to see the latest prices). But there are a few principles that will keep your bills skyrocketing:</p>
+ <p>Cloud LLMs are billed by usage, and provider prices change frequently. Check each provider’s current pricing rather than relying on fixed figures here. The following practices help prevent unexpected charges:</p>
  <ul>
- <li><strong>Each sentence will send you a list of exposed entities.</strong> The cost difference between exposing 200 entities and 20 entities is an order of magnitude.</li>
- <li><strong>Prompt template is too long</strong> Also paying every time. Just write three or five sentences about personality settings, don't write a novel.</li>
- <li><strong>"Prioritize local processing of instructions" is turned on</strong>, the API will not be called at all when turning off and on the lights in daily life. This is the most effective money-saving switch.</li>
- <li>First <strong>Set usage limit</strong> Then paste the API key. The backends of the three suppliers can be set up.</li>
+ <li><strong>Every request includes the exposed-entity list.</strong> Exposing 200 entities can cost an order of magnitude more than exposing 20.</li>
+ <li><strong>Long prompt templates are charged on every request.</strong> Keep persona instructions to three to five concise sentences rather than writing an extensive backstory.</li>
+ <li><strong>Enable “Prefer handling commands locally.”</strong> Routine commands that match locally will not call the API. This is the most effective cost-control setting.</li>
+ <li><strong>Set a usage limit</strong> in the provider’s console before adding the API key. OpenAI, Google, and Anthropic all provide spending or usage controls.</li>
  </ul>
 
- <div class="callout danger"><strong>Danger:</strong> The API key is equal to your credit card. Do not post the key in forums, screenshots, GitHub, or messages asking for help with setting up. If the key is accidentally leaked, go to the supplier's backend immediately to cancel and reissue it. Don't take any chances.</div>
+ <div class="callout danger"><strong>Danger:</strong> Treat an API key like a payment credential. Never include it in forum posts, screenshots, GitHub repositories, or support messages. If a key is exposed, revoke it immediately in the provider’s console and issue a replacement.</div>
 
- <div class="callout"><strong>Concept:</strong> Latency is a critical usability factor. If it takes more than three seconds from the time you finish shouting until the light comes on, your family will no longer use it, and your work has been in vain. If you can only optimize one thing, optimize the speed of "your five most common commands", it doesn't matter if the others are slower.</div>
+ <div class="callout"><strong>Concept:</strong> Latency is critical to usability. If a light takes more than three seconds to respond after a command, household members may stop using voice control. If you can optimise only one aspect, minimise the response time for your five most common commands.</div>
  </section>
 
  <section id="troubleshoot" data-nav="Troubleshooting">
@@ -506,45 +506,45 @@
 
  <ol class="steps">
  <li>
- <h3>Can't call any device, it says "Sorry, I don't know about that"</h3>
+ <h3>No device responds, and Assist says “Sorry, I don’t know about that”</h3>
  <p>First confirm that the entity is exposed under <strong>Settings</strong> → <strong>Voice assistants</strong> → <strong>Expose</strong>. Next, compare the spoken name with the entity name and aliases; add the phrase your household actually uses. Finally, verify the entity’s area assignment as described in <a href="ch3_floors_areas.html">Chapter 3</a>.</p>
  </li>
  <li>
- <h3>You do not know which section the problem lies in</h3>
- <p>Use official debugging tools. <strong>Settings</strong> → <strong>Voice assistants</strong> → Click your assistant → Open the Debug dialog box, select the execution you just performed from the drop-down menu, and you can see how long each paragraph took and what text was recognized. In the icon in the upper-right corner of the debugging screen, you can also select <strong>Run text pipeline</strong>, just type one sentence and run the entire pipeline.</p>
+ <h3>You cannot identify which pipeline stage failed</h3>
+ <p>Use the built-in debugging tools. Go to <strong>Settings</strong> → <strong>Voice assistants</strong>, select your assistant, and open the Debug dialog. Choose the latest run from the menu to inspect the recognised text and the time spent in each stage. From the icon in the upper-right corner of the debug screen, select <strong>Run text pipeline</strong> to test the complete text-processing path with a typed sentence.</p>
  </li>
  <li>
- <h3>You only want to know whether the sentence has been parsed, not actually executed.</h3>
- <p>Use Assist’s sentence pattern testing tool: <strong>Settings</strong> → <strong>Tools</strong> → <strong>Assist</strong> Tab. It will tell you which intent the sentence was parsed into and which entities were locked, but <strong>Doesn't really move</strong>. After changing the name and adding an alias, it is the fastest to use it for acceptance.</p>
- <p>If you can't find "Tools", check your version: <strong>2026.2 ago</strong> This set of tools is called "Developer tools" and is hung at the bottom of the sidebar; it will be moved into <strong>Settings</strong> At the bottom of the page, it's called "Tools". The fastest way to move on the computer is to press <kbd>Ctrl</kbd> + <kbd>K</kbd> (Mac is <kbd>Cmd</kbd> + <kbd>K</kbd>) Open quick search and type "tools" or "developer" directly.</p>
+ <h3>You want to test sentence parsing without running an action</h3>
+ <p>Use Assist’s sentence-pattern testing tool under <strong>Settings</strong> → <strong>Tools</strong> → <strong>Assist</strong>. It reports the parsed intent and targeted entities but <strong>does not execute the action</strong>. This is the quickest way to validate a renamed entity or a new alias.</p>
+ <p>If you cannot find Tools, check your version. <strong>Before this change</strong>, this section is called Developer tools and appears at the bottom of the sidebar. Starting with version 2026.2, it appears as Tools at the bottom of <strong>Settings</strong>. On a computer, press <kbd>Ctrl</kbd> + <kbd>K</kbd>—or <kbd>Cmd</kbd> + <kbd>K</kbd> on a Mac—to open Quick search, then enter “tools” or “developer.”</p>
  </li>
  <li>
  <h3>It responds but produces no sound</h3>
- <p>Check first <strong>Settings</strong> → <strong>system</strong> → <strong>Internet</strong> Is the "Local Network Home Assistant URL" in "Local Network Home Assistant URL" correct? The audio file that is read aloud depends on this URL for the device to capture. If the URL is wrong, there will be pictures but no sound. YAML is useless if you write it purely by hand <code>default_config:</code>, also confirm <code>media_source:</code> There are plus.</p>
+ <p>First check <strong>Settings</strong> → <strong>System</strong> → <strong>Network</strong> and confirm that the Local network Home Assistant URL is correct. The voice device uses this URL to retrieve generated audio; an incorrect URL can produce a visible response with no sound. If you maintain YAML manually without <code>default_config:</code>, also confirm that <code>media_source:</code> is present.</p>
  </li>
  <li>
- <h3>Assist recognizes an entity only when I use its full formal name</h3>
+ <h3>Assist recognises an entity only when I use its full formal name</h3>
  <p>Add an alias under <strong>Settings</strong> → <strong>Voice assistants</strong> → <strong>Expose</strong> → select the entity. An entity can have multiple aliases, so add the everyday terms used by different household members or languages.</p>
  </li>
  <li>
- <h3>False trigger: Call A but drive to B</h3>
- <p>This is the complication of too much disclosure + too much similarity in names. The order of processing is: first cut off the entities that do not need to be exposed, and then rename the remaining ones that are easy to confuse into the "region + description" format. Official best practices also remind that the domain of the entity (Domain) and the device class (Device class) must be set correctly - you cannot ask Assist to "open" a valve classified as a switch.</p>
+ <h3>A request for one entity controls another</h3>
+ <p>This usually results from exposing too many entities with similar names. First remove entities that do not need voice access. Then rename easily confused entities using the “area + description” pattern. Also verify each entity’s domain and device class; Assist cannot infer that a valve represented incorrectly as a switch should respond to “open.”</p>
  </li>
  <li>
- <h3>Local Whisper is so slow that I want to cry</h3>
- <p>Three directions: turn <code>language</code> from <code>auto</code> Change to a fixed language (officially, auto will be slower) <strong>a lot</strong>); adjust the model downward (<code>tiny-int8</code>, <code>base-int8</code> This int8 compressed version); or convert Speech-to-text into Home Assistant Cloud, leaving the local machine to the conversation agent. Whisper's <code>beam_size</code> The default is <code>0</code>, which means that it automatically uses 1 on ARM machines and 5 on other machines - the larger the number, the more accurate it is but the slower it is.</p>
+ <h3>Local Whisper is unacceptably slow</h3>
+ <p>Try three adjustments. First, change <code>language</code> from <code>auto</code> to a specific language; automatic detection is <strong>much slower</strong>. Second, choose a smaller model such as the int8-compressed <code>tiny-int8</code> or <code>base-int8</code>. Third, move speech-to-text to Home Assistant Cloud while keeping the conversation agent local. Whisper’s default <code>beam_size</code> is <code>0</code>, which automatically uses 1 on ARM systems and 5 on other systems. A larger value may improve accuracy but increases processing time.</p>
  </li>
  <li>
- <h3>There is often no response to the wake-up word, or I wake up by myself in the middle of the night</h3>
- <p>First confirm whether your wake word is running on the device (microWakeWord) or on the host (openWakeWord). When running on the host, Home Assistant mentioned that a Raspberry Pi 4 can support approximately 5 satellite streams at the same time, and it will start to freeze if it exceeds that. The problem on the device side is probably the microphone gain or noise reduction settings. Use ESPHome to adjust the settings of that device.</p>
+ <h3>The wake word is frequently missed or triggers unexpectedly</h3>
+ <p>First determine whether wake-word detection runs on the device with microWakeWord or on the host with openWakeWord. For host-based detection, Home Assistant states that a Raspberry Pi 4 can support approximately 5 simultaneous satellite streams; additional streams may cause delays. For on-device detection, review the microphone gain and noise-suppression settings in the device’s ESPHome configuration.</p>
  </li>
  <li>
- <h3>LLM says it does but it does not</h3>
- <p>Classic scene of model hallucination. Checking order: Integration settings <strong>Control Home Assistant</strong> Is it turned on → Is the entity public → Is the model too small (local small models may not even be able to hold conversations after the control is turned on). The improvement method is to turn on "Priority to process instructions locally" so that instructions with high certainty do not go through the model at all.</p>
+ <h3>The LLM claims to have acted, but nothing happened</h3>
+ <p>This is a common model hallucination. Check, in order, that <strong>Control Home Assistant</strong> is enabled in the integration settings, that the entity is exposed, and that the model is capable enough for reliable tool use. Small local models may struggle even to maintain a conversation after control is enabled. Enable “Prefer handling commands locally” so that deterministic commands bypass the model.</p>
  </li>
  <li>
- <h3>Web pages with embedded sidebars are blank</h3>
- <p>The other website uses a security header to prohibit iframe embedding. This is decided by them and you cannot change it. Change a website, or use the "open in new tab" method instead. Also check whether HTTPS/HTTP are mixed.</p>
+ <h3>An embedded sidebar page is blank</h3>
+ <p>The remote site may use browser security headers that prohibit iframe embedding. You cannot override this restriction; use a different site or open the page in a new tab. Also check that you are not embedding an HTTP page in an HTTPS Home Assistant instance.</p>
  </li>
  </ol>
  </section>
@@ -554,55 +554,55 @@
 
  <details class="faq">
  <summary>Do I have to pay for Home Assistant Cloud to use voice?</summary>
- <div class="body">No. Assist itself is completely built-in for free, and the local Whisper, Piper, and openWakeWord are also free official Add-ons. What you buy by subscribing to Cloud is "you don't have to have a capable host yourself" and "Chinese speech-to-text and reading quality". If your Home Assistant runs on a Raspberry Pi and you want to use Chinese, subscribing is usually more cost-effective than upgrading the hardware; if you have an idle small host, going full local is completely feasible.</div>
+ <div class="body">No. Assist is included with Home Assistant, and Whisper, Piper, and openWakeWord are free official add-ons. A Cloud subscription reduces local hardware requirements and provides cloud speech recognition and text-to-speech, including Chinese-language options. If Home Assistant runs on a Raspberry Pi and you need Chinese, a subscription may cost less than a hardware upgrade. If you have a capable spare computer, an entirely local configuration is feasible.</div>
  </details>
 
  <details class="faq">
- <summary>What is the difference between built-in Assist and ChatGPT? Do I have to take LLM?</summary>
- <div class="body">Built-in Assist matches supported sentence patterns. It is fast, free, local, and predictable, but it is not designed for open-ended conversation. An LLM understands more flexible phrasing and supports ongoing conversations, but adds latency, usage cost, and the possibility of hallucination. A practical setup is to <strong>use both</strong>: select the LLM as the conversation agent and enable Prefer handling commands locally. Simple commands stay local, while unmatched requests go to the LLM.</div>
+ <summary>How does built-in Assist differ from ChatGPT? Do I need an LLM?</summary>
+ <div class="body">Built-in Assist matches supported sentence patterns. It is fast, free, local, and predictable, but it is not designed for open-ended conversation. An LLM understands more flexible phrasing and supports ongoing conversations, but adds latency, usage cost, and the possibility of hallucination. A practical setup is to <strong>use both</strong>: select the LLM as the conversation agent and enable “Prefer handling commands locally”. Simple commands stay local, while unmatched requests go to the LLM.</div>
  </details>
 
  <details class="faq">
  <summary>If I paste the API key into Home Assistant, will my family’s data be used to train the model?</summary>
- <div class="body">It depends on which provider you use and how the provider's API terms are written. Home Assistant cannot control this matter, and each provider's policies will also change. Please go directly to the provider's data usage policy. What you can control is <strong>How much to give away</strong>: Expose only the necessary entities and the model will only see those. Do not disclose door locks, cameras, or anything with a sense of personal status. If you don't accept data leaving home at all, the answer is to run local models with Ollama, or simply use the built-in proxy.</div>
+ <div class="body">It depends on the provider and its current API terms; Home Assistant does not control those policies. Review the provider’s data-use policy directly. You can control <strong>how much data is shared</strong>: expose only necessary entities, because the model sees only those entities. Do not expose door locks, cameras, or entities that reveal personal information. If no data may leave your home, run a local model through Ollama or use the built-in conversation agent.</div>
  </details>
 
  <details class="faq">
- <summary>Can I ask the voice assistant to unlock the door or release security?</summary>
- <div class="body">Technically possible (put <code>lock</code> or <code>alarm_control_panel</code> It is OK if the entity is exposed), but it is strongly not recommended. There is no way to reliably tell who is speaking with voice, and you may be heard standing outside the door and shouting into the window. If you really want to do it, at least use a script to wrap it up, add additional conditions (for example, a certain phone must be at home, within a certain time range), and know clearly what risks you are taking. <a href="ch10_scripts.html">Chapter 10</a> Scripted writing.</div>
+ <summary>Can I ask a voice assistant to unlock a door or disarm a security system?</summary>
+ <div class="body">It is technically possible by exposing a <code>lock</code> or <code>alarm_control_panel</code> entity, but it is strongly discouraged. Voice control cannot reliably identify the speaker, and someone outside may be heard through a window. If you accept this risk, put the operation in a script and add safeguards—for example, require a particular phone to be at home and restrict the permitted time range. <a href="ch10_scripts.html">Chapter 10</a> explains scripts.</div>
  </details>
 
  <details class="faq">
- <summary>You cannot speak Chinese accurately, what’s the order of optimization?</summary>
- <div class="body">Follow this order: <strong>1.</strong> Make sure the speech-to-text engine language setting is Chinese and not auto. <strong>2.</strong> Change the name of the device to a colloquial language that is easy to pronounce ("living room lamp" is a hundred times better than "living room ceiling lamp set 1"), and add a lot of aliases. <strong>Three.</strong> If the local Whisper cannot hear accurately with a small model, adjust the model upward or use Home Assistant Cloud's speech-to-text instead (zh-TW is in its list). <strong>Four.</strong> If that still does not work, replace the conversation agent with an LLM and let the model tolerate the identified typos. By the way, the local Speech-to-Phrase currently does not have Chinese in the language list, so there is no need to try this method.</div>
+ <summary>Chinese recognition is inaccurate. What should I optimise first?</summary>
+ <div class="body">Follow this order: <strong>1.</strong> Set the speech-to-text engine to the appropriate Chinese language instead of auto. <strong>2.</strong> Give devices short, natural names—“Living Room Light” is clearer than “Living Room Ceiling Light Set 1”—and add the terms your household uses as aliases. <strong>Third:</strong> If a small local Whisper model is inaccurate, choose a larger model or switch to Home Assistant Cloud speech-to-text, which lists zh-TW. <strong>Fourth:</strong> If necessary, use an LLM conversation agent to tolerate transcription errors. Speech-to-Phrase does not currently list Chinese, so it is not an option for this use case.</div>
  </details>
 
  <details class="faq">
- <summary>Assist doesn't understand a specific teaching method of mine, can I teach it myself?</summary>
- <div class="body">Yes, and there are two ways. <strong>For a UI workflow:</strong> Open <strong>Settings</strong> → <strong>Automations &amp; scenes</strong> → <strong>Create automation</strong>, add a <strong>Sentence</strong> trigger, enter the phrase, and add the intended action. <strong>For a configuration-file workflow:</strong> in <code>configuration.yaml</code> To extend an existing intent:<pre class="code-block"><code>conversation:
+ <summary>Can I teach Assist a phrase that it does not understand?</summary>
+ <div class="body">Yes. <strong>For a UI workflow:</strong> go to <strong>Settings</strong> → <strong>Automations &amp; scenes</strong> → <strong>Create automation</strong>, add a <strong>Sentence</strong> trigger, enter the phrase, and add the intended action. <strong>For a configuration-file workflow:</strong> extend an existing intent in <code>configuration.yaml</code>:<pre class="code-block"><code>conversation:
   intents:
     HassTurnOn:
-      - "activate [the] {name}"</code></pre>A more complete approach is to open it in the settings folder <code>config/custom_sentences/&lt;language_code&gt;/</code> Table of contents (English is <code>config/custom_sentences/en/</code>) into a YAML file, you can define your own intentions, lists, value ranges, and even change it back to your sentences (put one in the same directory <code>responses.yaml</code>). It is safest to restart Home Assistant after making changes.</div>
+      - "activate [the] {name}"</code></pre>For more control, place a YAML file in <code>config/custom_sentences/&lt;language_code&gt;/</code>; for English, use <code>config/custom_sentences/en/</code>. You can define custom intents, lists, and numeric ranges, and customise responses by adding <code>responses.yaml</code> to the same directory. Restart Home Assistant after changing these files.</div>
  </details>
 
  <details class="faq">
- <summary>Can one speaker serve me who speaks Chinese and my family who speak English at the same time?</summary>
+ <summary>Can one speaker support both Chinese and English speakers?</summary>
  <div class="body">Yes. Starting with version 2025.10, every Assist voice satellite supports <strong>up to two wake words, each assigned to a separate pipeline</strong>. Assign “Okay Nabu” to one language and “Hey Jarvis” to another. The same mechanism can separate a fast local pipeline from a cloud LLM pipeline; the wake word determines which one runs.</div>
  </details>
 
  <details class="faq">
- <summary>Should MCP be touched?</summary>
- <div class="body">If you just want to use your voice to turn off the lights at home, <strong>No need to touch at all</strong>, the previous content is enough. MCP is best suited to two types of people: those who want to directly operate their homes in external apps such as Claude and ChatGPT (integrated with Model Context Protocol Server, the endpoint is <code>/api/mcp</code>), or want to add additional tools to the conversation agent at home such as memory and network search (integrated using the Model Context Protocol client, added in version 2025.2, currently only supports Tools). Both involve handing over control and minimizing the list of "exposed entities" before setting them up.</div>
+ <summary>Do I need MCP?</summary>
+ <div class="body"><strong>Not for ordinary voice control.</strong> MCP is useful in two situations: when an external application such as Claude or ChatGPT needs to operate Home Assistant through the Model Context Protocol Server integration at <code>/api/mcp</code>, or when a Home Assistant conversation agent needs external tools such as memory or web search through the Model Context Protocol client integration. The client was added in version 2025.2 and currently supports tools only. Both uses grant additional access, so minimise the exposed-entity list before configuration.</div>
  </details>
 
  <details class="faq">
- <summary>I put the external AI website into the sidebar, but the result is blank. Am I setting it wrong?</summary>
- <div class="body">Usually not. Many websites will use the browser's security mechanism to explicitly prohibit themselves from being embedded in other people's web pages. This is the other party's decision and you cannot bypass it. Also make sure the protocols are consistent: if Home Assistant uses HTTPS, the embedded URL must also be HTTPS. By the way, as a reminder, in the old teaching <code>panel_iframe:</code> YAML settings have been replaced by the "Web" dashboard (will be automatically migrated when upgrading), please use now <strong>Settings</strong> → <strong>Dashboard</strong> → <strong>Add new dashboard</strong> → <strong>page</strong>.</div>
+ <summary>An external AI site is blank in the sidebar. Is the configuration wrong?</summary>
+ <div class="body">Usually not. Many sites use browser security headers to prohibit embedding in other pages, and you cannot bypass that restriction. Also confirm that the protocols match: if Home Assistant uses HTTPS, the embedded URL must also use HTTPS. The <code>panel_iframe:</code> YAML configuration in older guides has been replaced by the Webpage dashboard and is migrated automatically during an upgrade. For a new page, use <strong>Settings</strong> → <strong>Dashboards</strong> → <strong>Add dashboard</strong> → <strong>Webpage</strong>.</div>
  </details>
 
  <details class="faq">
- <summary>Can I "ask AI to do things for me" in automation?</summary>
- <div class="body">Yes, and there are two ways. The first one is <code>conversation.process</code> Action, throw a piece of text to the designated dialogue agent for processing, which is equivalent to talking to Assist in a programmatic way. The second article is <strong>AI Task</strong> (Building block integration added in version 2025.7), provided <code>ai_task.generate_data</code> follow <code>ai_task.generate_image</code> Two actions, specifically used to generate text, structured data or images in automation, such as "take a look at the camera screen and count the number of cars in the lane". This is much cleaner than putting together multiple templates yourself.</div>
+ <summary>Can an automation ask AI to perform a task?</summary>
+ <div class="body">Yes, in two ways. The <code>conversation.process</code> action sends text to a selected conversation agent, providing a programmatic equivalent of speaking to Assist. Alternatively, the <strong>AI Task</strong> building-block integration, added in version 2025.7, provides the <code>ai_task.generate_data</code> and <code>ai_task.generate_image</code> actions. These actions generate text, structured data, or images in an automation—for example, analysing a camera image to count cars in a lane. This is cleaner than assembling many templates manually.</div>
  </details>
  </section>
 
