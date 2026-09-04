@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chapter 20 · Add-ons and Docker architecture · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Compare Home Assistant installation types, understand Supervisor and Docker concepts, install useful add-ons, read logs, and automate off-device backups." />
+  <title>Chapter 20 · Apps, add-ons, and Docker architecture · Home Assistant Onboarding Guide</title>
+  <meta name="description" content="Understand Home Assistant Apps (formerly add-ons), Supervisor, and containers; compare installation types, read logs, resolve common failures, and configure remote backups." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch20_addons_docker.html" />
   <meta name="robots" content="noindex, follow" />
@@ -12,13 +12,13 @@
   <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Chapter 20 · Add-ons and Docker architecture · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Compare Home Assistant installation types, understand Supervisor and Docker concepts, install useful add-ons, read logs, and automate off-device backups." />
+  <meta property="og:title" content="Chapter 20 · Apps, add-ons, and Docker architecture · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Understand Home Assistant Apps (formerly add-ons), Supervisor, and containers; compare installation types, read logs, resolve common failures, and configure remote backups." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch20_addons_docker.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch20/02_supervisor_dashboard.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chapter 20 · Add-ons and Docker architecture · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Compare Home Assistant installation types, understand Supervisor and Docker concepts, install useful add-ons, read logs, and automate off-device backups." />
+  <meta name="twitter:title" content="Chapter 20 · Apps, add-ons, and Docker architecture · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Understand Home Assistant Apps (formerly add-ons), Supervisor, and containers; compare installation types, read logs, resolve common failures, and configure remote backups." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch20/02_supervisor_dashboard.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -61,7 +61,7 @@
       <li><a href="ch18_history_data.html">History and export</a></li>
       <li><a href="ch19_voice_ai.html">Voice and AI</a></li>
       <li class="part-label">Advanced architecture and applications</li>
-      <li><a href="ch20_addons_docker.html" class="active">Add-ons and Docker</a></li>
+      <li><a href="ch20_addons_docker.html" class="active">Apps and Docker</a></li>
       <li><a href="ch21_network_remote.html">Networking and remote access</a></li>
       <li><a href="ch22_life_logs.html">Life logging</a></li>
     </ol>
@@ -69,12 +69,12 @@
       <h2>This chapter</h2>
       <a href="#why">Why this matters</a>
       <a href="#install_types">Install types</a>
-      <a href="#what_is_addon">Add-on model</a>
+      <a href="#what_is_addon">App model</a>
       <a href="#docker_basics">Docker basics</a>
-      <a href="#steps">Install an add-on</a>
-      <a href="#addon_page">Add-on tabs</a>
+      <a href="#steps">Install an app</a>
+      <a href="#addon_page">App page tabs</a>
       <a href="#read_log">Read logs</a>
-      <a href="#must_have">Useful add-ons</a>
+      <a href="#must_have">Useful Apps</a>
       <a href="#repositories">Repositories</a>
       <a href="#cloud_backup">Remote backups</a>
       <a href="#performance">Resource use</a>
@@ -92,152 +92,152 @@
  <main class="content">
  <div class="chapter-header">
  <div class="kicker">Chapter 20</div>
- <h1>Add-ons and Docker architecture</h1>
- <p class="lead">An add-on installed from the store is a Docker container managed by Supervisor. Learn the concepts behind images, volumes, and ports; install useful add-ons; configure off-device backups; and troubleshoot from logs.</p>
+ <h1>Apps, add-ons, and Docker architecture</h1>
+ <p class="lead">An app installed from the store is a Docker container managed by Supervisor. This chapter explains images, volumes, and ports in plain English; walks you through useful Apps and off-device backups; and shows you how to diagnose failures from their logs.</p>
  </div>
 
  <section id="why" data-nav="Why this matters">
- <h2 data-icon="why">Why add-on architecture matters</h2>
+ <h2 data-icon="why">Why the layer beneath Apps matters</h2>
 
- <p>In <a href="appendix_hacs_addons.html">Appendix A</a> you learned where to find and install add-ons. This chapter explains their architecture so you can diagnose failures.</p>
+ <p><a href="appendix_hacs_addons.html">Appendix A</a> showed you where the app store is and how to install an app. That appendix teaches you how to use Apps; this chapter explains why they sometimes fail.</p>
 
- <p>What's the difference? Here are a few situations that actually happen:</p>
+ <p>Consider a few situations you may encounter:</p>
 
  <ul>
- <li>You installed Home Assistant on your laptop, but you cannot find the Add-on store in the menu on the left - it is not that you are at fault, it is <strong>Wrong installation method</strong>.</li>
- <li>You installed Zigbee2MQTT, but it does not start, and the page only says "stopped". You don't know where to look to see what it's complaining about.</li>
- <li>If you install Node-RED and another web tool at the same time, the second one will fail - both are trying to use the same port.</li>
- <li>You reinstalled the entire machine, only to find that the backups were all stored only on the failed machine.</li>
+ <li>You installed Home Assistant on a laptop, but there is no app store in the sidebar. You did nothing wrong: <strong>that installation type does not include it</strong>.</li>
+ <li>You installed Zigbee2MQTT, but it will not start and its page says only “Stopped.” You do not know where to find the underlying error.</li>
+ <li>You installed Node-RED and another web tool, but the second one refuses to start because both are trying to use the same port.</li>
+ <li>You reinstalled the entire host, then discovered that every backup had been stored on the failed machine.</li>
  </ul>
 
- <p>All four situations depend on the same concepts: an add-on is a container with an image, persistent data, network ports, and logs. After this chapter, you will know where to begin when one fails.</p>
+ <p>All four problems involve the same layer of knowledge: an app is a container, and containers have images, volumes, ports, and logs. By the end of this chapter, you will know where to start when any of these problems occurs.</p>
 
- <div class="callout warn"><strong>Warning:</strong> Starting from Home Assistant version 2026.2, Home Assistant name of “Add-on (add-on)” is “<strong>Apps</strong> ", the menu also changes from "Settings → Add-ons" to " <strong>Settings → Apps</strong>”. Technically, it hasn't changed at all, it's just a name that's easier to understand. The two words in this chapter will be used interchangeably, referring to the same thing; whichever one appears on your screen will be based on your version.</div>
+ <div class="callout warn"><strong>Note:</strong> Starting with Home Assistant 2026.2, the official name for an “add-on” is an “<strong>app</strong>,” and the menu moves from “Settings → Add-ons” to “<strong>Settings → Apps</strong>.” The underlying technology has not changed; only the name has. This chapter uses both terms for the same thing, particularly when referring to older releases. Follow the wording shown in your version.</div>
  </section>
 
  <section id="install_types" data-nav="Install types">
- <h2 data-icon="compare">Installation types and add-on availability</h2>
+ <h2 data-icon="compare">The four installation types—and whether they include an app store</h2>
 
- <p>This is the biggest pitfall for beginners: <strong>Not every Home Assistant has an Add-on store.</strong> Whether or not there is a store is determined the moment you decide how to install it, and you cannot open it later by setting it.</p>
+ <p>This is a major source of confusion for new users: <strong>not every Home Assistant installation includes the Apps (formerly add-ons) store.</strong> Its availability is determined by the installation type you chose; you cannot enable it later in Settings.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Installation method</th><th>Plain-English explanation</th><th>Is there an add-on store?</th><th>One-click update</th><th>Current support status</th></tr>
+ <tr><th>Installation type</th><th>Plain-English explanation</th><th>Apps/add-ons store?</th><th>One-click updates?</th><th>Current support status</th></tr>
  </thead>
  <tbody>
  <tr>
  <td><strong>Home Assistant OS</strong> (HAOS)</td>
- <td>The entire machine only runs Home Assistant, and the operating system is officially made. Home Assistant Green, Yellow, and Raspberry Pi burning official image files are all considered this.</td>
+ <td>The entire machine runs Home Assistant on the official operating system. Home Assistant Green, Home Assistant Yellow, and a Raspberry Pi flashed with the official image all use this model.</td>
  <td><strong>Yes</strong></td>
  <td>Yes</td>
  <td>Recommended and fully supported</td>
  </tr>
  <tr>
  <td><strong>Home Assistant Container</strong></td>
- <td>On your own Linux/NAS/Synology, use Docker to run a Home Assistant container.</td>
+ <td>A Home Assistant container that you run with Docker on your own Linux host or NAS, including a Synology NAS.</td>
  <td><strong>No</strong></td>
- <td>No (you need to pull the new image file and rebuild the container yourself)</td>
- <td>Official support</td>
+ <td>No (you must pull a new image and recreate the container yourself)</td>
+ <td>Officially supported</td>
  </tr>
  <tr>
  <td><strong>Home Assistant Supervised</strong></td>
- <td>Supervisor installed manually on Debian to create an environment similar to HAOS.</td>
+ <td>A manually installed Supervisor stack on your own Debian host, intended to approximate a HAOS environment.</td>
  <td>Yes</td>
  <td>Yes</td>
- <td><strong>Unsupported</strong>, officially stopped supporting since 2025.12</td>
+ <td><strong>Deprecated</strong>; official support ended with 2025.12</td>
  </tr>
  <tr>
  <td><strong>Home Assistant Core</strong></td>
- <td>Home Assistant Core running directly in a Python environment.</td>
+ <td>Home Assistant Core running directly in a Python environment, without the surrounding management layer.</td>
  <td>No</td>
  <td>No</td>
- <td><strong>Unsupported</strong>, officially stopped supporting since 2025.12</td>
+ <td><strong>Deprecated</strong>; official support ended with 2025.12</td>
  </tr>
  </tbody>
  </table>
 
- <div class="callout warn"><strong>Warning:</strong> Home Assistant announced in May 2025 that the two installation methods Core and Supervised will be eliminated, and support will be officially ended in version 2025.12. Also eliminated are 32-bit architectures such as i386, armhf, and armv7. The old machine technically still runs and can be updated, but there is no official support if something goes wrong. <strong>Currently, only HAOS and Container are officially supported.</strong></div>
+ <div class="callout warn"><strong>Note:</strong> In May 2025, Home Assistant announced the deprecation of the Core and Supervised installation types. Official support ended with release 2025.12. Support also ended for the i386, armhf, and armv7 32-bit architectures. Existing systems may continue to run and receive updates, but they no longer receive official support. <strong>Only HAOS and Container are now officially supported installation types.</strong></div>
 
- <p>So the conclusion is simple:</p>
+ <p>The practical conclusion is simple:</p>
 
  <ul>
- <li><strong>You want Add-on Store → use HAOS.</strong> Green, Yellow, or Raspberry Pi can burn Home Assistant image file, or install HAOS on an empty mini host.</li>
- <li><strong>You use Container (e.g. Docker on Synology NAS) → There is no store, and there never will be.</strong> If you need things like MQTT broker and Node-RED, you can open a separate Docker container to run it. The function is the same, you just have to do it yourself.</li>
+ <li><strong>Want the Apps store? Install HAOS.</strong> You can use Home Assistant Green or Yellow, flash the official image onto a Raspberry Pi, or install HAOS on a dedicated mini PC.</li>
+ <li><strong>Running Home Assistant Container—for example, with Docker on a Synology NAS? There is no store, and one cannot be added.</strong> Run services such as an MQTT broker or Node-RED in separate Docker containers. The capabilities are the same, but you must deploy and maintain those containers yourself.</li>
  </ul>
 
- <div class="callout"><strong>Concept:</strong> Official documentation clearly states that part of the integration of Thread and Z-Wave is supported by Add-on, so Container installation <strong>No out-of-the-box support</strong>. If you plan to play Zigbee/Z-Wave/Thread, but do not want to bother, choosing HAOS directly will save you half the trouble.</div>
+ <div class="callout"><strong>Key idea:</strong> The official documentation notes that parts of the Thread and Z-Wave experience depend on Apps. Consequently, Container installations do <strong>not provide the same out-of-the-box support</strong>. If you plan to use Zigbee, Z-Wave, or Thread and want the least complicated setup, choose HAOS.</div>
  </section>
 
- <section id="what_is_addon" data-nav="Add-on model">
- <h2 data-icon="docker">An add-on is a Docker container managed by Supervisor</h2>
+ <section id="what_is_addon" data-nav="App model">
+ <h2 data-icon="docker">An app is a Docker container managed by Supervisor</h2>
 
- <p>Home Assistant developer documentation explains that <strong>an add-on is distributed as a container image through a registry</strong>, such as GitHub Container Registry or Docker Hub.</p>
+ <p>The official developer documentation is explicit: <strong>Apps—the feature formerly called add-ons—are built from container images published to a container registry</strong>, such as GitHub Container Registry or Docker Hub.</p>
 
- <p>In other words, when you press "Install" in the store, what happens is:</p>
+ <p>When you select “Install” in the store, the following happens:</p>
 
  <ol class="steps">
  <li>
  <h3>Supervisor downloads the image</h3>
- <p>Supervisor reads the add-on configuration to find the image URL, version, and CPU architecture, such as arm64 or amd64. This is often the longest step and may fail if the network connection is interrupted.</p>
+ <p>It reads the app configuration to determine the registry, version, and image for your CPU architecture, such as arm64 or amd64. This is usually the longest step and the one most likely to fail if the network connection is interrupted.</p>
  </li>
  <li>
- <h3>Supervisor opens a container using that image file</h3>
- <p>By the way, according to the settings of the Add-on, decide which ports to open, which folders to attach to it, and whether to give it a USB device.</p>
+ <h3>Supervisor creates a container from the image</h3>
+ <p>Using the app configuration, it also determines which ports to expose, which folders to mount, and whether the container needs access to a USB device.</p>
  </li>
  <li>
- <h3>Supervisor helps you connects the configuration interface to Home Assistant</h3>
- <p>That's why you will see the Add-on's "Settings" tab and "Log Files" tab in the Home Assistant page, without having to type the Docker command yourself.</p>
+ <h3>Supervisor integrates the management interface into Home Assistant</h3>
+ <p>This is why the app has Configuration and Log tabs inside the Home Assistant interface: you do not need to enter Docker commands yourself.</p>
  </li>
  <li>
- <h3>Supervisor monitors it</h3>
- <p>It is responsible for starting, stopping, updating, watchdog (Watchdog) restart, and automatic startup at boot. These are the switches you see on the add-on page.</p>
+ <h3>Supervisor keeps monitoring the container</h3>
+ <p>It handles starting, stopping, updating, automatic startup at boot, and restarts by the Watchdog. These functions correspond to the controls on the app page.</p>
  </li>
  </ol>
 
- <p>So <strong>Supervisor is the "manager"</strong>. The Home Assistant itself is a container, and each add-on is also a container. The Supervisor stands beside it and manages their lifecycle. This also explains why Container installations don't have stores - <strong>it does not include Supervisor</strong>, only Home Assistant is running in its own container.</p>
+ <p><strong>Supervisor is the manager.</strong> Home Assistant Core runs in one container, each app runs in its own container, and Supervisor manages their lifecycles. This also explains why Home Assistant Container has no store: <strong>that installation type does not include Supervisor</strong>; it runs only the Home Assistant container.</p>
 
- <div class="callout"><strong>Concept:</strong> Add-on and "Integration" are two completely different things. This is the most common confusion among beginners. This is also the reason why Home Assistant name is changed to Apps. <strong>Integration is to "connect" external devices and services into Home Assistant</strong> (e.g. Xiaomi, Google, Weather); <strong>Add-on/App is an independent program that runs "next to" Home Assistant.</strong> (such as an MQTT server). Some things require both sides: Zigbee2MQTT is an Add-on, and Mosquitto is also an Add-on, but in order for Home Assistant to see the light bulb, you have to install MQTT <em>Integrate</em>.</div>
+ <div class="callout"><strong>Key idea:</strong> An app and an integration are entirely different. This frequent point of confusion is precisely why Home Assistant renamed add-ons to Apps. <strong>An integration connects an external device or service to Home Assistant</strong>—for example, Xiaomi, Google, or a weather service. <strong>An app runs a separate program alongside Home Assistant</strong>—for example, an MQTT server. Some setups require both: Zigbee2MQTT and Mosquitto are Apps, but Home Assistant also needs the MQTT <em>integration</em> to receive the devices they expose.</div>
  </section>
 
  <section id="docker_basics" data-nav="Docker basics">
  <h2 data-icon="concept">Docker in plain English: a restaurant kitchen</h2>
 
- <p>Docker terminology becomes easier when you compare it with a restaurant kitchen. Each technical component has a distinct role.</p>
+ <p>Docker terminology can sound intimidating, but each term describes a familiar role. Think of the system as a restaurant kitchen.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Docker term</th><th>Restaurant metaphor</th><th>What it means for Home Assistant</th></tr>
+ <tr><th>Docker term</th><th>Restaurant analogy</th><th>What it means in Home Assistant</th></tr>
  </thead>
  <tbody>
  <tr>
- <td><strong>Image<br>Image</strong></td>
- <td>A read-only recipe and ingredient kit. Every kitchen using the same version starts with the same contents.</td>
- <td>The application package downloaded from a registry. The same Mosquitto image version contains the same files on every compatible host.</td>
+ <td><strong>Application package<br>Image</strong></td>
+ <td>A read-only recipe and ingredient kit. Every kitchen using the same version starts with identical contents.</td>
+ <td>The application package downloaded from a registry. A given version of the Mosquitto image has the same contents on every compatible host.</td>
  </tr>
  <tr>
- <td><strong>Container<br>Container</strong></td>
- <td>A meal <em>prepared from that recipe</em>. You can discard it and prepare another from the unchanged recipe.</td>
- <td>A running App instance. Restarting or recreating it starts another instance from the image.</td>
+ <td><strong>Running instance<br>Container</strong></td>
+ <td>A meal <em>prepared from that kit</em>. You can discard it and prepare another one from the unchanged recipe.</td>
+ <td>The running app. Restarting or recreating the container starts a fresh instance from its image.</td>
  </tr>
  <tr>
- <td><strong>Data volume<br>Volume</strong></td>
- <td>A separate pantry. Replacing a meal does not discard what is stored in the pantry.</td>
- <td>Persistent settings and data, such as the database and Zigbee pairing records. Recreating a container does not remove a correctly mounted volume.</td>
+ <td><strong>Persistent storage<br>Volume</strong></td>
+ <td>Your own storage container. Replacing the meal does not discard what you keep in it.</td>
+ <td>Persistent settings and data, such as a database or Zigbee pairing records. Updating an app does not remove data stored in its correctly mounted volume.</td>
  </tr>
  <tr>
- <td><strong>Port<br>Port</strong></td>
- <td>A numbered pickup window. Two services cannot operate the same host window at the same time.</td>
- <td>Home Assistant normally uses 8123, Mosquitto uses 1883, and Node-RED has its own port. A conflicting port prevents the second service from starting.</td>
+ <td><strong>Network endpoint<br>Port</strong></td>
+ <td>A numbered pickup window. Only one restaurant can use a given window number at a time.</td>
+ <td>Home Assistant normally uses port 8123, Mosquitto uses 1883, and Node-RED has its own port. If two Apps claim the same host port, the second one cannot start.</td>
  </tr>
  <tr>
- <td><strong>Restart policy<br>Restart policy</strong></td>
- <td>A rule that tells the kitchen when to reopen after it stops.</td>
- <td>The "Start on boot" and "Watchdog" switches on an App page serve a similar purpose. A Container installation uses <code>--restart=unless-stopped</code>, which restarts the container unless you deliberately stopped it.</td>
+ <td><strong>Automatic recovery<br>Restart policy</strong></td>
+ <td>A rule that determines when the restaurant reopens after closing.</td>
+ <td>The “Start on boot” and “Watchdog” switches on an app page serve similar purposes. The official Container command uses <code>--restart=unless-stopped</code>: Docker restarts the container unless you deliberately stopped it.</td>
  </tr>
  </tbody>
  </table>
 
- <p>For a Container installation, the Docker Compose example in the Home Assistant documentation combines these terms as follows:</p>
+ <p>For Home Assistant Container, the official Docker Compose example brings these concepts together:</p>
 
  <pre class="code-block"><code>services:
   homeassistant:
@@ -253,116 +253,116 @@
     environment:
       TZ: Etc/UTC</code></pre>
 
- <p>Compare it:<code>image</code> selects the container image. <code>volumes</code> maps a folder on your computer (left) to a path inside the container (right). <code>restart</code> defines the restart policy. <code>TZ</code> sets the time zone, which should match Chapter 2. <code>network_mode: host</code> gives the container direct access to the host network, so port 8123 is exposed directly on that machine.</p>
+ <p>Here, <code>image</code> selects the application package. <code>volumes</code> maps host folders on the left to paths inside the container on the right. <code>restart</code> defines the restart policy, and <code>TZ</code> sets the time zone, which should match the setting discussed in Chapter 2. <code>network_mode: host</code> gives the container direct access to the host network, so port 8123 is available directly on that machine.</p>
 
- <div class="callout tip"><strong>Note:</strong> The zh-TW edition uses a local boxed-meal metaphor; this edition uses a general restaurant metaphor. HAOS users do not enter these commands because Supervisor manages the containers. The example is included so you can recognize the terms when troubleshooting.</div>
+ <div class="callout tip"><strong>Tip:</strong> HAOS users do not need to enter any of these commands; Supervisor handles them for you. This example is here so that you can recognize the terminology when you consult documentation or troubleshoot a problem.</div>
  </section>
 
- <section id="steps" data-nav="Install an add-on">
- <h2 data-icon="steps">Hands-on: install an add-on and review its controls</h2>
+ <section id="steps" data-nav="Install an app">
+ <h2 data-icon="steps">Hands-on: install an app and understand its controls</h2>
 
- <p>We'll use the File editor as an exercise because it's lightweight and low risk, and easy to use later.</p>
+ <p>We will use File editor for this exercise because it is lightweight, low risk, and useful later.</p>
 
  <ol class="steps">
  <li>
  <h3>Open the store</h3>
- <p>lower-left corner <strong>Settings</strong> → find <strong>Apps</strong> (called before 2026.2 <strong>Add-ons</strong>). After entering, select <strong>Install app</strong> Click the button and you will see a whole row of things that can be loaded. The button on the old version said "ADD-ON STORE".</p>
+ <p>In the lower-left corner, select <strong>Settings</strong>, then <strong>Apps</strong> (called <strong>Add-ons</strong> before 2026.2). Select <strong>Install app</strong> to open the store. In older releases, this button is labeled “ADD-ON STORE.”</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch20/02_supervisor_dashboard.png" alt="Apps home page: Installed Add-ons" />
- <figcaption><strong>Figure 20-1</strong> Apps homepage (Supervisor): All installed Add-ons are listed here. The "Add-on store" in the lower right corner is the entrance to the store.</figcaption>
+ <img src="../assets/screenshots/ch20/02_supervisor_dashboard.png" alt="Apps page showing installed add-ons" />
+ <figcaption><strong>Figure 20-1</strong> Apps home page (Supervisor): installed add-ons are listed here, and “Add-on store” in the lower-right corner opens the store.</figcaption>
  </figure>
  <figure class="shot">
  <img src="../assets/screenshots/ch20/01_addon_store.png" alt="Add-on store" />
- <figcaption><strong>Figure 20-2</strong> Add-on store: divided into Local apps (self-built)/Official apps (official)/community repository.</figcaption>
+ <figcaption><strong>Figure 20-2</strong> Add-on store: entries are grouped into Local apps, Official apps, and community repositories.</figcaption>
  </figure>
  </li>
  <li>
- <h3>Find "File editor" and install it</h3>
- <p>It's in the Official section. Click in and select <strong>Installation</strong>, and then wait. The first installation requires downloading the image file. It is normal for the Raspberry Pi to take three to five minutes. If the screen does not move, it does not mean that it has crashed.</p>
+ <h3>Find File editor and install it</h3>
+ <p>File editor is in the Official section. Open it and select <strong>Install</strong>, then wait. The first installation must download a container image; three to five minutes is normal on a Raspberry Pi. A static screen does not necessarily mean that the installation has stalled.</p>
  </li>
  <li>
- <h3>Don't start it in a hurry, take a look at the four switches</h3>
- <p>After installation, several switches will appear: <strong>Start at boot</strong> (The machine will run automatically after restarting), <strong>Watchdog</strong> (It will automatically pull it up when it stops), <strong>Automatic updates</strong> (Update as soon as there is a new version), <strong>Show in sidebar</strong> (Shortcuts appear directly in the menu on the left). File editor suggestion: enable the first three, and also enable the fourth.</p>
+ <h3>Before starting it, review the four switches</h3>
+ <p>After installation, you will see <strong>Start on boot</strong> (run automatically after the host restarts), <strong>Watchdog</strong> (restart the app if it fails), <strong>Auto update</strong> (install new versions automatically), and <strong>Show in sidebar</strong> (add a shortcut to the sidebar). For File editor, enable all four.</p>
  </li>
  <li>
- <h3>Click "Start"</h3>
- <p>The status will change from "Stopped" to "Running". If it changes to "Stopped" and then jumps back, it means it failed to start - then go directly to the next section to see the log.</p>
+ <h3>Select “Start”</h3>
+ <p>The status should change from “Stopped” to “Running.” If it immediately returns to “Stopped,” startup failed. Continue to the next section and inspect the log.</p>
  </li>
  <li>
  <h3>Open it from the sidebar</h3>
- <p>There should be an additional "File editor" on the left menu. Click in and you will see <code>/config</code> Folder - that is the "persistent volume" mentioned in the previous section, your <code>configuration.yaml</code> Just inside.</p>
+ <p>A File editor shortcut should now appear in the sidebar. Open it to see the <code>/config</code> folder—the persistent storage described in the previous section. Your <code>configuration.yaml</code> file is inside it.</p>
  </li>
  <li>
- <h3>Test a reversible edit</h3>
- <p>This is only a write-access test, not a configuration change. Edit one word, save the file, and restore the original text. You now know that the editor can save changes when you need it later.</p>
+ <h3>Make and reverse a small edit</h3>
+ <p>This is a write-access test, not a configuration change. Change one character, save the file, and then restore the original text. Having completed this test, you will know that the editor can save changes when you need it.</p>
  </li>
  </ol>
 
- <div class="callout danger"><strong>Danger:</strong> File editor can modify files in ways that prevent Home Assistant from starting. Before editing <code>configuration.yaml</code>, make sure the backup process from <a href="ch9_backups.html">Chapter 9</a> works. A configuration mistake is recoverable only when you have a usable backup.</div>
+ <div class="callout danger"><strong>Danger:</strong> File editor can change files in ways that prevent Home Assistant from starting. Before editing <code>configuration.yaml</code>, confirm that the backup process described in <a href="ch9_backups.html">Chapter 9</a> is working. A bad configuration is recoverable; having no backup is not.</div>
  </section>
 
- <section id="addon_page" data-nav="Add-on tabs">
- <h2 data-icon="tabs">What are the tab on the add-on page for?</h2>
+ <section id="addon_page" data-nav="App page tabs">
+ <h2 data-icon="tabs">What each tab on an app page does</h2>
 
- <p>When you click on each add-on, there will be several pages on it. The names vary slightly depending on the version, but the functions are similar:</p>
+ <p>Each app page contains several tabs. Their names vary slightly by release, but their functions are largely the same:</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Tab</th><th>What's inside</th><th>When to use it</th></tr>
+ <tr><th>Tab</th><th>What it contains</th><th>When to use it</th></tr>
  </thead>
  <tbody>
  <tr>
  <td><strong>Info</strong></td>
- <td>Start/stop/restart button, version number, four switches, "Open web interface" link.</td>
- <td>daily operations. See the version number here.</td>
+ <td>Start, stop, and restart buttons; the version number; four switches; and an “Open Web UI” link.</td>
+ <td>Routine operation and version checks.</td>
  </tr>
  <tr>
  <td><strong>Documentation</strong></td>
- <td>Complete explanation written by the author on what each setting option means.</td>
- <td><strong>Be the first to come here when you do not understand the setting options.</strong>, do not go to Google, the author’s writing is the most accurate.</td>
+ <td>The author's complete instructions, including the meaning of every configuration option.</td>
+ <td><strong>Consult this first when an option is unclear.</strong> The app author's documentation is more authoritative than a generic web search.</td>
  </tr>
  <tr>
  <td><strong>Configuration</strong></td>
- <td>This Add-on has its own options. Some are forms, and some require you to change YAML directly.</td>
- <td>Set the account password, set the folder, and set the path of the Zigbee stick.</td>
+ <td>Options specific to the app. Some use form fields; others require direct YAML editing.</td>
+ <td>Set credentials, choose folders, or specify a Zigbee adapter path.</td>
  </tr>
  <tr>
  <td><strong>Network</strong></td>
- <td>Port mapping table. The left side is the number used in the container (fixed), and the right side is the number to be opened on your machine (can be changed).</td>
- <td><strong>If there is a Port conflict, change it here.</strong> Leave the right side blank = not open to the public, only Home Assistant can be connected internally, the safest.</td>
+ <td>Port mappings. The left side shows the fixed port inside the container; the right side shows the configurable port published on the host.</td>
+ <td><strong>Change the host port here when ports conflict.</strong> Leaving the right side blank does not publish the port externally, which is the safest choice when only internal access is needed.</td>
  </tr>
  <tr>
  <td><strong>Log</strong></td>
- <td>Every sentence spoken by this add-on from startup to now.</td>
- <td>It won't start, it's weird, it won't connect to things - always look here first.</td>
+ <td>Messages produced by the app since it started.</td>
+ <td>Start here whenever the app will not start, behaves unexpectedly, or cannot connect to another service.</td>
  </tr>
  </tbody>
  </table>
 
- <div class="callout tip"><strong>Tip:</strong> The box on the right side of the "Network" tab is the most practical knowledge in this entire chapter. Suppose Node-RED uses a certain number by default, and that number is occupied by something else. You don't need to change another program, just change the right side here to an unused number (for example <code>1881</code>, <code>8099</code> This kind), just save and restart.</div>
+ <div class="callout tip"><strong>Tip:</strong> The right-hand field on the Network tab is especially useful. If Node-RED's default host port is already occupied, change that field to an unused port such as <code>1881</code> or <code>8099</code>, save, and restart. You do not need to reconfigure the other program.</div>
  </section>
 
  <section id="read_log" data-nav="Read logs">
- <h2 data-icon="records">Troubleshooting by looking at log files: three keywords are enough</h2>
+ <h2 data-icon="records">Troubleshoot with logs: a few markers are enough</h2>
 
- <p>The log (Log) can look dense, but you don't need to understand it all. Use three things you have to do:</p>
+ <p>A log can look impenetrable, but you do not need to understand every line. Follow these four steps:</p>
 
  <ol class="steps">
  <li>
  <h3>Start at the bottom</h3>
- <p>Logs run chronologically from top to bottom, so <strong>the newest entries are at the bottom</strong>. The final five to ten lines often explain a startup failure. Begin there before reading earlier startup messages.</p>
+ <p>Logs are ordered chronologically from top to bottom, so <strong>the newest entries are at the bottom</strong>. The last five to ten lines often explain a startup failure. Ignore hundreds of earlier startup messages until you need them.</p>
  </li>
  <li>
- <h3>Find error markers</h3>
- <p>Look for <code>ERROR</code>, <code>FATAL</code>, <code>Traceback</code>, <code>Permission denied</code>, <code>Address already in use</code>, and <code>No such file or directory</code>. Inspect the surrounding lines when one appears. You can usually review <code>WARNING</code> entries after resolving errors.</p>
+ <h3>Look for these markers</h3>
+ <p>Search for <code>ERROR</code>, <code>FATAL</code>, <code>Traceback</code>, <code>Permission denied</code>, <code>Address already in use</code>, and <code>No such file or directory</code>. The relevant explanation is usually on or near that line. You can generally review <code>WARNING</code> entries after resolving the errors.</p>
  </li>
  <li>
  <h3>Search for the exact message</h3>
- <p>Search for the exact message together with the add-on name, such as “zigbee2mqtt Address already in use.” <strong>Do not paraphrase the error</strong>; an exact search is more likely to find a relevant solution.</p>
+ <p>Search for the line verbatim together with the app name—for example, “zigbee2mqtt Address already in use.” <strong>Do not paraphrase the error.</strong> An exact search is far more likely to find the relevant solution.</p>
  </li>
  <li>
- <h3>Capture a clean startup</h3>
- <p>Stop the Add-on, refresh the log page, click Start, and stare at it. What you see in this way is a "clean start", which is much faster than digging through thousands of lines of old messages.</p>
+ <h3>Capture a clean startup if the cause is still unclear</h3>
+ <p>Stop the app, refresh the log page, and select Start while watching the output. This captures one clean startup and is much easier to interpret than thousands of old messages.</p>
  </li>
  </ol>
 
@@ -370,285 +370,285 @@
 
  <table class="data-table">
  <thead>
- <tr><th>Log message</th><th>Plain-English meaning</th><th>How to fix it</th></tr>
+ <tr><th>Log message</th><th>Plain-English meaning</th><th>What to check</th></tr>
  </thead>
  <tbody>
- <tr><td><code>Address already in use</code></td><td>Someone is already using this port</td><td>Go to the "Network" tab and change the port</td></tr>
- <tr><td><code>Permission denied</code></td><td>It does not have permission to touch a file or device</td><td>Most likely the USB device path is set incorrectly, or the folder filled in in the settings does not exist.</td></tr>
- <tr><td><code>Connection refused</code></td><td>The object it wants to connect to doesn't have the door open.</td><td>Another Add-on it depends on (commonly MQTT) is not started</td></tr>
- <tr><td><code>No such file or directory</code></td><td>The file/device you specified cannot be found</td><td>Check whether there are any typos in the path entered in the settings.</td></tr>
- <tr><td><code>No space left on device</code></td><td>Storage is full</td><td>Look at the last item of "Common Obstacles" in this chapter</td></tr>
+ <tr><td><code>Address already in use</code></td><td>Another service is already using this host port.</td><td>Change the published port on the Network tab.</td></tr>
+ <tr><td><code>Permission denied</code></td><td>The app is not allowed to access a file or device.</td><td>The USB device path may be wrong, or the configured folder may not exist.</td></tr>
+ <tr><td><code>Connection refused</code></td><td>The destination service is not accepting connections.</td><td>A required app—often the MQTT broker—may not be running.</td></tr>
+ <tr><td><code>No such file or directory</code></td><td>The specified file or device cannot be found.</td><td>Check the configured path for typographical errors.</td></tr>
+ <tr><td><code>No space left on device</code></td><td>Storage is full.</td><td>See “Storage is full” under Troubleshooting.</td></tr>
  </tbody>
  </table>
 
- <div class="callout"><strong>Concept:</strong> The log of the Add-on and the log of the Home Assistant Core are <strong>separate</strong>. The add-on is in the "Log" tab of its own page; the Home Assistant's is in the "Logs" tab of its own page; <strong>Settings → System → Logs</strong>. If you look in the wrong place, you won't see anything.</div>
+ <div class="callout"><strong>Key idea:</strong> An app's log is <strong>separate</strong> from the Home Assistant Core log. Find the app log on that app's Log tab. Find the Home Assistant log under <strong>Settings → System → Logs</strong>. Looking in the wrong place can make a real error appear to be missing.</div>
  </section>
 
- <section id="must_have" data-nav="Useful add-ons">
- <h2 data-icon="addons">Useful add-ons</h2>
+ <section id="must_have" data-nav="Useful Apps">
+ <h2 data-icon="addons">A tour of useful Apps</h2>
 
- <p>Install only the add-ons that meet a specific need. The meaning of the "Source" column: <strong>official</strong>=It is already available in the store; <strong>community</strong>=You need to add a third-party repository first (next tutorial).</p>
+ <p>Do not install everything. Choose only what serves a specific need. In the Source column, <strong>Official</strong> means the app is included in the store by default; <strong>Community</strong> means that you must first add a third-party repository, as explained in the next section.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Add-on</th><th>Source</th><th>Purpose</th><th>Who should install it</th></tr>
+ <tr><th>App</th><th>Source</th><th>What it does</th><th>Who should install it</th></tr>
  </thead>
  <tbody>
  <tr>
- <td><strong>File editor</strong><br>File editor</td>
- <td>official</td>
- <td>Open it directly in the browser <code>/config</code> Modify the file and attach a grammar check.</td>
- <td>Almost everyone. Light, no-brainer, and easy to use in emergencies.</td>
+ <td><strong>File editor</strong><br>Browser-based editor</td>
+ <td>Official</td>
+ <td>Opens files under <code>/config</code> directly in a browser and provides syntax checking.</td>
+ <td>Almost everyone. It is lightweight, straightforward, and useful in an emergency.</td>
  </tr>
  <tr>
  <td><strong>Studio Code Server</strong></td>
- <td>community<br>(hassio-addons)</td>
- <td>Move the entire set of VS Code into the browser, and the built-in Home Assistant and YAML extension kit will automatically complete entity names.</td>
- <td>There are many people who write YAML. Much more capable than the File Editor, but also much heavier.</td>
+ <td>Community<br>(hassio-addons)</td>
+ <td>Provides a complete VS Code environment in the browser, with Home Assistant and YAML extensions that can complete entity names.</td>
+ <td>People who write substantial amounts of YAML. It is much more capable than File editor, but also much more resource intensive.</td>
  </tr>
  <tr>
  <td><strong>Terminal &amp; SSH</strong></td>
- <td>official</td>
- <td>The terminal in the browser can also be connected from another computer using SSH, and the Home Assistant CLI is built-in.</td>
- <td>Someone who needs to give orders. <strong>You must first turn on "Advanced Mode" on your profile page to see it.</strong></td>
+ <td>Official</td>
+ <td>Provides a browser-based terminal, remote SSH access, and the Home Assistant CLI.</td>
+ <td>Anyone who needs a command line. <strong>You must enable Advanced Mode on your profile page before you can see it.</strong></td>
  </tr>
  <tr>
  <td><strong>Mosquitto broker</strong></td>
- <td>official</td>
- <td>An MQTT messaging server. Many devices and tools rely on it to talk to each other.</td>
- <td>People who want to play advanced gameplay of Zigbee2MQTT, Tasmota, and ESPHome.</td>
+ <td>Official</td>
+ <td>Runs an MQTT message broker through which many devices and tools communicate.</td>
+ <td>Anyone using Zigbee2MQTT, Tasmota, or more advanced ESPHome setups.</td>
  </tr>
  <tr>
  <td><strong>Zigbee2MQTT</strong></td>
- <td>community<br>(Official Z2M team maintenance)</td>
- <td>Take over your Zigbee coordinator (that USB stick) and turn the Zigbee light switch into MQTT messages. Supports a wider range of device models than the built-in solution.</td>
- <td>People who have many Zigbee devices or buy unpopular brands. <strong>You need to install Mosquitto first.</strong></td>
+ <td>Community<br>(maintained by the official Z2M team)</td>
+ <td>Controls a Zigbee coordinator (the USB adapter) and translates Zigbee device traffic into MQTT messages. It supports more device models than the built-in option.</td>
+ <td>People with many Zigbee devices or less common brands. <strong>Install Mosquitto first.</strong></td>
  </tr>
  <tr>
  <td><strong>Node-RED</strong></td>
- <td>community<br>(hassio-addons)</td>
- <td>Use wire-drawing methods to automate processes without writing YAML.</td>
- <td>People with complex automation logic or visual thinking. For simple automation, the built-in one is enough.</td>
+ <td>Community<br>(hassio-addons)</td>
+ <td>Creates automation flows visually by connecting nodes instead of writing YAML.</td>
+ <td>People with complex automation logic or a visual approach to problem solving. Built-in automations are sufficient for simpler tasks.</td>
  </tr>
  <tr>
  <td><strong>Samba share</strong></td>
- <td>official</td>
- <td>put <code>config</code>, <code>backup</code>, <code>media</code>, <code>share</code> When the folder becomes a network drive, Windows/Mac can drag and drop it directly.</td>
- <td>People who want to change settings using the editor they are used to on their computer, or who want to pull down a backup.</td>
+ <td>Official</td>
+ <td>Exposes folders such as <code>config</code>, <code>backup</code>, <code>media</code>, and <code>share</code> as network shares for drag-and-drop access from Windows or macOS.</td>
+ <td>People who prefer a desktop editor or want to copy backups to another computer.</td>
  </tr>
  <tr>
  <td><strong>Advanced SSH &amp; Web Terminal</strong></td>
- <td>community<br>(hassio-addons)</td>
- <td>An enhanced version of Home Assistant Terminal &amp; SSH, you can turn off the protected mode to do more.</td>
- <td>Advanced users who know what they are doing. Beginners should use Home Assistant version first.</td>
+ <td>Community<br>(hassio-addons)</td>
+ <td>Adds capabilities beyond the official Terminal &amp; SSH app, including the ability to disable Protection mode.</td>
+ <td>Advanced users who understand the additional access they are granting. Beginners should use the official app.</td>
  </tr>
  </tbody>
  </table>
 
- <div class="callout warn"><strong>Warning:</strong> The way Mosquitto accounts are set up is different from many old tutorials. <strong>Don't</strong> Create a user in the settings tab of Mosquitto. Home Assistant documentation clearly states that you need to do this. <strong>Settings → People → Users</strong> Also open a Home Assistant user specifically for MQTT, and then fill in this set of accounts and passwords on Zigbee2MQTT. After launching Mosquitto, go to <strong>Settings → Devices &amp; services</strong>, MQTT will appear in the "Explored" section at the top, click to complete the setting.</div>
+ <div class="callout warn"><strong>Note:</strong> Current Mosquitto account setup differs from many older tutorials. <strong>Do not</strong> create the account on Mosquitto's Configuration tab. The official documentation directs you to create a dedicated Home Assistant user for MQTT under <strong>Settings → People → Users</strong>, then enter those credentials in Zigbee2MQTT. After starting Mosquitto, go to <strong>Settings → Devices &amp; services</strong>. MQTT should appear in the “Discovered” section at the top; select it to finish setup.</div>
 
- <div class="callout tip"><strong>Tip:</strong> The name of the shared folder of Samba share has also been renamed: old <code>addons</code> and <code>addon_configs</code> Call now <code>local_apps</code> and <code>app_configs</code>, the old name remains compatible. Do not worry when you see two ways of writing.</div>
+ <div class="callout tip"><strong>Tip:</strong> Samba share folder names have also changed: the former <code>addons</code> and <code>addon_configs</code> folders are now named <code>local_apps</code> and <code>app_configs</code>. The old names remain available for compatibility, so either form may appear in documentation.</div>
  </section>
 
  <section id="repositories" data-nav="Repositories">
- <h2 data-icon="hacs">Adding a third-party repository: What to do if it is not available in the store</h2>
+ <h2 data-icon="hacs">Add a third-party repository for Apps not in the default store</h2>
 
- <p>Use dozens of official store presets. For example, Node-RED, Studio Code Server, Zigbee2MQTT, etc., you must first add their "Repository" before the store will have a whole row of new things.</p>
+ <p>The store initially contains only the official selection. To install Apps such as Node-RED, Studio Code Server, or Zigbee2MQTT, first add their repository; the store will then display the Apps that repository provides.</p>
 
  <ol class="steps">
  <li>
- <h3>Copy repository URL</h3>
- <p>Two commonly used ones: community Add-on collection is <code>https://github.com/hassio-addons/repository</code>, Zigbee2MQTT official is <code>https://github.com/zigbee2mqtt/hassio-zigbee2mqtt</code>.</p>
+ <h3>Copy the repository URL</h3>
+ <p>Two commonly used repositories are the community Apps collection at <code>https://github.com/hassio-addons/repository</code> and the official Zigbee2MQTT repository at <code>https://github.com/zigbee2mqtt/hassio-zigbee2mqtt</code>.</p>
  </li>
  <li>
- <h3>Enter the Add-on store</h3>
- <p><strong>Settings → Apps</strong>, then select <strong>Install app</strong> Go into the store.</p>
+ <h3>Open the store</h3>
+ <p>Go to <strong>Settings → Apps</strong>, then select <strong>Install app</strong>.</p>
  </li>
  <li>
- <h3>Open "Repositories" in the three-dot menu in the upper-right corner</h3>
- <p>Home Assistant documentation makes it clear: on the store page <strong>The three-dot menu in the upper-right corner</strong> choose <strong>Repositories</strong>. The old version may show "repository" in Chinese, which is the same thing.</p>
+ <h3>Open “Repositories” from the three-dot menu</h3>
+ <p>On the store page, open the <strong>three-dot menu in the upper-right corner</strong> and select <strong>Repositories</strong>. Older releases may show a translated label for the same command.</p>
  </li>
  <li>
- <h3>Paste the URL, click Add, and then refresh</h3>
- <p>After adding stores, there will be several more areas. If you can't find something new, press <kbd>Ctrl</kbd> + <kbd>F5</kbd> Force a refresh. If the reorganization still doesn't show up, go to <strong>Settings → System → Logs</strong>, switch to the upper-right corner of <strong>Supervisor</strong>, the URL will be written there, is it a typo?</p>
+ <h3>Paste the URL, select Add, and refresh</h3>
+ <p>The store will gain one or more sections. If the new Apps do not appear, press <kbd>Ctrl</kbd> + <kbd>F5</kbd> to force a refresh. If they are still missing, go to <strong>Settings → System → Logs</strong> and select <strong>Supervisor</strong> in the upper-right corner. Its log will reveal whether the repository URL is invalid.</p>
  </li>
  </ol>
 
- <div class="callout danger"><strong>Danger:</strong> Adding a repository means "I trust this author and am willing to let his program run in my home." An add-on is a container with considerable permissions, and things of unknown origin can look into your configuration files. <strong>Only add repositories that you can find, are used by many people, and have been updated recently.</strong> The ones listed above are all large-scale projects recognized by the community.</div>
+ <div class="callout danger"><strong>Danger:</strong> Adding a repository means trusting its publisher to run software in your home. Apps are containers with significant access and may be able to read your configuration. <strong>Add only reputable, widely used repositories that are still actively maintained.</strong> The repositories listed above are established community projects.</div>
 
- <div class="callout"><strong>Concept:</strong> The repository (used for Add-on) and HACS (used for custom integration and dashboard cards) are two different things, so don't confuse them. <a href="appendix_hacs_addons.html">Appendix A</a> There is a contrast between the two.</div>
+ <div class="callout"><strong>Key idea:</strong> An Apps repository and HACS are separate systems. Repositories supply Apps, while HACS supplies custom integrations and dashboard cards. See <a href="appendix_hacs_addons.html">Appendix A</a> for a comparison.</div>
  </section>
 
  <section id="cloud_backup" data-nav="Remote backups">
- <h2 data-icon="restore">Automatically upload backups to the cloud: Let backups leave this machine</h2>
+ <h2 data-icon="restore">Send backups off-device automatically</h2>
 
- <p>How to create a backup, how to set up the schedule, how many copies to keep, why not just save the local machine, <a href="ch9_backups.html">Chapter 9</a> I’ve already talked about it, so the details are not repeated here.</p>
+ <p><a href="ch9_backups.html">Chapter 9</a> explains how to create and schedule backups, how many to retain, and why local-only storage is inadequate. This section does not repeat those details.</p>
 
- <p>This section only makes up for one feature that was not covered in detail in Chapter 9 and is just relevant to this chapter: <strong>Sending backups to the cloud is now completely built-in and does not require any Add-ons.</strong> In the past, this was the domain of third-party Add-ons. Now, the "Location" on the backup page can check several places at the same time, and each backup will be automatically sent to each place. Here’s where the differences vary from destination to destination — especially the restrictions that bite:</p>
+ <p>This section expands on one point from Chapter 9: <strong>cloud backup destinations are now built in, so you do not need an app.</strong> This function once required a third-party add-on. The backup page now lets you select multiple Locations and send each backup to all of them automatically. The important differences—especially the restrictions—are summarized below.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Backup location</th><th>How to enable</th><th>Does it cost money?</th><th>Limit</th></tr>
+ <tr><th>Backup location</th><th>How to enable it</th><th>Cost</th><th>Limitations</th></tr>
  </thead>
  <tbody>
  <tr>
  <td><strong>Home Assistant Cloud</strong> (Nabu Casa)</td>
- <td>If you have subscribed, just enable it in the backup settings.</td>
- <td>A Cloud subscription is required, but the backup itself <strong>No additional charge</strong></td>
- <td><strong>Only keep the latest copy</strong>, old ones are automatically deleted; single files <strong>Cannot exceed 5GB</strong></td>
+ <td>If you subscribe, enable it directly in the backup settings.</td>
+ <td>Requires a Cloud subscription, but backup storage has <strong>no additional charge</strong>.</td>
+ <td><strong>Only the latest backup is retained</strong>; the previous one is deleted automatically. A single file <strong>cannot exceed 5GB</strong>.</td>
  </tr>
  <tr>
  <td><strong>Google Drive</strong></td>
  <td>Settings → Devices &amp; services → Add integration → Google Drive</td>
- <td>Free (use your own Drive space)</td>
- <td>You have to go to the Google Developer Console to apply for a set of OAuth credentials. The steps are a bit long.</td>
+ <td>Free, using your own Drive storage.</td>
+ <td>You must obtain OAuth credentials from Google Cloud; the process has several steps.</td>
  </tr>
  <tr>
  <td><strong>Microsoft OneDrive</strong></td>
  <td>Settings → Devices &amp; services → Add integration → OneDrive</td>
- <td>Free (use your own OneDrive space)</td>
- <td>Requires a personal OneDrive account; needs to be enabled when using default credentials <code>my</code> with <code>cloud</code> Integrate</td>
+ <td>Free, using your own OneDrive storage.</td>
+ <td>Requires a personal OneDrive account. When using the default credentials, the <code>my</code> and <code>cloud</code> integrations must be enabled.</td>
  </tr>
  <tr>
- <td><strong>Network Storage (NAS)</strong></td>
- <td>Settings → System → Storage, add a network storage and mark it for backup</td>
- <td>Free (if you already have a NAS)</td>
- <td>The backup will fail when the NAS is not powered on; if it is under the same roof as the host, it will be destroyed by fire or flood.</td>
+ <td><strong>Network storage (NAS)</strong></td>
+ <td>Under Settings → System → Storage, add network storage and make it available for backups.</td>
+ <td>Free if you already own a NAS.</td>
+ <td>A backup fails if the NAS is offline. A NAS in the same building as the Home Assistant host is vulnerable to the same fire or flood.</td>
  </tr>
  </tbody>
  </table>
 
- <p>Configure a remote backup destination in three steps:</p>
+ <p>Connect a cloud or network destination in three steps:</p>
 
  <ol class="steps">
  <li>
- <h3>Configure the destination</h3>
- <p>With a Nabu Casa subscription you do not have to do anything, it is already there. If not, go to <strong>Settings → Devices &amp; services → Add integration</strong>, install Google Drive or OneDrive, follow the screen to authorize the account. To use a home NAS, take another route: <strong>Settings → System → Storage</strong> Add a network storage and mark it for backup.</p>
+ <h3>Connect the destination</h3>
+ <p>Home Assistant Cloud is already available if you have a Nabu Casa subscription. Otherwise, go to <strong>Settings → Devices &amp; services → Add integration</strong>, add Google Drive or OneDrive, and follow the account authorization process. For a home NAS, use <strong>Settings → System → Storage</strong> instead; add network storage and make it available for backups.</p>
  </li>
  <li>
- <h3>Enable the destination for backups</h3>
- <p><strong>Settings → System → Backups</strong>, in the "Locations" of the automatic backup settings, open the destination you just connected. Schedule and retain copies of photos <a href="ch9_backups.html">Chapter 9</a> Just set it up. <strong>local machine <code>/backup</code> Remember to keep it too</strong>: When restoring, the local machine is much faster. The remote copy is available if the entire host fails.</p>
+ <h3>Enable the destination on the Backups page</h3>
+ <p>Go to <strong>Settings → System → Backups</strong> and enable the new destination under Locations in the automatic-backup settings. Configure the schedule and retention as described in <a href="ch9_backups.html">Chapter 9</a>. <strong>Keep the local <code>/backup</code> destination enabled as well.</strong> A local copy restores quickly; the remote copy protects you if the entire host fails.</p>
  </li>
  <li>
- <h3>Run and verify a manual backup</h3>
- <p>Do not skip verification. <strong>An unverified backup is not a reliable backup.</strong> Open Google Drive or OneDrive and confirm that the file exists. If a Home Assistant Cloud upload exceeds the 5GB limit, return to backup settings and <strong>exclude the media folder</strong>, which is often the largest part.</p>
+ <h3>Run one backup manually and verify it at the destination</h3>
+ <p>Do not skip this step: <strong>an unverified backup is not a reliable backup.</strong> Open Google Drive or OneDrive and confirm that the file exists. If a Home Assistant Cloud upload exceeds the 5GB limit, return to the backup settings and <strong>exclude the media folder</strong>. It is often the largest component and offers the greatest reduction.</p>
  </li>
  </ol>
 
- <div class="callout tip"><strong>Tip:</strong> There is also an "Automatically back up before updating" option in the backup settings, which is highly recommended. It just sets a default value, and you can still change it temporarily every time before you really want to update it. This is the quickest way back after an update fails, and the chance of an add-on update failing is higher than you think.</div>
+ <div class="callout tip"><strong>Tip:</strong> Backup settings also include an option to back up automatically before an update. Enable it. This sets the default—you can still change the choice for an individual update—and provides the fastest route back when an update causes problems. Apps can break after updates more often than you might expect.</div>
 
- <div class="callout warn"><strong>Warning:</strong> Many old tutorials on the Internet will ask you to install the third-party Add-on "Home Assistant Google Drive backup". It was an artifact before built-in cloud backup came out, but now it is great for beginners <strong>Built-in Google Drive integration is a better place to start</strong>:Officially maintained, no need to run an extra container. Third-party Add-ons still have their advantages (such as day/week/month/year generation retention policies), but if you just want "the backup doesn't die on the local machine", the built-in one is enough. In the same way, the need to dump backups to Samba network disks can now be achieved using the built-in "Network Storage" without having to install Samba backup.</div>
+ <div class="callout warn"><strong>Note:</strong> Many older guides recommend the third-party “Home Assistant Google Drive Backup” add-on. It was invaluable before cloud destinations were built in, but <strong>the built-in Google Drive integration is now a better starting point for new users</strong>: it is officially maintained and does not require another container. The third-party app still offers advanced features, such as separate daily, weekly, monthly, and yearly retention, but the built-in option is sufficient if your goal is simply to keep backups off the local host. Similarly, the built-in Network Storage feature can send backups to a Samba share without the Samba Backup app.</div>
 
- <div class="callout danger"><strong>Danger:</strong> backups are encrypted, <strong>Be sure to have the encryption key when restoring</strong>. The first time you set up automatic backup, the screen will ask you to download a copy. <strong>backup emergency kit</strong>—That's a file that contains your encryption key. <strong>Save it now outside of Home Assistant</strong> (Password manager, cloud drive, printing it out and putting it in a folder will all work). Home Assistant documentation is very clear: without the key, there is no way to restore the encrypted backup. Lost the key = the backup in the cloud is just unusable encrypted data that cannot be opened. I want to take it again later and go back to <strong>Settings → System → Backups</strong> The backup settings page can re-download the current set of keys.</div>
+ <div class="callout danger"><strong>Danger:</strong> Backups are encrypted, and <strong>you must have the encryption key to restore one</strong>. The first time you configure automatic backups, Home Assistant prompts you to download the <strong>backup emergency kit</strong>, a file containing that key. <strong>Immediately store it somewhere outside Home Assistant</strong>, such as a password manager, cloud drive, or printed document. The official documentation is unequivocal: an encrypted backup cannot be restored without its key. If the key is lost, the cloud backup is unreadable. You can download the current key again from the backup settings under <strong>Settings → System → Backups</strong>.</div>
  </section>
 
  <section id="performance" data-nav="Resource use">
- <h2 data-icon="cost">Resource use on lower-end hardware</h2>
+ <h2 data-icon="cost">Managing resource use on lower-end hardware</h2>
 
- <p>Each add-on is a running program that consumes CPU, memory, and storage. A Raspberry Pi 4 with 2GB of memory or an older mini PC can slow down when several add-ons run: pages respond slowly, automations are delayed, and updates may fail. Home Assistant does not publish fixed resource requirements for every add-on. The table below is a relative guide, not a measured capacity claim.</p>
+ <p>Every app is a real, continuously running program that consumes CPU time, memory, and storage. A Raspberry Pi 4 with 2GB of memory or an older mini PC may slow down as Apps accumulate: pages load more slowly, automations are delayed, and updates fail. Home Assistant does not publish resource figures for every app, so the table below is a relative guide for prioritization, not a benchmark.</p>
 
  <table class="data-table">
  <thead>
- <tr><th>Add-on type</th><th>Resource use</th><th>Advice on low-end hardware</th></tr>
+ <tr><th>App type</th><th>Relative resource use</th><th>Advice for lower-end hardware</th></tr>
  </thead>
  <tbody>
- <tr><td>File editor, Samba, Terminal &amp; SSH</td><td>Very low, barely noticeable</td><td>Suitable</td></tr>
- <tr><td>Mosquitto broker</td><td>low</td><td>Usually suitable</td></tr>
- <tr><td>Zigbee2MQTT</td><td>Moderate; runs continuously</td><td>Suitable, but avoid combining it with several resource-intensive add-ons.</td></tr>
- <tr><td>Node-RED</td><td>Medium to high, memory usage is relatively heavy</td><td>Consider using memory below 2GB. For simple automation, just use the built-in one</td></tr>
- <tr><td>Studio Code Server</td><td>High, especially obvious when the page is open</td><td>Use File editor instead on low-end machines</td></tr>
- <tr><td>Database (MariaDB), Grafana, InfluxDB and the like</td><td>Very high, and can perform frequent storage writes</td><td>Raspberry Pi + SD card is not recommended. SD cards being overwritten is a real thing.</td></tr>
- <tr><td>Speech related (Whisper, Piper, etc.)</td><td>Very high, especially CPU</td><td>It requires relatively capable hardware, and the Raspberry Pi will be too slow to use.</td></tr>
+ <tr><td>File editor, Samba, Terminal &amp; SSH</td><td>Very low; usually imperceptible</td><td>Install as needed.</td></tr>
+ <tr><td>Mosquitto broker</td><td>Low</td><td>Generally suitable; it is efficient.</td></tr>
+ <tr><td>Zigbee2MQTT</td><td>Moderate; runs continuously</td><td>Worth installing when needed, but avoid combining it with many resource-intensive Apps.</td></tr>
+ <tr><td>Node-RED</td><td>Moderate to high, particularly in memory use</td><td>Think carefully on systems with less than 2GB of memory. Use built-in automations for simple tasks.</td></tr>
+ <tr><td>Studio Code Server</td><td>High, especially while its web interface is open</td><td>Use File editor instead on lower-end systems.</td></tr>
+ <tr><td>Databases and analytics, such as MariaDB, Grafana, and InfluxDB</td><td>Very high, with frequent storage writes</td><td>Not recommended on a Raspberry Pi with an SD card. Write wear can cause real SD card failures.</td></tr>
+ <tr><td>Speech processing, such as Whisper and Piper</td><td>Very high, particularly in CPU use</td><td>Requires more capable hardware; performance on a Raspberry Pi may be impractically slow.</td></tr>
  </tbody>
  </table>
 
- <p>A few practical principles:</p>
+ <p>Follow these practical principles:</p>
 
  <ul>
- <li><strong>Remove what you don't need, don't just disable it.</strong> Disabled Add-ons still take up storage drive space.</li>
- <li><strong>Only install new items one at a time.</strong> After installing it, observe for a day or two before installing the next one. Only when something goes wrong will you know who caused it.</li>
- <li><strong>Please use SSD or USB to boot the Raspberry Pi, do not use SD card.</strong> The easiest reason why the SD card is damaged is that it is written too many times, and the add-on for the database class is specifically designed to do this.</li>
- <li><strong>First see if the built-in function can solve the problem.</strong> Many people install Node-RED just to do a "turn on the lights at sunset", which can be done with three lines of built-in automation (see <a href="ch8_first_automation.html">Chapter 8</a>).</li>
+ <li><strong>Remove Apps you do not use; do not merely stop them.</strong> A stopped app still occupies storage.</li>
+ <li><strong>Install only one new app at a time.</strong> Observe it for a day or two before installing the next one, so that you can identify the cause if problems begin.</li>
+ <li><strong>Boot a Raspberry Pi from an SSD or other USB storage, not an SD card.</strong> Repeated writes are a leading cause of SD card failure, and database Apps write frequently.</li>
+ <li><strong>Check whether a built-in feature already meets the need.</strong> Installing Node-RED only to turn on a light at sunset is unnecessary; the built-in automation editor handles that task easily (see <a href="ch8_first_automation.html">Chapter 8</a>).</li>
  </ul>
 
- <div class="callout tip"><strong>Tip:</strong> If you want to know how crowded it is now, go to <strong>Settings → System → Storage</strong> Look at the storage drive; if you want to see system information such as version and installation method, go to <strong>Settings → System → Repairs</strong> The three-dot menu in the upper-right corner <strong>System information</strong>.If you find that the storage drive is used more than 80%, it is time to clean things up.</div>
+ <div class="callout tip"><strong>Tip:</strong> Check current storage use under <strong>Settings → System → Storage</strong>. To view the installation type, version, and other system details, go to <strong>Settings → System → Repairs</strong>, open the three-dot menu in the upper-right corner, and select <strong>System information</strong>. If storage use exceeds 80%, it is time to remove something.</div>
  </section>
 
  <section id="troubleshoot" data-nav="Troubleshooting">
- <h2 data-icon="troubleshoot">Troubleshooting</h2>
+ <h2 data-icon="troubleshoot">Common problems and how to diagnose them</h2>
 
  <ol class="steps">
  <li>
- <h3>Add-on store not found</h3>
- <p>First confirm which installation method you have: <strong>Settings → System → Repairs</strong>, click on the upper-right corner <strong>Three-dot menu → System information (System information)</strong>, it will say whether your computer is an OS or a Container. If it's a Container or Core, that's <strong>that installation type has no add-on store</strong>, you cannot find it no matter how you look for it. The only solution is to reinstall using HAOS (remember to back up first and then restore from the backup). If you are HAOS and can't find a specific Add-on, such as Terminal &amp; SSH, it's probably <strong>Advanced mode is not enabled</strong> —Click your name in the lower-left corner to enter the profile page and turn on "Advanced Mode".</p>
+ <h3>The Apps store is missing</h3>
+ <p>First identify your installation type. Go to <strong>Settings → System → Repairs</strong>, then open the <strong>three-dot menu → System information</strong>. The Installation type field will identify OS or Container. Container and Core installations <strong>do not include the store by design</strong>; it cannot be enabled. To gain the store, reinstall with HAOS after creating and verifying a backup, then restore that backup. If you use HAOS but cannot find a particular app, such as Terminal &amp; SSH, <strong>Advanced Mode may be disabled</strong>. Select your name in the lower-left corner to open your profile, then enable Advanced Mode.</p>
  </li>
  <li>
- <h3>Add-on cannot be installed, stuck during installation or fails directly.</h3>
- <p>90% yes <strong>Failed to download image file</strong>. Check in order: (1) The network is unavailable. Can Home Assistant access the internet? (2) Is there still space on the storage drive? See <strong>Settings → System → Storage</strong>; (3) Is there a corresponding version for your CPU architecture? The unpopular Add-on often only provides amd64, which cannot be installed on the Raspberry Pi. In this case, it will say that the image file cannot be found. Try again first. If you fail the first time, sometimes you just get half disconnected.</p>
+ <h3>An app is stuck installing or installation fails</h3>
+ <p>In roughly 90% of cases, the cause is <strong>a failed container-image download</strong>. Check these items in order: (1) Can Home Assistant reach the internet? (2) Is storage available under <strong>Settings → System → Storage</strong>? (3) Does the app publish an image for your CPU architecture? Less common Apps may provide only amd64 images and therefore cannot run on a Raspberry Pi; the error will usually say that no image was found. Retry once, because the first download may simply have been interrupted.</p>
  </li>
  <li>
- <h3>Port conflict: The second Add-on cannot be started.</h3>
- <p>A log will appear <code>Address already in use</code> or <code>port is already allocated</code>. Go to that Add-on <strong>Network</strong> tab, change the right cell to a number that no one uses (for example, the original 1880 is changed to 1881), save and restart. After the change is completed, you will also need to change its website address to the new number. If you don't need to connect it from the outside at all, just go directly to the right <strong>Leave blank</strong>, the conflict disappears instantly.</p>
+ <h3>A port conflict prevents the second app from starting</h3>
+ <p>The log shows <code>Address already in use</code> or <code>port is already allocated</code>. On the affected app's <strong>Network</strong> tab, change the right-hand field to an unused host port—for example, from 1880 to 1881—then save and restart. Use the new port in the URL as well. If no external client needs to connect, <strong>leave the right-hand field blank</strong> instead; the conflict disappears because the port is not published on the host.</p>
  </li>
  <li>
- <h3>Will not start after updating</h3>
- <p>Start with the final lines of the log. An add-on may state that its configuration format changed and identify the option you must update. If the required change is unclear, the fastest recovery is to <strong>restore the pre-update backup</strong> from Chapter 9. This is why you should enable backup before updating. Also check <strong>Settings → System → Repairs</strong>, where major changes may create a repair notice.</p>
+ <h3>An app no longer starts after an update</h3>
+ <p>Read the last few lines of its log. The author may state that the configuration format changed and identify the option to update. If the required change is unclear, the fastest recovery is to <strong>restore the pre-update backup</strong> described in Chapter 9. This is why you should enable automatic backup before updates. Also check <strong>Settings → System → Repairs</strong>, where breaking changes may generate an explanatory notice.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch20/03_system_health.png" alt="Settings → Repair page" />
- <figcaption><strong>Figure 20-3</strong> Settings → Repairs: Integration exceptions, statistical errors, and major version changes will be listed here. If there are no problems, no repairs pending will be displayed.</figcaption>
+ <img src="../assets/screenshots/ch20/03_system_health.png" alt="Settings → Repairs page" />
+ <figcaption><strong>Figure 20-3</strong> Settings → Repairs: integration failures, statistics errors, and breaking changes appear here. When nothing requires attention, the page displays “No repairs pending.”</figcaption>
  </figure>
  </li>
  <li>
- <h3>Not enough disk space</h3>
- <p>Symptoms are various strange failures, and the log contains <code>No space left on device</code>. Cleanup sequence: (1) Delete old backups, which are usually the largest; (2) Remove (not deactivate) unused Add-ons; (3) Check <code>media</code> and <code>share</code> Are there any accumulated video files in the folder? (4) If the database is too large, adjust the Recorder retention days. If it is still full after completing the first three items, it is time to consider changing to a larger storage device.</p>
+ <h3>Storage is full</h3>
+ <p>Full storage causes many apparently unrelated failures, and the log contains <code>No space left on device</code>. Clean up in this order: (1) Delete old backups, which are usually the largest files. (2) Remove—not merely stop—unused Apps. (3) Check the <code>media</code> and <code>share</code> folders for accumulated recordings. (4) If the database is too large, reduce the Recorder retention period. If the first three steps do not free enough space, move to a larger storage device.</p>
  </li>
  <li>
- <h3>Add-on keeps restarting</h3>
- <p>The status jumps between "Running" and "Stopped", usually <strong>Watchdog</strong> Repeatedly pulling up a program that was already broken. first <strong>Turn off the watchdog</strong>, let it stop quietly in the failed state, so that you can see the complete error message. Open it again after repairing it.</p>
+ <h3>An app keeps restarting</h3>
+ <p>If the status alternates between “Running” and “Stopped,” the <strong>Watchdog</strong> is probably restarting an app that continues to fail. <strong>Turn off Watchdog temporarily</strong> and let the app remain stopped so that you can read the complete error. Re-enable Watchdog after resolving the cause.</p>
  </li>
  <li>
  <h3>Zigbee2MQTT cannot find the USB adapter</h3>
- <p>The log commonly shows <code>No such file or directory</code>. Go to <strong>Settings → System → Hardware</strong>, then select <strong>Three-dot menu → All Hardware</strong>. Find the connected adapter and copy its path into the Zigbee2MQTT settings. <strong>Do not copy a path from an online tutorial</strong>; every host is different. Prefer <strong>the stable long path beginning with <code>/dev/serial/by-id/</code></strong> instead of a short path such as <code>/dev/ttyUSB0</code>. A short path can change after devices are reconnected or the host restarts, while the by-id path identifies the adapter itself.</p>
+ <p>The log commonly shows <code>No such file or directory</code>. Go to <strong>Settings → System → Hardware</strong>, then select <strong>three-dot menu → All Hardware</strong>. Find the connected adapter and copy its path into the Zigbee2MQTT configuration. <strong>Do not copy a device path from an online tutorial</strong>; every host differs. Prefer <strong>the stable, long path beginning with <code>/dev/serial/by-id/</code></strong> instead of a short path such as <code>/dev/ttyUSB0</code>. A short path can change when devices are reconnected or the host restarts, while the by-id path identifies the adapter itself.</p>
  </li>
  </ol>
  </section>
 
  <section id="faq" data-nav="FAQ">
- <h2 data-icon="faq">FAQ</h2>
+ <h2 data-icon="faq">Frequently asked questions</h2>
 
  <details class="faq">
- <summary>Is Add-on now called Add-on or App?</summary>
- <div class="body">Starting from version 2026.2, Home Assistant name will be <strong>Apps</strong>, the menu also changes to "Settings → Apps". The underlying technology (Docker container, Supervisor) has not changed, it is just a name change to prevent beginners from confusing it with "Integration". Most of the online tutorials still write Add-on. Treat the two words as the same thing. If your version is older than 2026.2, Add-ons will continue to appear on the screen.</div>
+ <summary>Is it called an add-on or an app?</summary>
+ <div class="body">Starting with Home Assistant 2026.2, the official term is <strong>Apps</strong>, and the menu becomes “Settings → Apps.” The underlying Docker-container and Supervisor technology is unchanged. The rename is intended to reduce confusion with integrations. Most existing tutorials still say “add-on”; treat the two terms as equivalent. Releases older than 2026.2 continue to display “Add-ons.”</div>
  </details>
 
  <details class="faq">
- <summary>I run Docker on Synology NAS to run Home Assistant. Can I find a way to install the Add-on store?</summary>
- <div class="body">No, you shouldn’t try. The add-on store requires the Supervisor, but the Container installation does not have it. In the past, there was a method called Supervised that could be forced out, but Home Assistant <strong>Support has been discontinued in version 2025.12</strong>. The correct approach is: you need Mosquitto and Node-RED, just put them on your NAS <strong>Open another Docker container</strong> Come and run, the functions are exactly the same, you just need to write the compose file yourself and update it yourself. If you really want the comfort of one-click, just open a VM or find a small host to install HAOS.</div>
+ <summary>I run Home Assistant in Docker on a Synology NAS. Can I add the Apps store?</summary>
+ <div class="body">No, and you should not try to retrofit it. The store requires Supervisor, which Home Assistant Container does not include. A Supervised installation was once an alternative, but official support for it <strong>ended with release 2025.12</strong>. Instead, run Mosquitto, Node-RED, and similar services in <strong>separate Docker containers</strong> on the NAS. They provide the same capabilities, but you must write the Compose configuration and manage updates yourself. For one-click management, run HAOS in a virtual machine or on a dedicated small computer.</div>
  </details>
 
  <details class="faq">
- <summary>Will updating the Add-on lose my settings?</summary>
- <div class="body">Normally not. Settings and data are stored in a volume, while an update replaces the image. The two are separate. but update <strong>It is possible to change the format of the setting</strong>, causing the old settings to no longer be valid and the startup to fail. So the rules are: <strong>Important add-ons Do not turn on automatic updates</strong>, confirm that the backup has been run before updating, and take a look at the log after updating. Lightweight and harmless ones (File editor, Samba) have no problem turning on automatic updates.</div>
+ <summary>Will updating an app erase my configuration?</summary>
+ <div class="body">Normally, no. Settings and data are stored in a volume, while an update replaces the <strong>image</strong>; they are separate. An update can, however, <strong>change the required configuration format</strong>, making the old configuration invalid and preventing startup. Do not enable automatic updates for critical Apps. Confirm that a backup completed before updating, and inspect the log afterward. Automatic updates are generally reasonable for lightweight, low-risk Apps such as File editor and Samba.</div>
  </details>
 
  <details class="faq">
- <summary>The backup has been uploaded to Google Drive. Do I still want to keep the local copy?</summary>
- <div class="body">Yes. The copies serve different purposes: <strong>a local copy provides a fast recovery from a configuration mistake</strong>, while <strong>a remote copy remains available if the host fails</strong>. Select multiple backup locations rather than choosing only one. Set an appropriate <strong>retention policy</strong> so local backups do not fill the storage drive.</div>
+ <summary>My backup is in Google Drive. Should I keep the local copy?</summary>
+ <div class="body">Yes. The two copies serve different purposes: <strong>a local copy provides fast recovery from an accidental configuration change</strong>, while <strong>a remote copy remains available if the entire host fails</strong>. Select multiple Locations so that one backup is sent to both. Set an appropriate <strong>retention count</strong> so that local backups do not eventually fill the storage device.</div>
  </details>
 
  <details class="faq">
- <summary>Does Zigbee2MQTT have to install Mosquitto first? Can I just install Zigbee2MQTT?</summary>
- <div class="body">The job of Zigbee2MQTT is to "translate Zigbee signals into MQTT messages". It requires an MQTT server to receive these messages, so there must be a broker. The first step in Home Assistant installation instructions is to ask you to install Mosquitto first. The order is: <strong>Mosquitto → Create a user for MQTT → Set up MQTT integration → Add Zigbee2MQTT repository → Install Zigbee2MQTT → Fill in the broker address and password</strong>. If you skip the steps, the Zigbee2MQTT log will be full of <code>Connection refused</code>.</div>
+ <summary>Must I install Mosquitto before Zigbee2MQTT?</summary>
+ <div class="body">Zigbee2MQTT translates Zigbee traffic into MQTT messages, so it needs an MQTT broker to receive those messages. The official installation instructions therefore begin with Mosquitto. Follow this order: <strong>install Mosquitto → create a dedicated MQTT user → configure the MQTT integration → add the Zigbee2MQTT repository → install Zigbee2MQTT → enter the broker address and credentials</strong>. If you skip a required step, the Zigbee2MQTT log will fill with <code>Connection refused</code> messages.</div>
  </details>
 
  <details class="faq">
- <summary>If the port in the "Network" tab is left blank, will it cause the Add-on to become unusable?</summary>
- <div class="body">No. A blank field means that the port is not published on the host. The add-on still runs, and Home Assistant can connect to it internally. For example, if only Home Assistant and other add-ons use Mosquitto, leaving the field blank is <strong>safer</strong> because other local-network devices cannot reach that port. Publish a port only when another computer or program must connect directly.</div>
+ <summary>Will leaving a port blank on the Network tab make an app unusable?</summary>
+ <div class="body">No. A blank host-port field means “do not publish this port on the host.” The app still runs, and Home Assistant and other Apps can reach it over their internal network. For example, if only Home Assistant and other Apps use Mosquitto, leaving the field blank is <strong>safer</strong> because other devices on your local network cannot connect to that port. Publish it only when another computer or external program must connect directly.</div>
  </details>
 
  <details class="faq">
  <summary>Should I install File editor or Studio Code Server?</summary>
- <div class="body">Both edit configuration files in a browser. <strong>File editor</strong> is an official, lightweight option for occasional small changes and runs well on a Raspberry Pi. <strong>Studio Code Server</strong> provides a fuller VS Code environment with entity-name completion and live YAML checks, but uses more resources and loads more slowly. Start with File editor; consider Studio Code Server when you edit longer YAML frequently. Keep File editor on lower-end hardware.</div>
+ <div class="body">Both edit configuration files in a browser. <strong>File editor</strong> is official, lightweight, and quick to open; it is sufficient for occasional small changes and runs well on a Raspberry Pi. <strong>Studio Code Server</strong> provides a complete VS Code environment with entity-name completion and live YAML validation, making frequent or extensive editing much easier. It uses noticeably more resources and loads more slowly. Start with File editor, then consider Studio Code Server if you begin editing long YAML files regularly. Stay with File editor on lower-end hardware.</div>
  </details>
  </section>
 
