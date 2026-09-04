@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 7 · Notifications · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Install the Home Assistant Companion App, connect a phone, send a test notification, and create actionable notifications with buttons." />
+  <meta name="description" content="Install the Home Assistant Companion App, connect your phone, send your first push notification, and create actionable notifications with buttons." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch7_notifications.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Chapter 7 · Notifications · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Install the Home Assistant Companion App, connect a phone, send a test notification, and create actionable notifications with buttons." />
+  <meta property="og:description" content="Install the Home Assistant Companion App, connect your phone, send your first push notification, and create actionable notifications with buttons." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch7_notifications.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch7/01_mobile_sensors.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chapter 7 · Notifications · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Install the Home Assistant Companion App, connect a phone, send a test notification, and create actionable notifications with buttons." />
+  <meta name="twitter:description" content="Install the Home Assistant Companion App, connect your phone, send your first push notification, and create actionable notifications with buttons." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch7/01_mobile_sensors.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -33,12 +33,12 @@
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From setup to everyday use</div>
+    <div class="brand-sub">From zero to up and running</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch7_notifications.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch7_notifications.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: setup and everyday use</li>
+      <li class="part-label">Foundations: from zero to up and running</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -67,11 +67,11 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why notifications</a>
-      <a href="#app">Install the app</a>
-      <a href="#login">Connect your phone</a>
-      <a href="#test">Send a test</a>
-      <a href="#advanced">Action buttons</a>
+      <a href="#why">Why notifications matter</a>
+      <a href="#app">Install the Companion App</a>
+      <a href="#login">Sign in with your account</a>
+      <a href="#test">Send your first notification</a>
+      <a href="#advanced">Add action buttons</a>
       <a href="#faq">FAQ</a>
       <a href="#troubleshoot">Troubleshooting</a>
     </div>
@@ -87,99 +87,99 @@
  <div class="chapter-header">
  <div class="kicker">Chapter 7</div>
  <h1>Notifications</h1>
- <p class="lead">Install the Home Assistant Companion App, connect your phone, and send a test notification. This completes the path from “Home Assistant detected something” to “you actually know about it.”</p>
+ <p class="lead">Install the Home Assistant Companion App, connect your phone, and send your first test notification. By the end of this chapter, you will have completed the last mile between Home Assistant noticing something and telling you about it.</p>
  </div>
 
- <section id="why" data-nav="Why notifications">
+ <section id="why" data-nav="Why notifications matter">
  <h2 data-icon="why">Why notifications matter</h2>
  <ul>
  <li>The washing machine finishes → your phone chimes.</li>
- <li>A door is left open → you get a reminder after leaving home.</li>
- <li>Power returns after an outage → you know even while you are at work.</li>
- <li>A camera detects a person → the alert includes a thumbnail.</li>
+ <li>A door is left open → you get a reminder once you are 100 metres from home.</li>
+ <li>Power returns after an outage → you find out even while you are at work.</li>
+ <li>A camera detects a person → the notification includes a thumbnail.</li>
  </ul>
- <p>The Companion App delivers these alerts and is also the most convenient way to use Home Assistant every day.</p>
- <p>This chapter <strong>triggers a notification</strong> manually. The next chapter puts notifications <strong>into automations</strong>—for example, “Send a notification when the washing machine stops” and “Turn on the lights and notify me when someone comes home.”</p>
+ <p>The Companion App delivers these notifications and is also the most convenient way to use Home Assistant day to day.</p>
+ <p>In this chapter, you will <strong>trigger a notification</strong> manually as a test. Chapter 8 shows you how to <strong>add notifications to automations</strong>—for example, “Send a notification when the washing machine stops” or “Turn on the lights and send a notification when someone arrives home.”</p>
  </section>
 
- <section id="app" data-nav="Install the app">
+ <section id="app" data-nav="Install the Companion App">
  <h2 data-icon="app">Install the Companion App</h2>
  <ol class="steps">
  <li>
- <h3>Find Home Assistant in your app store</h3>
- <p><strong>iOS</strong>: Search the App Store for <strong>Home Assistant</strong>.<br><strong>Android</strong>: Search Google Play for <strong>Home Assistant</strong>.</p>
+ <h3>Search for “Home Assistant” in your phone’s app store</h3>
+ <p><strong>iOS</strong>: Search the App Store for <strong>Home Assistant</strong> (the developer is Home Assistant).<br><strong>Android</strong>: Search Google Play for <strong>Home Assistant Companion</strong>.</p>
  </li>
  <li>
- <h3>Open the app and connect to Home Assistant</h3>
- <p>The app scans your local network for a Home Assistant server. Select it if it appears. Otherwise, enter <code>http://homeassistant.local:8123</code> or your own Home Assistant URL.</p>
+ <h3>Open the app and select “Log in to Home Assistant”</h3>
+ <p>The app will scan your local network for a Home Assistant server. Select the server if it appears; otherwise, enter <code>http://homeassistant.local:8123</code> or your own Home Assistant URL.</p>
  </li>
  </ol>
- <p><strong>What else does the app provide?</strong> In addition to push notifications, the Companion App can send <strong>battery, location, Wi-Fi, and Bluetooth sensor data</strong> to Home Assistant. These become entities such as <code>sensor.yourname_battery_level</code> and <code>device_tracker.yourname_phone</code>. You can use them later for arrival automations and low-battery reminders.</p>
+ <p><strong>What else do you get after installing the app?</strong> In addition to push notifications, the Companion App automatically sends data such as your phone’s <strong>battery level, location, Wi-Fi network name, and Bluetooth sensor readings</strong> to Home Assistant. These appear as entities such as <code>sensor.yourname_battery_level</code> and <code>device_tracker.yourname_phone</code>. You can later use them to turn on the lights when you arrive home or send a reminder when the battery falls below 20%.</p>
  </section>
 
- <section id="login" data-nav="Connect your phone">
- <h2 data-icon="login">Connect your phone</h2>
+ <section id="login" data-nav="Sign in with your account">
+ <h2 data-icon="login">Sign in with the account you just created</h2>
  <ol class="steps">
  <li>
- <h3>Enter username and password</h3>
- <p>use <strong>Chapter 5</strong> Create a personal account (do not use a shared administrator account) - so notifications can be sent to you by name.</p>
+ <h3>Enter your username and password</h3>
+ <p>Use the personal account you created in <strong>Chapter 5</strong>, not a shared administrator account. This allows notifications to be directed to your phone.</p>
  </li>
  <li>
- <h3>Permissions to allow app access</h3>
- <p>The app requests access to <strong>notifications</strong>, <strong>location</strong>, <strong>Bluetooth</strong>, <strong>camera</strong>, and other features. Enable only what you need, including at least:</p>
+ <h3>Allow the app to access the required features</h3>
+ <p>The app will request access to <strong>notifications</strong>, <strong>location</strong>, <strong>Bluetooth</strong>, <strong>camera</strong>, and other features. We recommend enabling at least:</p>
  <ul>
- <li><strong>Notifications</strong> — This is the focus of this chapter and must be opened.</li>
- <li><strong>location (always)</strong> — "Go home" and "leave home" the soul of automation.</li>
+ <li><strong>Notifications</strong> — Essential for this chapter; make sure they are enabled.</li>
+ <li><strong>Location (Always)</strong> — The key to automations that detect when you arrive home or leave.</li>
  </ul>
- <div class="callout warn"><strong>iOS reminder:</strong> iOS may initially offer only “While Using the App.” After setup, open iOS Location Services and select “Always” if you want background location updates.</div>
+ <div class="callout warn"><strong>iOS note:</strong> The “Always” location option must be enabled in iOS Settings. During your first sign-in, you may only be able to select “While Using the App”; afterwards, return to Settings and change the permission to “Always.”</div>
  </li>
  <li>
- <h3>Confirm that your phone appears in Home Assistant</h3>
- <p>Open Settings → Devices &amp; services. Your phone appears as a device with entities for battery, charging state, Wi-Fi connection, Focus mode, and other enabled sensors.</p>
+ <h3>Home Assistant automatically adds your phone and its sensors</h3>
+ <p>In the Home Assistant web interface, go to Settings → Devices &amp; services. A new device named after your phone—for example, “Alex’s iPhone”—will appear with dozens of sensors for battery level, charging state, Wi-Fi network name, Focus mode, and more.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch7/01_mobile_sensors.png" alt="Sensor automatically registered by phone" />
- <figcaption><strong>Figure 7-1</strong> After the mobile app is registered, the HA sensor automatically appears.</figcaption>
+ <img src="../assets/screenshots/ch7/01_mobile_sensors.png" alt="Mobile sensors automatically registered by the Companion App" />
+ <figcaption><strong>Figure 7-1</strong> Home Assistant automatically adds the phone’s sensors after the mobile app registers.</figcaption>
  </figure>
  </li>
  </ol>
  </section>
 
- <section id="test" data-nav="Send a test">
+ <section id="test" data-nav="Send your first notification">
  <h2 data-icon="test">Send your first notification</h2>
- <div class="callout"><strong>Terminology update:</strong> Developer Tools moved under <strong>Settings</strong>; in 2026.8 its name became <strong>Tools</strong> . The current path is <strong>Settings → Tools → Actions</strong>, while older releases use <strong>Developer Tools → Actions</strong>, with equivalent tabs. Home Assistant renamed “Service” to <strong>Action</strong> in 2024.8; current YAML uses <code>service:</code> instead of <code>action:</code>.</div>
+ <div class="callout"><strong>This feature has changed names:</strong> The sidebar previously had a separate “Developer Tools” section. Starting with 2026.2, all of it moved under <strong>Settings</strong>; in 2026.8, “Developer Tools” was shortened to <strong>Tools</strong>. The current path is <strong>Settings → Tools → Actions</strong>. On older releases, use <strong>Developer Tools → Actions</strong>; the tab’s contents are the same. Home Assistant also renamed “Service” to <strong>Action</strong> in 2024.8. The legacy <code>service:</code> key has accordingly been replaced by <code>action:</code> in current YAML.</div>
  <ol class="steps">
  <li>
- <h3>Settings → Tools → Actions</h3>
- <p>Open Settings in the sidebar, select Tools, then open Actions.</p>
+ <h3>Go to Settings → Tools → Actions</h3>
+ <p>In the Home Assistant web interface, select Settings in the sidebar, select Tools, and then open the Actions tab.</p>
  </li>
  <li>
- <h3>Select the action <code>notify.mobile_app_XXX</code></h3>
- <p>XXX is the phone you just connected. The Companion App creates this notification action automatically.</p>
+ <h3>Select <code>notify.mobile_app_XXX</code> in the action field</h3>
+ <p>XXX is the name of the phone you just connected. The Companion App creates this action automatically.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch7/02_dev_services.png" alt="Settings → Tools → Actions" />
- <figcaption><strong>Figure 7-2</strong> Use Settings → Tools → Actions to test a notification. The screenshot shows older labels.</figcaption>
+ <img src="../assets/screenshots/ch7/02_dev_services.png" alt="The action interface under Settings, Tools, and Actions" />
+ <figcaption><strong>Figure 7-2</strong> The action interface under Settings → Tools. This screenshot shows the former Developer Tools interface.</figcaption>
  </figure>
- <p><strong>Notification action naming</strong>: <code>notify.mobile_app_&lt;device name&gt;</code>, where non-alphanumeric characters in the device name become underscores. For example, iPhone 13 Pro Max becomes <code>notify.mobile_app_iphone_13_pro_max</code>. In Settings → Tools → Actions, search for <code>notify.mobile_app</code> to find your phone.</p>
+ <p><strong>Notification action naming convention:</strong> <code>notify.mobile_app_&lt;device name&gt;</code>. Non-alphanumeric characters in the device name become underscores. For example, iPhone 13 Pro Max becomes <code>notify.mobile_app_iphone_13_pro_max</code>. To find your phone, search for <code>notify.mobile_app</code> in the action list under Settings → Tools → Actions.</p>
  </li>
  <li>
- <h3>Fill in message and title</h3>
- <p>Use this test:</p>
+ <h3>Enter a message and title</h3>
+ <p>Try this simple test:</p>
  <pre class="code-block">action: notify.mobile_app_xxx
 data:
   title: "Test notification"
   message: "First message from HA"</pre>
  </li>
  <li>
- <h3>Click "Execute Action"</h3>
- <p>Your phone should chime immediately. Home Assistant can now get your attention instead of merely recording an event.</p>
+ <h3>Select “Perform action”</h3>
+ <p>Your phone should chime immediately. Congratulations—your smart home now has a voice.</p>
  </li>
  </ol>
- <div class="callout"><strong>Verify</strong>: The test notification should appear within a few seconds. If it does not, check app permissions, Focus or Do Not Disturb settings, and the phone’s internet connection.</div>
+ <div class="callout"><strong>Check your result:</strong> “Test notification” should appear on your phone within 5 seconds. If it does not, check that (1) the app has notification permission, (2) the phone is not in Do Not Disturb or a restrictive Focus mode, and (3) the Home Assistant server has working outbound internet access.</div>
  </section>
 
- <section id="advanced" data-nav="Action buttons">
- <h2 data-icon="advanced">Advanced: Notifications with action buttons</h2>
- <p>A notification can offer action buttons instead of displaying only static text:</p>
+ <section id="advanced" data-nav="Add action buttons">
+ <h2 data-icon="advanced">Advanced: Add action buttons to a notification</h2>
+ <p>A notification can include buttons for you to select instead of displaying static text only:</p>
  <pre class="code-block">action: notify.mobile_app_xxx
 data:
   title: "Someone rang the doorbell"
@@ -190,50 +190,50 @@ data:
         title: "Open door"
       - action: "IGNORE"
         title: "Ignore"</pre>
- <p>An automation can listen for the <code>mobile_app_notification_action</code> event. When it receives <code>action: "OPEN_DOOR"</code> it can run the corresponding action. Treat anything that unlocks or opens an entry as security-sensitive and require appropriate safeguards.</p>
+ <p>Then configure an automation to listen for the <code>mobile_app_notification_action</code> event. When it receives <code>action: "OPEN_DOOR"</code>, the automation can run the action that opens the door, wherever you are in the world. Anything that unlocks or opens an entrance is security-sensitive, so add appropriate safeguards before enabling it.</p>
  <div class="callout warn"><strong>Two common pitfalls:</strong>
  <ol style="margin:8px 0 0 20px;">
- <li><strong>Keep the number of action buttons small</strong>. Layout and display limits differ across Android and iOS; three or fewer works well across both.</li>
- <li><strong>Use a distinct action ID</strong>. If two doorbells reuse <code>action: OPEN_DOOR</code>, either can trigger the same listener. Make the value unique with <code>{{ context.id }}</code> or a location prefix such as <code>action: OPEN_DOOR_FRONT</code>.</li>
+ <li><strong>Android allows no more than 3 action buttons in a notification</strong>; iOS supports about 10, but you may need to expand the notification to see the additional buttons. For cross-platform notifications, use no more than 3.</li>
+ <li><strong>Action IDs must be globally unique.</strong> If two doorbells both use <code>action: OPEN_DOOR</code>, selecting either notification will trigger the same automation. To prevent this, incorporate <code>{{ context.id }}</code> or prefix the ID with the device or location name—for example, <code>action: OPEN_DOOR_FRONT</code>.</li>
  </ol></div>
 
- <h3>Tags and groups: manage multiple notifications</h3>
+ <h3>Tags and groups: Manage multiple notifications</h3>
  <ul>
- <li><code>tag: laundry</code>: A later notification with the same tag will <strong>replace</strong> the previous one, which works well for washer progress updates.</li>
- <li><code>group: security</code>: Related notifications are <strong>stacked together</strong> such as doorbell and alarm alerts.</li>
+ <li><code>tag: laundry</code>: A later notification with the same tag will <strong>replace</strong> the previous one—for example, as the washing machine moves from washing to spinning to complete.</li>
+ <li><code>group: security</code>: Notifications in the same group will be <strong>stacked together</strong>, so doorbell and alarm notifications can appear in one stack.</li>
  </ul>
- <div class="callout"><strong>Advanced application notice:</strong> A camera notification can include an image and safe actions such as opening the camera view. Test harmless actions before connecting a lock or alarm.</div>
+ <div class="callout"><strong>Coming in an advanced guide:</strong> A camera event can trigger a notification with a snapshot and action buttons such as “Record for 30 seconds” or “Call the police.” These topics are reserved for a future tutorial series.</div>
  </section>
 
  <section id="faq" data-nav="FAQ">
- <h2 data-icon="faq">FAQ</h2>
+ <h2 data-icon="faq">Frequently asked questions</h2>
  <details class="faq">
- <summary>Why did the notification not arrive?</summary>
- <div class="body">Check the phone’s notification permission, the Companion App notification settings, the selected notify action, and Focus, Do Not Disturb, or battery-saving settings.</div>
+ <summary>Why did my notification not arrive?</summary>
+ <div class="body">Check, in order: (1) the phone’s notification permission for the app; (2) Settings → Companion App → Notifications in the app; (3) the name of the action you ran; and (4) whether the phone is in Do Not Disturb mode.</div>
  </details>
  <details class="faq">
  <summary>Can I notify every phone in the household?</summary>
- <div class="body">Yes. Use <code>notify.notify</code> only if its configured targets are correct, or create a named notification group for <strong>specific</strong> recipients. A named group makes it clear who receives the message.</div>
+ <div class="body">Yes. The special <code>notify.notify</code> action sends to its configured notification targets, so verify those targets before using it. Alternatively, create a named notification group for <strong>specific</strong> recipients.</div>
  </details>
  <details class="faq">
- <summary>Can I send notifications through email, Slack, or Telegram?</summary>
- <div class="body">Yes. Home Assistant supports other channels, including SMTP and Telegram. LINE Notify has been discontinued, so international examples should use a supported channel such as Telegram or Slack. Learn the Companion App first, then add another channel if you need a backup.</div>
+ <summary>Can I send notifications by email, Slack, or Telegram?</summary>
+ <div class="body">Yes. Home Assistant supports additional channels, including SMTP email and Telegram; Slack is another widely available option. LINE Notify has been discontinued, and using LINE now requires the Messaging API. For an international audience, email, Telegram, or Slack are more broadly applicable alternatives. Start with the Companion App, then add another channel as a backup if needed.</div>
  </details>
  </section>
 
  <section id="troubleshoot" data-nav="Troubleshooting">
  <h2 data-icon="tips">Troubleshooting</h2>
  <details class="faq">
- <summary>The phone receives no notifications</summary>
- <div class="body">Check the phone’s notification permission, Focus and power-saving settings, internet access, and the action name. Search for <code>notify.mobile_app</code> in Developer tools → Actions and confirm that your phone is listed.</div>
+ <summary>My phone does not receive notifications</summary>
+ <div class="body">Check, in order: (1) the Companion App has notification permission; (2) the phone is not in Airplane Mode, Do Not Disturb, or a restrictive power-saving mode; (3) the Home Assistant server has internet access, because the app relies on Firebase Cloud Messaging or the Apple Push Notification service (APNs); and (4) the action name is correct. Search for <code>notify.mobile_app</code> under Settings → Tools → Actions and confirm that your phone is listed.</div>
  </details>
  <details class="faq">
- <summary>An iOS notification arrives without sound</summary>
- <div class="body">Check the iOS notification sound settings for Home Assistant and any active Focus mode. Custom sounds must also be installed and referenced correctly under <code>push:</code> and <code>sound:</code>.</div>
+ <summary>My iOS notification arrives without sound</summary>
+ <div class="body">Check the Home Assistant notification sound settings in iOS and any active Focus mode. If you use a custom sound, make sure it is installed in the app and referenced correctly under <code>push:</code> and <code>sound:</code> in the notification data.</div>
  </details>
  <details class="faq">
  <summary>Notifications arrive at home but not while I am away</summary>
- <div class="body">Companion App push delivery uses Apple or Google push infrastructure, so the phone needs internet access but does not need a remote Home Assistant URL merely to receive a push. Opening the app and controlling Home Assistant while away does require remote access; see the appendix.</div>
+ <div class="body">Companion App notifications use Firebase Cloud Messaging or APNs. As long as your phone has internet access, receiving a notification does not require Nabu Casa or dynamic DNS (DDNS). You only need remote access when using the app to control Home Assistant while away; see the appendix.</div>
  </details>
  </section>
 
