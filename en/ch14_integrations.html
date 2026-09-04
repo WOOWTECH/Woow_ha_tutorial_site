@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 14 · Integrations · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Follow the integration setup process, connect services such as weather, music, location, and calendars, compare local and cloud integrations, and diagnose or remove an integration." />
+  <meta name="description" content="Learn how Home Assistant integrations connect weather, media, location, calendar, and notification services; compare local and cloud options; and troubleshoot or remove integrations safely." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch14_integrations.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Chapter 14 · Integrations · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Follow the integration setup process, connect services such as weather, music, location, and calendars, compare local and cloud integrations, and diagnose or remove an integration." />
+  <meta property="og:description" content="Learn how Home Assistant integrations connect weather, media, location, calendar, and notification services; compare local and cloud options; and troubleshoot or remove integrations safely." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch14_integrations.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch14/03_devices.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chapter 14 · Integrations · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Follow the integration setup process, connect services such as weather, music, location, and calendars, compare local and cloud integrations, and diagnose or remove an integration." />
+  <meta name="twitter:description" content="Learn how Home Assistant integrations connect weather, media, location, calendar, and notification services; compare local and cloud options; and troubleshoot or remove integrations safely." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch14/03_devices.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -31,7 +31,7 @@
 </head>
 <body>
 <div class="layout">
- <aside class="sidebar">
+  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From setup to everyday use</div>
     <nav class="lang-switch" aria-label="Language"><a href="../ch14_integrations.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch14_integrations.html" lang="en" aria-current="page">EN</a></nav>
@@ -55,11 +55,11 @@
       <li><a href="ch13_themes.html">Themes and appearance</a></li>
       <li><a href="ch14_integrations.html" class="active">Integrations</a></li>
       <li><a href="ch15_protocols.html">Protocols</a></li>
-      <li><a href="ch16_todo_calendar.html">To-do and calendars</a></li>
+      <li><a href="ch16_todo_calendar.html">To-do lists and calendars</a></li>
       <li class="part-label">Data, energy, and AI</li>
       <li><a href="ch17_energy.html">Energy dashboard</a></li>
-      <li><a href="ch18_history_data.html">History and export</a></li>
-      <li><a href="ch19_voice_ai.html">Voice and AI</a></li>
+      <li><a href="ch18_history_data.html">History and data export</a></li>
+      <li><a href="ch19_voice_ai.html">Voice assistants and AI</a></li>
       <li class="part-label">Advanced architecture and applications</li>
       <li><a href="ch20_addons_docker.html">Add-ons and Docker</a></li>
       <li><a href="ch21_network_remote.html">Networking and remote access</a></li>
@@ -67,19 +67,19 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why integrations</a>
-      <a href="#concept">Three-tier relationship</a>
-      <a href="#steps">Hands-on new integration</a>
-      <a href="#oauth">OAuth and URLs</a>
-      <a href="#weather">Weather integration</a>
-      <a href="#media">music and media</a>
-      <a href="#location">Positioning integration</a>
-      <a href="#calendar_notify">Calendar and notifications</a>
+      <a href="#why">Why integrations matter</a>
+      <a href="#concept">The three-layer model</a>
+      <a href="#steps">Add an integration</a>
+      <a href="#oauth">OAuth and redirect URLs</a>
+      <a href="#weather">Weather integrations</a>
+      <a href="#media">Music and media</a>
+      <a href="#location">Location tracking</a>
+      <a href="#calendar_notify">Calendars and notifications</a>
       <a href="#cloud_vs_local">Cloud vs. local</a>
       <a href="#manage">Maintenance</a>
-      <a href="#hacs">HACS custom integration</a>
-      <a href="#no_integration">Integration not found</a>
-      <a href="#troubleshoot">Common problems</a>
+      <a href="#hacs">HACS custom integrations</a>
+      <a href="#no_integration">When no integration appears</a>
+      <a href="#troubleshoot">Troubleshooting</a>
       <a href="#faq">FAQ</a>
     </div>
     <div class="toc-in-chapter">
@@ -90,772 +90,548 @@
     </div>
   </aside>
 
- <main class="content">
- <div class="chapter-header">
- <div class="kicker">Chapter 14</div>
- <h1>Integrations</h1>
- <p class="lead">Integrations connect Home Assistant to weather, media, calendars, phone location, messaging, and physical devices. Learn the complete setup flow, then diagnose and recover an integration when it fails.</p>
- </div>
+  <main class="content">
+    <div class="chapter-header">
+      <div class="kicker">Chapter 14</div>
+      <h1>Integrations</h1>
+      <p class="lead">Integrations are Home Assistant’s connections to the outside world. They bring in weather, media, calendars, phone location, notification services, and physical devices. This chapter walks through the setup flow in detail, then shows you how to recover an integration when it fails.</p>
+    </div>
 
- <section id="why" data-nav="Why integrations">
- <h2 data-icon="why">Why this matters</h2>
- <p>The previous chapters organized what was already in Home Assistant: areas, names, dashboards, automations, and scripts. Integrations bring external devices and services into that system.</p>
- <p><strong>An integration is Home Assist</strong>ant’s connection to a device or service. A sunset automation needs sun data; arrival music needs location and media entities; a washing-cycle alert needs a notification channel.</p>
- <p>By the end of this chapter you will have these abilities:</p>
- <ul>
- <li>Understand the integration → device → entity relationship and the impact of removing an integration.</li>
- <li>Complete setup flows that request credentials, an API key, or a QR code.</li>
- <li>Understand why OAuth authorization often gets stuck in "the URL does not match" and how to solve it</li>
- <li>Determine whether an integration is cloud-dependent or local, and what happens during an outage.</li>
- <li>Download diagnostics, reauthenticate, reload, and, only when necessary, remove a failing integration.</li>
- </ul>
- <div class="callout">
-<strong>Concept:</strong> This chapter precedes the device management covered in <a href="ch11_devices.html">Chapter 11</a>. Here you connect an integration; there you configure the resulting devices and entities.</div>
- </section>
+    <section id="why" data-nav="Why integrations matter">
+      <h2 data-icon="why">Why integrations matter</h2>
+      <p>The previous 13 chapters largely dealt with organizing what Home Assistant already contains: areas, names, dashboards, automations, and scripts. A new Home Assistant installation, however, has very little in it. Think of it as an empty home with finished walls and working outlets, but no appliances yet.</p>
+      <p><strong>Adding an integration is how you plug those appliances in.</strong> An entrance light that turns on at sunset needs sun or weather data. Music that starts when you arrive home needs both location and media entities. A washing-machine alert needs a notification channel.</p>
+      <p>By the end of this chapter, you will be able to:</p>
+      <ul>
+        <li>Understand the integration → device → entity relationship, including what else disappears when you remove an integration.</li>
+        <li>Complete setup flows that ask for credentials, an API key, or a QR code.</li>
+        <li>Understand why OAuth authorization often fails because a URL does not match, and know how to fix it.</li>
+        <li>Determine whether an integration depends on the cloud or works locally, and predict what happens during an internet outage.</li>
+        <li>Download diagnostics, reauthenticate, reload, and cleanly remove a failing integration.</li>
+      </ul>
+      <div class="callout"><strong>Concept:</strong> This chapter and <a href="ch11_devices.html">Chapter 11</a> cover two stages of the same process. This chapter explains how devices enter Home Assistant; Chapter 11 explains how to configure them once they are there. The integration is the source, and devices are its output.</div>
+    </section>
 
- <section id="concept" data-nav="Three-tier relationship">
- <h2 data-icon="concept">Integration, device, entity: three-layer relationship and Config Flow</h2>
+    <section id="concept" data-nav="The three-layer model">
+      <h2 data-icon="concept">Integrations, devices, and entities: the three-layer model and config flows</h2>
 
- <h3>The relationship in one sentence</h3>
- <p><strong>An integration</strong> communicates with a device family or service. A configured entry may create <strong>device</strong>s, and each device <strong>may expose multipl</strong>e entities that dashboards and automations can use.</p>
+      <h3>The relationship in one sentence</h3>
+      <p>An <strong>integration</strong> is code that understands a particular brand, protocol, or service. Once configured, it may create one or more <strong>devices</strong>; each device may then expose several <strong>entities</strong>. Entities are the individual controls and readings that appear on dashboards and in automations.</p>
 
- <table class="data-table">
- <thead>
- <tr>
-<th>Hierarchy</th>
-<th>what is</th>
-<th>Living room example</th>
-<th>what can you do with it</th>
-</tr>
- </thead>
- <tbody>
- <tr>
-<td>Integration</td>
-<td>Module to communicate with a certain brand/cloud service</td>
-<td>"Google Cast" integration</td>
-<td>Add, reload, remove, download diagnostics</td>
-</tr>
- <tr>
-<td>Config entry</td>
-<td>One saved configuration or account; an integration can have multiple entries</td>
-<td>"Living Room Chromecast"</td>
-<td>Rename, reset, deactivate, delete</td>
-</tr>
- <tr>
-<td>Device</td>
-<td>a physical or logical machine</td>
-<td>That Chromecast on the living room TV</td>
-<td>Assign area, check firmware, change name (<a href="ch11_devices.html">Chapter 11</a>)</td>
-</tr>
- <tr>
-<td>Entity</td>
-<td>The smallest unit that can be read or controlled</td>
-<td><code>media_player.living_room_tv</code></td>
-<td>Put it on the dashboard and write it into the automation (<a href="ch12_domains.html">Chapter 12</a>)</td>
-</tr>
- </tbody>
- </table>
+      <table class="data-table">
+        <thead>
+          <tr><th>Layer</th><th>What it is</th><th>Living-room example</th><th>What you can do with it</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Integration</td><td>A module that communicates with a brand, protocol, or cloud service</td><td>The Google Cast integration</td><td>Add, reload, remove, or download diagnostics</td></tr>
+          <tr><td>Config entry</td><td>One saved configuration or account; an integration can have several</td><td>The “Living Room Chromecast” entry</td><td>Rename, reconfigure, disable, or delete</td></tr>
+          <tr><td>Device</td><td>A physical or logical device</td><td>The Chromecast connected to the living-room TV</td><td>Assign an area, check firmware, or rename it (<a href="ch11_devices.html">Chapter 11</a>)</td></tr>
+          <tr><td>Entity</td><td>The smallest readable or controllable unit</td><td><code>media_player.living_room_tv</code></td><td>Add it to a dashboard or use it in an automation (<a href="ch12_domains.html">Chapter 12</a>)</td></tr>
+        </tbody>
+      </table>
 
- <div class="callout warn">
-<strong>Warning:</strong> Not every integration creates a device. An information-only integration such as Workday may create a <code>binary_sensor</code> and a <code>calendar</code> entity without any device. Find these under Entities, not Devices.</div>
+      <div class="callout warn"><strong>Warning:</strong> Not every integration creates a device. An information-only integration such as Workday may create a <code>binary_sensor</code> and a <code>calendar</code> entity without creating a device. Look for them under Entities rather than Devices. This is expected behavior, not a fault.</div>
 
- <figure class="shot">
- <img src="../assets/screenshots/ch14/03_devices.png" alt="Device page">
- <figcaption><strong>Figure 14-3</strong> Device page: Every physical or logical device under the integration is listed here, with region, integration, brand, and model fields available for sorting.</figcaption>
- </figure>
+      <figure class="shot">
+        <img src="../assets/screenshots/ch14/03_devices.png" alt="Home Assistant Devices page" />
+        <figcaption><strong>Figure 14-3</strong> The Devices page lists each physical or logical device created by an integration. You can sort the list by area, integration, manufacturer, or model.</figcaption>
+      </figure>
 
- <figure class="shot">
- <img src="../assets/screenshots/ch14/04_entities.png" alt="Entity page">
- <figcaption><strong>Figure 14-4</strong> Entity page: Multiple entities under one device can be filtered by entity ID, region, and platform - come here to confirm the name before writing automation.</figcaption>
- </figure>
+      <figure class="shot">
+        <img src="../assets/screenshots/ch14/04_entities.png" alt="Home Assistant Entities page" />
+        <figcaption><strong>Figure 14-4</strong> The Entities page lists the entities exposed by each device. Filter by entity ID, area, or platform to confirm names before writing an automation.</figcaption>
+      </figure>
 
- <h3>What is Config Flow? Why don’t you have to change YAML?</h3>
- <p>Older integrations often required manual edits to <code>configuration.yaml</code>. Most now use a config flow: the integration<strong></strong> defines the questions, Home Assistant presents the form, and the completed configuration is saved as a c<strong>onfig entry</strong>.</p>
- <p>Config Flow has several triggering methods. Once you understand it, you will know why the screen will pop up on its own:</p>
- <table class="data-table">
- <thead>
- <tr>
-<th>Process type</th>
-<th>when does it happen</th>
-<th>what will you see</th>
-</tr>
- </thead>
- <tbody>
- <tr>
-<td>User flow User</td>
-<td>Click "Add Integration" yourself</td>
-<td>Search brand → fill in form</td>
-</tr>
- <tr>
-<td>Discovery</td>
-<td>Home Assistant detects a device through mDNS, SSDP, DHCP, or Bluetooth</td>
-<td>A Discovered card appears; select Add</td>
-</tr>
- <tr>
-<td>Reauth</td>
-<td>The password has been changed, the token has expired, and the other party’s API will kick you out.</td>
-<td>The integration card turns red and the "Reverify" button appears.</td>
-</tr>
- <tr>
-<td>Reconfigure</td>
-<td>Change an IP address, account, or other supported settings without removing the entry</td>
-<td>Reconfigure in the three-dot menu</td>
-</tr>
- <tr>
-<td>Options process Options</td>
-<td>After installing it, I want to fine-tune it (update frequency, which items to focus on)</td>
-<td>Integrate "Settings/Options" on the card</td>
-</tr>
- </tbody>
- </table>
- <div class="callout tip">
-<strong>Tip:</strong> Prefer reauthentication to removal. Reauthentication updates credentials while preserving entity IDs, areas, and automations. Removing and re-adding an entry can change IDs and break references.</div>
+      <h3>What is a config flow, and why is YAML usually unnecessary?</h3>
+      <p>Older integrations often required manual edits to <code>configuration.yaml</code>, where a single indentation mistake could prevent Home Assistant from starting. Most integrations now use a <strong>config flow</strong>: the integration defines the questions, Home Assistant presents them as a series of forms, and the completed configuration is saved as a <strong>config entry</strong>.</p>
+      <p>Config flows can start in several ways. Recognizing them helps explain why a setup dialog sometimes appears on its own:</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Flow type</th><th>When it occurs</th><th>What you see</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>User</td><td>You select Add integration</td><td>Search for a brand, then complete a form</td></tr>
+          <tr><td>Discovery</td><td>Home Assistant detects a device through mDNS, SSDP, DHCP, or Bluetooth</td><td>A Discovered section appears at the top of the Integrations page; select Add</td></tr>
+          <tr><td>Reauthentication</td><td>A password changed, a token expired, or the provider revoked API access</td><td>The integration card shows an error and a Reauthenticate button</td></tr>
+          <tr><td>Reconfiguration</td><td>You need to change an IP address, account, or other supported setting without starting over</td><td>Reconfigure appears in the three-dot menu</td></tr>
+          <tr><td>Options</td><td>You want to adjust settings such as the update interval or which data to retrieve</td><td>Configure or Options appears on the integration card</td></tr>
+        </tbody>
+      </table>
+      <div class="callout tip"><strong>Tip:</strong> Reauthentication and removal are very different. Reauthentication replaces expired credentials while preserving entity IDs, areas, and automations. Removing and re-adding an entry can create new entity IDs and break every reference to the old ones. Reauthenticate whenever possible.</div>
 
- <h3>What does that label on the integration file mean?</h3>
- <p>When you go to Home Assistant integration page, you will see the Quality Scale label. It is not fun to score, it directly affects whether you will step into a trap:</p>
- <table class="data-table">
- <thead>
- <tr>
-<th>label</th>
-<th>plain-language meaning</th>
-</tr>
- </thead>
- <tbody>
- <tr>
-<td>Bronze copper</td>
-<td>Passing line: Able to use UI settings, have basic documents</td>
-</tr>
- <tr>
-<td>Silver silver</td>
-<td>Relatively stable: error handling is complete, and there are living maintainers</td>
-</tr>
- <tr>
-<td>Gold gold</td>
-<td>Very complete: automatic exploration, firmware updates, and detailed documentation</td>
-</tr>
- <tr>
-<td>Platinum</td>
-<td>Technically the most beautiful: completely asynchronous, optimized performance</td>
-</tr>
- <tr>
-<td>Legacy</td>
-<td>Old stuff, usually can only be set using YAML, and no one maintains it anymore</td>
-</tr>
- <tr>
-<td>Custom</td>
-<td>It is done by the community and has not been reviewed by Home Assistant, so you bear the risk at your own risk (HACS is included in this category)</td>
-</tr>
- </tbody>
- </table>
- </section>
+      <h3>What do the labels in the integration documentation mean?</h3>
+      <p>Official integration pages display an Integration Quality Scale rating. These labels are more than decoration: they indicate the engineering and documentation standards an integration has met.</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Label</th><th>Plain-English meaning</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Bronze</td><td>Meets the baseline: UI configuration and basic documentation</td></tr>
+          <tr><td>Silver</td><td>More robust error handling and active code ownership</td></tr>
+          <tr><td>Gold</td><td>A comprehensive integration with discovery, firmware updates where applicable, and detailed documentation</td></tr>
+          <tr><td>Platinum</td><td>Meets the highest technical standards, including fully asynchronous and performance-conscious design</td></tr>
+          <tr><td>Legacy</td><td>An older integration, often configured through YAML and receiving limited maintenance</td></tr>
+          <tr><td>Custom</td><td>Community code that Home Assistant has not reviewed; you accept the additional risk, including for integrations installed through HACS</td></tr>
+        </tbody>
+      </table>
+    </section>
 
- <section id="steps" data-nav="Hands-on new integration">
- <h2 data-icon="steps">Hands-on: Completely run the new integration</h2>
- <p>Use a weather integration for practice because it requires no account or API key. The same config-flow pattern applies to many integrations.</p>
+    <section id="steps" data-nav="Add an integration">
+      <h2 data-icon="steps">Hands-on: add an integration from start to finish</h2>
+      <p>A weather integration is an ideal first exercise: it needs no account or API key and cannot disrupt an existing device. Once you complete this flow, the rhythm will be familiar for many other integrations.</p>
 
- <ol class="steps">
- <li>
- <h3>Make sure your location is set first</h3>
- <p>A weather integration uses Home Assistant’s home coordinates. Open <strong>Settings → System → Home information</strong> If the latitude and longitude still contain defaults, the forecast may be for the wrong location. Older versions called this page General; current versions use Home information. The coordinates were configured in <a href="ch2_system_settings.html">Chapter 2</a> ; complete that step first if needed.</p>
- </li>
- <li>
- <h3>Open integration page</h3>
- <p>left column <strong>Settings → Devices &amp; services</strong>. There are several tabs at the top of this page: Integrations, Devices, Entities, and Helpers. The default setting is "Integration".</p>
- <figure class="shot">
- <img src="../assets/screenshots/ch14/01_integrations_dashboard.png" alt="Integration page overview">
- <figcaption><strong>Figure 14-1</strong> Tabs at the top of the integration page: Integration/Device/Entity/Assistant. "New Integration" in the lower right corner is the main entrance.</figcaption>
- </figure>
- </li>
- <li>
- <h3>Check the Discovered section</h3>
- <p>A Discovered card means Home Assistant found a device on your network. Select Add and follow the shorter setup flow before searching manually.</p>
- <figure class="shot">
- <img src="../assets/screenshots/ch14/02_integrations_discovered.png" alt="Explored integrated cards">
- <figcaption><strong>Figure 14-2</strong> "Explored" card: HA detects devices through mDNS/SSDP/DHCP/Bluetooth. Press Add to enter the setting process directly.</figcaption>
- </figure>
- </li>
- <li>
- <h3>Click "Add Integration" in the lower right corner</h3>
- <p>picture <strong>lower right corner</strong> There is an "Add integration" button. Pressing it will bring up a search box.</p>
- </li>
- <li>
- <h3>Search brand name</h3>
- <p>input <code>Open-Meteo</code>(or <code>Met.no</code>). The search is to compare brand names. If you cannot find Chinese, you will always find English. Click on the list when it appears.</p>
- </li>
- <li>
- <h3>Complete the form</h3>
- <p>Open-Meteo does not require any API key. Home Assistant documentation clearly states that "no account or API key is required". Select the <strong>Zone</strong> to use as the forecast location, such as Home. Zones were configured in <a href="ch5_users.html">Chapter 5</a> .</p>
- </li>
- <li>
- <h3>Assign the area and press Done</h3>
- <p>In the last step, HA will ask you which area you want to classify it into. Weather does not have a physical location and can be left blank; if it is a physical device, selecting the right area here can save the effort of manual classification later. press <strong>Finish</strong>.</p>
- </li>
- <li>
- <h3>Review the created entities</h3>
- <p>There will be words like "1 entity" written on the integration card, which you can see by clicking on it. Open-Meteo generates one for each Zone <code>weather</code> Entity, name follows Zone. Drop this entity to the dashboard (<a href="ch6_dashboard.html">Chapter 6</a>), you have a weather card.</p>
- </li>
- </ol>
+      <ol class="steps">
+        <li>
+          <h3>Confirm your home location</h3>
+          <p>Weather integrations use Home Assistant’s home coordinates. Open <strong>Settings → System → Home information</strong>. If the latitude and longitude still contain default values, you may receive a forecast for the wrong country. Older releases called this page General; current documentation calls it Home information. You configured these coordinates in <a href="ch2_system_settings.html">Chapter 2</a>, so complete that step first if necessary.</p>
+        </li>
+        <li>
+          <h3>Open the Integrations page</h3>
+          <p>From the sidebar, open <strong>Settings → Devices &amp; services</strong>. The page has tabs for Integrations, Devices, Entities, and Helpers, and opens on Integrations by default.</p>
+          <figure class="shot">
+            <img src="../assets/screenshots/ch14/01_integrations_dashboard.png" alt="Overview of the Home Assistant Integrations page" />
+            <figcaption><strong>Figure 14-1</strong> The tabs at the top lead to Integrations, Devices, Entities, and Helpers. Add integration in the lower-right corner is the main entry point.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <h3>Check the Discovered section first</h3>
+          <p>If cards appear under Discovered, Home Assistant has already found devices on your network. Selecting Add usually starts a shorter, two- or three-step setup flow, so check here before searching manually.</p>
+          <figure class="shot">
+            <img src="../assets/screenshots/ch14/02_integrations_discovered.png" alt="Integration cards in the Discovered section" />
+            <figcaption><strong>Figure 14-2</strong> Home Assistant discovers these devices through mDNS, SSDP, DHCP, or Bluetooth. Select Add to begin setup.</figcaption>
+          </figure>
+        </li>
+        <li>
+          <h3>Select Add integration</h3>
+          <p>Select the <strong>Add integration</strong> button in the lower-right corner. A search dialog opens.</p>
+        </li>
+        <li>
+          <h3>Search by integration name</h3>
+          <p>Enter <code>Open-Meteo</code> (or <code>Met.no</code>). Search uses the integration’s published name, so use its English name. Select it when it appears.</p>
+        </li>
+        <li>
+          <h3>Complete the form</h3>
+          <p>Open-Meteo does not require an account or API key. Choose the <strong>Zone</strong> to use as the forecast location, such as Home. Zones were configured in <a href="ch5_users.html">Chapter 5</a>.</p>
+        </li>
+        <li>
+          <h3>Assign an area, then finish</h3>
+          <p>Home Assistant asks whether the integration belongs to an area. Weather has no physical location, so you can leave this blank. For a physical device, choosing the correct area now saves manual organization later. Select <strong>Finish</strong>.</p>
+        </li>
+        <li>
+          <h3>Review what the integration created</h3>
+          <p>The integration card displays a count such as “1 entity.” Open it to inspect the result. Open-Meteo creates one <code>weather</code> entity for each Zone and names it after that Zone. Add the entity to a dashboard as described in <a href="ch6_dashboard.html">Chapter 6</a> to display a weather card.</p>
+        </li>
+      </ol>
 
- <div class="callout tip">
-<strong>Note:</strong> This English edition generalizes the zh-TW edition’s Taiwan-specific example. Check the services, regulations, frequencies, prices, and availability in your region. Most integrations can be added repeatedly. Want to see the weather in two different cities at the same time? Just look for "Add entry" on the same integration card and run the process again. There is no need to install a second integration.</div>
- </section>
+      <div class="callout tip"><strong>Tip:</strong> Most integrations support more than one config entry. To show forecasts for two cities, use Add entry on the same integration card and repeat the flow; you do not install the integration twice.</div>
+    </section>
 
- <section id="oauth" data-nav="OAuth and URLs">
- <h2 data-icon="url">OAuth integrations and redirect URLs</h2>
- <p>Services such as Spotify and Google Calendar use <strong>OAuth authorization</strong>. Home Assistant sends you to the provider’s sign-in page; after approval, the provider returns an authorization code to Home Assistant.</p>
- <p>The provider must know where to return the browser after authorization, so you register a <strong>Redirect URI</strong>. Private URLs such as <code>http://192.168.1.50:8123</code> (or <code>http://192.168.1.50</code> on the referenced newer installation) may not satisfy provider redirect-URI policies.</p>
+    <section id="oauth" data-nav="OAuth and redirect URLs">
+      <h2 data-icon="url">OAuth integrations and redirect URLs</h2>
+      <p>Services such as Spotify and Google Calendar use <strong>OAuth authorization</strong> instead of asking Home Assistant to collect your password. Home Assistant sends you to the provider’s sign-in page; after you approve access, the provider returns an authorization code to Home Assistant.</p>
+      <p>The provider needs to know where to send your browser afterward, so you must register a <strong>redirect URI</strong>. Private addresses such as <code>http://192.168.1.50:8123</code> (or <code>http://192.168.1.50</code> on the referenced newer installation) often do not meet a provider’s redirect-URI policy.</p>
 
- <h3>HA solution: My Home Assistant</h3>
- <p>Home Assistant made a relay station <code>my.home-assistant.io</code>. Official OAuth integration instructions commonly provide this redirect URL for the provider’s developer console:</p>
- <pre class="code-block"><code>https://my.home-assistant.io/redirect/oauth</code></pre>
- <p>Spotify’s documentation says to copy this URL exactly and <strong>not</strong> modify it. Google Calendar uses the same authorized redirect URL.</p>
- <p>Your Home Assistant URL remains in <strong>your browser’s local storage</strong>. My Home Assistant redirects that browser to your instance. Home Assistant documentation clearly states that your instance URL "will never be passed to any external service, not even the My Home Assistant service itself."</p>
+      <h3>Home Assistant’s solution: My Home Assistant</h3>
+      <p>Home Assistant provides the relay service <code>my.home-assistant.io</code>. The official instructions for many OAuth integrations tell you to register this URL in the provider’s developer console:</p>
+      <pre class="code-block"><code>https://my.home-assistant.io/redirect/oauth</code></pre>
+      <p>Spotify’s documentation explicitly says to copy the URL exactly and <strong>not</strong> modify it. Google Calendar uses the same authorized redirect URL.</p>
+      <p>Your Home Assistant instance URL remains in <strong>your browser’s local storage</strong>. My Home Assistant redirects the browser to your instance; according to the official documentation, your instance URL is never sent to any external service, including My Home Assistant itself.</p>
 
- <h3>If you turn off My Home Assistant</h3>
- <p>Then use your own URL plus a fixed path:</p>
- <pre class="code-block"><code>&lt;your HA URL&gt;/auth/external/callback</code></pre>
- <p>At this time, "your HA URL" must be in a form that the other vendor is willing to accept (usually the domain name of HTTPS), which is why OAuth integration often forces you to settle the remote connection first. Remote access methods (Nabu Casa cloud, self-installed reverse proxy, DDNS) are <a href="appendix_hacs_addons.html">Appendix A</a> If you have something to sort out, go and finish it first and then come back.</p>
+      <h3>If My Home Assistant is disabled</h3>
+      <p>Use your own Home Assistant URL followed by the fixed callback path:</p>
+      <pre class="code-block"><code>&lt;your HA URL&gt;/auth/external/callback</code></pre>
+      <p>Your URL must then meet the provider’s requirements, which commonly means an HTTPS domain name. This is why some OAuth integrations require remote access to be configured first. <a href="appendix_hacs_addons.html">Appendix A</a> covers Nabu Casa Cloud, self-hosted reverse proxies, and DDNS.</p>
 
- <h3>The step to apply for Client ID/Secret yourself</h3>
- <p>Some services do not allow HA to build a universal key, and you must go to the developer console to open an app yourself. The ones you are currently determined to apply for include:</p>
- <ul>
- <li>
-<strong>Spotify</strong>: Go to the Spotify Developer Dashboard to create an App, check Web API, and get the Client ID and Client Secret. Home Assistant document states that "Starting from February 2026, a Premium account is required to enter the developer console to create an app."</li>
- <li>
-<strong>Google Calendar</strong>: Create a project in Google Cloud Console, enable the Google Calendar API, set up the OAuth consent screen, and create a "web application" type client.</li>
- </ul>
- <p>The obtained ID and key will be required to be posted when running Config Flow. If you want to replace or delete it later, the path is <strong>Settings → Devices &amp; services</strong>, upper right corner <strong>Three-dot menu → Application credentials</strong>.</p>
+      <h3>Creating your own client ID and secret</h3>
+      <p>Some services do not permit Home Assistant to use shared credentials, so you must register an app in the provider’s developer console. Confirmed examples include:</p>
+      <ul>
+        <li><strong>Spotify:</strong> Create an app in the Spotify Developer Dashboard, enable Web API, and copy the Client ID and Client Secret. Home Assistant’s documentation notes that, from February 2026, a Premium account is required to access the developer dashboard and create an app.</li>
+        <li><strong>Google Calendar:</strong> Create a Google Cloud project, enable the Google Calendar API, configure the OAuth consent screen, and create a Web application client.</li>
+      </ul>
+      <p>The config flow asks for the resulting ID and secret. To replace or remove them later, open <strong>Settings → Devices &amp; services</strong>, then select the upper-right <strong>three-dot menu → Application credentials</strong>.</p>
 
- <div class="callout danger">
-<strong>Danger:</strong> Treat a Client Secret as a credential. Never include it in a forum post, chat, log, or screenshot. Backups also contain credentials; protect them as described in <a href="ch9_backups.html">Chapter 9</a>.</div>
- </section>
+      <div class="callout danger"><strong>Danger:</strong> Treat a Client Secret as a password for the app. Never include it in a forum post, Discord message, log, or screenshot. Backups also contain these credentials, so protect them as described in <a href="ch9_backups.html">Chapter 9</a>.</div>
+    </section>
 
- <section id="weather" data-nav="Weather integration">
- <h2 data-icon="integration">Weather: Met.no, Open-Meteo, and national weather services</h2>
- <p>Weather entities can support useful automations: close a window when rain is forecast, cool a room before the temperature exceeds 30 degrees, or remind someone to take sun protection when the UV index is high.</p>
+    <section id="weather" data-nav="Weather integrations">
+      <h2 data-icon="integration">Weather: Met.no, Open-Meteo, and national services</h2>
+      <p>Weather data can drive useful automations: close a balcony window when rain is forecast, cool a room before the temperature exceeds 30 degrees, or remind someone to use sun protection when the UV index is high.</p>
 
- <table class="data-table">
- <thead>
- <tr>
-<th>Integration</th>
-<th>API key?</th>
-<th>Configuration</th>
-<th>Best fit</th>
-</tr>
- </thead>
- <tbody>
- <tr>
-<td>
-<strong>Met.no</strong> (Norwegian Meteorological Institute)</td>
-<td>No</td>
-<td>Name, latitude, longitude, and elevation</td>
-<td>A straightforward default that creates standard Home Assistant weather entities</td>
-</tr>
- <tr>
-<td><strong>Open-Meteo</strong></td>
-<td>No</td>
-<td>Select a zone</td>
-<td>Forecasts tied to Home Assistant zones, such as a workplace</td>
-</tr>
- <tr>
-<td><strong>Your national weather service</strong></td>
-<td>Depends on the provider</td>
-<td>Follow the provider's API documentation</td>
-<td>Official terminology or more detailed data for your region</td>
-</tr>
- </tbody>
- </table>
+      <table class="data-table">
+        <thead>
+          <tr><th>Integration</th><th>API key?</th><th>Configuration</th><th>Best for</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Met.no</strong> (Norwegian Meteorological Institute)</td><td>No</td><td>Name, latitude, longitude, and elevation</td><td>A straightforward built-in option with standard Home Assistant weather entities</td></tr>
+          <tr><td><strong>Open-Meteo</strong></td><td>No</td><td>Select a Zone</td><td>Forecasts tied to Home Assistant Zones, such as Home or Work</td></tr>
+          <tr><td><strong>Your national weather service</strong></td><td>Depends on the provider</td><td>Follow the provider’s API documentation</td><td>Official local terminology or more detailed regional data</td></tr>
+        </tbody>
+      </table>
 
- <h3>Two details about Met.no</h3>
- <ul>
- <li>The integration includes an "Elevation" field. The official documentation notes that elevation affects forecast temperature, especially in mountainous areas. Enter your actual elevation when you know it; for low-lying locations, a value from 0 to 50 is generally sufficient.</li>
- <li>You cannot configure the update interval. The Home Assistant documentation specifies an update every 55 to 65 minutes, randomized to spread API load. Do not expect updates as frequently as those from an indoor temperature sensor.</li>
- </ul>
+      <h3>Two details about Met.no</h3>
+      <ul>
+        <li>The integration includes an Elevation field. The official documentation notes that elevation affects temperature forecasts, especially in mountainous areas. Enter the actual elevation when you know it; for low-lying locations, a value from 0 to 50 is generally sufficient.</li>
+        <li>You cannot configure the update interval. Home Assistant’s documentation specifies an update every 55 to 65 minutes, with randomization to distribute API load. Do not expect updates as frequently as those from an indoor temperature sensor.</li>
+      </ul>
 
- <h3>Using a national weather service</h3>
- <p>Availability varies by country. <strong>Check the official Home Assistant integrations first.</strong> If your national provider is not listed, use one of these approaches:</p>
- <ol class="steps">
- <li>
- <h3>Check access requirements</h3>
- <p>Consult <code>your-national-weather-service.example</code> for registration, API credentials, data licensing, and regional availability. Do not assume that access is free or available in every country.</p>
- </li>
- <li>
- <h3>Route A: use a maintained community integration</h3>
- <p>Search <code>HACS</code> for an integration for your provider. <strong>Community integrations are not maintained or reviewed by the Home Assistant project</strong>, so check recent releases, open issues, and compatibility with your Home Assistant version before installing one.</p>
- </li>
- <li>
- <h3>Route B: use a RESTful sensor</h3>
- <p>If the provider offers a REST API, Home Assistant's RESTful integration can retrieve its JSON response and expose selected fields as sensors. This requires more configuration, but avoids depending on a provider-specific custom integration.</p>
- </li>
- </ol>
- <div class="callout tip">
-<strong>Note:</strong> The zh-TW edition uses Taiwan's Central Weather Administration as its worked example. This international edition uses a provider-neutral pattern. Use Met.no or Open-Meteo for a standard weather entity, and add a national source only when you need data that the general provider does not offer.</div>
- </section>
+      <h3>Using a national weather service</h3>
+      <p>Availability varies by country. <strong>Check the official Home Assistant integration catalog first.</strong> If your national provider is not listed, consider these routes:</p>
+      <ol class="steps">
+        <li>
+          <h3>Check access requirements</h3>
+          <p>Consult <code>your-national-weather-service.example</code> as a stand-in for your provider’s official site, then verify registration requirements, API credentials, data licensing, pricing, and regional availability. Do not assume access is free or worldwide.</p>
+        </li>
+        <li>
+          <h3>Route A: use a maintained community integration</h3>
+          <p>Search <code>HACS</code> for your provider. <strong>Community integrations are neither maintained nor reviewed by the Home Assistant project.</strong> Before installing one, check its recent releases, open issues, and compatibility with your Home Assistant version.</p>
+        </li>
+        <li>
+          <h3>Route B: use a RESTful sensor</h3>
+          <p>If the provider offers a REST API, Home Assistant’s RESTful integration can retrieve the JSON response and expose selected fields as sensors. This takes more configuration, but avoids depending on a provider-specific custom integration.</p>
+        </li>
+      </ol>
+      <div class="callout tip"><strong>Tip:</strong> A practical provider-neutral arrangement is to use Met.no or Open-Meteo for the standard weather entity, then add a national source only for data the general service does not provide. Avoid making critical automations depend entirely on an unreviewed community integration.</div>
+    </section>
 
- <section id="media" data-nav="music and media">
- <h2 data-icon="app">Music &amp; Media: Spotify, Apple TV, Chromecast</h2>
- <p>All three create <code>media_player</code> entities controlled through the actions described in <a href="ch12_domains.html">Chapter 12</a>. Their connection methods differ.</p>
+    <section id="media" data-nav="Music and media">
+      <h2 data-icon="app">Music and media: Spotify, Apple TV, and Chromecast</h2>
+      <p>All three integrations create <code>media_player</code> entities that use the domain actions introduced in <a href="ch12_domains.html">Chapter 12</a>. The main difference is how they connect.</p>
 
- <table class="data-table">
- <thead>
- <tr>
-<th>Integration</th>
-<th>Connection method</th>
-<th>Created entities</th>
-<th>Main limitation</th>
-</tr>
- </thead>
- <tbody>
- <tr>
-<td>Spotify</td>
-<td>Cloud OAuth</td>
-<td><code>media_player</code></td>
-<td>If you want Premium, you need to apply for Client ID/Secret yourself.</td>
-</tr>
- <tr>
-<td>Apple TV</td>
-<td>Local network + PIN pairing</td>
-<td>
-<code>media_player</code>, <code>remote</code>, <code>binary_sensor</code>
-</td>
-<td>If AirPlay access permissions are set too strictly, pairing will fail.</td>
-</tr>
- <tr>
-<td>Google Cast</td>
-<td>Local network with mDNS discovery</td>
-<td><code>media_player</code></td>
-<td>Can’t find it across network segments</td>
-</tr>
- </tbody>
- </table>
+      <table class="data-table">
+        <thead>
+          <tr><th>Integration</th><th>Connection method</th><th>Created entities</th><th>Main limitation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Spotify</td><td>Cloud OAuth</td><td><code>media_player</code></td><td>Requires Premium and your own Client ID and Client Secret</td></tr>
+          <tr><td>Apple TV</td><td>Local network and PIN pairing</td><td><code>media_player</code>, <code>remote</code>, <code>binary_sensor</code></td><td>Restrictive AirPlay access settings can prevent pairing</td></tr>
+          <tr><td>Google Cast</td><td>Local network with mDNS discovery</td><td><code>media_player</code></td><td>Discovery does not normally cross subnets</td></tr>
+        </tbody>
+      </table>
 
- <h3>Spotify</h3>
- <p>The documentation requires a Premium account. Setup creates a <code>media_player</code> entity for playback control; use Source to choose an available playback device.</p>
- <div class="callout warn">
-<strong>Warning:</strong> The Spotify integration is <strong>not an audio output.</strong> It controls Spotify playback on a phone, Chromecast, or Spotify Connect device. Select an available playback target before expecting sound.</div>
+      <h3>Spotify</h3>
+      <p>The official documentation requires a Premium account. Setup creates a <code>media_player</code> entity for playback control; use Source to select an available playback device.</p>
+      <div class="callout warn"><strong>Warning:</strong> The Spotify integration is <strong>not a speaker</strong>. It controls playback on a phone, Chromecast, or Spotify Connect device. You still need to select an available output before you will hear anything.</div>
 
- <h3>Apple TV</h3>
- <p>During setup, HA will ask you to read the PIN code on the TV screen and enter it back to HA to complete pairing. After installation, you will get three types of entities:<code>media_player</code>(See what is playing now and control playback),<code>remote</code>(Simulating remote control buttons), and one that tracks keyboard focus <code>binary_sensor</code>—The latter is very useful. It can automatically call up the phone keyboard when the Apple TV pops up the input box.</p>
- <p>The official documentation lists these limitations:</p>
- <ul>
- <li>Some features, such as quick action menus, require tvOS 14.0 or above.</li>
- <li>Can the button be used? <strong>It’s up to each app to decide</strong>, not a question of integration. If the pause button of a certain app does not respond, it means that the app does not implement it.</li>
- <li>The volume control is only reliable when connected to HomePod; using HDMI CEC it can only fine-tune it up and down, while using infrared it cannot be remotely controlled at all.</li>
- <li>There is no way to detect the power status without interaction. Home Assistant FAQ directly answers "no".</li>
- <li>
-<code>remote</code> The physical switch is <strong>Only change the power status recorded here by HA</strong>, not actually waking up or turning off the machine. So don't use it as a reliable basis for "whether the TV is on or not."</li>
- </ul>
+      <h3>Apple TV</h3>
+      <p>During setup, Home Assistant asks you to read a PIN from the TV and enter it in Home Assistant to complete pairing. The integration creates three types of entity: <code>media_player</code> for playback status and control, <code>remote</code> for remote-control commands, and a <code>binary_sensor</code> that tracks keyboard focus. The last one can help trigger a phone keyboard when Apple TV displays a text field.</p>
+      <p>The official documentation lists several limitations:</p>
+      <ul>
+        <li>Some features, including the quick-action menu, require tvOS 14.0 or later.</li>
+        <li><strong>Each app decides which commands it supports.</strong> If Pause does nothing in a particular app, that app may not implement the command.</li>
+        <li>Volume control is dependable with HomePod. HDMI CEC generally supports incremental changes only, while infrared volume control is unavailable to the integration.</li>
+        <li>Home Assistant cannot passively determine the device’s power state; the official FAQ answers this directly with “no.”</li>
+        <li>Turning the <code>remote</code> entity on or off <strong>changes only the power state recorded by Home Assistant</strong>; it does not physically wake or shut down the device. Do not use it as a reliable indication that the TV is on.</li>
+      </ul>
 
- <h3>Google Cast (Chromecast, Google Nest speaker)</h3>
- <p>Normally it appears under Discovered a few minutes after booting. If you cannot find it, please check the network conditions listed in Home Assistant documentation one by one:</p>
- <ul>
- <li>
-<strong>mDNS must be passed</strong>: Automatic discovery depends on it; the integration documentation lists it as required.</li>
- <li>
-<strong>Need the same network segment</strong>: mDNS packets will not cross subnets. HA is in VLAN 10 and Chromecast is in VLAN 20 but cannot be found.</li>
- <li>
-<strong>Docker needs to use host network mode</strong>: If you use Container to install HA, Home Assistant documentation states that it must run in host network mode.</li>
- <li>
-<strong>Chromecast has a quirk: it doesn’t use the DNS sent by your router</strong>, Home Assistant documentation states that it goes directly to Google’s public DNS (8.8.8.8 / 8.8.4.4). Therefore, Chromecast cannot find the intranet domain name you set on the router. The actual impact is: the media URLs to be posted (such as videos and camera footage on your NAS) must use <strong>Direct IP</strong>, or a public URL that can be found outside, otherwise the TV will just spin in circles.</li>
- </ul>
- <p>It really can't be discovered. You can fill in "Known hosts" in the integration settings. Home Assistant description is a comma-separated list of host names or IPs. You can bypass mDNS exploration by typing in directly.</p>
- <div class="callout tip">
-<strong>Tip:</strong> Google Cast provides the action <code>cast.show_lovelace_view</code>, which can cast a Home Assistant dashboard view to a compatible display. Use it only where the display and household workflow make that useful.</div>
- </section>
+      <h3>Google Cast (Chromecast and Google Nest speakers)</h3>
+      <p>Under normal conditions, a Cast device appears under Discovered within a few minutes of starting. If it does not, check each network requirement in the official documentation:</p>
+      <ul>
+        <li><strong>mDNS must work:</strong> automatic discovery depends on it, and the integration documentation lists it as mandatory.</li>
+        <li><strong>Devices must be on the same subnet:</strong> mDNS traffic does not cross subnets by default. Home Assistant on VLAN 10 will not automatically discover a Chromecast on VLAN 20.</li>
+        <li><strong>Containers need host network mode:</strong> for a Home Assistant Container installation, the official documentation requires host network mode.</li>
+        <li><strong>Chromecast has an unusual DNS behavior:</strong> the documentation states that it uses Google’s public DNS servers, 8.8.8.8 and 8.8.4.4, rather than the DNS server advertised by your router. A private hostname defined only on your home network may therefore fail. Media URLs, such as a NAS video or camera stream, need a <strong>direct IP address</strong> or a publicly resolvable hostname; otherwise, the display may keep loading indefinitely.</li>
+      </ul>
+      <p>If discovery still fails, enter Known hosts in the integration options. This is a comma-separated list of hostnames or IP addresses and can bypass mDNS discovery.</p>
+      <div class="callout tip"><strong>Tip:</strong> Google Cast provides the <code>cast.show_lovelace_view</code> action, which can display a Home Assistant dashboard view on a compatible screen. Use it where a shared household status display would be useful.</div>
+    </section>
 
- <section id="location" data-nav="Positioning integration">
- <h2 data-icon="location">Location tracking: determine presence</h2>
- <p>Location enables presence-based automations such as turning off selected devices when everyone leaves or turning on an entry light on arrival. Location sources create <code>device_tracker</code> entities, which work with Person and Zone entities from <a href="ch5_users.html">Chapter 5</a>.</p>
+    <section id="location" data-nav="Location tracking">
+      <h2 data-icon="location">Location tracking: let Home Assistant know when you arrive</h2>
+      <p>Location is central to context-aware automation. Without it, automations can react to time; with it, they can turn selected devices off when everyone leaves or switch on an entrance light when someone arrives. Location sources create <code>device_tracker</code> entities, which work with the Zone and Person entities configured in <a href="ch5_users.html">Chapter 5</a>.</p>
 
- <table class="data-table">
- <thead>
- <tr>
-<th>Plan</th>
-<th>Accuracy/immediacy</th>
-<th>Power consumption</th>
-<th>Suggestions</th>
-</tr>
- </thead>
- <tbody>
- <tr>
-<td>
-<strong>Companion App</strong> (official mobile app)</td>
-<td>Geofence-based, generally the most responsive option</td>
-<td>Adjustable</td>
-<td>
-<strong>Recommended st</strong>arting point</td>
-</tr>
- <tr>
-<td><strong>iCloud</strong></td>
-<td>Polling, there will be a delay</td>
-<td>Low (will automatically adjust the frequency)</td>
-<td>My family refuses to install the app but I use it when I have an iPhone</td>
-</tr>
- <tr>
-<td><strong>Google Maps location sharing</strong></td>
-<td>polling</td>
-<td>low</td>
-<td>Officially labeled as Legacy, don’t use it if you can.</td>
-</tr>
- </tbody>
- </table>
+      <table class="data-table">
+        <thead>
+          <tr><th>Option</th><th>Accuracy and responsiveness</th><th>Power use</th><th>Recommendation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Companion App</strong> (official mobile app)</td><td>Usually the most responsive, with geofence triggers</td><td>Configurable</td><td><strong>Recommended starting point</strong></td></tr>
+          <tr><td><strong>iCloud</strong></td><td>Polling introduces some delay</td><td>Low; the interval adjusts automatically</td><td>Useful when an iPhone user will not install the Companion App</td></tr>
+          <tr><td><strong>Google Maps location sharing</strong></td><td>Polling</td><td>Low</td><td>Officially labeled Legacy; avoid it when possible</td></tr>
+        </tbody>
+      </table>
 
- <h3>Companion App (recommended)</h3>
- <p>Install Home Assistant App on your phone and log in. It will create an app for the first time you start it. <code>device_tracker.&lt;your_device_name&gt;</code> Entity, whose attributes include GPS coordinates, battery level, accuracy, altitude, and speed.</p>
- <p>Report timing (according to official documentation): Entering or leaving the Zone you defined in HA, when the App is started, when the background is captured, when notifications are received, and "major location changes" on iOS. iOS will automatically establish geofences for all set Zones upon startup; Android requires you to turn on Zone tracking in the App settings.</p>
- <div class="callout warn">
-<strong>Warning:</strong> On iOS, disabling location permission can stop all Companion App sensors, including battery and step-count updates. Android behavior varies by sensor. If multiple mobile entities become <code>unavailable</code>, check operating-system permissions first.</div>
- <p>See <a href="ch7_notifications.html">Chapter 7</a> for Companion App notifications and sensor details.</p>
+      <h3>Companion App (recommended)</h3>
+      <p>Install the official Home Assistant Companion App and sign in. On first launch, it creates a <code>device_tracker.&lt;your_device_name&gt;</code> entity whose attributes include GPS coordinates, battery level, accuracy, elevation, and speed.</p>
+      <p>According to the official documentation, location reports may occur when the phone enters or leaves a Home Assistant Zone, when the app starts or performs a background fetch, when it receives a notification, and when iOS reports a significant location change. iOS creates geofences for configured Zones when the app starts; on Android, enable Zone tracking in the app settings.</p>
+      <div class="callout warn"><strong>Warning:</strong> On iOS, disabling location permission can stop all Companion App sensors, not only location updates. Android behavior varies by sensor. If several mobile entities become <code>unavailable</code>, check the operating system’s permissions first.</div>
+      <p>See <a href="ch7_notifications.html">Chapter 7</a> for Companion App notification and sensor details.</p>
 
- <h3>iCloud</h3>
- <p>During setup, <strong>do not</strong> use your primary Apple Account password. Generate an <strong>app-specific password</strong> for Home Assistant. In addition, the device must be registered with the "Find My" service to be captured.</p>
- <p>It generates device_tracker and battery sensor for each iCloud device, and provides several actions: display messages, activate lost mode, play sounds, and request location updates. Its polling interval is dynamic and will be adjusted according to which zone it is installed in, how far away from home it is, and how much power it has, so as to avoid draining the phone's battery.</p>
+      <h3>iCloud</h3>
+      <p>During setup, <strong>do not</strong> use your main Apple Account password. The official instructions require an <strong>app-specific password</strong> generated for Home Assistant. The device must also be registered with Find My.</p>
+      <p>The integration creates a device tracker and battery sensor for each iCloud device. It also provides actions to display a message, activate Lost Mode, play a sound, and request a location update. Polling is dynamic: the interval changes according to the device’s Zone, distance from home, and battery level to reduce battery drain.</p>
 
- <h3>Google Maps location sharing</h3>
- <p>Home Assistant labels this integration <strong>Legacy</strong>. It is community maintained and is unlikely to gain new features. Prefer the Companion App where possible.</p>
- <p>And it’s not easy to set up at all. You’ll probably give up after reading these points:</p>
- <ul>
- <li>
-<strong>Cannot be set using UI</strong>, can only be written by hand <code>configuration.yaml</code> of <code>device_tracker</code> Sections – This is exactly what the Legacy tag is.</li>
- <li>
-<strong>Need two Google accounts</strong>: Account A is responsible for sharing the location, and account B is responsible for reading. You cannot share it to yourself.</li>
- <li>
-<strong>To manually dig out Google Maps cookies from your browser</strong>, save it as a specified file name and put it into the HA configuration folder. When the cookie expires, it will be dug again.</li>
- </ul>
- <p><strong>Conclusion: Don’t use it if you can.</strong> Only consider it when your family refuses to install any apps and they don’t use iPhone, and definitely don’t use it as the only basis for judging “no one is home, start security” - there is a delay in polling, and you may still be in the living room when it says you are not at home.</p>
- </section>
+      <h3>Google Maps location sharing</h3>
+      <p>Home Assistant labels this integration <strong>Legacy</strong>. It is community maintained and is unlikely to gain new features, so prefer the Companion App whenever possible.</p>
+      <p>Its setup is also demanding:</p>
+      <ul>
+        <li><strong>There is no UI setup flow.</strong> You must edit <code>configuration.yaml</code> and add its <code>device_tracker</code> section, which is characteristic of a Legacy integration.</li>
+        <li><strong>It requires two Google accounts:</strong> account A shares its location, and account B reads it. An account cannot share with itself.</li>
+        <li><strong>You must extract a Google Maps cookie from a browser manually,</strong> save it under the required filename, and place it in Home Assistant’s configuration directory. Repeat the process when the cookie expires.</li>
+      </ul>
+      <p><strong>Conclusion: avoid this integration if you can.</strong> Consider it only when someone will not install an app and does not use an iPhone. Never make polling-based location the sole condition for an action such as arming a security system: the reported state may lag behind the person’s actual location.</p>
+    </section>
 
- <section id="calendar_notify" data-nav="Calendar and notifications">
- <h2 data-icon="todo">Calendars and notifications</h2>
+    <section id="calendar_notify" data-nav="Calendars and notifications">
+      <h2 data-icon="todo">Calendars and international notifications</h2>
 
- <h3>Google Calendar</h3>
- <p>After setup, every calendar under "My calendars" becomes a <code>calendar</code> entity. For example, a calendar named "Personal" becomes <code>calendar.personal</code>. The integration also provides the <code>google.create_event</code> action, allowing an automation to create an event.</p>
- <p>A calendar entity can trigger an automation when an event starts, ends, or <strong>a specified number of minutes before it starts</strong>. For example, an event for tomorrow's trash collection can trigger a phone reminder at 9:00 p.m. the previous evening.</p>
- <p>Setup requires a Google Cloud project, the Google Calendar API, an OAuth consent screen, and a web-application client. Set the authorized redirect URL to <code>https://my.home-assistant.io/redirect/oauth</code>. The initial setup takes about 15 minutes; follow the current Home Assistant documentation step by step.</p>
+      <h3>Google Calendar</h3>
+      <p>After setup, each calendar under My calendars becomes a <code>calendar</code> entity. A calendar named Personal, for example, becomes <code>calendar.personal</code>. The integration also provides the <code>google.create_event</code> action, allowing an automation to create an event.</p>
+      <p>A calendar entity can trigger an automation when an event starts, ends, or <strong>a specified number of minutes before it starts</strong>. For example, tomorrow’s waste-collection event could trigger a phone reminder at 9:00 p.m. the previous evening.</p>
+      <p>Setup requires a Google Cloud project, the Google Calendar API, an OAuth consent screen, and a Web application client. Set the authorized redirect URL to <code>https://my.home-assistant.io/redirect/oauth</code>. Initial setup takes about 15 minutes; follow the current Home Assistant documentation step by step.</p>
 
- <h3>CalDAV (Nextcloud, iCloud, and Synology)</h3>
- <p>If you prefer not to configure Google Cloud, CalDAV can be set up <strong>entirely in the UI</strong>: Settings → Devices &amp; services → Add integration, search for CalDAV, and enter the server URL, such as <code>https://caldav.icloud.com/</code>, and your credentials.</p>
- <p>The Home Assistant documentation lists Baikal, iCloud Calendar, Nextcloud, ownCloud, and Synology Calendar as tested servers. Other RFC 4791-compliant servers may also work. For iCloud, create an app-specific password; do not give Home Assistant your Apple ID password.</p>
- <div class="callout warn">
-<strong>Note:</strong> The CalDAV YAML configuration does not support to-do lists. Use the UI setup flow if you need CalDAV to-do entities.</div>
+      <h3>CalDAV (Nextcloud, iCloud, and Synology)</h3>
+      <p>If you would rather not configure Google Cloud, CalDAV can be set up <strong>entirely through the UI</strong>: open Settings → Devices &amp; services → Add integration, search for CalDAV, and enter the server URL, such as <code>https://caldav.icloud.com/</code>, along with your credentials.</p>
+      <p>Home Assistant’s documentation lists Baikal, iCloud Calendar, Nextcloud, ownCloud, and Synology Calendar as tested servers. Other RFC 4791-compliant servers may also work. For iCloud, use an app-specific password rather than your main Apple Account password.</p>
+      <div class="callout warn"><strong>Warning:</strong> CalDAV’s YAML configuration does not support to-do lists. Use the UI setup flow if you need CalDAV to-do entities.</div>
 
- <h3>Telegram or Slack: protect credentials before you start</h3>
- <div class="callout danger">
-<strong>Danger:</strong> Treat every bot token and webhook URL as a password. <strong>Never paste one into a forum, issue, chat, or screenshot.</strong> If a credential is exposed, revoke it at the provider immediately and create a replacement. <strong>Avoid examples that expose a real token.</strong> Store credentials outside <code>configuration.yaml</code>.</div>
- <p>For Telegram, create a bot with BotFather, obtain the chat ID, and configure the official <strong>Telegram bot integration</strong>. For Slack, create an incoming webhook or app according to Slack's current documentation. In either case, store the credential in <code>secrets.yaml</code> rather than in the main configuration.</p>
- <p>Once the provider is configured, call <code>notify.send_message</code>. In the action editor, set <code>action</code> to the notification action, use <code>target</code> with <code>entity_id</code>, and replace <code>notify.family</code> and <code>message</code> with values from your installation.</p>
- <pre class="code-block"><code>actions:
+      <h3>Telegram or Slack: protect credentials before you begin</h3>
+      <div class="callout danger"><strong>Danger:</strong> Treat every bot token and webhook URL as a password. <strong>Never paste one into a forum, issue, chat, or screenshot.</strong> If a credential is exposed, revoke it with the provider immediately and create a replacement. <strong>Never adapt an example by inserting a real token into material you may share.</strong> Keep credentials outside <code>configuration.yaml</code>.</div>
+      <p>For Telegram, create a bot with BotFather, obtain the chat ID, and configure the official <strong>Telegram bot integration</strong>. For Slack, create an incoming webhook or app according to Slack’s current documentation. In either case, store the credential in <code>secrets.yaml</code> rather than in the main configuration file.</p>
+      <p>Once the provider is configured, call <code>notify.send_message</code>. In the action editor, set <code>action</code> to the notification action, use <code>target</code> with <code>entity_id</code>, and replace <code>notify.family</code> and <code>message</code> with values from your installation.</p>
+      <pre class="code-block"><code>actions:
   - action: notify.send_message
     target:
       entity_id: notify.family
     data:
       message: "{{ msg }}"</code></pre>
- <p>For example, an automation can send this message when a washing cycle finishes:</p>
- <pre class="code-block"><code>actions:
+      <p>For example, an automation could send this message when a washing cycle finishes:</p>
+      <pre class="code-block"><code>actions:
   - action: notify.send_message
     target:
       entity_id: notify.family
     data:
       message: "The washing cycle has finished. Remember to hang the laundry."</code></pre>
- <div class="callout warn">
-<strong>Warning:</strong> Provider limits, pricing, and feature availability can change. Check the provider's current documentation before using a third-party channel for frequent or critical notifications. Do not treat a consumer messaging service as a guaranteed alert channel.</div>
+      <div class="callout warn"><strong>Warning:</strong> Provider limits, pricing, and feature availability can change. Check the provider’s current documentation before using a third-party service for frequent or critical notifications. Do not treat a consumer messaging service as a guaranteed emergency-alert channel.</div>
 
- <h3>The simplest option: Companion App notifications</h3>
- <p>If the recipients use the Home Assistant Companion App, its <strong>push notification support is usually the shortest path</strong>: no separate messaging account, bot, or webhook is required.</p>
- <p><code>telegram_bot.send_message</code> can send photos, videos, files, polls, and stickers, and can <strong>edit or delete previously sent messages</strong>. When multiple chat IDs are allowed, use the generated <code>notify</code> entities with <code>notify.send_message</code>. Verify the exact entity IDs and supported actions in your installation.</p>
- <p>For household alerts, start with <strong>Companion App notifications</strong> from <a href="ch7_notifications.html">Chapter 7</a>, then add Telegram or Slack only when it solves a specific delivery requirement.</p>
- </section>
+      <h3>The simplest option: Companion App notifications</h3>
+      <p>If recipients use the Home Assistant Companion App, its <strong>push notifications are usually the shortest path</strong>: no separate messaging account, bot, or webhook is required.</p>
+      <p><code>telegram_bot.send_message</code> can send photos, videos, files, polls, and stickers, and can <strong>edit or delete previously sent messages</strong>. When several chat IDs are allowed, use the generated <code>notify</code> entities with <code>notify.send_message</code>. Always verify the exact entity IDs and supported actions in your installation.</p>
+      <p>For household alerts, start with the <strong>Companion App notifications</strong> described in <a href="ch7_notifications.html">Chapter 7</a>. Add Telegram or Slack only when it meets a specific delivery need.</p>
+    </section>
 
- <section id="cloud_vs_local" data-nav="Cloud vs. local">
- <h2 data-icon="compare">Choose between cloud and local integrations</h2>
- <p>Make this choice before buying a device. The same type of light can behave very differently through a local protocol and a vendor cloud.</p>
+    <section id="cloud_vs_local" data-nav="Cloud vs. local">
+      <h2 data-icon="compare">Choosing between cloud and local integrations</h2>
+      <p>Make this decision before buying a device rather than after installing it. The same type of light bulb can behave very differently through a local protocol and a vendor’s cloud.</p>
 
- <table class="data-table">
- <thead>
- <tr>
-<th>Compare items</th>
-<th>Local integration (Zigbee, Matter, ESPHome, District Network IP)</th>
-<th>Cloud API integration (original App account)</th>
-</tr>
- </thead>
- <tbody>
- <tr>
-<td><strong>When disconnected</strong></td>
-<td>Business as usual. As long as your router is still alive</td>
-<td>All become unavailable, and the entire automated group shuts down.</td>
-</tr>
- <tr>
-<td><strong>Vendor closes the service or API</strong></td>
-<td>not affected</td>
-<td>Integrate direct death, devices becomes decoration</td>
-</tr>
- <tr>
-<td><strong>Response time</strong></td>
-<td>Usually low latency on a healthy local network</td>
-<td>Depends on internet path, provider infrastructure, and API load</td>
-</tr>
- <tr>
-<td><strong>Data path</strong></td>
-<td>Control traffic remains on the local network</td>
-<td>Selected device and account data is processed by the provider</td>
-</tr>
- <tr>
-<td><strong>rate limit</strong></td>
-<td>almost none</td>
-<td>have. If you poll too frequently, your IP will be locked or temporarily blocked.</td>
-</tr>
- <tr>
-<td><strong>Set difficulty</strong></td>
-<td>You may need to buy a USB coordinator and flash the firmware</td>
-<td>Usually just fill in the account password, it’s the easiest</td>
-</tr>
- <tr>
-<td><strong>functional completeness</strong></td>
-<td>Occasionally missing some advanced features</td>
-<td>Usually as complete as the original app</td>
-</tr>
- </tbody>
- </table>
+      <table class="data-table">
+        <thead>
+          <tr><th>Consideration</th><th>Local integration (Zigbee, Matter, ESPHome, or LAN IP)</th><th>Cloud API integration (vendor app account)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>During an internet outage</strong></td><td>Continues to work as long as the local network is running</td><td>Entities become unavailable, and dependent automations stop working</td></tr>
+          <tr><td><strong>If the vendor closes or disables its API</strong></td><td>Unaffected</td><td>The integration stops working and the device may lose its smart functions</td></tr>
+          <tr><td><strong>Response time</strong></td><td>Usually under 100 milliseconds on a healthy local network</td><td>Often 0.5 to 3 seconds, depending on the internet path, provider infrastructure, and API load</td></tr>
+          <tr><td><strong>Privacy</strong></td><td>Control data remains within your home</td><td>Device activity and account data are processed on the provider’s servers</td></tr>
+          <tr><td><strong>Rate limits</strong></td><td>Usually none</td><td>Provider limits may throttle or temporarily block excessive polling</td></tr>
+          <tr><td><strong>Setup difficulty</strong></td><td>May require a USB coordinator or firmware installation</td><td>Often requires only a vendor account and password</td></tr>
+          <tr><td><strong>Feature coverage</strong></td><td>May omit a few advanced vendor-specific features</td><td>Often approaches the feature set of the vendor’s app</td></tr>
+        </tbody>
+      </table>
 
- <div class="callout">
-<strong>Concept:</strong> The pragmatic principle is—<strong>"If it responds immediately when you press it, or if it hurts to turn it off, always go local."</strong> Lighting, door locks, alarms, electric curtains, etc., all purchased locally. Information such as weather, calendar, music streaming, and electricity bill data that are already in the cloud can be integrated through the cloud without any problem, because they have no data to give you when the Internet is disconnected.</div>
+      <div class="callout"><strong>Concept:</strong> A practical rule is: <strong>use local control for anything that must respond immediately or would be painful to lose.</strong> Lighting, locks, alarms, and powered curtains are strong candidates for local control. Weather, calendars, music streaming, and utility data already originate in the cloud, so cloud integrations are reasonable for them.</div>
 
- <div class="callout warn">
-<strong>Warning:</strong> Some integrations control locally but require a cloud-issued token for initial setup or reauthentication. They may respond quickly yet fail to initialize after an outage. Check the integration’s documented IoT class, such as Local push or Local polling, and read its authentication requirements.</div>
- </section>
+      <div class="callout warn"><strong>Warning:</strong> Some integrations control devices locally but need a cloud-issued token for initial setup or reauthentication. They may respond quickly in normal use yet fail to initialize after an outage. Check the documented IoT class, such as Local polling or Local push, and read the authentication requirements before buying.</div>
+    </section>
 
- <section id="manage" data-nav="Maintenance">
- <h2 data-icon="records">Integration maintenance: diagnose, reauthenticate, reload, or remove</h2>
- <p>Credentials expire, provider APIs change, and devices become unavailable. Use these recovery steps from least to most disruptive.</p>
+    <section id="manage" data-nav="Maintenance">
+      <h2 data-icon="records">Integration maintenance: diagnostics, reauthentication, reload, and removal</h2>
+      <p>Setup is not the end of an integration’s life. Credentials expire, provider APIs change, and devices become unavailable. Try these recovery steps in order, from least to most disruptive.</p>
 
- <ol class="steps">
- <li>
- <h3>1. Reload</h3>
- <p>On the integration card, select <strong>Three-dot menu → Reload</strong>. This restarts only that integration without restarting Home Assistant. Try it first for a temporary device, network, or provider error.</p>
- </li>
- <li>
- <h3>2. Reauthenticate</h3>
- <p>If the card reports that reauthentication is required, the credential or token is no longer valid. Select the prompt and authorize again. <strong>Your entity_id, region, and automation are all retained</strong>, this is the biggest difference between it and "delete and add".</p>
- </li>
- <li>
- <h3>3. Download diagnostics</h3>
- <p>The path is <strong>Settings → Devices &amp; services → Click on that integration → Three-dot menu in the upper right corner → Download diagnostics</strong>. A JSON file will be downloaded, which contains the current status, settings (sensitive data will be officially masked), and captured raw data. <strong>When you go to GitHub to open an issue or go to the forum to ask for help, attaching this file will have a much higher chance of getting a reply.</strong> Not every integration has this option, it will only appear if it is supported.</p>
- <p>The matching ones are in the same menu. <strong>Enable debug logging</strong>: Open it → Reproduce the problem → Come back and close it, HA will automatically download the log file for you.</p>
- </li>
- <li>
- <h3>4. Remove only as a last resort</h3>
- <p>Last resort. Three-dot menu → Delete. <strong>When deleted, all devices and entities under this integration will disappear together.</strong>, all automation, scripts, and dashboard cards that reference them all become red text errors.</p>
- </li>
- </ol>
+      <ol class="steps">
+        <li>
+          <h3>1. Reload</h3>
+          <p>On the integration card, select <strong>three-dot menu → Reload</strong>. This restarts only that integration, not all of Home Assistant, and usually takes about 3 seconds. Try it first after a brief network interruption or provider outage.</p>
+        </li>
+        <li>
+          <h3>2. Reauthenticate</h3>
+          <p>If the integration card shows an error saying reauthentication is required, its password or token is no longer valid. Follow the prompt and authorize it again. <strong>Your entity IDs, areas, and automations remain intact</strong>, which is the crucial difference from removing and re-adding the entry.</p>
+        </li>
+        <li>
+          <h3>3. Download diagnostics</h3>
+          <p>Open <strong>Settings → Devices &amp; services → the integration → upper-right three-dot menu → Download diagnostics</strong>. Home Assistant downloads a JSON file containing the integration’s current state, configuration with sensitive values redacted, and retrieved data. <strong>Attach this file when opening a GitHub issue or asking for help in the forum to give maintainers the information they need.</strong> The option appears only for integrations that support diagnostics.</p>
+          <p>You can also select <strong>Enable debug logging</strong> from the same menu. Enable it, reproduce the problem once, then disable it; Home Assistant will offer the resulting log for download.</p>
+        </li>
+        <li>
+          <h3>4. Remove only as a last resort</h3>
+          <p>From the three-dot menu, select Delete. <strong>All devices and entities created by that config entry disappear immediately.</strong> Automations, scripts, and dashboard cards that refer to them will then contain broken references.</p>
+        </li>
+      </ol>
 
- <div class="callout danger">
-<strong>Danger:</strong> Before removing an integration, export or record all referenced entity IDs as described in <a href="ch4_naming_labels.html">Chapter 4</a>. Re-adding can create IDs ending in <code>_2</code>, breaking automations, scripts, and dashboard cards. Make a backup first as described in <a href="ch9_backups.html">Chapter 9</a>.</div>
+      <div class="callout danger"><strong>Danger:</strong> Before removing an integration, record every entity ID it created, using the entity list described in <a href="ch4_naming_labels.html">Chapter 4</a>. Re-adding the integration can produce different IDs, often with <code>_2</code> appended, and break every reference. Make a backup first as described in <a href="ch9_backups.html">Chapter 9</a>.</div>
 
- <div class="callout tip">
-<strong>Tip:</strong> What needs to be reloaded is what is written in YAML (such as the paragraph above <code>rest_command</code>), instead of integrating UI, then go to <strong>Settings → Tools → YAML</strong> tab to press reload. This block was called "Developer tools" before version 2026.8, and that was the name in the old teaching.</div>
- </section>
+      <div class="callout tip"><strong>Tip:</strong> To reload YAML-defined configuration, such as the earlier <code>rest_command</code> example, use the YAML tab under <strong>Settings → Tools</strong> rather than reloading a UI-configured integration. Before version 2026.8, this area was called Developer tools.</div>
+    </section>
 
- <section id="hacs" data-nav="HACS custom integration">
- <h2 data-icon="hacs">HACS custom integration: easy to use, but you have to know what you’re doing</h2>
- <p>Home Assistant supports many official integrations, but some devices require <strong>HACS (Home Assistant Community Store)</strong>—It is not an official store; it downloads community integrations and manages their updates from GitHub. Installation and basic operation of HACS <a href="appendix_hacs_addons.html">Appendix A</a> There is a complete version, but here I only cover the parts related to "integration".</p>
+    <section id="hacs" data-nav="HACS custom integrations">
+      <h2 data-icon="hacs">HACS custom integrations: useful, but understand the risks</h2>
+      <p>Home Assistant supports thousands of brands across more than a hundred categories, but some devices still lack an official integration. <strong>HACS (Home Assistant Community Store)</strong> fills part of that gap. It is not an official store; it downloads community integrations from GitHub and manages their updates. <a href="appendix_hacs_addons.html">Appendix A</a> covers installation and basic operation in detail. This section focuses on integrations.</p>
 
- <h3>The installation method depends on your HA installation method</h3>
- <table class="data-table">
- <thead>
- <tr>
-<th>your installation method</th>
-<th>HACS Official Documentation Practice</th>
-</tr>
- </thead>
- <tbody>
- <tr>
-<td>Home Assistant OS / Supervised</td>
-<td>put <code>https://github.com/hacs/addons</code> Add as repository and then <strong>Settings → Apps</strong> Install and start HACS</td>
-</tr>
- <tr>
-<td>Container (Docker)</td>
-<td>Enter the container and execute <code>wget -O - https://get.hacs.xyz | bash -</code>
-</td>
-</tr>
- <tr>
-<td>Core</td>
-<td>Switch to the HA user identity and execute the same line of commands</td>
-</tr>
- </tbody>
- </table>
- <p>After installation, <strong>restart Home Assistant</strong>. Then open Settings → Devices &amp; services → Add integration, search for HACS, and follow its setup flow. HACS requires a <strong>GitHub account</strong> for device authorization because it uses the GitHub API to check repositories. The unauthenticated API quota is <strong>limited</strong>; authorization provides a higher quota. Review the requested scope before approving access.</p>
- <div class="callout tip">
-<strong>Tip:</strong> HA officially renamed "Add-ons" to "Apps" in version 2026.2, and the sidebar and settings page were changed accordingly. If the tutorial you see on the Internet still says "Supervisor → Add-on Store", that is the old version, and the underlying feature is the same. See detailed differences <a href="appendix_hacs_addons.html">Appendix A</a>.</div>
- <div class="callout warn">
-<strong>Warning:</strong> Home Assistant HACS documentation makes it very clear: If you don’t know which installation method you have, it is not recommended to install HACS. Because not only will it not move if you install it the wrong way, it may also mess up your environment. If you're not sure, check it out first <a href="appendix_hacs_addons.html">Appendix A</a>.</div>
+      <h3>Installation depends on your Home Assistant installation type</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>Installation type</th><th>Method in the HACS documentation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Home Assistant OS / Supervised</td><td>Add <code>https://github.com/hacs/addons</code> as a repository, then install and start HACS under <strong>Settings → Apps</strong></td></tr>
+          <tr><td>Container (Docker)</td><td>Enter the container and run <code>wget -O - https://get.hacs.xyz | bash -</code></td></tr>
+          <tr><td>Core</td><td>Switch to the Home Assistant user and run the same command</td></tr>
+        </tbody>
+      </table>
+      <p>After downloading HACS, <strong>restart Home Assistant</strong>. Then open Settings → Devices &amp; services → Add integration, search for HACS, and complete its setup flow. HACS needs a <strong>GitHub account</strong> for device authorization because it repeatedly checks repositories through the GitHub API. GitHub allows <strong>only 60 unauthenticated requests per hour</strong>, which is insufficient; authentication provides a much higher quota. The token requires no special access and reads only public information.</p>
+      <div class="callout tip"><strong>Tip:</strong> Home Assistant renamed Add-ons to Apps in version 2026.2, including in the sidebar and Settings. Instructions that still say “Supervisor → Add-on Store” use the older terminology for the same feature. See <a href="appendix_hacs_addons.html">Appendix A</a> for details.</div>
+      <div class="callout warn"><strong>Warning:</strong> The HACS documentation is direct: if you do not know which Home Assistant installation type you have, HACS is not recommended. Using the wrong installation method can fail or damage your environment. If you are unsure, identify your installation type in <a href="appendix_hacs_addons.html">Appendix A</a> first.</div>
 
- <h3>Four risks of custom integration (really understand before installing)</h3>
- <ul>
- <li>
-<strong>No review</strong>: Code review is required before official integration is put on the shelves, but HACS does not. It runs with the same permissions as your HA, and in theory you can do whatever you want.</li>
- <li>
-<strong>Will slow down the upgrade</strong>: HA is updated once a month, and the internal API is frequently changed. If the maintainers can't keep up, the integration will explode after you upgrade it. In severe cases, the entire HA will not be able to get up.</li>
- <li>
-<strong>Maintainers will disappear</strong>: The item has not been touched for two years and no one has responded to the issue. This is normal. Before installing, check when was the "last commit" on GitHub and whether the issue was handled by anyone.</li>
- <li>
-<strong>Not within the backup compatibility range</strong>: When restoring a backup to a new version of HA, custom integration is the most trouble-prone area.</li>
- </ul>
+      <h3>Four risks of custom integrations</h3>
+      <ul>
+        <li><strong>No official review:</strong> Core integrations undergo code review; HACS integrations do not. A custom integration runs with the same permissions as Home Assistant and could, in principle, do anything that process can do.</li>
+        <li><strong>Upgrades can break them:</strong> Home Assistant updates monthly, and internal APIs change. If a maintainer falls behind, an upgrade may break the integration or, in severe cases, prevent Home Assistant from starting normally.</li>
+        <li><strong>Maintainers may disappear:</strong> Projects that have not changed for two years and have unanswered issues are common. Before installing, check the most recent commit and whether maintainers respond to issues.</li>
+        <li><strong>Backup compatibility is not guaranteed:</strong> Custom integrations are among the components most likely to fail when you restore a backup onto a newer Home Assistant version.</li>
+      </ul>
 
- <div class="callout danger">
-<strong>Danger:</strong> HACS can add a "custom repository", which is equivalent to installing the program code directly from any GitHub website into your home server. <strong>Only add items that you can understand, or that are used by many people in the community and have been maintained for a long time.</strong> Copying a GitHub URL from a stranger's private message or an unknown blog and pasting it up is the same thing as opening a backdoor to your own home.</div>
+      <div class="callout danger"><strong>Danger:</strong> HACS can add a custom repository, which effectively installs code from any GitHub URL on your home server. <strong>Add only projects you can evaluate, or projects with broad community use and a long record of maintenance.</strong> Pasting a URL from an unsolicited message or unknown blog can be equivalent to opening a back door into your home.</div>
 
- <h3>Three-minute inspection before installation</h3>
- <ol class="steps">
- <li>
-<h3>Look at the number of stars and the last updated date</h3>
-<p>With a few hundred stars and commits in the last three months, it's usually pretty safe. More than a dozen stars, not moved for three years, think carefully.</p>
-</li>
- <li>
-<h3>Look at the issue area</h3>
-<p>Search for the version number of the most recent major HA update (e.g. <code>2026.8</code>) to see if anyone reports the problem and whether the maintainer responds.</p>
-</li>
- <li>
-<h3>Back up first and then install</h3>
-<p>Make a complete backup before installation. When it breaks, it can be restored in ten minutes, otherwise it might take all night to repair it.</p>
-</li>
- </ol>
- </section>
+      <h3>A three-minute check before installation</h3>
+      <ol class="steps">
+        <li><h3>Check stars and the latest update</h3><p>Hundreds of stars and commits within the past three months are encouraging signs. A dozen stars and no activity for three years should make you reconsider.</p></li>
+        <li><h3>Review the issues</h3><p>Search for the latest major Home Assistant version, such as <code>2026.8</code>. Check whether users report breakage and whether the maintainer responds.</p></li>
+        <li><h3>Back up before installing</h3><p>Create a full backup first. If the integration causes a problem, a restore may take ten minutes; repairing the installation manually can take all night.</p></li>
+      </ol>
+    </section>
 
- <section id="no_integration" data-nav="Integration not found">
- <h2 data-icon="hardware">What should I do if I buy the devices but can’t find the integration?</h2>
- <p>If a device works in its vendor app but its brand does not appear under Add integration, check these items in order.</p>
+    <section id="no_integration" data-nav="When no integration appears">
+      <h2 data-icon="hardware">What to do when you cannot find an integration</h2>
+      <p>A common frustration is finding that a new device works in its vendor app, yet its brand never appears under Add integration. Work through these checks in order.</p>
 
- <ol class="steps">
- <li>
- <h3>First make sure you are searching for "brand" and not "model"</h3>
- <p>Search uses brand and integration names, not every product model. For example, a Xiaomi sensor may use <code>Xiaomi Miio</code>; If you buy a certain brand of WiFi socket, the integrated name may be the name of the foundry platform behind it (such as Tuya). <strong>Search the official Home Assistant integration list by brand</strong>, faster than guessing in the search box.</p>
- </li>
- <li>
- <h3>Look for a protocol logo on the packaging</h3>
- <p>Check for <strong>Matter</strong>, <strong>Thread</strong>, <strong>Zigbee</strong>, <strong>Z-Wave</strong>, <strong>or Works with Home Assistant</strong>. A standards-based device may require a protocol integration, such as Matter or Zigbee Home Automation, rather than a brand integration<strong></strong>.</p>
- </li>
- <li>
- <h3>Make sure you have the corresponding transceiver</h3>
- <p>Zigbee and Z-Wave devices cannot connect to WiFi by themselves, and the host must plug in a USB coordinator to receive it. Without that stick, it won't appear no matter how you set it. Thread requires a Thread border router.</p>
- </li>
- <li>
- <h3>Try to automatically discover whether it is blocked by the network</h3>
- <p>Wi-Fi devices are commonly discovered through mDNS/SSDP/DHCP. Check: Are the device and HA on the same network segment? Do you have "AP Isolation/Guest Network" enabled on your home WiFi? Does the router block multicast? Does Docker version of HA use host network mode? Any one of these settings can block discovery.</p>
- </li>
- <li>
- <h3>Check Home Assistant integration list to see if it exists.</h3>
- <p>See the consolidated list of official documentation directly. If it cannot be found, it means that the core is not available. Stop looking for it in the UI. <strong>By the way, pay attention to whether there is any "removed" message</strong>—When the original API and dependent packages are not maintained, Home Assistant will remove the integration in the revision notes (for example, Permobil and Volvo On Call were removed in 2026.8). The teaching you are looking at was probably written when it was still around.</p>
- </li>
- <li>
- <h3>Go to HACS to find the community version</h3>
- <p>The core doesn’t have it, but the community often does. Search the brand name in HACS. Once you find it, follow the three-minute inspection in the previous section and then install it.</p>
- </li>
- <li>
- <h3>Last resort: go through the universal pipeline</h3>
- <p>If the device has an open HTTP API, you can use RESTful sensors or <code>rest_command</code> Connect it yourself; if it can send MQTT, set up MQTT to connect. These two paths are equivalent to integrating themselves, which is troublesome but almost omnipotent.</p>
- </li>
- <li>
- <h3>Know when the device is incompatible</h3>
- <p>If a device is cloud-only, has no supported API, and has no maintained community integration, it may not be co<strong>mpatible. Return it within the seller’s policy rather than exposing credentials or installing unknown code.</strong> Before future purchases, search the exact model with “Home Assistant.”</p>
- </li>
- </ol>
+      <ol class="steps">
+        <li>
+          <h3>Search for the brand, not the model</h3>
+          <p>Home Assistant searches by brand and integration name, not every product model. A Xiaomi sensor may use <code>Xiaomi Miio</code>; a branded Wi-Fi socket may use the name of its underlying platform, such as Tuya. <strong>Search the official integration catalog by brand</strong> rather than guessing repeatedly in the dialog.</p>
+        </li>
+        <li>
+          <h3>Look for protocol logos on the packaging</h3>
+          <p>Check for <strong>Matter</strong>, <strong>Thread</strong>, <strong>Zigbee</strong>, <strong>Z-Wave</strong>, or <strong>Works with Home Assistant</strong>. A standards-based device may need a protocol integration rather than a brand integration—for example, Matter, ZHA, or Zigbee2MQTT. <strong>Many users search indefinitely for a brand when they should be searching for its protocol.</strong></p>
+        </li>
+        <li>
+          <h3>Confirm that you have the required radio</h3>
+          <p>Zigbee and Z-Wave devices do not connect to Wi-Fi on their own. The Home Assistant host needs a compatible USB coordinator to communicate with them. Without one, no amount of configuration will make the device appear. Thread devices require a Thread border router.</p>
+        </li>
+        <li>
+          <h3>Check whether the network is blocking discovery</h3>
+          <p>Wi-Fi devices are commonly discovered through mDNS, SSDP, or DHCP. Confirm that the device and Home Assistant are on the same subnet, AP isolation or a guest network is not separating them, the router is not blocking multicast, and a Container installation uses host network mode. Any one of these conditions can prevent discovery.</p>
+        </li>
+        <li>
+          <h3>Confirm that an official integration exists</h3>
+          <p>Check the official integration catalog directly. If it is absent, stop searching for it in the UI. <strong>Also check whether it was removed.</strong> Home Assistant may remove an integration when a vendor closes its API or a dependency is no longer maintained; for example, version 2026.8 removed Permobil and Volvo On Call. The guide you found may predate the removal.</p>
+        </li>
+        <li>
+          <h3>Look for a community integration in HACS</h3>
+          <p>If no core integration exists, the community may provide one. Search HACS by brand, then complete the three-minute review in the previous section before installing anything.</p>
+        </li>
+        <li>
+          <h3>Use a general-purpose interface as a last resort</h3>
+          <p>If the device exposes an HTTP API, connect it with a RESTful sensor or <code>rest_command</code>. If it publishes MQTT messages, use an MQTT broker. These approaches require you to build the connection yourself, but they cover many otherwise unsupported devices.</p>
+        </li>
+        <li>
+          <h3>Recognize when a device is incompatible</h3>
+          <p>If a device is cloud-only, has no supported public API, and lacks a maintained community integration, Home Assistant cannot connect to it safely. <strong>Return it within the seller’s policy rather than sharing credentials or installing unknown code.</strong> Before your next purchase, search for the exact model together with “Home Assistant.”</p>
+        </li>
+      </ol>
 
- <div class="callout tip">
-<strong>Tip:</strong> The safest opinion before buying: It’s on the packaging <strong>Matter</strong> The logo is given priority because Matter is a universal standard across brands. HA can integrate it with Matter without having to wait for any engineer to write the exclusive integration for that brand.</div>
- </section>
+      <div class="callout tip"><strong>Tip:</strong> A <strong>Matter</strong> logo is a strong sign when shopping because Matter is a cross-brand standard. Home Assistant can connect through its Matter integration instead of waiting for a brand-specific integration.</div>
+    </section>
 
- <section id="troubleshoot" data-nav="Common problems">
- <h2 data-icon="troubleshoot">Common problems</h2>
+    <section id="troubleshoot" data-nav="Troubleshooting">
+      <h2 data-icon="troubleshoot">Common problems</h2>
 
- <ol class="steps">
- <li>
- <h3>After OAuth authorization is completed, the webpage stops at a white screen or "unable to connect"</h3>
- <p>Check two items. First, register<strong></strong> <code>https://my.home-assistant.io/redirect/oauth</code> exactly as documented; even a trailing slash can cause a mismatch. Second, the browser completing authorization must be able to reach your Home Assistant URL. If the instance is local-only,<strong> complete authorization from a browser on the same trusted local network.</strong></p>
- </li>
- <li>
- <h3>The integration card turns red and says that it needs to be re-verified.</h3>
- <p>The token has expired or you changed the password for that service. Just click on re-verify, don’t delete and add again. If re-authentication fails repeatedly, go to the "Linked Applications" page of the other party's account to see if the HA authorization has been revoked. If so, you will need to re-authorize it again.</p>
- </li>
- <li>
- <h3>The device is clearly online, but the entities are all "unavailable"</h3>
- <p>Press reload first. If that doesn't work, download the diagnostic file and see what it reports. Common reasons for cloud integration are <strong>Being speed-limited by the other party’s API</strong>—You may have installed two integrations at the same time to open the same account, or poll to set too many passwords. Turn off the duplicate one first.</p>
- </li>
- <li>
- <h3>Nothing appears under Discovered</h3>
- <p>Repeat step 4 in the <a href="#no_integration">previous section</a>: Check the network one by one: the same network segment, turn off AP isolation, multicast is not blocked, Docker uses the host network. These four items are the four pillars of automatic exploration. If one is missing, all will be silent.</p>
- </li>
- <li>
- <h3>After deleting the integration and re-adding it, all the automation was broken.</h3>
- <p>Because entity_id has changed, there are usually more new ones. <code>_2</code>. Go to the entity list and change the name back to the original one (make sure the original one no longer exists), or go back to <a href="ch4_naming_labels.html">Chapter 4</a> Use batch rename. This is why <strong>Don’t delete it if you can re-verify it.</strong>.</p>
- </li>
- <li>
- <h3>After upgrading HA, an integration disappears</h3>
- <p>There are two possibilities: the core integration has been officially removed (see the revision instructions for that version), or the custom integration cannot keep up with the new version. The former needs to find an alternative, while the latter needs to go to GitHub to see if there is a new version; in case of emergency, restore to the backup before the upgrade and wait for the maintainer to fix it before upgrading.</p>
- </li>
- </ol>
- </section>
+      <ol class="steps">
+        <li>
+          <h3>OAuth ends on a blank page or an “unable to connect” message</h3>
+          <p>This is usually a redirect-URL problem. Check two things: first, register <strong>exactly</strong> <code>https://my.home-assistant.io/redirect/oauth</code> as documented—even an extra trailing slash can cause a mismatch. Second, the browser completing authorization must be able to reach Home Assistant. If the instance is local-only, <strong>complete authorization in a browser on the same trusted Wi-Fi network</strong> rather than over a mobile connection.</p>
+        </li>
+        <li>
+          <h3>The integration card is red and requests reauthentication</h3>
+          <p>The token expired, or you changed the service password. Select Reauthenticate rather than deleting and re-adding the integration. If reauthentication repeatedly fails, check the provider account’s Connected apps page to see whether Home Assistant’s authorization was revoked, then authorize it again if necessary.</p>
+        </li>
+        <li>
+          <h3>The device is online, but every entity is unavailable</h3>
+          <p>Reload the integration first. If that fails, download diagnostics and inspect the reported error. A cloud provider may have <strong>rate-limited your API requests</strong>, perhaps because two integrations access the same account or the polling interval is too aggressive. Disable duplicates before trying again.</p>
+        </li>
+        <li>
+          <h3>Nothing appears under Discovered</h3>
+          <p>Repeat step 4 in the <a href="#no_integration">previous section</a>: confirm that the device is on the same subnet, AP isolation is off, multicast is allowed, and a Container installation uses host networking. Discovery may remain silent if any one of these conditions is missing.</p>
+        </li>
+        <li>
+          <h3>Every automation broke after removing and re-adding an integration</h3>
+          <p>The entity IDs changed; new ones often end in <code>_2</code>. In the entity list, rename them to their previous IDs after confirming that the originals no longer exist, or use the batch-renaming workflow in <a href="ch4_naming_labels.html">Chapter 4</a>. This is why you should <strong>reauthenticate instead of removing an integration whenever possible</strong>.</p>
+        </li>
+        <li>
+          <h3>An integration disappeared after a Home Assistant upgrade</h3>
+          <p>Either Home Assistant removed a core integration—check that release’s notes—or a custom integration is incompatible with the new version. For a custom integration, look for an update on GitHub. If the situation is urgent, restore the pre-upgrade backup and wait for the maintainer to release a fix before upgrading again.</p>
+        </li>
+      </ol>
+    </section>
 
- <section id="faq" data-nav="FAQ">
- <h2 data-icon="faq">FAQ</h2>
+    <section id="faq" data-nav="FAQ">
+      <h2 data-icon="faq">Frequently asked questions</h2>
 
- <details class="faq">
- <summary>Can an integration be installed multiple times? For example, two Spotify accounts</summary>
- <div class="body">Yes. Each setting under the integration is an independent config entry and does not interfere with each other. Just look for "Add entry" on the integration card and run the process again. The same goes for weather integration, which can be placed in three locations: home, work, and hometown at the same time.</div>
- </details>
+      <details class="faq">
+        <summary>Can I add the same integration more than once—for example, for two Spotify accounts?</summary>
+        <div class="body">Yes. Each setup under an integration is a separate config entry and does not interfere with the others. Select Add entry on the integration card and repeat the flow. The same applies to weather: you can create entries for home, work, and another city.</div>
+      </details>
 
- <details class="faq">
- <summary>What is the difference between "reload" and "restart HA"?</summary>
- <div class="body">Reloading is only for that one integration, everything else runs as usual, usually in a few seconds, and your home automation is not interrupted. Restarting means turning off the entire HA and then on again, and re-integrating everything together. Nothing will be available for a minute or two. <strong>The order is always to reload first, then restart if that doesn't work.</strong> In addition, if you want to reload the settings written in YAML, go to <code>Settings → Tools → YAML</code>(This area was called "Developer Tools" before 2026.8).</div>
- </details>
+      <details class="faq">
+        <summary>What is the difference between reloading an integration and restarting Home Assistant?</summary>
+        <div class="body">Reload affects only one integration. Everything else continues running, and the process usually finishes within seconds. Restart shuts down and starts all of Home Assistant, briefly interrupting every integration. <strong>Always try Reload first; restart only if that does not work.</strong> To reload YAML configuration, open <code>Settings → Tools → YAML</code>. Before version 2026.8, this area was called Developer tools.</div>
+      </details>
 
- <details class="faq">
- <summary>Which notification method should I use for an international deployment?</summary>
- <div class="body">
-<strong>Companion App notifications</strong> are the simplest option for Home Assistant users. Use <strong>Telegram or Slack</strong> when the household already relies on one of those services. The <a href="#calendar_notify">calendar and notifications section</a> shows the provider-neutral pattern: call <code>notify.send_message</code> with your actual <code>notify.family</code> entity. See <a href="ch7_notifications.html">Chapter 7</a> for Companion App setup.</div>
- </details>
+      <details class="faq">
+        <summary>Which notification method should I use for an international deployment?</summary>
+        <div class="body"><strong>Companion App notifications</strong> are the simplest choice for Home Assistant users. Consider <strong>Telegram or Slack</strong> when the household already depends on one of those services. The <a href="#calendar_notify">Calendars and international notifications section</a> shows the provider-neutral pattern: call <code>notify.send_message</code> with the actual <code>notify.family</code> entity from your installation. See <a href="ch7_notifications.html">Chapter 7</a> for Companion App setup.</div>
+      </details>
 
- <details class="faq">
- <summary>Will downloading the diagnostic file leak my password?</summary>
- <div class="body">Home Assistant diagnostics are designed to redact sensitive fields, but <strong>implementation quality varies by integration</strong>. Before publishing a JSON file, inspect it for <code>token</code>, <code>password</code>, <code>secret</code>, email addresses, precise coordinates, and other personal data.</div>
- </details>
+      <details class="faq">
+        <summary>Could a diagnostics file expose my password?</summary>
+        <div class="body">Home Assistant’s diagnostics framework is designed to redact sensitive fields, but <strong>implementation quality varies among integrations</strong>. Before posting a JSON file publicly, inspect it for <code>token</code>, <code>password</code>, <code>secret</code>, email addresses, precise coordinates, and other personal data.</div>
+      </details>
 
- <details class="faq">
- <summary>I don’t have a fixed IP or domain. Is the OAuth integration hopeless?</summary>
- <div class="body">Not necessarily. Most go <code>my.home-assistant.io</code> The integration of <strong>your own browser</strong> Bring the authorization result back to HA. Your HA URL is stored locally in the browser and will not be sent to any service. So as long as you are on the same network as HA and use a browser to complete the entire authorization process, the intranet address usually works. Only when it really fails will you need to deal with the external URL. See how you do it. <a href="appendix_hacs_addons.html">Appendix A</a> The remote connection section.</div>
- </details>
+      <details class="faq">
+        <summary>I do not have a fixed IP address or domain. Are OAuth integrations impossible?</summary>
+        <div class="body">Not necessarily. For many integrations that use <code>my.home-assistant.io</code>, <strong>your browser</strong> carries the authorization result back to Home Assistant. Your instance URL stays in the browser’s local storage and is not sent to an external service. If you complete the flow in a browser that can reach Home Assistant on the same network, a private address will often work. Configure an external URL only if the flow still fails; see the remote-access section in <a href="appendix_hacs_addons.html">Appendix A</a>.</div>
+      </details>
 
- <details class="faq">
- <summary>Will Home Assistant help me with the integration of HACS installation?</summary>
- <div class="body">No. Things on HACS belong to Home Assistant classification <strong>Custom</strong>, there is no official review or support. If something goes wrong, you can only go to the GitHub of that item to open an issue. So before installing, be sure to check the last update date and whether anyone is replying in the issue area. In addition, when reporting problems with the HA body, Home Assistant will usually ask you to stop all custom integrations and then try again.</div>
- </details>
+      <details class="faq">
+        <summary>Will Home Assistant support an integration installed through HACS?</summary>
+        <div class="body">No. HACS integrations are classified as <strong>Custom</strong>; the Home Assistant project neither reviews nor supports them. Report problems in that project’s GitHub repository. Before installing, check the latest update and whether maintainers answer issues. When you report a Home Assistant core problem, maintainers will often ask you to disable all custom integrations and reproduce it first.</div>
+      </details>
 
- <details class="faq">
- <summary>Chromecast can be seen on the phone, but HA cannot be found</summary>
- <div class="body">First confirm HA and Chromecast <strong>in the same network segment</strong>—mDNS packets will not cross subnets. If you can see it on your phone, it only means that your phone is in the same network segment as it. Then confirm whether the Docker version uses the host network mode. If everything is correct and you still can't find it, you can fill in "Known Hosts" in the Google Cast integration settings and enter the IP directly to bypass automatic discovery. Remember to fix that IP on the router first, otherwise DHCP will have to be reset when changing IP.</div>
- </details>
+      <details class="faq">
+        <summary>My phone can see the Chromecast, but Home Assistant cannot</summary>
+        <div class="body">First confirm that Home Assistant and the Chromecast are <strong>on the same subnet</strong>. mDNS does not cross subnets by default; seeing the device on your phone proves only that the phone can reach it. For Home Assistant Container, also confirm host network mode. If discovery still fails, enter the Chromecast’s IP address under Known hosts in the Google Cast integration. Reserve that address in your router so a later DHCP change does not break the configuration.</div>
+      </details>
 
- <details class="faq">
- <summary>Which weather integration should I use?</summary>
- <div class="body">For basic temperature, humidity, and precipitation forecasts, <strong>start with Met.no or Open-Meteo</strong>; neither requires an API key. If you need official local terminology or finer regional data, check <code>your-national-weather-service.example</code> for an API or a maintained integration. <strong>Do not make a critical automation depend only on an unreviewed community integration</strong>; keep a standard integration as the primary source.</div>
- </details>
- </section>
+      <details class="faq">
+        <summary>Which weather integration should I use?</summary>
+        <div class="body">For basic temperature, humidity, and precipitation forecasts, <strong>start with Met.no or Open-Meteo</strong>; neither requires an API key. If you need official terminology or finer regional data, consult <code>your-national-weather-service.example</code> as a placeholder for your national provider’s site and look for an API or maintained integration. <strong>Do not make critical automations depend entirely on an unreviewed community integration.</strong> Keep a standard integration as the primary source.</div>
+      </details>
+    </section>
 
- <div class="pager">
+    <div class="pager">
       <a class="prev" href="ch13_themes.html">
-        <span class="label">← Previous</span>
+        <span class="label">← Previous chapter</span>
         <span class="title">13 · Themes and appearance</span>
       </a>
       <a class="next" href="ch15_protocols.html">
-        <span class="label">Next →</span>
+        <span class="label">Next chapter →</span>
         <span class="title">15 · Protocols</span>
       </a>
     </div>
 
- <footer class="site-footer">
-      <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
-      <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
+    <footer class="site-footer">
+      <p>The Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a>. You may share and adapt it with attribution.</p>
+      <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source and errata</a></p>
     </footer>
- </main>
+  </main>
 </div>
 <script id="ui-strings" type="application/json">{"tocToggle":"Contents","tocExpand":"Expand chapter navigation","tocCollapse":"Collapse chapter navigation"}</script>
 <script src="../assets/js/toc.js"></script>
