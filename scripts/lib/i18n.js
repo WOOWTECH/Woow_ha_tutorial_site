@@ -234,7 +234,10 @@ function langSwitch({ isPrimary, locale, page, primaryBase, locales, strings, le
     }
   } else {
     const me = locales[locale] || {};
-    pills.push(`<a href="../${rel || 'index.html'}" lang="${ZH.lang}" hreflang="${ZH.lang}">${ZH.langNameSelf}</a>`);
+    // Keep locale roots free of literal Han characters while preserving the
+    // native-language label rendered to readers and assistive technology.
+    const primaryLabel = [...ZH.langNameSelf].map((char) => `&#${char.codePointAt(0)};`).join('');
+    pills.push(`<a href="../${rel || 'index.html'}" lang="${ZH.lang}" hreflang="${ZH.lang}">${primaryLabel}</a>`);
     pills.push(`<a class="active" href="${rel || 'index.html'}" lang="${me.hreflang || locale}" aria-current="page">${me.label || locale.toUpperCase()}</a>`);
   }
   return `<nav class="lang-switch" aria-label="${strings.langSwitchLabel}">${pills.join('')}</nav>`;

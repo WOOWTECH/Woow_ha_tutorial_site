@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 10 · Scripts · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="A guide to Home Assistant scripts: how they differ from automations, parameterisation with fields, Single/Restart/Queued/Parallel modes, and four ways to call a script." />
+  <meta name="description" content="Learn how scripts differ from automations, add fields, choose Single, Restart, Queued, or Parallel mode, and call scripts in four ways." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch10_scripts.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Chapter 10 · Scripts · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="A guide to Home Assistant scripts: how they differ from automations, parameterisation with fields, Single/Restart/Queued/Parallel modes, and four ways to call a script." />
+  <meta property="og:description" content="Learn how scripts differ from automations, add fields, choose Single, Restart, Queued, or Parallel mode, and call scripts in four ways." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch10_scripts.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch10/01_scripts_page.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chapter 10 · Scripts · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="A guide to Home Assistant scripts: how they differ from automations, parameterisation with fields, Single/Restart/Queued/Parallel modes, and four ways to call a script." />
+  <meta name="twitter:description" content="Learn how scripts differ from automations, add fields, choose Single, Restart, Queued, or Parallel mode, and call scripts in four ways." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch10/01_scripts_page.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -34,7 +34,7 @@
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From setup to everyday use</div>
-    <nav class="lang-switch" aria-label="Language"><a href="../ch10_scripts.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch10_scripts.html" lang="en" aria-current="page">EN</a></nav>
+    <nav class="lang-switch" aria-label="Language"><a href="../ch10_scripts.html" lang="zh-Hant" hreflang="zh-Hant">&#20013;&#25991;</a><a class="active" href="ch10_scripts.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
@@ -46,27 +46,27 @@
       <li><a href="ch5_users.html">User management</a></li>
       <li><a href="ch6_dashboard.html">Dashboards</a></li>
       <li><a href="ch7_notifications.html">Notifications</a></li>
-      <li><a href="ch8_first_automation.html">Your first automation</a></li>
+      <li><a href="ch8_first_automation.html">First automation</a></li>
       <li><a href="ch9_backups.html">Backups</a></li>
       <li><a href="ch10_scripts.html" class="active">Scripts</a></li>
-      <li><a href="ch11_devices.html">Detailed device settings</a></li>
-      <li><a href="ch12_domains.html">Domain control reference</a></li>
+      <li><a href="ch11_devices.html">Device settings</a></li>
+      <li><a href="ch12_domains.html">Domain reference</a></li>
       <li class="part-label">Extensions: connect more devices</li>
       <li><a href="ch13_themes.html">Themes and appearance</a></li>
-      <li><a href="ch14_integrations.html">Connecting integrations</a></li>
-      <li><a href="ch15_protocols.html">Guide to communication protocols</a></li>
-      <li><a href="ch16_todo_calendar.html">To-do lists and calendars</a></li>
+      <li><a href="ch14_integrations.html">Integrations</a></li>
+      <li><a href="ch15_protocols.html">Protocols</a></li>
+      <li><a href="ch16_todo_calendar.html">To-do and calendars</a></li>
       <li class="part-label">Data, energy, and AI</li>
       <li><a href="ch17_energy.html">Energy dashboard</a></li>
-      <li><a href="ch18_history_data.html">Historical data and export</a></li>
-      <li><a href="ch19_voice_ai.html">Voice assistants and AI</a></li>
+      <li><a href="ch18_history_data.html">History and export</a></li>
+      <li><a href="ch19_voice_ai.html">Voice and AI</a></li>
       <li class="part-label">Advanced architecture and applications</li>
       <li><a href="ch20_addons_docker.html">Add-ons and Docker</a></li>
       <li><a href="ch21_network_remote.html">Networking and remote access</a></li>
-      <li><a href="ch22_life_logs.html">Life-logging applications</a></li>
+      <li><a href="ch22_life_logs.html">Life logging</a></li>
     </ol>
     <div class="toc-in-chapter">
-      <h2>In this chapter</h2>
+      <h2>This chapter</h2>
       <a href="#why">Why scripts are useful</a>
       <a href="#vs">Scripts vs automations vs scenes</a>
       <a href="#steps">Hands-on: your first script</a>
@@ -79,9 +79,9 @@
     </div>
     <div class="toc-in-chapter">
       <h2>Appendices</h2>
-      <a href="appendix_hacs_addons.html">A · Ecosystem: HACS, add-ons, and remote access</a>
+      <a href="appendix_hacs_addons.html">A · HACS, add-ons, and remote access</a>
       <a href="appendix_scenes_helpers_groups.html">B · Scenes, helpers, and groups</a>
-      <a href="appendix_hardware_install.html">C · Before installation: hardware and HAOS</a>
+      <a href="appendix_hardware_install.html">C · Hardware and HAOS</a>
     </div>
   </aside>
 
@@ -394,18 +394,18 @@ sequence:
 
  <div class="pager">
       <a class="prev" href="ch9_backups.html">
-        <span class="label">← Previous chapter</span>
+        <span class="label">← Previous</span>
         <span class="title">09 · Backups</span>
       </a>
       <a class="next" href="ch11_devices.html">
-        <span class="label">Next chapter →</span>
-        <span class="title">11 · Detailed device settings</span>
+        <span class="label">Next →</span>
+        <span class="title">11 · Device settings</span>
       </a>
     </div>
 
  <footer class="site-footer">
-      <p>The Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a>. You may share and adapt it freely with attribution.</p>
-      <p class="footer-meta">Screenshots are taken from the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source and errata</a></p>
+      <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
+      <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
  </main>
 </div>

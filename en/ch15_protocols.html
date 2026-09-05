@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chapter 15 · A Complete Guide to Communication Protocols · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="A complete Home Assistant comparison of Wi-Fi, Zigbee, Z-Wave, Thread and Matter, Bluetooth, KNX, Modbus, and MQTT, with buying advice and integration guidance." />
+  <title>Chapter 15 · Communication protocols · Home Assistant Onboarding Guide</title>
+  <meta name="description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch15_protocols.html" />
   <meta name="robots" content="noindex, follow" />
@@ -12,13 +12,13 @@
   <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Chapter 15 · A Complete Guide to Communication Protocols · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="A complete Home Assistant comparison of Wi-Fi, Zigbee, Z-Wave, Thread and Matter, Bluetooth, KNX, Modbus, and MQTT, with buying advice and integration guidance." />
+  <meta property="og:title" content="Chapter 15 · Communication protocols · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch15_protocols.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Chapter 15 · A Complete Guide to Communication Protocols · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="A complete Home Assistant comparison of Wi-Fi, Zigbee, Z-Wave, Thread and Matter, Bluetooth, KNX, Modbus, and MQTT, with buying advice and integration guidance." />
+  <meta name="twitter:title" content="Chapter 15 · Communication protocols · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Compare major smart-home protocols, learn their hardware and integration requirements, and use a practical checklist before purchasing devices." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -32,9 +32,9 @@
 <body>
 <div class="layout">
  <aside class="sidebar">
-    <a class="brand" href="tutorial.html">Home Assistant Onboarding Guide</a>
+    <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From setup to everyday use</div>
-    <nav class="lang-switch" aria-label="Language"><a href="../ch15_protocols.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch15_protocols.html" lang="en" aria-current="page">EN</a></nav>
+    <nav class="lang-switch" aria-label="Language"><a href="../ch15_protocols.html" lang="zh-Hant" hreflang="zh-Hant">&#20013;&#25991;</a><a class="active" href="ch15_protocols.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
@@ -54,7 +54,7 @@
       <li class="part-label">Extensions: connect more devices</li>
       <li><a href="ch13_themes.html">Themes and appearance</a></li>
       <li><a href="ch14_integrations.html">Integrations</a></li>
-      <li><a href="ch15_protocols.html" class="active">Complete protocol guide</a></li>
+      <li><a href="ch15_protocols.html" class="active">Protocols</a></li>
       <li><a href="ch16_todo_calendar.html">To-do and calendars</a></li>
       <li class="part-label">Data, energy, and AI</li>
       <li><a href="ch17_energy.html">Energy dashboard</a></li>
@@ -67,7 +67,7 @@
     </ol>
     <div class="toc-in-chapter">
       <h2>This chapter</h2>
-      <a href="#why">Why protocols matter</a>
+      <a href="#why">Why this matters</a>
       <a href="#layers">What protocols govern</a>
       <a href="#master">Protocol comparison</a>
       <a href="#steps">Inventory your protocols</a>
@@ -93,7 +93,7 @@
  <main class="content">
  <div class="chapter-header">
       <div class="kicker">Chapter 15</div>
-      <h1>A complete guide to communication protocols</h1>
+      <h1>Communication protocols</h1>
       <p class="lead">Wi-Fi, Zigbee, Z-Wave, Thread, Matter, Bluetooth, KNX, Modbus, MQTT—what exactly distinguishes them? This chapter compares them side by side, so you can tell whether a light bulb will work in your home before selecting “Add to cart.” You will leave with a lasting quick-reference table and a repeatable checklist for every device purchase.</p>
     </div>
 
@@ -291,7 +291,7 @@
       <p>Z-Wave is much less visible than Zigbee in Taiwan and is substantially more expensive, but it is a mainstream choice in Europe and North America. Because it does not share Wi-Fi’s 2.4 GHz band, it is inherently subject to far less interference.</p>
 
       <h3>Confirm the frequency region before buying</h3>
-      <div class="callout danger"><strong>Danger:</strong> Z-Wave uses sub-GHz frequencies, and <strong>the frequency differs by region</strong>. European, North American, and Australian devices cannot communicate with one another. Before ordering from another country, confirm that the coordinator and every device use the same regional version. A mismatch does not merely reduce performance—it prevents any connection. Products sold in Taiwan do not always use a consistent version, so ask the seller explicitly.</div>
+      <div class="callout danger"><strong>Note:</strong> The zh-TW source focuses on Taiwan’s mixed Z-Wave market. Internationally, the same rule applies: <strong>sub-GHz frequencies differ by region</strong>, and European, North American, and Australian devices cannot communicate with one another. Before ordering, confirm that the coordinator and every device use the same regional version; a mismatch prevents any connection.</div>
 
       <h3>How Z-Wave runs in Home Assistant</h3>
       <p>Home Assistant’s Z-Wave integration uses Z-Wave JS. Once configured, access its management page through <strong>Settings &gt; Z-Wave</strong> or <strong>Settings &gt; Devices &amp; services &gt; Z-Wave</strong>. It uses the Z-Wave JS “App,” formerly known as an “Add-on.” Home Assistant 2026.2 officially renamed Add-ons to Apps, and the menu path is now <strong>Settings &gt; Apps</strong>. Localized wording may continue to change; “App” and its translation refer to the same place. See <a href="appendix_hacs_addons.html">Appendix A</a> for a fuller explanation.</p>
@@ -632,17 +632,17 @@ bluetooth_proxy:
 
  <div class="pager">
       <a class="prev" href="ch14_integrations.html">
-        <span class="label">← Previous chapter</span>
+        <span class="label">← Previous</span>
         <span class="title">14 · Integrations</span>
       </a>
       <a class="next" href="ch16_todo_calendar.html">
-        <span class="label">Next chapter →</span>
+        <span class="label">Next →</span>
         <span class="title">16 · To-do and calendars</span>
       </a>
     </div>
 
  <footer class="site-footer">
-      <p>The Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
+      <p>Home Assistant Onboarding Guide is produced by <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">WoowTech</a> and released under <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a> — share and adapt freely, with attribution.</p>
       <p class="footer-meta">Screenshots show the official Home Assistant interface. Home Assistant is a trademark of the Open Home Foundation; this site is not affiliated with it. · <a href="https://github.com/WOOWTECH/Woow_ha_tutorial_site" rel="noopener">Source &amp; errata</a></p>
     </footer>
  </main>

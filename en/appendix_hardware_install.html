@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Appendix C · Hardware Selection and HAOS Installation · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Compare Home Assistant installation methods, choose suitable hardware and storage, install HAOS, and complete first-time setup." />
+  <title>Appendix C · Before installation: hardware and HAOS · Home Assistant Onboarding Guide</title>
+  <meta name="description" content="Compare HAOS, Supervised, Container, and Core; choose a Raspberry Pi or mini PC and suitable storage; flash the image and complete first boot." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/appendix_hardware_install.html" />
   <meta name="robots" content="noindex, follow" />
@@ -12,13 +12,13 @@
   <meta property="og:site_name" content="Home Assistant Onboarding Guide" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
-  <meta property="og:title" content="Appendix C · Hardware Selection and HAOS Installation · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Compare Home Assistant installation methods, choose suitable hardware and storage, install HAOS, and complete first-time setup." />
+  <meta property="og:title" content="Appendix C · Before installation: hardware and HAOS · Home Assistant Onboarding Guide" />
+  <meta property="og:description" content="Compare HAOS, Supervised, Container, and Core; choose a Raspberry Pi or mini PC and suitable storage; flash the image and complete first boot." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/appendix_hardware_install.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Appendix C · Hardware Selection and HAOS Installation · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Compare Home Assistant installation methods, choose suitable hardware and storage, install HAOS, and complete first-time setup." />
+  <meta name="twitter:title" content="Appendix C · Before installation: hardware and HAOS · Home Assistant Onboarding Guide" />
+  <meta name="twitter:description" content="Compare HAOS, Supervised, Container, and Core; choose a Raspberry Pi or mini PC and suitable storage; flash the image and complete first boot." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/og/woowtech.en.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -34,7 +34,7 @@
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
     <div class="brand-sub">From setup to everyday use</div>
-    <nav class="lang-switch" aria-label="Language"><a href="../appendix_hardware_install.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="appendix_hardware_install.html" lang="en" aria-current="page">EN</a></nav>
+    <nav class="lang-switch" aria-label="Language"><a href="../appendix_hardware_install.html" lang="zh-Hant" hreflang="zh-Hant">&#20013;&#25991;</a><a class="active" href="appendix_hardware_install.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
@@ -91,7 +91,7 @@
  <main class="content">
  <div class="chapter-header">
  <div class="kicker">Appendix C</div>
- <h1>Hardware selection and HAOS installation</h1>
+ <h1>Before installation: hardware and HAOS</h1>
  <p class="lead">From Chapter 1 onward, this guide assumes that you already have a host running Home Assistant. If you do not, this appendix is your starting point: choose a host and storage medium, write the system image, power it on, and create your first account. When you finish, continue with <a href="ch1_login.html">Chapter 1</a>.</p>
  </div>
 
@@ -460,7 +460,7 @@
 
  <p>Utility faults and construction work can interrupt power in any country. Abruptly cutting power while the host is writing creates the database-corruption risk described above. An inexpensive uninterruptible power supply (UPS) that runs for ten minutes or more is usually sufficient. The aim is not indefinite operation, but enough time to <strong>shut down cleanly</strong> or ride through a brief interruption.</p>
 
- <div class="callout tip"><strong>Tip:</strong> If a UPS is outside your budget, at minimum <strong>configure automatic backups and send them to storage outside the host</strong>. All hardware eventually fails; an independent backup is your real protection. See <a href="ch9_backups.html">Chapter 9</a>.</div>
+ <div class="callout tip"><strong>Note:</strong> The zh-TW source uses Taiwan-specific power examples. This international edition follows each manufacturer’s rated supply and recommends UPS protection for local utility conditions. If a UPS is outside your budget, at minimum <strong>configure automatic backups and send them to storage outside the host</strong>. See <a href="ch9_backups.html">Chapter 9</a>.</div>
  </section>
 
  <section id="after" data-nav="After installation">

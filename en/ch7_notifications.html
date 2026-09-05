@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chapter 7 · Notifications · Home Assistant Onboarding Guide</title>
-  <meta name="description" content="Install the Home Assistant Companion App, connect your phone, send your first push notification, and create actionable notifications with buttons." />
+  <meta name="description" content="Install the Home Assistant Companion App, connect a phone, send a test notification, and create actionable notifications with buttons." />
   <meta name="author" content="WoowTech" />
   <link rel="canonical" href="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch7_notifications.html" />
   <meta name="robots" content="noindex, follow" />
@@ -13,12 +13,12 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_TW" />
   <meta property="og:title" content="Chapter 7 · Notifications · Home Assistant Onboarding Guide" />
-  <meta property="og:description" content="Install the Home Assistant Companion App, connect your phone, send your first push notification, and create actionable notifications with buttons." />
+  <meta property="og:description" content="Install the Home Assistant Companion App, connect a phone, send a test notification, and create actionable notifications with buttons." />
   <meta property="og:url" content="https://woowtech.github.io/Woow_ha_tutorial_site/en/ch7_notifications.html" />
   <meta property="og:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch7/01_mobile_sensors.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Chapter 7 · Notifications · Home Assistant Onboarding Guide" />
-  <meta name="twitter:description" content="Install the Home Assistant Companion App, connect your phone, send your first push notification, and create actionable notifications with buttons." />
+  <meta name="twitter:description" content="Install the Home Assistant Companion App, connect a phone, send a test notification, and create actionable notifications with buttons." />
   <meta name="twitter:image" content="https://woowtech.github.io/Woow_ha_tutorial_site/assets/screenshots/ch7/01_mobile_sensors.png" />
   <meta name="theme-color" content="#6183FC" />
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.en" />
@@ -33,12 +33,12 @@
 <div class="layout">
  <aside class="sidebar">
     <a class="brand" href="tutorial.html">HA Onboarding Guide</a>
-    <div class="brand-sub">From zero to up and running</div>
-    <nav class="lang-switch" aria-label="Language"><a href="../ch7_notifications.html" lang="zh-Hant" hreflang="zh-Hant">中文</a><a class="active" href="ch7_notifications.html" lang="en" aria-current="page">EN</a></nav>
+    <div class="brand-sub">From setup to everyday use</div>
+    <nav class="lang-switch" aria-label="Language"><a href="../ch7_notifications.html" lang="zh-Hant" hreflang="zh-Hant">&#20013;&#25991;</a><a class="active" href="ch7_notifications.html" lang="en" aria-current="page">EN</a></nav>
     <a class="hub-link" href="index.html">◂ Resource Hub</a>
     <h2>Chapters</h2>
     <ol>
-      <li class="part-label">Foundations: from zero to up and running</li>
+      <li class="part-label">Foundations: setup and everyday use</li>
       <li><a href="ch1_login.html">Log in to HA</a></li>
       <li><a href="ch2_system_settings.html">System settings</a></li>
       <li><a href="ch3_floors_areas.html">Floors and areas</a></li>
@@ -156,7 +156,7 @@
  <h3>Select <code>notify.mobile_app_XXX</code> in the action field</h3>
  <p>XXX is the name of the phone you just connected. The Companion App creates this action automatically.</p>
  <figure class="shot">
- <img src="../assets/screenshots/ch7/02_dev_services.png" alt="The action interface under Settings, Tools, and Actions" />
+ <img src="assets/screenshots/ch7/02_dev_services.png" alt="The action interface under Settings, Tools, and Actions" />
  <figcaption><strong>Figure 7-2</strong> The action interface under Settings → Tools. This screenshot shows the former Developer Tools interface.</figcaption>
  </figure>
  <p><strong>Notification action naming convention:</strong> <code>notify.mobile_app_&lt;device name&gt;</code>. Non-alphanumeric characters in the device name become underscores. For example, iPhone 13 Pro Max becomes <code>notify.mobile_app_iphone_13_pro_max</code>. To find your phone, search for <code>notify.mobile_app</code> in the action list under Settings → Tools → Actions.</p>
